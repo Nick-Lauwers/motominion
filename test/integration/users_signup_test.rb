@@ -28,6 +28,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                 password_confirmation: "password" }
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
+    assert_not flash.nil?
     user = assigns(:user)
     assert_not user.activated?
     # Try to log in before activation.
@@ -44,6 +45,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert user.reload.activated?
     follow_redirect!
     assert_template 'users/show'
+    assert_not flash.nil?
     assert is_logged_in?
   end
 end
