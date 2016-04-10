@@ -3,33 +3,17 @@
 
 /* mixins, variables, etc. */
 
-$gray-medium-light: #eaeaea;
+$gray-light:      #f9f9f9;
+$gray-lighter:    #eaeaea;
+$gray-lightest:   #c8c9cb;
+$gray-dark:       #63656a;
+$gray-darker:     #9e9e9e;
+$yellow-dark:     #fcce01;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
-}
-
-/* universal */
-
-body {
-  padding-top: 60px;
-}
-
-section {
-  overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
 }
 
 /* typography */
@@ -41,74 +25,222 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
   text-align: center;
-  font-weight: normal;
-  color: $gray-light;
 }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+/* universal */
+
+.container {
+  width: auto;
+  padding: 0;
 }
 
 /* header */
 
+.navbar {
+  background-color: transparent;
+  border-color: transparent;
+  margin: 5px 0;
+  padding: 0 3em;
+  .navbar-nav > li > a {
+    color: white;
+    &:hover {
+      color: white;
+    }
+  }
+}
+
 #logo {
-  float: left;
-  margin-right: 10px;
   font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
+  color: white;
   font-weight: bold;
+  text-transform: uppercase;
+  float: left;
+  padding: 9px 0;
+  margin-right: 10px;
   &:hover {
     color: white;
     text-decoration: none;
   }
 }
 
-/* footer */
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #gray-medium-light;
-  color: $gray-light;
-  a {
-    color: $gray;
+.nav {
+  font-size: 1.105em;
+  font-weight: bold;
+}
+
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+  background-color: rgba(54, 55, 58, 0.75);
+  color: white;
+}
+
+.dropdown-menu {
+  background-color: rgba(54, 55, 58, 0.75);
+  padding: 24px 0;
+  border: none;
+  li a {
+    transition: color 0.3s;
+    color: $gray-lightest;
+    font-size: 1.105em;
+    font-weight: bold;
+    padding: 7px 24px;
     &:hover {
-      color: $gray-darker;
-    }
+      background-color: transparent;
+      color: $yellow-dark;
+    } 
   }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
+}
+
+/* jumbotron */
+
+.container {
+  .jumbotron {
+    background-image: url("hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    height: 520px;
+    margin: -81px 0 0;
+    padding: 0;
+    position: relative;
+    .hero-title {
+      font-size: 3.5em;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 0.05px;
+      margin: 0;
     }
   }
 }
 
-/* miscellaneous */
+.jumbotron-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
-.debug_dump {
-  clear: both;
+.hero-subtitle {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  letter-spacing: 0.05px;
+  margin: 10px 0;
+}
+
+.popular-searches {
+  background-color: $gray-dark;
+  height: 40px;
+  width: 50%;
+  margin: auto;
+}
+
+.popular-searches-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: $yellow-dark;
   float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
+  margin: 0 15px;
+  line-height: 40px;
+}
+
+.popular-searches-list {
+  list-style: none;
+  line-height: 40px;
+  li {
+    padding: 0 10.5px;
+    display: inline-block;
+    a {
+      color: white;
+    }
+  }
+}
+
+/* footer */
+
+footer {
+  background-color: $gray-light;
+  padding: 2em 0 0;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin-bottom: 0.8em;
+      a {
+        color: $gray-dark;
+        &:hover {
+          color: $gray-dark;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.footer-text {
+  margin: 0 auto;
+  max-width: 1008px;
+}
+
+.footer-logo {
+  font-size: 1.5em;
+  letter-spacing: -1px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $gray-dark;
+}
+
+.footer-subtitle {
+  font-size: 1em;
+  color: $gray-darker;
+  margin-bottom: 1.5em;
+}
+
+.social-media li {
+  display: inline-block;
+  margin-top: 1.7em;
+  margin-right: 1em;
+}
+
+/* button */
+
+.btn {
+  font-weight: bold;
+  color: $gray-dark;
+  background: $yellow-dark;
+  border: 1px solid $yellow-dark;
+  border-radius: 0;
+  height: 50px;
+  padding: 0 2em;
+  transition: background 0.3s;
+  transition: color 0.3s;
+  &:hover {
+    background: $gray-dark;
+    color: white;
+    border: 1px solid $gray-dark;
+  }
+  &:focus {
+    background: $gray-dark;
+    color: white;
+    border: 1px solid $gray-dark;
+    box-shadow: none;
+  }
+  &:active {
+    background: $gray-dark;
+    color: white;
+    border: 1px solid $gray-dark;
+    box-shadow: none;
+  }
 }
 
 /* sidebar */
@@ -150,15 +282,42 @@ aside {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  margin-bottom: 15px;
-  @include box_sizing;
+.form-group {
+  margin: 2em auto 0;
+  width: 50%;
 }
 
-input {
-  height: auto !important;
+.form-control {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border: 1px solid transparent;
+  box-shadow: none;
+  height: 50px;
+  padding: 16px 16px;
+  &:focus {
+    border: 1px solid $yellow-dark;
+    box-shadow: none;
+  }
+}
+
+.form-control::-webkit-input-placeholder { color: $gray-lightest;}
+.form-control:-moz-placeholder { color: $gray-lightest; }
+.form-control::-moz-placeholder { color: $gray-lightest; }
+.form-control:-ms-input-placeholder { color: $gray-lightest; }
+
+
+#search {
+  padding-left: 45px;
+}
+
+.glyphicon {
+  color: $gray-lightest;
+  position: absolute;
+  z-index: 2;
+  left: 16px;
+  top: 16px;
+  font-size: 18px;
 }
 
 #error_explanation {
@@ -188,4 +347,14 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
 }

@@ -1,9 +1,38 @@
-<div class="center jumbotron">
-  <h1>Dealership.com</h1>
-  
-  <h2>
-      This is the home page for the online dealership.
-  </h2>
-  
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+<div class="jumbotron">
+  <div class="jumbotron-text">
+    <h1 class="hero-title">Find Your Vehicle</h1>
+    <h2 class="hero-subtitle">
+      Purchase unique vehicles from around the world
+    </h2>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="icon-addon addon-lg">
+          <input  type="text" 
+                  class="form-control"
+                  maxlength="100"
+                  placeholder="Search by vehicle, dealership, or city"  
+                  id="search"/>
+          <label  for="search" 
+                  class="glyphicon glyphicon-search" 
+                  rel="tooltip" 
+                  title="search"/>
+        </div>
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-primary btn-inline">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="popular-searches">
+      <h3 class="popular-searches-title">Popular:</h3>
+      <ul class="popular-searches-list">
+        <li><%= link_to "Ford Fusion",     '#' %></li>
+        <li><%= link_to "Les Stanford GM", '#' %></li>
+        <li><%= link_to "Detroit",         '#' %></li>
+      </ul>
+    </div>
+  </div>
 </div>
+
+<!--http://bootsnipp.com/snippets/featured/support-glyph-and-fa-icon-inside-input-->
