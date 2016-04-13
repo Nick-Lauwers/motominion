@@ -3,12 +3,17 @@
 
 /* mixins, variables, etc. */
 
-$gray-light:      #f9f9f9;
-$gray-lighter:    #eaeaea;
-$gray-lightest:   #c8c9cb;
-$gray-dark:       #63656a;
-$gray-darker:     #9e9e9e;
-$yellow-dark:     #fcce01;
+$gray-transparent:  rgba(54, 55, 58, 0.75);
+$gray-division:     #e7e7e7;
+$gray-lightest:     #f9f9f9;
+$gray-lighter:      #eaeaea;
+$gray-light:        #c8c9cb;
+$gray-dark:         #9e9e9e;
+$gray-darker:       #63656a;
+$gray-darkest:      #36373a;
+$yellow-dark:       #fcce01;
+$green:             #38b2a6;
+$green-dark:        #2b948a;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -43,16 +48,65 @@ h2 {
 
 /* header */
 
-.navbar {
+.header-fixed, .header-static {
+  z-index: 100;
+  width: 100%;
+}
+
+.header-static {
+  position: absolute;
+  top: 0;
   background-color: transparent;
-  border-color: transparent;
+  .navbar-nav > li > a {
+    &:hover, &:focus {
+      background-color: $gray-transparent;
+    }
+  }
+  .dropdown-menu {
+    background-color: $gray-transparent;
+  }
+}
+
+.header-fixed {
+  display: none;
+  position: fixed;
+  background-color: $gray-darkest;
+  .navbar-nav > li > a {
+    &:hover, &:focus {
+      background-color: $gray-darker;
+    }
+  }
+  .dropdown-menu {
+    background-color: $gray-darker;
+  }
+}
+
+.nav {
+  font-size: 1.105em;
+  font-weight: bold;
+}
+
+.navbar {
   margin: 5px 0;
   padding: 0 3em;
   .navbar-nav > li > a {
     color: white;
+  }
+}
+
+.dropdown-menu {
+  padding: 24px 0;
+  border: none;
+  li a {
+    transition: color 0.3s;
+    color: $gray-light;
+    font-size: 1.105em;
+    font-weight: bold;
+    padding: 7px 24px;
     &:hover {
-      color: white;
-    }
+      background-color: transparent;
+      color: $yellow-dark;
+    } 
   }
 }
 
@@ -71,46 +125,17 @@ h2 {
   }
 }
 
-.nav {
-  font-size: 1.105em;
-  font-weight: bold;
-}
-
-.navbar-default .navbar-nav > .open > a, 
-.navbar-default .navbar-nav > .open > a:hover, 
-.navbar-default .navbar-nav > .open > a:focus {
-  background-color: rgba(54, 55, 58, 0.75);
-  color: white;
-}
-
-.dropdown-menu {
-  background-color: rgba(54, 55, 58, 0.75);
-  padding: 24px 0;
-  border: none;
-  li a {
-    transition: color 0.3s;
-    color: $gray-lightest;
-    font-size: 1.105em;
-    font-weight: bold;
-    padding: 7px 24px;
-    &:hover {
-      background-color: transparent;
-      color: $yellow-dark;
-    } 
-  }
-}
-
 /* jumbotron */
 
 .container {
   .jumbotron {
-    background-image: url("hero.jpg");
+    background-image: url("hero3.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 0;
-    height: 520px;
-    margin: -81px 0 0;
+    height: 515px;
+    margin: 0;
     padding: 0;
     position: relative;
     .hero-title {
@@ -138,7 +163,7 @@ h2 {
 }
 
 .popular-searches {
-  background-color: $gray-dark;
+  background-color: $gray-darker;
   height: 40px;
   width: 50%;
   margin: auto;
@@ -165,11 +190,83 @@ h2 {
   }
 }
 
+/* home */
+
+.features {
+  background-color: white;
+  border-bottom: 1px solid $gray-division;
+  .row {
+    margin: 0 auto;
+    max-width: 1008px;
+    .col-md-4 {
+      border-right: 1px solid $gray-division;
+      padding: 2em;
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.feature-title {
+  margin: 0 0 0.25em;
+  color: $gray-darker;
+  font-weight: bold;
+  font-size: 1.65em;
+}
+
+.feature-description {
+  margin: 0;
+  color: $gray-darker;
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+
+.how-it-works {
+  background-color: $gray-lightest;
+  height: 500px;
+}
+
+.how-it-works-title {
+  margin: 0;
+  padding: 240px;
+  color: $gray-darker;
+  font-weight: bold;
+  font-size: 1.65em;
+}
+
 /* footer */
 
 footer {
-  background-color: $gray-light;
-  padding: 2em 0 0;
+  background-color: $gray-lightest;
+}
+
+.call-us {
+  background-color: $green;
+  color: white;
+  text-align: center;
+  padding: 2.5em 0;
+}
+
+.call-us-heading {
+  font-size: 1.7em;
+  font-weight: bold;
+  margin: 0 0 1em;
+}
+
+.call-us-phone {
+  font-size: 1.2em;
+  font-weight: bold;
+  background-color: $green-dark; 
+  border-radius: 32px;
+  padding: 0.75em 0;
+  width: 15%;
+  margin: 0 auto;
+}
+
+.footer-text {
+  margin: 0 auto;
+  max-width: 1008px;
   ul {
     list-style: none;
     padding: 0;
@@ -177,9 +274,9 @@ footer {
     li {
       margin-bottom: 0.8em;
       a {
-        color: $gray-dark;
+        color: $gray-darker;
         &:hover {
-          color: $gray-dark;
+          color: $gray-darker;
           text-decoration: none;
         }
       }
@@ -187,22 +284,17 @@ footer {
   }
 }
 
-.footer-text {
-  margin: 0 auto;
-  max-width: 1008px;
-}
-
 .footer-logo {
   font-size: 1.5em;
   letter-spacing: -1px;
   font-weight: bold;
   text-transform: uppercase;
-  color: $gray-dark;
+  color: $gray-darker;
 }
 
 .footer-subtitle {
   font-size: 1em;
-  color: $gray-darker;
+  color: $gray-dark;
   margin-bottom: 1.5em;
 }
 
@@ -216,7 +308,7 @@ footer {
 
 .btn {
   font-weight: bold;
-  color: $gray-dark;
+  color: $gray-darker;
   background: $yellow-dark;
   border: 1px solid $yellow-dark;
   border-radius: 0;
@@ -224,21 +316,10 @@ footer {
   padding: 0 2em;
   transition: background 0.3s;
   transition: color 0.3s;
-  &:hover {
-    background: $gray-dark;
+  &:hover, &:focus, &:active {
+    background: $gray-darker;
     color: white;
-    border: 1px solid $gray-dark;
-  }
-  &:focus {
-    background: $gray-dark;
-    color: white;
-    border: 1px solid $gray-dark;
-    box-shadow: none;
-  }
-  &:active {
-    background: $gray-dark;
-    color: white;
-    border: 1px solid $gray-dark;
+    border: 1px solid $gray-darker;
     box-shadow: none;
   }
 }
@@ -301,10 +382,10 @@ aside {
   }
 }
 
-.form-control::-webkit-input-placeholder { color: $gray-lightest;}
-.form-control:-moz-placeholder { color: $gray-lightest; }
-.form-control::-moz-placeholder { color: $gray-lightest; }
-.form-control:-ms-input-placeholder { color: $gray-lightest; }
+.form-control::-webkit-input-placeholder { color: $gray-light;}
+.form-control:-moz-placeholder { color: $gray-light; }
+.form-control::-moz-placeholder { color: $gray-light; }
+.form-control:-ms-input-placeholder { color: $gray-light; }
 
 
 #search {
@@ -312,7 +393,7 @@ aside {
 }
 
 .glyphicon {
-  color: $gray-lightest;
+  color: $gray-light;
   position: absolute;
   z-index: 2;
   left: 16px;

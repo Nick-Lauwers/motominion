@@ -2,21 +2,42 @@
 <html>
   <head>
     <title><%= full_title(yield(:title)) %></title>
-    <script src="https://use.fonticons.com/da08361b.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    <%= render 'layouts/header' %>
+    <header class="header-static">
+      <%= render 'layouts/header' %>
+    </header>
+    <header class="header-fixed">
+      <%= render 'layouts/header' %>
+    </header>
     <div class="container">
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
     </div>
+    
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(window).on('scroll', function() {
+          var scrolltop = $(this).scrollTop();
+          if(scrolltop >= 315) {
+            $('.header-fixed').fadeIn(250);
+          }
+          else if(scrolltop <= 310) {
+            $('.header-fixed').fadeOut(250);
+          }
+        });
+      });
+    </script>
+    
   </body>
 </html>
+
+<!--http://designshack.net/articles/navigation/simple-steps-for-creating-a-fixed-navigation-bar/-->
+<!--https://www.youtube.com/watch?v=FBxVN7U1Qsk-->
