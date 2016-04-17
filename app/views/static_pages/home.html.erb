@@ -1,27 +1,39 @@
+<header class="header-static">
+  <%= render 'layouts/header' %>
+</header>
+
+<header class="header-fixed">
+  <%= render 'layouts/header' %>
+</header>
+
 <div class="jumbotron">
+  
+  <!--<video id="video-background" preload muted autoplay loop>-->
+  <!--  <source src="videos/Tesla.mp4" type="video/mp4">-->
+  <!--  <source src="https://www.teslamotors.com/sites/default/files/videos/model3/M3_Website_412016.mp4?20160401" type="video/ogg">-->
+  <!--</video>-->
+  
   <div class="jumbotron-text">
     <h1 class="hero-title">Find Your Vehicle</h1>
     <h2 class="hero-subtitle">
       Purchase unique vehicles from around the world
     </h2>
-    <div class="form-group">
-      <div class="input-group">
-        <div class="icon-addon addon-lg">
-          <input  type="text" 
-                  class="form-control"
-                  maxlength="100"
-                  placeholder="Search by vehicle, dealership, or city"  
-                  id="search"/>
-          <label  for="search" 
-                  class="glyphicon glyphicon-search" 
-                  rel="tooltip" 
-                  title="search"/>
-        </div>
-        <div class="input-group-btn">
-          <button type="submit" class="btn btn-primary btn-inline">
-            Search
-          </button>
-        </div>
+    <div class="form-group input-group">
+      <div class="icon-addon addon-lg">
+        <input  type="text" 
+                class="form-control"
+                maxlength="100"
+                placeholder="Search by vehicle, dealership, or city"  
+                id="search"/>
+        <label  for="search" 
+                class="glyphicon glyphicon-search" 
+                rel="tooltip" 
+                title="search"/>
+      </div>
+      <div class="input-group-btn">
+        <button type="submit" class="btn-primary btn btn-inline">
+          Search
+        </button>
       </div>
     </div>
     <div class="popular-searches">
@@ -34,36 +46,46 @@
     </div>
   </div>
 </div>
-<div class="features">
-  <div class="row text-center">
-    <div class="col-md-4">
-      <div class="feature">
-        <h3 class="feature-title">Student Life</h3>
-        <h4 class="feature-description">
-          Live with fellow students in properties designed for student life
-        </h4>
-      </div>
+
+<div class="features-container">
+  <div class="row">
+    <div class="feature col-md-4">
+      <h3 class="feature-title">Student Life</h3>
+      <h4 class="feature-description">
+        Live with fellow students in properties designed for student life
+      </h4>
     </div>
-    <div class="col-md-4">
-      <div class="feature">
-        <h3 class="feature-title">Detailed Guides</h3>
-        <h4 class="feature-description">
-          Browse photo galleries and detailed guides
-        </h4>
-      </div>
+    <div class="feature col-md-4">
+      <h3 class="feature-title">Detailed Guides</h3>
+      <h4 class="feature-description">
+        Browse photo galleries and detailed guides
+      </h4>
     </div>
-    <div class="col-md-4">
-      <div class="feature">
-        <h3 class="feature-title">Stress-free Purchasing</h3>
-        <h4 class="feature-description">
-          Our expert consultants will take care of everything for you
-        </h4>
-      </div>
+    <div class="feature col-md-4">
+      <h3 class="feature-title">Stress-free Purchasing</h3>
+      <h4 class="feature-description">
+        Our expert consultants will take care of everything for you
+      </h4>
     </div>
   </div>
 </div>
-<div class="how-it-works text-center">
+
+<div class="how-it-works-container">
   <h3 class="how-it-works-title">"Empty"</h3>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(window).on('scroll', function() {
+      var scrolltop = $(this).scrollTop();
+      if(scrolltop >= 315) {
+        $('.header-fixed').fadeIn(250);
+      }
+      else if(scrolltop <= 310) {
+        $('.header-fixed').fadeOut(250);
+      }
+    });
+  });
+</script>
 
 <!--http://bootsnipp.com/snippets/featured/support-glyph-and-fa-icon-inside-input-->

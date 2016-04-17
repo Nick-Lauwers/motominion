@@ -1,69 +1,73 @@
 <footer class="footer">
-  <div class="call-us">
+  
+  <div class="call-us-container">
     <h3 class="call-us-heading">Talk to our friendly team of experts</h3>
-    <h4 class="call-us-phone">1-888-555-5555</h4>
-  </div>
-  <div class="footer-text">
-    <div class="row">
-      <div class="col-md-3">
-        <h3 class="footer-logo">Dealership.com</h3>
-      </div>
-      <div class="col-md-2">
-        <h3 class="footer-subtitle">Company</h3>
-        <nav>
-          <ul>
-            <li><%= link_to "About",    about_path %></li>
-            <li><%= link_to "Contact",  contact_path %></li>
-            <li><%= link_to "Careers",  '#' %></li>
-            <li><%= link_to "Partners", '#' %></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="col-md-2">
-        <h3 class="footer-subtitle">Discover</h3>
-        <nav>
-          <ul>
-            <li><%= link_to "Trust", '#' %></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="col-md-5">
-        <h3 class="footer-subtitle">Sign up to our newsletter:</h3>
-        <div class="input-group">
-          <input  type="text" 
-                  class="form-control" 
-                  maxlength="50" 
-                  placeholder="Email Address"/>
-          <div class="input-group-btn">
-            <button type="submit" class="btn btn-primary btn-inline">
-              Subscribe 
-              <!--<span class="glyphicon glyphicon-arrow-right"></span>-->
-            </button>
-          </div>
-        </div>
-        <ul class="social-media">
-          <li>
-            <%= link_to '#' do %>
-              <i class="fa fa-facebook fa-2x"></i>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to '#' do %>
-              <i class="fa fa-twitter fa-2x"></i>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to '#' do %>
-              <i class="fa fa-linkedin fa-2x"></i>
-            <% end %>
-          </li>
-          <li>
-            <%= link_to '#' do %>
-              <i class="fa fa-instagram fa-2x"></i>
-            <% end %>
-          </li>
-        </ul>
-      </div>
+    <div class="call-us-details">
+      <h4 class="call-us-number">1-888-555-5555</h4>
+      <h4 class="call-us-text">Call us for free</h4>
     </div>
   </div>
+  
+  <div class="footer-text row">
+    <div class="col-md-3">
+      <h3 class="footer-logo">Dealership.com</h3>
+    </div>
+    <div class="col-md-2">
+      <h3 class="footer-subtitle">Company</h3>
+      <nav>
+        <ul>
+          <li><%= link_to "About",    about_path %></li>
+          <li><%= link_to "Contact",  contact_path %></li>
+          <li><%= link_to "Careers",  '#' %></li>
+          <li><%= link_to "Partners", '#' %></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-md-2">
+      <h3 class="footer-subtitle">Discover</h3>
+      <nav>
+        <ul>
+          <li><%= link_to "Trust", '#' %></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="col-md-5">
+      <h3 class="footer-subtitle">Sign up to our newsletter:</h3>
+      <div class="input-group">
+        <input  type="text" 
+                class="form-control" 
+                maxlength="50" 
+                placeholder="Email address"/>
+        <div class="input-group-btn">
+          <button type="submit" class="btn-subscribe btn btn-inline">
+            Subscribe 
+            <!--<span class="glyphicon glyphicon-arrow-right"></span>-->
+          </button>
+        </div>
+      </div>
+      <ul class="social-media">
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa fa-facebook fa-2x"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa fa-twitter fa-2x"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa fa-linkedin fa-2x"></i>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to '#' do %>
+            <i class="fa fa-instagram fa-2x"></i>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
 </footer>

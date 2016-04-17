@@ -8,34 +8,13 @@
     <%= render 'layouts/shim' %>
   </head>
   <body>
-    <header class="header-static">
-      <%= render 'layouts/header' %>
-    </header>
-    <header class="header-fixed">
-      <%= render 'layouts/header' %>
-    </header>
-    <div class="container">
+    <div class="page-container">
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
     </div>
-    
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $(window).on('scroll', function() {
-          var scrolltop = $(this).scrollTop();
-          if(scrolltop >= 315) {
-            $('.header-fixed').fadeIn(250);
-          }
-          else if(scrolltop <= 310) {
-            $('.header-fixed').fadeOut(250);
-          }
-        });
-      });
-    </script>
-    
   </body>
 </html>
 
