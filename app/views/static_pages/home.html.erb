@@ -1,8 +1,8 @@
-<header class="header-static">
+<header class="header-fixed">
   <%= render 'layouts/header' %>
 </header>
 
-<header class="header-fixed">
+<header class="header-static">
   <%= render 'layouts/header' %>
 </header>
 
@@ -31,9 +31,8 @@
                 title="search"/>
       </div>
       <div class="input-group-btn">
-        <button type="submit" class="btn-primary btn btn-inline">
-          Search
-        </button>
+        <%= button_to "Search", search_results_path, 
+            :class => "btn-primary btn btn-inline", :method => :get %>
       </div>
     </div>
     <div class="popular-searches">

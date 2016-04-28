@@ -10,4 +10,10 @@ class StaticPagesController < ApplicationController
   
   def contact
   end
+  
+  def search_results
+  end
+  
+  def vehicle_details
+  end
 end
