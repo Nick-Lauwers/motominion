@@ -1,0 +1,29 @@
+<% provide(:title, "Search Results") %>
+
+<header class="header-normal">
+  <%= render 'layouts/header' %>
+</header>
+
+<div class="search-results-secondary-header">
+  <div class="secondary-header-text">
+    <h1>Search Results</h1>
+    <h2>Purchase one of 5360+ vehicles at 25+ dealerships</h2>
+  </div>
+</div>
+
+<div class="background"></div>
+
+<div class="search-criteria-container row">
+  <div class="search-criteria col-md-3">
+    <h3>Maximum Price</h3>
+    <h3>Maximum Mileage</h3>
+    <h3>Trim</h3>
+    <h3>Days on Market</h3>
+    <h3>Most Popular</h3>
+  </div>
+  <div class="search-list col-md-9">
+    <ul class="list-item">
+      <%= render 'list_item' %>
+    </ul>
+  </div>
+</div>
