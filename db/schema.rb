@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325230344) do
+ActiveRecord::Schema.define(version: 20160502004755) do
+
+  create_table "photos", force: :cascade do |t|
+    t.integer  "vehicle_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "photos", ["vehicle_id"], name: "index_photos_on_vehicle_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -29,5 +41,31 @@ ActiveRecord::Schema.define(version: 20160325230344) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string   "body_style"
+    t.integer  "passenger_capacity"
+    t.string   "exterior_color"
+    t.string   "interior_color"
+    t.string   "wheel"
+    t.string   "tire"
+    t.string   "fuel_type"
+    t.string   "engine"
+    t.string   "transmission"
+    t.string   "vin"
+    t.string   "listing_name"
+    t.text     "summary"
+    t.string   "address"
+    t.integer  "price"
+    t.boolean  "active"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.float    "latitude"
+    t.float    "longitude"
+  end
+
+  add_index "vehicles", ["user_id", "created_at"], name: "index_vehicles_on_user_id_and_created_at"
+  add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id"
 
 end
