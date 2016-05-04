@@ -19,6 +19,8 @@ gem 'sdoc',                    '0.4.0', group: :doc
 gem 'paperclip',               '~> 5.0.0.beta1'
 gem 'geocoder'
 gem 'jquery-ui-sass-rails'
+gem 'private_pub'
+gem 'thin'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

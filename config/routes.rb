@@ -18,6 +18,12 @@ Rails.application.routes.draw do
   resources :vehicles do
     resources :appointments, only: [:create]
   end
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
+  end
+  resources :vehicles do
+    resources :reviews, only: [:create, :destroy]
+  end
   get '/shopping_cart' => 'appointments#shopping_cart'
   get '/your_appointments' => 'appointments#your_appointments'
 end
