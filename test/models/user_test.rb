@@ -3,8 +3,10 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com",
-                     password: "foobar", password_confirmation: "foobar")
+    @user = User.new(name: "Example User", 
+                     email: "user@example.com",
+                     password: "foobar", 
+                     password_confirmation: "foobar")
   end
   
   test "should be valid" do
@@ -75,5 +77,27 @@ class UserTest < ActiveSupport::TestCase
   
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
+  end
+  
+  test "associated vehicles should be destroyed" do
+    @user.save
+    @user.vehicles.create!(body_style: "Mini-Van", 
+                           passenger_capacity: 7, 
+                           exterior_color: "White", 
+                           interior_color: "Black", 
+                           wheel: "17in Alloy Wheels", 
+                           tire: "P225/65",
+                           fuel_type: "Gas", 
+                           engine: "Pentastar 3.6L Flex Fuel V6", 
+                           transmission: "6-Speed Shiftable Automatic", 
+                           vin: "2C4RDGEG6ER337702", 
+                           listing_name: "2014 Dodge Grand Caravan",
+                           summary: "Priced right and full of handy features.",
+                           address: "262 Hudson Crescent, Wallaceburg ON",
+                           price: 19000,
+                           active: true)
+    assert_difference 'Vehicle.count', -1 do
+      @user.destroy
+    end
   end
 end
