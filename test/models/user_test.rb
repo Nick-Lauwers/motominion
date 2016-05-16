@@ -93,9 +93,8 @@ class UserTest < ActiveSupport::TestCase
                            vin: "2C4RDGEG6ER337702", 
                            listing_name: "2014 Dodge Grand Caravan",
                            summary: "Priced right and full of handy features.",
-                           address: "262 Hudson Crescent, Wallaceburg ON",
-                           price: 19000,
-                           active: true)
+                           address: "253 Hudson Crescent, Wallaceburg ON",
+                           price: 19000)
     assert_difference 'Vehicle.count', -1 do
       @user.destroy
     end
