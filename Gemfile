@@ -16,12 +16,13 @@ gem 'jquery-rails',            '4.0.3'
 gem 'turbolinks',              '2.3.0'
 gem 'jbuilder',                '2.2.3'
 gem 'sdoc',                    '0.4.0', group: :doc
-gem 'paperclip',               '~> 5.0.0.beta1'
+gem 'paperclip'               
 gem 'geocoder'
 gem 'jquery-ui-sass-rails'
 gem 'private_pub'
 gem 'thin'
 gem 'ransack'
+gem 'bootstrap-slider-rails'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

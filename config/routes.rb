@@ -3,11 +3,9 @@ Rails.application.routes.draw do
   get    'help'               => 'static_pages#help'
   get    'about'              => 'static_pages#about'
   get    'contact'            => 'static_pages#contact'
-  get    'search_results'     => 'static_pages#search_results'
   get    'search'             => 'static_pages#search'
-  get    'vehicle_details'    => 'static_pages#vehicle_details'
-  get    'shopping_cart'      => 'appointments#shopping_cart'
-  get    'your_appointments'  => 'appointments#your_appointments'
+  get    'customers'          => 'appointments#customers'
+  get    'test_drives'        => 'appointments#test_drives'
   get    'signup'             => 'users#new'
   get    'login'              => 'sessions#new'
   post   'login'              => 'sessions#create'
@@ -20,7 +18,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
 
   resources :vehicles do
-    resources :appointments, only: [:create]
+    resources :appointments, only: [:create, :destroy]
   end
   
   resources :conversations, only: [:index, :create] do

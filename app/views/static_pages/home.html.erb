@@ -18,34 +18,21 @@
     <h2 class="hero-subtitle">
       Purchase unique vehicles from around the world
     </h2>
-    <div class="form-group input-group">
-      <div class="icon-addon addon-lg">
-        <input  type="text" 
-                class="form-control"
-                maxlength="100"
-                placeholder="Search by vehicle, dealership, or city"  
-                id="search"/>
-        <label  for="search" 
-                class="glyphicon glyphicon-search" 
-                rel="tooltip" 
-                title="search"/>
-      </div>
-      <div class="input-group-btn">
-        <%= button_to "Search", search_results_path, 
-            :class => "btn-primary btn btn-inline", :method => :get %>
-      </div>
-    </div>
     
-    <!--<(percentage sign)= form_tag search_path, method: :get do %>-->
-    <!--  <div class="row">-->
-    <!--    <div class="col-md-8">-->
-    <!--      <(percentage sign)= text_field_tag :search, params[:search], placeholder: "Where are you going?", class: "form-control" %>-->
-    <!--    </div>-->
-    <!--    <div class="col-md-4">-->
-    <!--      <(percentage sign)= submit_tag "Search", class: "btn btn-primary" %>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--<(percentage sign) end %>-->
+    <%= form_tag search_path, method: :get do %>
+      <div class="row form-group">
+        <div class="col-md-10">
+          <span class="glyphicon glyphicon-search"></span>
+          <%= text_field_tag :search, 
+              params[:search], 
+              placeholder: "Search by vehicle, dealership, or city", 
+              class: "form-control" %>
+        </div>
+        <div class="col-md-2">
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
     
     <div class="popular-searches">
       <h4 class="popular-searches-title">Popular:</h4>
@@ -61,9 +48,9 @@
 <div class="features-container">
   <div class="row">
     <div class="feature col-md-4">
-      <h3 class="feature-title">Student Life</h3>
+      <h3 class="feature-title">Transparency</h3>
       <h4 class="feature-description">
-        Live with fellow students in properties designed for student life
+        View dealer reviews, price histories, and local-market price analyses
       </h4>
     </div>
     <div class="feature col-md-4">
@@ -85,6 +72,24 @@
   <h3 class="how-it-works-title">"Empty"</h3>
 </div>
 
+<div class="press-container">
+  <h3>As seen on</h3>
+  <div class="row">
+    <div class="col-md-3">
+      <%= image_tag("financial-times.png", size: "144x64", :alt => "Financial Times") %>
+    </div>
+    <div class="col-md-3">
+      <%= image_tag("forbes.png", size: "144x64", :alt => "Forbes") %>
+    </div>
+    <div class="col-md-3">
+      <%= image_tag("tech-crunch.png", size: "144x64", :alt => "TechCrunch") %>
+    </div>
+    <div class="col-md-3">
+      <%= image_tag("bloomberg.png", size: "144x64", :alt => "Bloomberg") %>    
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
   $(document).ready(function() {
     $(window).on('scroll', function() {
@@ -100,3 +105,4 @@
 </script>
 
 <!--http://bootsnipp.com/snippets/featured/support-glyph-and-fa-icon-inside-input-->
+<!--http://parallax-scroll.aenism.com/-->

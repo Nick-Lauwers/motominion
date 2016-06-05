@@ -25,6 +25,11 @@ class ActiveSupport::TestCase
       session[:user_id] = user.id
     end
   end
+  
+  # Converts test photo into file.
+  def appointment_photo(filename = "appointment_photo.jpg")
+    File.new("test/fixtures/#{filename}")
+  end
 
   private
 
