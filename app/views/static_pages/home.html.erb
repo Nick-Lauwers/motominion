@@ -1,9 +1,9 @@
-<header class="header-fixed">
-  <%= render 'layouts/header' %>
+<header class="header-static">
+  <%= render 'layouts/header_primary' %>
 </header>
 
-<header class="header-static">
-  <%= render 'layouts/header' %>
+<header class="header-fixed">
+  <%= render 'layouts/header_secondary' %>
 </header>
 
 <div class="jumbotron">
@@ -22,7 +22,7 @@
     <%= form_tag search_path, method: :get do %>
       <div class="row form-group">
         <div class="col-md-10">
-          <span class="glyphicon glyphicon-search"></span>
+          <i class="search-form-icon fa fa-search fa-lg" aria-hidden="true"></i>
           <%= text_field_tag :search, 
               params[:search], 
               placeholder: "Search by vehicle, dealership, or city", 
