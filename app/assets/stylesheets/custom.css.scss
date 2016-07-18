@@ -32,7 +32,8 @@ $blue:                #6d7fb4;
 
 /* typography */
 
-p, span {
+p, 
+span {
   font-size: 1.1em;
   letter-spacing: 0.1px;
   line-height: 1.4;
@@ -94,11 +95,13 @@ p {
   li > a {
     color: white;
     cursor: pointer;
-    &:hover, &:focus {
+    &:hover, 
+    &:focus {
       background-color: transparent;
     }
   }
-  .open > a, .open > a:focus {
+  .open > a, 
+  .open > a:focus {
     background-color: $gray-transparent;
   }
 }
@@ -128,7 +131,8 @@ p {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  &:hover, &:focus {
+  &:hover, 
+  &:focus {
     color: white;
     text-decoration: none;
   }
@@ -140,13 +144,15 @@ p {
   z-index: 100;
   display: none;
   margin-right: -3em;
-  .col-md-3, .col-md-9 {
+  .col-md-3, 
+  .col-md-9 {
     padding: 0;
   }
   .form-control {
     background-color: $gray-darker;
     border: none;
-    &:focus, &:active {
+    &:focus, 
+    &:active {
       color: white;
       border: none;
     }
@@ -178,17 +184,22 @@ p {
   }
 }
 
-.header-static, .header-fixed, .header-normal {
+.header-static, 
+.header-fixed, 
+.header-normal {
   z-index: 100;
   width: 100%;
 }
 
-.header-fixed, .header-normal {
+.header-fixed, 
+.header-normal {
   background-color: $gray-darkest;
-  .navbar-nav > li > a, .header-search-icon {
+  .navbar-nav > li > a, 
+  .header-search-icon {
     color: $gray-light;
     cursor: pointer;
-    &:hover, &:active {
+    &:hover, 
+    &:active {
       color: white;
     }
   }
@@ -268,7 +279,8 @@ footer {
       margin-bottom: 0.8em;
       a {
         color: $gray-darker;
-        &:hover, &:focus {
+        &:hover, 
+        &:focus {
           color: $gray-darker;
           text-decoration: none;
         }
@@ -491,7 +503,8 @@ footer {
   margin-bottom: 0.6em;
 }
 
-.vehicle-condition, .installed-options {
+.vehicle-condition, 
+.installed-options {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -568,7 +581,8 @@ select {
   display: none;
 }
 
-.slider-selection, .slider-track-high {
+.slider-selection, 
+.slider-track-high {
 	background: $gray-lighter;
 	box-shadow: none;
 }
@@ -670,7 +684,7 @@ select {
   }
 }
 
-/* vehicle-details */
+/* vehicle-page */
 
 .hero-image {
   width: 100%;
@@ -719,7 +733,8 @@ select {
       font-size: 14px;
       line-height: 16px;
       letter-spacing: 0.25px;
-      &:hover, &:active {
+      &:hover, 
+      &:active {
         color: $gray-darker;
       }
       &:active {
@@ -856,12 +871,15 @@ select {
 
 /* credentials */
 
-.login-form, .forgot-password-form, .signup-form {
+.login-form, 
+.forgot-password-form, 
+.signup-form {
   border: 1px solid $gray-border;
   margin: 0 auto;
 }
 
-.login-form, .forgot-password-form {
+.login-form, 
+.forgot-password-form {
   width: 39%;
   padding: 2.3em;
   .form-control {
@@ -894,22 +912,26 @@ select {
 
 /* buttons */
 
-.btn-primary, .btn-subscribe, .btn-signup, {
+.btn-primary, 
+.btn-subscribe, 
+.btn-signup, {
   font-weight: bold;
   border-radius: 0;
   height: 50px;
   padding: 0 2em;
-    margin-left: 0;
-
+  margin-left: 0;
 }
 
-.btn-primary, .btn-signup {
+.btn-primary, 
+.btn-signup {
   color: $gray-darker;
   background-color: $yellow-dark;
   transition: background-color 0.3s, border 0.3s, color 0.3s;
   border: 1px solid $yellow-dark;
   width: 100%;
-  &:hover, &:focus, &:active {
+  &:hover, 
+  &:focus, 
+  &:active {
     color: white;
     background-color: $gray-darker;
     border: 1px solid $gray-darker;
@@ -921,7 +943,9 @@ select {
   color: white;
   background-color: $gray-darker;
   border: 1px solid $gray-darker;
-  &:hover, &:focus, &:active {
+  &:hover, 
+  &:focus, 
+  &:active {
     color: white;
   }
 }
@@ -1024,7 +1048,8 @@ aside {
   .row {
     margin: 2em auto 0;
     width: 50%;
-    .col-md-10, .col-md-2 {
+    .col-md-10, 
+    .col-md-2 {
       padding: 0;
     }
   }
@@ -1100,6 +1125,17 @@ aside {
   right: 0.9em;
 }
 
+.input-group {
+  margin-bottom: 1.7em;
+}
+
+.input-group-addon {
+  color: white;
+  background-color: $gray-light;
+  border-radius: 0;
+  padding: 0 1.1em;
+}
+
 /* modal */
 
 .modal {
@@ -1166,12 +1202,14 @@ aside {
   cursor: pointer;
   padding: 1.8em 0;
   transition: color 0.3s;
-  &:hover, &:focus {
+  &:hover, 
+  &:focus {
     color: white;
   }
 }
 
-.modal-show-info, .modal-image-number {
+.modal-show-info, 
+.modal-image-number {
   transform: rotate(90deg);
   p {
     font-weight: bold;
@@ -1200,15 +1238,145 @@ aside {
   bottom: 0;
 }
 
-/* your listings */
+/* sales management */
 
-.your-listings-background {
+.sales-management-background {
   background-color: $gray-lightest;
-  position: absolute;
   width: 100%;
   min-height: 100%;
+  position: absolute;
   z-index: -1000;
 }
+
+.sales-management-container {
+  padding: 3em 0;
+  max-width: 1008px;
+  margin: 50px auto 0;
+}
+
+.profile-panel {
+  margin-bottom: 2.3em;
+}
+
+.profile-photo {
+  position: relative;
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+  
+.add-profile-photo-link {
+  font-size: 14px;
+  letter-spacing: 0.25px;
+  line-height: 16px;
+  font-weight: bold;
+  text-align: center;
+  background-color: #2f2f2f;
+  width: 100%;
+  cursor: pointer;
+  padding: 12px 0;
+  position: absolute;
+  bottom: 0;
+  transition: 0.3s;
+  &:hover {
+    background-color: #484848;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.fa-camera-retro {
+  margin-right: 2px;
+}
+
+.profile-settings {
+  text-align: center;
+  background-color: white;
+  border: 1px solid $gray-border;
+  border-top: none;
+  padding: 2.3em;
+}
+
+.profile-settings-username {
+  font-size: 1.7em;
+  font-weight: bold;
+  letter-spacing: -0.025em;
+  display: block;
+  margin: 0 0 0.67em;
+}
+
+.profile-settings-links {
+  display: block;
+  font-size: 1.1em;
+  letter-spacing: 0.1px;
+  line-height: 1.4;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  a {
+    color: #4c4c4c;
+  }
+}
+
+.panel-header {
+  // background-color: $gray-lightest;
+  display: block;
+  width: 100%;
+  border: 1px solid $gray-border;
+  padding: 1em 2.3em;
+}
+
+.panel-body {
+  display: block;
+  font-size: 1.1em;
+  letter-spacing: 0.1px;
+  line-height: 1.4;
+  list-style: none;
+  background-color: white;
+  border: 1px solid $gray-border;
+  border-top: none;
+  padding: 2.3em;
+  margin: 0;
+  li {
+    margin-bottom: 0.2em;
+  }
+  a {
+    color: #4c4c4c;
+  }
+}
+
+.notifications-panel {
+  margin-bottom: 2.3em;
+}
+
+.message-summary {
+  border-bottom: 1px solid $gray-border;
+  padding: 2.3em 0;
+}
+
+/* profile */
+
+.side-nav {
+  display: block;
+  font-size: 1.1em;
+  letter-spacing: 0.1px;
+  line-height: 1.4;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    margin-bottom: 0.2em;
+  }
+  a {
+    color: #4c4c4c;
+  }
+}
+
+/* your listings */
 
 .your-listings-container {
   padding: 3em 0;
@@ -1272,6 +1440,26 @@ aside {
   }
 }
 
+/* vehicle details */
+
+.vehicle-details-form-group {
+  border: 1px solid $gray-light;
+  width: 80%;
+  padding: 2.3em;
+  margin: 2.3em auto;
+  .form {
+    margin-bottom: 1.7em;
+  }
+  .form-control {
+    color: $gray-dark;
+    border: 1px solid $gray-light;
+  }
+  .form-control::-webkit-input-placeholder { color: $gray-dark;}
+  .form-control:-moz-placeholder { color: $gray-dark; }
+  .form-control::-moz-placeholder { color: $gray-dark; }
+  .form-control:-ms-input-placeholder { color: $gray-dark; }
+}
+
 /* miscellaneous */
 
 .debug_dump {
@@ -1306,7 +1494,6 @@ aside {
   background-color: white;
   border-bottom: 1px solid $gray-border;
   .row {
-    
     .col-md-4 {
       padding: 2em;
       border-right: 1px solid $gray-border;
@@ -1316,116 +1503,6 @@ aside {
     }
   }
 }
-
-// .searchbox{
-//     position:relative;
-//     min-width:50px;
-//     width:0%;
-//     height:50px;
-//     float:right;
-//     overflow:hidden;
-    
-//     -webkit-transition: width 0.3s;
-//     -moz-transition: width 0.3s;
-//     -ms-transition: width 0.3s;
-//     -o-transition: width 0.3s;
-//     transition: width 0.3s;
-// }
-
-// .searchbox-input{
-//     top:0;
-//     right:0;
-//     border:0;
-//     outline:0;
-//     background:#dcddd8;
-//     width:100%;
-//     height:50px;
-//     margin:0;
-//     padding:0px 55px 0px 20px;
-//     font-size:20px;
-//     color:red;
-// }
-// .searchbox-input::-webkit-input-placeholder {
-//     color: #d74b4b;
-// }
-// .searchbox-input:-moz-placeholder {
-//     color: #d74b4b;
-// }
-// .searchbox-input::-moz-placeholder {
-//     color: #d74b4b;
-// }
-// .searchbox-input:-ms-input-placeholder {
-//     color: #d74b4b;
-// }
-
-// .searchbox-icon,
-// .searchbox-submit{
-//     width:50px;
-//     height:50px;
-//     display:block;
-//     position:absolute;
-//     top:0;
-//     font-family:verdana;
-//     font-size:22px;
-//     right:0;
-//     padding:0;
-//     margin:0;
-//     border:0;
-//     outline:0;
-//     line-height:50px;
-//     text-align:center;
-//     cursor:pointer;
-//     color:#dcddd8;
-//     background:#172b3c;
-// }
-
-
-
-// .searchbox-open{
-//     width:100%;
-// }
-
-// .footer-text {
-//   border-bottom: 1px solid $gray-border;
-//   max-width: 1008px;
-//   padding: 1.25em 0;
-//   margin: 0 auto 1em;
-//   ul {
-//     list-style: none;
-//     padding: 0;
-//     margin: 0;
-//     li {
-//       margin-bottom: 0.8em;
-//       a {
-//         color: $gray-darker;
-//         &:hover, &:focus {
-//           color: $gray-darker;
-//           text-decoration: none;
-//         }
-//       }
-//     }
-//   }
-// }
-
-// .footer-logo {
-//   font-size: 1.5em;
-//   font-weight: bold;
-//   letter-spacing: -1px;
-//   text-transform: uppercase;
-//   color: $gray-darker;
-// }
-
-// .footer-subtitle {
-//   font-size: 1em;
-//   color: $gray-dark;
-//   margin-bottom: 1.5em;
-// }
-
-// .social-media li {
-//   display: inline-block;
-//   margin-top: 1.7em;
-//   margin-right: 1em;
-// }
 
 .legal {
   max-width: 1008px;
@@ -1438,7 +1515,8 @@ aside {
       a {
         color: $gray-dark;
         margin-right: 1.5em;
-        &:hover, &:focus {
+        &:hover, 
+        &:focus {
           color: $gray-dark;
           text-decoration: none;
         }

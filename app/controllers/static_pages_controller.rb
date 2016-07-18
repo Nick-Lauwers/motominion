@@ -11,6 +11,12 @@ class StaticPagesController < ApplicationController
   def contact
   end
   
+  def dashboard
+  end
+  
+  def profile
+  end
+  
   def search
     if params[:search].present? && params[:search].strip != ""
       session[:vehicle_search] = params[:search]

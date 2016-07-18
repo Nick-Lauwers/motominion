@@ -1,9 +1,12 @@
+# dashboard and search should not be in static_pages
 Rails.application.routes.draw do
   root                           'static_pages#home'
   get    'help'               => 'static_pages#help'
   get    'about'              => 'static_pages#about'
   get    'contact'            => 'static_pages#contact'
   get    'search'             => 'static_pages#search'
+  get    'dashboard'          => 'static_pages#dashboard'
+  get    'profile'            => 'static_pages#profile'
   get    'customers'          => 'appointments#customers'
   get    'test_drives'        => 'appointments#test_drives'
   get    'signup'             => 'users#new'

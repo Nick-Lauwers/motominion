@@ -85,26 +85,32 @@ ActiveRecord::Schema.define(version: 20160504001426) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "vehicles", force: :cascade do |t|
+    t.string   "vehicle_condition"
     t.string   "body_style"
-    t.integer  "seating_capacity"
     t.string   "color"
-    t.string   "wheel"
-    t.string   "tire"
+    t.string   "transmission"
     t.string   "fuel_type"
-    t.string   "engine"
+    t.string   "drivetrain"
     t.string   "vin"
     t.string   "listing_name"
-    t.text     "summary"
     t.string   "address"
-    t.integer  "price"
-    t.string   "vehicle_condition"
-    t.integer  "mileage"
     t.integer  "year"
-    t.string   "transmission"
-    t.string   "drivetrain"
+    t.integer  "price"
+    t.integer  "mileage"
+    t.integer  "seating_capacity"
+    t.text     "summary"
+    t.boolean  "is_leather_seats"
+    t.boolean  "is_sunroof"
+    t.boolean  "is_navigation_system"
+    t.boolean  "is_dvd_entertainment_system"
+    t.boolean  "is_bluetooth"
+    t.boolean  "is_backup_camera"
+    t.boolean  "is_remote_start"
+    t.boolean  "is_tow_package"
+    t.boolean  "is_autonomy"
     t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.float    "latitude"
     t.float    "longitude"
   end
