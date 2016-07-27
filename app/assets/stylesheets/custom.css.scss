@@ -1,6 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "jquery.ui.datepicker";
 @import "bootstrap-slider";
 
 /* mixins, variables, etc. */
@@ -30,30 +29,7 @@ $blue:                #6d7fb4;
   box-sizing:         border-box;
 }
 
-/* typography */
-
-p, 
-span {
-  font-size: 1.1em;
-  letter-spacing: 0.1px;
-  line-height: 1.4;
-  color: $gray-text;
-}
-
-p {
-  text-align: center;
-  margin: 1.1em 0;
-  a {
-    color: $gray-text;
-    border-bottom: 1px solid $gray-text;
-    &:hover {
-      color: $gray-text;
-      text-decoration: none;
-    }
-  }
-}
-
-/* universal */
+/* layout */
 
 .page-container {
   height: 100%;
@@ -78,6 +54,29 @@ p {
   margin: 0 0 0.67em;
 }
 
+/* typography */
+
+p, 
+span {
+  font-size: 1.1em;
+  letter-spacing: 0.1px;
+  line-height: 1.4;
+  color: $gray-text;
+}
+
+p {
+  text-align: center;
+  margin: 1.1em 0;
+  a {
+    color: $gray-text;
+    border-bottom: 1px solid $gray-text;
+    &:hover {
+      color: $gray-text;
+      text-decoration: none;
+    }
+  }
+}
+
 /* header */
 
 .navbar {
@@ -89,9 +88,6 @@ p {
 .navbar-nav {
   font-size: 1.105em;
   font-weight: bold;
-  position: absolute;
-  right: 0;
-  margin-right: -15px;
   li > a {
     color: white;
     cursor: pointer;
@@ -104,6 +100,12 @@ p {
   .open > a:focus {
     background-color: $gray-transparent;
   }
+}
+
+.navbar-right {
+  position: absolute;
+  right: 0;
+  // margin-right: -15px;
 }
 
 .dropdown-menu {
@@ -686,6 +688,52 @@ select {
 
 /* vehicle-page */
 
+#reviews {
+  padding-top: 50px;
+  margin: -50px;
+}
+
+// #gallery,
+// #map-and-brochure {
+//   padding-top: 50px;
+//   margin: -50px;
+// }
+
+#map-and-brochure {
+  height: 400px;
+  .row {
+    height: 400px;
+    margin: 0;
+    .col-md-6 {
+      height: 100%;
+      border: 1px solid white;
+      padding: 0;
+      #map {
+        height: 100%;
+      }
+    }
+  }
+}
+
+.brochure {
+  height: 100%;
+  .brochure-image {
+      height: 100%;
+
+    background-size: cover;
+    background-position: 50% 50%;
+    .brochure-text {
+      margin: 0 0 2.3em 2.3em;
+      h1,
+      h5 {
+        margin: 0;
+        color: white;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
 .hero-image {
   width: 100%;
   height: 100%;
@@ -715,33 +763,82 @@ select {
 
 .secondary-navbar {
   background-color: white;
-  height: 50px;
   border-bottom: 1px solid $gray-border;
-  z-index: 150;
+  height: 50px;
   margin-bottom: -50px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.4);
+  z-index: 150;
   nav {
     height: inherit;
     max-width: 1008px;
     margin: auto;
     position: relative;
     a {
-      padding: 16px 0;
-      margin-right: 24px;
-      color: $gray-dark;
-      transition: color 0.3s;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 16px;
       letter-spacing: 0.25px;
-      &:hover, 
-      &:active {
+      color: $gray-dark;
+      padding: 16px 0;
+      margin-right: 24px;
+      transition: color 0.3s;
+      &:hover {
         color: $gray-darker;
       }
       &:active {
-        border-bottom: 4px solid #fcce01;
+        color: $gray-darker;
+        border-bottom: 2px solid $yellow-dark;
       }
     }
   }
+}
+
+a.nav-active {
+  color: $gray-darker !important;
+  border-bottom: 2px solid $yellow-dark;
+}
+
+nav li {
+
+}
+
+// .nav > li.active {border-bottom: 2px solid $yellow-dark;}
+
+.listing-btns-container {
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: -50px;
+}
+
+.secondary-navbar-btn-container {
+  background-color: $yellow-dark;
+  height: 100px;
+  position: relative;
+}
+
+.secondary-navbar-price {
+  font-size: 35px;
+  font-weight: bold;
+  color: $gray-text;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition-property: transform, opacity;
+  transition-duration: 0.3s;
+}
+
+.secondary-navbar-price-hide {
+  transform: translate(-50%, -150%);
+  opacity: 0;
+}
+
+.listing-summary-btns-container {
+  background-color: $gray-lightest;
+  padding: 24px;
+}
+
+.appointments {
+  margin-bottom: 16px;
 }
 
 .listing-summary {
@@ -780,43 +877,44 @@ select {
   margin-right: auto;
 }
 
-#vehicle-details-container {
+.about-this-listing-container {
   background-color: $gray-lightest;
   border-bottom: 1px solid $gray-border;
   overflow: auto;
-  .vehicle-details {
-    max-width: 1008px;
-    margin: 50px auto;
-    h2 {
-      font-size: 1.3em;
-      font-weight: bold;
-      color: $gray-darker;
-      margin: 0 0 25px;
-    }
-    h4 {
-      font-size: 1em;
-      letter-spacing: 0.5px;
-      line-height: 1;
-      color: $gray-dark;
-      margin: 0;
-    }
-    // link_to {
-    //   font-size: 1em;
-    //   font-weight: bold;
-    //   color: $gray-dark;
-    // }
-    .partition {
-      border-top: 1px solid $gray-border;
-      margin: 15px 0;
-    }
-    .col-md-4 {
-      font-size: 1em;
-      letter-spacing: 0.5px;
-      line-height: 1.2;
-      color: $gray-dark;
-      margin: 0;
-    }
-  }
+}
+
+#about-this-listing {
+  max-width: 1008px;
+  margin: 50px auto;
+}
+
+.b-head-listing {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: $gray-darker;
+  margin: 0 0 2.5em;
+}
+
+.vehicle-details-summary {
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  text-align: left;
+  color: $gray-dark;
+  margin: 0 0 2.5em;
+}
+    
+.partition {
+  border-top: 1px solid $gray-border;
+  margin: 20px 0;
+}
+
+.col-md-8 {
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  color: $gray-dark;
+  margin: 0;
 }
 
 .col {
@@ -832,7 +930,11 @@ select {
   padding: 0;
 }
 
-#gallery-primary-row {
+.unavailable-feature {
+  display: none;
+}
+
+.gallery-primary-row {
   height: 300px;
 }
 
@@ -867,6 +969,117 @@ select {
 
 .vehicle-image {
   max-width: 100%;
+}
+
+.reviews-container {
+  background-color: $gray-lightest;
+  border-bottom: 1px solid $gray-border;
+}
+
+#reviews {
+  max-width: 1008px;
+  padding: 4.7em 0;
+  margin: 0 auto;
+}
+
+.average-rating-container {
+  display: inline-block;
+  margin-bottom: 4em;
+}
+
+.c-head-listing {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: $gray-darker;
+  margin: 1em 0;
+}
+
+.average-rating-number,
+.rating-number {
+  font-weight: bold;
+  line-height: 1;
+  color: $gray-text;
+  background-color: $yellow-dark;
+  border-radius: 2px;
+  padding: 0.5em;
+  margin-right: 1em;
+  float: left;
+}
+
+.average-rating-number {
+  font-size: 1.8em;
+}
+
+.rating-number {
+  font-size: 0.9em;
+}
+
+.average-rating-stars {
+  float: right;
+}
+
+table,
+.number-of-reviews, 
+.review-date,
+.review-comment {
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  color: #9e9e9e;
+}
+
+table {
+  tr {
+    td {
+      padding-right: 1em;
+    }
+  }
+}
+
+.reviews-list {
+  .row {
+    margin: 0 0 2em 5.2em;
+  }
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+
+.review-container {
+  background-color: white;
+  border: 1px solid $gray-border;
+  padding: 24px;
+}
+
+.review-details {
+  width: 100%;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.review-author,
+.review-title {
+  font-size: 1.05em;
+  font-weight: bold;
+  color: $gray-darker;
+}
+
+.review-author {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.review-rating {
+  margin-right: 1.5em;
+  float: left;
+}
+
+.review-comment {
+  text-align: left;
+  margin: 0 0 0 8.4em;
 }
 
 /* credentials */
@@ -956,21 +1169,39 @@ select {
   margin: 0 auto;
 }
 
-.btn-price {
+.btn-contact-seller {
+  font-size: 16px;
   font-weight: bold;
-  font-size: 35px;
-  border-radius: 0;
-  height: 100px;
-  color: $gray-darker;
+  color: $gray-text;
   background-color: $yellow-dark;
-  border: 1px solid $yellow-dark;
+  border: none;
+  opacity: 0;
+  width: 100%;
+  height: 0%;
   position: absolute;
-  right: 0;
   bottom: 0;
-  overflow: hidden;
-  width: 40%;
-  .duration {
-    font-size: 16px;
+  transition-property: opacity, height;
+  transition-duration: 0.3s;
+}
+
+.btn-contact-seller-display {
+  opacity: 1;
+  height: 50%;
+}
+
+.btn-wish-list,
+.btn-test-drive {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.5em;
+  color: $gray-text;
+  background-color: transparent;
+  border-color: $yellow-dark;
+  width: 100%;
+  padding: 10px 14px;
+  &:focus {
+    outline: none;
+    box-shadow: none;
   }
 }
 
@@ -1026,8 +1257,9 @@ aside {
     }
   }
 }
-
+ 
 .gravatar {
+  border-radius: 50%;
   float: left;
   margin-right: 10px;
 }
@@ -1134,6 +1366,10 @@ aside {
   background-color: $gray-light;
   border-radius: 0;
   padding: 0 1.1em;
+}
+
+input#appointment_date {
+  height: 43px;
 }
 
 /* modal */
@@ -1318,7 +1554,7 @@ aside {
   padding: 0;
   margin: 0;
   a {
-    color: #4c4c4c;
+    color: $gray-text;
   }
 }
 
@@ -1345,7 +1581,7 @@ aside {
     margin-bottom: 0.2em;
   }
   a {
-    color: #4c4c4c;
+    color: $gray-text;
   }
 }
 
@@ -1372,7 +1608,7 @@ aside {
     margin-bottom: 0.2em;
   }
   a {
-    color: #4c4c4c;
+    color: $gray-text;
   }
 }
 
@@ -1527,4 +1763,8 @@ aside {
     font-size: 1em;
     color: $gray-dark;
   }
+}
+
+input#appointment_date { 
+  cursor: pointer;
 }

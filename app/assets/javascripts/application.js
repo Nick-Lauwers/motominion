@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require turbolinks
 //= require jquery.ui.datepicker
 //= require private_pub
 //= require bootstrap-slider
+//= require turbolinks
 //= require_tree .

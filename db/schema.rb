@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160504001426) do
     t.integer  "mileage"
     t.integer  "seating_capacity"
     t.text     "summary"
+    t.text     "sellers_notes"
     t.boolean  "is_leather_seats"
     t.boolean  "is_sunroof"
     t.boolean  "is_navigation_system"
