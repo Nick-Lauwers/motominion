@@ -1,3 +1,5 @@
+// bootstrap-slider included in both custom.css.scss and application.css; necessary?
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-slider";
@@ -717,6 +719,9 @@ select {
 
 .brochure {
   height: 100%;
+  a {
+    text-decoration: none;
+  }
   .brochure-image {
       height: 100%;
 
@@ -724,6 +729,7 @@ select {
     background-position: 50% 50%;
     .brochure-text {
       margin: 0 0 2.3em 2.3em;
+      
       h1,
       h5 {
         margin: 0;
@@ -800,6 +806,10 @@ nav li {
 
 }
 
+// .nav ul li .active {
+//     border-bottom:3px #FFF solid;
+//     }
+
 // .nav > li.active {border-bottom: 2px solid $yellow-dark;}
 
 .listing-btns-container {
@@ -837,6 +847,11 @@ nav li {
   padding: 24px;
 }
 
+.listing-summary-btns-container-fixed {
+  position: fixed;
+  top: 50px;
+}
+
 .appointments {
   margin-bottom: 16px;
 }
@@ -853,8 +868,7 @@ nav li {
         font-weight: bold;
         line-height: 1.5;
         color: $gray-darker;
-        margin-top: 15px;
-        margin-bottom: 0;
+        margin: 0;
       }
       h2 {
         font-size: 1em;
@@ -866,6 +880,11 @@ nav li {
       }
     }
   }
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
 }
 
 .profile-image {
@@ -885,14 +904,14 @@ nav li {
 
 #about-this-listing {
   max-width: 1008px;
-  margin: 50px auto;
+  margin: 36px auto;
 }
 
 .b-head-listing {
   font-size: 1.5em;
   font-weight: bold;
   color: $gray-darker;
-  margin: 0 0 2.5em;
+  margin: 24px 0 2.5em;
 }
 
 .vehicle-details-summary {
@@ -919,10 +938,7 @@ nav li {
 
 .col {
   border: 1px solid white;
-  background-size: cover;
-  background-position: 50% 50%;
   height: 100%;
-  display: block;
   padding: 0;
 }
 
@@ -940,35 +956,6 @@ nav li {
 
 .gallery-secondary-row {
   height: 150px;
-}
-
-.image1 {
-  background: image-url("gallery1.jpg");
-}
-.image2 {
-  background: image-url("gallery2.jpg");
-}
-.image3 {
-  background: image-url("gallery3.jpg");
-}
-.image4 {
-  background: image-url("gallery4.jpg");
-}
-.image5 {
-  background: image-url("gallery5.jpg");
-}
-.image6 {
-  background: image-url("gallery6.jpg");
-}
-.image7 {
-  background: image-url("gallery7.jpg");
-}
-.image8 {
-  background: image-url("gallery8.jpg");
-}
-
-.vehicle-image {
-  max-width: 100%;
 }
 
 .reviews-container {
@@ -1040,11 +1027,6 @@ table {
   .row {
     margin: 0 0 2em 5.2em;
   }
-}
-
-.vertical-align {
-  display: flex;
-  align-items: center;
 }
 
 .review-container {
@@ -1376,10 +1358,10 @@ input#appointment_date {
 
 .modal {
   background-color: $gray-modal;
-  display: none;
+  // display: none;
 }
 
-.modal-image-container {
+.modal-carousel-container {
   background-color: $gray-modal;
   height: 100%;
   width: 94%;
@@ -1387,24 +1369,29 @@ input#appointment_date {
   transition: width 0.4s;
 }
 
-.modal-image-container-closed {
-  width: 80%;
+.modal-carousel-container-closed {
+  width: 71%;
+}
+
+.carousel, .carousel-inner, .item {
+  height: 100%;
+  width: 100%;
 }
 
 .modal-image {
   max-height: 100%;
   max-width: 100%;
   position: relative;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%); 
 }
 
 .modal-caption-container {
   background-color: $gray-darkest;
   height: 100%;
-  width: 14%;
-  padding: 2.3em;
+  width: 23%;
+  padding: 2.3em 0;
   position: absolute;
   top: 0;
   left: 94%;
@@ -1416,10 +1403,76 @@ input#appointment_date {
   transform: translateX(-100%);
 }
 
-.caption {
-  font-size: 0.9em;
-  line-height: 1em;
+.modal-details-section {
+  padding: 0 2.3em;
+}
+
+.modal-details-row {
+  text-align: center;
+}
+
+.modal-details-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 75px;
+  width: 75px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s; 
+  &:hover {
+    opacity: 0.5;
+    .hover-icon {
+      visibility: visible;
+    }
+  }
+}
+
+.hover-icon {
+  color: white;
+  margin: 0 !important;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); 
+  visibility: hidden;
+}
+
+.related-vehicle-a,
+.also-liked-a,
+.related-product-a {
+  float: left;
+}
+
+.related-vehicle-b,
+.also-liked-b,
+.related-product-b {
+  display: inline-block;
+}
+
+.related-vehicle-c,
+.also-liked-c,
+.related-product-c {
+  float: right;
+}
+
+.modal-caption,
+.modal-details {
+  font-size: 0.95em;
+  line-height: 1.5em;
   color: $gray-modal-controls;
+  margin: 0;
+}
+
+.modal-caption {
+  margin-top: 1.5em;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-details-gallery {
+  height: 70px;
 }
 
 .modal-options-container {

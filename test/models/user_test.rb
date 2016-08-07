@@ -81,20 +81,34 @@ class UserTest < ActiveSupport::TestCase
   
   test "associated vehicles should be destroyed" do
     @user.save
-    @user.vehicles.create!(body_style: "Mini-Van", 
-                           passenger_capacity: 7, 
-                           exterior_color: "White", 
-                           interior_color: "Black", 
-                           wheel: "17in Alloy Wheels", 
-                           tire: "P225/65",
-                           fuel_type: "Gas", 
-                           engine: "Pentastar 3.6L Flex Fuel V6", 
-                           transmission: "6-Speed Shiftable Automatic", 
-                           vin: "2C4RDGEG6ER337702", 
-                           listing_name: "2014 Dodge Grand Caravan",
-                           summary: "Priced right and full of handy features.",
-                           address: "253 Hudson Crescent, Wallaceburg ON",
-                           price: 19000)
+    @user.vehicles.create!(vehicle_condition:           "New",
+                           body_style:                  "Mini-Van", 
+                           color:                       "Black",
+                           transmission:                "Automatic",
+                           fuel_type:                   "Gasoline",
+                           drivetrain:                  "Front-Wheel Drive",
+                           vin:                         "2C4RDGEG6ER337702", 
+                           listing_name:                "2014 Dodge Grand 
+                                                         Caravan",
+                           address:                     "253 Hudson Crescent, 
+                                                         Wallaceburg ON",
+                           year:                        2014,
+                           price:                       19000,
+                           mileage:                     27000,
+                           seating_capacity:            7, 
+                           summary:                     "Priced right and full 
+                                                         of handy features.",
+                           sellers_notes:               "Must sell vehicle 
+                                                         immediately.",
+                           is_leather_seats:            false,
+                           is_sunroof:                  false,
+                           is_navigation_system:        true,
+                           is_dvd_entertainment_system: false,
+                           is_bluetooth:                true,
+                           is_backup_camera:            true,
+                           is_remote_start:             true,
+                           is_tow_package:              false,
+                           is_autonomy:                 false)
     assert_difference 'Vehicle.count', -1 do
       @user.destroy
     end

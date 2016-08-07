@@ -1,3 +1,5 @@
+# seed data for comments (Listing 13.25)
+
 # Users
 User.create!(name:   "Example User",
              email:  "example@railstutorial.org",
