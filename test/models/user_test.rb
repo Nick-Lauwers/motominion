@@ -88,8 +88,7 @@ class UserTest < ActiveSupport::TestCase
                            fuel_type:                   "Gasoline",
                            drivetrain:                  "Front-Wheel Drive",
                            vin:                         "2C4RDGEG6ER337702", 
-                           listing_name:                "2014 Dodge Grand 
-                                                         Caravan",
+                           listing_name:                "Dodge Grand Caravan",
                            address:                     "253 Hudson Crescent, 
                                                          Wallaceburg ON",
                            year:                        2014,
