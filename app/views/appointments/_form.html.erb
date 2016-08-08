@@ -1,0 +1,22 @@
+<%= form_for([@vehicle, @vehicle.appointments.new]) do |f| %>
+  <div class="row">
+    <div class="col-md-7">
+      <%= f.text_field :date, readonly: 'true', 
+          placeholder: "Schedule A Test Drive", class: 'form-control' %>
+    </div>
+    
+    <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
+    
+    <div class="col-md-5">
+      <%= f.submit "Go!", class: "btn btn-test-drive" %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+    $('#appointment_date').datepicker({
+      dateformat: 'dd-mm-yy'
+    });
+  });
+</script>

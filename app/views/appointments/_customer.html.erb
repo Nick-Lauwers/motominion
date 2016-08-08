@@ -1,0 +1,24 @@
+<% @vehicles.each do |vehicle| %>
+  <% vehicle.appointments.each do |appointment| %>
+    <li id="customer-<%= appointment.id %>" class="list-item">
+      <div class="row">
+        <div class="col-md-2">
+          <%= appointment.date.try(:strftime, '%v') %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to vehicle_path(appointment.vehicle) do %>
+            <%= image_tag vehicle.photos[0].image.url(:thumb)  if 
+                vehicle.photos.length > 0 %>
+          <% end %>
+        </div>
+        <div class="col-md-2">
+          <%= link_to user_path(appointment.user) do %>
+            <!--<= image_tag gravatar_url(test_drive.vehicle.user), class: "img-circle gravatar-medium" %>-->
+          <% end %>
+        </div>
+        <div class="col-md-2 right">
+        </div>
+      </div>
+    </li>
+  <% end %>
+<% end %>

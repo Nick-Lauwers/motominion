@@ -1,0 +1,113 @@
+avalanche:
+  vehicle_condition: "New"
+  body_style: "Pickup"
+  color: "Gray"
+  transmission: "Automatic"
+  fuel_type: "Flex Fuel"
+  drivetrain: "All-Wheel Drive"
+  vin: "3GNMCGE06BG101575"
+  listing_name: "2011 Chevrolet Avalanche"
+  address: "250 Hudson Crescent, Wallaceburg ON"
+  year: 2014
+  price: 30000
+  mileage: 27000
+  seating_capacity: 5
+  summary: "An ideal crew-cab pickup for carrying passengers and cargo."
+  sellers_notes: "Must sell vehicle immediately."
+  is_leather_seats: true
+  is_sunroof: true
+  is_navigation_system: true
+  is_dvd_entertainment_system: false
+  is_bluetooth: true
+  is_backup_camera: true
+  is_remote_start: true
+  is_tow_package: true
+  is_autonomy: false
+  created_at: <%= 10.minutes.ago %>
+  user: nicholas
+
+navigator:
+  vehicle_condition: "New"
+  body_style: "SUV"
+  color: "Black"
+  transmission: "Automatic"
+  fuel_type: "Flex Fuel"
+  drivetrain: "All-Wheel Drive"
+  vin: "5LMJJ2J52EE107647"
+  listing_name: "2014 Lincoln Navigator"
+  address: "251 Hudson Crescent, Wallaceburg ON"
+  year: 2014
+  price: 37750
+  mileage: 27000
+  seating_capacity: 7
+  summary: "Seats eight passengers in comfort."
+  sellers_notes: "Vehicle will sell quickly."
+  is_leather_seats: true
+  is_sunroof: true
+  is_navigation_system: true
+  is_dvd_entertainment_system: true
+  is_bluetooth: true
+  is_backup_camera: true
+  is_remote_start: true
+  is_tow_package: false
+  is_autonomy: false
+  created_at: <%= 2.years.ago %>
+  user: nicholas
+  
+most_recent:
+  vehicle_condition: "New"
+  body_style: "Convertible"
+  color: "White"
+  transmission: "Manual"
+  fuel_type: "Gasoline"
+  drivetrain: "Front-Wheel Drive"
+  vin: "2G1FK3DJ0F9298212"
+  listing_name: "2015 Chevrolet Camaro"
+  address: "252 Hudson Crescent, Wallaceburg ON"
+  year: 2014
+  price: 33000
+  mileage: 27000
+  seating_capacity: 4
+  summary: "For tire-burning power and Hollywood looks."
+  sellers_notes: "Stop by soon!"
+  is_leather_seats: true
+  is_sunroof: false
+  is_navigation_system: true
+  is_dvd_entertainment_system: false
+  is_bluetooth: true
+  is_backup_camera: true
+  is_remote_start: true
+  is_tow_package: false
+  is_autonomy: false
+  created_at: <%= Time.zone.now %>
+  user: nicholas
+  
+<% 30.times do |n| %>
+vehicle_<%= n %>:
+  vehicle_condition: "New"
+  body_style: "Sedan"
+  color: "Gray"
+  transmission: "Automatic"
+  fuel_type: "Gasoline"
+  drivetrain: "Front-Wheel Drive"
+  vin: "2G1FK3DJ0F9298212"
+  listing_name: <%= Faker::Lorem.word %>
+  address: <%= Faker::Address.street_address %>
+  year: 2014
+  price: <%= Faker::Number.number(5) %>
+  mileage: <%= Faker::Number.number(5) %>
+  seating_capacity: 5
+  summary: <%= Faker::Lorem.sentence %>
+  sellers_notes: <%= Faker::Lorem.sentence %>
+  is_leather_seats: true
+  is_sunroof: true
+  is_navigation_system: true
+  is_dvd_entertainment_system: true
+  is_bluetooth: true
+  is_backup_camera: true
+  is_remote_start: true
+  is_tow_package: false
+  is_autonomy: true
+  created_at: <%= 42.days.ago %>
+  user: nicholas
+<% end %>

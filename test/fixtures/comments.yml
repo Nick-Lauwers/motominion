@@ -1,0 +1,14 @@
+cost:
+  title: "Cost"
+  content: "What is the cost?"
+  created_at: <%= 10.minutes.ago %>
+
+features:
+  title: "Features"
+  content: "What features are included?"
+  created_at: <%= 2.hours.ago %>
+
+most_recent:
+  title: "Test"
+  content: "Writing a short test"
+  created_at: <%= Time.zone.now %>

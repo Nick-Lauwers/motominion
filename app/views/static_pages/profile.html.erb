@@ -1,0 +1,45 @@
+<!--must login iot access-->
+<!--header does not stick when going to dashboard directly-->
+<% provide(:title, "Profile") %>
+
+<header class="header-normal">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class = "secondary-navbar">
+  <nav>
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Dashboard",         dashboard_path %></li>
+      <li><%= link_to "Inbox",             conversations_path %></li>
+      <li><%= link_to "Garage",            vehicles_path %></li>
+      <li><%= link_to "Customers",         customers_path %></li>
+      <li><%= link_to "Test Drives",       test_drives_path %></li>
+      <li><%= link_to "Profile",           profile_path %></li>
+      <li><%= link_to "Account",           edit_user_path(current_user) %></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="sales-management-background"></div>
+
+<div class="sales-management-container">
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="side-nav">
+        <li><%= link_to "Edit Profile",               profile_path %></li>
+        <li><%= link_to "Photos, Symbol, and Video",  profile_path %></li>
+        <li><%= link_to "Reviews",                    profile_path %></li>
+        <li><%= link_to "References",                 profile_path %></li>
+      </ul>
+    </div>
+    
+    <div class="col-md-9">
+      <div class="profile-panel">
+        <span class="panel-header">Required</span>
+        <ul class="panel-body">
+          Must be filled with forms.
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

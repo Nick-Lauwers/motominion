@@ -1,0 +1,12 @@
+<div class="panel">
+  <div class="panel-body">
+    <!--<(remember percentage sign)= image_tag avatar_url(message.user), class: "img-circle avatar-small" %>-->
+    <strong><%= message.user.name %></strong>
+    
+    <span class="pull-right"><%= message.message_time %></span>
+    <br>
+    <div class="row-space-2">
+      <%= message.content %>
+    </div>
+  </div>
+</div>

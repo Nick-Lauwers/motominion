@@ -1,0 +1,271 @@
+<!--yellow-dark on hover-->
+
+<% provide(:title, "Vehicle Details") %>
+
+<header class="header-normal">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class="content-container">
+  <h1 class="content-title">Vehicle Details</h1>
+  <p>
+    Tell us a few details about the vehicle you would like to list on 
+    Dealership.com.
+  </p>
+  
+  <%= form_for @vehicle, :html => { multipart: true }  do |f| %>
+    <div class="vehicle-details-form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form">
+            <i class="fa fa-hourglass fa-lg select-form-icon" 
+               aria-hidden="true"></i>
+            <i class="fa fa-caret-down fa-lg select-form-caret" 
+               aria-hidden="true"></i>
+            <%= f.select :vehicle_condition, ["New", "Old"],
+                id: "vehicle_condition",
+                prompt: "Vehicle Condition",
+                class: "form_control" %>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="form">
+            <i class="fa fa-calendar-o fa-lg select-form-icon" 
+               aria-hidden="true"></i>
+            <i class="fa fa-caret-down fa-lg select-form-caret" 
+               aria-hidden="true"></i>
+            <%= f.select :year, 1981..(Time.zone.now.year + 1),
+                id: "year", 
+                prompt: "Year", 
+                class: "form_control" %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class= "input-group">
+            <div class="input-group-addon">$</div>
+            <%= f.text_field :price, 
+                placeholder: "Price", 
+                class: "form-control" %>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class= "input-group">
+            <%= f.text_field :mileage, 
+                placeholder: "Mileage", 
+                class: "form-control" %>
+            <div class="input-group-addon">mi</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <%= f.text_field :vin, 
+              placeholder: "VIN", 
+              class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="vehicle-details-form-group">
+      <div class="form-group">  
+        <label>Seating Capacity</label>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form">
+              <i class="fa fa-users fa-lg select-form-icon" 
+                 aria-hidden="true"></i>
+              <i class="fa fa-caret-down fa-lg select-form-caret" 
+                 aria-hidden="true"></i>
+              <%= f.select :seating_capacity,
+                  [["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], ["7", 7], 
+                   ["8", 8], ["9+", 9]],
+                  id: "seating_capacity",
+                  prompt: "Seating Capacity",
+                  class: "form_control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">  
+        <label>Style</label>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form">
+              <i class="fa fa-car fa-lg select-form-icon" 
+                 aria-hidden="true"></i>
+              <i class="fa fa-caret-down fa-lg select-form-caret" 
+                 aria-hidden="true"></i>
+              <%= f.select :body_style, 
+                  ["Coupe", "Convertible", "Crossover", "Hatchback", "Minivan",
+                   "Pickup", "Sedan", "SUV", "Van", "Wagon"],
+                  id: "body_style",
+                  prompt: "Body Style",
+                  class: "form_control" %>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="form">
+              <i class="fa fa-paint-brush fa-lg select-form-icon" 
+                 aria-hidden="true"></i>
+              <i class="fa fa-caret-down fa-lg select-form-caret" 
+                 aria-hidden="true"></i>
+              <%= f.select :color, 
+                  ["Black", "Blue", "Brown", "Gold", "Gray", "Green", "Orange", 
+                   "Pink", "Purple", "Red", "Silver", "Teal", "Unknown", 
+                   "White", "Yellow"],
+                  id: "color", 
+                  prompt: "Color", 
+                  class: "form_control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">  
+        <label>Engine</label>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form">
+              <i class="fa fa-cogs fa-lg select-form-icon" 
+                 aria-hidden="true"></i>
+              <i class="fa fa-caret-down fa-lg select-form-caret" 
+                 aria-hidden="true"></i>
+              <%= f.select :transmission, ["Automatic", "Manual"],
+                  id: "transmission", 
+                  prompt: "Transmission", 
+                  class: "form_control" %>
+            </div>
+          </div>
+          
+          <div class="col-md-6">
+            <div class="form">
+              <i class="fa fa-leaf fa-lg select-form-icon" 
+                 aria-hidden="true"></i>
+              <i class="fa fa-caret-down fa-lg select-form-caret" 
+                 aria-hidden="true"></i>
+              <%= f.select :fuel_type, 
+                  ["Biodiesel", "Compressed Natural Gas", "Diesel", "Electric", 
+                   "Flex Fuel", "Gasoline", "Hybrid", "Propane"],
+                  id: "fuel_type", 
+                  prompt: "Fuel Type", 
+                  class: "form_control" %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form">
+              <i class="fa fa-wrench fa-lg select-form-icon" 
+                 aria-hidden="true"></i>
+              <i class="fa fa-caret-down fa-lg select-form-caret" 
+                 aria-hidden="true"></i>
+              <%= f.select :drivetrain, 
+                  ["Front-Wheel Drive", "Rear-Wheel Drive", "4X2", 
+                   "Four-Wheel Drive", "All-Wheel Drive"],
+                  id: "drivetrain", 
+                  prompt: "Drivetrain", 
+                  class: "form_control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>Installed Options</label>
+        <ul class="installed-options">
+          <li>
+            <%= f.check_box :is_leather_seats %>
+            <%= f.label :is_leather_seats, "Leather Seats".html_safe %>
+          </li>
+          <li>
+            <%= f.check_box :is_sunroof %>
+            <%= f.label :is_sunroof, "Sunroof".html_safe %>       
+          </li>
+          <li>
+            <%= f.check_box :is_navigation_system %>
+            <%= f.label :is_navigation_system, "Navigation System".html_safe %> 
+          </li>
+          <li>
+            <%= f.check_box :is_dvd_entertainment_system %>
+            <%= f.label :is_dvd_entertainment_system, 
+                        "DVD Entertainment System".html_safe %> 
+          </li>
+          <li>
+            <%= f.check_box :is_bluetooth %>
+            <%= f.label :is_bluetooth, "Bluetooth".html_safe %> 
+          </li>
+          <li>
+            <%= f.check_box :is_backup_camera %>
+            <%= f.label :is_backup_camera, "Backup Camera".html_safe %> 
+          </li>
+          <li>
+            <%= f.check_box :is_remote_start %>
+            <%= f.label :is_remote_start, "Remote Start".html_safe %> 
+          </li>
+          <li>
+            <%= f.check_box :is_tow_package %>
+            <%= f.label :is_tow_package, "Tow Package".html_safe %>          
+          </li>
+          <li>
+            <%= f.check_box :is_autonomy %>
+            <%= f.label :is_autonomy, "Autonomy".html_safe %>         
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="vehicle-details-form-group">
+      <div class="form-group">
+        <label>Listing name</label>
+        <%= f.text_field :listing_name, 
+            placeholder: "Listing name", 
+            class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label>Summary</label>
+        <%= f.text_area :summary, 
+            rows: 5,
+            placeholder: "Summary", 
+            class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <label>Seller's Notes</label>
+        <%= f.text_area :sellers_notes, 
+            rows: 3,
+            placeholder: "Seller's Notes", 
+            class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <%= f.text_field :address, 
+            placeholder: "Address", 
+            class: "form-control" %>
+      </div>
+      
+      <div class="form-group">
+        <span class= "btn btn-default btn-file">
+          <i class="fa fa-cloud-upload fa-lg"></i> Upload Photos
+          <%= file_field_tag "images[]", type: :file, multiple: true %>
+        </span>
+      </div>
+    </div>
+    
+    <div id="photos"><%= render 'photos/list' %></div>
+    
+    <div class="actions">
+      <%= f.submit "Save", class: "submit btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

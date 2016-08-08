@@ -1,0 +1,41 @@
+<!--complete no reviews css-->
+<!--add gravatar-->
+<!--add title to review-->
+<!--http://stackoverflow.com/questions/20547819/vertical-align-with-bootstrap-3-->
+<% if @reviews.count == 0 %>
+  <div class="text-center">
+    <h4>There are no reviews yet</h4>
+  </div>
+  
+<% else %>
+  <% @reviews.order("id desc").each do |r| %>
+    <div class="row vertical-align">
+      <div class="review-author col-md-3">
+        <span class="review-author"><%= r.user.name %></span>
+        <!--<= image_tag avatar_url(r.user), class: "img-circle avatar-medium" %>-->
+      </div>
+      
+      <div class="review-container col-md-9">
+        <div class="review-details">
+          <div class="review-rating", id="stars_<%= r.id %>"></div>
+          <span class="review-title">I'm looking forward to the delivery date</span>
+          <div class="review-date pull-right"><%= r.created_at.strftime("%D") %></div>
+        </div>
+        <p class="review-comment"><%= r.comment %></p>
+        <span class="pull-right">
+          <%= link_to "Remove My Review", [@vehicle, r], method: :delete, data: { confirm: "Are you sure?" } if
+              current_user && current_user == r.user %>
+        </span>
+      </div>
+    </div>
+    
+    <script>
+      $('#stars_<%= r.id %>').raty({
+        path: '/assets',
+        readOnly: true,
+        score: <%= r.star %>
+      });
+    </script>
+    
+  <% end %>
+<% end %>

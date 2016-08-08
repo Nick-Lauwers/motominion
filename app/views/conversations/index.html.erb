@@ -1,0 +1,48 @@
+<!--must login iot access-->
+<!--header does not stick when going to dashboard directly-->
+<% provide(:title, "Inbox") %>
+
+<header class="header-normal">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class = "secondary-navbar">
+  <nav>
+    <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "Dashboard",         dashboard_path %></li>
+        <li><%= link_to "Inbox",             conversations_path %></li>
+        <li><%= link_to "Garage",            vehicles_path %></li>
+        <li><%= link_to "Customers",         customers_path %></li>
+        <li><%= link_to "Test Drives",       test_drives_path %></li>
+        <li><%= link_to "Profile",           profile_path %></li>
+        <li><%= link_to "Account",           edit_user_path(current_user) %></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="sales-management-background"></div>
+
+<div class="sales-management-container">
+  <div class="messages-panel">
+    <span class="panel-header">Messages (0 new)</span>
+    <div class="panel-body">
+      <% @conversations.each do |conversation| %>
+        <% other = conversation.sender == current_user ? conversation.recipient : conversation.sender %>
+        <%= link_to conversation_messages_path(conversation) do %>
+          <div class="message-summary row">
+            <div class="col-md-2">
+              <%= gravatar_for other %>
+            </div>
+            <div class="col-md-3">
+              <%= other.name %><br>
+              <%= conversation.messages.last.message_time %>
+            </div>
+            <div class="col-md-7">
+              <%= conversation.messages.last.content %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

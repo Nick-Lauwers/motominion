@@ -1,0 +1,28 @@
+<% if @photos %>
+  <div class="row">
+    <% @photos.each do |photo| %>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading preview">
+            <%= image_tag photo.image.url() %>
+          </div>
+          <div class="panel-body">
+            <span class="pull-right">
+              <%= link_to photo, remote: true, method: :delete, 
+                  data: { confirm: "Are you sure?" } do %>
+                <i class="fa fa-times fa-lg"></i>
+              <% end %>
+            </span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<!--https://gist.github.com/iqbalhasnan/24905170bdfd182cd631-->
+
+<!--http://www.munocreative.com/nerd-notes/justpayme-->
+<!--http://josephndungu.com/tutorials/ajax-file-upload-with-dropezonejs-and-paperclip-rails-->
+<!--https://richonrails.com/articles/multiple-file-uploads-with-dropzone-->
+<!--http://geekhmer.github.io/blog/2015/02/10/ruby-on-rails-uploads-multiple-files-with-dropzonejs-and-paperclip-gem/-->

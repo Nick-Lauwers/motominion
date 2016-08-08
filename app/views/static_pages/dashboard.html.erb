@@ -1,0 +1,79 @@
+<!--must login iot access-->
+<!--header does not stick when going to dashboard directly-->
+<% provide(:title, "Dashboard") %>
+
+<header class="header-normal">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class = "secondary-navbar">
+  <nav>
+    <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "Dashboard",         dashboard_path %></li>
+        <li><%= link_to "Inbox",             conversations_path %></li>
+        <li><%= link_to "Garage",            vehicles_path %></li>
+        <li><%= link_to "Customers",         customers_path %></li>
+        <li><%= link_to "Test Drives",       test_drives_path %></li>
+        <li><%= link_to "Profile",           profile_path %></li>
+        <li><%= link_to "Account",           edit_user_path(current_user) %></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="sales-management-background"></div>
+
+<div class="sales-management-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="profile-panel">
+        <div class="profile-photo">
+          <%= link_to image_tag("profile.png", :class => 'img-responsive'), 
+              current_user %>
+          <div class="add-profile-photo-link">
+            <%= link_to 'http://gravatar.com/emails', target: '_blank' do %>
+              <i class="fa fa-camera-retro" aria-hidden="true"></i>
+              Add Profile Photo
+            <% end %>
+          </div>
+        </div>  
+        <div class="profile-settings">
+          <span class="profile-settings-username">
+            <%= current_user.name %>
+          </span>
+          <ul class="profile-settings-links">
+            <li><%= link_to "View Profile", current_user %></li>
+            <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="quick-links-panel">
+        <span class="panel-header">Quick Links</span>
+        <ul class="panel-body">
+          <li><%= link_to "Manage Listings",       vehicles_path %></li>
+          <li><%= link_to "Customers",             customers_path %></li>
+          <li><%= link_to "Reviews / References",  current_user %></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="col-md-9">
+      <div class="notifications-panel">
+        <span class="panel-header">Notifications</span>
+        <ul class="panel-body">
+          Please confirm your email address by clicking on the link we just
+          emailed you. If you cannot find the email, you can request a new
+          confirmation email, or change your email address.
+        </ul>
+      </div>
+      
+      <div class="messages-panel">
+        <span class="panel-header">Messages (0 new)</span>
+        <ul class="panel-body">
+          When you message hosts or send reservation requests, you’ll see 
+          their responses here.
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

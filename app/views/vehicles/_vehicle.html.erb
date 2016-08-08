@@ -1,0 +1,20 @@
+<li id="vehicle-<%= vehicle.id %>" class="list-item">
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag vehicle.photos[0].image.url(:small) if 
+          vehicle.photos.length > 0 %>
+    </div>
+    <div class="list-item-text">
+      <div class="col-md-5">
+        <span class="listing-name"><%= vehicle.listing_name %></span>
+        <span class="listing-price">From <%= vehicle.price %></span>
+      </div>
+      <div class="col-md-3">
+        <%= link_to "Update", edit_vehicle_path(vehicle), class: "btn-list" %>
+        <%= link_to "Delete", vehicle, method: :delete, 
+                                       data: { confirm: "Are you sure?" },
+                                       class: "btn-list" %>
+      </div>
+    </div>
+  </div>
+</li>

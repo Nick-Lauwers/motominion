@@ -1,0 +1,21 @@
+latest_appointment:
+  date: <%= 10.days.from_now %>
+  user: archer
+  vehicle: avalanche
+
+later_appointment:
+  date: <%= 3.days.from_now %>
+  user: archer
+  vehicle: navigator
+  
+soonest_appointment:
+  date: <%= 2.days.from_now %>
+  user: archer
+  vehicle: most_recent
+  
+<% 30.times do |n| %>
+appointment_<%= n %>:
+  date: <%= Faker::Date.between(3.days.from_now, 10.days.from_now) %>
+  user: archer
+  vehicle: vehicle_<%= n %>
+<% end %>
