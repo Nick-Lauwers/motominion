@@ -1,0 +1,13 @@
+<%= form_for @comment do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <%= f.text_field :title, 
+      placeholder: "Write your question here. (ex: Love the car! Have there been
+                    any accidents?" %>
+  
+  <%= f.text_area :content, placeholder: "Tell us the details here." %>
+  
+  <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
+  
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

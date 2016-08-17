@@ -1,15 +1,14 @@
-# return to listing 13.20 of rails tutorial
-
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
   
   def setup
-    @user    = users(:nicholas)
+    @user    = users(:archer)
     @vehicle = vehicles(:avalanche)
-    @comment = @user.comments.build(title:      "Lorem ipsum",
-                                    content:    "Lorem ipsum",
-                                    vehicle_id: @vehicle.id)
+    @comment = @vehicle.comments.build(title:   "Lorem ipsum",
+                                       content: "Lorem ipsum",
+                                       likes:   5,
+                                       user_id: @user.id)
   end
 
   test "should be valid" do
@@ -48,5 +47,15 @@ class CommentTest < ActiveSupport::TestCase
   
   test "order should be most recent first" do
     assert_equal comments(:most_recent), Comment.first
+  end
+  
+  test "associated replies should be destroyed" do
+    @comment.save
+    @comment.replies.create!(content: "Lorem ipsum",
+                             likes:   1,
+                             user_id: @user.id)
+    assert_difference 'Reply.count', -1 do
+      @comment.destroy
+    end
   end
 end

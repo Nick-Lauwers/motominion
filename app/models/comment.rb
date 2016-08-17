@@ -2,6 +2,8 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :vehicle
   
+  has_many :replies, dependent: :destroy
+  
   default_scope -> { order(created_at: :desc) }
   
   validates :user_id,    presence: true

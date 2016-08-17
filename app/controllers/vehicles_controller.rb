@@ -33,6 +33,15 @@ class VehiclesController < ApplicationController
     @reviews   = @vehicle.reviews
     @hasReview = @reviews.find_by(user_id: current_user.id) if current_user
     @booked    = Appointment.where("vehicle_id = ? AND user_id = ?", @vehicle.id, current_user.id).present? if current_user
+    
+    @comments  = @vehicle.comments
+    @comment = current_user.comments.build if logged_in?
+    
+    @comments.each { 
+      |comment|
+        @replies = comment.replies
+    }
+    @reply   = current_user.replies.build  if logged_in?
   end
   
   def new

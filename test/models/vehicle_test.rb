@@ -91,4 +91,15 @@ class VehicleTest < ActiveSupport::TestCase
       @vehicle.destroy
     end
   end
+  
+  test "associated comments should be destroyed" do
+    @vehicle.save
+    @vehicle.comments.create!(title:   "Lorem ipsum",
+                              content: "Lorem ipsum",
+                              likes:   1,
+                              user_id: @user.id)
+    assert_difference 'Comment.count', -1 do
+      @vehicle.destroy
+    end
+  end
 end

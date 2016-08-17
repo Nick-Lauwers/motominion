@@ -3,10 +3,12 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.new(name: "Example User", 
-                     email: "user@example.com",
-                     password: "foobar", 
-                     password_confirmation: "foobar")
+    @user    = User.new(name: "Example User", 
+                        email: "user@example.com",
+                        password: "foobar", 
+                        password_confirmation: "foobar")
+    @vehicle = vehicles(:avalanche)
+    @comment = comments(:cost)
   end
   
   test "should be valid" do
@@ -109,6 +111,27 @@ class UserTest < ActiveSupport::TestCase
                            is_tow_package:              false,
                            is_autonomy:                 false)
     assert_difference 'Vehicle.count', -1 do
+      @user.destroy
+    end
+  end
+  
+  test "associated comments should be destroyed" do
+    @user.save
+    @user.comments.create!(title:      "Lorem ipsum",
+                           content:    "Lorem ipsum",
+                           likes:      1,
+                           vehicle_id: @vehicle.id)
+    assert_difference 'Comment.count', -1 do
+      @user.destroy
+    end
+  end
+  
+  test "associated replies should be destroyed" do
+    @user.save
+    @user.replies.create!(content:    "Lorem ipsum",
+                          likes:      1,
+                          comment_id: @comment.id)
+    assert_difference 'Reply.count', -1 do
       @user.destroy
     end
   end

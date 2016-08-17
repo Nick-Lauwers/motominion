@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160805003240) do
+ActiveRecord::Schema.define(version: 20160809010528) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,10 +26,11 @@ ActiveRecord::Schema.define(version: 20160805003240) do
   add_index "appointments", ["vehicle_id"], name: "index_appointments_on_vehicle_id"
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "vehicle_id"
     t.text     "title"
     t.text     "content"
+    t.integer  "likes"
+    t.integer  "user_id"
+    t.integer  "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -67,6 +68,19 @@ ActiveRecord::Schema.define(version: 20160805003240) do
   end
 
   add_index "photos", ["vehicle_id"], name: "index_photos_on_vehicle_id"
+
+  create_table "replies", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "likes"
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "replies", ["comment_id", "created_at"], name: "index_replies_on_comment_id_and_created_at"
+  add_index "replies", ["comment_id"], name: "index_replies_on_comment_id"
+  add_index "replies", ["user_id"], name: "index_replies_on_user_id"
 
   create_table "reviews", force: :cascade do |t|
     t.text     "comment"

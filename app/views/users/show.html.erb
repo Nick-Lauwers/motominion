@@ -1,17 +1,163 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-      <% if current_user != @user %>
-        <div class="row-space-2">
-          <%= link_to "Send Message", conversations_path(sender_id: current_user.id, recipient_id: @user.id),
-              method: 'post', class: "btn btn-primary wide" %>
+
+<header class="header-profile">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row header-profile-user-info vertical-align">
+        <div class="col-md-4">
+          <%= gravatar_for(@user, size: 40) %>
         </div>
-      <% end %>
-    </section>
-  </aside>
+        <div class="col-md-8">
+          <div class="header-profile-text">
+            <span class="header-profile-user-name"><%= @user.name %> </span>
+            <span class="header-profile-city"> · Rating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <button class="header-profile-btn">
+        Contact Seller
+      </button>
+    </div>
+  </div>
+</header>
+
+<header class="header-normal">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class="user-cover-photo"
+     style="background-image: url('/assets/cover-photo.jpeg')"
+     data-width="1024" data-height="768"></div>
+
+<div class="profile-summary-container">
+  <div class="row profile-summary">
+    <div class="col-md-8">
+      <div class="row vertical-align">
+        <div class="col-md-4 profile-summary-gravatar">
+          <%= gravatar_for(@user, size: 200) %>
+        </div>
+        <div class="col-md-8 profile-summary-text">
+          <h1><%= @user.name %></h1>
+          <h2>Toronto, ON · Rating</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
 </div>
+
+<div class="user-info">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="b-head-listing">Hey, I'm <%= @user.name %></h2>
+      <div class="report-user">
+        <i class="fa fa-flag-o fa-lg" aria-hidden="true"></i> Report user
+      </div>
+      <p class="user-bio">
+        My husband James and I are newly married. He is British and I am 
+        Canadian and we've both done quite a bit of travelling. He's lived in 
+        the UK, Australia and Canada and I've live in Canada, France and the UK 
+        and we've also visited many other countries. My favourite place I've 
+        been (so far) is Bogota, Colombia and James' favourite place (so far) is 
+        Sydney, Australia.
+      </p>
+      
+      <div class="partition"></div>
+      
+      <div class="user-wish-list">
+        <div class="c-head-listing">Wish List (2)</div>
+        <div class="row">
+          <div class="col-md-6 left">
+            <div class="user-wish-list-image", 
+                 style="background-image: url('/assets/jaguar.jpg')">
+              <div class="user-info-image-gradient">
+                <span class="user-info-image-text">Jaguar XJ</span>
+              </div>  
+            </div>
+          </div>
+          <div class="col-md-6 right">
+            <div class="user-wish-list-image", 
+                 style="background-image: url('/assets/mercedes.jpg')">
+              <div class="user-info-image-gradient">
+                <span class="user-info-image-text">Mercedes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="partition"></div>
+      
+      <div class="user-reviews">
+        <div class="c-head-listing">Reviews (3)</div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="user-listings">
+        <div class="c-head-listing">Listings (1)</div>
+        <div class="user-listings-image", 
+             style="background-image: url('/assets/porsche.jpg')">
+          <div class="user-info-image-gradient">
+            <span class="user-info-image-text">Porsche</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  
+    // parallax-scroll
+    var scrollHeroImage = $('.user-cover-photo');
+
+    scrollHeroImage.parallaxScroll ({
+      friction: 0.3
+    });
+    
+    // fixed profile header
+    $(window).on("scroll", function() {
+      var scrolltop = $(this).scrollTop();
+      if(scrolltop >= 586) {
+        $('.header-profile').fadeIn(250);
+      }
+      else {
+        $('.header-profile').fadeOut(250);
+      }
+    });
+  })
+</script>
+
+<!--< if current_user != @user %>-->
+<!--  <= link_to "Send Message", conversations_path(sender_id: current_user.id, recipient_id: @user.id),-->
+<!--      method: 'post', class: "btn btn-primary wide" >-->
+<!--< end %>  -->
+
+<!--// user summary zoom-->
+<!--      // var userSummary     = $('.user-summary');-->
+<!--      // var userSummarySize = 128;-->
+      
+<!--      // userSummarySize = 128 - Math.min(48, $(document).scrollTop()/9);-->
+<!--      // userSummary.height(userSummarySize);-->
+      
+<!--      // gravatar zoom-->
+<!--      // var gravatar     = $('.gravatar');-->
+<!--      // var gravatarSize = 200;-->
+      
+<!--      // gravatarSize = 200 - Math.min(120, $(document).scrollTop()/3);-->
+<!--      // gravatar.width(gravatarSize).height(gravatarSize);-->
+      
+<!--      // fixed user summary container-->
+<!--      // var scrollTop            = $(this).scrollTop();-->
+<!--      // var userSummaryContainer = $('.user-summary-container');-->
+      
+<!--      // if(scrolltop >= 480) {-->
+<!--      //   userSummaryContainer.addClass('user-summary-container-scrolled');-->
+<!--      // }-->
+<!--      // else {-->
+<!--      //   userSummaryContainer.removeClass('user-summary-container-scrolled');-->
+<!--      // }-->
