@@ -30,8 +30,10 @@ class StaticPagesController < ApplicationController
     end
     
     @search      = @vehicles_listing_name.ransack(params[:q])
-    @vehicles    = @search.result
-    @arrVehicles = @vehicles.to_a
+    @vehicles    = @search.result.paginate(page: params[:page], per_page: 10)
+    # @arrVehicles = @vehicles.to_a
+    
+    # @users = User.paginate(page: params[:page])
     
     # respond_to :js
     respond_to do |format|

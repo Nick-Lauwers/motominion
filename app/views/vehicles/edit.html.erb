@@ -1,1 +1,69 @@
-<%= render 'form' %>
+<!--ids before classes-->
+
+<% provide(:title, "Update Vehicle") %>
+
+<header class="header-normal">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class="hero-primary">
+  <div class="row hero-primary-content">
+    
+    <div class="col-md-9">
+      <div class="row">
+        
+        <div class="col-md-2 hero-gravatar">
+          <%= gravatar_for(@vehicle.user, size: 100) %>
+        </div>
+        
+        <div class="col-md-10">
+          <h1 class="hero-username"><%= @vehicle.user.name %></h1>
+          <div class="hero-detail">
+            <span class="detail-title">Phone </span>
+            <span class="detail-info">(+1) (888) 555-5555</span>
+          </div>
+          <div class="hero-detail">
+            <span class="detail-title">Email </span>
+            <span class="detail-info"><%= @vehicle.user.email %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3 listing-status">
+      <span class="amount-complete">100%</span>
+      <span class="status-description">Listing Complete</span>
+    </div>
+  </div>
+</div>
+
+<div class="new-vehicle">
+  <div class="new-vehicle-content">
+    
+    <div class="instructions">
+      <div class="instructions-content">
+        <div class="row vertical-align">
+          
+          <div class="col-md-2 instructions-icon">
+            <i class="fa fa-rocket fa-5x" aria-hidden="true"></i>
+          </div>
+          
+          <div class="col-md-7">
+            <h2 class="instructions-title">Accelerate Your Sale</h2>
+            <p class="instructions-info">
+              Update your listing in order to improve your odds of success. Our 
+              guide will make sure that you attract the most promising customers 
+              as quickly as possible.
+            </p>
+          </div>
+          
+          <div class="col-md-3">
+            <!--intentionally left empty-->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <%= render 'form' %>
+  </div>
+</div>
