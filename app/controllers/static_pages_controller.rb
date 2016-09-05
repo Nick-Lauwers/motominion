@@ -1,3 +1,5 @@
+# should contact be under static_pages?
+
 class StaticPagesController < ApplicationController
   def home
   end
@@ -9,6 +11,10 @@ class StaticPagesController < ApplicationController
   end
   
   def contact
+    @enquiry = Enquiry.new
+  end
+  
+  def how_it_works
   end
   
   def dashboard

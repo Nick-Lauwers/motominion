@@ -1,0 +1,55 @@
+<!--user-cover-photo to cover-photo-->
+<!--study squarespace design-->
+<!--adjust padding on .step-->
+
+<% provide(:title, "How It Works") %>
+
+<header class="header-normal">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class="how-it-works-cover-photo">
+  <h1 class="cover-photo-title">We're with you every step of the journey.</h1>
+</div>
+
+<div class="how-it-works-intro">
+  <p class="how-it-works-info">
+    We bring vehicle enthusiasts together in a uniquely visual community. List 
+    your car on the world’s leading online marketplace for vehicles. Customers 
+    from all over the world will see your vehicle featuring our stunning 
+    photography and original content. Dealerhship.com is available in multiple 
+    languages and our 24-hour multi-lingual team will secure bookings you would 
+    otherwise miss out on. You will have your own dedicated account manager and 
+    only pay for confirmed sales.
+  </p>
+</div>
+
+<div class="how-it-works-steps">
+  <div class="row steps-content">
+    <div class="col-md-4 step">
+      <i class="fa fa-binoculars fa-3x" aria-hidden="true"></i>
+      <h3 class="step-title">Transparency</h3>
+      <h4 class="step-info">
+        View dealer reviews, price histories, and local-market price analyses
+      </h4>
+    </div>
+    <div class="step col-md-4">
+      <i class="fa fa-area-chart fa-3x" aria-hidden="true"></i>
+      <h3 class="step-title">Detailed Guides</h3>
+      <h4 class="step-info">
+        Browse photo galleries and detailed guides
+      </h4>
+    </div>
+    <div class="step col-md-4">
+      <i class="fa fa-book fa-3x" aria-hidden="true"></i>
+      <h3 class="step-title">Stress-free Purchasing</h3>
+      <h4 class="step-info">
+        Our expert consultants will take care of everything for you
+      </h4>
+    </div>
+  </div>
+</div>
+
+<%= link_to "List Your Vehicle", 
+    new_vehicle_path, 
+    class: "btn btn-primary btn-how-it-works" %>

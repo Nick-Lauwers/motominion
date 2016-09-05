@@ -4,9 +4,100 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<div class="content-container">
-  <h1 class="content-title">Help</h1>
-  <p>
-    Call our hotline to receive help.
-  </p>
+<div class="help">
+  <h1 class="help-title">
+    Help & Support
+  </h1>
+  
+  <div class="row help-content">
+    
+    <div class="col-md-4">
+      <div class="help-topics">
+        <ul class="topics-list">
+          <li><%= link_to "General Listing Questions", '#' %></li>
+          <li><%= link_to "Fees & Payments",           '#' %></li>
+          <li><%= link_to "Availability & Pricing",    '#' %></li>
+          <li><%= link_to "Cancellation Policy",       '#' %></li>
+        </ul>
+        
+        <%= link_to "Contact Us", 
+            contact_path, 
+            class: "btn btn-primary btn-contact" %>
+      </div>
+    </div>
+      
+    <div class="col-md-8">
+      <div class="help-faqs">
+        <h2 class="help-faqs-title">
+          General Listing Questions
+        </h2>
+        
+        <p class="faq-title">
+          How do I book a room?
+        </p>
+        
+        <p class="faq-info">
+          It’s easy to get started booking a room. Search through our 
+          comprehensive list of properties and request to book a room. Once you 
+          fill out the booking request form, a booking expert will contact you 
+          to begin the process of booking an accommodation. You can find out 
+          more on our How It Works page.
+        </p>
+        
+        <p class="faq-title">
+          Do I need to be a student?
+        </p>
+        
+        <p class="faq-info">
+          Yes, only full-time students can live in most properties.
+        </p>
+        
+        <p class="faq-title">
+          Can I live with friends?
+        </p>
+        
+        <p class="faq-info">
+          Of course! Once you’ve submitted an application and logged into the 
+          Student.com application system, scroll to the ‘Other Requirements’ 
+          section under 'My Details' to specify that you would like to live with 
+          friends. Please include their names on this part of your application 
+          too. Make sure your friends also add your name to their applications 
+          and we will try to process the bookings together.
+        </p>
+        
+        <p class="faq-title">
+          Can I select my room?
+        </p>
+        
+        <p class="faq-info">
+          Once you submit a booking request, a booking expert will work with you 
+          and the property owner to secure a room that best fits your 
+          requirements.
+        </p>
+        
+        <p class="faq-title">
+          Can I schedule a tour of a property before I book?
+        </p>
+        
+        <p class="faq-info">
+          Of course! In order to arrange a viewing of a property, we need you to 
+          complete an application form on our website. As soon as we have all 
+          your details, you can contact our booking experts and they will 
+          arrange a property viewing for you.
+        </p>
+        
+        <p class="faq-title">
+          What is a guarantor? Do I need one?
+        </p>
+        
+        <p class="faq-info">
+          A guarantor is a person (often a family member) that co-signs the 
+          rental agreement and is financially responsible for paying the rent if 
+          the tenant is unable to. Many properties require a guarantor if the 
+          tenant is unable to show satisfactory funds or income to support the 
+          required rental payments.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

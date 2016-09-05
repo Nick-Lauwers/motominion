@@ -1,4 +1,5 @@
 // bootstrap-slider included in both custom.css.scss and application.css; necessary?
+// apply margin: 0 to all rows
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -421,13 +422,13 @@ footer {
   margin: 0;
 }
 
-.how-it-works-container {
+.empty-container {
   background-color: $gray-lightest;
   border-bottom: 1px solid $gray-border;
   height: 500px;
 }
 
-.how-it-works-title {
+.empty-title {
   font-size: 1.65em;
   font-weight: bold;
   text-align: center;
@@ -2388,4 +2389,306 @@ input#appointment_date {
   letter-spacing: 0.25px;
   font-weight: bold;
   color: white;
+}
+
+/* contact */
+
+.contact {
+  max-width: 1008px;
+  margin: 0 auto;
+  padding: 4em 0;
+}
+
+.contact-content {
+  margin: 0;
+}
+
+.contact-instructions-header {
+  margin: 0 0 1em;
+}
+
+.fa-bullhorn {
+  color: $yellow-dark;
+  margin: 0 0.3em 0 0;
+}
+
+.contact-title {
+  font-size: 2.3em;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+  color: $gray-text;
+}
+
+.contact-info {
+  line-height: 2.1;
+  text-align: left;
+  margin: 0 0 1em;
+}
+
+.contact-form {
+  background-color: $gray-lightest;
+  padding: 1.7em 2.3em;
+}
+
+.contact-legal {
+  font-size: 0.85em;
+  line-height: 1.3;
+  text-align: left;
+  color: $gray-dark;
+  margin-bottom: 0;
+  a {
+    color: $gray-dark;
+    border-bottom: 1px solid $gray-dark;
+    &:hover {
+      text-decoration: none;
+      color: $gray-dark;
+    }
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+.contact-map {
+  width: 100%;
+}
+
+.contact-address {
+  border-right: 1px solid $gray-border;
+  border-bottom: 1px solid $gray-border;
+  border-left: 1px solid $gray-border;
+  padding: 1.7em 2.3em;
+}
+
+.location-detail {
+  font-size: 1.05em;
+  line-height: 1.1;
+  font-weight: bold;
+  color: $gray-darker;
+  margin-bottom: 1.2em;
+  display: block;
+}
+
+.contact-social-media {
+  text-align: center;
+  list-style: none;
+  padding: 0;
+  margin: 1.7em 0 0;
+  li {
+    margin-right: 1.1em;
+    display: inline-block;
+    a {
+      color: $gray-darker;
+    }
+  }
+  &:last-child { 
+    margin-right: 0 !important; 
+  }
+}
+
+.footer-text {
+  max-width: 1008px;
+  padding: 1.25em 0;
+  margin: 0 auto;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin-bottom: 0.8em;
+      a {
+        color: $gray-darker;
+        &:hover, 
+        &:focus {
+          color: $gray-darker;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+/* about */
+
+.about-cover-photo {
+  background-image: url("about.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 430px;
+  position: relative;
+}
+
+.cover-photo-title {
+  font-size: 3.5em;
+  font-weight: bold;
+  letter-spacing: 0.05px;
+  line-height: 1.3em;
+  text-align: center;
+  color: white;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.about {
+  max-width: 1008px;
+  padding: 5.1em 0;
+  margin: 0 auto;
+}
+
+.about-info {
+  line-height: 2.1;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* how-it-works */
+
+.how-it-works-cover-photo {
+  background-image: url("how-it-works.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 430px;
+  position: relative;
+}
+
+.how-it-works-intro {
+  max-width: 1008px;
+  padding: 5.1em 0;
+  margin: 0 auto;
+}
+
+.how-it-works-info {
+  line-height: 2.1;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.how-it-works-steps {
+  text-align: center;
+  border-top: 1px solid $gray-border;
+  border-bottom: 1px solid $gray-border;
+}
+
+.steps-content {
+  margin: 0 auto;
+  max-width: 1008px;
+}
+
+.step {
+  padding: 2.9em;
+  border-right: 1px solid $gray-border;
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.step-title {
+  font-size: 1.65em;
+  font-weight: bold;
+  color: $gray-text;
+  margin: 1.3em 0;
+}
+
+.step-info {
+  font-size: 1.1em;
+  line-height: 2.1;
+  color: $gray-text;
+  margin: 0;
+}
+
+.fa-binoculars,
+.fa-area-chart,
+.fa-book {
+  color: $yellow-dark;
+}
+
+.btn-how-it-works {
+  border-radius: 2px;
+  width: 17%;
+  margin: 5.1em auto;
+  display: block;
+}
+
+/* help */
+
+.help {
+  max-width: 1008px;
+  padding: 5.1em 0;
+  margin: 0 auto;
+}
+
+.help-title {
+  font-size: 2.3em;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+  font-weight: bold;
+  text-align: center;
+  color: $gray-text;
+  max-width: 900px;
+  margin: 0 auto 1.5em;
+}
+
+.help-content {
+  margin: 0;
+}
+
+.help-topics {
+  background-color: $gray-lightest;
+  padding: 1.7em 2.3em;
+}
+
+.topics-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    margin-bottom: 1.4em;
+    a {
+      font-size: 1.05em;
+      letter-spacing: 0.1px;
+      font-weight: bold;
+      color: $gray-dark;
+      transition: color 0.3s;
+      &:hover {
+        text-decoration: none;
+        color: $gray-darker;
+      }
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.btn-contact {
+  margin-top: 0.2em;
+}
+
+.help-faqs {
+  border: 1px solid $gray-border;
+  padding: 1.7em 2.3em
+}
+
+.help-faqs-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: $gray-text;
+  margin: 0 0 1.7em;
+}
+
+.faq-title {
+  line-height: 2.1;
+  font-weight: bold;
+  text-align: left;
+}
+
+.faq-info {
+  line-height: 2.1;
+  text-align: left;
 }
