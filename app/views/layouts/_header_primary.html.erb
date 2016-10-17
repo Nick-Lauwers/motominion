@@ -1,21 +1,26 @@
-<div class="navbar">
-  <%= link_to "dealership.com", root_path, id: "logo" %>
-  
-  <nav>
+<!--complete-->
+
+<div class="header-primary">
+  <nav class="navbar">
+    
+    <%= link_to "DEALERSHIP.COM", root_path, class: "logo" %>
+    
     <ul class="nav navbar-nav navbar-right">
       
       <% if logged_in? %>
         <li><%= link_to "Messages", conversations_path %></li>
+        
         <li class="dropdown">
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
              Help <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%= link_to "How It Works", help_path %></li>
+            <li><%= link_to "How It Works", how_it_works_path %></li>
             <li><%= link_to "Help Center",  help_path %></li>
             <li><%= link_to "Contact Us",   contact_path %></li>
           </ul>
         </li>
+        
         <li class="dropdown">
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
             <%= current_user.name %><b class="caret"></b>
@@ -23,8 +28,7 @@
           <ul class="dropdown-menu">
             <li><%= link_to "Profile",  current_user %></li>
             <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-            <li class="divider"></li>
-            <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
+            <li><%= link_to "Log Out",  logout_path, method: "delete" %></li>
           </ul>
         </li>
       
@@ -39,6 +43,7 @@
             <li><%= link_to "Contact Us",   contact_path %></li>
           </ul>
         </li>
+        
         <li><%= link_to "Sign Up", signup_path %></li>
         <li><%= link_to "Log In",  login_path %></li>
         <li><%= link_to "Sell",    new_vehicle_path %></li>

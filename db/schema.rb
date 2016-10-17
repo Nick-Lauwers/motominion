@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20160829115533) do
   add_index "replies", ["user_id"], name: "index_replies_on_user_id"
 
   create_table "reviews", force: :cascade do |t|
+    t.string   "title"
     t.text     "comment"
     t.integer  "star",       default: 1
     t.integer  "vehicle_id"
@@ -107,6 +108,7 @@ ActiveRecord::Schema.define(version: 20160829115533) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.boolean  "is_subscribed"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "password_digest"

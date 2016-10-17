@@ -67,8 +67,13 @@ class VehicleTest < ActiveSupport::TestCase
     assert_not @vehicle.valid?
   end
   
-  test "listing_name should be at most 250 characters" do
-    @vehicle.summary = "a" * 251
+  test "summary should be at most 600 characters" do
+    @vehicle.summary = "a" * 601
+    assert_not @vehicle.valid?
+  end
+  
+  test "sellers_notes should be at most 600 characters" do
+    @vehicle.sellers_notes = "a" * 601
     assert_not @vehicle.valid?
   end
   

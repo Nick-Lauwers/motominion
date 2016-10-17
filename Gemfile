@@ -23,6 +23,7 @@ gem 'private_pub'
 gem 'thin'
 gem 'ransack'
 gem 'bootstrap-slider-rails'
+gem 'gmaps4rails'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

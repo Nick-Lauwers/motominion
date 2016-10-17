@@ -1,24 +1,27 @@
 <% provide(:title, "Customers") %>
 
-<header class="header-normal">
+<header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<div class = "secondary-navbar">
-  <nav>
-    <ul class="nav navbar-nav navbar-left">
-        <li><%= link_to "Dashboard",         dashboard_path %></li>
-        <li><%= link_to "Inbox",             conversations_path %></li>
-        <li><%= link_to "Garage",            vehicles_path %></li>
-        <li><%= link_to "Customers",         customers_path %></li>
-        <li><%= link_to "Test Drives",       test_drives_path %></li>
-        <li><%= link_to "Profile",           profile_path %></li>
-        <li><%= link_to "Account",           edit_user_path(current_user) %></li>
-    </ul>
-  </nav>
-</div>
+<%= render 'shared/hero_secondary' %>
 
-<div class="sales-management-background"></div>
+<nav class="secondary-navbar">
+  <div class="secondary-navbar-nav">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Inbox",  conversations_path %></li>
+      <li><%= link_to "Garage", vehicles_path %></li>
+      <li>
+        <%= link_to "Customers",
+            customers_path,
+            class: "nav-active" %>
+      </li>
+      <li><%= link_to "Test Drives", test_drives_path %></li>
+      <li><%= link_to "Profile",     profile_path %></li>
+      <li><%= link_to "Account",     edit_user_path(current_user) %></li>
+    </ul>
+  </div>
+</nav>
 
 <div class="your-listings-container">
   <div class="row">
@@ -40,68 +43,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-// secondary navbar scroll
-  $(document).ready(function() {
-    $(window).on('scroll', function() {
-      var scrolltop = $(this).scrollTop();
-      if(scrolltop >= 50) {
-        $('.secondary-navbar').addClass('secondary-navbar-scrolled');
-      }
-      else {
-        $('.secondary-navbar').removeClass('secondary-navbar-scrolled');
-      }
-    });
-  });
-</script>
-
-<!--<div class="row">-->
-<!--  <div class="col-md-3">-->
-<!--    <ul class="sidebar-list">-->
-<!--      <li class="sidebar-item">-->
-<!--        <(percentage)= link_to "Your Listings", vehicles_path, class: "sidebar-link" %>-->
-<!--      </li>-->
-<!--      <li class="sidebar-item">-->
-<!--        <(percentage)= link_to "Your Appointments", your_appointments_path, class: "sidebar-link active" %>-->
-<!--      </li>-->
-<!--      <li class="sidebar-item">-->
-<!--        <(percentage)= link_to "Shopping Cart", shopping_cart_path, class: "sidebar-link" %>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
-<!--  <div class="col-md-9">-->
-<!--    <div class="panel panel-default">-->
-<!--      <div class="panel-heading">-->
-<!--        Your Appointments-->
-<!--      </div>-->
-<!--      <div class="panel-body">-->
-<!--        <(percentage) @vehicles.each do |vehicle| %>-->
-        
-<!--          <(percentage) vehicle.appointments.each do |appointment| %>-->
-<!--            <div class="row">-->
-<!--              <div class="col-md-2">-->
-<!--                <(percentage)= appointment.date.try(:strftime, '%v') %>-->
-<!--              </div>-->
-<!--              <div class="col-md-6">-->
-<!--                <(percentage)= link_to vehicle_path(appointment.vehicle) do %>-->
-<!--                  <(percentage)= image_tag vehicle.photos[0].image.url(:small) if -->
-<!--                      vehicle.photos.length > 0 %>-->
-<!--                <(percentage) end %>-->
-<!--              </div>-->
-<!--              <div class="col-md-2">-->
-                <!--<(remember percentage sign)= link_to user_path(appointment.user) do %>-->
-                  <!--<(remember percentage sign)= image_tag gravatar_url(appointment.user), class: "img-circle gravatar-medium" %>-->
-                <!--<(remember percentage sign) end %>-->
-<!--              </div>-->
-<!--              <div class="col-md-2 right">-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          <(percentage) end %>-->
-          
-<!--        <(percentage) end %>-->
-        
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

@@ -29,6 +29,7 @@ class VehiclesController < ApplicationController
   end
   
   def show
+    @user      = @vehicle.user
     @photos    = @vehicle.photos
     @reviews   = @vehicle.reviews
     @hasReview = @reviews.find_by(user_id: current_user.id) if current_user

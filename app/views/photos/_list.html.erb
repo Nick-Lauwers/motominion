@@ -1,21 +1,22 @@
 <!--http://stackoverflow.com/questions/25474329/how-to-preview-uploaded-image-instantly-with-paperclip-in-ruby-on-rails-->
 
+<span class="photos-title">Photos</span>
+
 <% if @photos %>
-  <div class="row">
+  <div class="row new-vehicle-gallery">
+    
     <% @photos.each do |photo| %>
-      <div class="col-md-4">
+      <div class="col-md-4 new-vehicle-photo-container">
         <div class="new-vehicle-photo">
           <%= image_tag photo.image.url(), class: "img_preview" %>
           <%= link_to photo, remote: true, method: :delete, 
               data: { confirm: "Are you sure?" } do %>
-              <i class="fa fa-times fa-lg"></i>
+              <i class="fa fa-times fa-lg remove-photo-icon"></i>
           <% end %>
         </div>
       </div>
     <% end %>
-    <div class="col-md-4">
-      
-    </div>
+    
   </div>
 <% end %>
 
@@ -23,6 +24,5 @@
   // photo scaling
   $('.new-vehicle-gallery').imagesLoaded( function() {
     $('.new-vehicle-photo').imagefill(); 
-    $('#target').imagefill(); 
   });
 </script>

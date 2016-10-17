@@ -1,22 +1,156 @@
+<!--complete-->
+
 <% @test_drives.each do |test_drive| %>
-  <li id="test_drive-<%= test_drive.id %>" class="list-item">
-    <div class="row">
-      <div class="col-md-2">
-        <%= test_drive.date.try(:strftime, '%v') %>
+
+  <li id="test-drive-<%= test_drive.id %>-item" class="vehicle-item">
+    <div class="row vehicle-item-summary">
+
+      <div class="col-md-4 summary-carousel-container">
+        <%= link_to test_drive.vehicle, target: "_blank" do %>
+        
+          <div id="summary-carousel-<%= test_drive.vehicle.id %>" 
+               class="carousel summary-carousel" 
+               data-interval="false">
+            
+            <div class="carousel-inner">
+              
+              <div class="item active">
+                <img src="<%= test_drive.vehicle.photos[0].image.url() if 
+                              test_drive.vehicle.photos.length > 0 %>">
+              </div>
+              
+              <div class="item">
+                <img src="<%= test_drive.vehicle.photos[1].image.url() if 
+                              test_drive.vehicle.photos.length > 1 %>">
+              </div>
+          
+              <div class="item">
+                <img src="<%= test_drive.vehicle.photos[2].image.url() if 
+                              test_drive.vehicle.photos.length > 2 %>">
+              </div>
+          
+              <div class="item">
+                <img src="<%= test_drive.vehicle.photos[3].image.url() if 
+                              test_drive.vehicle.photos.length > 3 %>">
+              </div>
+              
+              <div class="item">
+                <img src="<%= test_drive.vehicle.photos[4].image.url() if 
+                              test_drive.vehicle.photos.length > 0 %>">
+              </div>
+              
+              <div class="item">
+                <img src="<%= test_drive.vehicle.photos[5].image.url() if 
+                              test_drive.vehicle.photos.length > 5 %>">
+              </div>
+              
+              <div class="item">
+                <img src="<%= test_drive.vehicle.photos[6].image.url() if 
+                              test_drive.vehicle.photos.length > 6 %>">
+              </div>
+              
+              <div class="item">
+                <img src="<%= test_drive.vehicle.photos[7].image.url() if 
+                              test_drive.vehicle.photos.length > 0 %>">
+              </div>
+            </div>
+          </div>
+        <% end %>
+        
+        <a href="#summary-carousel-<%= test_drive.vehicle.id %>" 
+           data-slide="prev">
+          <i class="fa fa-chevron-left fa-2x btn-summary-carousel-left" 
+             aria-hidden="true"></i>
+        </a>
+        
+        <a href="#summary-carousel-<%= test_drive.vehicle.id %>" 
+           data-slide="next">
+          <i class="fa fa-chevron-right fa-2x btn-summary-carousel-right" 
+             aria-hidden="true"></i>
+        </a>
       </div>
-      <div class="col-md-6">
-        <%= link_to vehicle_path(test_drive.vehicle) do %>
-          <%= image_tag test_drive.vehicle.photos[0].image.url(:thumb)  if 
-              test_drive.vehicle.photos.length > 0 %>
+    
+      <div class="col-md-6 summary-detail">
+        <%= link_to test_drive.vehicle, 
+            class: "summary-detail-content", 
+            target: "_blank" do %>
+            
+          <p class="summary-detail-title">
+            <%= test_drive.vehicle.listing_name %>
+          </p>
+          
+          <p class="summary-detail-seller">
+            <%= test_drive.vehicle.user.name %> · 
+            <span class="average-rating"></span>
+          </p>
+          
+          <p class="summary-detail-info">
+            <%= test_drive.vehicle.summary %>
+          </p>
+        <% end %>
+        
+        <%= link_to '#' do %>
+          <span class="summary-detail-link">
+            <i class="fa fa-heart summary-detail-link-icon" 
+               aria-hidden="true"></i>
+            Add to Wish List
+          </span>
         <% end %>
       </div>
-      <div class="col-md-2">
-        <%= link_to user_path(test_drive.vehicle.user) do %>
-          <!--<= image_tag gravatar_url(test_drive.vehicle.user), class: "img-circle gravatar-medium" %>-->
+      
+      <div class="col-md-2 summary-price">
+        <%= link_to test_drive.vehicle, 
+            class: "summary-price-content", 
+            target: "_blank" do %>
+            
+          <p class="summary-price-title">$<%= test_drive.vehicle.price %></p>
+          
+          <%= button_to "View", 
+              test_drive.vehicle, 
+              class: "btn btn-secondary", 
+              method: :get %>
         <% end %>
-      </div>
-      <div class="col-md-2 right">
       </div>
     </div>
+    
+    <div class="vehicle-item-deal">
+      <%= link_to test_drive.vehicle, 
+          class: "vehicle-item-deal-content", 
+          target: "_blank" do %>
+          
+        <i class="fa fa-shopping-basket deal-detail-icon" 
+           aria-hidden="true"></i>
+           
+        <span class="deal-detail-title">1 Additional Product</span> 
+        
+        <span class="deal-detail-info">Spoiler at reduced cost</span> 
+      <% end %>
+    </div>
+    
+    <div class="vehicle-item-test-drive">
+      <%= link_to '#', class: "vehicle-item-test-drive-content" do %>
+      
+        <i class="fa fa-calendar-check-o test-drive-detail-icon" 
+           aria-hidden="true"></i>
+           
+        <span class="test-drive-detail-title">Test Drive</span>
+        
+        <span class="test-drive-detail-info">Jan 1, 2017</span>
+      <% end %>
+    </div>
   </li>
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+      
+      // rating
+      var averageRating = $('.average-rating');
+      
+      averageRating.raty({
+        path: '/assets',
+        readOnly: true,
+        score: <%= test_drive.vehicle.average_rating %>
+      });
+    });
+  </script>
 <% end %>

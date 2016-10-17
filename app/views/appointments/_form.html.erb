@@ -1,21 +1,37 @@
+<!--complete-->
+
 <%= form_for([@vehicle, @vehicle.appointments.new]) do |f| %>
-  <div class="row">
-    <div class="col-md-7">
-      <%= f.text_field :date, readonly: 'true', 
-          placeholder: "Schedule A Test Drive", class: 'form-control' %>
+
+  <div class="row appointment-content">
+
+    <div class="col-md-8 appointment-select">
+      <div class="form-element-secondary">
+        <%= f.text_field :date, 
+            readonly: 'true', 
+            placeholder: "Test Drive", 
+            class: 'form-control form-control-primary' %>
+        <i class="fa fa-calendar-o fa-lg form-icon" 
+           aria-hidden="true"></i>
+        <i class="fa fa-caret-down fa-lg form-caret" 
+           aria-hidden="true"></i>
+      </div>
+    
+      <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
     </div>
     
-    <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
-    
-    <div class="col-md-5">
-      <%= f.submit "Go!", class: "btn btn-test-drive" %>
+    <div class="col-md-4 appointment-button">
+      <%= f.submit "Book!", class: "btn btn-tertiary" %>
     </div>
   </div>
 <% end %>
 
 <script type="text/javascript">
+  
+  // datepicker
+  var appointmentDate = $('#appointment_date');
+
   $(function() {
-    $('#appointment_date').datepicker({
+    appointmentDate.datepicker({
       dateformat: 'dd-mm-yy'
     });
   });

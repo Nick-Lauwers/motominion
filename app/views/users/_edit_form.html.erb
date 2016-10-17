@@ -1,0 +1,59 @@
+<%= form_for @user do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <div class="account-fields">
+    <div class="row">
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          <%= f.label :name %>
+          <%= f.text_field :name, 
+              placeholder: current_user.name, 
+              class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          <%= f.label :email %>
+          <%= f.email_field :email, 
+              placeholder: current_user.email, 
+              class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          <%= f.label :password %>
+          <%= f.password_field :password, 
+              placeholder: "Password",
+              class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          <%= f.label :password_confirmation, "Confirmation" %>
+          <%= f.password_field :password_confirmation, 
+              placeholder: "Confirmation", 
+              class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="checkbox-inline">
+    <%= f.check_box :is_subscribed, class: "checkbox" %>
+    <%= f.label :is_subscribed, 
+        "Tick here if you would like to receive our email newsletter which 
+        contains more information about our services, offers, or promotions.",
+        class: "checkbox-label" %>
+  </div>
+      
+  <%= f.submit "Save Changes", class: "btn btn-primary" %>      
+
+<% end %>

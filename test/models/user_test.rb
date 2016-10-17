@@ -6,7 +6,8 @@ class UserTest < ActiveSupport::TestCase
     @user    = User.new(name:                  "Example User", 
                         email:                 "user@example.com",
                         password:              "foobar", 
-                        password_confirmation: "foobar")
+                        password_confirmation: "foobar",
+                        is_subscribed:         false)
     @vehicle = vehicles(:avalanche)
     @comment = comments(:cost)
   end

@@ -1,36 +1,42 @@
-<% provide(:title, 'Edit User') %>
-<% provide(:button_text, 'Save Changes') %>
+<!--edit_user_path(current_user)-->
 
-<header class="header-normal">
+<% provide(:title, 'Account') %>
+
+<header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<div class = "secondary-navbar">
-  <nav>
+<%= render 'shared/hero_secondary' %>
+
+<nav class="secondary-navbar">
+  <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Dashboard",         dashboard_path %></li>
-      <li><%= link_to "Inbox",             conversations_path %></li>
-      <li><%= link_to "Garage",            vehicles_path %></li>
-      <li><%= link_to "Customers",         customers_path %></li>
-      <li><%= link_to "Test Drives",       test_drives_path %></li>
-      <li><%= link_to "Profile",           profile_path %></li>
-      <li><%= link_to "Account",           edit_user_path(current_user) %></li>
+      <li><%= link_to "Inbox",       conversations_path %></li>
+      <li><%= link_to "Garage",      vehicles_path %></li>
+      <li><%= link_to "Test Drives", test_drives_path %></li>
+      <li><%= link_to "Profile",     profile_path %></li>
+      <li>
+        <%= link_to "Account",     
+            edit_user_path(current_user), 
+            class: "nav-active" %>
+      </li>
     </ul>
-  </nav>
-</div>
+  </div>
+</nav>
 
-<div class="sales-management-background"></div>
-
-
-<div class="sales-management-container">
-  <h1>Update Your Profile</h1>
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <%= render 'form' %>
-      <div class="gravatar_edit">
-        <%= gravatar_for @user %>
-        <a href="http://gravatar.com/emails" target="_blank">Change</a>
-      </div>
+<div class="account">
+  <div class="row account-content">
+    
+    <div class="col-md-4 account-instructions">
+      <h2 class="account-instructions-title">Account Update</h2>
+      <p class="account-instructions-info">
+        Need to make changes? Alter the details of your account, here. 
+        customers.
+      </p>
+    </div>
+    
+    <div class="col-md-8 account-form">
+      <%= render 'edit_form' %>
     </div>
   </div>
 </div>

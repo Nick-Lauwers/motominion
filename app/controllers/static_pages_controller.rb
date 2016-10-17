@@ -17,6 +17,9 @@ class StaticPagesController < ApplicationController
   def how_it_works
   end
   
+  def legal
+  end
+  
   def dashboard
   end
   
@@ -37,6 +40,19 @@ class StaticPagesController < ApplicationController
     
     @search      = @vehicles_listing_name.ransack(params[:q])
     @vehicles    = @search.result.paginate(page: params[:page], per_page: 10)
+    
+    @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
+      marker.lat vehicle.latitude
+      marker.lng vehicle.longitude
+      # marker.infowindow render_to_string(:partial => "my_template", :locals => { :object => vehicle })
+      marker.picture({
+        url: "/assets/map-marker-red.png",
+        width:  32,
+        height: 32
+      })
+      marker.json({ :id => vehicle.id })
+    end
+    
     # @arrVehicles = @vehicles.to_a
     
     # @users = User.paginate(page: params[:page])

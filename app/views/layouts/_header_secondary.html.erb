@@ -1,40 +1,20 @@
-<div class="navbar">
-  <%= link_to "dealership.com", root_path, id: "logo" %>
+<!--complete-->
+
+<div class="header-secondary">
+  <nav class="navbar">
   
-  <nav>
+    <%= link_to "DEALERSHIP.COM", root_path, class: "logo" %>
+  
     <ul class="nav navbar-nav navbar-right">
       
       <% if logged_in? %>
         <li>
-          <i class="header-search-icon fa fa-search fa-lg" aria-hidden="true"></i>
-        </li>
-        <li><%= link_to "Messages", conversations_path %></li>
-        <li class="dropdown">
-          <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-             Help <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "How It Works", help_path %></li>
-            <li><%= link_to "Help Center",  help_path %></li>
-            <li><%= link_to "Contact Us",   contact_path %></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-            <%= current_user.name %><b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%= link_to "Profile",  current_user %></li>
-            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-            <li class="divider"></li>
-            <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
-          </ul>
+          <i class="fa fa-search fa-lg header-icon" 
+             aria-hidden="true"></i>
         </li>
         
-      <% else %>
-        <li>
-          <i class="header-search-icon fa fa-search fa-lg" aria-hidden="true"></i>
-        </li>
+        <li><%= link_to "Messages", conversations_path %></li>
+        
         <li class="dropdown">
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
              Help <b class="caret"></b>
@@ -45,37 +25,70 @@
             <li><%= link_to "Contact Us",   contact_path %></li>
           </ul>
         </li>
+        
+        <li class="dropdown">
+          <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+            <%= current_user.name %><b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Profile",  current_user %></li>
+            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
+          </ul>
+        </li>
+        
+      <% else %>
+        <li>
+          <i class="fa fa-search fa-lg header-icon" aria-hidden="true"></i>
+        </li>
+        
+        <li class="dropdown">
+          <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+             Help <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "How It Works", how_it_works_path %></li>
+            <li><%= link_to "Help Center",  help_path %></li>
+            <li><%= link_to "Contact Us",   contact_path %></li>
+          </ul>
+        </li>
+        
         <li><%= link_to "Sign Up", signup_path %></li>
         <li><%= link_to "Log In",  login_path %></li>
         <li><%= link_to "Sell",    new_vehicle_path %></li>
       <% end %>
     </ul>
+
+    <%= form_tag search_path, method: :get, class: "search-form-secondary" do %>
+      <div class="row search-form-secondary-content">
+
+          <div class="col-md-9 search-bar-secondary">
+            <i class="fa fa-search fa-lg search-bar-secondary-icon" 
+               aria-hidden="true"></i>
+            <i class="fa fa-times fa-lg search-bar-secondary-close" 
+               aria-hidden="true"></i>
+            <%= text_field_tag :search, 
+                params[:search],
+                placeholder: "Search by vehicle, dealership, or city", 
+                class: "form-control header-form-control" %>
+          </div>
+          
+          <div class="col-md-3 search-button-secondary">
+            <%= submit_tag "Search", class: "btn btn-search" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </nav>
-  
-  <%= form_tag search_path, method: :get do %>
-    <div class="header-form row">
-      <div class="col-md-9">
-        <i class="search-form-icon fa fa-search fa-lg" aria-hidden="true"></i>
-        <i class="search-form-close fa fa-times fa-lg" aria-hidden="true"></i>
-        <%= text_field_tag :search, 
-            params[:search],
-            placeholder: "Search by vehicle, dealership, or city", 
-            class: "form-control" %>
-      </div>
-      <div class="col-md-3">
-        <%= submit_tag "Search", class: "btn btn-primary" %>
-      </div>
-    </div>
-  <% end %>
 </div>
 
 <script type="text/javascript">
   $(document).ready(function() {
     
     // search bar
-    var search = $('.header-search-icon');
-    var close  = $('.search-form-close');
-    var form   = $('.header-form');
+    var search = $('.header-icon');
+    var form   = $('.search-form-secondary');
+    var close  = $('.search-bar-secondary-close');
     
     search.click(function() {
       form.fadeIn(300);

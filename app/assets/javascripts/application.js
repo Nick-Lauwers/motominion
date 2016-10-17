@@ -17,4 +17,6 @@
 //= require private_pub
 //= require bootstrap-slider
 //= require turbolinks
+//= require underscore
+//= require gmaps/google
 //= require_tree .

@@ -508,7 +508,7 @@ if (window.jQuery)(function ($) {
 						// Create label elements
 						var
 							r = $('<div class="MultiFile-label"></div>'),
-							b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + MultiFile.STRING.remove + '</a>')
+							b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + '<i class="fa fa-times fa-lg"></i>' + '</a>')
 								
 								// ********
 								// TODO:

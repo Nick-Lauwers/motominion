@@ -2,6 +2,7 @@ nicholas:
   name: Nicholas Example
   email: nicholas@example.com
   password_digest: <%= User.digest('password') %>
+  is_subscribed: true
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
@@ -10,5 +11,7 @@ archer:
   name: Sterling Archer
   email: duchess@example.gov
   password_digest: <%= User.digest('password') %>
+  is_subscribed: false
+  admin: false
   activated: true
   activated_at: <%= Time.zone.now %>

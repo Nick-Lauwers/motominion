@@ -1,4 +1,5 @@
 <!--ids before classes-->
+<!--partial for header-->
 
 <% provide(:title, "New Vehicle") %>
 
@@ -6,8 +7,8 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<div class="hero-primary">
-  <div class="row hero-primary-content">
+<div class="hero-secondary">
+  <div class="row hero-secondary-content vertical-align">
     
     <div class="col-md-9">
       <div class="row">
@@ -18,12 +19,14 @@
         
         <div class="col-md-10">
           <h1 class="hero-username"><%= @vehicle.user.name %></h1>
+          
           <div>
-            <span class="hero-detail-title">Phone </span>
+            <span class="hero-detail-title">Phone</span>
             <span class="hero-detail-info">(+1) (888) 555-5555</span>
           </div>
+          
           <div>
-            <span class="hero-detail-title">Email </span>
+            <span class="hero-detail-title">Email</span>
             <span class="hero-detail-info"><%= @vehicle.user.email %></span>
           </div>
         </div>

@@ -1,92 +1,137 @@
-<!--transparent search bar and button-->
-<header class="header-fixed">
-  <%= render 'layouts/header_secondary' %>
-</header>
+<!--complete-->
+<!--convert mp4 to webm-->
 
-<header class="header-static">
+<header class="header-static-transparent">
   <%= render 'layouts/header_primary' %>
 </header>
 
-<div class="jumbotron">
+<header class="header-fixed-hidden">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class="hero-primary">
   
-  <!--<video id="video-background" preload muted autoplay loop>-->
-  <!--  <source src="videos/Tesla.mp4" type="video/mp4">-->
-  <!--  <source src="https://www.teslamotors.com/sites/default/files/videos/model3/M3_Website_412016.mp4?20160401" type="video/ogg">-->
-  <!--</video>-->
+  <div class="hero-video-container">
+    <video class="hero-video" 
+           autoplay="autoplay" 
+           loop="loop" 
+           volume="0" 
+           poster="/assets/hero-image.jpg">
+      <source src="/assets/hero-video.mp4" type="video/mp4">
+    </video>
+  </div>
   
-  <div class="jumbotron-text">
-    <h1 class="hero-title">Find Your Vehicle</h1>
-    <h2 class="hero-subtitle">
+  <div class="hero-primary-detail">
+    <h1 class="hero-primary-title">Find Your Vehicle</h1>
+    
+    <h2 class="hero-primary-info">
       Purchase unique vehicles from around the world
     </h2>
     
-    <%= form_tag search_path, method: :get do %>
-      <div class="row form-group">
-        <div class="col-md-10">
-          <i class="search-form-icon fa fa-search fa-lg" aria-hidden="true"></i>
+    <%= form_tag search_path, method: :get, class: "search-form-primary" do %>
+      <div class="row search-form-primary-content">
+        
+        <div class="col-md-10 search-bar-primary">
+          <i class="fa fa-search fa-lg search-bar-primary-icon" 
+            aria-hidden="true"></i>
           <%= text_field_tag :search, 
               params[:search], 
               placeholder: "Search by vehicle, dealership, or city", 
-              class: "form-control" %>
+              class: "form-control search-form-control" %>
         </div>
-        <div class="col-md-2">
-          <%= submit_tag "Search", class: "btn btn-primary" %>
+        
+        <div class="col-md-2 search-button-primary">
+          <%= submit_tag "Search", class: "btn btn-search" %>
         </div>
       </div>
     <% end %>
     
-    <div class="popular-searches">
-      <h4 class="popular-searches-title">Popular:</h4>
-      <ul class="popular-searches-list">
-        <li><%= link_to "Ford Fusion",     '#' %></li>
-        <li><%= link_to "Les Stanford GM", '#' %></li>
-        <li><%= link_to "Detroit",         '#' %></li>
-      </ul>
+    <div class="row popular-searches">
+      
+      <div class="col-md-4">
+        <%= link_to '#feed', class: "popular-searches-link" do %>
+          <i class="fa fa-image popular-searches-icon" aria-hidden="true"></i>
+          Photos
+        <% end %>
+      </div>
+      
+      <div class="col-md-4">
+        <%= link_to '#feed', class: "popular-searches-link" do %>
+          <i class="fa fa-users popular-searches-icon" aria-hidden="true"></i>
+          Find Pros
+        <% end %>
+      </div>
+      
+      <div class="col-md-4">
+        <%= link_to '#feed', class: "popular-searches-link" do %>
+          <i class="fa fa-tag popular-searches-icon" aria-hidden="true"></i>
+          Products
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="features-container">
-  <div class="row">
-    <div class="feature col-md-4">
-      <h3 class="feature-title">Transparency</h3>
-      <h4 class="feature-description">
+<div class="offerings">
+  <div class="row offerings-content">
+    
+    <div class="col-md-4 offerings-detail">
+      <h3 class="offerings-title">Transparency</h3>
+      <h4 class="offerings-info">
         View dealer reviews, price histories, and local-market price analyses
       </h4>
     </div>
-    <div class="feature col-md-4">
-      <h3 class="feature-title">Detailed Guides</h3>
-      <h4 class="feature-description">
+    
+    <div class="col-md-4 offerings-detail">
+      <h3 class="offerings-title">Detailed Guides</h3>
+      <h4 class="offerings-info">
         Browse photo galleries and detailed guides
       </h4>
     </div>
-    <div class="feature col-md-4">
-      <h3 class="feature-title">Stress-free Purchasing</h3>
-      <h4 class="feature-description">
+    
+    <div class="col-md-4 offerings-detail">
+      <h3 class="offerings-title">Stress-free Purchasing</h3>
+      <h4 class="offerings-info">
         Our expert consultants will take care of everything for you
       </h4>
     </div>
   </div>
 </div>
 
-<div class="empty-container">
-  <h3 class="empty-title">"Empty"</h3>
+<div id="feed">
+  <div class="feed-content">
+    <h3 class="feed-title">Discover Top Content</h3>
+    <%= render 'static_pages/feed_list' %>
+  </div>
 </div>
 
-<div class="press-container">
-  <h3>As seen on</h3>
-  <div class="row">
+<div class="press">
+  <h3 class="press-title">As seen on</h3>
+  
+  <div class="row press-logos">
+    
     <div class="col-md-3">
-      <%= image_tag("financial-times.png", size: "144x64", :alt => "Financial Times") %>
+      <%= link_to image_tag("financial-times.png", size: "144x64"), 
+                  'http://www.ft.com/home/uk', 
+                  target: "_blank" %>
     </div>
+    
     <div class="col-md-3">
-      <%= image_tag("forbes.png", size: "144x64", :alt => "Forbes") %>
+      <%= link_to image_tag("forbes.png", size: "144x64"), 
+                  'http://www.forbes.com/', 
+                  target: "_blank" %>
     </div>
+    
     <div class="col-md-3">
-      <%= image_tag("tech-crunch.png", size: "144x64", :alt => "TechCrunch") %>
+      <%= link_to image_tag("tech-crunch.png", size: "144x64"), 
+                  'https://techcrunch.com/', 
+                  target: "_blank" %>
     </div>
+    
     <div class="col-md-3">
-      <%= image_tag("bloomberg.png", size: "144x64", :alt => "Bloomberg") %>    
+      <%= link_to image_tag("bloomberg.png", size: "144x64"), 
+                  'http://www.bloomberg.com/', 
+                  target: "_blank" %>    
     </div>
   </div>
 </div>
@@ -94,16 +139,25 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $(window).on('scroll', function() {
+      
+      // fixed header
+      var fixedHeader = $('.header-fixed-hidden');
+      
       var scrolltop = $(this).scrollTop();
       if(scrolltop >= 315) {
-        $('.header-fixed').fadeIn(250);
+        fixedHeader.fadeIn(250);
       }
       else if(scrolltop <= 310) {
-        $('.header-fixed').fadeOut(250);
+        fixedHeader.fadeOut(250);
       }
     });
-  });
+    
+    // smooth scroll
+    var popularSearchesLink = $(".popular-searches a")
+    
+    popularSearchesLink.click(function(evn){
+      evn.preventDefault();
+      $('html, body').scrollTo(this.hash, this.hash, { offset: -50 }); 
+    });
+  })
 </script>
-
-<!--http://bootsnipp.com/snippets/featured/support-glyph-and-fa-icon-inside-input-->
-<!--http://parallax-scroll.aenism.com/-->

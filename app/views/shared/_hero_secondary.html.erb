@@ -1,0 +1,33 @@
+<!--complete-->
+
+<div class="hero-secondary">
+  <div class="row hero-secondary-content">
+      
+    <div class="col-md-9">
+      <div class="row">
+        
+        <div class="col-md-2 hero-gravatar">
+          <%= gravatar_for(current_user, size: 100) %>
+        </div>
+        
+        <div class="col-md-10">
+          <h1 class="hero-username"><%= current_user.name %></h1>
+          
+          <div>
+            <span class="hero-detail-title">Phone</span>
+            <span class="hero-detail-info">(+1) (888) 555-5555</span>
+          </div>
+          
+          <div>
+            <span class="hero-detail-title">Email</span>
+            <span class="hero-detail-info"><%= current_user.email %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <!--intentionally left empty-->
+    </div>
+  </div>
+</div>

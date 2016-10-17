@@ -1,16 +1,15 @@
-<!--replace btn-search with btn-secondary-->
-<!--span within span at average rating-->
-
 <% @vehicles.each do |vehicle| %>
-  <li id="vehicle-<%= vehicle.id %>" class="search-item">
-    <div class="row search-item-vehicle">
+
+  <li id="vehicle-<%= vehicle.id %>-item" class="vehicle-item">
+    <div class="row vehicle-item-summary">
       
-      <div class="col-md-4 search-carousel-container">
+      <div class="col-md-4 summary-carousel-container">
+        <%= link_to vehicle, target: "_blank" do %>
         
-        <%= link_to vehicle do %>
-          <div id="search-carousel-<%= vehicle.id %>" 
-               class="carousel search-carousel" 
+          <div id="summary-carousel-<%= vehicle.id %>" 
+               class="carousel summary-carousel" 
                data-interval="false">
+            
             <div class="carousel-inner">
               
               <div class="item active">
@@ -50,67 +49,85 @@
               
               <div class="item">
                 <img src="<%= vehicle.photos[7].image.url() if 
-                              vehicle.photos.length > 0 %>">
+                              vehicle.photos.length > 7 %>">
               </div>
             </div>
           </div>
         <% end %>
         
-        <a href="#search-carousel-<%= vehicle.id %>" data-slide="prev">
-          <i class="fa fa-chevron-left fa-2x btn-search-carousel" 
+        <a href="#summary-carousel-<%= vehicle.id %>" data-slide="prev">
+          <i class="fa fa-chevron-left fa-2x btn-summary-carousel-left" 
              aria-hidden="true"></i>
         </a>
         
-        <a href="#search-carousel-<%= vehicle.id %>" data-slide="next">
-          <i class="fa fa-chevron-right fa-2x btn-search-carousel" 
+        <a href="#summary-carousel-<%= vehicle.id %>" data-slide="next">
+          <i class="fa fa-chevron-right fa-2x btn-summary-carousel-right" 
              aria-hidden="true"></i>
         </a>
       </div>
       
-      <div class="col-md-6 search-summary">
-        
-        <%= link_to vehicle, class: "search-summary-content" do %>
-          <span class="search-detail-title"><%= vehicle.listing_name %></span>
-          <span class="search-detail-info">
+      <div class="col-md-6 summary-detail">
+        <%= link_to vehicle, 
+            class: "summary-detail-content", 
+            target: "_blank" do %>
+            
+          <p class="summary-detail-title"><%= vehicle.listing_name %></p>
+          
+          <p class="summary-detail-seller">
             <%= vehicle.user.name %> · <span class="average-rating"></span>
-          </span>
-          <span class="search-detail-info vehicle-description">
+          </p>
+          
+          <p class="summary-detail-info">
             <%= vehicle.summary %>
-          </span>
+          </p>
         <% end %>
         
         <%= link_to '#' do %>
-          <span class="search-detail-link">
-            <i class="fa fa-heart" aria-hidden="true"></i>Add to Wish List
+          <span class="summary-detail-link">
+            <i class="fa fa-heart summary-detail-link-icon" 
+               aria-hidden="true"></i>
+            Add to Wish List
           </span>
         <% end %>
       </div>
       
-      <div class="col-md-2 search-price">
-        <%= link_to vehicle, class: "search-price-content" do %>
-          <span class="search-detail-title">$<%= vehicle.price %></span>
-          <span class="search-detail-discount">Discounted!</span>
-          <div class="btn btn-secondary btn-search-detail">
-            <span class="btn-text">View</span>
-          </div>
+      <div class="col-md-2 summary-price">
+        <%= link_to vehicle, 
+            class: "summary-price-content", 
+            target: "_blank" do %>
+            
+          <p class="summary-price-title">$<%= vehicle.price %></p>
+          
+          <%= button_to "View", 
+              vehicle, 
+              class: "btn btn-secondary", 
+              method: :get %>
         <% end %>
       </div>
     </div>
     
-    <div class="row search-item-deal">
-      <%= link_to vehicle, class: "search-deal-content" do %>
-        <i class="fa fa-shopping-basket deal-detail-icon" aria-hidden="true"></i>
+    <div class="vehicle-item-deal">
+      <%= link_to vehicle, 
+          class: "vehicle-item-deal-content", 
+          target: "_blank" do %>
+          
+        <i class="fa fa-shopping-basket deal-detail-icon" 
+           aria-hidden="true"></i>
+           
         <span class="deal-detail-title">1 Additional Product</span> 
+        
         <span class="deal-detail-info">Spoiler at reduced cost</span> 
-        <!--<span class="search-detail-info">From $261</span>-->
-        <!--<span class="search-detail-info">From $<= vehicle.price %></span>-->
       <% end %>
     </div>
   </li>
   
   <script type="text/javascript">
     $(document).ready(function() {
-      $('.average-rating').raty({
+      
+      // rating
+      var averageRating = $('.average-rating');
+      
+      averageRating.raty({
         path: '/assets',
         readOnly: true,
         score: <%= vehicle.average_rating %>
@@ -118,56 +135,3 @@
     });
   </script>
 <% end %>
-
-
-
-
-
-<!--https://www.youtube.com/watch?v=Dihu-s-HUs4-->
-
-<!--<div class="item active">-->
-<!--  <img src="<= vehicle.photos[0].image.url() %>">-->
-<!--</div>-->
-
-<!--<div class="item">-->
-<!--  <img src="<= vehicle.photos[1].image.url() %>">-->
-<!--</div>-->
-
-<!--<div class="search-image", style="background-image:url(<= vehicle.photos[0].image.url() if vehicle.photos.length > 0 %>)"></div>-->
-
-<!--<= link_to vehicle do %>-->
-<!--< end %>-->
-
-<!-- <div class="hidden" id="img-repo">-->
-     <!-- 	<div class="item" id="vehicle-hero-image">-->
-     <!-- 		<img class="modal-image" caption="This is the brand new Model A!" -->
-     <!-- 		     src="<= @photos[0].image.url() if @photos.length > 0 %>">-->
-	    <!--</div>-->
-      
-      <!--  <div id="search-carousel" class="carousel slide" data-ride="carousel">-->
-          
-      <!--    <ol class="carousel-indicators">-->
-      <!--      <li data-target="#search-carousel" -->
-      <!--          data-slide-to="0" -->
-      <!--          class="active"></li>-->
-      <!--      <li data-target="#search-carousel" data-slide-to="1"></li>-->
-      <!--      <li data-target="#search-carousel" data-slide-to="2"></li>-->
-      <!--      <li data-target="#search-carousel" data-slide-to="3"></li>-->
-      <!--    </ol>-->
-
-      <!--    <div class="carousel-inner" role="listbox">-->
-                  <!--list of images-->
-      <!--    </div>-->
-        
-          <!-- Left and right controls -->
-      <!--    <a class="left carousel-control" href="#search-carousel" role="button" data-slide="prev">-->
-      <!--      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
-      <!--      <span class="sr-only">Previous</span>-->
-      <!--    </a>-->
-      <!--    <a class="right carousel-control" href="#search-carousel" role="button" data-slide="next">-->
-      <!--      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
-      <!--      <span class="sr-only">Next</span>-->
-      <!--    </a>-->
-      <!--  </div>-->
-      
-      <!--</div>-->

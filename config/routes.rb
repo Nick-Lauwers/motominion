@@ -1,4 +1,4 @@
-# dashboard and search should not be in static_pages
+# dashboard, profile, and search should not be in static_pages
 # create and destroy for enquiries
 
 Rails.application.routes.draw do
@@ -7,12 +7,13 @@ Rails.application.routes.draw do
   get    'about'              => 'static_pages#about'
   get    'contact'            => 'static_pages#contact'
   get    'how-it-works'       => 'static_pages#how_it_works'
+  get    'legal'              => 'static_pages#legal'
   get    'search'             => 'static_pages#search'
   get    'dashboard'          => 'static_pages#dashboard'
-  get    'profile'            => 'static_pages#profile'
   get    'customers'          => 'appointments#customers'
   get    'test-drives'        => 'appointments#test_drives'
   get    'signup'             => 'users#new'
+  get    'profile'            => 'users#profile'
   get    'login'              => 'sessions#new'
   post   'login'              => 'sessions#create'
   delete 'logout'             => 'sessions#destroy'

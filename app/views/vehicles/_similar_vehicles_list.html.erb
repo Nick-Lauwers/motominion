@@ -1,0 +1,86 @@
+<div class="row feed-list">
+  
+  <div class="col-md-4 feed-item">
+    <%= link_to '#' do %>
+      <div class="feed-item-content">
+        
+        <div class="feed-item-image", 
+             style="background-image: url('/assets/porsche.jpg')">
+          <div class="similar-vehicles-item-credit">
+            <span>$22 000</span>
+          </div>
+        </div>
+        
+        <div class="similar-vehicles-detail">
+          <h3 class="similar-vehicles-detail-title">Porsche</h3>
+          <p class="similar-vehicles-detail-info">
+            <%= @vehicle.user.name %> · <span class="average-rating">
+          </p>
+        </div>
+        
+        <div class="similar-vehicles-photos">
+          <span class="similar-vehicles-photos-description">
+            <i class="fa fa-camera-retro fa-lg similar-vehicles-photos-icon" aria-hidden="true"></i>
+            8 Pictures
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="col-md-4 feed-item">
+    <%= link_to '#' do %>
+      <div class="feed-item-content">
+        
+        <div class="feed-item-image", 
+             style="background-image: url('/assets/mercedes.jpg')">
+          <div class="similar-vehicles-item-credit">
+            <span>$35 000</span>
+          </div>
+        </div>
+        
+        <div class="similar-vehicles-detail">
+          <h3 class="similar-vehicles-detail-title">Mercedes</h3>
+          <p class="similar-vehicles-detail-info">
+            <%= @vehicle.user.name %> · <span class="average-rating">
+          </p>
+        </div>
+        
+        <div class="similar-vehicles-photos">
+          <span class="similar-vehicles-photos-description">
+            <i class="fa fa-camera-retro fa-lg similar-vehicles-photos-icon" aria-hidden="true"></i>
+            8 Pictures
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="col-md-4 feed-item">
+    <%= link_to '#' do %>
+      <div class="feed-item-content">
+        
+        <div class="feed-item-image", 
+             style="background-image: url('/assets/jaguar.jpg')">
+          <div class="similar-vehicles-item-credit">
+            <span>$27 000</span>
+          </div>
+        </div>
+        
+        <div class="similar-vehicles-detail">
+          <h3 class="similar-vehicles-detail-title">Jaguar</h3>
+          <p class="similar-vehicles-detail-info">
+            <%= @vehicle.user.name %> · <span class="average-rating">
+          </p>
+        </div>
+        
+        <div class="similar-vehicles-photos">
+          <span class="similar-vehicles-photos-description">
+            <i class="fa fa-camera-retro fa-lg similar-vehicles-photos-icon" aria-hidden="true"></i>
+            8 Pictures
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
