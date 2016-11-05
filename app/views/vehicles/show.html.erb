@@ -60,7 +60,11 @@
       <div class="row vertical-align vehicle-overview-title">
         
         <div class="col-md-2">
-          <%= link_to gravatar_for(@vehicle.user), @vehicle.user %>
+          <div class="vehicle-overview-avatar">
+            <%=link_to profile_path(@vehicle.user), method: :get do %>
+              <%= image_tag @vehicle.user.profile.avatar.url %>
+            <% end %>
+          </div>
         </div>
         
         <div class="col-md-10">
@@ -71,7 +75,12 @@
         </div>
       </div>
       
-      <p  class="vehicle-overview-description"><%= @vehicle.summary %></p>
+      <p class="vehicle-overview-description"><%= @vehicle.summary %></p>
+      
+      <div class="vehicle-overview-products">
+        <span class="products-title">1 Additional Product</span>
+        <%= link_to "Spoiler at Reduced Cost", '#', class: "products-link" %>
+      </div>
     </div>
     
     <div class="col-md-4 vehicle-overview-links">
@@ -79,7 +88,7 @@
       <div class="appointment">
         <%= render 'appointments/form' %>
         <%= button_to '#', class: "btn btn-tertiary", method: :get do %>
-            <i class="fa fa-heart-o wish-list-button-icon" 
+            <i class="fa fa-heart-o" 
                aria-hidden="true"></i> 
             Add to Wish List
         <% end %>
@@ -243,7 +252,7 @@
         
         <div class="appointment-scrolled">
           <%= link_to '#vehicle-overview', 
-              class: "btn btn-primary btn-tertiary-scrolled" do %>
+              class: "btn btn-primary btn-primary-scrolled" do %>
             <!--<i class="fa fa-arrow-up up-button-icon" -->
             <!--   aria-hidden="true"></i> -->
             Test Drive
@@ -739,6 +748,11 @@
       }
     });
     
+    // image scaling
+    var avatar = $('.vehicle-overview-avatar');
+    
+    avatar.imagefill(); 
+    
     // reviews
     var averageRating = $('.average-rating');
     
@@ -754,7 +768,7 @@
     linksScrolled.stick_in_parent({ offset_top: 50 });
 
     // smooth scroll
-    var appointmentScrolledButton = $(".btn-tertiary-scrolled")
+    var appointmentScrolledButton = $(".btn-primary-scrolled")
     
     appointmentScrolledButton.click(function(evn){
       evn.preventDefault();

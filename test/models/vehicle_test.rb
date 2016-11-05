@@ -37,6 +37,11 @@ class VehicleTest < ActiveSupport::TestCase
     assert @vehicle.valid?
   end
   
+  test "user id should be present" do
+    @vehicle.user_id = nil
+    assert_not @vehicle.valid?
+  end
+  
   test "vin validation should accept valid entries" do
     valid_vins = %w[3GNMCGE06BG101575 Wba3B5C57Ff960849]
     valid_vins.each do |valid_vin|

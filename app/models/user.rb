@@ -4,11 +4,13 @@ class User < ActiveRecord::Base
   has_many :reviews,      dependent: :destroy
   has_many :comments,     dependent: :destroy
   has_many :replies,      dependent: :destroy
+  has_one  :profile,      dependent: :destroy
   
   attr_accessor :remember_token, :activation_token, :reset_token
   
   before_save   { email.downcase! }
   before_create :create_activation_digest
+  after_create  :create_profile
   
   validates :name,  presence: true, length: { maximum: 50 }
   

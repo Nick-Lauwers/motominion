@@ -1,0 +1,58 @@
+<!--complete-->
+<!--buttons should not be used to issue get requests-->
+
+<% provide(:title, "Profile") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'shared/hero_secondary' %>
+
+<nav class="secondary-navbar">
+  <div class="secondary-navbar-nav">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Inbox",       conversations_path %></li>
+      <li><%= link_to "Garage",      vehicles_path %></li>
+      <li><%= link_to "Test Drives", test_drives_path %></li>
+      <li>
+        <%= link_to "Profile", 
+            edit_profile_path(current_user.profile), 
+            class: "nav-active" %>
+      </li>
+      <li><%= link_to "Account", edit_user_path(current_user) %></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="profile-update">
+  <div class="profile-update-content">
+    <div class="row">
+    
+      <div class="col-md-4">
+        <div class="profile-instructions">
+          
+          <h2 class="profile-instructions-title">
+            Profile
+          </h2>
+          
+          <p class="profile-instructions-info">
+            Dealership.com is built on relationships. Help other people get to 
+            know you. Share your favorite car memory.
+          </p>
+          
+          <%= button_to 'View Profile', 
+                        profile_path, 
+                        method: :get, 
+                        class: "btn btn-tertiary" %>
+        </div>
+      </div>
+      
+      <div class="col-md-8">
+        <div class="profile-form">
+          <%= render 'edit_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

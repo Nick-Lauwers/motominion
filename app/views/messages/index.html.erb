@@ -1,41 +1,155 @@
-<div class="row">
-  
-  <div class="col-md-3 text-center">
-    <!--<(remember percentage sign)= image_tag avatar_url(@other), class: "img-circle avatar-medium" %><br>-->
-    <strong><%= @other.name %></strong>
-    <%= link_to "View Profile", @other, class: "btn btn-default wide" %>
+<!--complete-->
+<!--must login iot access-->
+<!--change title-->
+<!--add average rating-->
+<!--switch var in javascript to new formatting-->
+<!--report user/message-->
+<!--link-to alignment/formatting-->
+<!--why 3.5em for top an bottom padding-->
+
+<% provide(:title, "Inbox") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'shared/hero_secondary' %>
+
+<nav class="secondary-navbar">
+  <div class="secondary-navbar-nav">
+    <ul class="nav navbar-nav navbar-left">
+      <li>
+        <%= link_to "Inbox",       
+                    conversations_path, 
+                    class: "nav-active" %>
+      </li>
+      <li><%= link_to "Garage",      vehicles_path %></li>
+      <li><%= link_to "Test Drives", test_drives_path %></li>
+      <li><%= link_to "Profile", edit_profile_path(current_user.profile) %></li>
+      <li><%= link_to "Account", edit_user_path(current_user) %></li>
+    </ul>
   </div>
-  
-  <div class="col-md-9">
-    
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        Conversation with <%= @other.name %>
-      </div>
-      <div class="panel-body">
-        <div class="container">
+</nav>
+
+<div class="messages">
+  <div class="messages-content">
+    <div class="row">
+      
+      <div class="col-md-4">
+        <div class="messages-info">
           
-          <%= form_for [@conversation, @conversation.messages.new], remote: true do |f| %>
-            <div class="form-group">
-              <%= f.text_area :content, placeholder: "Add a personal message", class: "form-control" %>
-            </div>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            
-            <div class="actions">
-              <%= f.submit "Send Message", class: "btn btn-primary" %>
-            </div>
+          <div class="messages-info-avatar">
+            <%= image_tag @other.profile.avatar.url %>
+          </div>
+          
+          <h1 class="messages-info-username"><%= @other.name %></h1>
+          
+          <% if !@other.profile.residence.blank? %>
+            <span class="messages-info-city">
+              <%= @other.profile.residence %>
+            </span>
           <% end %>
         
+          <%= link_to "1-888-555-5555", '#', class: "messages-info-phone" %>
+
+          <% if !@other.profile.description.blank? %>
+            <p class="messages-info-description">
+              <%= @other.profile.description %>
+            </p>
+            
+            <span class="messages-info-expand">+ More</span>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="col-md-8">
+        
+        <%= form_for([@conversation, @conversation.messages.new], 
+                     remote: true) do |f| %>
+                     
+          <div class="row">
+            
+            <div class="col-md-10">
+              <div class="message-container">
+                
+                <%= f.text_area :content, 
+                    rows: 3,
+                    placeholder: "Send a personal message.", 
+                    class: "form-control message-form-control" %>
+                    
+                <%= f.hidden_field :user_id, value: current_user.id %>
+                
+                <table class="message-detail">
+                  <tr>
+                    
+                    <td class="message-date-container">
+                      <span class="message-date">
+                        <%= Time.now.strftime("%D") %>
+                      </span>
+                    </td>
+                    
+                    <td>
+                      <%= f.submit "Deliver my message", 
+                                   class: "message-post" %>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            
+            <div class="col-md-2">
+              <div class="message-avatar message-avatar-right">
+                <%= image_tag current_user.profile.avatar.url %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        
+        <div id="chat">
+          <%= render @messages, locals: { conversation: @conversation } %>
         </div>
       </div>
     </div>
-    
-    <div id="chat">
-      <%= render @messages, locals: { conversation: @conversation } %>
-    </div>
-    
   </div>
-  
 </div>
 
 <%= subscribe_to conversation_messages_path(@conversation) %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // image scaling
+    var messagesInfoAvatar = $('.messages-info-avatar');
+    var messageAvatar      = $('.message-avatar');
+    
+    messagesInfoAvatar.imagefill();
+    messageAvatar.imagefill();
+    
+    // expand description
+    var description   = $('.messages-info-description');
+    var expand        = $('.messages-info-expand');
+    var initialHeight = 100;
+
+    description.each(function() {
+      $.data(this, "realHeight", $(this).height());
+    }).css({ overflow: "hidden", height: initialHeight + 'px' });
+    
+    expand.click(function(e) {
+      e.preventDefault();
+      
+      if (description.hasClass("toggled")) {
+        description.animate({ 
+          height: initialHeight
+        }, 600).removeClass("toggled");
+        expand.html("+ More");
+      } 
+      
+      else {
+        description.animate({ 
+          height: description.data("realHeight") 
+        }, 600).addClass("toggled");
+        expand.html("- Less");
+      }
+    });
+  })
+</script>

@@ -2,6 +2,10 @@
 # create and destroy for enquiries
 
 Rails.application.routes.draw do
+  get 'profiles/show'
+
+  get 'profiles/show'
+
   root                           'static_pages#home'
   get    'help'               => 'static_pages#help'
   get    'about'              => 'static_pages#about'
@@ -9,11 +13,9 @@ Rails.application.routes.draw do
   get    'how-it-works'       => 'static_pages#how_it_works'
   get    'legal'              => 'static_pages#legal'
   get    'search'             => 'static_pages#search'
-  get    'dashboard'          => 'static_pages#dashboard'
   get    'customers'          => 'appointments#customers'
   get    'test-drives'        => 'appointments#test_drives'
   get    'signup'             => 'users#new'
-  get    'profile'            => 'users#profile'
   get    'login'              => 'sessions#new'
   post   'login'              => 'sessions#create'
   delete 'logout'             => 'sessions#destroy'
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
   resources :comments,            only: [:create, :destroy]
   resources :replies,             only: [:create, :destroy]
   resources :enquiries,           only: [:create]
+  resources :profiles,            only: [:show, :edit, :update]
 
   resources :vehicles do
     resources :appointments, only: [:create, :destroy]

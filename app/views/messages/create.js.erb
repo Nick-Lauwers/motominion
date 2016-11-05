@@ -1,5 +1,8 @@
-<% publish_to conversation_messages_path(@conversation) do %>  
+<!--complete-->
+<!--adapt private_pub for cloud9 use-->
+
+<!--< publish_to conversation_messages_path(@conversation) %>-->
   $('#chat').prepend("<%= j render @message %>");
-<% end %>
+<!--< end %>-->
 
 $('#new_message')[0].reset();

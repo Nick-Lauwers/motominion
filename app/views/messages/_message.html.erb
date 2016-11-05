@@ -1,12 +1,60 @@
-<div class="panel">
-  <div class="panel-body">
-    <!--<(remember percentage sign)= image_tag avatar_url(message.user), class: "img-circle avatar-small" %>-->
-    <strong><%= message.user.name %></strong>
+<% if message.user_id == current_user.id %>
+
+  <div class="row">
+  
+    <div class="col-md-10">
+      <div class="message-container">
+        
+        <p class="message-comment">
+          <%= message.content %>
+        </p>
+        
+        <span class="message-date">
+          <%= message.message_time %>
+        </span>
+      </div>
+    </div>
     
-    <span class="pull-right"><%= message.message_time %></span>
-    <br>
-    <div class="row-space-2">
-      <%= message.content %>
+    <div class="col-md-2">
+      <div class="message-avatar message-avatar-right">
+        <%= image_tag current_user.profile.avatar.url %>
+      </div>
     </div>
   </div>
-</div>
+
+<% else %>
+  
+  <div class="row">
+  
+    <div class="col-md-2">
+      <div class="message-avatar message-avatar-left">
+        <%= image_tag @other.profile.avatar.url %>
+      </div>
+    </div>
+    
+    <div class="col-md-10">
+      
+      <div class="message-container">
+        
+        <p class="message-comment">
+          <%= message.content %>
+        </p>
+        
+        <span class="message-date">
+          <%= message.message_time %>
+        </span>
+      </div>
+    </div>
+    
+  </div>
+  <% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // image scaling
+    var threadAvatar = $('.thread-avatar');
+    
+    threadAvatar.imagefill();
+  })
+</script>

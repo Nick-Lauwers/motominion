@@ -1,0 +1,47 @@
+<!--complete-->
+<!--include rating in place of header-profile-city-->
+
+<div class="header-profile">
+  <div class="header-profile-content">
+    <div class="row vertical-align">
+      
+      <div class="col-md-8 vertical-align">
+        
+        <div class="header-profile-avatar">
+          <%= image_tag @profile.avatar.url %>
+        </div>
+        
+        <div class="header-profile-info">
+          <span class="header-profile-username"><%= @profile.user.name %></span>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+
+        <% if !current_user.nil? %>
+          <%= button_to "Contact Seller", 
+                        conversations_path(sender_id:    current_user.id, 
+                                           recipient_id: @profile.user.id), 
+                        class: "btn-header-profile", 
+                        method: :post %>
+                        
+        <% else %>
+          <%= button_to "Contact Seller", 
+                        login_path, 
+                        class: "btn-header-profile", 
+                        method: :get %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // image scaling
+    var avatar = $('.header-profile-avatar');
+    
+    avatar.imagefill(); 
+  })
+</script>

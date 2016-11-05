@@ -1,4 +1,8 @@
+<!--complete-->
 <!--must login iot access-->
+<!--what if there are no messages-->
+<!--number should only indicate new messages-->
+
 <% provide(:title, "Inbox") %>
 
 <header class="header-static-gray">
@@ -17,33 +21,40 @@
       </li>
       <li><%= link_to "Garage",      vehicles_path %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li><%= link_to "Profile",     profile_path %></li>
+      <li>
+        <%= link_to "Profile", 
+            edit_profile_path(current_user.profile) %>
+      </li>
       <li><%= link_to "Account",     edit_user_path(current_user) %></li>
     </ul>
   </div>
 </nav>
 
-<div class="sales-management-container">
-  <div class="messages-panel">
-    <span class="panel-header">Messages (0 new)</span>
-    <div class="panel-body">
-      <% @conversations.each do |conversation| %>
-        <% other = conversation.sender == current_user ? conversation.recipient : conversation.sender %>
-        <%= link_to conversation_messages_path(conversation) do %>
-          <div class="message-summary row">
-            <div class="col-md-2">
-              <%= gravatar_for other %>
-            </div>
-            <div class="col-md-3">
-              <%= other.name %><br>
-              <%= conversation.messages.last.message_time %>
-            </div>
-            <div class="col-md-7">
-              <%= conversation.messages.last.content %>
-            </div>
-          </div>
+<div class="conversations">
+  <div class="conversations-content">
+    <div class="row">
+      
+      <div class="col-md-4">
+        <div class="conversations-instructions">
+          
+          <h2 class="conversations-instructions-title">
+            Messages (<%= @conversations.count %>)
+          </h2>
+          
+          <p class="conversations-instructions-info">
+            When customers contact you or send you test drive requests, you will
+            see their messages here.
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-md-8">
+        <% if @conversations.any? %>
+          <ul class="conversations-list">
+            <%= render @conversations %>
+          </ul>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

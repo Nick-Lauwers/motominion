@@ -1,4 +1,4 @@
-<!--edit_user_path(current_user)-->
+<!--complete-->
 
 <% provide(:title, 'Account') %>
 
@@ -14,7 +14,9 @@
       <li><%= link_to "Inbox",       conversations_path %></li>
       <li><%= link_to "Garage",      vehicles_path %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li><%= link_to "Profile",     profile_path %></li>
+      <li><%= link_to "Profile",     
+              edit_profile_path(current_user.profile) %>
+      </li>
       <li>
         <%= link_to "Account",     
             edit_user_path(current_user), 
@@ -25,18 +27,24 @@
 </nav>
 
 <div class="account">
-  <div class="row account-content">
+  <div class="account-content">
+    <div class="row">
     
-    <div class="col-md-4 account-instructions">
-      <h2 class="account-instructions-title">Account Update</h2>
-      <p class="account-instructions-info">
-        Need to make changes? Alter the details of your account, here. 
-        customers.
-      </p>
-    </div>
-    
-    <div class="col-md-8 account-form">
-      <%= render 'edit_form' %>
+      <div class="col-md-4">
+        <div class="account-instructions">
+          <h2 class="account-instructions-title">Account Update</h2>
+          <p class="account-instructions-info">
+            Need to make changes? Alter the details of your account, here. 
+            customers.
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-md-8">
+        <div class="account-form">
+          <%= render 'edit_form' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

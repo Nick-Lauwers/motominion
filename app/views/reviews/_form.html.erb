@@ -1,3 +1,6 @@
+<!--complete-->
+<!--apply ajax-->
+
 <%= form_for([@vehicle, @vehicle.reviews.new]) do |f| %>
 
   <div class="row review-item">
@@ -36,7 +39,7 @@
         </span>
         
         <%= f.text_area :comment, 
-            rows: 5,
+            rows: 3,
             placeholder: "Review comments", 
             class: "form-control review-comment-form-control" %>
         
@@ -45,15 +48,6 @@
         <div class="review-post-container">
           <%= f.submit "Post my review", class: "review-post" %>
         </div>
-        
-        <!--<div class="review-remove">-->
-        <!--    <= link_to "Remove my review", -->
-        <!--                [@vehicle, r], -->
-                         <!--class: "review-remove",-->
-        <!--                method: :delete, -->
-        <!--                data: { confirm: "Are you sure?" } if -->
-        <!--                      current_user && current_user == r.user %>-->
-        <!--  </div>-->
       </div>
     </div>
   </div>

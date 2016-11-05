@@ -1,0 +1,203 @@
+<!--complete-->
+<!--report user-->
+
+<% provide(:title, @profile.user.name) %>
+
+<header class="header-fixed-hidden">
+  <%= render 'layouts/header_profile' %>
+</header>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class="profile-cover-photo"
+     style="background-image: url('/assets/cover-photo.jpeg')"
+     data-width="1024" data-height="768"></div>
+
+<div class="user-summary">
+  <div class="user-summary-content">
+    <div class="row">
+      
+      <div class="col-md-8">
+        <div class="row vertical-align">
+          
+          <div class="col-md-4 user-summary-avatar-container">
+            <div class="user-summary-avatar">
+              <%= image_tag @profile.avatar.url %>
+            </div>
+          </div>
+          
+          <div class="col-md-8">
+            <h1 class="user-summary-name"><%= @profile.user.name %></h1>
+            <p class="user-summary-info">
+              <%= @profile.residence + " · " if !@profile.residence.blank?%> 
+              <span class="average-rating"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <!--intentionally left empty-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="profile-overview">
+  <div class="profile-overview-content">
+    <div class="row">
+      
+      <div class="col-md-8 profile-overview-text">
+        
+        <p class="profile-overview-info"><%= @profile.description %></p>
+        
+        <div class="profile-overview-phone">
+          <span class="phone-title">Phone Number</span>
+          <%= link_to "1-888-555-5555", '#', class: "phone-link" %>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="profile-reviews">
+          
+          <span class="profile-reviews-title">Some Background...</span>
+          
+          <p class="profile-reviews-info">
+            Read <%= @profile.user.name %>'s reviews!
+          </p>
+          
+          <%= button_to "Reviews", 
+                        '#', 
+                        class: "btn btn-secondary", 
+                        method: :get %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="profile-details">
+  <div class="profile-details-content">
+    <div class="row">
+      
+      <div class="col-md-8 profile-static">
+        
+        <div class="profile-details-listings">
+          
+          <h2 class="profile-details-title">
+            Listings (<%= @vehicles.count %>)
+          </h2>
+          
+          <%= render 'listings' %>
+        </div>
+        
+        <div class="profile-details-wish-lists">
+          <h2 class="profile-details-title">Wish Lists (2)</h2>
+          <%= render 'wish_lists' %>
+        </div>
+      </div>
+      
+      <div class="col-md-4" id="profile-scrolled">
+        <div class="profile-scrolled-content">
+          
+          <% if (!@profile.residence.blank?) or 
+              (!@profile.school.blank?) or 
+              (!@profile.work.blank?) %>
+          
+            <div class="optional-scrolled">
+              <table class="optional-scrolled-detail">
+                
+                <tr>
+                  <td>
+                    <span class="optional-scrolled-title">Phone</span>
+                  </td>
+                  <td>
+                    <%= link_to "1-888-555-5555", 
+                                '#', 
+                                class: "optional-scrolled-link" %>
+                  </td>
+                </tr>
+                
+                <% if (!@profile.residence.blank?) %>
+                  <tr>
+                    <td>
+                      <span class="optional-scrolled-title">City</span>
+                    </td>
+                    <td>
+                      <span class="optional-scrolled-info">
+                        <%= @profile.residence %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+                
+                <% if (!@profile.school.blank?) %>
+                  <tr>
+                    <td>
+                      <span class="optional-scrolled-title">School</span>
+                    </td>
+                    <td>
+                      <span class="optional-scrolled-info">
+                        <%= @profile.school %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+                
+                <% if (!@profile.work.blank?) %>
+                  <tr>
+                    <td>
+                      <span class="optional-scrolled-title">Work</span>
+                    </td>
+                    <td>
+                      <span class="optional-scrolled-info">
+                        <%= @profile.work %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(window).on('scroll', function() {
+      
+      // fixed header
+      var fixedHeader = $('.header-fixed-hidden');
+      
+      var scrolltop = $(this).scrollTop();
+      if(scrolltop >= 655) {
+        fixedHeader.fadeIn(250);
+      }
+      else if(scrolltop <= 650) {
+        fixedHeader.fadeOut(250);
+      }
+      
+      // fixed info
+      var profileScrolled = $('#profile-scrolled');
+      
+      profileScrolled.stick_in_parent({ offset_top: 50 });
+    });
+  
+    // parallax-scroll
+    var scrollHeroImage = $('.profile-cover-photo');
+
+    scrollHeroImage.parallaxScroll ({
+      friction: 0.3
+    });
+    
+    // image scaling
+    var avatar = $('.user-summary-avatar');
+    
+    avatar.imagefill(); 
+  })
+</script>

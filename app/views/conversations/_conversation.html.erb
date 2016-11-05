@@ -1,0 +1,61 @@
+<!--complete-->
+<!--stay gray after selected-->
+<!--should be logged in IOT delete (check controller)-->
+
+<% other = conversation.sender == 
+           current_user ? conversation.recipient : conversation.sender %>
+           
+<%= link_to conversation_messages_path(conversation), 
+            class: "conversation-link" do %>
+          
+  <li id="conversation-<%= conversation.id %>-item" class="conversation-item">           
+    <table class="conversation-item-content">
+      <tr>
+        
+        <td>
+          <div class="conversation-avatar">
+            <%= image_tag other.profile.avatar.url %>
+          </div>
+        </td>
+        
+        <td>
+          <div class="conversation-detail">
+            
+            <p class="conversation-name"><%= other.name %></p>
+            
+            <p class="conversation-date">
+              <%= conversation.messages.last.message_time %>
+            </p>
+          </div>
+        </td>
+        
+        <td class="conversation-content-container">
+          <p class="conversation-content">
+            <%= conversation.messages.last.content %>
+          </p>
+        </td>
+        
+        <td>
+          <%= link_to @conversation, 
+                      method: :delete, 
+                      data: { confirm: "Are you sure?" } do %>
+            <span class="conversation-delete-link">
+              <i class="fa fa-times" aria-hidden="true"></i>
+              Delete
+            </span>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </li>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // image scaling
+    var avatar = $('.conversation-avatar');
+    
+    avatar.imagefill(); 
+  })
+</script>

@@ -1,4 +1,5 @@
 # should contact be under static_pages?
+# must be logged in IOT access profile
 
 class StaticPagesController < ApplicationController
   def home
@@ -18,9 +19,6 @@ class StaticPagesController < ApplicationController
   end
   
   def legal
-  end
-  
-  def dashboard
   end
   
   def profile

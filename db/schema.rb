@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829115533) do
+ActiveRecord::Schema.define(version: 20161018020357) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -79,6 +79,22 @@ ActiveRecord::Schema.define(version: 20160829115533) do
 
   add_index "photos", ["vehicle_id"], name: "index_photos_on_vehicle_id"
 
+  create_table "profiles", force: :cascade do |t|
+    t.string   "residence"
+    t.string   "school"
+    t.string   "work"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+
   create_table "replies", force: :cascade do |t|
     t.text     "content"
     t.integer  "likes"
@@ -108,6 +124,7 @@ ActiveRecord::Schema.define(version: 20160829115533) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
+    t.text     "description"
     t.boolean  "is_subscribed"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
