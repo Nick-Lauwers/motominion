@@ -28,7 +28,10 @@
       Purchase unique vehicles from around the world
     </h2>
     
-    <%= form_tag search_path, method: :get, class: "search-form-primary" do %>
+    <%= form_tag search_vehicles_path, 
+                 method: :get, 
+                 class: "search-form-primary",
+                 role: "search" do %>
       <div class="row search-form-primary-content">
         
         <div class="col-md-10 search-bar-primary">

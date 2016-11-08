@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get    'contact'            => 'static_pages#contact'
   get    'how-it-works'       => 'static_pages#how_it_works'
   get    'legal'              => 'static_pages#legal'
-  get    'search'             => 'static_pages#search'
   get    'customers'          => 'appointments#customers'
   get    'test-drives'        => 'appointments#test_drives'
   get    'signup'             => 'users#new'
@@ -21,7 +20,6 @@ Rails.application.routes.draw do
   delete 'logout'             => 'sessions#destroy'
   
   resources :users
-  resources :vehicles
   resources :photos
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
@@ -30,16 +28,17 @@ Rails.application.routes.draw do
   resources :enquiries,           only: [:create]
   resources :profiles,            only: [:show, :edit, :update]
 
-  resources :vehicles do
-    resources :appointments, only: [:create, :destroy]
-  end
-  
   resources :conversations, only: [:index, :create] do
     resources :messages, only: [:index, :create]
   end
-  
+
   resources :vehicles do
+    
+    collection do
+      get 'search'
+    end
+    
+    resources :appointments, only: [:create, :destroy]
     resources :reviews, only: [:create, :destroy]
   end
-  
 end

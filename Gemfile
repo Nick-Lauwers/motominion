@@ -1,3 +1,6 @@
+# get rid of ransack
+# https://www.elastic.co/guide/en/elasticsearch/reference/master/_installation.html#_installation
+
 source 'https://rubygems.org'
 
 gem 'rails',                   '4.2.2'
@@ -21,9 +24,9 @@ gem 'geocoder'
 gem 'jquery-ui-sass-rails'
 gem 'private_pub'
 gem 'thin'
-gem 'ransack'
 gem 'bootstrap-slider-rails'
 gem 'gmaps4rails'
+gem 'searchkick'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

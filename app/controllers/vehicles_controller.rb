@@ -73,6 +73,28 @@ class VehiclesController < ApplicationController
     end
   end
   
+  def search
+    if params[:search].present?
+      @vehicles = Vehicle.search(params[:search], page: params[:page], per_page: 10)
+    else
+      @vehicles = Vehicle.all.paginate(page: params[:page], per_page: 10)
+    end
+    
+    @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
+      
+      marker.lat vehicle.latitude
+      marker.lng vehicle.longitude
+      
+      marker.picture({
+        url: "/assets/map-marker-red.png",
+        width:  32,
+        height: 32
+      })
+      
+      marker.json({ :id => vehicle.id })
+    end
+  end
+  
   private
   
     def vehicle_params

@@ -1,4 +1,6 @@
 class Vehicle < ActiveRecord::Base
+  searchkick
+  
   belongs_to :user
   
   has_many   :photos,       dependent: :destroy

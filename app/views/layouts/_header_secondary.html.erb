@@ -59,7 +59,10 @@
       <% end %>
     </ul>
 
-    <%= form_tag search_path, method: :get, class: "search-form-secondary" do %>
+    <%= form_tag search_vehicles_path, 
+                 method: :get, 
+                 class: "search-form-secondary",
+                 role: "search" do %>
       <div class="row search-form-secondary-content">
 
           <div class="col-md-9 search-bar-secondary">
