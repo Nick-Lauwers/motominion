@@ -1,4 +1,4 @@
-# should contact be under static_pages?
+# complete
 
 class StaticPagesController < ApplicationController
   def home
@@ -8,10 +8,6 @@ class StaticPagesController < ApplicationController
   end
   
   def about
-  end
-  
-  def contact
-    @enquiry = Enquiry.new
   end
   
   def how_it_works

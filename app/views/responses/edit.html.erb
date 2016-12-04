@@ -1,0 +1,6 @@
+<h1>Edit Reply</h1>
+
+<%= form_for([@post, @response]) do |f| %>
+  <%= f.text_field :comment %>
+  <%= f.submit %>
+<% end %>

@@ -1,11 +1,10 @@
 <!--complete-->
-<!--include rating in place of header-profile-city-->
 
 <div class="header-profile">
   <div class="header-profile-content">
     <div class="row vertical-align">
       
-      <div class="col-md-8 vertical-align">
+      <div class="col-xs-8 vertical-align">
         
         <div class="header-profile-avatar">
           <%= image_tag @profile.avatar.url %>
@@ -16,7 +15,7 @@
         </div>
       </div>
       
-      <div class="col-md-4">
+      <div class="col-xs-4">
 
         <% if !current_user.nil? %>
           <%= button_to "Contact Seller", 
@@ -36,12 +35,4 @@
   </div>
 </div>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    
-    // image scaling
-    var avatar = $('.header-profile-avatar');
-    
-    avatar.imagefill(); 
-  })
-</script>
+<!--include rating in place of header-profile-city-->

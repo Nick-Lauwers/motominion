@@ -1,5 +1,4 @@
-<!--ids before classes-->
-<!--partial for header-->
+<!--complete-->
 
 <% provide(:title, "New Vehicle") %>
 
@@ -7,38 +6,7 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<div class="hero-secondary">
-  <div class="row hero-secondary-content vertical-align">
-    
-    <div class="col-md-9">
-      <div class="row">
-        
-        <div class="col-md-2 hero-gravatar">
-          <%= gravatar_for(@vehicle.user, size: 100) %>
-        </div>
-        
-        <div class="col-md-10">
-          <h1 class="hero-username"><%= @vehicle.user.name %></h1>
-          
-          <div>
-            <span class="hero-detail-title">Phone</span>
-            <span class="hero-detail-info">(+1) (888) 555-5555</span>
-          </div>
-          
-          <div>
-            <span class="hero-detail-title">Email</span>
-            <span class="hero-detail-info"><%= @vehicle.user.email %></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-md-3 listing-status">
-      <span class="amount-complete">13%</span>
-      <span class="status-description">Listing Complete</span>
-    </div>
-  </div>
-</div>
+<%= render 'layouts/hero_vehicle_new' %>
 
 <div class="new-vehicle">
   <div class="new-vehicle-content">
@@ -47,11 +15,11 @@
       <div class="instructions-content">
         <div class="row vertical-align">
           
-          <div class="col-md-2 instructions-icon">
+          <div class="col-xs-2 instructions-icon">
             <i class="fa fa-rocket fa-5x" aria-hidden="true"></i>
           </div>
           
-          <div class="col-md-7">
+          <div class="col-xs-7">
             <h2 class="instructions-title">Accelerate Your Sale</h2>
             <p class="instructions-info">
               Now you need to complete your listing. Our guide will make sure 
@@ -60,7 +28,7 @@
             </p>
           </div>
           
-          <div class="col-md-3">
+          <div class="col-xs-3">
             <!--intentionally left empty-->
           </div>
         </div>

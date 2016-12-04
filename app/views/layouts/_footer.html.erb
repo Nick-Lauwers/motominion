@@ -3,6 +3,7 @@
 <footer class="footer">
   
   <div class="footer-call-us">
+    
     <h3 class="call-us-title">Talk to our friendly team of experts</h3>
     
     <div class="call-us-info">
@@ -14,25 +15,29 @@
   <div class="footer-links">
     <div class="row">
     
-      <div class="col-md-3">
+      <div class="col-xs-3">
         <h3 class="footer-logo">DEALERSHIP.COM</h3>
         
         <ul class="footer-social-media">
+          
           <li>
             <%= link_to 'https://www.facebook.com/', target: "_blank" do %>
               <i class="fa fa-facebook fa-lg"></i>
             <% end %>
           </li>
+          
           <li>
             <%= link_to 'https://twitter.com/', target: "_blank" do %>
               <i class="fa fa-twitter fa-lg"></i>
             <% end %>
           </li>
+          
           <li>
             <%= link_to 'https://www.linkedin.com/', target: "_blank" do %>
               <i class="fa fa-linkedin fa-lg"></i>
             <% end %>
           </li>
+          
           <li>
             <%= link_to 'https://www.instagram.com/', target: "_blank" do %>
               <i class="fa fa-instagram fa-lg"></i>
@@ -41,21 +46,23 @@
         </ul>
       </div>
       
-      <div class="col-md-2">
+      <div class="col-xs-2">
         <nav>
+          
           <h3 class="footer-nav-list-title">Company</h3>
           
           <ul class="footer-nav-list">
             <li><%= link_to "About",    about_path %></li>
-            <li><%= link_to "Contact",  contact_path %></li>
+            <li><%= link_to "Contact",  new_enquiry_path %></li>
             <li><%= link_to "Careers",  '#' %></li>
             <li><%= link_to "Partners", '#' %></li>
           </ul>
         </nav>
       </div>
       
-      <div class="col-md-2">
+      <div class="col-xs-2">
         <nav>
+          
           <h3 class="footer-nav-list-title">Discover</h3>
         
           <ul class="footer-nav-list">
@@ -64,7 +71,7 @@
         </nav>
       </div>
       
-      <div class="col-md-5">
+      <div class="col-xs-5">
         <nav>
           <ul class="footer-legal">
             <li><%= link_to "Cookies", legal_path %></li>

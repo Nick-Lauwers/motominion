@@ -1,0 +1,40 @@
+<!--revise title-->
+
+<% provide(:title, "Community Center") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class="forum-cover-photo">
+  <h1 class="cover-photo-title">
+    Pull up a chair;
+    </br>
+    It's just us talking...
+  </h1>
+</div>
+
+<div class="row forum">
+
+  <div class="col-md-8 posts">
+    
+    <!--<(perc) if logged_in? %>-->
+    <!--    <(perc)= render 'form' %>-->
+    <!--<(perc) end %>-->
+    
+    <% if @posts.any? %>
+    
+      <h2 class="posts-tag">Recent Posts</h2>
+      
+      <ol class="posts-list">
+        <%= render 'post' %>
+      </ol>
+      
+      <%= will_paginate @posts %>
+    <% end %>
+  </div>
+  
+  <div class="col-md-4">
+    <!--intentionally left empty-->
+  </div>
+</div>

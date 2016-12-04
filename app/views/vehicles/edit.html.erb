@@ -7,41 +7,10 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<div class="hero-secondary">
-  <div class="row hero-secondary-content vertical-align">
-    
-    <div class="col-md-9">
-      <div class="row">
-        
-        <div class="col-md-2 hero-gravatar">
-          <%= gravatar_for(@vehicle.user, size: 100) %>
-        </div>
-        
-        <div class="col-md-10">
-          <h1 class="hero-username"><%= @vehicle.user.name %></h1>
-          
-          <div>
-            <span class="hero-detail-title">Phone</span>
-            <span class="hero-detail-info">(+1) (888) 555-5555</span>
-          </div>
-          
-          <div>
-            <span class="hero-detail-title">Email</span>
-            <span class="hero-detail-info"><%= @vehicle.user.email %></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-md-3 listing-status">
-      <span class="amount-complete">100%</span>
-      <span class="status-description">Listing Complete</span>
-    </div>
-  </div>
-</div>
+<%= render 'layouts/hero_vehicle_update' %>
 
-<div class="new-vehicle">
-  <div class="new-vehicle-content">
+<div class="update-vehicle">
+  <div class="update-vehicle-content">
     
     <div class="instructions">
       <div class="instructions-content">

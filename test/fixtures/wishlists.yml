@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+wishlist_nicholas:
+  user: nicholas 
+
+wishlist_archer:
+  user: archer 

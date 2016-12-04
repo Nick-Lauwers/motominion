@@ -1,7 +1,4 @@
-<!--fix reviews count (plural)-->
-<!--reviews for seller, not vehicle-->
-<!--number of vehicle questions in caption-->
-<!--adjust getting images from matrix-->
+<!--complete-->
 
 <% provide(:title, @vehicle.listing_name) %>
 
@@ -9,337 +6,389 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<div class="hero-listing" id="hero-listing-image"
-     style="background-image: url(<%= @photos[0].image.url() if 
-                                      @photos.length > 0 %>)"
-     data-width="1024" data-height="768"></div>
+<div class="hero-listing"></div>
 
 <div class="listing-navbar">
-  <div class="row listing-navbar-content">
+  <div class="listing-navbar-content">
+    <div class="row">
     
-    <div class="col-md-8 listing-navbar-nav">
-      <nav>
-        <ul class="nav navbar-nav navbar-left">
-          <li><%= link_to "Vehicle Details",  '#vehicle-details' %></li>
-          <li><%= link_to "Gallery",          '#gallery' %></li>
-          <li><%= link_to "Reviews",          '#reviews' %></li>
-          <li><%= link_to "Map and Brochure", '#map-and-brochure' %></li>
-        </ul>
-      </nav>
-    </div>
-    
-    <div class="col-md-4 listing-navbar-button">
-      <div class="listing-navbar-button-content">
+      <div class="col-xs-8">
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+            <li><%= link_to "Vehicle Details",  '#vehicle-details' %></li>
+            <li><%= link_to "Gallery",          '#gallery' %></li>
+            <li><%= link_to "Reviews",          '#reviews' %></li>
+            <li><%= link_to "Map and Brochure", '#map-and-brochure' %></li>
+          </ul>
+        </nav>
+      </div>
       
-        <div class="navbar-price-container">
-          <p class="navbar-price-visible">$<%= @vehicle.price %></p>
-        </div>
+      <div class="col-xs-4">
+        <div class="listing-navbar-button">
         
-        <% if !current_user.nil? %>
-          <%= button_to "Contact Seller", 
-                        conversations_path(sender_id: current_user.id, 
-                                           recipient_id: @user.id), 
-                        class: "btn-navbar-contact-hidden", 
-                        method: :post %>
-                        
-        <% else %>
-          <%= button_to "Contact Seller", 
-                        login_path, 
-                        class: "btn-navbar-contact-hidden", 
-                        method: :get %>
-        <% end %>
+          <div class="navbar-price-container">
+            <p class="navbar-price-visible">$<%= @vehicle.price %></p>
+          </div>
+          
+          <% if !current_user.nil? %>
+            <%= button_to "Contact Seller", 
+                          conversations_path(sender_id: current_user.id, 
+                                             recipient_id: @user.id), 
+                          class: "btn-navbar-contact-hidden", 
+                          method: :post %>
+                          
+          <% else %>
+            <%= button_to "Contact Seller", 
+                          login_path, 
+                          class: "btn-navbar-contact-hidden", 
+                          method: :get %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div id="vehicle-overview">
-  <div class="row vehicle-overview-content">
+  <div class="vehicle-overview-content">
+    <div class="row">
     
-    <div class="col-md-8 vehicle-overview-text">
-      <div class="row vertical-align vehicle-overview-title">
-        
-        <div class="col-md-2">
-          <div class="vehicle-overview-avatar">
-            <%=link_to profile_path(@vehicle.user), method: :get do %>
-              <%= image_tag @vehicle.user.profile.avatar.url %>
-            <% end %>
+      <div class="col-xs-8">
+        <div class="vehicle-overview-text">
+          <div class="row vertical-align vehicle-overview-title">
+          
+            <div class="col-xs-2">
+              <div class="vehicle-overview-avatar">
+                <%=link_to profile_path(@vehicle.user), method: :get do %>
+                  <%= image_tag @vehicle.user.profile.avatar.url %>
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="col-xs-10">
+              
+              <h1 class="vehicle-overview-heading">
+                <%= @vehicle.listing_name %>
+              </h1>
+              
+              <p class="vehicle-overview-subheading">
+                <%= @vehicle.user.name %> · <span class="average-rating"></span>
+              </p>
+            </div>
+          </div>
+          
+          <p class="vehicle-overview-description"><%= @vehicle.summary %></p>
+          
+          <div class="vehicle-overview-products">
+            
+            <span class="products-title">1 Additional Product</span>
+            
+            <%= link_to "Spoiler at Reduced Cost", 
+                        '#', 
+                        class: "products-link" %>
           </div>
         </div>
-        
-        <div class="col-md-10">
-          <h1 class="vehicle-overview-heading"><%= @vehicle.listing_name %></h1>
-          <p class="vehicle-overview-subheading">
-            <%= @vehicle.user.name %> · <span class="average-rating"></span>
-          </p>
+      </div>
+      
+      <div class="col-xs-4">
+  
+        <div class="appointment">
+          
+          <%= render 'appointments/form' %>
+          
+          <%= button_to '#', class: "btn btn-tertiary", method: :get do %>
+              <i class="fa fa-heart-o" 
+                 aria-hidden="true"></i> 
+              Add to Wish List
+          <% end %>
         </div>
-      </div>
-      
-      <p class="vehicle-overview-description"><%= @vehicle.summary %></p>
-      
-      <div class="vehicle-overview-products">
-        <span class="products-title">1 Additional Product</span>
-        <%= link_to "Spoiler at Reduced Cost", '#', class: "products-link" %>
-      </div>
-    </div>
-    
-    <div class="col-md-4 vehicle-overview-links">
-
-      <div class="appointment">
-        <%= render 'appointments/form' %>
-        <%= button_to '#', class: "btn btn-tertiary", method: :get do %>
-            <i class="fa fa-heart-o" 
-               aria-hidden="true"></i> 
-            Add to Wish List
-        <% end %>
-      </div>
-      
-      <div class="vehicle-reviews">
-        <span class="vehicle-reviews-title">Need Some Help?</span>
-        <p class="vehicle-reviews-info">Read our vehicle reviews!</p>
-        <%= button_to '#', class: "btn btn-secondary", method: :get do %>
-            Reviews
-            <i class="fa fa-arrow-right next-button-icon" 
-               aria-hidden="true"></i> 
-        <% end %>
+        
+        <div class="vehicle-reviews">
+          
+          <span class="vehicle-reviews-title">Need Some Help?</span>
+          
+          <p class="vehicle-reviews-info">Read our vehicle reviews!</p>
+          
+          <%= button_to '#', class: "btn btn-secondary", method: :get do %>
+              Reviews
+              <i class="fa fa-arrow-right next-button-icon" 
+                 aria-hidden="true"></i> 
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div id="vehicle-details">
-  <div class="row vehicle-details-content">
+  <div class="vehicle-details-content">
+    <div class="row">
 
-    <div class="col-md-8 vehicle-details-text">
-      
-      <div class="specifications">
-        <h3 class="vehicle-details-title">Specifications</h3>
-        <div class="row">
-          
-          <div class="col-md-6">
-            <table class="vehicle-details-table">
-              <tr>
-                <td>Vehicle Condition</td>
-                <td><strong><%= @vehicle.vehicle_condition %></strong></td>
-              </tr>
-              <tr>
-                <td>Body Style</td>
-                <td><strong><%= @vehicle.body_style %></strong></td>
-              </tr>
-              <tr>
-                <td>Color</td>
-                <td><strong><%= @vehicle.color %></strong></td>
-              </tr>
-              <tr>
-                <td>Year</td>
-                <td><strong><%= @vehicle.year %></strong></td>
-              </tr>
-              <tr>
-                <td>Mileage</td>
-                <td><strong><%= @vehicle.mileage %></strong></td>
-              </tr>
-            </table>
-          </div>
-          
-          <div class="col-md-6">
-            <table class="vehicle-details-table">
-              <tr>
-                <td>VIN</td>
-                <td><strong><%= @vehicle.vin %></strong></td>
-              </tr>
-              <tr>
-                <td>Seating</td>
-                <td><strong><%= @vehicle.seating_capacity %></strong></td>
-              </tr>
-              <tr>
-                <td>Transmission</td>
-                <td><strong><%= @vehicle.transmission %></strong></td>
-              </tr>
-              <tr>
-                <td>Fuel Type</td>
-                <td><strong><%= @vehicle.fuel_type %></strong></td>
-              </tr>
-              <tr>
-                <td>Drivetrain</td>
-                <td><strong><%= @vehicle.drivetrain %></strong></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-      
-      <div class="features">
-        <h3 class="vehicle-details-title">Features</h3>
-        <div class="row">
-          
-          <div class="col-md-6">
-            <table class="vehicle-details-table">
-              
-              <tr class="<%= 'unavailable-feature' if 
-                             !@vehicle.is_leather_seats %>">
-                <td><!--intentionally left empty--></td>
-                <td><strong>Leather Seats</strong></td>
-              </tr>
-              
-              <tr class="<%= 'unavailable-feature' if !@vehicle.is_sunroof %>">
-                <td><i class="fa fa-umbrella" aria-hidden="true"></i></td>
-                <td><strong>Sunroof</strong></td>
-              </tr>
-              
-              <tr class="<%= 'unavailable-feature' if 
-                             !@vehicle.is_navigation_system %>">
-                <td><i class="fa fa-map-signs" aria-hidden="true"></i></td>
-                <td><strong>Navigation System</strong></td>
-              </tr>
-              
-              <tr class="<%= 'unavailable-feature' if 
-                             !@vehicle.is_dvd_entertainment_system %>">
-                <td><i class="fa fa-television" aria-hidden="true"></i></td>
-                <td><strong>DVD Entertainment System</strong></td>
-              </tr>
-              
-              <tr class="<%= 'unavailable-feature' if 
-                             !@vehicle.is_bluetooth %>">
-                <td><i class="fa fa-bluetooth-b" aria-hidden="true"></i></td>
-                <td><strong>Bluetooth</strong></td>
-              </tr>
-            </table>
-          </div>
-          
-          <div class="col-md-6">
-            <table class="vehicle-details-table">
-              
-              <tr class="<%= 'unavailable-feature' if 
-                             !@vehicle.is_backup_camera %>">
-                <td><i class="fa fa-eye" aria-hidden="true"></i></td>
-                <td><strong>Backup Camera</strong></td>
-              </tr>
-              
-              <tr class="<%= 'unavailable-feature' if 
-                         !@vehicle.is_remote_start %>">
-                <td><i class="fa fa-key" aria-hidden="true"></i></td>
-                <td><strong>Remote Start</strong></td>
-              </tr>
-              
-              <tr class="<%= 'unavailable-feature' if 
-                         !@vehicle.is_tow_package %>">
-                <td><!--intentionally left empty--></td>
-                <td><strong>Tow Package</strong></td>
-              </tr>
-              
-              <tr class="<%= 'unavailable-feature' if !@vehicle.is_autonomy %>">
-                <td><!--intentionally left empty--></td>
-                <td><strong>Autonomy</strong></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-      
-      <div class="pricing">
-        <h3 class="vehicle-details-title">Pricing</h3>
-        <p class="vehicle-details-info">From $<%= @vehicle.price %></p>
-      </div>
-      
-      <div class="sellers-notes">
-        <h3 class="vehicle-details-title">Seller's Notes</h3>
-        <p class="vehicle-details-info"><%= @vehicle.sellers_notes %></p>
-      </div>
-    </div>
-    
-    <div class="col-md-4" id="links-scrolled">
-      <div class="links-scrolled-content">
+      <div class="col-xs-8">
+        <div class="vehicle-details-text">
         
-        <div class="appointment-scrolled">
-          <%= link_to '#vehicle-overview', 
-              class: "btn btn-primary btn-primary-scrolled" do %>
-            <!--<i class="fa fa-arrow-up up-button-icon" -->
-            <!--   aria-hidden="true"></i> -->
-            Test Drive
-          <% end %>
-        </div>
-        
-        <div class="products-scrolled">
-          <span class="products-scrolled-title">1 Additional Product</span>
-          <%= link_to "View Details", '#', class: "products-scrolled-link" %>
-          <p class="products-scrolled-info">Spoiler at reduced cost</p>
+          <div class="specifications">
+            
+            <h3 class="vehicle-details-title">Specifications</h3>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <table class="vehicle-details-table">
+                  
+                  <tr>
+                    <td>Vehicle Condition</td>
+                    <td><strong><%= @vehicle.vehicle_condition %></strong></td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Body Style</td>
+                    <td><strong><%= @vehicle.body_style %></strong></td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Color</td>
+                    <td><strong><%= @vehicle.color %></strong></td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Year</td>
+                    <td><strong><%= @vehicle.year %></strong></td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Mileage</td>
+                    <td><strong><%= @vehicle.mileage %></strong></td>
+                  </tr>
+                </table>
+              </div>
+              
+              <div class="col-xs-6">
+                <table class="vehicle-details-table">
+                  
+                  <tr>
+                    <td>VIN</td>
+                    <td><strong><%= @vehicle.vin %></strong></td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Seating</td>
+                    <td><strong><%= @vehicle.seating_capacity %></strong></td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Transmission</td>
+                    <td><strong><%= @vehicle.transmission %></strong></td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Fuel Type</td>
+                    <td><strong><%= @vehicle.fuel_type %></strong></td>
+                  </tr>
+                  
+                  <tr>
+                    <td>Drivetrain</td>
+                    <td><strong><%= @vehicle.drivetrain %></strong></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="features">
+            
+            <h3 class="vehicle-details-title">Features</h3>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <table class="vehicle-details-table">
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_leather_seats %>">
+                    <td><!--intentionally left empty--></td>
+                    <td><strong>Leather Seats</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_sunroof %>">
+                    <td><i class="fa fa-umbrella" aria-hidden="true"></i></td>
+                    <td><strong>Sunroof</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_navigation_system %>">
+                    <td><i class="fa fa-map-signs" aria-hidden="true"></i></td>
+                    <td><strong>Navigation System</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_dvd_entertainment_system %>">
+                    <td><i class="fa fa-television" aria-hidden="true"></i></td>
+                    <td><strong>DVD Entertainment System</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_bluetooth %>">
+                    <td><i class="fa fa-bluetooth-b" 
+                           aria-hidden="true"></i></td>
+                    <td><strong>Bluetooth</strong></td>
+                  </tr>
+                </table>
+              </div>
+              
+              <div class="col-xs-6">
+                <table class="vehicle-details-table">
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_backup_camera %>">
+                    <td><i class="fa fa-eye" aria-hidden="true"></i></td>
+                    <td><strong>Backup Camera</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                             !@vehicle.is_remote_start %>">
+                    <td><i class="fa fa-key" aria-hidden="true"></i></td>
+                    <td><strong>Remote Start</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                             !@vehicle.is_tow_package %>">
+                    <td><!--intentionally left empty--></td>
+                    <td><strong>Tow Package</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_autonomy %>">
+                    <td><!--intentionally left empty--></td>
+                    <td><strong>Autonomy</strong></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div class="pricing">
+            <h3 class="vehicle-details-title">Pricing</h3>
+            <p class="vehicle-details-info">From $<%= @vehicle.price %></p>
+          </div>
+          
+          <div class="sellers-notes">
+            <h3 class="vehicle-details-title">Seller's Notes</h3>
+            <p class="vehicle-details-info"><%= @vehicle.sellers_notes %></p>
+          </div>
         </div>
       </div>
       
-      <!--<(perc)= link_to '#' do %>-->
-      <!--  <p class="wish-list-scrolled">-->
-      <!--    <i class="fa fa-heart wish-list-link-icon" aria-hidden="true"></i>-->
-      <!--    Add to Wish List-->
-      <!--  </p>-->
-      <!--<(perc) end %>-->
+      <div class="col-xs-4" id="links-scrolled">
+        <div class="links-scrolled-content">
+          
+          <div class="appointment-scrolled">
+            <%= link_to '#vehicle-overview', 
+                class: "btn btn-primary btn-primary-scrolled" do %>
+              <!--<i class="fa fa-arrow-up up-button-icon" -->
+              <!--   aria-hidden="true"></i> -->
+              Test Drive
+            <% end %>
+          </div>
+          
+          <div class="products-scrolled">
+            <span class="products-scrolled-title">1 Additional Product</span>
+            <%= link_to "View Details", '#', class: "products-scrolled-link" %>
+            <p class="products-scrolled-info">Spoiler at reduced cost</p>
+          </div>
+        </div>
+        
+        <!--<(perc)= link_to '#' do %>-->
+        <!--  <p class="wish-list-scrolled">-->
+        <!--    <i class="fa fa-heart wish-list-link-icon" aria-hidden="true"></i>-->
+        <!--    Add to Wish List-->
+        <!--  </p>-->
+        <!--<(perc) end %>-->
+      </div>
     </div>
   </div>
 </div>
 
-  
 <div id="gallery">
   <div class="row gallery-row-primary">
     
-    <div class="col-md-4 gallery-photo-container">
-      <a caption="This is the brand new Model A!" href='javascript:void(0)'>
-        <img class="gallery-photo" 
-             src="<%= @photos[0].image.url() if @photos.length > 0 %>">
-      </a>
+    <div class="col-xs-4 gallery-photo-container">
+      <% if @photos.length > 0 %>
+        <a caption="<%= @vehicle.listing_name %>" href='javascript:void(0)'>
+          <img class="gallery-photo" 
+               src="<%= @photos[0].image.url()%>">
+        </a>
+      <% end %>
     </div>
     
-    <div class="col-md-8">
+    <div class="col-xs-8">
       <div class="row gallery-row-secondary">
         
-        <div class="col-md-3 gallery-photo-container">
-          <a caption="This is the brand new Model B!" href='javascript:void(0)'>
-            <img class="gallery-photo" 
-                 src="<%= @photos[1].image.url() if @photos.length > 1 %>">
-          </a>
+        <div class="col-xs-3 gallery-photo-container">
+          <% if @photos.length > 1 %>
+            <a caption="<%= @vehicle.listing_name %>" href='javascript:void(0)'>
+              <img class="gallery-photo" 
+                   src="<%= @photos[1].image.url()%>">
+            </a>
+          <% end %>
         </div>
         
-        <div class="col-md-3 gallery-photo-container">
-          <a caption="This is the brand new Model C!" href='javascript:void(0)'>
-            <img class="gallery-photo" 
-                 src="<%= @photos[2].image.url() if @photos.length > 2 %>">
-          </a>
+        <div class="col-xs-3 gallery-photo-container">
+          <% if @photos.length > 2 %>
+            <a caption="<%= @vehicle.listing_name %>" href='javascript:void(0)'>
+              <img class="gallery-photo" 
+                   src="<%= @photos[2].image.url()%>">
+            </a>
+          <% end %>
         </div>
         
-        <div class="col-md-6 gallery-photo-container">
-          <a caption="This is the brand new Model D!" href='javascript:void(0)'>
-            <img class="gallery-photo" 
-                 src="<%= @photos[3].image.url() if @photos.length > 3 %>">
-          </a>
+        <div class="col-xs-6 gallery-photo-container">
+          <% if @photos.length > 3 %>
+            <a caption="<%= @vehicle.listing_name %>" href='javascript:void(0)'>
+              <img class="gallery-photo" 
+                   src="<%= @photos[3].image.url()%>">
+            </a>
+          <% end %>
         </div> 
       </div>
       
       <div class="row gallery-row-secondary">
         
-        <div class="col-md-3 gallery-photo-container">
-          <a caption="This is the brand new Model E!" href='javascript:void(0)'>
-            <img class="gallery-photo" 
-                 src="<%= @photos[4].image.url() if @photos.length > 4 %>">
-          </a>
+        <div class="col-xs-3 gallery-photo-container">
+          <% if @photos.length > 4 %>
+            <a caption="<%= @vehicle.listing_name %>" href='javascript:void(0)'>
+              <img class="gallery-photo" 
+                   src="<%= @photos[4].image.url()%>">
+            </a>
+          <% end %>
         </div>
         
-        <div class="col-md-3 gallery-photo-container">
-          <a caption="This is the brand new Model F!" href='javascript:void(0)'>
-            <img class="gallery-photo" 
-                 src="<%= @photos[5].image.url() if @photos.length > 5 %>">
-          </a>
+        <div class="col-xs-3 gallery-photo-container">
+          <% if @photos.length > 5 %>
+            <a caption="<%= @vehicle.listing_name %>" href='javascript:void(0)'>
+              <img class="gallery-photo" 
+                   src="<%= @photos[5].image.url()%>">
+            </a>
+          <% end %>
         </div>
         
-        <div class="col-md-3 gallery-photo-container">
-          <a caption="This is the brand new Model G!" href='javascript:void(0)'>
-            <img class="gallery-photo" 
-                 src="<%= @photos[6].image.url() if @photos.length > 6 %>">
-          </a>
+        <div class="col-xs-3 gallery-photo-container">
+          <% if @photos.length > 6 %>
+            <a caption="<%= @vehicle.listing_name %>" href='javascript:void(0)'>
+              <img class="gallery-photo" 
+                   src="<%= @photos[6].image.url()%>">
+            </a>
+          <% end %>
         </div>
         
-        <div class="col-md-3 gallery-photo-container">
-          <a caption="This is the brand new Model H!" href='javascript:void(0)'>
-            <img class="gallery-photo" 
-                 src="<%= @photos[7].image.url() if @photos.length > 7 %>">
-          </a>
+        <div class="col-xs-3 gallery-photo-container">
+          <% if @photos.length > 7 %>
+            <a caption="<%= @vehicle.listing_name %>" href='javascript:void(0)'>
+              <img class="gallery-photo" 
+                   src="<%= @photos[7].image.url()%>">
+            </a>
+          <% end %>
         </div>
       </div>
     </div>
@@ -367,19 +416,21 @@
     <% else %>
       <div class="row reviews-summary">
         
-        <div class="col-md-4">
+        <div class="col-xs-4">
           <h3 class="reviews-subheading">Average Rating</h3>
           
           <div class="row vertical-align">
             
-            <div class="col-md-3">
+            <div class="col-xs-3">
               <div class="average-rating-number">
                 <%= @vehicle.average_rating %>
               </div>
             </div>
             
-            <div class="col-md-9">
+            <div class="col-xs-9">
+              
               <div class="average-rating"></div>
+              
               <span class="number-of-reviews">
                 (based on <%= pluralize(@reviews.count, "review") %>)
               </span> 
@@ -387,9 +438,11 @@
           </div>
         </div>
         
-        <div class="col-md-4">
+        <div class="col-xs-4">
           <div class="pros-cons-list">
+            
             <h3 class="reviews-subheading">Pros</h3>
+            
             <ul class="pros-cons-list-content">
               <li>Security & safety (51)</li>
               <li>Location (45)</li>
@@ -398,9 +451,11 @@
           </div>
         </div>
         
-        <div class="col-md-4">
+        <div class="col-xs-4">
           <div class="pros-cons-list">
+            
             <h3 class="reviews-subheading">Cons</h3>
+            
             <ul class="pros-cons-list-content">
               <li>Value for money (11)</li>
             </ul>
@@ -413,21 +468,21 @@
       <% @reviews.order("id desc").each do |r| %>
         <div class="row review-item">
           
-          <div class="col-md-4">
+          <div class="col-xs-4">
             <div class="row">
               
-              <div class="col-md-3">
+              <div class="col-xs-3">
                 <!--intentionally left empty-->
               </div>
               
               <%= link_to r.user, 
-                          class: "col-md-9 
+                          class: "col-xs-9 
                                   review-author 
                                   review-author-clickable 
                                   vertical-align" do %>
               
-                <div class="author-gravatar">
-                  <%= gravatar_for(r.user, size: 40) %>
+                <div class="author-avatar">
+                  <%= image_tag @vehicle.user.profile.avatar.url %>
                 </div>
                 
                 <span class="author-name"><%= r.user.name %></span>
@@ -435,7 +490,7 @@
             </div>
           </div>
           
-          <div class="col-md-8">
+          <div class="col-xs-8">
             <div class="review-container">
         
               <div class="review-rating">
@@ -472,11 +527,11 @@
 <div id="map-and-brochure">
   <div class="row map-and-brochure-content">
     
-    <div class="col-md-6" id="vehicle-map"></div>
+    <div class="col-xs-6" id="vehicle-map"></div>
     
     <%= link_to "http://www.jaguar.com/Images/ebrochure_f-type_17MY_tcm76-271771.pdf", 
                   target: "_blank" do %>
-      <div class="col-md-6 brochure-image">
+      <div class="col-xs-6 brochure-image">
         <div class="brochure-detail">
           <h2 class="brochure-detail-title">Jaguar F-Type</h1>
           <h3 class="brochure-detail-info">View Brochure</h5>
@@ -486,199 +541,7 @@
   </div>
 </div>
 
-<!--<div class="similar-vehicles">-->
-<!--  <div class="similar-vehicles-content">-->
-    
-<!--    <h2 class="similar-vehicles-title">Similar Vehicles</h2>-->
-    
-<!--    <h3 class="similar-vehicles-subheading">-->
-<!--      <(perc)= @vehicle.listing_name %> not quite right? Check out these similar -->
-<!--          vehicles.-->
-<!--    </h3>-->
-    
-<!--    <(perc)= render 'similar_vehicles_list' %>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!--<div class="related-discoveries">-->
-<!--  <div class="related-discoveries-content">-->
-    
-<!--    <h2 class="related-discoveries-title">Related Discoveries</h2>-->
-    
-<!--    <h3 class="related-discoveries-subheading">Discover top content</h3>-->
-    
-<!--    <= render 'related_discoveries_list' %>-->
-<!--  </div>-->
-<!--</div>-->
-
-<div class="modal" id="modal-gallery" role="dialog">
-  <div class="modal-carousel-container">
-		<div class="carousel" id="modal-carousel">
-      <div class="carousel-inner"></div>
-    </div>
-  </div>
-  
-  <div class="modal-caption-container">
-    
-    <div class="modal-details-section">
-      <div class="row vertical-align">
-        <div class="col-md-3">
-          <%= link_to gravatar_for(@vehicle.user, size: 40), @vehicle.user %>
-        </div>
-        <div class="col-md-9">
-          <h1 class="modal-details modal-title"><%= @vehicle.listing_name %></h1>
-          <h2 class="modal-details"><%= @vehicle.user.name %> · <span class="average-rating"></span></h2>
-        </div>
-      </div>
-      <h3 class="modal-caption">This is the brand new Model X!</h3>
-    </div>
-    
-    <div class="partition"></div>
-    
-    <div class="modal-details-section">
-      <h3 class="modal-details modal-title">Related Vehicles</h3>
-      <div class="modal-details-row">
-        <div class="modal-details-image related-vehicle-a", 
-             style="background-image: url('/assets/corvette.jpg')">
-          <i class="fa fa-camera-retro fa-lg hover-icon" aria-hidden="true"></i>
-        </div>
-        <div class="modal-details-image related-vehicle-b", 
-             style="background-image: url('/assets/aston-martin.jpg')">
-          <i class="fa fa-camera-retro fa-lg hover-icon" aria-hidden="true"></i>
-        </div>
-        <div class="modal-details-image related-vehicle-c", 
-             style="background-image: url('/assets/land-rover.jpg')">
-          <i class="fa fa-camera-retro fa-lg hover-icon" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    
-    <div class="partition"></div>
-    
-    <div class="modal-details-section">
-      <h3 class="modal-details modal-title">People Also Liked...</h3>
-      <div class="modal-details-row">
-        <div class="modal-details-image also-liked-a", 
-             style="background-image: url('/assets/mercedes.jpg')">
-          <i class="fa fa-camera-retro fa-lg hover-icon" aria-hidden="true"></i>
-        </div>
-        <div class="modal-details-image also-liked-b", 
-             style="background-image: url('/assets/porsche.jpg')">
-          <i class="fa fa-camera-retro fa-lg hover-icon" aria-hidden="true"></i>
-        </div>
-        <div class="modal-details-image also-liked-c", 
-             style="background-image: url('/assets/jaguar.jpg')">
-          <i class="fa fa-camera-retro fa-lg hover-icon" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    
-    <div class="partition"></div>
-    
-    <div class="modal-details-section">
-      <h3 class="modal-details modal-title">Related Products</h3>
-      <div class="modal-details-row">
-        <div class="modal-details-image related-product-a", 
-             style="background-image: url('/assets/splitter-blade.jpg')">
-          <i class="fa fa-camera-retro fa-lg hover-icon" aria-hidden="true"></i>
-        </div>
-        <div class="modal-details-image related-product-b", 
-             style="background-image: url('/assets/wheel.jpg')">
-          <i class="fa fa-camera-retro fa-lg hover-icon" aria-hidden="true"></i>
-        </div>
-        <div class="modal-details-image related-product-c", 
-             style="background-image: url('/assets/exhaust.jpg')">
-          <i class="fa fa-camera-retro fa-lg hover-icon" aria-hidden="true"></i>
-        </div>
-      </div>
-    </div>
-    
-    <div class="partition"></div>
-    
-    <div class="modal-details-section">
-      <h3 class="modal-details modal-title">
-        Questions About This Vehicle (<%= @vehicle.comments.count %>)
-      </h3>
-      <% if @vehicle.comments.any? %>
-        <ol class="comments">
-          <%= render @comments %>
-        </ol>
-      <% end %>
-      <% if logged_in? %>
-        <div class="comment_form">
-          <%= render 'comments/comment_form' %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  
-  <div class="modal-options-container">
-    <div class="modal-carousel-options">
-      <i class="fa fa-times fa-lg btn-modal" aria-hidden="true" 
-         data-dismiss="modal"></i>
-      <a href="#modal-carousel" data-slide="prev">
-        <i class="fa fa-chevron-up fa-lg btn-modal" aria-hidden="true"></i>
-      </a>
-      <a href="#modal-carousel" data-slide="next">
-        <i class="fa fa-chevron-down fa-lg btn-modal" aria-hidden="true"></i>
-      </a>
-      <div class="modal-options-text">
-        <div class="modal-show-info">
-          <p>Show Info +</p>
-        </div>
-        <div class="modal-image-number">
-          <p>1 / 8</p>
-        </div>
-      </div>
-    </div>
-    <div class="modal-social-media">
-      <i class="fa fa-facebook fa-lg btn-modal" aria-hidden="true"></i>
-      <i class="fa fa-twitter fa-lg btn-modal" aria-hidden="true"></i>
-    </div>
-  </div>
-</div>
-
-<div class="hidden" id="img-repo">
-	<div class="item" id="hero-listing-image">
-		<img class="modal-image" caption="This is the brand new Model A!" 
-		     src="<%= @photos[0].image.url() if @photos.length > 0 %>">
-	</div>
-	
-	<div class="item" id="hero-listing-image">
-		<img class="modal-image" caption="This is the brand new Model B!" 
-		     src="<%= @photos[1].image.url() if @photos.length > 1 %>">
-	</div>
-	
-	<div class="item" id="hero-listing-image">
-		<img class="modal-image" caption="This is the brand new Model C!" 
-		     src="<%= @photos[2].image.url() if @photos.length > 2 %>">>
-	</div>
-	
-	<div class="item" id="hero-listing-image">
-		<img class="modal-image" caption="This is the brand new Model D!" 
-		     src="<%= @photos[3].image.url() if @photos.length > 3 %>">
-	</div>
-	
-	<div class="item" id="hero-listing-image">
-		<img class="modal-image" caption="This is the brand new Model E!" 
-		     src="<%= @photos[4].image.url() if @photos.length > 4 %>">
-	</div>
-	
-	<div class="item" id="hero-listing-image">
-		<img class="modal-image" caption="This is the brand new Model F!" 
-		     src="<%= @photos[5].image.url() if @photos.length > 5 %>">
-	</div>
-	
-	<div class="item" id="hero-listing-image">
-		<img class="modal-image" caption="This is the brand new Model G!" 
-      	 src="<%= @photos[6].image.url() if @photos.length > 6 %>">
-	</div>
-	
-	<div class="item" id="hero-listing-image">
-		<img class="modal-image" caption="This is the brand new Model H!" 
-		     src="<%= @photos[7].image.url() if @photos.length > 7 %>">
-	</div>
-</div>
+<%= render 'modal' %>
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -686,8 +549,8 @@
     // parallax-scroll
     var scrollHeroImage = $('.hero-listing');
 
-    scrollHeroImage.parallaxScroll ({
-      friction: 0.3
+    scrollHeroImage.parallax ({
+      imageSrc: '<%= @photos[0].image.url() if @photos.length > 0 %>'
     });
     
     // fixed listing navbar
@@ -710,7 +573,7 @@
     });
     
     // smooth scroll navbar
-    var listingNavbarLink = $('.listing-navbar-nav nav a');
+    var listingNavbarLink = $('.listing-navbar li a');
     
     listingNavbarLink.click(function(evn){
         evn.preventDefault();
@@ -718,7 +581,7 @@
     });
     
     // active navbar anchors
-    var listingNavbarAnchor = $(".listing-navbar-nav nav li")
+    var listingNavbarAnchor = $(".listing-navbar li")
     var aChildren           = listingNavbarAnchor.children();
     var aArray              = [];
     
@@ -749,12 +612,23 @@
     });
     
     // image scaling
-    var avatar = $('.vehicle-overview-avatar');
+    var vehicleOverviewAvatar = $('.vehicle-overview-avatar');
+    var galleryPhotoContainer = $('.gallery-photo-container');
+    var authorAvatar          = $('.author-avatar');
     
-    avatar.imagefill(); 
+    vehicleOverviewAvatar.imagefill();
+    galleryPhotoContainer.imagefill();
+    authorAvatar.imagefill();
     
     // reviews
+    var userStars = $('#user_stars');
     var averageRating = $('.average-rating');
+  
+    userStars.raty({
+      path: '/assets',
+      scoreName: 'review[star]',
+      score: 1
+    });
     
     averageRating.raty({
       path: '/assets',
@@ -774,11 +648,6 @@
       evn.preventDefault();
       $('html, body').scrollTo(this.hash, this.hash); 
     });
-  
-    // gallery
-    var galleryPhotoContainer = $('.gallery-photo-container');
-    
-    galleryPhotoContainer.imagefill();
     
     // map
     handler = Gmaps.build('Google');
@@ -807,312 +676,37 @@
       handler.fitMapToBounds();
       handler.getMap().setZoom(15);
     });
-    
-    // modal
-    /* copy loaded gallery-photos into carousel */
-    $('.gallery-photo').on('load', function() {
-    }).each(function(i) {
-      if(this.complete) {
-      	var item = $('<div class="item"></div>');
-        var itemDiv = $(this).parents('div');
-        var caption = $(this).parent('a').attr("caption");
-        
-        item.attr("caption",caption);
-      	$(itemDiv.html()).appendTo(item);
-      	item.appendTo('.carousel-inner'); 
-        if (i==0){ // set first item active
-          item.addClass('active');
-          item.addClass('modal-image');
-        }
-      }
-    });
-    
-    /* activate the carousel */
-    $('#modal-carousel').carousel({interval:false});
-    
-    /* change modal caption when slide changes */
-    $('#modal-carousel').on('slid.bs.carousel', function () {
-      $('.modal-caption').html($(this).find('.active img').attr("caption"));
-    })
-    
-    /* when clicking a gallery-photo */
-    $('.gallery-photo').click(function(){
-      var idx = $(this).parents('div').index();
-    	var id = parseInt(idx);
-    	$('#modal-gallery').modal('show'); // show the modal
-    	
-    	var showInfo         = $('.modal-show-info');
-    	showInfo.height(optionsContainer.width());
-    	
-      $('#modal-carousel').carousel(id); // slide carousel to selected
-    });
-    
-    /* when clicking hero-image */
-    $(".hero-listing").click(function(){
-      var content = $(".carousel-inner");
-      var caption = $(".modal-caption");
-      var imageContainer   = $('.modal-carousel-container');
-      var captionContainer = $('.modal-caption-container');
-    
-      content.empty();  
-      caption.empty();
-    
-    	var id = this.id;  
-      var repo = $("#img-repo .item");
-      var repoCopy = repo.filter("#" + id).clone();
-      var active = repoCopy.first();
-    
-      active.addClass("active");
-      caption.html(active.find("img").attr("caption"));
-    	content.append(repoCopy);
-  
-      // show the modal
-    	$("#modal-gallery").modal("show");
-    });
-
-    var modal            = document.getElementById('vehicle-modal');
-    var modalHeroImage   = $('#hero-listing-image');
-    var body             = $('body')
-    var showInfo         = $('.modal-show-info');
-    var optionsContainer = $('.modal-options-text');
-    var close            = $('.fa-times');
-    var imageContainer   = $('.modal-carousel-container');
-    var captionContainer = $('.modal-caption-container');
-
-    // modalHeroImage.click(function() {
-      // modal.style.display = "block";
-      // body.css('overflow', 'hidden');
-      // showInfo.height(optionsContainer.width());
-    // });
-    
-    // close.click(function() {
-    //   modal.style.display = "none";
-      // body.css('overflow', 'scroll');
-    // });
-    
-    showInfo.click(function() {
-      imageContainer.addClass('modal-carousel-container-closed');
-      captionContainer.addClass('modal-caption-container-open');
-    });
   });
-    
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
         async defer></script>
 
-
-
+<!--<div class="similar-vehicles">-->
+<!--  <div class="similar-vehicles-content">-->
     
-
-
+<!--    <h2 class="similar-vehicles-title">Similar Vehicles</h2>-->
     
+<!--    <h3 class="similar-vehicles-subheading">-->
+<!--      <(perc)= @vehicle.listing_name %> not quite right? Check out these similar -->
+<!--          vehicles.-->
+<!--    </h3>-->
     
-
-
-
-
-    
-
-  
-  
-  
-  
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<(perc) if current_user != @vehicle.user %>-->
-        <!--  <(perc)= link_to "Contact Host", conversations_path(sender_id: current_user.id, recipient_id: @vehicle.user.id),-->
-        <!--      method: 'post', class: "btn btn-primary wide" (perc)>-->
-        <!--<(perc) end %>-->
-
-<!--<div>-->
-<!--  <h2>19 Reviews, (Rating)</h2>-->
-<!--  <p>Search Bar</p>-->
-<!--  <div class="row">-->
-<!--    <div class="col-md-3">-->
-<!--      Summary-->
-<!--    </div>-->
-<!--    <div class="col-md-9">-->
-<!--      Accuracy, (Rating)-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <ul>-->
-<!--    <li>Profiles</li>-->
-<!--  </ul>-->
-  
-<!--  <div>-->
-<!--    <h2>Your Host</h2>-->
-<!--    <col-md-3>Profile Photo</col-md-3>-->
-<!--    <col-md-9>Profile Info</col-md-9>-->
+<!--    <(perc)= render 'similar_vehicles_list' %>-->
 <!--  </div>-->
 <!--</div>-->
 
-<!--<div class="panel panel-default">-->
-<!--  <div class="panel-body">-->
+<!--<div class="related-discoveries">-->
+<!--  <div class="related-discoveries-content">-->
     
-    <!--Image-->
-<!--    <div class="row">-->
-<!--      <div class="col-md-12">-->
-<!--        <perc= image_tag @photos[0].image.url(), class: "img-responsive" if @photos.length > 0 %>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <br>-->
+<!--    <h2 class="related-discoveries-title">Related Discoveries</h2>-->
     
-    <!--Main Info-->
-<!--    <div class="row">-->
-<!--      <div class="col-md-8">-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-3 text-center">-->
-            <!--<(remember the percentage sign here)= image_tag avatar_url(@vehicle.user), class: "img-circle avatar-large" %>-->
-            <!--<br><br>-->
-<!--            <perc= @vehicle.user.name %>-->
-<!--          </div>-->
-          
-<!--          <div class="col-md-9">-->
-<!--            <h4><perc= @vehicle.listing_name %></h4>-->
-<!--            <perc= @vehicle.address %>-->
-            
-<!--            <div class="row text-center row-space-1">-->
-<!--              <div class="col-sm-3">-->
-<!--                <i class="fa fa-home fa-2x"></i>-->
-<!--              </div>-->
-<!--              <div class="col-sm-3">-->
-<!--                <i class="fa fa-users fa-2x"></i>-->
-<!--              </div>-->
-<!--              <div class="col-sm-3">-->
-<!--                <i class="fa fa-bed fa-2x"></i>-->
-<!--              </div>-->
-<!--              <div class="col-sm-3">-->
-<!--                <i class="fa fa-ship fa-2x"></i>-->
-<!--              </div>-->
-<!--            </div>-->
-            
-<!--            <div class="row text-center">-->
-<!--              <div class="col-sm-3">-->
-<!--                <perc= @vehicle.body_style %>-->
-<!--              </div>-->
-<!--              <div class="col-sm-3">-->
-<!--                <perc= @vehicle.seating_capacity %> <perc= @vehicle.seating_capacity > 1? "Passengers" : "Passenger" %>-->
-<!--              </div>-->
-<!--              <div class="col-sm-3">-->
-<!--                <perc= @vehicle.wheel %>-->
-<!--              </div>-->
-<!--              <div class="col-sm-3">-->
-<!--                <perc= @vehicle.tire %>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-      
-      
-<!--    </div>-->
+<!--    <h3 class="related-discoveries-subheading">Discover top content</h3>-->
     
-    <!--About-->
-<!--    <div class="row">-->
-<!--      <div class="col-md-12">-->
-<!--        <h2>About This Listing</h2>-->
-<!--        <p><perc= @vehicle.summary %></p>-->
-<!--      </div>-->
-<!--    </div>-->
-    
-    <!--Amenities-->
-<!--    <div class="row">-->
-<!--      <div class="col-md-2">-->
-<!--        <p>Amenities</p>-->
-<!--      </div>-->
-<!--      <div class="col-md-10">-->
-<!--        <div class="row">-->
-<!--          <div class="col-md-6">-->
-<!--            <ul class="amenities">-->
-              <!--<li class="<(remember the percentage sign here)= 'text-line-through' if !@vehicle.is_tv %>">TV</li>-->
-              <!--<li class="<(remember the percentage sign here)= 'text-line-through' if !@vehicle.is_kitchen %>">Kitchen</li>-->
-              <!--<li class="<(remember the percentage sign here)= 'text-line-through' if !@vehicle.is_internet %>">Internet</li>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--          <div class="col-md-6">-->
-<!--            <ul class="amenities">-->
-              <!--<li class="<(remember the percentage sign here)= 'text-line-through' if !@vehicle.is_heating %>">Heating</li>-->
-              <!--<li class="<(remember the percentage sign here)= 'text-line-through' if !@vehicle.is_air %>">Air Conditioning</li>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-    
-    <!--Carousel-->
-<!--    <div class="row">-->
-<!--      <div class="col-md-10 col-md-offset-1">-->
-        
-<!--        <div id="myCarousel" class="carousel slide" data-ride="carousel">-->
-          <!-- Indicators -->
-<!--          <perc if @photos %>-->
-<!--            <ol class="carousel-indicators">-->
-<!--              <perc @photos.each do |photo| %>-->
-<!--                <li data-target="#myCarousel" data-slide-to="<perc= photo.id %>"></li>-->
-<!--              <perc end %>-->
-<!--            </ol>-->
-<!--          <perc end %>-->
-        
-          <!-- Wrapper for slides -->
-<!--          <div class="carousel-inner" role="listbox">-->
-<!--            <perc if @photos %>-->
-<!--              <perc @photos.each do |photo| %>-->
-<!--                <div class="item <perc= 'active' if photo.id == @photos[0].id %>">-->
-<!--                  <perc= image_tag photo.image.url() %>-->
-<!--                </div>-->
-<!--              <perc end %>-->
-<!--            <perc end %>-->
-<!--          </div>-->
-        
-          <!-- Left and right controls -->
-<!--          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">-->
-<!--            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
-<!--            <span class="sr-only">Previous</span>-->
-<!--          </a>-->
-<!--          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">-->
-<!--            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
-<!--            <span class="sr-only">Next</span>-->
-<!--          </a>-->
-<!--        </div>-->
-        
-<!--      </div>-->
-<!--    </div>-->
-    
-<!--    <br>-->
-<!--    <hr>-->
+<!--    <= render 'related_discoveries_list' %>-->
+<!--  </div>-->
+<!--</div>-->
 
-<!--<script>-->
-<!--          $('#stars_<(perc)= r.id %>').raty({-->
-<!--            path: '/assets',-->
-<!--            readOnly: true,-->
-<!--            score: <(perc)= r.star %>-->
-<!--          });-->
-<!--        </script>-->
+<!--rating not showing up-->
+<!--reviews for seller, not vehicle-->
+<!--adjust getting images from matrix-->

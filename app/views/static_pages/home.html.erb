@@ -1,5 +1,4 @@
 <!--complete-->
-<!--convert mp4 to webm-->
 
 <header class="header-fixed-hidden">
   <%= render 'layouts/header_secondary' %>
@@ -9,22 +8,23 @@
   <%= render 'layouts/header_primary' %>
 </header>
 
-<div class="hero-primary">
+<div class="hero">
   
   <div class="hero-video-container">
     <video class="hero-video" 
            autoplay="autoplay" 
            loop="loop" 
-           volume="0" 
-           poster="/assets/hero-image.jpg">
+           volume="0">
+           <!--poster="/assets/hero-image.jpg"-->
       <source src="/assets/hero-video.mp4" type="video/mp4">
     </video>
   </div>
   
-  <div class="hero-primary-detail">
-    <h1 class="hero-primary-title">Find Your Vehicle</h1>
+  <div class="hero-detail">
     
-    <h2 class="hero-primary-info">
+    <h1 class="hero-title">Find Your Vehicle</h1>
+    
+    <h2 class="hero-info">
       Purchase unique vehicles from around the world
     </h2>
     
@@ -32,18 +32,21 @@
                  method: :get, 
                  class: "search-form-primary",
                  role: "search" do %>
+                 
       <div class="row search-form-primary-content">
         
-        <div class="col-md-10 search-bar-primary">
+        <div class="col-xs-10 search-bar-primary">
+          
           <i class="fa fa-search fa-lg search-bar-primary-icon" 
             aria-hidden="true"></i>
+            
           <%= text_field_tag :search, 
               params[:search], 
               placeholder: "Search by vehicle, dealership, or city", 
               class: "form-control search-form-control" %>
         </div>
         
-        <div class="col-md-2 search-button-primary">
+        <div class="col-xs-2 search-button-primary">
           <%= submit_tag "Search", class: "btn btn-search" %>
         </div>
       </div>
@@ -51,21 +54,21 @@
     
     <div class="row popular-searches">
       
-      <div class="col-md-4">
+      <div class="col-xs-4">
         <%= link_to '#feed', class: "popular-searches-link" do %>
           <i class="fa fa-image popular-searches-icon" aria-hidden="true"></i>
           Photos
         <% end %>
       </div>
       
-      <div class="col-md-4">
+      <div class="col-xs-4">
         <%= link_to '#feed', class: "popular-searches-link" do %>
           <i class="fa fa-users popular-searches-icon" aria-hidden="true"></i>
           Find Pros
         <% end %>
       </div>
       
-      <div class="col-md-4">
+      <div class="col-xs-4">
         <%= link_to '#feed', class: "popular-searches-link" do %>
           <i class="fa fa-tag popular-searches-icon" aria-hidden="true"></i>
           Products
@@ -77,27 +80,33 @@
 
 <div class="offerings">
   <div class="row offerings-content">
-    
-    <div class="col-md-4 offerings-detail">
-      <h3 class="offerings-title">Transparency</h3>
-      <h4 class="offerings-info">
-        View dealer reviews, price histories, and local-market price analyses
-      </h4>
-    </div>
-    
-    <div class="col-md-4 offerings-detail">
-      <h3 class="offerings-title">Detailed Guides</h3>
-      <h4 class="offerings-info">
-        Browse photo galleries and detailed guides
-      </h4>
-    </div>
-    
-    <div class="col-md-4 offerings-detail">
-      <h3 class="offerings-title">Stress-free Purchasing</h3>
-      <h4 class="offerings-info">
-        Our expert consultants will take care of everything for you
-      </h4>
-    </div>
+
+      <div class="col-xs-4 offerings-detail">
+        
+        <h3 class="offerings-title">Transparency</h3>
+        
+        <h4 class="offerings-info">
+          View dealer reviews, price histories, and local-market price analyses
+        </h4>
+      </div>
+      
+      <div class="col-xs-4 offerings-detail">
+        
+        <h3 class="offerings-title">Detailed Guides</h3>
+        
+        <h4 class="offerings-info">
+          Browse photo galleries and detailed guides
+        </h4>
+      </div>
+      
+      <div class="col-xs-4 offerings-detail">
+        
+        <h3 class="offerings-title">Stress-free Purchasing</h3>
+        
+        <h4 class="offerings-info">
+          Our expert consultants will take care of everything for you
+        </h4>
+      </div>
   </div>
 </div>
 
@@ -109,32 +118,35 @@
 </div>
 
 <div class="press">
+  
   <h3 class="press-title">As seen on</h3>
   
-  <div class="row press-logos">
+  <div class="press-logos">
+    <div class="row">
     
-    <div class="col-md-3">
-      <%= link_to image_tag("financial-times.png", size: "144x64"), 
-                  'http://www.ft.com/home/uk', 
-                  target: "_blank" %>
-    </div>
-    
-    <div class="col-md-3">
-      <%= link_to image_tag("forbes.png", size: "144x64"), 
-                  'http://www.forbes.com/', 
-                  target: "_blank" %>
-    </div>
-    
-    <div class="col-md-3">
-      <%= link_to image_tag("tech-crunch.png", size: "144x64"), 
-                  'https://techcrunch.com/', 
-                  target: "_blank" %>
-    </div>
-    
-    <div class="col-md-3">
-      <%= link_to image_tag("bloomberg.png", size: "144x64"), 
-                  'http://www.bloomberg.com/', 
-                  target: "_blank" %>    
+      <div class="col-xs-3">
+        <%= link_to image_tag("financial-times.png", size: "144x64"), 
+                    'http://www.ft.com/home/uk', 
+                    target: "_blank" %>
+      </div>
+      
+      <div class="col-xs-3">
+        <%= link_to image_tag("forbes.png", size: "144x64"), 
+                    'http://www.forbes.com/', 
+                    target: "_blank" %>
+      </div>
+      
+      <div class="col-xs-3">
+        <%= link_to image_tag("tech-crunch.png", size: "144x64"), 
+                    'https://techcrunch.com/', 
+                    target: "_blank" %>
+      </div>
+      
+      <div class="col-xs-3">
+        <%= link_to image_tag("bloomberg.png", size: "144x64"), 
+                    'http://www.bloomberg.com/', 
+                    target: "_blank" %>    
+      </div>
     </div>
   </div>
 </div>
@@ -164,3 +176,5 @@
     });
   })
 </script>
+
+<!--After Launch: Convert mp4 to webm; Insert video-replacement photo-->

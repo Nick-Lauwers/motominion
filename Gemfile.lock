@@ -80,6 +80,10 @@ GEM
     daemons (1.2.3)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    dotenv (2.1.1)
+    dotenv-rails (2.1.1)
+      dotenv (= 2.1.1)
+      railties (>= 4.0, < 5.1)
     elasticsearch (2.0.0)
       elasticsearch-api (= 2.0.0)
       elasticsearch-transport (= 2.0.0)
@@ -261,6 +265,7 @@ GEM
       jquery-ui-rails (= 4.0.3)
       railties (>= 3.1.0)
     json (1.8.3)
+    jwt (1.5.6)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
@@ -285,6 +290,7 @@ GEM
       minitest (>= 5.0)
       ruby-progressbar
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     nenv (0.3.0)
     nokogiri (1.6.7.2)
@@ -292,6 +298,20 @@ GEM
     notiffany (0.0.8)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    oauth2 (1.2.0)
+      faraday (>= 0.8, < 0.10)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
+    omniauth (1.3.1)
+      hashie (>= 1.2, < 4)
+      rack (>= 1.0, < 3)
+    omniauth-facebook (4.0.0)
+      omniauth-oauth2 (~> 1.2)
+    omniauth-oauth2 (1.4.0)
+      oauth2 (~> 1.0)
+      omniauth (~> 1.2)
     paperclip (5.0.0.beta2)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -299,6 +319,10 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
     pg (0.17.1)
+    phony (2.15.36)
+    phony_rails (0.14.4)
+      activesupport (>= 3.0)
+      phony (~> 2.15)
     private_pub (1.0.3)
       faye
     pry (0.10.3)
@@ -407,6 +431,7 @@ DEPENDENCIES
   byebug (= 3.4.0)
   carrierwave (= 0.10.0)
   coffee-rails (= 4.1.0)
+  dotenv-rails
   faker (= 1.4.2)
   fog (= 1.36.0)
   geocoder
@@ -418,8 +443,11 @@ DEPENDENCIES
   mini_backtrace (= 0.1.3)
   mini_magick (= 3.8.0)
   minitest-reporters (= 1.0.5)
+  omniauth
+  omniauth-facebook
   paperclip
   pg (= 0.17.1)
+  phony_rails
   private_pub
   puma (= 3.1.0)
   rails (= 4.2.2)

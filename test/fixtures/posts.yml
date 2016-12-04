@@ -1,0 +1,14 @@
+improvement:
+  title: "Suggested Improvement"
+  content: "Please add a like button to each post."
+  created_at: <%= 10.minutes.ago %>
+  
+question:
+  title: "Vehicle Type"
+  content: "What type of vehicle is this?"
+  created_at: <%= 2.hours.ago %>
+  
+most_recent:
+  title: "Test"
+  content: "Writing a short test."
+  created_at: <%= Time.zone.now %>

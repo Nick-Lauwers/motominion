@@ -1,3 +1,5 @@
+# complete
+
 require 'test_helper'
 
 class AppointmentsControllerTest < ActionController::TestCase
@@ -18,13 +20,13 @@ class AppointmentsControllerTest < ActionController::TestCase
   
   test "should redirect destroy when not logged in" do
     assert_no_difference 'Appointment.count' do
-      post :destroy, vehicle_id: @vehicle.id, id: @appointment
+      delete :destroy, vehicle_id: @vehicle.id, id: @appointment
     end
     assert_not flash.empty?
     assert_redirected_to login_url
   end
   
-  test "should redirect garage when not logged in" do
+  test "should redirect test drives when not logged in" do
     get :test_drives
     assert_not flash.empty?
     assert_redirected_to login_url

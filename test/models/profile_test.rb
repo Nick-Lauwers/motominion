@@ -29,12 +29,4 @@ class ProfileTest < ActiveSupport::TestCase
     @profile.work = "a" * 31
     assert_not @profile.valid?
   end
-  
-  test "associated profile should be destroyed" do
-    @user.save
-    @user.create_profile!(description: "Lorem ipsum")
-    assert_difference 'Profile.count', -1 do
-      @user.destroy
-    end
-  end
 end

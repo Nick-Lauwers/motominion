@@ -1,3 +1,5 @@
+# complete
+
 require 'test_helper'
 
 class TestDrivesTest < ActionDispatch::IntegrationTest
@@ -15,6 +17,5 @@ class TestDrivesTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", vehicles_path
     assert_select "a[href=?]", test_drives_path
     assert_select "a[href=?]", customers_path
-    # assert_match @user.appointments.count.to_s, response.body
   end
 end

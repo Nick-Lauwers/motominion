@@ -1,19 +1,26 @@
-# change redirect_to location
+# complete
 
 class EnquiriesController < ApplicationController
-
+  
+  def new
+    @enquiry = Enquiry.new
+  end
+  
   def create
+    
     @enquiry = Enquiry.new(enquiry_params)
+    
     if @enquiry.save
-      flash[:success] = "Message sent!"
+      flash[:info] = "Message sent!"
       redirect_to root_url
+      
     else
-      render 'static_pages/home'
+      render 'new'
     end
   end
   
   private
-
+  
     def enquiry_params
       params.require(:enquiry).permit(:name, :email, :phone_number, :category, 
                                       :content)

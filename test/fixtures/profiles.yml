@@ -1,3 +1,9 @@
+# complete
+
 nicholas_profile:
-  description: Lorem Ipsum
+  phone_number: "+18005555555"
+  residence: "Detroit, MI"
+  school: "University of Michigan"
+  work: "Ford Motor Company"
+  description: "Lorem Ipsum"
   user: nicholas

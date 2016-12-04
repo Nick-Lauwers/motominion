@@ -1,9 +1,17 @@
+# complete
+
 require 'test_helper'
 
 class VehiclesControllerTest < ActionController::TestCase
 
   def setup
     @vehicle = vehicles(:avalanche)
+  end
+  
+  test "should redirect new when not logged in" do
+    get :new
+    assert_not flash.empty?
+    assert_redirected_to login_url
   end
   
   test "should redirect create when not logged in" do
@@ -46,18 +54,6 @@ class VehiclesControllerTest < ActionController::TestCase
     assert_redirected_to login_url
   end
   
-  test "should redirect index when not logged in" do
-    get :index, id: @vehicle
-    assert_not flash.empty?
-    assert_redirected_to login_url
-  end
-  
-  test "should redirect new when not logged in" do
-    get :new
-    assert_not flash.empty?
-    assert_redirected_to login_url
-  end
-  
   test "should redirect edit when not logged in" do
     get :edit, id: @vehicle
     assert_not flash.empty?
@@ -66,6 +62,12 @@ class VehiclesControllerTest < ActionController::TestCase
   
   test "should redirect update when not logged in" do
     get :update, id: @vehicle
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
+  
+  test "should redirect index when not logged in" do
+    get :index, id: @vehicle
     assert_not flash.empty?
     assert_redirected_to login_url
   end

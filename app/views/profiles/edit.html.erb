@@ -1,13 +1,13 @@
 <!--complete-->
 <!--buttons should not be used to issue get requests-->
 
-<% provide(:title, "Profile") %>
+<% provide(:title, "Profile Update") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<%= render 'shared/hero_secondary' %>
+<%= render 'layouts/hero_backend' %>
 
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
@@ -25,18 +25,18 @@
   </div>
 </nav>
 
-<div class="profile-update">
-  <div class="profile-update-content">
+<div class="backend">
+  <div class="backend-content">
     <div class="row">
     
-      <div class="col-md-4">
-        <div class="profile-instructions">
+      <div class="col-xs-4">
+        <div class="backend-instructions">
           
-          <h2 class="profile-instructions-title">
+          <h2 class="backend-instructions-title">
             Profile
           </h2>
           
-          <p class="profile-instructions-info">
+          <p class="backend-instructions-info">
             Dealership.com is built on relationships. Help other people get to 
             know you. Share your favorite car memory.
           </p>
@@ -48,7 +48,7 @@
         </div>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-xs-8">
         <div class="profile-form">
           <%= render 'edit_form' %>
         </div>
@@ -56,3 +56,5 @@
     </div>
   </div>
 </div>
+
+<!--https://rubygems.org/gems/validates_phone_number/versions/2.0.1-->

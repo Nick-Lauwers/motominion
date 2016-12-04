@@ -1,0 +1,42 @@
+<% @posts.each do |post| %>
+
+  
+  
+    <li id="post-<%= post.id %>" class="post-item">
+      <div class="row vertical-align post-header">
+        
+        <div class="col-md-2">
+          <div class="post-avatar">
+            <%= link_to profile_path(post.user), method: :get do %>
+              <%= image_tag post.user.profile.avatar.url %>
+            <% end %>
+          </div>
+        </div>
+        
+        <div class="col-md-10">
+          <%= link_to post do %>
+          
+            <h2 class="post-title"><%= post.title %></h2>
+            
+            <span class="post-info">
+              <%= post.user.name %> · 
+              <%= time_ago_in_words(post.created_at) %> ago 
+            </span>
+          <% end %>
+        </div>
+      </div>
+      
+      <p class="post-content"><%= post.content %></p>
+    </li>
+  
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    // image scaling
+    var avatar = $('.post-avatar');
+        
+    avatar.imagefill(); 
+  })
+</script>

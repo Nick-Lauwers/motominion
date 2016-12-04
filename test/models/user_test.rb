@@ -9,6 +9,7 @@ class UserTest < ActiveSupport::TestCase
                         password_confirmation: "foobar",
                         is_subscribed:         false)
     @vehicle = vehicles(:avalanche)
+    @post    = posts(:improvement)
     @comment = comments(:cost)
   end
   
@@ -82,6 +83,21 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?(:remember, '')
   end
   
+  test "associated profile should be destroyed" do
+    @user.save
+    assert_difference 'Profile.count', -1 do
+      @user.destroy
+    end
+  end
+  
+  test "associated wishlist should be destroyed" do
+    @user.save
+    @user.wishlist.create!
+    assert_difference 'Wishlist.count', -1 do
+      @user.destroy
+    end
+  end
+  
   test "associated vehicles should be destroyed" do
     @user.save
     @user.vehicles.create!(vehicle_condition:           "New",
@@ -112,6 +128,24 @@ class UserTest < ActiveSupport::TestCase
                            is_tow_package:              false,
                            is_autonomy:                 false)
     assert_difference 'Vehicle.count', -1 do
+      @user.destroy
+    end
+  end
+  
+  test "associated posts should be destroyed" do
+    @user.save
+    @user.posts.create!(title:   "Lorem ipsum",
+                        content: "Lorem ipsum")
+    assert_difference 'Post.count', -1 do
+      @user.destroy
+    end
+  end
+  
+  test "associated responses should be destroyed" do
+    @user.save
+    @user.responses.create!(comment: "Lorem ipsum", 
+                            post_id: @post.id)
+    assert_difference 'Response.count', -1 do
       @user.destroy
     end
   end

@@ -1,8 +1,10 @@
+<!--complete-->
+
 <% if message.user_id == current_user.id %>
 
   <div class="row">
   
-    <div class="col-md-10">
+    <div class="col-xs-10">
       <div class="message-container">
         
         <p class="message-comment">
@@ -15,7 +17,7 @@
       </div>
     </div>
     
-    <div class="col-md-2">
+    <div class="col-xs-2">
       <div class="message-avatar message-avatar-right">
         <%= image_tag current_user.profile.avatar.url %>
       </div>
@@ -26,13 +28,13 @@
   
   <div class="row">
   
-    <div class="col-md-2">
+    <div class="col-xs-2">
       <div class="message-avatar message-avatar-left">
         <%= image_tag @other.profile.avatar.url %>
       </div>
     </div>
     
-    <div class="col-md-10">
+    <div class="col-xs-10">
       
       <div class="message-container">
         
@@ -53,8 +55,8 @@
   $(document).ready(function() {
     
     // image scaling
-    var threadAvatar = $('.thread-avatar');
+    var messageAvatar = $('.message-avatar');
     
-    threadAvatar.imagefill();
+    messageAvatar.imagefill();
   })
 </script>

@@ -1,3 +1,5 @@
+# complete
+
 class ConversationsController < ApplicationController
 
   def index
@@ -26,3 +28,5 @@ class ConversationsController < ApplicationController
       params.permit(:sender_id, :recipient_id)
     end
 end
+
+# ensure that user is logged in

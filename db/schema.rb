@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018020357) do
+ActiveRecord::Schema.define(version: 20161202141726) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -79,7 +79,18 @@ ActiveRecord::Schema.define(version: 20161018020357) do
 
   add_index "photos", ["vehicle_id"], name: "index_photos_on_vehicle_id"
 
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
   create_table "profiles", force: :cascade do |t|
+    t.string   "phone_number"
     t.string   "residence"
     t.string   "school"
     t.string   "work"
@@ -108,14 +119,26 @@ ActiveRecord::Schema.define(version: 20161018020357) do
   add_index "replies", ["comment_id"], name: "index_replies_on_comment_id"
   add_index "replies", ["user_id"], name: "index_replies_on_user_id"
 
+  create_table "responses", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "responses", ["post_id", "created_at"], name: "index_responses_on_post_id_and_created_at"
+  add_index "responses", ["post_id"], name: "index_responses_on_post_id"
+  add_index "responses", ["user_id"], name: "index_responses_on_user_id"
+
   create_table "reviews", force: :cascade do |t|
     t.string   "title"
     t.text     "comment"
-    t.integer  "star",       default: 1
+    t.integer  "star"
     t.integer  "vehicle_id"
     t.integer  "user_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
@@ -124,7 +147,6 @@ ActiveRecord::Schema.define(version: 20161018020357) do
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
-    t.text     "description"
     t.boolean  "is_subscribed"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
@@ -136,6 +158,9 @@ ActiveRecord::Schema.define(version: 20161018020357) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -174,5 +199,23 @@ ActiveRecord::Schema.define(version: 20161018020357) do
 
   add_index "vehicles", ["user_id", "created_at"], name: "index_vehicles_on_user_id_and_created_at"
   add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id"
+
+  create_table "wishlist_items", force: :cascade do |t|
+    t.integer  "wishlist_id"
+    t.integer  "vehicle_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "wishlist_items", ["vehicle_id"], name: "index_wishlist_items_on_vehicle_id"
+  add_index "wishlist_items", ["wishlist_id"], name: "index_wishlist_items_on_wishlist_id"
+
+  create_table "wishlists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "wishlists", ["user_id"], name: "index_wishlists_on_user_id"
 
 end

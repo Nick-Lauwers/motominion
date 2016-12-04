@@ -3,33 +3,40 @@
 <div class="header-secondary">
   <nav class="navbar">
   
-    <%= link_to "DEALERSHIP.COM", root_path, class: "logo" %>
+    <%= link_to "DEALERSHIP.COM", root_path, class: "logo navbar-left" %>
   
     <ul class="nav navbar-nav navbar-right">
       
       <% if logged_in? %>
+      
         <li>
           <i class="fa fa-search fa-lg header-icon" 
              aria-hidden="true"></i>
         </li>
         
+        <li><%= link_to "List",     new_vehicle_path %></li>
+        
         <li><%= link_to "Messages", conversations_path %></li>
         
         <li class="dropdown">
+          
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
              Help <b class="caret"></b>
           </a>
+          
           <ul class="dropdown-menu">
             <li><%= link_to "How It Works", how_it_works_path %></li>
             <li><%= link_to "Help Center",  help_path %></li>
-            <li><%= link_to "Contact Us",   contact_path %></li>
+            <li><%= link_to "Contact Us",   new_enquiry_path %></li>
           </ul>
         </li>
         
         <li class="dropdown">
+          
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
             <%= current_user.name %><b class="caret"></b>
           </a>
+          
           <ul class="dropdown-menu">
             <li><%= link_to "Profile",  current_user %></li>
             <li><%= link_to "Settings", edit_user_path(current_user) %></li>
@@ -38,24 +45,29 @@
         </li>
         
       <% else %>
+      
         <li>
           <i class="fa fa-search fa-lg header-icon" aria-hidden="true"></i>
         </li>
         
+        <li><%= link_to "List", new_vehicle_path %></li>
+        
         <li class="dropdown">
+          
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
              Help <b class="caret"></b>
           </a>
+          
           <ul class="dropdown-menu">
             <li><%= link_to "How It Works", how_it_works_path %></li>
             <li><%= link_to "Help Center",  help_path %></li>
-            <li><%= link_to "Contact Us",   contact_path %></li>
+            <li><%= link_to "Contact Us",   new_enquiry_path %></li>
           </ul>
         </li>
         
         <li><%= link_to "Sign Up", signup_path %></li>
+        
         <li><%= link_to "Log In",  login_path %></li>
-        <li><%= link_to "Sell",    new_vehicle_path %></li>
       <% end %>
     </ul>
 
@@ -63,22 +75,25 @@
                  method: :get, 
                  class: "search-form-secondary",
                  role: "search" do %>
+                 
       <div class="row search-form-secondary-content">
 
-          <div class="col-md-9 search-bar-secondary">
-            <i class="fa fa-search fa-lg search-bar-secondary-icon" 
-               aria-hidden="true"></i>
-            <i class="fa fa-times fa-lg search-bar-secondary-close" 
-               aria-hidden="true"></i>
-            <%= text_field_tag :search, 
-                params[:search],
-                placeholder: "Search by vehicle, dealership, or city", 
-                class: "form-control header-form-control" %>
-          </div>
+        <div class="col-xs-9 search-bar-secondary">
           
-          <div class="col-md-3 search-button-secondary">
-            <%= submit_tag "Search", class: "btn btn-search" %>
-          </div>
+          <i class="fa fa-search fa-lg search-bar-secondary-icon" 
+             aria-hidden="true"></i>
+             
+          <i class="fa fa-times fa-lg search-bar-secondary-close" 
+             aria-hidden="true"></i>
+             
+          <%= text_field_tag :search, 
+              params[:search],
+              placeholder: "Search by vehicle, dealership, or city", 
+              class: "form-control header-form-control" %>
+        </div>
+          
+        <div class="col-xs-3 search-button-secondary">
+          <%= submit_tag "Search", class: "btn btn-search" %>
         </div>
       </div>
     <% end %>

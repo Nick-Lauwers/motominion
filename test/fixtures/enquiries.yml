@@ -1,0 +1,23 @@
+listing:
+  name: "Nicholas Example"
+  email: "nicholas@example.com"
+  phone_number: "(555) 555-5555"
+  category: "List your vehicle"
+  content: "How can I list a vehicle?"
+  created_at: <%= 10.minutes.ago %>
+
+event:
+  name: "Nicholas Example"
+  email: "nicholas@example.com"
+  phone_number: "(555) 555-5555"
+  category: "Join one of our events"
+  content: "I would like to join an event!"
+  created_at: <%= 2.years.ago %>
+  
+most_recent:
+  name: "Nicholas Example"
+  email: "nicholas@example.com"
+  phone_number: "(555) 555-5555"
+  category: "Need help purchasing"
+  content: "Writing a short test."
+  created_at: <%= Time.zone.now %>

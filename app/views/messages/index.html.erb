@@ -1,11 +1,4 @@
 <!--complete-->
-<!--must login iot access-->
-<!--change title-->
-<!--add average rating-->
-<!--switch var in javascript to new formatting-->
-<!--report user/message-->
-<!--link-to alignment/formatting-->
-<!--why 3.5em for top an bottom padding-->
 
 <% provide(:title, "Inbox") %>
 
@@ -13,17 +6,13 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<%= render 'shared/hero_secondary' %>
+<%= render 'layouts/hero_backend' %>
 
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      <li>
-        <%= link_to "Inbox",       
-                    conversations_path, 
-                    class: "nav-active" %>
-      </li>
-      <li><%= link_to "Garage",      vehicles_path %></li>
+      <li><%= link_to "Inbox",  conversations_path, class: "nav-active" %></li>
+      <li><%= link_to "Garage", vehicles_path %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
       <li><%= link_to "Profile", edit_profile_path(current_user.profile) %></li>
       <li><%= link_to "Account", edit_user_path(current_user) %></li>
@@ -31,11 +20,11 @@
   </div>
 </nav>
 
-<div class="messages">
-  <div class="messages-content">
+<div class="backend">
+  <div class="backend-content">
     <div class="row">
       
-      <div class="col-md-4">
+      <div class="col-xs-4">
         <div class="messages-info">
           
           <div class="messages-info-avatar">
@@ -62,48 +51,9 @@
         </div>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-xs-8">
         
-        <%= form_for([@conversation, @conversation.messages.new], 
-                     remote: true) do |f| %>
-                     
-          <div class="row">
-            
-            <div class="col-md-10">
-              <div class="message-container">
-                
-                <%= f.text_area :content, 
-                    rows: 3,
-                    placeholder: "Send a personal message.", 
-                    class: "form-control message-form-control" %>
-                    
-                <%= f.hidden_field :user_id, value: current_user.id %>
-                
-                <table class="message-detail">
-                  <tr>
-                    
-                    <td class="message-date-container">
-                      <span class="message-date">
-                        <%= Time.now.strftime("%D") %>
-                      </span>
-                    </td>
-                    
-                    <td>
-                      <%= f.submit "Deliver my message", 
-                                   class: "message-post" %>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-            
-            <div class="col-md-2">
-              <div class="message-avatar message-avatar-right">
-                <%= image_tag current_user.profile.avatar.url %>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        <%= render 'form' %>
         
         <div id="chat">
           <%= render @messages, locals: { conversation: @conversation } %>
@@ -120,11 +70,9 @@
     
     // image scaling
     var messagesInfoAvatar = $('.messages-info-avatar');
-    var messageAvatar      = $('.message-avatar');
-    
+
     messagesInfoAvatar.imagefill();
-    messageAvatar.imagefill();
-    
+
     // expand description
     var description   = $('.messages-info-description');
     var expand        = $('.messages-info-expand');
@@ -153,3 +101,11 @@
     });
   })
 </script>
+
+<!--must login iot access-->
+<!--change title-->
+<!--add average rating-->
+<!--switch var in javascript to new formatting-->
+<!--report user/message-->
+<!--link-to alignment/formatting-->
+<!--why 3.5em for top and bottom padding-->

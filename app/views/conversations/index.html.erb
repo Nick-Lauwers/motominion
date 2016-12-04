@@ -1,7 +1,4 @@
 <!--complete-->
-<!--must login iot access-->
-<!--what if there are no messages-->
-<!--number should only indicate new messages-->
 
 <% provide(:title, "Inbox") %>
 
@@ -9,48 +6,41 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<%= render 'shared/hero_secondary' %>
+<%= render 'layouts/hero_backend' %>
 
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      <li>
-        <%= link_to "Inbox",       
-            conversations_path, 
-            class: "nav-active" %>
-      </li>
-      <li><%= link_to "Garage",      vehicles_path %></li>
+      <li><%= link_to "Inbox",  conversations_path, class: "nav-active" %></li>
+      <li><%= link_to "Garage", vehicles_path %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li>
-        <%= link_to "Profile", 
-            edit_profile_path(current_user.profile) %>
-      </li>
-      <li><%= link_to "Account",     edit_user_path(current_user) %></li>
+      <li><%= link_to "Profile", edit_profile_path(current_user.profile) %></li>
+      <li><%= link_to "Account", edit_user_path(current_user) %></li>
     </ul>
   </div>
 </nav>
 
-<div class="conversations">
-  <div class="conversations-content">
+<div class="backend">
+  <div class="backend-content">
     <div class="row">
       
-      <div class="col-md-4">
-        <div class="conversations-instructions">
+      <div class="col-xs-4">
+        <div class="backend-instructions">
           
-          <h2 class="conversations-instructions-title">
+          <h2 class="backend-instructions-title">
             Messages (<%= @conversations.count %>)
           </h2>
           
-          <p class="conversations-instructions-info">
+          <p class="backend-instructions-info">
             When customers contact you or send you test drive requests, you will
             see their messages here.
           </p>
         </div>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-xs-8">
         <% if @conversations.any? %>
-          <ul class="conversations-list">
+          <ul class="backend-list">
             <%= render @conversations %>
           </ul>
         <% end %>
@@ -58,3 +48,7 @@
     </div>
   </div>
 </div>
+
+<!--must login iot access-->
+<!--what if there are no messages-->
+<!--number should only indicate new messages-->

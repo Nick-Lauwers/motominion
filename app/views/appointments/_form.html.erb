@@ -4,14 +4,17 @@
 
   <div class="row appointment-content">
 
-    <div class="col-md-8 appointment-select">
+    <div class="col-xs-8">
       <div class="form-element-secondary">
+        
         <%= f.text_field :date, 
             readonly: 'true', 
             placeholder: "Test Drive", 
-            class: 'form-control form-control-primary' %>
+            class: 'form-control form-control-secondary' %>
+            
         <i class="fa fa-calendar-o fa-lg form-icon" 
            aria-hidden="true"></i>
+           
         <i class="fa fa-caret-down fa-lg form-caret" 
            aria-hidden="true"></i>
       </div>
@@ -19,7 +22,7 @@
       <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
     </div>
     
-    <div class="col-md-4 appointment-button">
+    <div class="col-xs-4">
       <%= f.submit "Book!", class: "btn btn-tertiary" %>
     </div>
   </div>
@@ -32,7 +35,7 @@
 
   $(function() {
     appointmentDate.datepicker({
-      dateformat: 'dd-mm-yy'
+      dateFormat: 'dd-mm-yy'
     });
   });
 </script>

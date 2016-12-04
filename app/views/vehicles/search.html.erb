@@ -1,15 +1,6 @@
 <!--complete-->
 
-<!--https://www.sitepoint.com/full-text-search-rails-elasticsearch/-->
-<!--http://railscasts.com/episodes/240-search-sort-paginate-with-ajax?view=asciicast-->
-<!--https://www.toptal.com/ruby-on-rails/elasticsearch-for-ruby-on-rails-an-introduction-to-chewy-->
-
-<!--search functionality, title modification-->
-<!--should or should not be located in static_pages-->
-<!--login with google-->
-
-<!--< provide(:title, session[:vehicle_search]) %>-->
-<% provide(:title, "Search") %>
+<% provide(:title, "Vehicle Search") %>
 
 <header class="header-fixed-visible">
   <%= render 'layouts/header_secondary' %>
@@ -17,10 +8,12 @@
 
 <div class="search-summary">
   <div class="search-summary-content">
-    <!--<h1 class="search-summary-title"><= session[:vehicle_search] %></h1>-->
-    <h1 class="search-summary-title">Search</h1>
+    
+    <h1 class="search-summary-title"><%= params[:search] %></h1>
+    
     <h2 class="search-summary-info">
-      Purchase one of 5360+ vehicles at 25+ dealerships
+      Select from <%= pluralize(@vehicles.count, "vehicle") %> from across the 
+      Midwest
     </h2>
   </div>
 </div>
@@ -31,13 +24,13 @@
   
   <div class="search-results-background">
     <div class="search-list-container">
-      <div class="row search-list">
+      <div class="row">
         
-        <div class="col-md-4">
+        <div class="col-xs-4">
           <!--intentionally left empty-->
         </div>
         
-        <div class="col-md-8 search-list-content">
+        <div class="col-xs-8 search-list-content">
           
           <div class="search-filters">
             <%= render 'search_filters' %>
@@ -46,18 +39,24 @@
           <div class="search-items-container">
             
             <div class="filter-controls">
+              
               <button class="btn-filters">
-                <i class="fa fa-sliders fa-lg filters-icon" aria-hidden="true"></i>Filters
+                <i class="fa fa-sliders fa-lg filters-icon" 
+                   aria-hidden="true"></i>Filters
               </button>
               
               <div class="form-group form-group-primary search-sort">
+                
                 <label for="sort">Sort By:</label>
+                
                 <div class="form-element-primary">
+                  
                   <select class="form-control search-sort-form-control" id="sort">
                     <option><%= link_to "Nearest", '#' %></option>
                     <option><%= link_to "Most Popular", '#' %></option>
                     <option><%= link_to "Lowest Price", :sort => "price" %></option>
                   </select>
+                  
                   <i class="fa fa-caret-down fa-lg form-caret" 
                      aria-hidden="true"></i>
                 </div>
@@ -69,26 +68,30 @@
             </ul>
             
             <div class="search-advice">
-              <div class="row search-advice-content vertical-align">
-              
-                <div class="col-md-2">
-                  <i class="fa fa-comments fa-4x advice-icon" aria-hidden="true"></i>
-                </div>
-                
-                <div class="col-md-7">
-                  <h2 class="advice-title">
-                    Need free advice? Talk to our team!
-                  </h2>
-                  <p class="advice-info">
-                    Our experts can help you find the perfect vehicle.
-                  </p>
-                </div>
-                
-                <div class="col-md-3 advice-contact">
-                  <%= button_to "Get In Touch", 
-                      contact_path, 
-                      class: "btn btn-green", 
-                      method: :get %>
+              <div class="search-advice-content">
+                <div class="row vertical-align">
+
+                  <div class="col-xs-2">
+                    <i class="fa fa-comments fa-4x advice-icon" aria-hidden="true"></i>
+                  </div>
+                  
+                  <div class="col-xs-7">
+                    
+                    <h2 class="advice-title">
+                      Need free advice? Talk to our team!
+                    </h2>
+                    
+                    <p class="advice-info">
+                      Our experts can help you find the perfect vehicle.
+                    </p>
+                  </div>
+                  
+                  <div class="col-xs-3">
+                    <%= button_to "Get In Touch", 
+                        new_enquiry_path, 
+                        class: "btn btn-green", 
+                        method: :get %>
+                  </div>
                 </div>
               </div>
             </div>
@@ -122,8 +125,8 @@
     var searchItemsContainer = $('.search-items-container')
 
     filtersButton.click(function() {
-      searchFilters.slideToggle();
-      searchItemsContainer.slideToggle();
+      // searchFilters.slideToggle();
+      // searchItemsContainer.slideToggle();
     });
     
     cancelButton.click(function() {
@@ -210,4 +213,5 @@
   });
 </script>
 
+<!--title modification-->
 <!--https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html-->

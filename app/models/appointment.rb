@@ -1,4 +1,7 @@
+# complete
+
 class Appointment < ActiveRecord::Base
+  
   belongs_to :user
   belongs_to :vehicle
   
@@ -6,3 +9,5 @@ class Appointment < ActiveRecord::Base
   
   validates :user_id, :vehicle_id, :date, presence: true
 end
+
+# ensure that default scope is correct

@@ -1,11 +1,12 @@
 <!--complete-->
+<!--are these ordered based on most recent?-->
 
 <% @test_drives.each do |test_drive| %>
 
   <li id="test-drive-<%= test_drive.id %>-item" class="vehicle-item">
     <div class="row vehicle-item-summary">
 
-      <div class="col-md-4 summary-carousel-container">
+      <div class="col-xs-4 summary-carousel-container">
         <%= link_to test_drive.vehicle, target: "_blank" do %>
         
           <div id="summary-carousel-<%= test_drive.vehicle.id %>" 
@@ -36,7 +37,7 @@
               
               <div class="item">
                 <img src="<%= test_drive.vehicle.photos[4].image.url() if 
-                              test_drive.vehicle.photos.length > 0 %>">
+                              test_drive.vehicle.photos.length > 4 %>">
               </div>
               
               <div class="item">
@@ -51,7 +52,7 @@
               
               <div class="item">
                 <img src="<%= test_drive.vehicle.photos[7].image.url() if 
-                              test_drive.vehicle.photos.length > 0 %>">
+                              test_drive.vehicle.photos.length > 7 %>">
               </div>
             </div>
           </div>
@@ -70,7 +71,7 @@
         </a>
       </div>
     
-      <div class="col-md-6 summary-detail">
+      <div class="col-xs-6 summary-detail">
         <%= link_to test_drive.vehicle, 
             class: "summary-detail-content", 
             target: "_blank" do %>
@@ -98,7 +99,7 @@
         <% end %>
       </div>
       
-      <div class="col-md-2 summary-price">
+      <div class="col-xs-2 summary-price">
         <%= link_to test_drive.vehicle, 
             class: "summary-price-content", 
             target: "_blank" do %>
@@ -135,7 +136,10 @@
            
         <span class="test-drive-detail-title">Test Drive</span>
         
-        <span class="test-drive-detail-info">Jan 1, 2017</span>
+        <span class="test-drive-detail-info">
+          <%= time_ago_in_words(test_drive.date) %> away 
+          (<%= test_drive.date.strftime("%D") %>)
+        </span>
       <% end %>
     </div>
   </li>

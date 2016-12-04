@@ -1,0 +1,11 @@
+thank_you:
+  comment: "Thanks for the comment."
+  created_at: <%= 10.minutes.ago %>
+  
+action:
+  comment: "We'll add a like button as soon as possible."
+  created_at: <%= 2.hours.ago %>
+  
+most_recent:
+  comment: "Writing a short test."
+  created_at: <%= Time.zone.now %>

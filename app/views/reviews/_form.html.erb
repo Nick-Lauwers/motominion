@@ -1,21 +1,22 @@
 <!--complete-->
-<!--apply ajax-->
 
 <%= form_for([@vehicle, @vehicle.reviews.new]) do |f| %>
 
+  <%= render 'shared/error_messages', object: f.object %>
+
   <div class="row review-item">
     
-    <div class="col-md-4">
+    <div class="col-xs-4">
       <div class="row">
         
-        <div class="col-md-3">
+        <div class="col-xs-3">
           <!--intentionally left empty-->
         </div>
         
-        <div class="col-md-9 review-author vertical-align">
+        <div class="col-xs-9 review-author vertical-align">
           
-          <div class="author-gravatar">
-            <%= gravatar_for(current_user, size: 40) %>
+          <div class="author-avatar">
+            <%= image_tag @vehicle.user.profile.avatar.url %>
           </div>
           
           <span class="author-name"><%= current_user.name %></span>
@@ -23,7 +24,7 @@
       </div>
     </div>
     
-    <div class="col-md-8">
+    <div class="col-xs-8">
       <div class="review-container">
         
         <div class="review-rating">
@@ -53,43 +54,17 @@
   </div>
 <% end %>
 
-<script>
-  var userStars = $('#user_stars');
-
-  userStars.raty({
-    path: '/assets',
-    scoreName: 'review[star]',
-    score: 1
-  });
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // stars
+    var userStars = $('#user_stars');
+  
+    userStars.raty({
+      path: '/assets',
+      scoreName: 'review[star]',
+    });
+  })
 </script>
 
-<!--  <div class="col-md-8">-->
-<!--    <div class="review-container">-->
-
-<!--      <div class="review-details-rating">-->
-<!--        <div class="average-rating"></div>-->
-<!--      </div>-->
-      
-<!--      <span class="review-details-title">-->
-<!--        I'm looking forward to the delivery date-->
-<!--      </span>-->
-      
-<!--      <span class="review-details-date">-->
-<!--        <= r.created_at.strftime("%D") %>-->
-<!--      </span>-->
-      
-<!--      <p class="review-comment">-->
-<!--        <= r.comment %>-->
-<!--      </p>-->
-      
-<!--      <div class="review-remove">-->
-<!--        <= link_to "Remove my review", -->
-<!--                    [@vehicle, r], -->
-                    <!--# class: "review-remove",-->
-<!--                    method: :delete, -->
-<!--                    data: { confirm: "Are you sure?" } if -->
-<!--                          current_user && current_user == r.user %>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<!--apply ajax-->

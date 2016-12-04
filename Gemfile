@@ -27,6 +27,10 @@ gem 'thin'
 gem 'bootstrap-slider-rails'
 gem 'gmaps4rails'
 gem 'searchkick'
+gem 'phony_rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

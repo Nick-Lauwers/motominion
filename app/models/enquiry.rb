@@ -1,13 +1,18 @@
-class Enquiry < ActiveRecord::Base
-  before_save { email.downcase! }
+# complete
 
-  validates :name,     presence: true, length: { maximum: 50 }
+class Enquiry < ActiveRecord::Base
+  
+  before_save      { email.downcase! }
+  default_scope -> { order(created_at: :desc) }
+  
+  validates :name, presence: true, length: { maximum: 50 }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
-                                    format: { with: VALID_EMAIL_REGEX },
-                                    uniqueness: { case_sensitive: false }
+                                    format: { with: VALID_EMAIL_REGEX }
                                     
-  validates :category, presence: true
-  validates :content,  presence: true, length: { maximum: 150 }
+  phony_normalize :phone_number, :default_country_code => 'US'
+  validates :phone_number, phony_plausible: true
+  
+  validates :category, :content, presence: true
 end

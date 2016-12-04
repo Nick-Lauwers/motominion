@@ -6,45 +6,41 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<%= render 'shared/hero_secondary' %>
+<%= render 'layouts/hero_backend' %>
 
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Inbox", conversations_path %></li>
-      <li>
-        <%= link_to "Garage", 
-            vehicles_path,
-            class: "nav-active" %>
-      </li>
+      <li><%= link_to "Inbox",       conversations_path %></li>
+      <li><%= link_to "Garage",      vehicles_path, class: "nav-active" %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li><%= link_to "Profile",     edit_profile_path(current_user.profile) %></li>
-      <li><%= link_to "Account",     edit_user_path(current_user) %></li>
+      <li><%= link_to "Profile", edit_profile_path(current_user.profile) %></li>
+      <li><%= link_to "Account", edit_user_path(current_user) %></li>
     </ul>
   </div>
 </nav>
 
-<div class="your-listings">
-  <div class="your-listings-content">
+<div class="backend">
+  <div class="backend-content">
     <div class="row">
     
-      <div class="col-md-4"> 
-        <div class="your-listings-instructions">
+      <div class="col-xs-4"> 
+        <div class="backend-instructions">
           
-          <h2 class="your-listings-instructions-title">
+          <h2 class="backend-instructions-title">
             Your Listings (<%= @vehicles.count %>)
           </h2>
           
-          <p class="your-listings-instructions-info">
+          <p class="backend-instructions-info">
             Your listings will be displayed here. A listing will not be 
             displayed if the application is processing.
           </p>
         </div>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-xs-8">
         <% if @vehicles.any? %>
-          <ul class="your-listings-list">
+          <ul class="backend-list">
             <%= render @vehicles %>
           </ul>
         <% end %>

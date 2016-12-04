@@ -6,7 +6,7 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<%= render 'shared/hero_secondary' %>
+<%= render 'layouts/hero_backend' %>
 
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
@@ -14,9 +14,7 @@
       <li><%= link_to "Inbox",       conversations_path %></li>
       <li><%= link_to "Garage",      vehicles_path %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li><%= link_to "Profile",     
-              edit_profile_path(current_user.profile) %>
-      </li>
+      <li><%= link_to "Profile", edit_profile_path(current_user.profile) %></li>
       <li>
         <%= link_to "Account",     
             edit_user_path(current_user), 
@@ -26,21 +24,23 @@
   </div>
 </nav>
 
-<div class="account">
-  <div class="account-content">
+<div class="backend">
+  <div class="backend-content">
     <div class="row">
     
-      <div class="col-md-4">
-        <div class="account-instructions">
-          <h2 class="account-instructions-title">Account Update</h2>
-          <p class="account-instructions-info">
+      <div class="col-xs-4">
+        <div class="backend-instructions">
+          
+          <h2 class="backend-instructions-title">Account Update</h2>
+          
+          <p class="backend-instructions-info">
             Need to make changes? Alter the details of your account, here. 
             customers.
           </p>
         </div>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-xs-8">
         <div class="account-form">
           <%= render 'edit_form' %>
         </div>

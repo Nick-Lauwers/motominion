@@ -1,12 +1,26 @@
+# complete
+
 class Vehicle < ActiveRecord::Base
+  
   searchkick
   
   belongs_to :user
   
-  has_many   :photos,       dependent: :destroy
-  has_many   :appointments, dependent: :destroy
-  has_many   :reviews,      dependent: :destroy
-  has_many   :comments,     dependent: :destroy
+  has_many :appointments, dependent: :destroy
+  has_many :reviews,      dependent: :destroy
+  has_many :comments,     dependent: :destroy
+  has_many :photos,       dependent: :destroy
+  
+  has_many :wishlistItems, dependent: :destroy
+  has_many :wishlists, through: :wishlistItems
+  
+  MINIMUM_PHOTOS = 2
+
+  validate :on => :save do
+    if self.photos.size < MINIMUM_PHOTOS
+      errors.add :vehicle, "Must have at least #{MINIMUM_PHOTOS} photos."
+    end
+  end
   
   before_save      { vin.upcase! }
   default_scope -> { order(created_at: :desc) }

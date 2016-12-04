@@ -1,21 +1,6 @@
 class PhotosController < ApplicationController
-  # def create
-  # 	@photo = Photo.create(photo_params)
-  # 	if @photo.save
-  # 	  render json: { message: "success" }, :status => 200
-  # 	else
-  # 	  #  you need to send an error header, otherwise Dropzone
-  #         #  will not interpret the response as an error:
-  # 	  render json: { error: @photo.errors.full_messages.join(',')}, :status => 400
-  # 	end  		
-  # end
-
-  # private
-  # def photo_params
-  # 	params.require(:photo).permit(:image)
-  # end
-  
   def destroy
+    
     @photo = Photo.find(params[:id])
     vehicle = @photo.vehicle
     
@@ -25,3 +10,5 @@ class PhotosController < ApplicationController
     respond_to :js
   end
 end
+
+# ensure that user is logged in and that user is correct

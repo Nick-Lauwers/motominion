@@ -1,10 +1,17 @@
+# complete
+
 class User < ActiveRecord::Base
+  
+  has_one :profile,  dependent: :destroy
+  has_one :wishlist, dependent: :destroy
+  
   has_many :vehicles,     dependent: :destroy
   has_many :appointments, dependent: :destroy
   has_many :reviews,      dependent: :destroy
+  has_many :posts,        dependent: :destroy
+  has_many :responses,    dependent: :destroy 
   has_many :comments,     dependent: :destroy
   has_many :replies,      dependent: :destroy
-  has_one  :profile,      dependent: :destroy
   
   attr_accessor :remember_token, :activation_token, :reset_token
   
@@ -81,6 +88,23 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
   
+  # Saves user using social authentication
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, 
+          uid:      auth.uid).first_or_initialize.tap do |user|
+      user.provider      = auth.provider
+      user.uid           = auth.uid
+      user.name          = auth.info.name unless user.name != nil
+      user.email         = auth.info.email unless user.email != nil
+      user.password      = SecureRandom.urlsafe_base64 unless 
+                           user.password != nil
+      user.activated     = true
+      user.is_subscribed = false unless user.is_subscribed == true
+      user.image         = auth.info.image unless user.image != nil
+      user.save!
+    end
+  end
+  
   private
   
     # Converts email to all lower-case.
@@ -94,3 +118,5 @@ class User < ActiveRecord::Base
       self.activation_digest  = User.digest(activation_token)
     end
 end
+
+# eliminate / revise omniauth email

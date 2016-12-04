@@ -11,11 +11,11 @@
     
     <div class="row vertical-align panel-body">
         
-      <div class="col-md-4 avatar-container">
+      <div class="col-xs-4 avatar-container">
         <%= image_tag @profile.avatar.url, class: "avatar" %>
       </div>
       
-      <div class="col-md-8 avatar-instructions">
+      <div class="col-xs-8 avatar-instructions">
         <p class="avatar-instructions-text">
           Clear frontal face photos are an important way for sellers and 
           buyers to learn about each other. 
@@ -40,11 +40,11 @@
     <div class="panel-content credentials">
       <div class="row form-group form-group-horizontal">
         
-          <div class="col-md-3">
+          <div class="col-xs-3">
             <%= f.label :description, "Describe Yourself" %>
           </div>
           
-          <div class="col-md-9">
+          <div class="col-xs-9">
             <%= f.text_area :description, 
                 rows: 5,
                 placeholder: (@profile.description.present? ? 
@@ -55,11 +55,24 @@
       
       <div class="row form-group form-group-horizontal">
         
-          <div class="col-md-3">
-            <%= f.label :residence, "City of residence" %>
+          <div class="col-xs-3">
+            <%= f.label :phone_number, "Phone Number" %>
           </div>
           
-          <div class="col-md-9">
+          <div class="col-xs-9">
+            <%= f.text_field :phone_number, 
+                placeholder: "Phone number", 
+                class: 'form-control form-control-primary' %>
+          </div>
+      </div>
+      
+      <div class="row form-group form-group-horizontal">
+        
+          <div class="col-xs-3">
+            <%= f.label :residence, "City" %>
+          </div>
+          
+          <div class="col-xs-9">
             <%= f.text_field :residence, 
                 placeholder: "E.g. Paris, France / Brooklyn, NY / Chicago, IL", 
                 class: 'form-control form-control-primary' %>
@@ -68,11 +81,11 @@
       
       <div class="row form-group form-group-horizontal">
         
-          <div class="col-md-3">
+          <div class="col-xs-3">
             <%= f.label :school %>
           </div>
           
-          <div class="col-md-9">
+          <div class="col-xs-9">
             <%= f.text_field :school, 
                 placeholder: "University of Michigan", 
                 class: 'form-control form-control-primary' %>
@@ -81,11 +94,11 @@
       
       <div class="row form-group form-group-horizontal">
         
-          <div class="col-md-3">
+          <div class="col-xs-3">
             <%= f.label :work %>
           </div>
           
-          <div class="col-md-9">
+          <div class="col-xs-9">
             <%= f.text_field :work, 
                 placeholder: "Company name or job title", 
                 class: 'form-control form-control-primary' %>

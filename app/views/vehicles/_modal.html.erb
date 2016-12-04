@@ -1,0 +1,141 @@
+<div class="modal" id="modal-gallery" role="dialog">
+  
+  <div class="modal-carousel-container">
+		<div class="carousel" id="modal-carousel">
+      <div class="carousel-inner"></div>
+    </div>
+  </div>
+  
+  <div class="modal-caption-container">
+    
+    <div class="modal-detail">
+      
+      <div class="row vertical-align">
+        
+        <div class="col-xs-3">
+          <!--<= link_to gravatar_for(@vehicle.user, size: 40), @vehicle.user %>-->
+        </div>
+        
+        <div class="col-xs-9">
+          <h1 class="modal-title"><%= @vehicle.listing_name %></h1>
+          <h2 class="modal-info"><%= @vehicle.user.name %> · <span class="average-rating"></span></h2>
+        </div>
+      </div>
+      
+      <h3 class="modal-caption"><%= @vehicle.summary %></h3>
+    </div>
+  </div>
+  
+  <div class="modal-options-container">
+    
+    <div class="modal-carousel-options">
+      
+      <i class="fa fa-times fa-lg btn-modal" aria-hidden="true" 
+         data-dismiss="modal"></i>
+         
+      <a href="#modal-carousel" data-slide="prev">
+        <i class="fa fa-chevron-up fa-lg btn-modal" aria-hidden="true"></i>
+      </a>
+      
+      <a href="#modal-carousel" data-slide="next">
+        <i class="fa fa-chevron-down fa-lg btn-modal" aria-hidden="true"></i>
+      </a>
+      
+      <div class="modal-options-text">
+        
+        <div class="modal-show-info">
+          <p>Show Info +</p>
+        </div>
+        
+        <!--<div class="modal-image-number">-->
+        <!--  <p>1 / 8</p>-->
+        <!--</div>-->
+      </div>
+    </div>
+    
+    <div class="modal-social-media">
+      <i class="fa fa-facebook fa-lg btn-modal" aria-hidden="true"></i>
+      <i class="fa fa-twitter fa-lg btn-modal" aria-hidden="true"></i>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    /* copy loaded gallery-photos into carousel */
+    var galleryPhoto = $('.gallery-photo');
+    
+    galleryPhoto.on('load', function() {}).each(function(i) {
+      
+      if(this.complete) {
+        
+      	var item    = $('<div class="item"></div>');
+        var itexsiv = $(this).parents('div');
+        var caption = $(this).parent('a').attr("caption");
+        
+        item.attr("caption",caption);
+      	$(itexsiv.html()).appendTo(item);
+      	item.appendTo('.carousel-inner'); 
+      	
+        if (i==0){
+          item.addClass('active');
+          item.addClass('modal-image');
+        }
+      }
+    });
+    
+    /* activate the carousel */
+    var modalCarousel = $('#modal-carousel');
+    
+    modalCarousel.carousel({interval:false});
+    
+    /* change modal caption when slide changes */
+    var modalCarousel = $('#modal-carousel');
+    var modalCaption  = $('.modal-caption');
+    
+    modalCarousel.on('slid.bs.carousel', function () {
+      modalCaption.html($(this).find('.active img').attr("caption"));
+    });
+    
+    /* when clicking a hero-image or a gallery-photo */
+    var heroListing   = $('.hero-listing');
+    var galleryPhoto  = $('.gallery-photo');
+    var modalGallery  = $('#modal-gallery');
+    var modalCarousel = $('#modal-carousel');
+    
+    heroListing.click(function(){
+      var idx = $(this).parents('div').index();
+    	var id  = parseInt(idx);
+    	
+    	modalGallery.modal('show');
+    	
+    	var showInfo = $('.modal-show-info');
+    	showInfo.height(optionsContainer.width());
+    	
+      modalCarousel.carousel(id);
+    });
+    
+    galleryPhoto.click(function(){
+      var idx = $(this).parents('div').index();
+    	var id  = parseInt(idx);
+    	
+    	modalGallery.modal('show');
+    	
+    	var showInfo = $('.modal-show-info');
+    	showInfo.height(optionsContainer.width());
+    	
+      modalCarousel.carousel(id);
+    });
+    
+    /* expand caption */
+    var showInfo         = $('.modal-show-info');
+    var imageContainer   = $('.modal-carousel-container');
+    var captionContainer = $('.modal-caption-container');
+    
+    showInfo.click(function() {
+      imageContainer.addClass('modal-carousel-container-closed');
+      captionContainer.addClass('modal-caption-container-open');
+    });
+  })
+</script>

@@ -1,8 +1,9 @@
-# correct title for should get search
+# complete
 
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionController::TestCase
+  
   def setup
     @base_title = "Dealership.com"
   end
@@ -25,15 +26,15 @@ class StaticPagesControllerTest < ActionController::TestCase
     assert_select "title", "About | #{@base_title}"
   end
   
-  test "should get contact" do
-    get :contact
+  test "should get how_it_works" do
+    get :how_it_works
     assert_response :success
-    assert_select "title", "Contact | #{@base_title}"
+    assert_select "title", "How It Works | #{@base_title}"
   end
   
-  test "should get search" do
-    get :search
+  test "should get legal" do
+    get :legal
     assert_response :success
-    # assert_select "title", session[:vehicle_search].toString() + " | #{@base_title}"
+    assert_select "title", "Legal | #{@base_title}"
   end
 end
