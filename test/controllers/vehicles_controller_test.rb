@@ -71,4 +71,10 @@ class VehiclesControllerTest < ActionController::TestCase
     assert_not flash.empty?
     assert_redirected_to login_url
   end
+  
+  test "should redirect favorite when not logged in" do
+    get :favorite, id: @vehicle
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
 end

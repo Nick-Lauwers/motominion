@@ -32,8 +32,11 @@ Rails.application.routes.draw do
 
   resources :vehicles do
     
+    resources :payments,     only: [:new, :create]
     resources :appointments, only: [:create, :destroy]
     resources :reviews,      only: [:create, :destroy]
+    
+    put :favorite, on: :member
     
     collection do
       get 'search'

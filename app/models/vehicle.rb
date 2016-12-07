@@ -6,13 +6,15 @@ class Vehicle < ActiveRecord::Base
   
   belongs_to :user
   
-  has_many :appointments, dependent: :destroy
-  has_many :reviews,      dependent: :destroy
-  has_many :comments,     dependent: :destroy
-  has_many :photos,       dependent: :destroy
+  has_one :payment
   
-  has_many :wishlistItems, dependent: :destroy
-  has_many :wishlists, through: :wishlistItems
+  has_many :appointments,      dependent: :destroy
+  has_many :reviews,           dependent: :destroy
+  has_many :comments,          dependent: :destroy
+  has_many :photos,            dependent: :destroy
+  has_many :favorite_vehicles, dependent: :destroy
+  
+  has_many :favorited_by, through: :favorite_vehicles, source: :user
   
   MINIMUM_PHOTOS = 2
 

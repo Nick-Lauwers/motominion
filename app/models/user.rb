@@ -3,15 +3,17 @@
 class User < ActiveRecord::Base
   
   has_one :profile,  dependent: :destroy
-  has_one :wishlist, dependent: :destroy
   
-  has_many :vehicles,     dependent: :destroy
-  has_many :appointments, dependent: :destroy
-  has_many :reviews,      dependent: :destroy
-  has_many :posts,        dependent: :destroy
-  has_many :responses,    dependent: :destroy 
-  has_many :comments,     dependent: :destroy
-  has_many :replies,      dependent: :destroy
+  has_many :vehicles,          dependent: :destroy
+  has_many :appointments,      dependent: :destroy
+  has_many :reviews,           dependent: :destroy
+  has_many :posts,             dependent: :destroy
+  has_many :responses,         dependent: :destroy 
+  has_many :comments,          dependent: :destroy
+  has_many :replies,           dependent: :destroy
+  has_many :favorite_vehicles, dependent: :destroy
+  
+  has_many :favorites, through: :favorite_vehicles, source: :vehicle
   
   attr_accessor :remember_token, :activation_token, :reset_token
   
@@ -120,3 +122,4 @@ class User < ActiveRecord::Base
 end
 
 # eliminate / revise omniauth email
+# all has_many's on one line

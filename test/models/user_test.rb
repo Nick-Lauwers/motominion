@@ -90,14 +90,6 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
-  test "associated wishlist should be destroyed" do
-    @user.save
-    @user.wishlist.create!
-    assert_difference 'Wishlist.count', -1 do
-      @user.destroy
-    end
-  end
-  
   test "associated vehicles should be destroyed" do
     @user.save
     @user.vehicles.create!(vehicle_condition:           "New",
@@ -167,6 +159,14 @@ class UserTest < ActiveSupport::TestCase
                           likes:      1,
                           comment_id: @comment.id)
     assert_difference 'Reply.count', -1 do
+      @user.destroy
+    end
+  end
+  
+  test "associated favorite vehicles should be destroyed" do
+    @user.save
+    @user.favorite_vehicles.create!(vehicle_id: @vehicle.id)
+    assert_difference 'FavoriteVehicle.count', -1 do
       @user.destroy
     end
   end

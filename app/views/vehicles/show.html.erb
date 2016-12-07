@@ -96,11 +96,17 @@
           
           <%= render 'appointments/form' %>
           
-          <%= button_to '#', class: "btn btn-tertiary", method: :get do %>
+          <%= button_to favorite_vehicle_path(@vehicle), 
+                        class: "btn btn-tertiary", 
+                        method: :put do %>
               <i class="fa fa-heart-o" 
                  aria-hidden="true"></i> 
               Add to Wish List
           <% end %>
+          
+          <%= link_to 'Purchase', 
+                      new_vehicle_payment_path(@vehicle), 
+                      class: "btn btn-tertiary" %>
         </div>
         
         <div class="vehicle-reviews">

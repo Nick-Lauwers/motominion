@@ -31,6 +31,7 @@ gem 'phony_rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
+gem 'activemerchant'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

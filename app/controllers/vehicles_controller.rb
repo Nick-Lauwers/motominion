@@ -2,7 +2,8 @@
 
 class VehiclesController < ApplicationController
   before_action :logged_in_user, except: [:show, :search]
-  before_action :get_vehicle,    only:   [:destroy, :show, :edit, :update]
+  before_action :get_vehicle,    only:   [:destroy, :show, :edit, :update, 
+                                          :favorite]
   
   def new
     @vehicle = current_user.vehicles.build
@@ -115,6 +116,12 @@ class VehiclesController < ApplicationController
     end
   end
   
+  def favorite
+    current_user.favorites << @vehicle
+    flash[:success] = "#{ @vehicle.listing_name } was added to your wishlist!"
+    redirect_to :back
+  end
+  
   private
   
     def vehicle_params
@@ -140,3 +147,7 @@ class VehiclesController < ApplicationController
 end
 
 # add wrong user tests
+
+# http://stackoverflow.com/questions/40260125/implement-add-to-favorites
+# http://stackoverflow.com/questions/5831900/wishlist-relationships-in-rails
+# http://stackoverflow.com/questions/13240109/implement-add-to-favorites-in-rails-3-4

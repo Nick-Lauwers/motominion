@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202141726) do
+ActiveRecord::Schema.define(version: 20161206144201) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 20161202141726) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "favorite_vehicles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "favorite_vehicles", ["user_id"], name: "index_favorite_vehicles_on_user_id"
+  add_index "favorite_vehicles", ["vehicle_id"], name: "index_favorite_vehicles_on_vehicle_id"
+
   create_table "messages", force: :cascade do |t|
     t.text     "content"
     t.integer  "conversation_id"
@@ -66,6 +76,32 @@ ActiveRecord::Schema.define(version: 20161202141726) do
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
+
+  create_table "payment_statuses", force: :cascade do |t|
+    t.string   "action"
+    t.string   "authorization"
+    t.string   "message"
+    t.integer  "amount"
+    t.text     "params"
+    t.boolean  "success"
+    t.integer  "payment_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "payment_statuses", ["payment_id"], name: "index_payment_statuses_on_payment_id"
+
+  create_table "payments", force: :cascade do |t|
+    t.string   "ip_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.date     "card_expiration"
+    t.integer  "vehicle_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "payments", ["vehicle_id"], name: "index_payments_on_vehicle_id"
 
   create_table "photos", force: :cascade do |t|
     t.integer  "vehicle_id"
@@ -199,23 +235,5 @@ ActiveRecord::Schema.define(version: 20161202141726) do
 
   add_index "vehicles", ["user_id", "created_at"], name: "index_vehicles_on_user_id_and_created_at"
   add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id"
-
-  create_table "wishlist_items", force: :cascade do |t|
-    t.integer  "wishlist_id"
-    t.integer  "vehicle_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "wishlist_items", ["vehicle_id"], name: "index_wishlist_items_on_vehicle_id"
-  add_index "wishlist_items", ["wishlist_id"], name: "index_wishlist_items_on_wishlist_id"
-
-  create_table "wishlists", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "wishlists", ["user_id"], name: "index_wishlists_on_user_id"
 
 end

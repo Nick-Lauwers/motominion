@@ -1,0 +1,25 @@
+<%= form_for([@payment.vehicle, @payment]) do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+
+  <%= f.label :card_number %>
+  <%= f.text_field :card_number %>
+
+  <%= f.label :card_verification_value %>
+  <%= f.text_field :card_verification_value %>
+
+  <%= f.label :card_expiration %>
+  <%= f.date_select :card_expiration, 
+                    :discard_day       => true, 
+                    :start_year        => Date.today.year, 
+                    :end_year          => (Date.today.year+10), 
+                    :add_month_numbers => true %>
+
+  <%= f.submit "Submit" %>
+<% end %>

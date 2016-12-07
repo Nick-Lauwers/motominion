@@ -112,4 +112,12 @@ class VehicleTest < ActiveSupport::TestCase
       @vehicle.destroy
     end
   end
+  
+  test "associated favorite vehicles should be destroyed" do
+    @vehicle.save
+    @vehicle.favorite_vehicles.create!(user_id: 100)
+    assert_difference 'FavoriteVehicle.count', -1 do
+      @vehicle.destroy
+    end
+  end
 end
