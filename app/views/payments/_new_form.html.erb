@@ -1,4 +1,4 @@
-<%= form_for([@payment.vehicle, @payment]) do |f| %>
+<%= form_for([@vehicle, @payment]) do |f| %>
 
   <%= render 'shared/error_messages', object: f.object %>
 
@@ -7,6 +7,12 @@
 
   <%= f.label :last_name %>
   <%= f.text_field :last_name %>
+  
+  <%= f.label :card_type %>
+  <%= f.select :card_type, [["Visa", "visa"], 
+                            ["MasterCard", "master"], 
+                            ["Discover", "discover"], 
+                            ["American Express", "american_express"]] %>
 
   <%= f.label :card_number %>
   <%= f.text_field :card_number %>

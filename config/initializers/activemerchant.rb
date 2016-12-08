@@ -1,11 +1,19 @@
-# complete
+if Rails.env == "development"
+  
+  ActiveMerchant::Billing::FirstdataE4Gateway.wiredump_device = 
+    File.open(Rails.root.join("log","active_merchant.log"), "a+")
+  ActiveMerchant::Billing::FirstdataE4Gateway.wiredump_device.sync = true
+  ActiveMerchant::Billing::Base.mode = :test
 
-ActiveMerchant::Billing::Base.mode = :test
-::GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(
-  login:     ENV['AM_USERNAME'],
-  password:  ENV['AM_PASSWORD'],
-  signature: ENV['AM_SIGNATURE']
-)
+  login    = ENV['AM_LOGIN']
+  password = ENV['AM_PASSWORD']
+  
+elsif Rails.env == "production"
+  login    = ENV['AM_LOGIN']
+  password = ENV['AM_PASSWORD']
+end
 
-# change from :test to :production for production
-# http://sajinmp.in/posts/integrating-paypal-with-active-merchant
+GATEWAY = ActiveMerchant::Billing::FirstdataE4Gateway.new({
+      login:    login,
+      password: password
+})

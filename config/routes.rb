@@ -32,9 +32,9 @@ Rails.application.routes.draw do
 
   resources :vehicles do
     
-    resources :payments,     only: [:new, :create]
     resources :appointments, only: [:create, :destroy]
     resources :reviews,      only: [:create, :destroy]
+    resources :payments,     only: [:new, :create]
     
     put :favorite, on: :member
     

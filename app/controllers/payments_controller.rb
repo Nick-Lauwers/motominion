@@ -1,40 +1,34 @@
 class PaymentsController < ApplicationController
+  
   def new
     @vehicle = Vehicle.find(params[:vehicle_id])
-    @payment = @vehicle.payment.build
-    respond_with(@payment)
+    @payment = @vehicle.build_payment
   end
 
   def create
-    @payment = Payment.new(payment_params)
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    
+    @payment = @vehicle.build_payment(payment_params)
     @payment.ip_address = request.remote_ip
-
+    
     if @payment.save
-      if @payment.process
-        redirect_to payments_path, notice: "The user has been successfully charged." and return
+      
+      if @payment.purchase 
+        render 'success'
+      else
+        render 'failure'
       end
+    
+    else
+      render 'new'
     end
-    render 'new'
   end
   
   private
 
     def payment_params
-      params.require(:payment).permit(:first_name, :last_name, :card_number,
-                                      :card_verification_value, 
+      params.require(:payment).permit(:first_name, :last_name, :card_type, 
+                                      :card_number, :card_verification_value, 
                                       :card_expiration)
     end
 end
-
-# @payment = Payment.new(payment_params)
-
-# if @payment.save
-#   # if @payment.process
-#   #   redirect_to payments_path, notice: "The user has been successfully charged." and return
-#   # end
-# else
-#   render 'new'
-# end
-
-# @vehicle = Vehicle.find_by_id(params[:id])
-# @payment = @vehicle.build

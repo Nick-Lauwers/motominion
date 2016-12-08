@@ -3,72 +3,49 @@
 
 class Payment < ActiveRecord::Base
   
-  require "active_merchant/billing/rails"
-  
   belongs_to :vehicle
-  has_one :payment_status
+  
+  has_many :payment_statuses
   
   attr_accessor :card_number
   attr_accessor :card_verification_value
-
-  validates :first_name, :last_name, :card_number, :card_verification_value, 
-            :card_expiration, presence: true
-            
-  validate :valid_card
   
-  # private 
+  validate :validate_card, :on => :create
+  
+  # validates :ip_address, :first_name, :last_name, :card_type, :card_expiration, 
+  #           :card_number, :card_verification_value, :vehicle_id, presence: true
+
+  def purchase 
+    response = GATEWAY.purchase(1000, credit_card, purchase_options)
+    # payment_statuses.create!(:action   => 'purchase', 
+    #                         :amount   => price_in_cents,
+    #                         :response => response)
+    # vehicle.update_attribute(:purchased_at, Time.now) if response.success?
+    response.success?
+  end
+  
+  def price_in_cents
+    # (payment.vehicle.price*100).round
+  end
+
+  private 
   
     def credit_card
       @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
         :first_name         => first_name,
         :last_name          => last_name,
+        :type               => card_type,
         :number             => card_number,
         :verification_value => card_verification_value,
         :month              => card_expiration.month,
-        :year               => card_expiration.year,
-        :type              => 'visa',
+        :year               => card_expiration.year
       )
     end
     
-    # def valid_card
-    #   unless credit_card.valid?
-    #     credit_card.errors.full_messages.each do |message|
-    #       errors.add_to_base message
-    #     end
-    #   end
-    # end
-    
-    def valid_card
-      if !credit_card.valid?
-        errors.add(:base, "The credit card information you provided is not valid.  Please double check the information you provided and then try again.")
-        false
-      else
-        true
-      end
-    end
-    
-    def process
-      if valid_card
-        
-        response = GATEWAY.authorize(165 * 100, credit_card)
-        
-        if response.success?
-          
-          transaction = GATEWAY.capture(165 * 100, response.authorization)
-          
-          if !transaction.success?
-            errors.add(:base, "The credit card you provided was declined. Please
-                              double check your information and try again.") and return
-            false
-          end
-          
-          update_columns({authorization_code: transaction.authorization, success: true})
-          true
-        
-        else
-          errors.add(:base, "The credit card you provided was declined. 
-                            Please double check your information and try again.") and return
-          false
+    def validate_card
+      unless credit_card.valid?
+        credit_card.errors.full_messages.each do |message|
+          errors[:base] << message
         end
       end
     end

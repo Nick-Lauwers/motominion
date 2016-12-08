@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206144201) do
+ActiveRecord::Schema.define(version: 20161208144039) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -79,10 +79,10 @@ ActiveRecord::Schema.define(version: 20161206144201) do
 
   create_table "payment_statuses", force: :cascade do |t|
     t.string   "action"
-    t.string   "authorization"
     t.string   "message"
-    t.integer  "amount"
+    t.string   "authorization"
     t.text     "params"
+    t.integer  "amount"
     t.boolean  "success"
     t.integer  "payment_id"
     t.datetime "created_at",    null: false
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20161206144201) do
     t.string   "ip_address"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "card_type"
     t.date     "card_expiration"
     t.integer  "vehicle_id"
     t.datetime "created_at",      null: false
