@@ -4,6 +4,8 @@
   <%= form_for(:session, url: login_path) do |f| %>
   
     <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+    
+    <%= link_to "Sign in with Google",   "/auth/google" %>
   
     <%= f.email_field :email, 
         placeholder: "Email address", 
@@ -51,3 +53,5 @@
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 </script>
+
+<!--Is facebook script necessary, if google script is not-->
