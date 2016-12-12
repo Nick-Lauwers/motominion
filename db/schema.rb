@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(version: 20161208144039) do
   create_table "reviews", force: :cascade do |t|
     t.string   "title"
     t.text     "comment"
-    t.integer  "star"
+    t.integer  "rating"
     t.integer  "vehicle_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false

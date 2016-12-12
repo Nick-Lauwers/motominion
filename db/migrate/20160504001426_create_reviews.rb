@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration
       
       t.string :title
       t.text :comment
-      t.integer :star
+      t.integer :rating
       t.references :vehicle, index: true, foreign_key: true
       t.references :user,    index: true, foreign_key: true
 

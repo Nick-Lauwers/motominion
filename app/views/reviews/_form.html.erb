@@ -28,7 +28,7 @@
       <div class="review-container">
         
         <div class="review-rating">
-          <div id="user_stars"></div>
+          <div id="stars"></div>
         </div>
         
         <%= f.text_field :title, 
@@ -58,13 +58,14 @@
   $(document).ready(function() {
     
     // stars
-    var userStars = $('#user_stars');
+    var stars = $('#stars');
   
-    userStars.raty({
-      path: '/assets',
-      scoreName: 'review[star]',
+    stars.raty({
+      path:      '/assets'
+      scoreName: 'review[rating]'
     });
   })
 </script>
 
 <!--apply ajax-->
+<!--reviews code is in both form and in vehicle show-->

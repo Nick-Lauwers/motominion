@@ -628,19 +628,18 @@
     authorAvatar.imagefill();
     
     // reviews
-    var userStars = $('#user_stars');
+    var stars         = $('#stars');
     var averageRating = $('.average-rating');
   
-    userStars.raty({
-      path: '/assets',
-      scoreName: 'review[star]',
-      score: 1
+    stars.raty({
+      path:      '/assets',
+      scoreName: 'review[rating]'
     });
     
     averageRating.raty({
-      path: '/assets',
+      path:     '/assets',
       readOnly: true,
-      score: <%= @vehicle.average_rating %>
+      score:    <%= @vehicle.average_rating %>
     });
 
     // fixed links

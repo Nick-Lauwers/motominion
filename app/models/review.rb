@@ -7,5 +7,5 @@ class Review < ActiveRecord::Base
   
   validates :title, presence: true, length: { maximum: 50 }
   
-  validates :comment, :star, :vehicle_id, presence: true
+  validates :comment, :rating, :vehicle_id, presence: true
 end
