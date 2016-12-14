@@ -1,6 +1,6 @@
 <!--complete-->
 
-<% provide(:title, @profile.user.name) %>
+<% provide(:title, @user.name) %>
 
 <header class="header-fixed-hidden">
   <%= render 'layouts/header_profile' %>
@@ -21,17 +21,16 @@
           
           <div class="col-xs-4 user-summary-avatar-container">
             <div class="user-summary-avatar">
-              <%= image_tag @profile.user.image %>
-              <!--<= image_tag @profile.avatar.url %>-->
+              <%= image_tag @user.avatar.url %>
             </div>
           </div>
           
           <div class="col-xs-8">
             
-            <h1 class="user-summary-name"><%= @profile.user.name %></h1>
+            <h1 class="user-summary-name"><%= @user.name %></h1>
             
             <p class="user-summary-info">
-              <%= @profile.residence + " · " if !@profile.residence.blank?%> 
+              <%= @user.residence + " · " if !@user.residence.blank?%> 
               <span class="average-rating"></span>
             </p>
           </div>
@@ -52,7 +51,7 @@
       <div class="col-xs-8">
         <div class="profile-overview-text">
         
-          <p class="profile-overview-info"><%= @profile.description %></p>
+          <p class="profile-overview-info"><%= @user.description %></p>
           
           <div class="profile-overview-phone">
             <span class="phone-title">Phone Number</span>
@@ -67,7 +66,7 @@
           <span class="profile-reviews-title">Some Background...</span>
           
           <p class="profile-reviews-info">
-            Read <%= @profile.user.name %>'s reviews!
+            Read <%= @user.name %>'s reviews!
           </p>
           
           <%= button_to "Reviews", 
@@ -90,7 +89,7 @@
           <div class="profile-details-listings">
             
             <h2 class="profile-details-title">
-              Listings (<%= @vehicles.count %>)
+              Listings (<%= @user.vehicles.count %>)
             </h2>
             
             <%= render 'listings' %>
@@ -105,9 +104,9 @@
       
       <div class="col-xs-4" id="profile-scrolled">
         
-        <% if (!@profile.residence.blank?) or 
-              (!@profile.school.blank?) or 
-              (!@profile.work.blank?) %>
+        <% if (!@user.residence.blank?) or 
+              (!@user.school.blank?) or 
+              (!@user.work.blank?) %>
           
           <div class="profile-scrolled-content">
           
@@ -127,7 +126,7 @@
                   </td>
                 </tr>
                 
-                <% if (!@profile.residence.blank?) %>
+                <% if (!@user.residence.blank?) %>
                   <tr>
                     
                     <td>
@@ -136,13 +135,13 @@
                     
                     <td>
                       <span class="optional-scrolled-info">
-                        <%= @profile.residence %>
+                        <%= @user.residence %>
                       </span>
                     </td>
                   </tr>
                 <% end %>
                 
-                <% if (!@profile.school.blank?) %>
+                <% if (!@user.school.blank?) %>
                   <tr>
                     
                     <td>
@@ -151,13 +150,13 @@
                     
                     <td>
                       <span class="optional-scrolled-info">
-                        <%= @profile.school %>
+                        <%= @user.school %>
                       </span>
                     </td>
                   </tr>
                 <% end %>
                 
-                <% if (!@profile.work.blank?) %>
+                <% if (!@user.work.blank?) %>
                   <tr>
                     
                     <td>
@@ -166,7 +165,7 @@
                     
                     <td>
                       <span class="optional-scrolled-info">
-                        <%= @profile.work %>
+                        <%= @user.work %>
                       </span>
                     </td>
                   </tr>

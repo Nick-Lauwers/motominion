@@ -1,6 +1,11 @@
 nicholas:
   name: "Nicholas Example"
   email: "nicholas@example.com"
+  phone_number: "+18005555555"
+  residence: "Detroit, MI"
+  school: "University of Michigan"
+  work: "Ford Motor Company"
+  description: "Lorem Ipsum"
   password_digest: <%= User.digest('password') %>
   is_subscribed: true
   admin: true
@@ -10,6 +15,11 @@ nicholas:
 archer:
   name: "Sterling Archer"
   email: "duchess@example.gov"
+  phone_number: "+18000000000"
+  residence: "Chicago, IL"
+  school: "University of Chicago"
+  work: "City of Chicago"
+  description: "Lorem Ipsum"
   password_digest: <%= User.digest('password') %>
   is_subscribed: false
   admin: false

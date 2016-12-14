@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208144039) do
+ActiveRecord::Schema.define(version: 20161213004644) do
 
   create_table "appointments", force: :cascade do |t|
     t.integer  "user_id"
@@ -126,23 +126,6 @@ ActiveRecord::Schema.define(version: 20161208144039) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
-  create_table "profiles", force: :cascade do |t|
-    t.string   "phone_number"
-    t.string   "residence"
-    t.string   "school"
-    t.string   "work"
-    t.text     "description"
-    t.integer  "user_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-  end
-
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
-
   create_table "replies", force: :cascade do |t|
     t.text     "content"
     t.integer  "likes"
@@ -185,19 +168,27 @@ ActiveRecord::Schema.define(version: 20161208144039) do
     t.string   "name"
     t.string   "email"
     t.boolean  "is_subscribed"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "password_digest"
     t.string   "remember_digest"
-    t.boolean  "admin",             default: false
+    t.boolean  "admin",               default: false
     t.string   "activation_digest"
-    t.boolean  "activated",         default: false
+    t.boolean  "activated",           default: false
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.string   "provider"
     t.string   "uid"
-    t.string   "image"
+    t.string   "phone_number"
+    t.string   "residence"
+    t.string   "school"
+    t.string   "work"
+    t.text     "description"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

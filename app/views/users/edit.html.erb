@@ -14,7 +14,6 @@
       <li><%= link_to "Inbox",       conversations_path %></li>
       <li><%= link_to "Garage",      vehicles_path %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li><%= link_to "Profile", edit_profile_path(current_user.profile) %></li>
       <li>
         <%= link_to "Account",     
             edit_user_path(current_user), 
@@ -37,6 +36,11 @@
             Need to make changes? Alter the details of your account, here. 
             customers.
           </p>
+          
+          <%= button_to 'View Profile', 
+                        profile_path, 
+                        method: :get, 
+                        class: "btn btn-tertiary" %>
         </div>
       </div>
       

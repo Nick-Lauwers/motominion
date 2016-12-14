@@ -37,6 +37,21 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
   
+  test "residence should be at most 30 characters" do
+    @user.residence = "a" * 31
+    assert_not @user.valid?
+  end
+  
+  test "school should be at most 30 characters" do
+    @user.school = "a" * 31
+    assert_not @user.valid?
+  end
+  
+  test "work should be at most 30 characters" do
+    @user.work = "a" * 31
+    assert_not @user.valid?
+  end
+  
   test "email validation should accept valid addresses" do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                          first.last@foo.jp alice+bob@baz.cn]
@@ -81,13 +96,6 @@ class UserTest < ActiveSupport::TestCase
   
   test "authenticated? should return false for a user with nil digest" do
     assert_not @user.authenticated?(:remember, '')
-  end
-  
-  test "associated profile should be destroyed" do
-    @user.save
-    assert_difference 'Profile.count', -1 do
-      @user.destroy
-    end
   end
   
   test "associated vehicles should be destroyed" do

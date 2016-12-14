@@ -2,7 +2,7 @@
 
 class User < ActiveRecord::Base
   
-  has_one :profile,  dependent: :destroy
+  # has_one :profile,  dependent: :destroy
   
   has_many :vehicles,          dependent: :destroy
   has_many :appointments,      dependent: :destroy
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   
   before_save   { email.downcase! }
   before_create :create_activation_digest
-  after_create  :create_profile
+  # after_create  :create_profile
   
   validates :name,  presence: true, length: { maximum: 50 }
   
@@ -30,6 +30,15 @@ class User < ActiveRecord::Base
                                     
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  
+  validates :residence, :school, :work, length: { maximum: 30 }
+  
+  phony_normalize :phone_number, :default_country_code => 'US'
+  validates :phone_number, phony_plausible: true
+  
+  has_attached_file :avatar, 
+    default_url: "/assets/avatar.jpg"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   
   class << self
     # Returns the hash digest of the given string.
@@ -104,7 +113,8 @@ class User < ActiveRecord::Base
                            user.password != nil
       user.activated     = true
       user.is_subscribed = false unless user.is_subscribed == true
-      user.image         = auth.info.image unless user.image != nil
+      user.avatar        = URI.parse(auth.info.image) unless 
+                           auth.info.image !=nil
       user.save!
     end
   end
