@@ -14,7 +14,6 @@
       <li><%= link_to "Inbox",  conversations_path, class: "nav-active" %></li>
       <li><%= link_to "Garage", vehicles_path %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li><%= link_to "Profile", edit_profile_path(current_user.profile) %></li>
       <li><%= link_to "Account", edit_user_path(current_user) %></li>
     </ul>
   </div>
@@ -28,22 +27,22 @@
         <div class="messages-info">
           
           <div class="messages-info-avatar">
-            <%= image_tag @other.profile.avatar.url %>
+            <%= image_tag @other.avatar.url %>
           </div>
           
           <h1 class="messages-info-username"><%= @other.name %></h1>
           
-          <% if !@other.profile.residence.blank? %>
+          <% if !@other.residence.blank? %>
             <span class="messages-info-city">
-              <%= @other.profile.residence %>
+              <%= @other.residence %>
             </span>
           <% end %>
         
           <%= link_to "1-888-555-5555", '#', class: "messages-info-phone" %>
 
-          <% if !@other.profile.description.blank? %>
+          <% if !@other.description.blank? %>
             <p class="messages-info-description">
-              <%= @other.profile.description %>
+              <%= @other.description %>
             </p>
             
             <span class="messages-info-expand">+ More</span>
