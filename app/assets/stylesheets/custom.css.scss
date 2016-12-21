@@ -168,6 +168,20 @@ p {
   }
 }
 
+.btn-google {
+  color: $gray-darker;
+  background-color: white;
+  border: 1px solid $gray-border;
+  border-radius: 2px;
+  width: 100%;
+  margin-bottom: 1.7em;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    border: 1px solid $yellow-dark;
+  }
+}
+
 .btn-green {
   color: white;
   background-color: $green;
@@ -811,6 +825,10 @@ footer {
   text-align: center;
   color: $gray-text;
   margin: 0 0 0.67em;
+}
+
+.fa-google {
+  margin-right: 7px;
 }
 
 .terms-container {

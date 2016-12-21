@@ -33,6 +33,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'activemerchant'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

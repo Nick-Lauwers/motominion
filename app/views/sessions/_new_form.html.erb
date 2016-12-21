@@ -5,8 +5,13 @@
   
     <!--<= link_to "Sign in with Facebook", "/auth/facebook" %>-->
     
-    <%= link_to "Sign in with Google",   "/auth/google" %>
-  
+    <%= link_to "/auth/google", 
+                class: "btn btn-google" do %>
+        <i class="fa fa-google fa-lg" 
+           aria-hidden="true"></i> 
+        Log in with Google
+    <% end %>
+    
     <%= f.email_field :email, 
         placeholder: "Email address", 
         class: 'form-control form-control-primary login-form-control' %>
