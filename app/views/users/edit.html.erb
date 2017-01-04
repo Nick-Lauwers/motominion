@@ -32,13 +32,12 @@
           
           <h2 class="backend-instructions-title">Account Update</h2>
           
-          <p class="backend-instructions-info">
-            Need to make changes? Alter the details of your account, here. 
-            customers.
+          <p class="backend-instructions-info account-info">
+            Need to make changes? Alter the details of your account, here.
           </p>
           
           <%= button_to 'View Profile', 
-                        profile_path, 
+                        user_path, 
                         method: :get, 
                         class: "btn btn-tertiary" %>
         </div>

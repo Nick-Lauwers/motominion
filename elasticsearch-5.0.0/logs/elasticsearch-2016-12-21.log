@@ -1,0 +1,83 @@
+[2016-12-21T00:25:36,416][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][4599][3] duration [5.7s], collections [1]/[6.1s], total [5.7s]/[14.3s], memory [614.1mb]->[60.1mb]/[1.9gb], all_pools {[young] [530.7mb]->[7.1mb]/[532.5mb]}{[survivor] [66.4mb]->[4.5mb]/[66.5mb]}{[old] [16.8mb]->[52.9mb]/[1.3gb]}
+[2016-12-21T00:25:36,428][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][4599] overhead, spent [5.7s] collecting in the last [6.1s]
+[2016-12-21T00:36:15,879][INFO ][o.e.n.Node               ] [] initializing ...
+[2016-12-21T00:36:16,057][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [2.4gb], net total_space [5.2gb], spins? [possibly], types [aufs]
+[2016-12-21T00:36:16,058][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2016-12-21T00:36:16,079][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2016-12-21T00:36:16,084][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[2656], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.2.0-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2016-12-21T00:36:18,633][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2016-12-21T00:36:18,633][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2016-12-21T00:36:18,633][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2016-12-21T00:36:18,633][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2016-12-21T00:36:18,633][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2016-12-21T00:36:18,633][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2016-12-21T00:36:18,634][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2016-12-21T00:36:18,634][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2016-12-21T00:36:18,635][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2016-12-21T00:36:18,635][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2016-12-21T00:36:18,636][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2016-12-21T00:36:23,853][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2016-12-21T00:36:23,854][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2016-12-21T00:36:24,473][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2016-12-21T00:36:24,481][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2016-12-21T00:36:24,481][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2016-12-21T00:36:27,709][INFO ][o.e.c.s.ClusterService   ] [ht0EVsn] new_master {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{OTMUcLsITpiL3G-G-Zyn8g}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2016-12-21T00:36:27,735][INFO ][o.e.h.HttpServer         ] [ht0EVsn] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2016-12-21T00:36:27,736][INFO ][o.e.n.Node               ] [ht0EVsn] started
+[2016-12-21T00:36:28,060][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [1] indices into cluster_state
+[2016-12-21T00:36:28,886][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles_development_20161105192812009][4]] ...]).
+[2016-12-21T03:00:42,652][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][8650][2] duration [2.9s], collections [1]/[3.2s], total [2.9s]/[2.9s], memory [578.9mb]->[101mb]/[1.9gb], all_pools {[young] [532.5mb]->[3.5mb]/[532.5mb]}{[survivor] [46.3mb]->[66.4mb]/[66.5mb]}{[old] [0b]->[34.5mb]/[1.3gb]}
+[2016-12-21T03:00:42,659][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][8650] overhead, spent [2.9s] collecting in the last [3.2s]
+[2016-12-21T07:21:10,839][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][24271] overhead, spent [605ms] collecting in the last [1.7s]
+[2016-12-21T16:43:30,444][INFO ][o.e.n.Node               ] [ht0EVsn] stopping ...
+[2016-12-21T16:43:30,697][INFO ][o.e.n.Node               ] [ht0EVsn] stopped
+[2016-12-21T16:43:30,697][INFO ][o.e.n.Node               ] [ht0EVsn] closing ...
+[2016-12-21T16:43:30,710][INFO ][o.e.n.Node               ] [ht0EVsn] closed
+[2016-12-21T16:56:55,873][INFO ][o.e.n.Node               ] [] initializing ...
+[2016-12-21T16:56:56,065][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [2.4gb], net total_space [5.2gb], spins? [possibly], types [aufs]
+[2016-12-21T16:56:56,066][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2016-12-21T16:56:56,089][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2016-12-21T16:56:56,093][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[4041], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.2.0-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2016-12-21T16:57:01,107][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2016-12-21T16:57:01,107][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2016-12-21T16:57:01,108][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2016-12-21T16:57:01,108][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2016-12-21T16:57:01,108][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2016-12-21T16:57:01,108][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2016-12-21T16:57:01,108][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2016-12-21T16:57:01,109][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2016-12-21T16:57:01,109][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2016-12-21T16:57:01,109][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2016-12-21T16:57:01,232][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2016-12-21T16:57:16,241][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2016-12-21T16:57:16,247][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2016-12-21T18:01:17,740][INFO ][o.e.n.Node               ] [] initializing ...
+[2016-12-21T18:01:18,558][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [2.4gb], net total_space [5.2gb], spins? [possibly], types [aufs]
+[2016-12-21T18:01:18,559][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2016-12-21T18:01:18,642][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2016-12-21T18:01:18,653][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[4161], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.2.0-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2016-12-21T18:01:31,470][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2016-12-21T18:01:31,473][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2016-12-21T18:01:31,473][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2016-12-21T18:01:31,473][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2016-12-21T18:01:31,475][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2016-12-21T18:01:31,498][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2016-12-21T18:01:31,498][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2016-12-21T18:01:31,499][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2016-12-21T18:01:31,510][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2016-12-21T18:01:31,630][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2016-12-21T18:01:31,858][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2016-12-21T18:01:44,324][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2016-12-21T18:01:44,328][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2016-12-21T18:01:45,851][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2016-12-21T18:01:45,880][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2016-12-21T18:01:45,881][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2016-12-21T18:01:49,186][INFO ][o.e.c.s.ClusterService   ] [ht0EVsn] new_master {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{jpDL0-XzT9SnEwsLOSHqAw}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2016-12-21T18:01:49,254][INFO ][o.e.h.HttpServer         ] [ht0EVsn] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2016-12-21T18:01:49,254][INFO ][o.e.n.Node               ] [ht0EVsn] started
+[2016-12-21T18:01:49,848][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [1] indices into cluster_state
+[2016-12-21T18:01:50,709][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles_development_20161105192812009][1]] ...]).
+[2016-12-21T19:35:03,159][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][5586][2] duration [3.6s], collections [1]/[3.7s], total [3.6s]/[3.7s], memory [578.9mb]->[106.4mb]/[1.9gb], all_pools {[young] [532.5mb]->[5.3mb]/[532.5mb]}{[survivor] [46.3mb]->[66.4mb]/[66.5mb]}{[old] [0b]->[36.4mb]/[1.3gb]}
+[2016-12-21T19:35:03,160][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][5586] overhead, spent [3.6s] collecting in the last [3.7s]
+[2016-12-21T22:27:27,859][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][15912][3] duration [15.4s], collections [1]/[15.9s], total [15.4s]/[19.2s], memory [635.4mb]->[117mb]/[1.9gb], all_pools {[young] [532.5mb]->[6.8mb]/[532.5mb]}{[survivor] [66.4mb]->[37.2mb]/[66.5mb]}{[old] [36.4mb]->[75.3mb]/[1.3gb]}
+[2016-12-21T22:27:27,860][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][15912] overhead, spent [15.4s] collecting in the last [15.9s]

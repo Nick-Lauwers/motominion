@@ -12,11 +12,20 @@
     
     <div class="row vertical-align panel-body">
         
-      <div class="col-xs-4 avatar-container">
-        <%= image_tag @user.avatar.url, class: "avatar" %>
+      <div class="col-xs-4">
+        <div class="row">
+          
+          <div class="col-md-11 avatar-container">
+            <%= image_tag @user.avatar.url, class: "avatar" %>
+          </div>
+          
+          <div class="col-md-1">
+            <!--intentioanlly left empty-->
+          </div>
+        </div>
       </div>
       
-      <div class="col-xs-8 avatar-instructions">
+      <div class="col-xs-8">
         
         <p class="avatar-instructions-text">
           Clear frontal face photos are an important way for sellers and 
@@ -41,61 +50,61 @@
       <span class="panel-title">Required</span>
     </div>
     
-    <div class="panel-content credentials">
-      <div class="row form-group form-group-horizontal">
+    <div class="panel-content">
+      <div class="row">
         
-        <div class="col-xs-3">
-          <%= f.label :name %>
+        <div class="col-md-6">
+          <div class="form-group form-group-primary">
+            
+            <%= f.label :name %>
+
+            <%= f.text_field :name, 
+                placeholder: @user.name, 
+                class: 'form-control form-control-primary' %>
+          </div>
         </div>
         
-        <div class="col-xs-9">
-          <%= f.text_field :name, 
-            placeholder: @user.name, 
-            class: 'form-control form-control-primary' %>
-        </div>
-      </div>
-      
-      <div class="row form-group form-group-horizontal">
-        
-        <div class="col-xs-3">
-          <%= f.label :email %>
-        </div>
-        
-        <div class="col-xs-9">
-          <%= f.text_field :email, 
-            placeholder: @user.name, 
-            class: 'form-control form-control-primary' %>
-        </div>
-      </div>
-      
-      <div class="row form-group form-group-horizontal">
-        
-        <div class="col-xs-3">
-          <%= f.label :password %>
-        </div>
-        
-        <div class="col-xs-9">
-          <%= f.text_field :password, 
-            placeholder: "Password", 
-            class: 'form-control form-control-primary' %>
+        <div class="col-md-6">
+          <div class="form-group form-group-primary">
+            
+            <%= f.label :email %>
+
+            <%= f.text_field :email, 
+                placeholder: @user.name, 
+                class: 'form-control form-control-primary' %>
+          </div>
         </div>
       </div>
-      
-      <div class="row form-group form-group-horizontal">
         
-        <div class="col-xs-3">
-          <%= f.label :password_confirmation, "Confirmation" %>
+      <div class="row">
+        
+        <div class="col-md-6">
+          <div class="form-group form-group-primary">
+            
+            <%= f.label :password %>
+
+            <%= f.text_field :password, 
+                placeholder: "Password", 
+                class: 'form-control form-control-primary' %>
+          </div>
         </div>
         
-        <div class="col-xs-9">
-          <%= f.text_field :password_confirmation,
-            placeholder: "Confirmation", 
-            class: 'form-control form-control-primary' %>
+        <div class="col-md-6">
+          <div class="form-group form-group-primary">
+            
+            <%= f.label :password_confirmation, "Confirmation" %>
+
+            <%= f.text_field :password_confirmation,
+                placeholder: "Confirmation", 
+                class: 'form-control form-control-primary' %>
+          </div>
         </div>
       </div>
       
       <div class="checkbox-inline">
+        
         <%= f.check_box :is_subscribed, class: "checkbox" %>
+        
         <%= f.label :is_subscribed, 
             "Tick here if you would like to receive our email newsletter which 
             contains more information about our services, offers, or 
@@ -111,74 +120,67 @@
       <h2 class="panel-title">Optional</h2>
     </div>
     
-    <div class="panel-content credentials">
-      <div class="row form-group form-group-horizontal">
+    <div class="panel-content">
+      
+      <div class="form-group form-group-primary">
         
-          <div class="col-xs-3">
-            <%= f.label :description, "Describe Yourself" %>
-          </div>
-          
-          <div class="col-xs-9">
-            <%= f.text_area :description, 
-                rows: 5,
-                placeholder: (@user.description.present? ? 
-                              @user.description : "Dealership.com is built on 
-                                                  relationships. Help other 
-                                                  people get to know you."), 
-                class: 'form-control form-control-primary' %>
-          </div>
+        <%= f.label :description, "Describe Yourself" %>
+
+        <%= f.text_area :description, 
+            rows: 5,
+            placeholder: (@user.description.present? ? 
+                          @user.description : "Dealership.com is built on relationships. Help other people get to know you."), 
+            class: 'form-control form-control-primary' %>
       </div>
       
-      <div class="row form-group form-group-horizontal">
+      <div class="row">
         
-          <div class="col-xs-3">
+        <div class="col-md-6">
+          <div class="form-group form-group-primary">
+            
             <%= f.label :phone_number, "Phone Number" %>
-          </div>
-          
-          <div class="col-xs-9">
+
             <%= f.text_field :phone_number, 
                 placeholder: "Phone number", 
                 class: 'form-control form-control-primary' %>
           </div>
-      </div>
-      
-      <div class="row form-group form-group-horizontal">
+        </div>
         
-          <div class="col-xs-3">
+        <div class="col-md-6">
+          <div class="form-group form-group-primary">
+            
             <%= f.label :residence, "City" %>
-          </div>
-          
-          <div class="col-xs-9">
+
             <%= f.text_field :residence, 
                 placeholder: "E.g. Paris, France / Brooklyn, NY / Chicago, IL", 
                 class: 'form-control form-control-primary' %>
           </div>
+        </div>
       </div>
       
-      <div class="row form-group form-group-horizontal">
+      <div class="row">
         
-          <div class="col-xs-3">
+        <div class="col-md-6">
+          <div class="form-group form-group-primary">
+            
             <%= f.label :school %>
-          </div>
-          
-          <div class="col-xs-9">
+
             <%= f.text_field :school, 
                 placeholder: "University of Michigan", 
                 class: 'form-control form-control-primary' %>
           </div>
-      </div>
-      
-      <div class="row form-group form-group-horizontal">
+        </div>
         
-          <div class="col-xs-3">
+        <div class="col-md-6">
+          <div class="form-group form-group-primary">
+            
             <%= f.label :work %>
-          </div>
-          
-          <div class="col-xs-9">
+
             <%= f.text_field :work, 
                 placeholder: "Company name or job title", 
                 class: 'form-control form-control-primary' %>
           </div>
+        </div>
       </div>
     </div>
   </div>
