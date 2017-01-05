@@ -1,8 +1,12 @@
 # complete
 
+require 'elasticsearch/model'
+
 class Vehicle < ActiveRecord::Base
   
-  searchkick
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  # searchkick
   
   belongs_to :user
   
