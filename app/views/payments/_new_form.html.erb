@@ -1,31 +1,31 @@
-<%= form_for([@vehicle, @payment]) do |f| %>
+<!--<perc= form_for([@vehicle, @payment]) do |f| perc>-->
 
-  <%= render 'shared/error_messages', object: f.object %>
+<!--  <perc= render 'shared/error_messages', object: f.object perc>-->
 
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
+<!--  <perc= f.label :first_name perc>-->
+<!--  <perc= f.text_field :first_name perc>-->
 
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
+<!--  <perc= f.label :last_name perc>-->
+<!--  <perc= f.text_field :last_name perc>-->
   
-  <%= f.label :card_type %>
-  <%= f.select :card_type, [["Visa", "visa"], 
-                            ["MasterCard", "master"], 
-                            ["Discover", "discover"], 
-                            ["American Express", "american_express"]] %>
+<!--  <perc= f.label :card_type perc>-->
+<!--  <perc= f.select :card_type, [["Visa", "visa"], -->
+<!--                            ["MasterCard", "master"], -->
+<!--                            ["Discover", "discover"], -->
+<!--                            ["American Express", "american_express"]] perc>-->
 
-  <%= f.label :card_number %>
-  <%= f.text_field :card_number %>
+<!--  <perc= f.label :card_number perc>-->
+<!--  <perc= f.text_field :card_number perc>-->
 
-  <%= f.label :card_verification_value %>
-  <%= f.text_field :card_verification_value %>
+<!--  <perc= f.label :card_verification_value perc>-->
+<!--  <perc= f.text_field :card_verification_value perc>-->
 
-  <%= f.label :card_expiration %>
-  <%= f.date_select :card_expiration, 
-                    :discard_day       => true, 
-                    :start_year        => Date.today.year, 
-                    :end_year          => (Date.today.year+10), 
-                    :add_month_numbers => true %>
+<!--  <perc= f.label :card_expiration perc>-->
+<!--  <perc= f.date_select :card_expiration, -->
+<!--                    :discard_day       => true, -->
+<!--                    :start_year        => Date.today.year, -->
+<!--                    :end_year          => (Date.today.year+10), -->
+<!--                    :add_month_numbers => true perc>-->
 
-  <%= f.submit "Submit" %>
-<% end %>
+<!--  <perc= f.submit "Submit" perc>-->
+<!--<perc end perc>-->

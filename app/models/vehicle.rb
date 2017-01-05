@@ -6,7 +6,7 @@ class Vehicle < ActiveRecord::Base
   
   belongs_to :user
   
-  has_one :payment
+  # has_one :payment
   
   has_many :appointments,      dependent: :destroy
   has_many :reviews,           dependent: :destroy
