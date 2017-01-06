@@ -2,25 +2,25 @@
 
 # Users
 User.create!(name:   "Example User",
-             email:  "example@railstutorial.org",
-             password:               "foobar",
-             password_confirmation:  "foobar",
-             is_subscribed: true,
-             admin:         true,
-             activated:     true,
-             activated_at: Time.zone.now)
+            email:  "example@railstutorial.org",
+            password:               "foobar",
+            password_confirmation:  "foobar",
+            is_subscribed: true,
+            admin:         true,
+            activated:     true,
+            activated_at: Time.zone.now)
              
 99.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
   User.create!(name:  name,
-               email: email,
-               password:              password,
-               password_confirmation: password,
-               is_subscribed: false,
-               activated:     true,
-               activated_at: Time.zone.now)
+              email: email,
+              password:              password,
+              password_confirmation: password,
+              is_subscribed: false,
+              activated:     true,
+              activated_at: Time.zone.now)
 end
 
 # Vehicles
@@ -63,9 +63,9 @@ user    = User.all.last
 vehicle = Vehicle.all.last
 3.times do
   vehicle.comments.create!(title:   Faker::Lorem.word,
-                           content: Faker::Lorem.sentence,
-                           likes:   5,
-                           user:    user)
+                          content: Faker::Lorem.sentence,
+                          likes:   5,
+                          user:    user)
 end
 
 # Replies

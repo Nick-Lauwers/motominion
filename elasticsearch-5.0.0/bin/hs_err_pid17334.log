@@ -1,0 +1,1164 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f8a65cc54b2, pid=17334, tid=0x00007f89f9ee6700
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_111-b14) (build 1.8.0_111-b14)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.111-b14 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# J 5247 C2 java.util.concurrent.ConcurrentHashMap.putVal(Ljava/lang/Object;Ljava/lang/Object;Z)Ljava/lang/Object; (362 bytes) @ 0x00007f8a65cc54b2 [0x00007f8a65cc4f80+0x532]
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f89d000a800):  JavaThread "elasticsearch[ht0EVsn][generic][T#2]" daemon [_thread_in_Java, id=17403, stack(0x00007f89f9de6000,0x00007f89f9ee7000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 0 (SI_USER)
+
+Registers:
+RAX=0x0000000000000000, RBX=0x0000000000000001, RCX=0x00000000aa561d98, RDX=0x0000000100035008
+RSP=0x00007f89f9ee4f28, RBP=0x00007f89f9ee5250, RSI=0x00000000809b0990, RDI=0x000000000055d37a
+R8 =0x0000000000000000, R9 =0x0000000000000c6d, R10=0x0000000000000010, R11=0x0000000000000000
+R12=0x0000000000000000, R13=0x00000000aba6f56c, R14=0x0000000000000001, R15=0x00007f89d000a800
+RIP=0x00007f8a65cc54b2, EFLAGS=0x0000000000010202, CSGSFS=0x0000000000000033, ERR=0x0000000000000004
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f89f9ee4f28)
+0x00007f89f9ee4f28:   00007f8a657489b8 00000000809b0970
+0x00007f89f9ee4f38:   00007f89aa31f868 0000000000000c6d
+0x00007f89f9ee4f48:   00007f89f9ee4fd0 00007f8a3f79d638
+0x00007f89f9ee4f58:   0000000000000000 00007f89f9ee5250
+0x00007f89f9ee4f68:   00007f8a6548ed94 00007f89f9ee4f98
+0x00007f89f9ee4f78:   00007f89f9ee5018 00007f8a65007a90
+0x00007f89f9ee4f88:   0000000000000000 0000000000000000
+0x00007f89f9ee4f98:   00000000809b08e8 00000000a9a41320
+0x00007f89f9ee4fa8:   00000000a9c54ae8 000000009ff1f378
+0x00007f89f9ee4fb8:   00000000a9edb490 0000000000000000
+0x00007f89f9ee4fc8:   00000000a99b6af8 00000000a9f6cf60
+0x00007f89f9ee4fd8:   00007f89f9ee4fd8 00007f8a3f798e0f
+0x00007f89f9ee4fe8:   00007f89f9ee5060 00007f8a3f79a410
+0x00007f89f9ee4ff8:   0000000000000000 00007f8a3f798e80
+0x00007f89f9ee5008:   0000000000000000 00007f89f9ee5028
+0x00007f89f9ee5018:   00007f89f9ee50a8 00007f8a65007ad5
+0x00007f89f9ee5028:   00000000809b08e8 00000000a9a41320
+0x00007f89f9ee5038:   00000000a9c54ae8 000000009ff1f378
+0x00007f89f9ee5048:   00000000a9edb490 0000000000000000
+0x00007f89f9ee5058:   00000000a99b6af8 00000000a9c54ae8
+0x00007f89f9ee5068:   00007f89f9ee5068 0000000000000c6d
+0x00007f89f9ee5078:   00000000a99f2378 00000000809b0918
+0x00007f89f9ee5088:   00000000a9deafb0 00000000aa3aaae0
+0x00007f89f9ee5098:   00000000809b08e8 00000000a99c4d10
+0x00007f89f9ee50a8:   00000000809b0940 0000000000000000
+0x00007f89f9ee50b8:   00000000a9a21440 00000000809b0918
+0x00007f89f9ee50c8:   00000000a9c54ae8 00007f89f9ee5138
+0x00007f89f9ee50d8:   00007f8a650082bd 0000000000000000
+0x00007f89f9ee50e8:   00007f8a650082bd 00000000809b0918
+0x00007f89f9ee50f8:   00007f89f9ee50f8 00007f898a6ee431
+0x00007f89f9ee5108:   00007f89f9ee5150 00007f89f9ee5250
+0x00007f89f9ee5118:   00007f8a6573d2f4 00007f898a6ee460 
+
+Instructions: (pc=0x00007f8a65cc54b2)
+0x00007f8a65cc5492:   24 08 41 8b 43 14 4c 63 d8 4d 3b d3 0f 8d 40 01
+0x00007f8a65cc54a2:   00 00 45 33 db 49 8b c3 48 81 c4 90 00 00 00 5d
+0x00007f8a65cc54b2:   85 05 48 db 97 15 c3 85 c9 0f 84 50 03 00 00 44
+0x00007f8a65cc54c2:   8b 51 0c 41 8b ea ff cd 85 ed 0f 8c d7 06 00 00 
+
+Register to memory mapping:
+
+RAX=0x0000000000000000 is an unknown value
+RBX=0x0000000000000001 is an unknown value
+RCX=0x00000000aa561d98 is an oop
+[Ljava.util.concurrent.ConcurrentHashMap$CounterCell; 
+ - klass: 'java/util/concurrent/ConcurrentHashMap$CounterCell'[]
+ - length: 2
+RDX=0x0000000100035008 is pointing into metadata
+RSP=0x00007f89f9ee4f28 is pointing into the stack for thread: 0x00007f89d000a800
+RBP=0x00007f89f9ee5250 is pointing into the stack for thread: 0x00007f89d000a800
+RSI=
+[error occurred during error reporting (printing register info), id 0xb]
+
+Stack: [0x00007f89f9de6000,0x00007f89f9ee7000],  sp=0x00007f89f9ee4f28,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+J 5247 C2 java.util.concurrent.ConcurrentHashMap.putVal(Ljava/lang/Object;Ljava/lang/Object;Z)Ljava/lang/Object; (362 bytes) @ 0x00007f8a65cc54b2 [0x00007f8a65cc4f80+0x532]
+C  0x0000000000000000
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f8960001800 JavaThread "elasticsearch[ht0EVsn][http_server_worker][T#3]" daemon [_thread_in_native, id=21779, stack(0x00007f898a2f6000,0x00007f898a3f7000)]
+  0x00007f899002a800 JavaThread "elasticsearch[ht0EVsn][management][T#4]" daemon [_thread_blocked, id=20015, stack(0x00007f898a4f8000,0x00007f898a5f9000)]
+  0x00007f89f400c000 JavaThread "elasticsearch[ht0EVsn][flush][T#4]" daemon [_thread_blocked, id=17466, stack(0x00007f898a8fa000,0x00007f898a9fb000)]
+  0x00007f899005c800 JavaThread "elasticsearch[ht0EVsn][management][T#3]" daemon [_thread_blocked, id=17431, stack(0x00007f89fabf4000,0x00007f89facf5000)]
+  0x00007f895c009800 JavaThread "elasticsearch[ht0EVsn][management][T#2]" daemon [_thread_blocked, id=17429, stack(0x00007f8989ff3000,0x00007f898a0f4000)]
+  0x00007f89f4006000 JavaThread "elasticsearch[ht0EVsn][refresh][T#1]" daemon [_thread_blocked, id=17427, stack(0x00007f898a0f4000,0x00007f898a1f5000)]
+  0x00007f89dc031000 JavaThread "elasticsearch[ht0EVsn][warmer][T#2]" daemon [_thread_blocked, id=17424, stack(0x00007f898a3f7000,0x00007f898a4f8000)]
+  0x00007f89e807d800 JavaThread "elasticsearch[ht0EVsn][fetch_shard_started][T#3]" daemon [_thread_blocked, id=17420, stack(0x00007f898a9fb000,0x00007f898aafc000)]
+  0x00007f8a7400c000 JavaThread "DestroyJavaVM" [_thread_blocked, id=17350, stack(0x00007f8a7b530000,0x00007f8a7b631000)]
+  0x00007f8a75621800 JavaThread "elasticsearch[keepAlive/5.0.0]" [_thread_blocked, id=17417, stack(0x00007f898aefe000,0x00007f898afff000)]
+  0x00007f8a75620000 JavaThread "elasticsearch[ht0EVsn][http_server_worker][T#2]" daemon [_thread_in_native, id=17416, stack(0x00007f89f80d8000,0x00007f89f81d9000)]
+  0x00007f8a7561e800 JavaThread "elasticsearch[ht0EVsn][http_server_worker][T#1]" daemon [_thread_blocked, id=17415, stack(0x00007f89f81d9000,0x00007f89f82da000)]
+  0x00007f89e8071800 JavaThread "elasticsearch[ht0EVsn][management][T#1]" daemon [_thread_blocked, id=17414, stack(0x00007f89f82da000,0x00007f89f83db000)]
+  0x00007f89f4004000 JavaThread "elasticsearch[ht0EVsn][generic][T#4]" daemon [_thread_blocked, id=17413, stack(0x00007f89f83db000,0x00007f89f84dc000)]
+  0x00007f89d8003800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#12]" daemon [_thread_in_native, id=17412, stack(0x00007f89f84dc000,0x00007f89f85dd000)]
+  0x00007f89bc009000 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#11]" daemon [_thread_in_native, id=17411, stack(0x00007f89f85dd000,0x00007f89f86de000)]
+  0x00007f89c4003800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#15]" daemon [_thread_in_native, id=17410, stack(0x00007f89f86de000,0x00007f89f87df000)]
+  0x00007f89cc00a800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#14]" daemon [_thread_blocked, id=17409, stack(0x00007f89f87df000,0x00007f89f88e0000)]
+  0x00007f89c0003800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#13]" daemon [_thread_in_native, id=17408, stack(0x00007f89f88e0000,0x00007f89f89e1000)]
+  0x00007f89e0004800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#16]" daemon [_thread_in_native, id=17407, stack(0x00007f89f89e1000,0x00007f89f8ae2000)]
+  0x00007f89d4003800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#10]" daemon [_thread_in_native, id=17406, stack(0x00007f89f8ae2000,0x00007f89f8be3000)]
+  0x00007f89f4002800 JavaThread "elasticsearch[ht0EVsn][generic][T#3]" daemon [_thread_blocked, id=17405, stack(0x00007f89f8be3000,0x00007f89f8ce4000)]
+  0x00007f89a4006800 JavaThread "threadDeathWatcher-2-1" daemon [_thread_blocked, id=17404, stack(0x00007f89f9ce5000,0x00007f89f9de6000)]
+=>0x00007f89d000a800 JavaThread "elasticsearch[ht0EVsn][generic][T#2]" daemon [_thread_in_Java, id=17403, stack(0x00007f89f9de6000,0x00007f89f9ee7000)]
+  0x00007f89f0007000 JavaThread "elasticsearch[ht0EVsn][[transport_server_worker.default]][T#3]" daemon [_thread_in_native, id=17402, stack(0x00007f89f9ee7000,0x00007f89f9fe8000)]
+  0x00007f89c8001000 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#7]" daemon [_thread_blocked, id=17401, stack(0x00007f89f9fe8000,0x00007f89fa0e9000)]
+  0x00007f89d8001000 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#1]" daemon [_thread_in_native, id=17400, stack(0x00007f89fa0e9000,0x00007f89fa1ea000)]
+  0x00007f89e0002800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#6]" daemon [_thread_in_native, id=17399, stack(0x00007f89fa1ea000,0x00007f89fa2eb000)]
+  0x00007f89d4001800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#8]" daemon [_thread_in_native, id=17398, stack(0x00007f89fa2eb000,0x00007f89fa3ec000)]
+  0x00007f89d0007800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#9]" daemon [_thread_in_native, id=17397, stack(0x00007f89fa3ec000,0x00007f89fa4ed000)]
+  0x00007f89cc008800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#4]" daemon [_thread_in_native, id=17396, stack(0x00007f89fa4ed000,0x00007f89fa5ee000)]
+  0x00007f89bc006800 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#2]" daemon [_thread_in_native, id=17395, stack(0x00007f89fa5ee000,0x00007f89fa6ef000)]
+  0x00007f89c0001000 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#5]" daemon [_thread_blocked, id=17394, stack(0x00007f89fa6ef000,0x00007f89fa7f0000)]
+  0x00007f89c4001000 JavaThread "elasticsearch[ht0EVsn][transport_client_boss][T#3]" daemon [_thread_in_native, id=17393, stack(0x00007f89fa7f0000,0x00007f89fa8f1000)]
+  0x00007f89e800c000 JavaThread "elasticsearch[ht0EVsn][generic][T#1]" daemon [_thread_blocked, id=17383, stack(0x00007f89fb1fa000,0x00007f89fb2fb000)]
+  0x00007f8a75a1a000 JavaThread "elasticsearch[ht0EVsn][clusterService#updateTask][T#1]" daemon [_thread_blocked, id=17382, stack(0x00007f89fb2fb000,0x00007f89fb3fc000)]
+  0x00007f8a75a0e000 JavaThread "elasticsearch[ht0EVsn][[transport_server_worker.default]][T#2]" daemon [_thread_in_native, id=17381, stack(0x00007f89fb3fc000,0x00007f89fb4fd000)]
+  0x00007f8a75a08000 JavaThread "elasticsearch[ht0EVsn][[transport_server_worker.default]][T#1]" daemon [_thread_in_native, id=17380, stack(0x00007f89fb4fd000,0x00007f89fb5fe000)]
+  0x00007f8a7551d800 JavaThread "elasticsearch[ht0EVsn][[ttl_expire]]" daemon [_thread_blocked, id=17379, stack(0x00007f89fb7fe000,0x00007f89fb8ff000)]
+  0x00007f8a74194000 JavaThread "elasticsearch[ht0EVsn][scheduler][T#1]" daemon [_thread_blocked, id=17377, stack(0x00007f89fbeff000,0x00007f89fc000000)]
+  0x00007f8a74c35800 JavaThread "elasticsearch[ht0EVsn][[timer]]" daemon [_thread_blocked, id=17376, stack(0x00007f8a3cc1f000,0x00007f8a3cd20000)]
+  0x00007f8a74158000 JavaThread "Service Thread" daemon [_thread_blocked, id=17371, stack(0x00007f8a3e246000,0x00007f8a3e347000)]
+  0x00007f8a7413a800 JavaThread "C1 CompilerThread3" daemon [_thread_blocked, id=17370, stack(0x00007f8a3e347000,0x00007f8a3e448000)]
+  0x00007f8a74138800 JavaThread "C2 CompilerThread2" daemon [_thread_blocked, id=17369, stack(0x00007f8a3e448000,0x00007f8a3e549000)]
+  0x00007f8a74136800 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=17368, stack(0x00007f8a3e549000,0x00007f8a3e64a000)]
+  0x00007f8a74134000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=17367, stack(0x00007f8a3e64a000,0x00007f8a3e74b000)]
+  0x00007f8a74132000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=17366, stack(0x00007f8a3e74b000,0x00007f8a3e84c000)]
+  0x00007f8a74131000 JavaThread "Surrogate Locker Thread (Concurrent GC)" daemon [_thread_blocked, id=17365, stack(0x00007f8a3e84c000,0x00007f8a3e94d000)]
+  0x00007f8a740f9800 JavaThread "Finalizer" daemon [_thread_blocked, id=17364, stack(0x00007f8a3eabc000,0x00007f8a3ebbd000)]
+  0x00007f8a740f5000 JavaThread "Reference Handler" daemon [_thread_blocked, id=17363, stack(0x00007f8a3ebbd000,0x00007f8a3ecbe000)]
+
+Other Threads:
+  0x00007f8a740ed800 VMThread [stack: 0x00007f8a3ecbe000,0x00007f8a3edbf000] [id=17362]
+  0x00007f8a74163000 WatcherThread [stack: 0x00007f8a3e145000,0x00007f8a3e246000] [id=17372]
+
+VM state:synchronizing (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007f8a740080e0] Safepoint_lock - owner thread: 0x00007f8a740ed800
+[0x00007f8a74008160] Threads_lock - owner thread: 0x00007f8a740ed800
+
+Heap:
+ par new generation   total 613440K, used 527028K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K,  96% used [0x0000000080000000, 0x00000000a0228d40, 0x00000000a1490000)
+  from space 68096K,   0% used [0x00000000a5710000, 0x00000000a5794360, 0x00000000a9990000)
+  to   space 68096K,   0% used [0x00000000a1490000, 0x00000000a1490000, 0x00000000a5710000)
+ concurrent mark-sweep generation total 1415616K, used 53625K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 48340K, capacity 51377K, committed 51452K, reserved 1093632K
+  class space    used 6492K, capacity 7485K, committed 7512K, reserved 1048576K
+
+Card table byte_map: [0x00007f8a645f9000,0x00007f8a649fa000] byte_map_base: 0x00007f8a641f9000
+
+Marking Bits: (CMSBitMap*) 0x00007f8a74095888
+ Bits: [0x00007f8a5e4af000, 0x00007f8a5fa48c00)
+
+Mod Union Table: (CMSBitMap*) 0x00007f8a74095948
+ Bits: [0x00007f8a7b4d9000, 0x00007f8a7b52f670)
+
+Polling page: 0x00007f8a7b643000
+
+CodeCache: size=245760Kb used=14100Kb max_used=14108Kb free=231659Kb
+ bounds [0x00007f8a65000000, 0x00007f8a65de0000, 0x00007f8a74000000]
+ total_blobs=5321 nmethods=4661 adapters=572
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 47172.354 Thread 0x00007f8a7413a800 nmethod 5578 0x00007f8a65dcaed0 code [0x00007f8a65dcb040, 0x00007f8a65dcb268]
+Event: 47172.354 Thread 0x00007f8a7413a800 5577       1       org.elasticsearch.cluster.routing.RoutingNode::nodeId (5 bytes)
+Event: 47172.354 Thread 0x00007f8a74138800 nmethod 5579 0x00007f8a657e9ed0 code [0x00007f8a657ea000, 0x00007f8a657ea078]
+Event: 47172.354 Thread 0x00007f8a7413a800 nmethod 5577 0x00007f8a65dda6d0 code [0x00007f8a65dda820, 0x00007f8a65dda930]
+Event: 47172.355 Thread 0x00007f8a7413a800 5580       1       org.elasticsearch.cluster.health.ClusterShardHealth::getStatus (5 bytes)
+Event: 47172.355 Thread 0x00007f8a7413a800 nmethod 5580 0x00007f8a65dda410 code [0x00007f8a65dda560, 0x00007f8a65dda670]
+Event: 47172.356 Thread 0x00007f8a7413a800 5581       3       org.elasticsearch.index.AbstractIndexComponent::index (8 bytes)
+Event: 47172.356 Thread 0x00007f8a7413a800 nmethod 5581 0x00007f8a65dda010 code [0x00007f8a65dda180, 0x00007f8a65dda370]
+Event: 47172.356 Thread 0x00007f8a7413a800 5582       1       org.elasticsearch.cluster.routing.AllocationId::getId (5 bytes)
+Event: 47172.356 Thread 0x00007f8a7413a800 nmethod 5582 0x00007f8a65dd9d50 code [0x00007f8a65dd9ea0, 0x00007f8a65dd9fb0]
+
+GC Heap History (10 events):
+Event: 21.636 GC heap before
+{Heap before GC invocations=0 (full 1):
+ par new generation   total 613440K, used 545344K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K, 100% used [0x0000000080000000, 0x00000000a1490000, 0x00000000a1490000)
+  from space 68096K,   0% used [0x00000000a1490000, 0x00000000a1490000, 0x00000000a5710000)
+  to   space 68096K,   0% used [0x00000000a5710000, 0x00000000a5710000, 0x00000000a9990000)
+ concurrent mark-sweep generation total 1415616K, used 0K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 41007K, capacity 43525K, committed 43644K, reserved 1087488K
+  class space    used 5646K, capacity 6555K, committed 6616K, reserved 1048576K
+Event: 21.693 GC heap after
+Heap after GC invocations=1 (full 1):
+ par new generation   total 613440K, used 47445K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K,   0% used [0x0000000080000000, 0x0000000080000000, 0x00000000a1490000)
+  from space 68096K,  69% used [0x00000000a5710000, 0x00000000a8565578, 0x00000000a9990000)
+  to   space 68096K,   0% used [0x00000000a1490000, 0x00000000a1490000, 0x00000000a5710000)
+ concurrent mark-sweep generation total 1415616K, used 0K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 41007K, capacity 43525K, committed 43644K, reserved 1087488K
+  class space    used 5646K, capacity 6555K, committed 6616K, reserved 1048576K
+}
+Event: 6009.985 GC heap before
+{Heap before GC invocations=1 (full 1):
+ par new generation   total 613440K, used 592789K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K, 100% used [0x0000000080000000, 0x00000000a1490000, 0x00000000a1490000)
+  from space 68096K,  69% used [0x00000000a5710000, 0x00000000a8565578, 0x00000000a9990000)
+  to   space 68096K,   0% used [0x00000000a1490000, 0x00000000a1490000, 0x00000000a5710000)
+ concurrent mark-sweep generation total 1415616K, used 0K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 47375K, capacity 50361K, committed 50556K, reserved 1093632K
+  class space    used 6395K, capacity 7373K, committed 7384K, reserved 1048576K
+Event: 6012.312 GC heap after
+Heap after GC invocations=2 (full 1):
+ par new generation   total 613440K, used 66980K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K,   0% used [0x0000000080000000, 0x0000000080000000, 0x00000000a1490000)
+  from space 68096K,  98% used [0x00000000a1490000, 0x00000000a55f9030, 0x00000000a5710000)
+  to   space 68096K,   0% used [0x00000000a5710000, 0x00000000a5710000, 0x00000000a9990000)
+ concurrent mark-sweep generation total 1415616K, used 33052K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 47375K, capacity 50361K, committed 50556K, reserved 1093632K
+  class space    used 6395K, capacity 7373K, committed 7384K, reserved 1048576K
+}
+Event: 16701.388 GC heap before
+{Heap before GC invocations=2 (full 1):
+ par new generation   total 613440K, used 612324K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K, 100% used [0x0000000080000000, 0x00000000a1490000, 0x00000000a1490000)
+  from space 68096K,  98% used [0x00000000a1490000, 0x00000000a55f9030, 0x00000000a5710000)
+  to   space 68096K,   0% used [0x00000000a5710000, 0x00000000a5710000, 0x00000000a9990000)
+ concurrent mark-sweep generation total 1415616K, used 33052K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 47569K, capacity 50563K, committed 50812K, reserved 1093632K
+  class space    used 6398K, capacity 7374K, committed 7384K, reserved 1048576K
+Event: 16704.988 GC heap after
+Heap after GC invocations=3 (full 1):
+ par new generation   total 613440K, used 4613K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K,   0% used [0x0000000080000000, 0x0000000080000000, 0x00000000a1490000)
+  from space 68096K,   6% used [0x00000000a5710000, 0x00000000a5b91650, 0x00000000a9990000)
+  to   space 68096K,   0% used [0x00000000a1490000, 0x00000000a1490000, 0x00000000a5710000)
+ concurrent mark-sweep generation total 1415616K, used 53625K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 47569K, capacity 50563K, committed 50812K, reserved 1093632K
+  class space    used 6398K, capacity 7374K, committed 7384K, reserved 1048576K
+}
+Event: 27332.521 GC heap before
+{Heap before GC invocations=3 (full 1):
+ par new generation   total 613440K, used 549957K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K, 100% used [0x0000000080000000, 0x00000000a1490000, 0x00000000a1490000)
+  from space 68096K,   6% used [0x00000000a5710000, 0x00000000a5b91650, 0x00000000a9990000)
+  to   space 68096K,   0% used [0x00000000a1490000, 0x00000000a1490000, 0x00000000a5710000)
+ concurrent mark-sweep generation total 1415616K, used 53625K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 47594K, capacity 50627K, committed 50812K, reserved 1093632K
+  class space    used 6398K, capacity 7374K, committed 7384K, reserved 1048576K
+Event: 27332.567 GC heap after
+Heap after GC invocations=4 (full 1):
+ par new generation   total 613440K, used 1198K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K,   0% used [0x0000000080000000, 0x0000000080000000, 0x00000000a1490000)
+  from space 68096K,   1% used [0x00000000a1490000, 0x00000000a15bb8c0, 0x00000000a5710000)
+  to   space 68096K,   0% used [0x00000000a5710000, 0x00000000a5710000, 0x00000000a9990000)
+ concurrent mark-sweep generation total 1415616K, used 53625K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 47594K, capacity 50627K, committed 50812K, reserved 1093632K
+  class space    used 6398K, capacity 7374K, committed 7384K, reserved 1048576K
+}
+Event: 37781.183 GC heap before
+{Heap before GC invocations=4 (full 1):
+ par new generation   total 613440K, used 546542K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K, 100% used [0x0000000080000000, 0x00000000a1490000, 0x00000000a1490000)
+  from space 68096K,   1% used [0x00000000a1490000, 0x00000000a15bb8c0, 0x00000000a5710000)
+  to   space 68096K,   0% used [0x00000000a5710000, 0x00000000a5710000, 0x00000000a9990000)
+ concurrent mark-sweep generation total 1415616K, used 53625K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 47595K, capacity 50627K, committed 50812K, reserved 1093632K
+  class space    used 6399K, capacity 7374K, committed 7384K, reserved 1048576K
+Event: 37781.223 GC heap after
+Heap after GC invocations=5 (full 1):
+ par new generation   total 613440K, used 528K [0x0000000080000000, 0x00000000a9990000, 0x00000000a9990000)
+  eden space 545344K,   0% used [0x0000000080000000, 0x0000000080000000, 0x00000000a1490000)
+  from space 68096K,   0% used [0x00000000a5710000, 0x00000000a5794360, 0x00000000a9990000)
+  to   space 68096K,   0% used [0x00000000a1490000, 0x00000000a1490000, 0x00000000a5710000)
+ concurrent mark-sweep generation total 1415616K, used 53625K [0x00000000a9990000, 0x0000000100000000, 0x0000000100000000)
+ Metaspace       used 47595K, capacity 50627K, committed 50812K, reserved 1093632K
+  class space    used 6399K, capacity 7374K, committed 7384K, reserved 1048576K
+}
+
+Deoptimization events (10 events):
+Event: 47172.239 Thread 0x00007f89e800c000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f8a65c346b0 method=org.elasticsearch.common.util.concurrent.EsThreadPoolExecutor.execute(Ljava/lang/Runnable;)V @ 3
+Event: 47172.239 Thread 0x00007f89e800c000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f8a65c331a4 method=java.util.concurrent.ThreadPoolExecutor.execute(Ljava/lang/Runnable;)V @ 61
+Event: 47172.257 Thread 0x00007f89f4002800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f8a65c346b0 method=org.elasticsearch.common.util.concurrent.EsThreadPoolExecutor.execute(Ljava/lang/Runnable;)V @ 3
+Event: 47172.257 Thread 0x00007f89f4002800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f8a65c331a4 method=java.util.concurrent.ThreadPoolExecutor.execute(Ljava/lang/Runnable;)V @ 61
+Event: 47172.285 Thread 0x00007f89f4004000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f8a65c346b0 method=org.elasticsearch.common.util.concurrent.EsThreadPoolExecutor.execute(Ljava/lang/Runnable;)V @ 3
+Event: 47172.285 Thread 0x00007f89f4004000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f8a65c331a4 method=java.util.concurrent.ThreadPoolExecutor.execute(Ljava/lang/Runnable;)V @ 61
+Event: 47172.286 Thread 0x00007f8a75a1a000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007f8a65d71108 method=java.util.concurrent.ConcurrentHashMap$KeySetView.iterator()Ljava/util/Iterator; @ 11
+Event: 47172.310 Thread 0x00007f8a75a1a000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f8a65c346b0 method=org.elasticsearch.common.util.concurrent.EsThreadPoolExecutor.execute(Ljava/lang/Runnable;)V @ 3
+Event: 47172.311 Thread 0x00007f8a75a1a000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f8a65be6a98 method=java.util.concurrent.ThreadPoolExecutor.getTask()Ljava/lang/Runnable; @ 149
+Event: 47172.354 Thread 0x00007f8a75a1a000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f8a6575ff84 method=java.lang.Iterable.spliterator()Ljava/util/Spliterator; @ 1
+
+Internal exceptions (10 events):
+Event: 47172.213 Thread 0x00007f89f4004000 Exception <a 'sun/nio/fs/UnixException'> (0x0000000080949630) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u111/7883/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 47172.231 Thread 0x00007f8a75a1a000 Exception <a 'sun/nio/fs/UnixException'> (0x00000000a015ef18) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u111/7883/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 47172.235 Thread 0x00007f8a75a1a000 Exception <a 'sun/nio/fs/UnixException'> (0x00000000a0165028) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u111/7883/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 47172.235 Thread 0x00007f8a75a1a000 Exception <a 'sun/nio/fs/UnixException'> (0x00000000a0165a60) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u111/7883/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 47172.238 Thread 0x00007f8a75a1a000 Exception <a 'sun/nio/fs/UnixException'> (0x00000000a0173a68) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u111/7883/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 47172.258 Thread 0x00007f8a75a1a000 Exception <a 'sun/nio/fs/UnixException'> (0x00000000a0177650) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u111/7883/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 47172.260 Thread 0x00007f89d000a800 Exception <a 'sun/nio/fs/UnixException'> (0x0000000080998b30) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u111/7883/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 47172.261 Thread 0x00007f8a75a1a000 Exception <a 'sun/nio/fs/UnixException'> (0x00000000a01798f0) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u111/7883/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 47172.285 Thread 0x00007f8a75a1a000 Exception <a 'sun/nio/fs/UnixException'> (0x00000000a017db28) thrown at [/HUDSON3/workspace/8-2-build-linux-amd64/jdk8u111/7883/hotspot/src/share/vm/prims/jni.cpp, line 709]
+Event: 47172.365 Thread 0x00007f89d000a800 Implicit null exception at 0x00007f8a65cc54b2 to 0x0000000000000000
+
+Events (10 events):
+Event: 47172.310 Thread 0x00007f8a75a1a000 DEOPT UNPACKING pc=0x00007f8a65005229 sp=0x00007f89fb3fa018 mode 2
+Event: 47172.311 Thread 0x00007f8a75a1a000 Uncommon trap: trap_request=0xffffffc6 fr.pc=0x00007f8a65be6a98
+Event: 47172.311 Thread 0x00007f8a75a1a000 DEOPT PACKING pc=0x00007f8a65be6a98 sp=0x00007f89fb3fa730
+Event: 47172.311 Thread 0x00007f8a75a1a000 DEOPT UNPACKING pc=0x00007f8a65005229 sp=0x00007f89fb3fa738 mode 2
+Event: 47172.354 Thread 0x00007f8a75a1a000 Uncommon trap: trap_request=0xffffffc6 fr.pc=0x00007f8a6575ff84
+Event: 47172.354 Thread 0x00007f8a75a1a000 DEOPT PACKING pc=0x00007f8a6575ff84 sp=0x00007f89fb3f9e10
+Event: 47172.354 Thread 0x00007f8a75a1a000 DEOPT UNPACKING pc=0x00007f8a65005229 sp=0x00007f89fb3f9df8 mode 2
+Event: 47172.364 Executing VM operation: RevokeBias
+Event: 47172.364 Executing VM operation: RevokeBias done
+Event: 47172.365 Executing VM operation: RevokeBias
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 00:215 15250                             /usr/lib/jvm/java-8-oracle/bin/java
+00600000-00601000 rw-p 00000000 00:215 15250                             /usr/lib/jvm/java-8-oracle/bin/java
+00b64000-00b85000 rw-p 00000000 00:00 0                                  [heap]
+80000000-100756000 rw-p 00000000 00:00 0 
+100756000-140000000 ---p 00000000 00:00 0 
+7f895c000000-7f895c021000 rw-p 00000000 00:00 0 
+7f895c021000-7f8960000000 ---p 00000000 00:00 0 
+7f8960000000-7f8960021000 rw-p 00000000 00:00 0 
+7f8960021000-7f8964000000 ---p 00000000 00:00 0 
+7f8964000000-7f8964021000 rw-p 00000000 00:00 0 
+7f8964021000-7f8968000000 ---p 00000000 00:00 0 
+7f8968000000-7f8968032000 rw-p 00000000 00:00 0 
+7f8968032000-7f896c000000 ---p 00000000 00:00 0 
+7f896c000000-7f896c021000 rw-p 00000000 00:00 0 
+7f896c021000-7f8970000000 ---p 00000000 00:00 0 
+7f8970000000-7f8970021000 rw-p 00000000 00:00 0 
+7f8970021000-7f8974000000 ---p 00000000 00:00 0 
+7f8974000000-7f8974021000 rw-p 00000000 00:00 0 
+7f8974021000-7f8978000000 ---p 00000000 00:00 0 
+7f8978000000-7f8978021000 rw-p 00000000 00:00 0 
+7f8978021000-7f897c000000 ---p 00000000 00:00 0 
+7f897c000000-7f897c021000 rw-p 00000000 00:00 0 
+7f897c021000-7f8980000000 ---p 00000000 00:00 0 
+7f8980000000-7f89801b5000 rw-p 00000000 00:00 0 
+7f89801b5000-7f8984000000 ---p 00000000 00:00 0 
+7f8984000000-7f89842a0000 rw-p 00000000 00:00 0 
+7f89842a0000-7f8988000000 ---p 00000000 00:00 0 
+7f8989df3000-7f8989ef3000 rw-p 00000000 00:00 0 
+7f8989ef3000-7f8989ff3000 ---p 00000000 00:00 0 
+7f8989ff3000-7f8989ff6000 ---p 00000000 00:00 0 
+7f8989ff6000-7f898a0f4000 rw-p 00000000 00:00 0                          [stack:17429]
+7f898a0f4000-7f898a0f7000 ---p 00000000 00:00 0 
+7f898a0f7000-7f898a1f5000 rw-p 00000000 00:00 0                          [stack:17427]
+7f898a1f5000-7f898a1f8000 ---p 00000000 00:00 0 
+7f898a1f8000-7f898a2f6000 rw-p 00000000 00:00 0 
+7f898a2f6000-7f898a2f9000 ---p 00000000 00:00 0 
+7f898a2f9000-7f898a3f7000 rw-p 00000000 00:00 0                          [stack:21779]
+7f898a3f7000-7f898a3fa000 ---p 00000000 00:00 0 
+7f898a3fa000-7f898a4f8000 rw-p 00000000 00:00 0                          [stack:17424]
+7f898a4f8000-7f898a4fb000 ---p 00000000 00:00 0 
+7f898a4fb000-7f898a7f9000 rw-p 00000000 00:00 0                          [stack:20015]
+7f898a7f9000-7f898a7fc000 ---p 00000000 00:00 0 
+7f898a7fc000-7f898a8fa000 rw-p 00000000 00:00 0 
+7f898a8fa000-7f898a8fd000 ---p 00000000 00:00 0 
+7f898a8fd000-7f898a9fb000 rw-p 00000000 00:00 0                          [stack:17466]
+7f898a9fb000-7f898a9fe000 ---p 00000000 00:00 0 
+7f898a9fe000-7f898aafc000 rw-p 00000000 00:00 0                          [stack:17420]
+7f898aafc000-7f898aaff000 ---p 00000000 00:00 0 
+7f898aaff000-7f898abfd000 rw-p 00000000 00:00 0 
+7f898abfd000-7f898ac00000 ---p 00000000 00:00 0 
+7f898ac00000-7f898aefe000 rw-p 00000000 00:00 0 
+7f898aefe000-7f898af01000 ---p 00000000 00:00 0 
+7f898af01000-7f898c000000 rw-p 00000000 00:00 0                          [stack:17417]
+7f898c000000-7f898c0cf000 rw-p 00000000 00:00 0 
+7f898c0cf000-7f8990000000 ---p 00000000 00:00 0 
+7f8990000000-7f899006a000 rw-p 00000000 00:00 0 
+7f899006a000-7f8994000000 ---p 00000000 00:00 0 
+7f8994000000-7f8994021000 rw-p 00000000 00:00 0 
+7f8994021000-7f8998000000 ---p 00000000 00:00 0 
+7f8998000000-7f8998087000 rw-p 00000000 00:00 0 
+7f8998087000-7f899c000000 ---p 00000000 00:00 0 
+7f899c000000-7f899c021000 rw-p 00000000 00:00 0 
+7f899c021000-7f89a0000000 ---p 00000000 00:00 0 
+7f89a0000000-7f89a0021000 rw-p 00000000 00:00 0 
+7f89a0021000-7f89a4000000 ---p 00000000 00:00 0 
+7f89a4000000-7f89a408d000 rw-p 00000000 00:00 0 
+7f89a408d000-7f89a8000000 ---p 00000000 00:00 0 
+7f89a8000000-7f89a8021000 rw-p 00000000 00:00 0 
+7f89a8021000-7f89ac000000 ---p 00000000 00:00 0 
+7f89ac000000-7f89ac021000 rw-p 00000000 00:00 0 
+7f89ac021000-7f89b0000000 ---p 00000000 00:00 0 
+7f89b0000000-7f89b0021000 rw-p 00000000 00:00 0 
+7f89b0021000-7f89b4000000 ---p 00000000 00:00 0 
+7f89b4000000-7f89b4021000 rw-p 00000000 00:00 0 
+7f89b4021000-7f89b8000000 ---p 00000000 00:00 0 
+7f89b8000000-7f89b8021000 rw-p 00000000 00:00 0 
+7f89b8021000-7f89bc000000 ---p 00000000 00:00 0 
+7f89bc000000-7f89bc021000 rw-p 00000000 00:00 0 
+7f89bc021000-7f89c0000000 ---p 00000000 00:00 0 
+7f89c0000000-7f89c0021000 rw-p 00000000 00:00 0 
+7f89c0021000-7f89c4000000 ---p 00000000 00:00 0 
+7f89c4000000-7f89c4021000 rw-p 00000000 00:00 0 
+7f89c4021000-7f89c8000000 ---p 00000000 00:00 0 
+7f89c8000000-7f89c8021000 rw-p 00000000 00:00 0 
+7f89c8021000-7f89cc000000 ---p 00000000 00:00 0 
+7f89cc000000-7f89cc021000 rw-p 00000000 00:00 0 
+7f89cc021000-7f89d0000000 ---p 00000000 00:00 0 
+7f89d0000000-7f89d0021000 rw-p 00000000 00:00 0 
+7f89d0021000-7f89d4000000 ---p 00000000 00:00 0 
+7f89d4000000-7f89d4021000 rw-p 00000000 00:00 0 
+7f89d4021000-7f89d8000000 ---p 00000000 00:00 0 
+7f89d8000000-7f89d8021000 rw-p 00000000 00:00 0 
+7f89d8021000-7f89dc000000 ---p 00000000 00:00 0 
+7f89dc000000-7f89dc042000 rw-p 00000000 00:00 0 
+7f89dc042000-7f89e0000000 ---p 00000000 00:00 0 
+7f89e0000000-7f89e0021000 rw-p 00000000 00:00 0 
+7f89e0021000-7f89e4000000 ---p 00000000 00:00 0 
+7f89e4000000-7f89e4021000 rw-p 00000000 00:00 0 
+7f89e4021000-7f89e8000000 ---p 00000000 00:00 0 
+7f89e8000000-7f89e80cd000 rw-p 00000000 00:00 0 
+7f89e80cd000-7f89ec000000 ---p 00000000 00:00 0 
+7f89ec000000-7f89ec021000 rw-p 00000000 00:00 0 
+7f89ec021000-7f89f0000000 ---p 00000000 00:00 0 
+7f89f0000000-7f89f0021000 rw-p 00000000 00:00 0 
+7f89f0021000-7f89f4000000 ---p 00000000 00:00 0 
+7f89f4000000-7f89f4021000 rw-p 00000000 00:00 0 
+7f89f4021000-7f89f8000000 ---p 00000000 00:00 0 
+7f89f8049000-7f89f804e000 r--s 00000000 00:215 2711                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/0/index/_1v.cfs
+7f89f804e000-7f89f8050000 r--s 00000000 00:215 2715                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/0/index/_1u_Lucene54_0.dvd
+7f89f8050000-7f89f8053000 r--s 00000000 00:215 2720                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/0/index/_1u.fdt
+7f89f8053000-7f89f805d000 r--s 00000000 00:215 2701                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/0/index/_1u_Lucene50_0.tim
+7f89f805d000-7f89f8060000 r--s 00000000 00:215 2726                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/0/index/_1u_Lucene50_0.pos
+7f89f8060000-7f89f8063000 r--s 00000000 00:215 2698                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/0/index/_1u_Lucene50_0.doc
+7f89f8063000-7f89f8068000 r--s 00000000 00:215 3537                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2u.cfs
+7f89f8068000-7f89f806d000 r--s 00000000 00:215 3479                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2e.cfs
+7f89f806d000-7f89f8071000 r--s 00000000 00:215 3197                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2j.cfs
+7f89f8071000-7f89f8077000 r--s 00000000 00:215 3493                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2d.cfs
+7f89f8077000-7f89f807b000 r--s 00000000 00:215 2907                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2d.cfs
+7f89f807b000-7f89f8080000 r--s 00000000 00:215 3485                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2c.cfs
+7f89f8080000-7f89f8085000 r--s 00000000 00:215 3200                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2i.cfs
+7f89f8085000-7f89f8089000 r--s 00000000 00:215 2893                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2c.cfs
+7f89f8089000-7f89f808a000 r--s 00000000 00:215 2722                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/0/index/_1u.dim
+7f89f808a000-7f89f808b000 r--s 00000000 00:215 2713                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/0/index/_1u.nvd
+7f89f808b000-7f89f8090000 r--s 00000000 00:215 3193                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2h.cfs
+7f89f8090000-7f89f8096000 r--s 00000000 00:215 2904                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2b.cfs
+7f89f8096000-7f89f8098000 r--s 00000000 00:215 2817                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/1/index/_2d_Lucene54_0.dvd
+7f89f8098000-7f89f809a000 r--s 00000000 00:215 2895                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2a_Lucene54_0.dvd
+7f89f809a000-7f89f809c000 r--s 00000000 00:215 3182                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2g_Lucene54_0.dvd
+7f89f809c000-7f89f809e000 r--s 00000000 00:215 3494                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2b_Lucene54_0.dvd
+7f89f809e000-7f89f809f000 r--s 00000000 00:215 2818                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/1/index/_2d.dim
+7f89f809f000-7f89f80a0000 r--s 00000000 00:215 2882                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2a.dim
+7f89f80a0000-7f89f80a1000 r--s 00000000 00:215 3488                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2b.dim
+7f89f80a1000-7f89f80a2000 r--s 00000000 00:215 3189                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2g.dim
+7f89f80a2000-7f89f80a5000 r--s 00000000 00:215 3507                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2b.fdt
+7f89f80a5000-7f89f80a8000 r--s 00000000 00:215 3195                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2g.fdt
+7f89f80a8000-7f89f80ab000 r--s 00000000 00:215 2886                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2a.fdt
+7f89f80ab000-7f89f80ae000 r--s 00000000 00:215 2829                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/1/index/_2d.fdt
+7f89f80ae000-7f89f80af000 r--s 00000000 00:215 2827                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/1/index/_2d.nvd
+7f89f80af000-7f89f80bb000 r--s 00000000 00:215 3502                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2b_Lucene50_0.tim
+7f89f80bb000-7f89f80c5000 r--s 00000000 00:215 2892                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2a_Lucene50_0.tim
+7f89f80c5000-7f89f80cf000 r--s 00000000 00:215 2826                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/1/index/_2d_Lucene50_0.tim
+7f89f80cf000-7f89f80d8000 r--s 00000000 00:215 3190                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2g_Lucene50_0.tim
+7f89f80d8000-7f89f80db000 ---p 00000000 00:00 0 
+7f89f80db000-7f89f81d9000 rw-p 00000000 00:00 0                          [stack:17416]
+7f89f81d9000-7f89f81dc000 ---p 00000000 00:00 0 
+7f89f81dc000-7f89f82da000 rw-p 00000000 00:00 0                          [stack:17415]
+7f89f82da000-7f89f82dd000 ---p 00000000 00:00 0 
+7f89f82dd000-7f89f83db000 rw-p 00000000 00:00 0                          [stack:17414]
+7f89f83db000-7f89f83de000 ---p 00000000 00:00 0 
+7f89f83de000-7f89f84dc000 rw-p 00000000 00:00 0                          [stack:17413]
+7f89f84dc000-7f89f84df000 ---p 00000000 00:00 0 
+7f89f84df000-7f89f85dd000 rw-p 00000000 00:00 0                          [stack:17412]
+7f89f85dd000-7f89f85e0000 ---p 00000000 00:00 0 
+7f89f85e0000-7f89f86de000 rw-p 00000000 00:00 0                          [stack:17411]
+7f89f86de000-7f89f86e1000 ---p 00000000 00:00 0 
+7f89f86e1000-7f89f87df000 rw-p 00000000 00:00 0                          [stack:17410]
+7f89f87df000-7f89f87e2000 ---p 00000000 00:00 0 
+7f89f87e2000-7f89f88e0000 rw-p 00000000 00:00 0                          [stack:17409]
+7f89f88e0000-7f89f88e3000 ---p 00000000 00:00 0 
+7f89f88e3000-7f89f89e1000 rw-p 00000000 00:00 0                          [stack:17408]
+7f89f89e1000-7f89f89e4000 ---p 00000000 00:00 0 
+7f89f89e4000-7f89f8ae2000 rw-p 00000000 00:00 0                          [stack:17407]
+7f89f8ae2000-7f89f8ae5000 ---p 00000000 00:00 0 
+7f89f8ae5000-7f89f8be3000 rw-p 00000000 00:00 0                          [stack:17406]
+7f89f8be3000-7f89f8be6000 ---p 00000000 00:00 0 
+7f89f8be6000-7f89f9ce5000 rw-p 00000000 00:00 0                          [stack:17405]
+7f89f9ce5000-7f89f9ce8000 ---p 00000000 00:00 0 
+7f89f9ce8000-7f89f9de6000 rw-p 00000000 00:00 0                          [stack:17404]
+7f89f9de6000-7f89f9de9000 ---p 00000000 00:00 0 
+7f89f9de9000-7f89f9ee7000 rw-p 00000000 00:00 0                          [stack:17403]
+7f89f9ee7000-7f89f9eea000 ---p 00000000 00:00 0 
+7f89f9eea000-7f89f9fe8000 rw-p 00000000 00:00 0                          [stack:17402]
+7f89f9fe8000-7f89f9feb000 ---p 00000000 00:00 0 
+7f89f9feb000-7f89fa0e9000 rw-p 00000000 00:00 0                          [stack:17401]
+7f89fa0e9000-7f89fa0ec000 ---p 00000000 00:00 0 
+7f89fa0ec000-7f89fa1ea000 rw-p 00000000 00:00 0                          [stack:17400]
+7f89fa1ea000-7f89fa1ed000 ---p 00000000 00:00 0 
+7f89fa1ed000-7f89fa2eb000 rw-p 00000000 00:00 0                          [stack:17399]
+7f89fa2eb000-7f89fa2ee000 ---p 00000000 00:00 0 
+7f89fa2ee000-7f89fa3ec000 rw-p 00000000 00:00 0                          [stack:17398]
+7f89fa3ec000-7f89fa3ef000 ---p 00000000 00:00 0 
+7f89fa3ef000-7f89fa4ed000 rw-p 00000000 00:00 0                          [stack:17397]
+7f89fa4ed000-7f89fa4f0000 ---p 00000000 00:00 0 
+7f89fa4f0000-7f89fa5ee000 rw-p 00000000 00:00 0                          [stack:17396]
+7f89fa5ee000-7f89fa5f1000 ---p 00000000 00:00 0 
+7f89fa5f1000-7f89fa6ef000 rw-p 00000000 00:00 0                          [stack:17395]
+7f89fa6ef000-7f89fa6f2000 ---p 00000000 00:00 0 
+7f89fa6f2000-7f89fa7f0000 rw-p 00000000 00:00 0                          [stack:17394]
+7f89fa7f0000-7f89fa7f3000 ---p 00000000 00:00 0 
+7f89fa7f3000-7f89fa8f1000 rw-p 00000000 00:00 0                          [stack:17393]
+7f89fa8f1000-7f89fa8f4000 ---p 00000000 00:00 0 
+7f89fa8f4000-7f89fa9f2000 rw-p 00000000 00:00 0 
+7f89fa9f2000-7f89fa9f5000 ---p 00000000 00:00 0 
+7f89fa9f5000-7f89faaf3000 rw-p 00000000 00:00 0 
+7f89faaf3000-7f89faaf6000 ---p 00000000 00:00 0 
+7f89faaf6000-7f89fabf4000 rw-p 00000000 00:00 0 
+7f89fabf4000-7f89fabf7000 ---p 00000000 00:00 0 
+7f89fabf7000-7f89facf5000 rw-p 00000000 00:00 0                          [stack:17431]
+7f89facf5000-7f89facf8000 ---p 00000000 00:00 0 
+7f89facf8000-7f89fadf6000 rw-p 00000000 00:00 0 
+7f89fadf6000-7f89fadf9000 ---p 00000000 00:00 0 
+7f89fadf9000-7f89faef7000 rw-p 00000000 00:00 0 
+7f89faef7000-7f89faefa000 ---p 00000000 00:00 0 
+7f89faefa000-7f89faff8000 rw-p 00000000 00:00 0 
+7f89faff8000-7f89faffb000 ---p 00000000 00:00 0 
+7f89faffb000-7f89fb0f9000 rw-p 00000000 00:00 0 
+7f89fb0f9000-7f89fb0fc000 ---p 00000000 00:00 0 
+7f89fb0fc000-7f89fb1fa000 rw-p 00000000 00:00 0 
+7f89fb1fa000-7f89fb1fd000 ---p 00000000 00:00 0 
+7f89fb1fd000-7f89fb2fb000 rw-p 00000000 00:00 0                          [stack:17383]
+7f89fb2fb000-7f89fb2fe000 ---p 00000000 00:00 0 
+7f89fb2fe000-7f89fb3fc000 rw-p 00000000 00:00 0                          [stack:17382]
+7f89fb3fc000-7f89fb3ff000 ---p 00000000 00:00 0 
+7f89fb3ff000-7f89fb4fd000 rw-p 00000000 00:00 0                          [stack:17381]
+7f89fb4fd000-7f89fb500000 ---p 00000000 00:00 0 
+7f89fb500000-7f89fb7fe000 rw-p 00000000 00:00 0                          [stack:17380]
+7f89fb7fe000-7f89fb801000 ---p 00000000 00:00 0 
+7f89fb801000-7f89fbaff000 rw-p 00000000 00:00 0                          [stack:17379]
+7f89fbaff000-7f89fbcff000 rw-p 00000000 00:00 0 
+7f89fbcff000-7f89fbeff000 rw-p 00000000 00:00 0 
+7f89fbeff000-7f89fbf02000 ---p 00000000 00:00 0 
+7f89fbf02000-7f89fc000000 rw-p 00000000 00:00 0                          [stack:17377]
+7f89fc000000-7f89fc021000 rw-p 00000000 00:00 0 
+7f89fc021000-7f8a00000000 ---p 00000000 00:00 0 
+7f8a00000000-7f8a0028e000 rw-p 00000000 00:00 0 
+7f8a0028e000-7f8a04000000 ---p 00000000 00:00 0 
+7f8a04000000-7f8a04021000 rw-p 00000000 00:00 0 
+7f8a04021000-7f8a08000000 ---p 00000000 00:00 0 
+7f8a08000000-7f8a08021000 rw-p 00000000 00:00 0 
+7f8a08021000-7f8a0c000000 ---p 00000000 00:00 0 
+7f8a0c000000-7f8a0d133000 rw-p 00000000 00:00 0 
+7f8a0d133000-7f8a10000000 ---p 00000000 00:00 0 
+7f8a10000000-7f8a10851000 rw-p 00000000 00:00 0 
+7f8a10851000-7f8a14000000 ---p 00000000 00:00 0 
+7f8a14000000-7f8a158e4000 rw-p 00000000 00:00 0 
+7f8a158e4000-7f8a18000000 ---p 00000000 00:00 0 
+7f8a18000000-7f8a1949e000 rw-p 00000000 00:00 0 
+7f8a1949e000-7f8a1c000000 ---p 00000000 00:00 0 
+7f8a1c000000-7f8a1c021000 rw-p 00000000 00:00 0 
+7f8a1c021000-7f8a20000000 ---p 00000000 00:00 0 
+7f8a20000000-7f8a20021000 rw-p 00000000 00:00 0 
+7f8a20021000-7f8a24000000 ---p 00000000 00:00 0 
+7f8a24000000-7f8a24021000 rw-p 00000000 00:00 0 
+7f8a24021000-7f8a28000000 ---p 00000000 00:00 0 
+7f8a28000000-7f8a28021000 rw-p 00000000 00:00 0 
+7f8a28021000-7f8a2c000000 ---p 00000000 00:00 0 
+7f8a2c000000-7f8a2c021000 rw-p 00000000 00:00 0 
+7f8a2c021000-7f8a30000000 ---p 00000000 00:00 0 
+7f8a30000000-7f8a30032000 rw-p 00000000 00:00 0 
+7f8a30032000-7f8a34000000 ---p 00000000 00:00 0 
+7f8a34000000-7f8a34021000 rw-p 00000000 00:00 0 
+7f8a34021000-7f8a38000000 ---p 00000000 00:00 0 
+7f8a38000000-7f8a38021000 rw-p 00000000 00:00 0 
+7f8a38021000-7f8a3c000000 ---p 00000000 00:00 0 
+7f8a3c000000-7f8a3c001000 r--s 00000000 00:215 3202                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2g.nvd
+7f8a3c001000-7f8a3c002000 r--s 00000000 00:215 3491                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2b.nvd
+7f8a3c002000-7f8a3c003000 r--s 00000000 00:215 2902                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2a.nvd
+7f8a3c003000-7f8a3c006000 r--s 00000000 00:215 2819                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/1/index/_2d_Lucene50_0.pos
+7f8a3c006000-7f8a3c009000 r--s 00000000 00:215 3177                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2g_Lucene50_0.pos
+7f8a3c009000-7f8a3c00d000 r--s 00000000 00:215 3500                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2b_Lucene50_0.pos
+7f8a3c00d000-7f8a3c010000 r--s 00000000 00:215 2903                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2a_Lucene50_0.pos
+7f8a3c010000-7f8a3c013000 r--s 00000000 00:215 2825                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/1/index/_2d_Lucene50_0.doc
+7f8a3c013000-7f8a3c016000 r--s 00000000 00:215 2883                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/index/_2a_Lucene50_0.doc
+7f8a3c016000-7f8a3c019000 r--s 00000000 00:215 3175                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/3/index/_2g_Lucene50_0.doc
+7f8a3c019000-7f8a3c01c000 r--s 00000000 00:215 3512                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/4/index/_2b_Lucene50_0.doc
+7f8a3c01c000-7f8a3c21c000 rw-p 00000000 00:00 0 
+7f8a3c21c000-7f8a3c41c000 rw-p 00000000 00:00 0 
+7f8a3c41c000-7f8a3c60e000 rw-p 00000000 00:00 0 
+7f8a3c60e000-7f8a3c61c000 ---p 00000000 00:00 0 
+7f8a3c61c000-7f8a3c61f000 r--s 0001a000 00:215 15272                     /usr/lib/jvm/java-8-oracle/jre/lib/jce.jar
+7f8a3c61f000-7f8a3c81f000 rw-p 00000000 00:00 0 
+7f8a3c81f000-7f8a3ca18000 rw-p 00000000 00:00 0 
+7f8a3ca18000-7f8a3ca1f000 ---p 00000000 00:00 0 
+7f8a3ca1f000-7f8a3cc1d000 rw-p 00000000 00:00 0 
+7f8a3cc1d000-7f8a3cc1f000 ---p 00000000 00:00 0 
+7f8a3cc1f000-7f8a3cc22000 ---p 00000000 00:00 0 
+7f8a3cc22000-7f8a3cf20000 rw-p 00000000 00:00 0                          [stack:17376]
+7f8a3cf20000-7f8a3cf22000 r--s 00017000 00:215 1121                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/percolator/percolator-5.0.0.jar
+7f8a3cf22000-7f8a3d122000 rw-p 00000000 00:00 0 
+7f8a3d122000-7f8a3d128000 r--s 00044000 00:215 1119                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-painless/antlr4-runtime-4.5.1-1.jar
+7f8a3d128000-7f8a3d12f000 r--s 00063000 00:215 1118                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-painless/lang-painless-5.0.0.jar
+7f8a3d12f000-7f8a3d134000 r--s 0005a000 00:215 1116                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-painless/asm-debug-all-5.1.jar
+7f8a3d134000-7f8a3d141000 r--s 0009b000 00:215 1144                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty4/netty-common-4.1.5.Final.jar
+7f8a3d141000-7f8a3d147000 r--s 00047000 00:215 1143                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty4/netty-handler-4.1.5.Final.jar
+7f8a3d147000-7f8a3d151000 r--s 0007a000 00:215 1142                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty4/netty-codec-http-4.1.5.Final.jar
+7f8a3d151000-7f8a3d154000 r--s 0003b000 00:215 1141                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty4/netty-buffer-4.1.5.Final.jar
+7f8a3d154000-7f8a3d156000 r--s 00010000 00:215 1140                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty4/transport-netty4-5.0.0.jar
+7f8a3d156000-7f8a3d158000 r--s 00005000 00:215 1139                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty4/netty-resolver-4.1.5.Final.jar
+7f8a3d158000-7f8a3d15e000 r--s 00045000 00:215 1137                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty4/netty-codec-4.1.5.Final.jar
+7f8a3d15e000-7f8a3d167000 r--s 0005f000 00:215 1136                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty4/netty-transport-4.1.5.Final.jar
+7f8a3d167000-7f8a3d180000 r--s 00123000 00:215 1133                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty3/netty-3.10.6.Final.jar
+7f8a3d180000-7f8a3d182000 r--s 00011000 00:215 1132                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/transport-netty3/transport-netty3-5.0.0.jar
+7f8a3d182000-7f8a3d185000 r--s 00014000 00:215 1098                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/ingest-common/ingest-common-5.0.0.jar
+7f8a3d185000-7f8a3d188000 r--s 0002c000 00:215 1097                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/ingest-common/joni-2.1.6.jar
+7f8a3d188000-7f8a3d196000 r--s 00164000 00:215 1095                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/ingest-common/jcodings-1.0.12.jar
+7f8a3d196000-7f8a3d198000 r--s 00009000 00:215 1106                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-expression/asm-commons-5.0.4.jar
+7f8a3d198000-7f8a3d19e000 r--s 00044000 00:215 1105                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-expression/antlr4-runtime-4.5.1-1.jar
+7f8a3d19e000-7f8a3d1a0000 r--s 0000c000 00:215 1104                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-expression/asm-5.0.4.jar
+7f8a3d1a0000-7f8a3d1a2000 r--s 00011000 00:215 1102                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-expression/lucene-expressions-6.2.0.jar
+7f8a3d1a2000-7f8a3d1a4000 r--s 0000a000 00:215 1101                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-expression/lang-expression-5.0.0.jar
+7f8a3d1a4000-7f8a3d1a6000 r--s 00006000 00:215 1100                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-expression/asm-tree-5.0.4.jar
+7f8a3d1a6000-7f8a3d1ad000 r--s 00050000 00:215 1130                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/reindex/httpcore-nio-4.4.5.jar
+7f8a3d1ad000-7f8a3d1af000 r--s 0000e000 00:215 1129                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/reindex/commons-logging-1.1.3.jar
+7f8a3d1af000-7f8a3d1b6000 r--s 00049000 00:215 1128                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/reindex/httpcore-4.4.5.jar
+7f8a3d1b6000-7f8a3d1bd000 r--s 0003f000 00:215 1127                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/reindex/commons-codec-1.10.jar
+7f8a3d1bd000-7f8a3d1c1000 r--s 00028000 00:215 1126                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/reindex/httpasyncclient-4.1.2.jar
+7f8a3d1c1000-7f8a3d1c2000 r--s 00007000 00:215 1124                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/reindex/rest-5.0.0.jar
+7f8a3d1c2000-7f8a3d1c5000 r--s 00022000 00:215 1123                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/reindex/reindex-5.0.0.jar
+7f8a3d1c5000-7f8a3d1d2000 r--s 000a7000 00:215 1122                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/reindex/httpclient-4.5.2.jar
+7f8a3d1d2000-7f8a3d21f000 r--s 00405000 00:215 1108                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-groovy/groovy-2.4.6-indy.jar
+7f8a3d21f000-7f8a3d220000 r--s 00004000 00:215 1107                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-groovy/lang-groovy-5.0.0.jar
+7f8a3d220000-7f8a3d223000 r--s 00016000 00:215 1114                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-mustache/compiler-0.9.3.jar
+7f8a3d223000-7f8a3d225000 r--s 0000d000 00:215 1113                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/lang-mustache/lang-mustache-5.0.0.jar
+7f8a3d225000-7f8a3d227000 r--s 0000b000 00:215 1094                      /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/modules/aggs-matrix-stats/aggs-matrix-stats-5.0.0.jar
+7f8a3d227000-7f8a3d427000 rw-p 00000000 00:00 0 
+7f8a3d427000-7f8a3d428000 r--p 00000000 00:00 0 
+7f8a3d428000-7f8a3d429000 rwxp 00000000 00:00 0 
+7f8a3d429000-7f8a3d42c000 ---p 00000000 00:00 0 
+7f8a3d42c000-7f8a3d462000 rw-p 00000000 00:00 0 
+7f8a3d462000-7f8a3d479000 r-xp 00000000 00:215 894                       /tmp/jna--851256601/jna2882805986970939321.tmp (deleted)
+7f8a3d479000-7f8a3d578000 ---p 00017000 00:215 894                       /tmp/jna--851256601/jna2882805986970939321.tmp (deleted)
+7f8a3d578000-7f8a3d57a000 rw-p 00016000 00:215 894                       /tmp/jna--851256601/jna2882805986970939321.tmp (deleted)
+7f8a3d57a000-7f8a3d57e000 r--s 00097000 00:215 15271                     /usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar
+7f8a3d57e000-7f8a3d77e000 rw-p 00000000 00:00 0 
+7f8a3d77e000-7f8a3d97e000 rw-p 00000000 00:00 0 
+7f8a3d97e000-7f8a3d98f000 r-xp 00000000 00:215 15301                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libnio.so
+7f8a3d98f000-7f8a3db8e000 ---p 00011000 00:215 15301                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libnio.so
+7f8a3db8e000-7f8a3db8f000 rw-p 00010000 00:215 15301                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libnio.so
+7f8a3db8f000-7f8a3dba5000 r-xp 00000000 00:215 15300                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libnet.so
+7f8a3dba5000-7f8a3dda5000 ---p 00016000 00:215 15300                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libnet.so
+7f8a3dda5000-7f8a3dda6000 rw-p 00016000 00:215 15300                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libnet.so
+7f8a3dda6000-7f8a3ddc1000 r--s 001d2000 00:215 15280                     /usr/lib/jvm/java-8-oracle/jre/lib/ext/nashorn.jar
+7f8a3ddc1000-7f8a3ddca000 r-xp 00000000 00:215 15297                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libmanagement.so
+7f8a3ddca000-7f8a3dfc9000 ---p 00009000 00:215 15297                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libmanagement.so
+7f8a3dfc9000-7f8a3dfca000 rw-p 00008000 00:215 15297                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libmanagement.so
+7f8a3dfca000-7f8a3dfcb000 r--s 00001000 00:215 683                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/securesm-1.1.jar
+7f8a3dfcb000-7f8a3dfd1000 r--s 0003c000 00:215 682                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/snakeyaml-1.15.jar
+7f8a3dfd1000-7f8a3dfdb000 r--s 00059000 00:215 680                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-queryparser-6.2.0.jar
+7f8a3dfdb000-7f8a3dfe1000 r--s 00031000 00:215 679                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-queries-6.2.0.jar
+7f8a3dfe1000-7f8a3e00c000 r--s 0024c000 00:215 678                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-core-6.2.0.jar
+7f8a3e00c000-7f8a3e00e000 r--s 0000c000 00:215 677                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-spatial-6.2.0.jar
+7f8a3e00e000-7f8a3e012000 r--s 0002a000 00:215 676                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/spatial4j-0.6.jar
+7f8a3e012000-7f8a3e015000 r--s 00011000 00:215 675                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jopt-simple-5.0.2.jar
+7f8a3e015000-7f8a3e017000 r--s 00009000 00:215 674                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/log4j-1.2-api-2.6.2.jar
+7f8a3e017000-7f8a3e01b000 r--s 00017000 00:215 673                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-grouping-6.2.0.jar
+7f8a3e01b000-7f8a3e02c000 r--s 00156000 00:215 672                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-analyzers-common-6.2.0.jar
+7f8a3e02c000-7f8a3e03d000 r--s 00089000 00:215 671                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/joda-time-2.9.4.jar
+7f8a3e03d000-7f8a3e041000 r--s 00021000 00:215 670                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-join-6.2.0.jar
+7f8a3e041000-7f8a3e046000 r--s 00038000 00:215 669                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-suggest-6.2.0.jar
+7f8a3e046000-7f8a3e048000 r--s 0000a000 00:215 668                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-memory-6.2.0.jar
+7f8a3e048000-7f8a3e04a000 r--s 00019000 00:215 667                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/HdrHistogram-2.1.6.jar
+7f8a3e04a000-7f8a3e04d000 r--s 0002b000 00:215 666                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-sandbox-6.2.0.jar
+7f8a3e04d000-7f8a3e066000 r--s 0010b000 00:215 665                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/log4j-core-2.6.2.jar
+7f8a3e066000-7f8a3e068000 r--s 00008000 00:215 663                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/joda-convert-1.2.jar
+7f8a3e068000-7f8a3e06c000 r--s 0002d000 00:215 662                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/log4j-api-2.6.2.jar
+7f8a3e06c000-7f8a3e06e000 r--s 0000b000 00:215 661                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/t-digest-3.0.jar
+7f8a3e06e000-7f8a3e07f000 r--s 000b2000 00:215 660                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jts-1.13.jar
+7f8a3e07f000-7f8a3e082000 r--s 00020000 00:215 659                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-misc-6.2.0.jar
+7f8a3e082000-7f8a3e086000 r--s 0002c000 00:215 658                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-spatial-extras-6.2.0.jar
+7f8a3e086000-7f8a3e089000 r--s 00013000 00:215 657                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-backward-codecs-6.2.0.jar
+7f8a3e089000-7f8a3e08d000 r--s 00020000 00:215 656                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-highlighter-6.2.0.jar
+7f8a3e08d000-7f8a3e0a4000 r--s 00100000 00:215 654                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/hppc-0.7.1.jar
+7f8a3e0a4000-7f8a3e145000 r--s 0085e000 00:215 681                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/elasticsearch-5.0.0.jar
+7f8a3e145000-7f8a3e146000 ---p 00000000 00:00 0 
+7f8a3e146000-7f8a3e246000 rw-p 00000000 00:00 0                          [stack:17372]
+7f8a3e246000-7f8a3e249000 ---p 00000000 00:00 0 
+7f8a3e249000-7f8a3e347000 rw-p 00000000 00:00 0                          [stack:17371]
+7f8a3e347000-7f8a3e34a000 ---p 00000000 00:00 0 
+7f8a3e34a000-7f8a3e448000 rw-p 00000000 00:00 0                          [stack:17370]
+7f8a3e448000-7f8a3e44b000 ---p 00000000 00:00 0 
+7f8a3e44b000-7f8a3e549000 rw-p 00000000 00:00 0                          [stack:17369]
+7f8a3e549000-7f8a3e54c000 ---p 00000000 00:00 0 
+7f8a3e54c000-7f8a3e64a000 rw-p 00000000 00:00 0                          [stack:17368]
+7f8a3e64a000-7f8a3e64d000 ---p 00000000 00:00 0 
+7f8a3e64d000-7f8a3e74b000 rw-p 00000000 00:00 0                          [stack:17367]
+7f8a3e74b000-7f8a3e74e000 ---p 00000000 00:00 0 
+7f8a3e74e000-7f8a3e84c000 rw-p 00000000 00:00 0                          [stack:17366]
+7f8a3e84c000-7f8a3e84f000 ---p 00000000 00:00 0 
+7f8a3e84f000-7f8a3e94d000 rw-p 00000000 00:00 0                          [stack:17365]
+7f8a3e94d000-7f8a3eabc000 r--p 00000000 00:215 107                       /usr/lib/locale/C.UTF-8/LC_COLLATE
+7f8a3eabc000-7f8a3eabf000 ---p 00000000 00:00 0 
+7f8a3eabf000-7f8a3ebbd000 rw-p 00000000 00:00 0                          [stack:17364]
+7f8a3ebbd000-7f8a3ebc0000 ---p 00000000 00:00 0 
+7f8a3ebc0000-7f8a3ecbe000 rw-p 00000000 00:00 0                          [stack:17363]
+7f8a3ecbe000-7f8a3ecbf000 ---p 00000000 00:00 0 
+7f8a3ecbf000-7f8a3ee0e000 rw-p 00000000 00:00 0                          [stack:17362]
+7f8a3ee0e000-7f8a3efe6000 r--s 03d2a000 00:215 15270                     /usr/lib/jvm/java-8-oracle/jre/lib/rt.jar
+7f8a3efe6000-7f8a3f8b7000 rw-p 00000000 00:00 0 
+7f8a3f8b7000-7f8a3f8f9000 rw-p 00000000 00:00 0 
+7f8a3f8f9000-7f8a3f8fa000 ---p 00000000 00:00 0 
+7f8a3f8fa000-7f8a40000000 rw-p 00000000 00:00 0                          [stack:17361]
+7f8a40000000-7f8a40025000 rw-p 00000000 00:00 0 
+7f8a40025000-7f8a44000000 ---p 00000000 00:00 0 
+7f8a44000000-7f8a44036000 rw-p 00000000 00:00 0 
+7f8a44036000-7f8a48000000 ---p 00000000 00:00 0 
+7f8a48000000-7f8a48023000 rw-p 00000000 00:00 0 
+7f8a48023000-7f8a4c000000 ---p 00000000 00:00 0 
+7f8a4c000000-7f8a4c021000 rw-p 00000000 00:00 0 
+7f8a4c021000-7f8a50000000 ---p 00000000 00:00 0 
+7f8a50000000-7f8a5002d000 rw-p 00000000 00:00 0 
+7f8a5002d000-7f8a54000000 ---p 00000000 00:00 0 
+7f8a54000000-7f8a54021000 rw-p 00000000 00:00 0 
+7f8a54021000-7f8a58000000 ---p 00000000 00:00 0 
+7f8a58000000-7f8a58047000 rw-p 00000000 00:00 0 
+7f8a58047000-7f8a5c000000 ---p 00000000 00:00 0 
+7f8a5c000000-7f8a5c001000 r--s 00011000 00:215 664                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jackson-dataformat-smile-2.8.1.jar
+7f8a5c001000-7f8a5c027000 r--p 00000000 00:215 110                       /usr/lib/locale/C.UTF-8/LC_CTYPE
+7f8a5c027000-7f8a5c2ad000 rw-p 00000000 00:00 0 
+7f8a5c2ad000-7f8a5c2ae000 ---p 00000000 00:00 0 
+7f8a5c2ae000-7f8a5c3ae000 rw-p 00000000 00:00 0                          [stack:17360]
+7f8a5c3ae000-7f8a5c3af000 ---p 00000000 00:00 0 
+7f8a5c3af000-7f8a60000000 rw-p 00000000 00:00 0                          [stack:17359]
+7f8a60000000-7f8a6004b000 rw-p 00000000 00:00 0 
+7f8a6004b000-7f8a64000000 ---p 00000000 00:00 0 
+7f8a64000000-7f8a64002000 r--s 0000b000 00:215 655                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jackson-dataformat-cbor-2.8.1.jar
+7f8a64002000-7f8a64006000 r--s 00041000 00:215 653                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jackson-core-2.8.1.jar
+7f8a64006000-7f8a649f9000 rw-p 00000000 00:00 0 
+7f8a649f9000-7f8a649fa000 rw-p 00000000 00:00 0 
+7f8a649fa000-7f8a649fb000 ---p 00000000 00:00 0 
+7f8a649fb000-7f8a64afb000 rw-p 00000000 00:00 0                          [stack:17358]
+7f8a64afb000-7f8a64afc000 ---p 00000000 00:00 0 
+7f8a64afc000-7f8a64bfc000 rw-p 00000000 00:00 0                          [stack:17357]
+7f8a64bfc000-7f8a64bfd000 ---p 00000000 00:00 0 
+7f8a64bfd000-7f8a64cfd000 rw-p 00000000 00:00 0                          [stack:17356]
+7f8a64cfd000-7f8a64cfe000 ---p 00000000 00:00 0 
+7f8a64cfe000-7f8a64dfe000 rw-p 00000000 00:00 0                          [stack:17355]
+7f8a64dfe000-7f8a64dff000 ---p 00000000 00:00 0 
+7f8a64dff000-7f8a64eff000 rw-p 00000000 00:00 0                          [stack:17354]
+7f8a64eff000-7f8a64f00000 ---p 00000000 00:00 0 
+7f8a64f00000-7f8a65000000 rw-p 00000000 00:00 0                          [stack:17353]
+7f8a65000000-7f8a65de0000 rwxp 00000000 00:00 0 
+7f8a65de0000-7f8a74000000 ---p 00000000 00:00 0 
+7f8a74000000-7f8a75a28000 rw-p 00000000 00:00 0 
+7f8a75a28000-7f8a78000000 ---p 00000000 00:00 0 
+7f8a78000000-7f8a78001000 r--s 00009000 00:215 652                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jackson-dataformat-yaml-2.8.1.jar
+7f8a78001000-7f8a78005000 r--s 00112000 00:215 651                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jna-4.2.2.jar
+7f8a78005000-7f8a78009000 r--s 00036000 00:215 650                       /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-spatial3d-6.2.0.jar
+7f8a78009000-7f8a78010000 r--s 00000000 00:215 98                        /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7f8a78010000-7f8a780d6000 rw-p 00000000 00:00 0 
+7f8a780d6000-7f8a780d7000 ---p 00000000 00:00 0 
+7f8a780d7000-7f8a781d7000 rw-p 00000000 00:00 0                          [stack:17352]
+7f8a781d7000-7f8a781d8000 ---p 00000000 00:00 0 
+7f8a781d8000-7f8a78310000 rw-p 00000000 00:00 0                          [stack:17351]
+7f8a78310000-7f8a78698000 ---p 00000000 00:00 0 
+7f8a78698000-7f8a786b2000 r-xp 00000000 00:215 15268                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libzip.so
+7f8a786b2000-7f8a788b2000 ---p 0001a000 00:215 15268                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libzip.so
+7f8a788b2000-7f8a788b3000 rw-p 0001a000 00:215 15268                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libzip.so
+7f8a788b3000-7f8a788be000 r-xp 00000000 00:215 9607                      /lib/x86_64-linux-gnu/libnss_files-2.19.so
+7f8a788be000-7f8a78abd000 ---p 0000b000 00:215 9607                      /lib/x86_64-linux-gnu/libnss_files-2.19.so
+7f8a78abd000-7f8a78abe000 r--p 0000a000 00:215 9607                      /lib/x86_64-linux-gnu/libnss_files-2.19.so
+7f8a78abe000-7f8a78abf000 rw-p 0000b000 00:215 9607                      /lib/x86_64-linux-gnu/libnss_files-2.19.so
+7f8a78abf000-7f8a78aca000 r-xp 00000000 00:215 9603                      /lib/x86_64-linux-gnu/libnss_nis-2.19.so
+7f8a78aca000-7f8a78cc9000 ---p 0000b000 00:215 9603                      /lib/x86_64-linux-gnu/libnss_nis-2.19.so
+7f8a78cc9000-7f8a78cca000 r--p 0000a000 00:215 9603                      /lib/x86_64-linux-gnu/libnss_nis-2.19.so
+7f8a78cca000-7f8a78ccb000 rw-p 0000b000 00:215 9603                      /lib/x86_64-linux-gnu/libnss_nis-2.19.so
+7f8a78ccb000-7f8a78ce2000 r-xp 00000000 00:215 9601                      /lib/x86_64-linux-gnu/libnsl-2.19.so
+7f8a78ce2000-7f8a78ee1000 ---p 00017000 00:215 9601                      /lib/x86_64-linux-gnu/libnsl-2.19.so
+7f8a78ee1000-7f8a78ee2000 r--p 00016000 00:215 9601                      /lib/x86_64-linux-gnu/libnsl-2.19.so
+7f8a78ee2000-7f8a78ee3000 rw-p 00017000 00:215 9601                      /lib/x86_64-linux-gnu/libnsl-2.19.so
+7f8a78ee3000-7f8a78ee5000 rw-p 00000000 00:00 0 
+7f8a78ee5000-7f8a78eee000 r-xp 00000000 00:215 9599                      /lib/x86_64-linux-gnu/libnss_compat-2.19.so
+7f8a78eee000-7f8a790ed000 ---p 00009000 00:215 9599                      /lib/x86_64-linux-gnu/libnss_compat-2.19.so
+7f8a790ed000-7f8a790ee000 r--p 00008000 00:215 9599                      /lib/x86_64-linux-gnu/libnss_compat-2.19.so
+7f8a790ee000-7f8a790ef000 rw-p 00009000 00:215 9599                      /lib/x86_64-linux-gnu/libnss_compat-2.19.so
+7f8a790ef000-7f8a7911a000 r-xp 00000000 00:215 15260                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjava.so
+7f8a7911a000-7f8a79319000 ---p 0002b000 00:215 15260                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjava.so
+7f8a79319000-7f8a7931b000 rw-p 0002a000 00:215 15260                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjava.so
+7f8a7931b000-7f8a79328000 r-xp 00000000 00:215 15264                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libverify.so
+7f8a79328000-7f8a79527000 ---p 0000d000 00:215 15264                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libverify.so
+7f8a79527000-7f8a79529000 rw-p 0000c000 00:215 15264                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libverify.so
+7f8a79529000-7f8a79530000 r-xp 00000000 00:215 1162                      /lib/x86_64-linux-gnu/librt-2.19.so
+7f8a79530000-7f8a7972f000 ---p 00007000 00:215 1162                      /lib/x86_64-linux-gnu/librt-2.19.so
+7f8a7972f000-7f8a79730000 r--p 00006000 00:215 1162                      /lib/x86_64-linux-gnu/librt-2.19.so
+7f8a79730000-7f8a79731000 rw-p 00007000 00:215 1162                      /lib/x86_64-linux-gnu/librt-2.19.so
+7f8a79731000-7f8a79836000 r-xp 00000000 00:215 171                       /lib/x86_64-linux-gnu/libm-2.19.so
+7f8a79836000-7f8a79a35000 ---p 00105000 00:215 171                       /lib/x86_64-linux-gnu/libm-2.19.so
+7f8a79a35000-7f8a79a36000 r--p 00104000 00:215 171                       /lib/x86_64-linux-gnu/libm-2.19.so
+7f8a79a36000-7f8a79a37000 rw-p 00105000 00:215 171                       /lib/x86_64-linux-gnu/libm-2.19.so
+7f8a79a37000-7f8a7a704000 r-xp 00000000 00:215 15263                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so
+7f8a7a704000-7f8a7a903000 ---p 00ccd000 00:215 15263                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so
+7f8a7a903000-7f8a7a9dc000 rw-p 00ccc000 00:215 15263                     /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so
+7f8a7a9dc000-7f8a7aa27000 rw-p 00000000 00:00 0 
+7f8a7aa27000-7f8a7abe2000 r-xp 00000000 00:215 78                        /lib/x86_64-linux-gnu/libc-2.19.so
+7f8a7abe2000-7f8a7ade1000 ---p 001bb000 00:215 78                        /lib/x86_64-linux-gnu/libc-2.19.so
+7f8a7ade1000-7f8a7ade5000 r--p 001ba000 00:215 78                        /lib/x86_64-linux-gnu/libc-2.19.so
+7f8a7ade5000-7f8a7ade7000 rw-p 001be000 00:215 78                        /lib/x86_64-linux-gnu/libc-2.19.so
+7f8a7ade7000-7f8a7adec000 rw-p 00000000 00:00 0 
+7f8a7adec000-7f8a7adef000 r-xp 00000000 00:215 76                        /lib/x86_64-linux-gnu/libdl-2.19.so
+7f8a7adef000-7f8a7afee000 ---p 00003000 00:215 76                        /lib/x86_64-linux-gnu/libdl-2.19.so
+7f8a7afee000-7f8a7afef000 r--p 00002000 00:215 76                        /lib/x86_64-linux-gnu/libdl-2.19.so
+7f8a7afef000-7f8a7aff0000 rw-p 00003000 00:215 76                        /lib/x86_64-linux-gnu/libdl-2.19.so
+7f8a7aff0000-7f8a7b005000 r-xp 00000000 00:215 15257                     /usr/lib/jvm/java-8-oracle/lib/amd64/jli/libjli.so
+7f8a7b005000-7f8a7b205000 ---p 00015000 00:215 15257                     /usr/lib/jvm/java-8-oracle/lib/amd64/jli/libjli.so
+7f8a7b205000-7f8a7b206000 rw-p 00015000 00:215 15257                     /usr/lib/jvm/java-8-oracle/lib/amd64/jli/libjli.so
+7f8a7b206000-7f8a7b21f000 r-xp 00000000 00:215 246                       /lib/x86_64-linux-gnu/libpthread-2.19.so
+7f8a7b21f000-7f8a7b41e000 ---p 00019000 00:215 246                       /lib/x86_64-linux-gnu/libpthread-2.19.so
+7f8a7b41e000-7f8a7b41f000 r--p 00018000 00:215 246                       /lib/x86_64-linux-gnu/libpthread-2.19.so
+7f8a7b41f000-7f8a7b420000 rw-p 00019000 00:215 246                       /lib/x86_64-linux-gnu/libpthread-2.19.so
+7f8a7b420000-7f8a7b424000 rw-p 00000000 00:00 0 
+7f8a7b424000-7f8a7b447000 r-xp 00000000 00:215 71                        /lib/x86_64-linux-gnu/ld-2.19.so
+7f8a7b447000-7f8a7b448000 r--p 00000000 00:215 109                       /usr/lib/locale/C.UTF-8/LC_NUMERIC
+7f8a7b448000-7f8a7b449000 r--p 00000000 00:215 108                       /usr/lib/locale/C.UTF-8/LC_TIME
+7f8a7b449000-7f8a7b44a000 r--p 00000000 00:215 106                       /usr/lib/locale/C.UTF-8/LC_MONETARY
+7f8a7b44a000-7f8a7b44b000 r--p 00000000 00:215 105                       /usr/lib/locale/C.UTF-8/LC_MESSAGES/SYS_LC_MESSAGES
+7f8a7b44b000-7f8a7b44c000 r--p 00000000 00:215 103                       /usr/lib/locale/C.UTF-8/LC_PAPER
+7f8a7b44c000-7f8a7b530000 rw-p 00000000 00:00 0 
+7f8a7b530000-7f8a7b533000 ---p 00000000 00:00 0 
+7f8a7b533000-7f8a7b635000 rw-p 00000000 00:00 0                          [stack:17350]
+7f8a7b635000-7f8a7b636000 r--p 00000000 00:215 102                       /usr/lib/locale/C.UTF-8/LC_NAME
+7f8a7b636000-7f8a7b637000 r--p 00000000 00:215 101                       /usr/lib/locale/C.UTF-8/LC_ADDRESS
+7f8a7b637000-7f8a7b638000 r--p 00000000 00:215 100                       /usr/lib/locale/C.UTF-8/LC_TELEPHONE
+7f8a7b638000-7f8a7b639000 r--p 00000000 00:215 99                        /usr/lib/locale/C.UTF-8/LC_MEASUREMENT
+7f8a7b639000-7f8a7b63a000 r--p 00000000 00:215 95                        /usr/lib/locale/C.UTF-8/LC_IDENTIFICATION
+7f8a7b63a000-7f8a7b642000 rw-s 00000000 00:215 893                       /tmp/hsperfdata_ubuntu/17334
+7f8a7b642000-7f8a7b643000 rw-p 00000000 00:00 0 
+7f8a7b643000-7f8a7b644000 ---p 00000000 00:00 0 
+7f8a7b644000-7f8a7b646000 rw-p 00000000 00:00 0 
+7f8a7b646000-7f8a7b647000 r--p 00022000 00:215 71                        /lib/x86_64-linux-gnu/ld-2.19.so
+7f8a7b647000-7f8a7b648000 rw-p 00023000 00:215 71                        /lib/x86_64-linux-gnu/ld-2.19.so
+7f8a7b648000-7f8a7b649000 rw-p 00000000 00:00 0 
+7ffec6a0b000-7ffec6a2c000 rw-p 00000000 00:00 0                          [stack]
+7ffec6ba6000-7ffec6ba8000 r--p 00000000 00:00 0                          [vvar]
+7ffec6ba8000-7ffec6baa000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Xms2g -Xmx2g -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djna.nosys=true -Dio.netty.noUnsafe=true -Dio.netty.noKeySetOptimization=true -Dlog4j.shutdownHookEnabled=false -Dlog4j2.disable.jmx=true -Dlog4j.skipJansi=true -XX:+HeapDumpOnOutOfMemoryError -Des.path.home=/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0 
+java_command: org.elasticsearch.bootstrap.Elasticsearch
+java_class_path (initial): /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/elasticsearch-5.0.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-spatial3d-6.2.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jna-4.2.2.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jackson-dataformat-yaml-2.8.1.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jackson-core-2.8.1.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/hppc-0.7.1.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jackson-dataformat-cbor-2.8.1.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-highlighter-6.2.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-backward-codecs-6.2.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-spatial-extras-6.2.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-misc-6.2.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jts-1.13.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/t-digest-3.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/log4j-api-2.6.2.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/joda-convert-1.2.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/jackson-dataformat-smile-2.8.1.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/log4j-core-2.6.2.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-sandbox-6.2.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/HdrHistogram-2.1.6.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-memory-6.2.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-suggest-6.2.0.jar:/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/lib/lucene-join-6.2.0.jar:/home/ub
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=/usr/lib/jvm/java-8-oracle
+PATH=/home/ubuntu/.nvm/versions/node/v4.3.2/bin:/usr/local/rvm/gems/ruby-2.3.0/bin:/usr/local/rvm/gems/ruby-2.3.0@global/bin:/usr/local/rvm/rubies/ruby-2.3.0/bin:/mnt/shared/bin:/home/ubuntu/workspace/node_modules/.bin:/home/ubuntu/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/mnt/shared/sbin:/opt/gitl:/opt/go/bin:/mnt/shared/c9/app.nw/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/usr/local/rvm/bin
+LD_LIBRARY_PATH=~/.c9/local/lib
+SHELL=/bin/bash
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xac64b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xac64b0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x91f950], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x91f950], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x91f950], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x91f950], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x920f80], sa_mask[0]=00000000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x922380], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x922380], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x922380], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x922380], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=14.04
+DISTRIB_CODENAME=trusty
+DISTRIB_DESCRIPTION="Ubuntu 14.04.3 LTS"
+
+uname:Linux 4.2.0-c9 #2 SMP Thu Oct 20 09:52:05 UTC 2016 x86_64
+libc:glibc 2.19 NPTL 2.19 
+rlimit: STACK 8192k, CORE 0k, NPROC 29856, NOFILE 8192, AS infinity
+load average:3.75 2.98 2.79
+
+/proc/meminfo:
+MemTotal:       53595536 kB
+MemFree:         4590248 kB
+MemAvailable:   18297012 kB
+Buffers:         3961452 kB
+Cached:         15042064 kB
+SwapCached:       108664 kB
+Active:         21348608 kB
+Inactive:       18238448 kB
+Active(anon):   12558404 kB
+Inactive(anon):  9396180 kB
+Active(file):    8790204 kB
+Inactive(file):  8842268 kB
+Unevictable:        9420 kB
+Mlocked:            9420 kB
+SwapTotal:      52428796 kB
+SwapFree:       51358088 kB
+Dirty:                 0 kB
+Writeback:             0 kB
+AnonPages:      20529184 kB
+Mapped:          1263468 kB
+Shmem:           1367472 kB
+Slab:            8057512 kB
+SReclaimable:    5574584 kB
+SUnreclaim:      2482928 kB
+KernelStack:      133952 kB
+PageTables:       337108 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    79226564 kB
+Committed_AS:   70257244 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      461076 kB
+VmallocChunk:   34359145556 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:      8192 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:      315380 kB
+DirectMap2M:    39530496 kB
+DirectMap1G:    16777216 kB
+
+
+CPU:total 8 (12 cores per cpu, 2 threads per core) family 6 model 62 stepping 4, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, clmul, erms, ht, tsc, tscinvbit
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU @ 2.50GHz
+stepping	: 4
+microcode	: 0x1
+cpu MHz		: 2500.000
+cache size	: 30720 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic popcnt aes xsave avx f16c rdrand hypervisor lahf_lm fsgsbase tsc_adjust smep erms xsaveopt
+bugs		:
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU @ 2.50GHz
+stepping	: 4
+microcode	: 0x1
+cpu MHz		: 2500.000
+cache size	: 30720 KB
+physical id	: 0
+siblings	: 8
+core id		: 0
+cpu cores	: 4
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic popcnt aes xsave avx f16c rdrand hypervisor lahf_lm fsgsbase tsc_adjust smep erms xsaveopt
+bugs		:
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU @ 2.50GHz
+stepping	: 4
+microcode	: 0x1
+cpu MHz		: 2500.000
+cache size	: 30720 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic popcnt aes xsave avx f16c rdrand hypervisor lahf_lm fsgsbase tsc_adjust smep erms xsaveopt
+bugs		:
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU @ 2.50GHz
+stepping	: 4
+microcode	: 0x1
+cpu MHz		: 2500.000
+cache size	: 30720 KB
+physical id	: 0
+siblings	: 8
+core id		: 1
+cpu cores	: 4
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic popcnt aes xsave avx f16c rdrand hypervisor lahf_lm fsgsbase tsc_adjust smep erms xsaveopt
+bugs		:
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 4
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU @ 2.50GHz
+stepping	: 4
+microcode	: 0x1
+cpu MHz		: 2500.000
+cache size	: 30720 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic popcnt aes xsave avx f16c rdrand hypervisor lahf_lm fsgsbase tsc_adjust smep erms xsaveopt
+bugs		:
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 5
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU @ 2.50GHz
+stepping	: 4
+microcode	: 0x1
+cpu MHz		: 2500.000
+cache size	: 30720 KB
+physical id	: 0
+siblings	: 8
+core id		: 2
+cpu cores	: 4
+apicid		: 5
+initial apicid	: 5
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic popcnt aes xsave avx f16c rdrand hypervisor lahf_lm fsgsbase tsc_adjust smep erms xsaveopt
+bugs		:
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 6
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU @ 2.50GHz
+stepping	: 4
+microcode	: 0x1
+cpu MHz		: 2500.000
+cache size	: 30720 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic popcnt aes xsave avx f16c rdrand hypervisor lahf_lm fsgsbase tsc_adjust smep erms xsaveopt
+bugs		:
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 7
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU @ 2.50GHz
+stepping	: 4
+microcode	: 0x1
+cpu MHz		: 2500.000
+cache size	: 30720 KB
+physical id	: 0
+siblings	: 8
+core id		: 3
+cpu cores	: 4
+apicid		: 7
+initial apicid	: 7
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic popcnt aes xsave avx f16c rdrand hypervisor lahf_lm fsgsbase tsc_adjust smep erms xsaveopt
+bugs		:
+bogomips	: 5000.00
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 53595536k(4589876k free), swap 52428796k(51358088k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.111-b14) for linux-amd64 JRE (1.8.0_111-b14), built on Sep 22 2016 16:14:03 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Fri Jan  6 01:22:31 2017
+elapsed time: 47172 seconds (0d 13h 6m 12s)
+
