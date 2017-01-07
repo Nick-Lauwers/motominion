@@ -89,12 +89,19 @@
           </p>
         <% end %>
         
-        <%= link_to '#' do %>
-          <span class="summary-detail-link">
-            <i class="fa fa-heart summary-detail-link-icon" 
-               aria-hidden="true"></i>
-            Add to Wish List
-          </span>
+        <% unless logged_in? && 
+                  current_user.favorite_vehicles(vehicle).exists? %>
+                  
+          <%= link_to favorite_vehicle_path(vehicle), 
+                        method: :put do %>
+            <span class="summary-detail-link">
+              
+              <i class="fa fa-heart summary-detail-link-icon" 
+                 aria-hidden="true"></i>
+                 
+              Add to Wish List
+            </span>
+          <% end %>
         <% end %>
       </div>
       
@@ -113,19 +120,19 @@
       </div>
     </div>
     
-    <div class="vehicle-item-deal">
-      <%= link_to vehicle, 
-          class: "vehicle-item-deal-content", 
-          target: "_blank" do %>
+    <!--<div class="vehicle-item-deal">-->
+    <!--  <(perc)= link_to vehicle, -->
+    <!--      class: "vehicle-item-deal-content", -->
+    <!--      target: "_blank" do %>-->
           
-        <i class="fa fa-shopping-basket deal-detail-icon" 
-           aria-hidden="true"></i>
+    <!--    <i class="fa fa-shopping-basket deal-detail-icon" -->
+    <!--       aria-hidden="true"></i>-->
            
-        <span class="deal-detail-title">1 Additional Product</span> 
+    <!--    <span class="deal-detail-title">1 Additional Product</span> -->
         
-        <span class="deal-detail-info">Spoiler at reduced cost</span> 
-      <% end %>
-    </div>
+    <!--    <span class="deal-detail-info">Spoiler at reduced cost</span> -->
+    <!--  <(perc) end %>-->
+    <!--</div>-->
   </li>
   
   <script type="text/javascript">

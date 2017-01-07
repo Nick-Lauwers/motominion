@@ -96,16 +96,20 @@
           
           <%= render 'appointments/form' %>
           
-          <% unless current_user.favorite_vehicles(@vehicle).exists? %>
+          <% unless logged_in? && 
+                    current_user.favorite_vehicles(@vehicle).exists? %>
+                    
             <%= button_to favorite_vehicle_path(@vehicle), 
                           class: "btn btn-tertiary", 
                           method: :put do %>
+                          
                 <i class="fa fa-heart-o" 
                    aria-hidden="true"></i> 
+                   
                 Add to Wish List
             <% end %>
           <% end %>
-          
+
           <!--<(perc)= link_to 'Purchase',-->
           <!--            new_vehicle_payment_path(@vehicle),-->
           <!--            class: "btn btn-tertiary" %>-->

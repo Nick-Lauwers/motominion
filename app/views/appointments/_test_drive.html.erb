@@ -90,12 +90,19 @@
           </p>
         <% end %>
         
-        <%= link_to '#' do %>
-          <span class="summary-detail-link">
-            <i class="fa fa-heart summary-detail-link-icon" 
-               aria-hidden="true"></i>
-            Add to Wish List
-          </span>
+        <% unless logged_in? && 
+                  current_user.favorite_vehicles(test_drive.vehicle).exists? %>
+
+          <%= link_to favorite_vehicle_path(test_drive.vehicle), 
+                      method: :put do %>
+            <span class="summary-detail-link">
+              
+              <i class="fa fa-heart summary-detail-link-icon" 
+                 aria-hidden="true"></i>
+                 
+              Add to Wish List
+            </span>
+          <% end %>
         <% end %>
       </div>
       
