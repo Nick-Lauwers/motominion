@@ -38,30 +38,30 @@
           
           <div class="search-items-container">
             
-            <div class="filter-controls">
+            <!--<div class="filter-controls">-->
               
-              <button class="btn-filters">
-                <i class="fa fa-sliders fa-lg filters-icon" 
-                   aria-hidden="true"></i>Filters
-              </button>
+            <!--  <button class="btn-filters">-->
+            <!--    <i class="fa fa-sliders fa-lg filters-icon" -->
+            <!--       aria-hidden="true"></i>Filters-->
+            <!--  </button>-->
               
-              <div class="form-group form-group-primary search-sort">
+            <!--  <div class="form-group form-group-primary search-sort">-->
                 
-                <label for="sort">Sort By:</label>
+            <!--    <label for="sort">Sort By:</label>-->
                 
-                <div class="form-element-primary">
+            <!--    <div class="form-element-primary">-->
                   
-                  <select class="form-control search-sort-form-control" id="sort">
-                    <option><%= link_to "Nearest", '#' %></option>
-                    <option><%= link_to "Most Popular", '#' %></option>
-                    <option><%= link_to "Lowest Price", :sort => "price" %></option>
-                  </select>
+            <!--      <select class="form-control search-sort-form-control" id="sort">-->
+            <!--        <option><(perc)= link_to "Nearest", '#' %></option>-->
+            <!--        <option><(perc)= link_to "Most Popular", '#' %></option>-->
+            <!--        <option><(perc)= link_to "Lowest Price", :sort => "price" %></option>-->
+            <!--      </select>-->
                   
-                  <i class="fa fa-caret-down fa-lg form-caret" 
-                     aria-hidden="true"></i>
-                </div>
-              </div>
-            </div>
+            <!--      <i class="fa fa-caret-down fa-lg form-caret" -->
+            <!--         aria-hidden="true"></i>-->
+            <!--    </div>-->
+            <!--  </div>-->
+            <!--</div>-->
 
             <ul class="search-items">
               <%= render 'search_item' %>
