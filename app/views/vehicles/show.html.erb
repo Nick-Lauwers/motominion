@@ -96,8 +96,9 @@
           
           <%= render 'appointments/form' %>
           
-          <% unless logged_in? && 
-                    current_user.favorite_vehicles(@vehicle).exists? %>
+          <% if logged_in? && 
+                !current_user.favorite_vehicles.exists?(vehicle_id:
+                                                        @vehicle.id) %>
                     
             <%= button_to favorite_vehicle_path(@vehicle), 
                           class: "btn btn-tertiary", 

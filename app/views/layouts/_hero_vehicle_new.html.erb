@@ -17,15 +17,41 @@
             
             <h1 class="hero-username"><%= current_user.name %></h1>
             
-            <div>
-              <span class="hero-detail-title">Phone</span>
-              <span class="hero-detail-info">(+1) (888) 555-5555</span>
-            </div>
-            
-            <div>
-              <span class="hero-detail-title">Email</span>
-              <span class="hero-detail-info"><%= current_user.email %></span>
-            </div>
+            <% if current_user.phone_number.present? or 
+                  current_user.email.present? %>
+              <table>
+                
+                <% if current_user.phone_number.present? %>
+                  <tr>
+                    
+                    <td>
+                      <span class="hero-detail-title">Phone</span>
+                    </td>
+                    
+                    <td>
+                      <span class="hero-detail-info">
+                        <%= current_user.phone_number %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+                
+                <% if current_user.email.present? %>
+                  <tr>
+                    
+                    <td>
+                      <span class="hero-detail-title">Email</span>
+                    </td>
+                    
+                    <td>
+                      <span class="hero-detail-info">
+                        <%= current_user.email %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+            <% end %>
           </div>
         </div>
       </div>

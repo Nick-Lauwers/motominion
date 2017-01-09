@@ -32,15 +32,15 @@
           
           <h1 class="messages-info-username"><%= @other.name %></h1>
           
-          <% if !@other.residence.blank? %>
+          <% if @other.residence.present? %>
             <span class="messages-info-city">
               <%= @other.residence %>
             </span>
           <% end %>
         
-          <%= link_to "1-888-555-5555", '#', class: "messages-info-phone" %>
+          <%= link_to @other.phone_number, '#', class: "messages-info-phone" %>
 
-          <% if !@other.description.blank? %>
+          <% if @other.description.present? %>
             <p class="messages-info-description">
               <%= @other.description %>
             </p>

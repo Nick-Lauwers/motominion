@@ -1435,7 +1435,10 @@ footer {
   }
 }
 
-.search-items {
+.search-items,
+.current-user-listing-items, 
+.other-user-listing-items,
+.wish-list-items {
   padding: 0;
 }
 
@@ -2236,6 +2239,12 @@ ul.pagination {
   padding: 0 2.3em;
 }
 
+.modal-avatar {
+  border-radius: 25px;
+  height: 50px;
+  width: 50px;
+}
+
 .modal-title,
 .modal-info,
 .modal-caption {
@@ -2256,6 +2265,7 @@ ul.pagination {
 .modal-options-container {
   background-color: black;
   height: 100%;
+  width: 6%;
   position: absolute;
   top: 0;
   right: 0;
@@ -2278,17 +2288,16 @@ ul.pagination {
 .modal-show-info {
   cursor: pointer;
   transform: rotate(90deg);
-  p {
-    font-weight: bold;
-    line-height: 0;
-    color: $gray-modal-controls;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%); 
-    transition: color 0.3s;
-    &:hover {
-      color: white;
-    }
+}
+
+.show-info-text {
+  font-weight: bold;
+  color: $gray-modal-controls;
+  position: relative;
+  transform: translateX(50%); 
+  transition: color 0.3s;
+  &:hover {
+    color: white;
   }
 }
 
@@ -2381,17 +2390,17 @@ ul.pagination {
   margin: 0;
 }
 
-.profile-overview-phone {
+.profile-overview-contact {
   margin-top: 1.5em;
 }
 
-.phone-title {
+.contact-title {
   font-size: 1.1em;
   font-weight: bold;
   color: $red;
 }
 
-.phone-link {
+.contact-link {
   font-size: 1.1em;
   text-decoration: underline;
   color: $gray-dark;
@@ -2467,7 +2476,7 @@ ul.pagination {
 .optional-scrolled-title {
   font-size: 1.1em;
   font-weight: bold;
-  line-height: 2;
+  line-height: 2.25;
   color: $red;
 }
 
@@ -2488,25 +2497,89 @@ ul.pagination {
   float: right;
 }
 
-.listing-item a {
-  text-decoration: none;
-}
-
-.listing-item-image {
-  height: 250px;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-}
-
-.wish-list-summary-carousel .item {
+.listing-summary-carousel .item {
   background-color: $gray-darkest;
   height: 175px;
   width: 1000px;
   img {
     height: 100%;
     width: auto;
+  }
+}
+
+.wish-list-item-container {
+  margin: 0 -15px;
+}
+
+.wish-list-item {
+  margin-bottom: 30px;
+}
+
+.wish-list-item a {
+  text-decoration: none;
+}
+
+.wish-list-item-content {
+  background-color: white;
+  border: 1px solid $gray-border;
+}
+
+.wish-list-item-image {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: $gray-darkest;
+  position: relative;
+}
+
+.wish-list-item-title {
+  border-bottom: 1px solid $gray-border;
+  padding: 0.4em 0.7em;
+  p {
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 1.8;
+    text-align: left;
+    color: $gray-text;
+    height: 25px;
+    overflow: hidden;
+    margin: 0;
+  }
+}
+
+.wish-list-item-icon {
+  color: $yellow-dark;
+  margin-right: 0.4em;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.wish-list-item-info {
+  padding: 0.7em;
+  p {
+    font-size: 0.9em;
+    line-height: 1.4;
+    text-align: left;
+    color: $gray-a;
+    height: 35px;
+    overflow: hidden;
+    margin: 0;
+  }
+}
+
+.wish-list-item-stats {
+  padding-top: 0.3em;
+}
+
+.wish-list-item-time, 
+.wish-list-item-saves {
+  display: inline-block;
+  span {
+    font-size: 0.8em;
+    font-weight: bold;
+    line-height: 1.4;
+    color: $gray-b;
   }
 }
 

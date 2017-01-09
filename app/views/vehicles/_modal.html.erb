@@ -13,12 +13,16 @@
       <div class="row vertical-align">
         
         <div class="col-xs-3">
-          <!--<= link_to gravatar_for(@vehicle.user, size: 40), @vehicle.user %>-->
+          <div class="modal-avatar">
+            <%=link_to user_path(@vehicle.user), method: :get do %>
+              <%= image_tag @vehicle.user.avatar.url %>
+            <% end %>
+          </div>
         </div>
         
         <div class="col-xs-9">
           <h1 class="modal-title"><%= @vehicle.listing_name %></h1>
-          <h2 class="modal-info"><%= @vehicle.user.name %> · <span class="average-rating"></span></h2>
+          <h2 class="modal-info"><%= @vehicle.user.name %></h2>
         </div>
       </div>
       
@@ -44,7 +48,7 @@
       <div class="modal-options-text">
         
         <div class="modal-show-info">
-          <p>Show Info +</p>
+          <p class="show-info-text">Show Info</p>
         </div>
         
         <!--<div class="modal-image-number">-->
@@ -130,12 +134,29 @@
     
     /* expand caption */
     var showInfo         = $('.modal-show-info');
+    var showInfoText     = $('.show-info-text')
     var imageContainer   = $('.modal-carousel-container');
     var captionContainer = $('.modal-caption-container');
     
-    showInfo.click(function() {
-      imageContainer.addClass('modal-carousel-container-closed');
-      captionContainer.addClass('modal-caption-container-open');
+    showInfo.click(function(e) {
+      e.preventDefault();
+      
+      if (imageContainer.hasClass('modal-carousel-container-closed')) {
+        showInfoText.html("Show Info");
+        imageContainer.removeClass('modal-carousel-container-closed');
+        captionContainer.removeClass('modal-caption-container-open');
+      } 
+      
+      else {
+        showInfoText.html("Less Info");
+        imageContainer.addClass('modal-carousel-container-closed');
+        captionContainer.addClass('modal-caption-container-open');
+      }
     });
+    
+    // image scaling
+    var modalAvatar = $('.modal-avatar');
+    
+    modalAvatar.imagefill();
   })
 </script>
