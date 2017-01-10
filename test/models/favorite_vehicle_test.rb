@@ -21,4 +21,8 @@ class FavoriteVehicleTest < ActiveSupport::TestCase
     @favorite_vehicle.vehicle_id = nil
     assert_not @favorite_vehicle.valid?
   end
+  
+  test "order should be most recent first" do
+    assert_equal favorite_vehicles(:most_recent), FavoriteVehicle.first
+  end
 end

@@ -1,55 +1,53 @@
 <!--complete-->
+<!--replace favorite_vehicle.vehicle with favorites? -->
+<!--favorite_vehicle.vehicle needed for correct order-->
 
 <% @user.favorite_vehicles.each do |favorite_vehicle| %>
 
-  <div class="wish-list-item-container">
-    <li id="wish-list-item-<%= favorite_vehicle.id %>" 
-         class="col-xs-6 wish-list-item">
-      
-      <%= link_to favorite_vehicle.vehicle do %>
-        <div class="wish-list-item-content">
+  <li id="wish-list-item-<%= favorite_vehicle.id %>" 
+       class="col-xs-6 wish-list-item">
+    <%= link_to favorite_vehicle.vehicle do %>
+    
+      <div class="wish-list-item-content">
+        
+        <div class="wish-list-item-image", 
+             style="background-image: url(
+                   '<%= favorite_vehicle.vehicle.photos[0].image.url() if 
+                        favorite_vehicle.vehicle.photos.length > 0 %>')">
+        </div>
+        
+        <div class="wish-list-item-title">
+          <p>
+            <i class="fa fa-tag wish-list-item-icon" aria-hidden="true"></i>
+            <%= favorite_vehicle.vehicle.listing_name %>
+          </p>
+        </div>
+        
+        <div class="wish-list-item-info">
           
-          <div class="wish-list-item-image", 
-               style="background-image: url(
-                     '<%= favorite_vehicle.vehicle.photos[0].image.url() if 
-                          favorite_vehicle.vehicle.photos.length > 0 %>')">
-          </div>
+          <p><%= favorite_vehicle.vehicle.summary %></p>
           
-          <div class="wish-list-item-title">
-            <p>
-              <i class="fa fa-tag wish-list-item-icon" aria-hidden="true"></i>
-              <%= favorite_vehicle.vehicle.listing_name %>
-            </p>
-          </div>
-          
-          <div class="wish-list-item-info">
+          <div class="wish-list-item-stats">
             
-            <p><%= favorite_vehicle.vehicle.summary %></p>
+            <div class="wish-list-item-time">
+              <span>
+                <%= time_ago_in_words(
+                      favorite_vehicle.vehicle.created_at
+                    ).capitalize %> 
+                ago
+              </span>
+            </div>
             
-            <div class="wish-list-item-stats">
-              
-              <div class="wish-list-item-time">
-                <span>
-                  <%= time_ago_in_words(
-                        favorite_vehicle.vehicle.created_at
-                      ).capitalize %> 
-                  ago
-                </span>
-              </div>
-              
-              <div class="wish-list-item-saves pull-right">
-                <span>
-                  <%= pluralize(FavoriteVehicle.where(
-                                  vehicle_id: favorite_vehicle.vehicle_id
-                                ).count, 
-                                "Save") %> 
-                  <!--| 1 Question-->
-                </span>
-              </div>
+            <div class="wish-list-item-saves pull-right">
+              <span>
+                <%= pluralize(favorite_vehicle.vehicle.favorited_by.count,
+                              "Save") %> 
+                <!--| 1 Question-->
+              </span>
             </div>
           </div>
         </div>
-      <% end %>
-    </li>
-  </div>
+      </div>
+    <% end %>
+  </li>
 <% end %>

@@ -1,9 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+favorite_avalanche:
+  user: archer
+  vehicle: avalanche
+  created_at: <%= 5.minutes.ago %>
 
-one:
-  user_id: 
-  vehicle_id: 
-
-two:
-  user_id: 
-  vehicle_id: 
+most_recent:
+  user: archer
+  vehicle_id: navigator
+  created_at: <%= Time.zone.now %>

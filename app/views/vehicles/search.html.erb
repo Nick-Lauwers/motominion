@@ -62,10 +62,12 @@
             <!--    </div>-->
             <!--  </div>-->
             <!--</div>-->
-
-            <ul class="search-items">
-              <%= render 'search_item' %>
-            </ul>
+            
+            <% if @vehicles.any? %>
+              <ol class="search-items">
+                <%= render 'search_item' %>
+              </ol>
+            <% end %>
             
             <div class="search-advice">
               <div class="search-advice-content">
