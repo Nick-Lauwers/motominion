@@ -11,13 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require bootstrap
 //= require jquery.ui.datepicker
 //= require private_pub
 //= require bootstrap-slider
-//= require turbolinks
 //= require underscore
 //= require gmaps/google
 //= require_tree .
