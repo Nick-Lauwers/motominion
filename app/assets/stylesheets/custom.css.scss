@@ -33,7 +33,9 @@ $red:                 #fd8649;
 /* general */
 
 .alert-info,
-.alert-success {
+.alert-success,
+.alert-warning,
+.alert-login {
   text-align: center;
   max-width: 1008px;
   position: absolute;
@@ -41,6 +43,12 @@ $red:                 #fd8649;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
+}
+
+.alert-login {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
 }
 
 .vertical-align {
@@ -168,18 +176,27 @@ p {
   }
 }
 
-.btn-google {
+.btn-signup,
+.btn-login {
   color: $gray-darker;
   background-color: white;
   border: 1px solid $gray-border;
   border-radius: 2px;
-  width: 100%;
-  margin-bottom: 1.7em;
   transition: 0.3s;
   &:hover,
   &:focus {
     border: 1px solid $yellow-dark;
   }
+}
+
+.btn-signup {
+  width: 98%;
+  margin: 0 1% 0.8em;
+}
+
+.btn-login {
+  width: 100%;
+  margin-bottom: 1.7em;
 }
 
 .btn-green {

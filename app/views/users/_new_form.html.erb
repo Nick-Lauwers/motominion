@@ -5,6 +5,13 @@
   <div class="signup-form">
     
     <%= render 'shared/error_messages', object: f.object %>
+    
+    <%= link_to "/auth/google", 
+                class: "btn btn-signup" do %>
+        <i class="fa fa-google fa-lg" 
+           aria-hidden="true"></i> 
+        Sign up with Google
+    <% end %>
       
     <%= f.text_field :name, 
         placeholder: "Name", 
