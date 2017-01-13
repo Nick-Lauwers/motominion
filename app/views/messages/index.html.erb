@@ -38,7 +38,9 @@
             </span>
           <% end %>
         
-          <%= link_to @other.phone_number, '#', class: "messages-info-phone" %>
+          <%= link_to @other.phone_number.phony_formatted(spaces: '-'), 
+                      '#', 
+                      class: "messages-info-phone" %>
 
           <% if @other.description.present? %>
             <p class="messages-info-description">

@@ -1,0 +1,296 @@
+[2017-01-10T02:31:55,502][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-01-10T02:31:55,719][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [2.4gb], net total_space [5.2gb], spins? [possibly], types [aufs]
+[2017-01-10T02:31:55,720][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-01-10T02:31:55,771][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-01-10T02:31:55,775][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[37885], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.2.0-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-01-10T02:31:59,450][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-01-10T02:31:59,452][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-01-10T02:31:59,453][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-01-10T02:31:59,453][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-01-10T02:31:59,454][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-01-10T02:31:59,455][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-01-10T02:31:59,455][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-01-10T02:31:59,456][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-01-10T02:31:59,457][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-01-10T02:31:59,457][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-01-10T02:31:59,459][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-01-10T02:32:08,454][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2017-01-10T02:32:08,455][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2017-01-10T02:32:09,451][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2017-01-10T02:32:09,484][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2017-01-10T02:32:09,485][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2017-01-10T02:32:13,318][INFO ][o.e.c.s.ClusterService   ] [ht0EVsn] new_master {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{hRD3JKRHRcaSmSkHxd-CQQ}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2017-01-10T02:32:13,364][INFO ][o.e.h.HttpServer         ] [ht0EVsn] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2017-01-10T02:32:13,365][INFO ][o.e.n.Node               ] [ht0EVsn] started
+[2017-01-10T02:32:14,091][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [2] indices into cluster_state
+[2017-01-10T02:32:15,155][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles_development_20161105192812009][0]] ...]).
+[2017-01-10T03:29:28,405][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][3420][2] duration [5s], collections [1]/[5.4s], total [5s]/[5.2s], memory [578.9mb]->[120.7mb]/[1.9gb], all_pools {[young] [532.5mb]->[5.2mb]/[532.5mb]}{[survivor] [46.3mb]->[66.4mb]/[66.5mb]}{[old] [0b]->[52.4mb]/[1.3gb]}
+[2017-01-10T03:29:28,407][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][3420] overhead, spent [5s] collecting in the last [5.4s]
+[2017-01-10T05:43:16,693][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][11437][3] duration [9.4s], collections [1]/[9.8s], total [9.4s]/[14.6s], memory [651.4mb]->[101.6mb]/[1.9gb], all_pools {[young] [532.5mb]->[6.9mb]/[532.5mb]}{[survivor] [66.4mb]->[4.8mb]/[66.5mb]}{[old] [52.4mb]->[92.2mb]/[1.3gb]}
+[2017-01-10T05:43:16,696][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][11437] overhead, spent [9.4s] collecting in the last [9.8s]
+[2017-01-11T00:45:36,266][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-01-11T00:45:36,477][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [2.4gb], net total_space [5.2gb], spins? [possibly], types [aufs]
+[2017-01-11T00:45:36,478][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-01-11T00:45:36,525][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-01-11T00:45:36,529][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[43517], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.2.0-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-01-11T00:45:47,061][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-01-11T00:45:47,062][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-01-11T00:45:47,063][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-01-11T00:45:47,063][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-01-11T00:45:47,066][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-01-11T00:45:47,066][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-01-11T00:45:47,067][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-01-11T00:45:47,067][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-01-11T00:45:47,067][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-01-11T00:45:47,067][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-01-11T00:45:47,082][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-01-11T00:46:16,033][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2017-01-11T00:46:16,035][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2017-01-11T00:46:18,694][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2017-01-11T00:46:18,854][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2017-01-11T00:46:18,855][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2017-01-11T00:46:22,184][INFO ][o.e.c.s.ClusterService   ] [ht0EVsn] new_master {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{QszFQQVrS06iscEk8JJhkQ}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2017-01-11T00:46:22,249][INFO ][o.e.h.HttpServer         ] [ht0EVsn] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2017-01-11T00:46:22,250][INFO ][o.e.n.Node               ] [ht0EVsn] started
+[2017-01-11T00:46:22,878][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [2] indices into cluster_state
+[2017-01-11T00:46:23,098][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles][1] deleted previously created, but not yet committed, next generation [translog-5.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T00:46:23,098][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles][4] deleted previously created, but not yet committed, next generation [translog-5.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T00:46:23,098][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles][0] deleted previously created, but not yet committed, next generation [translog-5.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T00:46:23,099][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles][2] deleted previously created, but not yet committed, next generation [translog-5.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T00:46:23,417][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles_development_20161105192812009][1] deleted previously created, but not yet committed, next generation [translog-42.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T00:46:23,448][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles_development_20161105192812009][0] deleted previously created, but not yet committed, next generation [translog-35.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T00:46:23,474][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles][3] deleted previously created, but not yet committed, next generation [translog-5.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T00:46:23,924][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles_development_20161105192812009][3]] ...]).
+[2017-01-11T01:16:15,110][ERROR][o.e.b.ElasticsearchUncaughtExceptionHandler] [] fatal error in thread [elasticsearch[ht0EVsn][bulk][T#4]], exiting
+java.lang.AssertionError: Unexpected AlreadyClosedException
+	at org.elasticsearch.index.engine.InternalEngine.failOnTragicEvent(InternalEngine.java:954) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.maybeFailEngine(InternalEngine.java:968) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.index(InternalEngine.java:413) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.index(IndexShard.java:552) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.index(IndexShard.java:542) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.index.TransportIndexAction.executeIndexRequestOnPrimary(TransportIndexAction.java:191) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.shardIndexOperation(TransportShardBulkAction.java:351) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.index(TransportShardBulkAction.java:158) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.handleItem(TransportShardBulkAction.java:137) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.onPrimaryShard(TransportShardBulkAction.java:123) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.onPrimaryShard(TransportShardBulkAction.java:74) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportWriteAction.shardOperationOnPrimary(TransportWriteAction.java:78) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportWriteAction.shardOperationOnPrimary(TransportWriteAction.java:50) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryShardReference.perform(TransportReplicationAction.java:902) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryShardReference.perform(TransportReplicationAction.java:872) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.ReplicationOperation.execute(ReplicationOperation.java:113) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$AsyncPrimaryAction.onResponse(TransportReplicationAction.java:319) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$AsyncPrimaryAction.onResponse(TransportReplicationAction.java:254) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$1.onResponse(TransportReplicationAction.java:838) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$1.onResponse(TransportReplicationAction.java:835) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShardOperationsLock.acquire(IndexShardOperationsLock.java:142) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.acquirePrimaryOperationLock(IndexShard.java:1651) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction.acquirePrimaryShardReference(TransportReplicationAction.java:847) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$AsyncPrimaryAction.doRun(TransportReplicationAction.java:271) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryOperationTransportHandler.messageReceived(TransportReplicationAction.java:250) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryOperationTransportHandler.messageReceived(TransportReplicationAction.java:242) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:69) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService$6.doRun(TransportService.java:548) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingAbstractRunnable.doRun(ThreadContext.java:504) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) ~[?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) ~[?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: org.apache.lucene.store.AlreadyClosedException: translog is already closed
+	at org.elasticsearch.index.translog.Translog.ensureOpen(Translog.java:1342) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.translog.Translog.add(Translog.java:433) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.maybeAddToTranslog(InternalEngine.java:392) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.innerIndex(InternalEngine.java:521) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.index(InternalEngine.java:408) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 31 more
+[2017-01-11T01:16:41,824][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-01-11T01:16:42,907][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [2.4gb], net total_space [5.2gb], spins? [possibly], types [aufs]
+[2017-01-11T01:16:42,909][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-01-11T01:16:43,037][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-01-11T01:16:43,052][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[43923], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.2.0-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-01-11T01:16:58,034][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-01-11T01:16:58,035][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-01-11T01:16:58,035][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-01-11T01:16:58,035][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-01-11T01:16:58,053][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-01-11T01:16:58,053][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-01-11T01:16:58,053][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-01-11T01:16:58,054][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-01-11T01:16:58,054][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-01-11T01:16:58,054][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-01-11T01:16:58,055][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-01-11T01:17:17,623][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2017-01-11T01:17:17,632][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2017-01-11T01:17:18,526][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2017-01-11T01:17:18,655][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2017-01-11T01:17:18,655][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2017-01-11T01:17:21,920][INFO ][o.e.c.s.ClusterService   ] [ht0EVsn] new_master {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{Qzb-hv2ERKKWk8FzOOBaHw}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2017-01-11T01:17:21,975][INFO ][o.e.h.HttpServer         ] [ht0EVsn] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2017-01-11T01:17:21,978][INFO ][o.e.n.Node               ] [ht0EVsn] started
+[2017-01-11T01:17:22,511][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [2] indices into cluster_state
+[2017-01-11T01:17:23,286][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles_development_20161105192812009][3] deleted previously created, but not yet committed, next generation [translog-68.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T01:17:23,300][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles_development_20161105192812009][4] deleted previously created, but not yet committed, next generation [translog-46.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T01:17:24,259][WARN ][o.e.i.c.IndicesClusterStateService] [ht0EVsn] [[vehicles_development_20161105192812009][2]] marking and sending shard failed due to [failed recovery]
+org.elasticsearch.indices.recovery.RecoveryFailedException: [vehicles_development_20161105192812009][2]: Recovery failed from null into {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{Qzb-hv2ERKKWk8FzOOBaHw}{127.0.0.1}{127.0.0.1:9300}
+	at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$1(IndexShard.java:1485) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:444) [elasticsearch-5.0.0.jar:5.0.0]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: org.elasticsearch.index.shard.IndexShardRecoveryException: failed recovery
+	at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:300) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.recoverFromStore(StoreRecovery.java:88) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.recoverFromStore(IndexShard.java:1233) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$1(IndexShard.java:1481) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 4 more
+Caused by: org.elasticsearch.index.translog.TranslogException: failed to create new translog file
+	at org.elasticsearch.index.translog.Translog.createWriter(Translog.java:382) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.translog.Translog.<init>(Translog.java:184) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.openTranslog(InternalEngine.java:249) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.<init>(InternalEngine.java:148) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngineFactory.newReadWriteEngine(InternalEngineFactory.java:25) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.newEngine(IndexShard.java:1599) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.createNewEngine(IndexShard.java:1581) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.internalPerformTranslogRecovery(IndexShard.java:1017) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.performTranslogRecovery(IndexShard.java:980) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.internalRecoverFromStore(StoreRecovery.java:361) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.lambda$recoverFromStore$0(StoreRecovery.java:90) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:258) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.recoverFromStore(StoreRecovery.java:88) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.recoverFromStore(IndexShard.java:1233) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$1(IndexShard.java:1481) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 4 more
+Caused by: java.nio.file.FileAlreadyExistsException: /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/translog/translog-55.tlog
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:88) ~[?:?]
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102) ~[?:?]
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107) ~[?:?]
+	at sun.nio.fs.UnixFileSystemProvider.newFileChannel(UnixFileSystemProvider.java:177) ~[?:?]
+	at java.nio.channels.FileChannel.open(FileChannel.java:287) ~[?:1.8.0_111]
+	at java.nio.channels.FileChannel.open(FileChannel.java:335) ~[?:1.8.0_111]
+	at org.elasticsearch.index.translog.ChannelFactory.open(ChannelFactory.java:33) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.translog.TranslogWriter.create(TranslogWriter.java:92) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.translog.Translog.createWriter(Translog.java:380) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.translog.Translog.<init>(Translog.java:184) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.openTranslog(InternalEngine.java:249) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.<init>(InternalEngine.java:148) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngineFactory.newReadWriteEngine(InternalEngineFactory.java:25) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.newEngine(IndexShard.java:1599) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.createNewEngine(IndexShard.java:1581) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.internalPerformTranslogRecovery(IndexShard.java:1017) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.performTranslogRecovery(IndexShard.java:980) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.internalRecoverFromStore(StoreRecovery.java:361) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.lambda$recoverFromStore$0(StoreRecovery.java:90) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:258) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.recoverFromStore(StoreRecovery.java:88) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.recoverFromStore(IndexShard.java:1233) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$1(IndexShard.java:1481) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 4 more
+[2017-01-11T01:17:24,300][WARN ][o.e.c.a.s.ShardStateAction] [ht0EVsn] [vehicles_development_20161105192812009][2] received shard failed for shard id [[vehicles_development_20161105192812009][2]], allocation id [mc8RzhiYTd6l8VPvGy9m3g], primary term [0], message [failed recovery], failure [RecoveryFailedException[[vehicles_development_20161105192812009][2]: Recovery failed from null into {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{Qzb-hv2ERKKWk8FzOOBaHw}{127.0.0.1}{127.0.0.1:9300}]; nested: IndexShardRecoveryException[failed recovery]; nested: TranslogException[failed to create new translog file]; nested: FileAlreadyExistsException[/home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/translog/translog-55.tlog]; ]
+org.elasticsearch.indices.recovery.RecoveryFailedException: [vehicles_development_20161105192812009][2]: Recovery failed from null into {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{Qzb-hv2ERKKWk8FzOOBaHw}{127.0.0.1}{127.0.0.1:9300}
+	at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$1(IndexShard.java:1485) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:444) [elasticsearch-5.0.0.jar:5.0.0]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: org.elasticsearch.index.shard.IndexShardRecoveryException: failed recovery
+	at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:300) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.recoverFromStore(StoreRecovery.java:88) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.recoverFromStore(IndexShard.java:1233) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$1(IndexShard.java:1481) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 4 more
+Caused by: org.elasticsearch.index.translog.TranslogException: failed to create new translog file
+	at org.elasticsearch.index.translog.Translog.createWriter(Translog.java:382) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.translog.Translog.<init>(Translog.java:184) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.openTranslog(InternalEngine.java:249) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.<init>(InternalEngine.java:148) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngineFactory.newReadWriteEngine(InternalEngineFactory.java:25) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.newEngine(IndexShard.java:1599) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.createNewEngine(IndexShard.java:1581) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.internalPerformTranslogRecovery(IndexShard.java:1017) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.performTranslogRecovery(IndexShard.java:980) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.internalRecoverFromStore(StoreRecovery.java:361) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.lambda$recoverFromStore$0(StoreRecovery.java:90) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:258) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.recoverFromStore(StoreRecovery.java:88) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.recoverFromStore(IndexShard.java:1233) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$1(IndexShard.java:1481) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 4 more
+Caused by: java.nio.file.FileAlreadyExistsException: /home/ubuntu/workspace/online_dealership/elasticsearch-5.0.0/data/nodes/0/indices/qylFE33TSOWebi4L2HsOOA/2/translog/translog-55.tlog
+	at sun.nio.fs.UnixException.translateToIOException(UnixException.java:88) ~[?:?]
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:102) ~[?:?]
+	at sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:107) ~[?:?]
+	at sun.nio.fs.UnixFileSystemProvider.newFileChannel(UnixFileSystemProvider.java:177) ~[?:?]
+	at java.nio.channels.FileChannel.open(FileChannel.java:287) ~[?:1.8.0_111]
+	at java.nio.channels.FileChannel.open(FileChannel.java:335) ~[?:1.8.0_111]
+	at org.elasticsearch.index.translog.ChannelFactory.open(ChannelFactory.java:33) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.translog.TranslogWriter.create(TranslogWriter.java:92) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.translog.Translog.createWriter(Translog.java:380) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.translog.Translog.<init>(Translog.java:184) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.openTranslog(InternalEngine.java:249) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngine.<init>(InternalEngine.java:148) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.engine.InternalEngineFactory.newReadWriteEngine(InternalEngineFactory.java:25) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.newEngine(IndexShard.java:1599) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.createNewEngine(IndexShard.java:1581) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.internalPerformTranslogRecovery(IndexShard.java:1017) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.performTranslogRecovery(IndexShard.java:980) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.internalRecoverFromStore(StoreRecovery.java:361) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.lambda$recoverFromStore$0(StoreRecovery.java:90) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.executeRecovery(StoreRecovery.java:258) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.StoreRecovery.recoverFromStore(StoreRecovery.java:88) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.recoverFromStore(IndexShard.java:1233) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.lambda$startRecovery$1(IndexShard.java:1481) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 4 more
+[2017-01-11T01:17:25,164][WARN ][o.e.i.t.Translog         ] [ht0EVsn] [vehicles_development_20161105192812009][2] deleted previously created, but not yet committed, next generation [translog-55.tlog]. This can happen due to a tragic exception when creating a new generation
+[2017-01-11T01:17:25,308][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles_development_20161105192812009][4], [vehicles_development_20161105192812009][2]] ...]).
+[2017-01-11T01:27:41,180][INFO ][o.e.n.Node               ] [ht0EVsn] stopping ...
+[2017-01-11T01:27:41,339][INFO ][o.e.n.Node               ] [ht0EVsn] stopped
+[2017-01-11T01:27:41,340][INFO ][o.e.n.Node               ] [ht0EVsn] closing ...
+[2017-01-11T01:27:41,390][INFO ][o.e.n.Node               ] [ht0EVsn] closed
+[2017-01-11T01:27:50,637][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-01-11T01:27:50,846][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [2.4gb], net total_space [5.2gb], spins? [possibly], types [aufs]
+[2017-01-11T01:27:50,847][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-01-11T01:27:50,881][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-01-11T01:27:50,885][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[44808], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.2.0-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-01-11T01:27:55,041][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-01-11T01:27:55,043][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-01-11T01:27:55,044][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-01-11T01:27:55,045][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-01-11T01:27:55,046][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-01-11T01:27:55,047][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-01-11T01:27:55,048][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-01-11T01:27:55,050][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-01-11T01:27:55,051][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-01-11T01:27:55,052][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-01-11T01:27:55,054][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-01-11T01:28:11,892][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2017-01-11T01:28:11,894][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2017-01-11T01:28:13,683][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2017-01-11T01:28:13,719][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2017-01-11T01:28:13,719][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2017-01-11T12:18:46,913][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-01-11T12:18:48,432][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [2.4gb], net total_space [5.2gb], spins? [possibly], types [aufs]
+[2017-01-11T12:18:48,434][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-01-11T12:18:48,498][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-01-11T12:18:48,504][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[46068], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.2.0-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-01-11T12:18:59,674][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-01-11T12:18:59,675][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-01-11T12:18:59,675][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-01-11T12:18:59,676][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-01-11T12:18:59,676][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-01-11T12:18:59,677][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-01-11T12:18:59,677][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-01-11T12:18:59,678][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-01-11T12:18:59,678][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-01-11T12:18:59,679][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-01-11T12:18:59,680][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-01-11T12:19:10,034][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2017-01-11T12:19:10,035][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2017-01-11T12:19:10,823][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2017-01-11T12:19:10,846][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2017-01-11T12:19:10,847][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2017-01-11T12:19:14,075][INFO ][o.e.c.s.ClusterService   ] [ht0EVsn] new_master {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{wL_7xcQNRYOnYnC-A-1u1w}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2017-01-11T12:19:14,147][INFO ][o.e.h.HttpServer         ] [ht0EVsn] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2017-01-11T12:19:14,148][INFO ][o.e.n.Node               ] [ht0EVsn] started
+[2017-01-11T12:19:14,646][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [2] indices into cluster_state
+[2017-01-11T12:19:15,652][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles_development_20161105192812009][1]] ...]).

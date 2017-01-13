@@ -48,7 +48,7 @@
       <div class="modal-options-text">
         
         <div class="modal-show-info">
-          <p class="show-info-text">Show Info</p>
+          <p class="show-info-text">+ Info</p>
         </div>
         
         <!--<div class="modal-image-number">-->
@@ -58,8 +58,14 @@
     </div>
     
     <div class="modal-social-media">
-      <i class="fa fa-facebook fa-lg btn-modal" aria-hidden="true"></i>
-      <i class="fa fa-twitter fa-lg btn-modal" aria-hidden="true"></i>
+      
+      <%= link_to 'https://www.facebook.com/', target: "_blank" do %>
+        <i class="fa fa-facebook fa-lg btn-modal"></i>
+      <% end %>
+      
+      <%= link_to 'https://twitter.com/', target: "_blank" do %>
+        <i class="fa fa-twitter fa-lg btn-modal"></i>
+      <% end %>
     </div>
   </div>
 </div>
@@ -142,13 +148,13 @@
       e.preventDefault();
       
       if (imageContainer.hasClass('modal-carousel-container-closed')) {
-        showInfoText.html("Show Info");
+        showInfoText.html("+ Info");
         imageContainer.removeClass('modal-carousel-container-closed');
         captionContainer.removeClass('modal-caption-container-open');
       } 
       
       else {
-        showInfoText.html("Less Info");
+        showInfoText.html("- Hide");
         imageContainer.addClass('modal-carousel-container-closed');
         captionContainer.addClass('modal-caption-container-open');
       }

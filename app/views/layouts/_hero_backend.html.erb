@@ -30,7 +30,9 @@
                     
                     <td>
                       <span class="hero-detail-info">
-                        <%= current_user.phone_number %>
+                        <%= current_user.phone_number.phony_formatted(
+                              spaces: '-'
+                            ) %>
                       </span>
                     </td>
                   </tr>

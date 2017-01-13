@@ -57,8 +57,10 @@
           
           <% if @user.phone_number.present? %>
             <div class="profile-overview-contact">
-              <span class="contact-title">Phone</span>
-              <%= link_to @user.phone_number, '#', class: "contact-link" %>
+              <span class="contact-phone">Phone</span>
+              <%= link_to @user.phone_number.phony_formatted(spaces: '-'), 
+                          '#', 
+                          class: "contact-link" %>
             </div>
           <% end %>
         </div>
@@ -141,9 +143,9 @@
                     </td>
                     
                     <td>
-                      <%= link_to @user.phone_number, 
-                                  '#', 
-                                  class: "optional-scrolled-link" %>
+                      <%= link_to @user.phone_number.phony_formatted(
+                                    spaces: '-'
+                                  ), '#', class: "optional-scrolled-link" %>
                     </td>
                   </tr>
                 <% end %>
