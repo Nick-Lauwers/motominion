@@ -13,10 +13,12 @@
       <div class="row vertical-align">
         
         <div class="col-xs-3">
-          <div class="modal-avatar">
-            <%=link_to user_path(@vehicle.user), method: :get do %>
-              <%= image_tag @vehicle.user.avatar.url %>
-            <% end %>
+          <div class="modal-avatar-border">
+            <div class="modal-avatar">
+              <%=link_to user_path(@vehicle.user), method: :get do %>
+                <%= image_tag @vehicle.user.avatar.url %>
+              <% end %>
+            </div>
           </div>
         </div>
         

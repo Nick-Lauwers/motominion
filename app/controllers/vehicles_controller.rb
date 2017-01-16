@@ -58,7 +58,7 @@ class VehiclesController < ApplicationController
       end
       
       flash[:success] = "Vehicle updated"
-      redirect_to edit_vehicle_path(@vehicle)
+      redirect_to vehicles_path
     
     else
       flash[:danger] = "Please provide all information for this vehicle."
@@ -93,11 +93,13 @@ class VehiclesController < ApplicationController
   def search
     
     if params[:search].present?
+      @title    = params[:search]
       @vehicles = Vehicle.search(params[:search], 
                                  page: params[:page], 
                                  per_page: 10)
                                  
     else
+      @title    = 'All Vehicles'
       @vehicles = Vehicle.all.paginate(page: params[:page], per_page: 10)
     end
     

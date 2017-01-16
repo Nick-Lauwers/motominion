@@ -9,8 +9,8 @@ class AppointmentsController < ApplicationController
     
     if @appointment.save
       AppointmentMailer.appointment_request(@appointment).deliver_now
-      flash[:success] = "Appointment saved"
-      redirect_to @appointment.vehicle
+      flash[:success] = "Test drive request sent!"
+      redirect_to test_drives_path
       
     else
       redirect_to vehicles_path

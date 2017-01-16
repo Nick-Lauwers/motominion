@@ -29,7 +29,7 @@
           <div class="messages-info-avatar">
             <%= image_tag @other.avatar.url %>
           </div>
-          
+
           <h1 class="messages-info-username"><%= @other.name %></h1>
           
           <% if @other.residence.present? %>
@@ -38,9 +38,11 @@
             </span>
           <% end %>
         
-          <%= link_to @other.phone_number.phony_formatted(spaces: '-'), 
-                      '#', 
-                      class: "messages-info-phone" %>
+          <% if @other.phone_number.present? %>
+            <%= link_to @other.phone_number.phony_formatted(spaces: '-'), 
+                        '#', 
+                        class: "messages-info-phone" %>
+          <% end %>
 
           <% if @other.description.present? %>
             <p class="messages-info-description">

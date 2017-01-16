@@ -75,6 +75,10 @@
             
           <p class="summary-detail-title"><%= vehicle.listing_name %></p>
           
+          <p class="summary-detail-info">
+            Posted <%= time_ago_in_words(vehicle.created_at) %> ago
+          </p>
+          
           <p class="summary-detail-info"><%= vehicle.summary %></p>
         <% end %>
         
@@ -126,19 +130,42 @@
     <!--  <(perc) end %>-->
     <!--</div>-->
     
-    <div class="vehicle-item-appointment">
-      <%= link_to '#', class: "vehicle-item-appointment-content" do %>
-      
-        <i class="fa fa-calendar-check-o appointment-detail-icon" 
-           aria-hidden="true"></i>
-           
-        <span class="appointment-detail-title">Foobar</span>
+    <% if vehicle.appointments.any? %>
+    
+      <ol class="vehicle-item-list">
+        <% vehicle.appointments.each do |appointment| %>
         
-        <span class="appointment-detail-info">
-          <%= time_ago_in_words(vehicle.created_at) %> ago 
-          <!--(<(perc)= vehicle.created_at.strftime("%D") %>)-->
-        </span>
-      <% end %>
-    </div>
+          <% if appointment.date.future? %>
+        
+            <li id="vehicle-item-appointment-<%= appointment.id %>",
+                class="vehicle-item-appointment">
+              <%= link_to conversations_path(sender_id:    current_user.id, 
+                                           recipient_id: appointment.user_id), 
+                          class: "vehicle-item-appointment-content",
+                          method: :post do %>
+              
+                <i class="fa fa-calendar-check-o appointment-detail-icon" 
+                   aria-hidden="true"></i>
+                   
+                <span class="appointment-detail-title">
+                  <%= appointment.user.name %>
+                </span>
+                   
+                <div class="appointment-detail-info">
+                
+                  <span class="appointment-detail-primary-info">
+                    Test drive in <%= time_ago_in_words(appointment.date) %> 
+                  </span>
+                  
+                  <span class="appointment-detail-secondary-info">
+                    (<%= appointment.date.strftime("%D") %>)
+                  </span>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </ol>
+    <% end %>
   </li>
 <% end %>

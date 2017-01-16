@@ -84,8 +84,9 @@
           </p>
         <% end %>
         
-          <% unless logged_in? && 
-                    current_user.favorite_vehicles(vehicle).exists? %>
+          <% if logged_in? && 
+                !current_user.favorite_vehicles.exists?(vehicle_id:
+                                                        vehicle.id) %>
                     
             <%= link_to favorite_vehicle_path(vehicle), method: :put do %>
               <span class="summary-detail-link">

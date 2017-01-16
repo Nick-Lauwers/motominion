@@ -1630,6 +1630,10 @@ ul.pagination {
   margin: 0 0 0.6em;
 }
 
+.summary-price-title {
+  text-align: center;
+}
+
 .summary-detail-info {
 	max-height: 3em;
 	overflow: hidden;
@@ -1657,6 +1661,11 @@ ul.pagination {
   display: inline-block;
 }
 
+.vehicle-item-list {
+  list-style: none;
+  padding: 0;
+}
+
 .vehicle-item-deal,
 .vehicle-item-appointment,
 .vehicle-item-test-drive {
@@ -1675,13 +1684,29 @@ ul.pagination {
   color: $red;  
 }
 
-.deal-detail-info,
-.appointment-detail-info,
-.test-drive-detail-info {
+.deal-detail-info {
   font-size: 1em;
   font-weight: bold;
   color: $gray-darker;
   float: right;
+}
+
+.appointment-detail-info,
+.test-drive-detail-info {
+  float: right;
+}
+
+.appointment-detail-primary-info,
+.test-drive-detail-primary-info {
+  font-size: 1em;
+  font-weight: bold;
+  color: $gray-darker;
+}
+
+.appointment-detail-secondary-info,
+.test-drive-secondary-detail-info {
+  font-size: 1em;
+  color: $gray-dark;
 }
 
 /* listing */
@@ -2088,7 +2113,7 @@ ul.pagination {
 }
 
 .author-avatar {
-  border-radius: 22.5px;
+  border-radius: 23.5px;
   height: 45px;
   width: 45px;
   margin-right: 1em;
@@ -2256,16 +2281,21 @@ ul.pagination {
   padding: 0 2.3em;
 }
 
+.modal-avatar-border {
+  background-color: white;
+  border-radius: 26px;
+  height: 52px;
+  width: 52px;
+  position: relative;
+}
+
 .modal-avatar {
-  border: 2px solid white;
   border-radius: 25px;
   height: 50px;
   width: 50px;
-  img {
-    // corrects improper displacement of image, caused by ImageFill and border
-    top: -2px !important;
-    left: -2px !important;
-  }
+  position: absolute;
+  top: 1px;
+  left: 1px;
 }
 
 .modal-title,
@@ -2366,18 +2396,22 @@ ul.pagination {
   position: relative;
 }
 
+.user-summary-avatar-border {
+  background-color: white;
+  border-radius: 102px;
+  height: 204px;
+  width: 204px;
+  position: absolute;
+  bottom: 3px;
+}
+
 .user-summary-avatar {
-  border: 4px solid white;
   border-radius: 100px;
   height: 200px;
   width: 200px;
   position: absolute;
-  bottom: 5px;
-  img {
-    // corrects improper displacement of image, caused by ImageFill and border
-    top: -4px !important;
-    left: -4px !important;
-  }
+  top: 2px;
+  left: 2px;
 }
 
 .user-summary-name {
@@ -2667,16 +2701,10 @@ ul.pagination {
 }
 
 .messages-info-avatar {
-  border: 3px solid white;
   border-radius: 70px;
   height: 140px;
   width: 140px;
   margin: 0 auto;
-  img {
-    // corrects improper displacement of image, caused by ImageFill and border
-    top: -3px !important;
-    left: -3px !important;
-  }
 }
 
 .messages-info-username {
@@ -2733,16 +2761,21 @@ ul.pagination {
   margin: 0 auto;
 }
 
+.hero-avatar-border {
+  background-color: white;
+  border-radius: 72px;
+  height: 144px;
+  width: 144px;
+  position: relative;
+}
+
 .hero-avatar {
-  border: 3px solid white;
   border-radius: 70px;
   height: 140px;
   width: 140px;
-  img {
-    // corrects improper displacement of image, caused by ImageFill and border
-    top: -3px !important;
-    left: -3px !important;
-  }
+  position: absolute;
+  top: 2px;
+  left: 2px;
 }
 
 .hero-username {
@@ -2792,15 +2825,10 @@ ul.pagination {
 }
 
 .conversation-avatar {
-  border: 2px solid white;
+  // border: 2px solid white;
   border-radius: 25px;
   height: 50px;
   width: 50px;
-  img {
-    // corrects improper displacement of image, caused by ImageFill and border
-    top: -2px !important;
-    left: -2px !important;
-  }
 }
 
 .conversation-detail {

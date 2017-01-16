@@ -32,7 +32,7 @@
           
           <% if !current_user.nil? %>
             <%= button_to "Contact Seller", 
-                          conversations_path(sender_id: current_user.id, 
+                          conversations_path(sender_id:    current_user.id, 
                                              recipient_id: @user.id), 
                           class: "btn-navbar-contact-hidden", 
                           method: :post %>
@@ -493,11 +493,11 @@
                                   review-author 
                                   review-author-clickable 
                                   vertical-align" do %>
-              
+                
                 <div class="author-avatar">
                   <%= image_tag @vehicle.user.avatar.url %>
                 </div>
-                
+
                 <span class="author-name"><%= r.user.name %></span>
               <% end %>
             </div>
