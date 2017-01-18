@@ -1,0 +1,70 @@
+<% @reviews.order("id desc").each do |r| %>
+
+  <div class="row review-item">
+    
+    <div class="col-xs-4">
+      <div class="row">
+        
+        <div class="col-xs-3">
+          <!--intentionally left empty-->
+        </div>
+        
+        <%= link_to r.user, 
+                    class: "col-xs-9 
+                            review-author 
+                            review-author-clickable 
+                            vertical-align" do %>
+          
+          <div class="author-avatar">
+            <%= image_tag r.user.avatar.url %>
+          </div>
+
+          <span class="author-name"><%= r.user.name %></span>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="col-xs-8">
+      <div class="review-container">
+  
+        <div class="review-rating">
+          <div id="stars-<%= r.id %>"></div>
+        </div>
+        
+        <span class="review-title">
+          <%= r.title %>
+        </span>
+        
+        <span class="review-date">
+          <%= r.created_at.strftime("%D") %>
+        </span>
+        
+        <p class="review-comment">
+          <%= r.comment %>
+        </p>
+        
+        <div class="review-remove">
+          <%= link_to "Remove my review", 
+                      [@vehicle, r], 
+                      method: :delete, 
+                      data: { confirm: "Are you sure?" } if 
+                            current_user && current_user == r.user %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+      
+      // rating
+      var stars = $('#stars-<%= r.id %>');
+  
+      stars.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= r.rating %>
+      });
+    })
+  </script>
+<% end %>

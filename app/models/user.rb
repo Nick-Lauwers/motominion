@@ -119,6 +119,11 @@ class User < ActiveRecord::Base
     end
   end
   
+  # Computes average rating.
+  def average_rating
+    reviews.count == 0 ? 0 : reviews.average(:rating).round(2)
+  end
+  
   private
   
     # Converts email to all lower-case.

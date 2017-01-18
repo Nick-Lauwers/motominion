@@ -70,23 +70,25 @@
     
       <div class="col-xs-6 summary-detail">
         <%= link_to vehicle, 
-            class: "summary-detail-content", 
-            target: "_blank" do %>
+                    class: "summary-detail-content", 
+                    target: "_blank" do %>
             
           <p class="summary-detail-title"><%= vehicle.listing_name %></p>
           
           <p class="summary-detail-seller">
-            <%= vehicle.user.name %> · <span class="average-rating"></span>
+            <%= vehicle.user.name %> · 
+            <span id="average-rating-<%= vehicle.id %>"></span>
           </p>
           
           <p class="summary-detail-info"><%= vehicle.summary %></p>
         <% end %>
         
-        <% unless logged_in? && 
-                  current_user.favorite_vehicles(vehicle).exists? %>
+        <% if logged_in? && 
+              !current_user.favorite_vehicles.exists?(vehicle_id:
+                                                      vehicle.id) %>
                   
           <%= link_to favorite_vehicle_path(vehicle), 
-                        method: :put do %>
+                      method: :put do %>
             <span class="summary-detail-link">
               
               <i class="fa fa-heart summary-detail-link-icon" 
@@ -100,15 +102,15 @@
       
       <div class="col-xs-2 summary-price">
         <%= link_to vehicle, 
-            class: "summary-price-content", 
-            target: "_blank" do %>
+                    class: "summary-price-content", 
+                    target: "_blank" do %>
             
           <p class="summary-price-title">$<%= vehicle.price %></p>
           
           <%= button_to "View", 
-              vehicle, 
-              class: "btn btn-secondary", 
-              method: :get %>
+                        vehicle, 
+                        class: "btn btn-secondary", 
+                        method: :get %>
         <% end %>
       </div>
     </div>
@@ -132,12 +134,12 @@
     $(document).ready(function() {
       
       // rating
-      var averageRating = $('.average-rating');
+      var averageRating = $('#average-rating-<%= vehicle.id %>');
       
       averageRating.raty({
-        path: '/assets',
+        path:     '/assets',
         readOnly: true,
-        score: <%= vehicle.average_rating %>
+        score:    <%= vehicle.average_rating %>
       });
     });
   </script>

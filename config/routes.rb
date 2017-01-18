@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   post   'login'                   => 'sessions#create'
   delete 'logout'                  => 'sessions#destroy'
   
-  resources :users
   resources :photos
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
@@ -22,12 +21,8 @@ Rails.application.routes.draw do
   resources :enquiries,           only: [:new, :create]
   resources :profiles,            only: [:show, :edit, :update]
 
-  resources :conversations, only: [:index, :create] do
-    resources :messages, only: [:index, :create]
-  end
-  
-  resources :posts do
-    resources :responses
+  resources :users do
+    resources :reviews, only: [:destroy]
   end
 
   resources :vehicles do
@@ -41,5 +36,13 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+  end
+
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
+  end
+  
+  resources :posts do
+    resources :responses
   end
 end

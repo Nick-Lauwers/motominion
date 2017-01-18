@@ -2196,7 +2196,6 @@ ul.pagination {
 
 #map-and-brochure {
   background-color: $gray-lightest;
-  border-bottom: 1px solid $gray-border;
   padding-top: 50px;
   margin-top: -50px;
 }
@@ -2497,6 +2496,7 @@ ul.pagination {
 }
 
 .profile-details-content {
+  border-bottom: 1px solid $gray-border;
   max-width: 1008px;
   margin: 0 auto;
   padding: 4em 0;
@@ -2520,6 +2520,7 @@ ul.pagination {
 }
 
 #profile-scrolled {
+  margin-bottom: 30px;
   position: static;
 }
 
@@ -2558,6 +2559,14 @@ ul.pagination {
   font-size: 1em;
   color: $gray-text;
   float: right;
+}
+
+#profile-reviews {
+  background-color: $gray-lightest;
+  padding-top: 50px;
+  margin-top: -50px;
+  z-index: -1000;
+  position: relative;
 }
 
 .listing-summary-carousel .item {
