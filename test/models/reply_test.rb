@@ -5,11 +5,11 @@ require 'test_helper'
 class ReplyTest < ActiveSupport::TestCase
   
   def setup
-    @user    = users(:nicholas)
-    @comment = comments(:cost)
-    @reply   = @comment.replies.build(content: "Lorem ipsum",
-                                      likes:   3,
-                                      user_id: @user.id)
+    @user     = users(:nicholas)
+    @question = questions(:cost)
+    @reply    = @question.replies.build(content: "Lorem ipsum",
+                                        likes:   3,
+                                        user_id: @user.id)
   end
 
   test "should be valid" do
@@ -34,9 +34,5 @@ class ReplyTest < ActiveSupport::TestCase
   test "content should be at most 150 characters" do
     @reply.content = "a" * 151
     assert_not @reply.valid?
-  end
-  
-  test "order should be most recent first" do
-    assert_equal replies(:most_recent), Reply.first
   end
 end

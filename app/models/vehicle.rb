@@ -10,7 +10,7 @@ class Vehicle < ActiveRecord::Base
   
   has_many :appointments,      dependent: :destroy
   has_many :reviews,           dependent: :destroy
-  has_many :comments,          dependent: :destroy
+  has_many :questions,         dependent: :destroy
   has_many :photos,            dependent: :destroy
   has_many :favorite_vehicles, dependent: :destroy
   

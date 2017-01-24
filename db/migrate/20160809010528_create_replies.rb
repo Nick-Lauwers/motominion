@@ -3,11 +3,11 @@ class CreateReplies < ActiveRecord::Migration
     create_table :replies do |t|
       t.text :content
       t.integer :likes
-      t.references :user,    index: true, foreign_key: true
-      t.references :comment, index: true, foreign_key: true
+      t.references :user,     index: true, foreign_key: true
+      t.references :question, index: true, foreign_key: true
 
       t.timestamps null: false
     end
-    add_index :replies, [:comment_id, :created_at]
+    add_index :replies, [:question_id, :created_at]
   end
 end

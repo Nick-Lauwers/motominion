@@ -132,7 +132,7 @@
               (@user.work.present?) %>
           
           <div class="profile-scrolled-content">
-          
+            
             <div class="optional-scrolled">
               <table class="optional-scrolled-detail">
                 
@@ -204,130 +204,141 @@
   </div>
 </div>
 
-<!--<div id="profile-reviews">-->
-<!--  <div class="reviews-content">-->
+<div id="profile-reviews">
+  <div class="reviews-content">
     
-<!--    <h2 class="reviews-title">Reviews</h2>-->
+    <h2 class="reviews-title">Reviews</h2>
 
-<!--    <(perc) if @reviews.any? %>-->
-<!--      <div class="row reviews-summary">-->
+    <% if @reviews.any? %>
+      <div class="row reviews-summary">
         
-<!--        <div class="col-xs-4">-->
-<!--          <h3 class="reviews-subheading">Average Rating</h3>-->
+        <div class="col-xs-4">
+          <h3 class="reviews-subheading">Average Rating</h3>
           
-<!--          <div class="row vertical-align">-->
+          <div class="row vertical-align">
             
-<!--            <div class="col-xs-3">-->
-<!--              <div class="average-rating-number">-->
-<!--                <(perc)= @user.average_rating %>-->
-<!--              </div>-->
-<!--            </div>-->
+            <div class="col-xs-3">
+              <div class="average-rating-number">
+                <%= @user.average_rating %>
+              </div>
+            </div>
             
-<!--            <div class="col-xs-9">-->
+            <div class="col-xs-9">
               
-<!--              <div class="average-rating"></div>-->
+              <div class="average-rating"></div>
               
-<!--              <span class="number-of-reviews">-->
-<!--                (based on <(perc)= pluralize(@reviews.count, "review") %>)-->
-<!--              </span> -->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+              <span class="number-of-reviews">
+                (based on <%= pluralize(@reviews.count, "review") %>)
+              </span> 
+            </div>
+          </div>
+        </div>
         
-<!--        <div class="col-xs-4">-->
-          <!--<div class="pros-cons-list">-->
+        <div class="col-xs-4">
+          <div class="pros-cons-list">
             
-          <!--  <h3 class="reviews-subheading">Pros</h3>-->
+            <h3 class="reviews-subheading">Pros</h3>
             
-          <!--  <ul class="pros-cons-list-content">-->
-          <!--    <li>Security & safety (51)</li>-->
-          <!--    <li>Location (45)</li>-->
-          <!--    <li>Management / staff (40)</li>-->
-          <!--  </ul>-->
-          <!--</div>-->
-<!--        </div>-->
+            <ul class="pros-cons-list-content">
+              <li>Security & safety (51)</li>
+              <li>Location (45)</li>
+              <li>Management / staff (40)</li>
+            </ul>
+          </div>
+        </div>
         
-<!--        <div class="col-xs-4">-->
-          <!--<div class="pros-cons-list">-->
+        <div class="col-xs-4">
+          <div class="pros-cons-list">
             
-          <!--  <h3 class="reviews-subheading">Cons</h3>-->
+            <h3 class="reviews-subheading">Cons</h3>
             
-          <!--  <ul class="pros-cons-list-content">-->
-          <!--    <li>Value for money (11)</li>-->
-          <!--  </ul>-->
-          <!--</div>-->
-<!--        </div>-->
-<!--      </div>-->
+            <ul class="pros-cons-list-content">
+              <li>Value for money (11)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
       
-      <!--< @user.vehicles.each do |vehicle| %>-->
-      <!--  < vehicle.reviews.each do |review| %>-->
-      
-<!--      <(perc) @reviews.order("id desc").each do |r| %>-->
-<!--        <div class="row review-item">-->
+      <% @reviews.order("id desc").each do |r| %>
+        <div class="row review-item">
           
-<!--          <div class="col-xs-4">-->
-<!--            <div class="row">-->
+          <div class="col-xs-4">
+            <div class="row">
               
-<!--              <div class="col-xs-3">-->
+              <div class="col-xs-3">
                 <!--intentionally left empty-->
-<!--              </div>-->
+              </div>
               
-<!--              <(perc)= link_to r.user, -->
-<!--                          class: "col-xs-9 -->
-<!--                                  review-author -->
-<!--                                  review-author-clickable -->
-<!--                                  vertical-align" do %>-->
+              <%= link_to r.reviewer, 
+                          class: "col-xs-9 
+                                  review-author 
+                                  review-author-clickable 
+                                  vertical-align" do %>
                 
-<!--                <div class="author-avatar">-->
-<!--                  <(perc)= image_tag r.user.avatar.url %>-->
-<!--                </div>-->
+                <div class="author-avatar">
+                  <%= image_tag r.reviewer.avatar.url %>
+                </div>
 
-<!--                <span class="author-name"><(perc)= r.user.name %></span>-->
-<!--              <(perc) end %>-->
-<!--            </div>-->
-<!--          </div>-->
+                <span class="author-name"><%= r.reviewer.name %></span>
+              <% end %>
+            </div>
+          </div>
           
-<!--          <div class="col-xs-8">-->
-<!--            <div class="review-container">-->
+          <div class="col-xs-8">
+            <div class="review-container">
         
-<!--              <div class="review-rating">-->
-<!--                <div class="average-rating"></div>-->
-<!--              </div>-->
+              <div class="review-rating">
+                <div id="stars-<%= r.id %>"></div>
+              </div>
               
-<!--              <span class="review-title">-->
-<!--                <(perc)= r.title %>-->
-<!--              </span>-->
+              <span class="review-title">
+                <%= r.title %>
+              </span>
               
-<!--              <span class="review-date">-->
-<!--                <(perc)= r.created_at.strftime("%D") %>-->
-<!--              </span>-->
+              <span class="review-date">
+                <%= r.created_at.strftime("%D") %>
+              </span>
               
-<!--              <p class="review-comment">-->
-<!--                <(perc)= r.comment %>-->
-<!--              </p>-->
+              <p class="review-comment">
+                <%= r.comment %>
+              </p>
               
-<!--              <div class="review-remove">-->
-<!--                <(perc)= link_to "Remove my review", -->
-<!--                            [@user, r], -->
-<!--                            method: :delete, -->
-<!--                            data: { confirm: "Are you sure?" } if -->
-<!--                                  current_user && current_user == r.user %>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      <(perc) end %>-->
+              <div class="review-remove">
+                <%= link_to "Remove my review", 
+                            [@user, r], 
+                            method: :delete, 
+                            data: { confirm: "Are you sure?" } if 
+                                  current_user && current_user == r.reviewer %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <script type="text/javascript">
+          $(document).ready(function() {
+            
+            // rating
+            var stars = $('#stars-<%= r.id %>');
+        
+            stars.raty({
+              path:     '/assets',
+              readOnly: true,
+              score:    <%= r.rating %>
+            });
+          })
+        </script>
+      <% end %>
       
-<!--    <(perc) else %>-->
+    <% else %>
     
-<!--      <div class="no-reviews">-->
-<!--        <i class="fa fa-balance-scale fa-4x no-reviews-icon" -->
-<!--           aria-hidden="true"></i>-->
-<!--        <p class="no-reviews-info">No reviews for this user, yet</p>-->
-<!--      </div>-->
-<!--    <(perc) end %>-->
-<!--  </div>-->
-<!--</div>-->
+      <div class="no-reviews">
+        <i class="fa fa-balance-scale fa-4x no-reviews-icon" 
+           aria-hidden="true"></i>
+        <p class="no-reviews-info">No reviews for this user, yet</p>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -368,12 +379,12 @@
     
     // rating
     var averageRating = $('.average-rating');
-    
+
     averageRating.raty({
       path:     '/assets',
       readOnly: true,
       score:    <%= @user.average_rating %>
-    });
+    });  
     
     // smooth scroll
     var reviewsScrolledButton = $(".btn-secondary-scrolled")

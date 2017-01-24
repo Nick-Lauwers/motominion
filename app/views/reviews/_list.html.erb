@@ -9,17 +9,17 @@
           <!--intentionally left empty-->
         </div>
         
-        <%= link_to r.user, 
+        <%= link_to r.reviewer, 
                     class: "col-xs-9 
                             review-author 
                             review-author-clickable 
                             vertical-align" do %>
           
           <div class="author-avatar">
-            <%= image_tag r.user.avatar.url %>
+            <%= image_tag r.reviewer.avatar.url %>
           </div>
 
-          <span class="author-name"><%= r.user.name %></span>
+          <span class="author-name"><%= r.reviewer.name %></span>
         <% end %>
       </div>
     </div>
@@ -48,7 +48,7 @@
                       [@vehicle, r], 
                       method: :delete, 
                       data: { confirm: "Are you sure?" } if 
-                            current_user && current_user == r.user %>
+                            current_user && current_user == r.reviewer %>
         </div>
       </div>
     </div>

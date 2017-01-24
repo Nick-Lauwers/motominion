@@ -1,0 +1,54 @@
+[2017-01-18T13:02:23,288][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-01-18T13:02:23,901][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [2.4gb], net total_space [5.2gb], spins? [possibly], types [aufs]
+[2017-01-18T13:02:23,904][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-01-18T13:02:23,964][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-01-18T13:02:23,973][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[78356], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.2.0-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-01-18T13:02:41,246][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-01-18T13:02:41,300][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-01-18T13:02:41,300][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-01-18T13:02:41,301][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-01-18T13:02:41,413][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-01-18T13:02:41,414][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-01-18T13:02:41,421][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-01-18T13:02:41,421][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-01-18T13:02:41,421][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-01-18T13:02:41,422][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-01-18T13:02:41,423][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-01-18T13:03:08,335][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2017-01-18T13:03:08,357][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2017-01-18T13:03:09,920][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2017-01-18T13:03:10,123][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2017-01-18T13:03:10,126][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2017-01-18T13:03:51,629][INFO ][o.e.c.s.ClusterService   ] [ht0EVsn] new_master {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{1Gwj0elkTvOQGhGmqW-pTw}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2017-01-18T13:03:51,661][WARN ][o.e.d.z.p.u.UnicastZenPing] [ht0EVsn] [1] failed send ping to {#zen_unicast_6#}{wu7xtgrLR7uU8da4w9PLUg}{::1}{[::1]:9300}
+java.lang.IllegalStateException: handshake failed with {#zen_unicast_6#}{wu7xtgrLR7uU8da4w9PLUg}{::1}{[::1]:9300}
+	at org.elasticsearch.transport.TransportService.handshake(TransportService.java:364) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService.connectToNodeLightAndHandshake(TransportService.java:339) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService.connectToNodeLightAndHandshake(TransportService.java:313) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.discovery.zen.ping.unicast.UnicastZenPing$2.run(UnicastZenPing.java:419) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:444) [elasticsearch-5.0.0.jar:5.0.0]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: org.elasticsearch.transport.SendRequestTransportException: [][[::1]:9300][internal:transport/handshake]
+	at org.elasticsearch.transport.TransportService.sendRequestInternal(TransportService.java:504) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService.sendRequest(TransportService.java:459) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService.submitRequest(TransportService.java:445) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService.handshake(TransportService.java:352) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 7 more
+Caused by: org.elasticsearch.transport.NodeNotConnectedException: [][[::1]:9300] Node not connected
+	at org.elasticsearch.transport.TcpTransport.nodeChannel(TcpTransport.java:481) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TcpTransport.sendRequest(TcpTransport.java:895) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService.sendRequestInternal(TransportService.java:493) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService.sendRequest(TransportService.java:459) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService.submitRequest(TransportService.java:445) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService.handshake(TransportService.java:352) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 7 more
+[2017-01-18T13:03:53,692][INFO ][o.e.h.HttpServer         ] [ht0EVsn] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2017-01-18T13:03:53,693][INFO ][o.e.n.Node               ] [ht0EVsn] started
+[2017-01-18T13:04:10,078][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [2] indices into cluster_state
+[2017-01-18T13:04:13,315][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles_development_20161105192812009][0], [vehicles_development_20161105192812009][3]] ...]).
+[2017-01-18T13:54:31,209][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][3029][2] duration [1.9s], collections [1]/[2.2s], total [1.9s]/[2.1s], memory [579.1mb]->[93.8mb]/[1.9gb], all_pools {[young] [532.5mb]->[8mb]/[532.5mb]}{[survivor] [46.6mb]->[66.4mb]/[66.5mb]}{[old] [0b]->[20.4mb]/[1.3gb]}
+[2017-01-18T13:54:31,213][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][3029] overhead, spent [1.9s] collecting in the last [2.2s]
+[2017-01-18T15:29:41,445][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][8733][3] duration [4.6s], collections [1]/[5.3s], total [4.6s]/[6.7s], memory [619.4mb]->[66.8mb]/[1.9gb], all_pools {[young] [532.5mb]->[4.9mb]/[532.5mb]}{[survivor] [66.4mb]->[4.7mb]/[66.5mb]}{[old] [20.4mb]->[59.4mb]/[1.3gb]}
+[2017-01-18T15:29:41,447][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][8733] overhead, spent [4.6s] collecting in the last [5.3s]

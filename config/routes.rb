@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :photos
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :comments,            only: [:create, :destroy]
+  resources :questions,           only: [:create, :destroy]
   resources :replies,             only: [:create, :destroy]
   resources :enquiries,           only: [:new, :create]
   resources :profiles,            only: [:show, :edit, :update]

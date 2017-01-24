@@ -77,17 +77,11 @@ class VehiclesController < ApplicationController
                                    current_user.id).present? if current_user
     @photos    = @vehicle.photos
     @reviews   = @vehicle.reviews
-    @hasReview = @reviews.find_by(user_id: current_user.id) if current_user
+    @hasReview = @reviews.find_by(reviewer_id: current_user.id) if current_user
     
-    # @comments  = @vehicle.comments
-    # @comment = current_user.comments.build if logged_in?
-    
-    # @comments.each { 
-    #   |comment|
-    #     @replies = comment.replies
-    # }
-    
-    # @reply   = current_user.replies.build  if logged_in?
+    @questions = @vehicle.questions
+    @question  = current_user.questions.build if logged_in?
+    @reply     = current_user.replies.build   if logged_in?
   end
   
   def search

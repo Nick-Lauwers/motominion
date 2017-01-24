@@ -1,0 +1,33 @@
+<div class="question-form">
+  <%= form_for @question do |f| %>
+  
+    <%= render 'shared/error_messages', object: f.object %>
+    
+    <div class="question-form-avatar">
+      <%= image_tag (@question.user.avatar.url) %>
+    </div>
+    
+    <div class="question-form-container">
+  
+      <%= f.text_field :content, 
+                       placeholder: "Write your question here.", 
+                       class: "form-control question-form-control" %>
+      
+      <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
+      
+      <div class="question-submit-container">
+        <%= f.submit "Ask!", class: "question-submit" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // image scaling
+    var questionFormAvatar = $('.question-form-avatar');
+    
+    questionFormAvatar.imagefill();
+  })
+</script>

@@ -6,13 +6,17 @@ class User < ActiveRecord::Base
   
   has_many :vehicles,          dependent: :destroy
   has_many :appointments,      dependent: :destroy
-  has_many :reviews,           dependent: :destroy
   has_many :posts,             dependent: :destroy
   has_many :responses,         dependent: :destroy 
-  has_many :comments,          dependent: :destroy
+  has_many :questions,         dependent: :destroy
   has_many :replies,           dependent: :destroy
   has_many :favorite_vehicles, dependent: :destroy
   
+  has_many :authored_reviews, class_name: 'Review', dependent: :destroy,
+    foreign_key: :reviewer_id
+  has_many :received_reviews, class_name: 'Review', dependent: :destroy, 
+    foreign_key: :reviewed_id
+    
   has_many :favorites, through: :favorite_vehicles, source: :vehicle
   
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -121,7 +125,7 @@ class User < ActiveRecord::Base
   
   # Computes average rating.
   def average_rating
-    reviews.count == 0 ? 0 : reviews.average(:rating).round(2)
+    received_reviews.count == 0 ? 0 : received_reviews.average(:rating).round(2)
   end
   
   private

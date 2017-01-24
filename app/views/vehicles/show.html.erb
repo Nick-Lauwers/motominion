@@ -295,25 +295,49 @@
         </div>
       </div>
       
-      <div class="col-xs-4" id="links-scrolled">
-        <div class="links-scrolled-content">
-          
-          <div class="appointment-scrolled">
-            <%= link_to '#vehicle-overview', 
-                class: "btn btn-primary btn-primary-scrolled" do %>
-              <!--<i class="fa fa-arrow-up up-button-icon" -->
-              <!--   aria-hidden="true"></i> -->
-              Test Drive
-            <% end %>
-          </div>
-          
-          <!--<div class="products-scrolled">-->
-          <!--  <span class="products-scrolled-title">1 Additional Product</span>-->
-          <!--  <(perc)= link_to "View Details", '#', class: "products-scrolled-link" %>-->
-          <!--  <p class="products-scrolled-info">Spoiler at reduced cost</p>-->
-          <!--</div>-->
-        </div>
+      <div class="col-xs-4" id="vehicle-scrolled">
         
+        <% if logged_in? or @vehicle.questions.any? %>
+          <div class="vehicle-scrolled-content">
+              
+              <div class="questions-title">
+                <span class="questions-title-content">
+                  Questions (<%= @vehicle.questions.count %>)
+                </span>
+              </div>
+              
+              <div class="questions">
+
+                <div class="questions-info">
+                  
+                  <%= render 'questions/question_form' if logged_in? %>
+                  
+                  <% if @vehicle.questions.any? %>
+                    <ol class="questions-list">
+                      <%= render @questions %>
+                    </ol>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+                      
+            <!--<div class="appointment-scrolled">-->
+            <!--  <(perc)= link_to '#vehicle-overview', -->
+            <!--      class: "btn btn-primary btn-primary-scrolled" do %>-->
+                <!--<i class="fa fa-arrow-up up-button-icon" -->
+                <!--   aria-hidden="true"></i> -->
+            <!--    Test Drive-->
+            <!--  <(perc) end %>-->
+            <!--</div>-->
+            
+            <!--<div class="products-scrolled">-->
+            <!--  <span class="products-scrolled-title">1 Additional Product</span>-->
+            <!--  <(perc)= link_to "View Details", '#', class: "products-scrolled-link" %>-->
+            <!--  <p class="products-scrolled-info">Spoiler at reduced cost</p>-->
+            <!--</div>-->
+
         <!--<(perc)= link_to '#' do %>-->
         <!--  <p class="wish-list-scrolled">-->
         <!--    <i class="fa fa-heart wish-list-link-icon" aria-hidden="true"></i>-->
@@ -434,27 +458,27 @@
         </div>
         
         <div class="col-xs-4">
-          <!--<div class="pros-cons-list">-->
+          <div class="pros-cons-list">
             
-          <!--  <h3 class="reviews-subheading">Pros</h3>-->
+            <h3 class="reviews-subheading">Pros</h3>
             
-          <!--  <ul class="pros-cons-list-content">-->
-          <!--    <li>Security & safety (51)</li>-->
-          <!--    <li>Location (45)</li>-->
-          <!--    <li>Management / staff (40)</li>-->
-          <!--  </ul>-->
-          <!--</div>-->
+            <ul class="pros-cons-list-content">
+              <li>Security & safety (51)</li>
+              <li>Location (45)</li>
+              <li>Management / staff (40)</li>
+            </ul>
+          </div>
         </div>
         
         <div class="col-xs-4">
-          <!--<div class="pros-cons-list">-->
+          <div class="pros-cons-list">
             
-          <!--  <h3 class="reviews-subheading">Cons</h3>-->
+            <h3 class="reviews-subheading">Cons</h3>
             
-          <!--  <ul class="pros-cons-list-content">-->
-          <!--    <li>Value for money (11)</li>-->
-          <!--  </ul>-->
-          <!--</div>-->
+            <ul class="pros-cons-list-content">
+              <li>Value for money (11)</li>
+            </ul>
+          </div>
         </div>
       </div>
       
@@ -586,17 +610,17 @@
     });
 
     // fixed links
-    var linksScrolled = $('#links-scrolled');
+    var linksScrolled = $('#vehicle-scrolled');
     
     linksScrolled.stick_in_parent({ offset_top: 50 });
 
     // smooth scroll
-    var appointmentScrolledButton = $(".btn-primary-scrolled")
+    // var appointmentScrolledButton = $(".btn-primary-scrolled")
     
-    appointmentScrolledButton.click(function(evn){
-      evn.preventDefault();
-      $('html, body').scrollTo(this.hash, this.hash); 
-    });
+    // appointmentScrolledButton.click(function(evn){
+    //   evn.preventDefault();
+    //   $('html, body').scrollTo(this.hash, this.hash); 
+    // });
     
     // map
     handler = Gmaps.build('Google');

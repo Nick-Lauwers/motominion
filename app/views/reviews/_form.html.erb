@@ -44,7 +44,9 @@
                         placeholder: "Review comments", 
                         class: "form-control review-comment-form-control" %>
         
-        <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
+        <%= f.hidden_field :vehicle_id,  value: @vehicle.id %>
+        
+        <%= f.hidden_field :reviewed_id, value: @vehicle.user.id %>
   
         <div class="review-post-container">
           <%= f.submit "Post my review", class: "review-post" %>

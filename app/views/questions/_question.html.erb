@@ -1,0 +1,93 @@
+<li id="question-item-<%= question.id %>" class="question-item">
+  <div class="question-item-content">
+
+    <%= link_to (image_tag question.user.avatar.url), 
+                question.user, 
+                class: "question-avatar" %>
+
+    <div class="question-details">
+      
+      <%= link_to question.user.name, question.user, class: "question-name" %>
+
+      <span class="question-content"><%= question.content %></span>
+      
+      <div class="question-date-container">
+        <span class="reply-number">
+          <%= pluralize(question.replies.count, "Comment") %>
+        </span>
+        
+        <span class="question-date">
+          <%= time_ago_in_words(question.created_at).capitalize %> ago
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <% if question.replies.any? %>
+    <ol class="replies-list">
+      
+      <% question.replies.each do |reply| %>
+        <li id="reply-item-<%= reply.id %>" class="reply-item">
+          
+          <%= link_to (image_tag reply.user.avatar.url), 
+                      reply.user, 
+                      class: "reply-avatar" %>
+          
+          <div class="reply-details">
+            
+            <%= link_to reply.user.name, reply.user, class: "reply-name" %>
+
+            <span class="reply-content"><%= reply.content %></span>
+            
+            <div class="reply-date-container">
+              <span class="reply-date">
+                <%= time_ago_in_words(question.created_at).capitalize %> ago
+              </span>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+  
+  <% if logged_in? %>
+    <div class="reply-form">
+      
+      <%= form_for @reply do |f| %>
+      
+        <%= render 'shared/error_messages', object: f.object %>
+        
+        <div class="reply-form-avatar">
+          <%= image_tag (@question.user.avatar.url) %>
+        </div>
+        
+        <div class="reply-form-container">
+          
+          <%= f.text_field :content, 
+                           placeholder: "Write a comment / answer.",
+                           class: "form-control reply-form-control" %>
+              
+          <%= f.hidden_field :question_id, value: question.id %>
+          
+          <div class="reply-submit-container">
+            <%= f.submit "Reply!", class: "reply-submit" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</li>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // image scaling
+    var questionAvatar  = $('.question-avatar');
+    var replyAvatar     = $('.reply-avatar');
+    var replyFormAvatar = $('.reply-form-avatar');
+    
+    questionAvatar.imagefill();
+    replyAvatar.imagefill();
+    replyFormAvatar.imagefill();
+  })
+</script>

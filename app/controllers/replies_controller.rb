@@ -4,11 +4,17 @@ class RepliesController < ApplicationController
 
   def create
     @reply = current_user.replies.build(reply_params)
+    # if @reply.save
+    #   respond_to do |format|
+    #     format.js
+    #   end
+    # end
+    
     if @reply.save
       flash[:success] = "Reply created!"
-      redirect_to root_url
+      redirect_to @reply.question.vehicle
     else
-      render 'static_pages/home'
+      redirect_to request.referrer || root_url    
     end
   end
 
@@ -18,6 +24,6 @@ class RepliesController < ApplicationController
   private
 
     def reply_params
-      params.require(:reply).permit(:content, :comment_id)
+      params.require(:reply).permit(:content, :question_id)
     end
 end

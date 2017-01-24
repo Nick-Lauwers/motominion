@@ -25,20 +25,6 @@ ActiveRecord::Schema.define(version: 20161213004644) do
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
   add_index "appointments", ["vehicle_id"], name: "index_appointments_on_vehicle_id"
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "title"
-    t.text     "content"
-    t.integer  "likes"
-    t.integer  "user_id"
-    t.integer  "vehicle_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-  add_index "comments", ["vehicle_id", "created_at"], name: "index_comments_on_vehicle_id_and_created_at"
-  add_index "comments", ["vehicle_id"], name: "index_comments_on_vehicle_id"
-
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
@@ -126,17 +112,30 @@ ActiveRecord::Schema.define(version: 20161213004644) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
-  create_table "replies", force: :cascade do |t|
+  create_table "questions", force: :cascade do |t|
     t.text     "content"
     t.integer  "likes"
     t.integer  "user_id"
-    t.integer  "comment_id"
+    t.integer  "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "replies", ["comment_id", "created_at"], name: "index_replies_on_comment_id_and_created_at"
-  add_index "replies", ["comment_id"], name: "index_replies_on_comment_id"
+  add_index "questions", ["user_id"], name: "index_questions_on_user_id"
+  add_index "questions", ["vehicle_id", "created_at"], name: "index_questions_on_vehicle_id_and_created_at"
+  add_index "questions", ["vehicle_id"], name: "index_questions_on_vehicle_id"
+
+  create_table "replies", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "likes"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "replies", ["question_id", "created_at"], name: "index_replies_on_question_id_and_created_at"
+  add_index "replies", ["question_id"], name: "index_replies_on_question_id"
   add_index "replies", ["user_id"], name: "index_replies_on_user_id"
 
   create_table "responses", force: :cascade do |t|
@@ -156,13 +155,15 @@ ActiveRecord::Schema.define(version: 20161213004644) do
     t.text     "comment"
     t.integer  "rating"
     t.integer  "vehicle_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "reviewer_id"
+    t.integer  "reviewed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id"
-  add_index "reviews", ["vehicle_id"], name: "index_reviews_on_vehicle_id"
+  add_index "reviews", ["reviewed_id", "created_at"], name: "index_reviews_on_reviewed_id_and_created_at"
+  add_index "reviews", ["reviewer_id", "created_at"], name: "index_reviews_on_reviewer_id_and_created_at"
+  add_index "reviews", ["vehicle_id", "created_at"], name: "index_reviews_on_vehicle_id_and_created_at"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
