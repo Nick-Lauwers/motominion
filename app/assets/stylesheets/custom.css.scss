@@ -5,6 +5,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-slider";
+@import 'bootstrap-datetimepicker';
 
 /* mixins, variables, etc. */
 
@@ -269,6 +270,10 @@ p {
   height: 50px;
 }
 
+.btn-appointment {
+  margin-top: 1.6em;
+}
+
 .btn-header-profile {
   font-size: 1.2em;
   font-weight: bold;
@@ -486,6 +491,10 @@ label {
   position: relative;
 }
 
+.form-element-availability {
+  margin-top: 0.5em;
+}
+
 .checkbox-container {
   text-align: center;
 }
@@ -551,7 +560,7 @@ select {
   }
 }
 
-input#appointment_date { 
+#appointment-time { 
   cursor: pointer;
   padding: 1.1em 1.9em 1.1em 3.2em;
 }
@@ -1836,17 +1845,28 @@ ul.pagination {
   line-height: 2;
   text-align: left;
   color: $gray-text;
-  margin: 0;
+  margin: 1.5em 0 0;
 }
 
-.vehicle-overview-products {
-  margin-top: 1.5em;
-}
+// .vehicle-overview-products {
+//   margin-top: 1.5em;
+// }
 
-.products-title {
+// .products-title {
+//   font-size: 1.1em;
+//   font-weight: bold;
+//   color: $red;
+// }
+
+.vehicle-overview-link {
   font-size: 1.1em;
   font-weight: bold;
   color: $red;
+  &:hover,
+  &:focus {
+    color: $red;
+    text-decoration: none;
+  }
 }
 
 .products-link {
@@ -1861,13 +1881,10 @@ ul.pagination {
 }
 
 .appointment {
+  text-align: center;
   background-color: $gray-lightest;
   padding: 1.6em;
   margin-bottom: 2.3em;
-}
-
-.appointment-content {
-  margin-bottom: 1.6em;
 }
 
 .vehicle-reviews {
@@ -1913,9 +1930,10 @@ ul.pagination {
   padding-right: 7em;
 }
 
-.specifications,
-.features,
-.pricing {
+#specifications,
+#features,
+#pricing,
+#sellers-notes {
   margin-bottom: 4em;
 }
 
@@ -1999,6 +2017,17 @@ ul.pagination {
 
 .replies-list {
   background-color: $gray-lightest;
+}
+
+.availability-link {
+  font-size: 1em;
+  text-decoration: underline;
+  color: $gray-dark;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: $gray-dark;
+  }
 }
 
 .question-form {
@@ -3241,7 +3270,8 @@ ul.pagination {
 
 .instructions,
 .basics,
-.details {
+.details,
+.finalize {
   border-bottom: 1px solid $gray-border;
 }
 
@@ -3251,7 +3281,8 @@ ul.pagination {
 
 .basics,
 .details,
-.finalize {
+.finalize,
+.get-ready {
   padding: 3.5em 0 1.5em;
 }
 
@@ -3271,7 +3302,8 @@ ul.pagination {
 .instructions-title,
 .basics-title,
 .details-title,
-.finalize-title {
+.finalize-title,
+.get-ready-title {
   font-size: 1.7em;
   font-weight: bold;
   line-height: 1.3em;
@@ -3282,7 +3314,8 @@ ul.pagination {
 .instructions-info,
 .basics-info,
 .details-info,
-.finalize-info {
+.finalize-info,
+.get-ready-info {
   line-height: 2.2em;
   text-align: left;
   color: $gray-text;

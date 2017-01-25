@@ -40,7 +40,14 @@ class VehiclesControllerTest < ActionController::TestCase
                                is_backup_camera: true,
                                is_remote_start: true,
                                is_tow_package: false,
-                               is_autonomy: false }
+                               is_autonomy: false,
+                               monday_availability: "5PM - 9PM",
+                               tuesday_availability: "5PM - 9PM",
+                               wednesday_availability: "5PM - 9PM",
+                               thursday_availability: "5PM - 9PM",
+                               friday_availability: "5PM - 9PM",
+                               saturday_availability: "5PM - 9PM",
+                               sunday_availability: "5PM - 9PM" }
     end
     assert_not flash.empty?
     assert_redirected_to login_url

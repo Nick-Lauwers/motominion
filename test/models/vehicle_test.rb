@@ -4,33 +4,41 @@ class VehicleTest < ActiveSupport::TestCase
   
   def setup
     @user = users(:nicholas)
-    @vehicle = @user.vehicles.build(vehicle_condition:    "New",
-                                    body_style:           "Coupe",
-                                    color:                "Blue",
-                                    transmission:         "Automatic",
-                                    fuel_type:            "Gasoline",
-                                    drivetrain:           "Front-Wheel Drive",
-                                    vin:                  "3GNMCGE06BG101575",
-                                    listing_name:         "Chevrolet Malibu", 
-                                    address:              "254 Hudson Crescent, 
-                                                          Wallaceburg ON", 
-                                    year:                 2014,
-                                    price:                25600,
-                                    mileage:              27000,
-                                    seating_capacity:     4, 
-                                    summary:              "Purchase as early as 
-                                                           today.",
-                                    sellers_notes:        "Must sell vehicle 
-                                                           immediately.",
-                                    is_leather_seats:     false,
-                                    is_sunroof:           false,
-                                    is_navigation_system: true,
+    @vehicle = @user.vehicles.build(vehicle_condition:      "New",
+                                    body_style:             "Coupe",
+                                    color:                  "Blue",
+                                    transmission:           "Automatic",
+                                    fuel_type:              "Gasoline",
+                                    drivetrain:             "Front-Wheel Drive",
+                                    vin:                    "3GNMCGE06BG101575",
+                                    listing_name:           "Chevrolet Malibu", 
+                                    address:                "254 Hudson 
+                                                            Crescent, 
+                                                            Wallaceburg ON", 
+                                    year:                   2014,
+                                    price:                  25600,
+                                    mileage:                27000,
+                                    seating_capacity:       4, 
+                                    summary:                "Purchase as early 
+                                                            as today.",
+                                    sellers_notes:          "Must sell vehicle 
+                                                            immediately.",
+                                    is_leather_seats:       false,
+                                    is_sunroof:             false,
+                                    is_navigation_system:   true,
                                     is_dvd_entertainment_system: false,
-                                    is_bluetooth:         true,
-                                    is_backup_camera:     true,
-                                    is_remote_start:      true,
-                                    is_tow_package:       false,
-                                    is_autonomy:          false)
+                                    is_bluetooth:           true,
+                                    is_backup_camera:       true,
+                                    is_remote_start:        true,
+                                    is_tow_package:         false,
+                                    is_autonomy:            false,
+                                    monday_availability:    "5PM - 9PM",
+                                    tuesday_availability:   "5PM - 9PM",
+                                    wednesday_availability: "5PM - 9PM",
+                                    thursday_availability:  "5PM - 9PM",
+                                    friday_availability:    "5PM - 9PM",
+                                    saturday_availability:  "5PM - 9PM",
+                                    sunday_availability:    "5PM - 9PM")
   end
   
   test "should be valid" do
@@ -79,6 +87,17 @@ class VehicleTest < ActiveSupport::TestCase
   
   test "sellers_notes should be at most 600 characters" do
     @vehicle.sellers_notes = "a" * 601
+    assert_not @vehicle.valid?
+  end
+  
+  test "availabilities should be at most 30 characters" do
+    @vehicle.monday_availability    = "a" * 31
+    @vehicle.tuesday_availability   = "a" * 31
+    @vehicle.wednesday_availability = "a" * 31
+    @vehicle.thursday_availability  = "a" * 31
+    @vehicle.friday_availability    = "a" * 31
+    @vehicle.saturday_availability  = "a" * 31
+    @vehicle.sunday_availability    = "a" * 31
     assert_not @vehicle.valid?
   end
   

@@ -2,40 +2,50 @@
 
 <%= form_for([@vehicle, @vehicle.appointments.new]) do |f| %>
 
-  <div class="row appointment-content">
-
-    <div class="col-xs-8">
-      <div class="form-element-secondary">
+  <a class="availability-link">Click for availability</a>
+  
+  <div class="form-element-secondary form-element-availability">
+    
+    <%= f.text_field :date, 
+                     placeholder: "Test Drive", 
+                     id: 'appointment-time',
+                     class: 'form-control form-control-secondary' %>
         
-        <%= f.text_field :date, 
-            readonly: 'true', 
-            placeholder: "Test Drive", 
-            class: 'form-control form-control-secondary' %>
-            
-        <i class="fa fa-calendar-o fa-lg form-icon" 
-           aria-hidden="true"></i>
-           
-        <i class="fa fa-caret-down fa-lg form-caret" 
-           aria-hidden="true"></i>
-      </div>
-    
-      <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
-    </div>
-    
-    <div class="col-xs-4">
-      <%= f.submit "Book!", class: "btn btn-tertiary" %>
-    </div>
+    <i class="fa fa-calendar-o fa-lg form-icon" 
+       aria-hidden="true"></i>
+       
+    <i class="fa fa-caret-down fa-lg form-caret" 
+       aria-hidden="true"></i>
   </div>
+
+  <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
+  
+  <!--<(perc)= link_to "Check availability before booking", -->
+  <!--            '#', -->
+  <!--            class: "availability-link" %>-->
+  
+  <%= f.submit "Book!", class: "btn btn-tertiary btn-appointment" %>
+    
 <% end %>
 
 <script type="text/javascript">
   
-  // datepicker
-  var appointmentDate = $('#appointment_date');
+  // smooth scroll
+  var availabilityLink = $('.availability-link');
 
-  $(function() {
-    appointmentDate.datepicker({
-      dateFormat: 'dd-mm-yy'
+  availabilityLink.click(function(evn) {
+    evn.preventDefault();
+    $('html, body').animate({
+        scrollTop: $('#availability').offset().top-50
+    }, 'slow');
+  });
+  
+  // datetimepicker
+  var appointmentTime = $('#appointment-time');
+  
+  $(function () {
+    appointmentTime.datetimepicker({
+      format: 'YYYY-MM-DD LT'
     });
   });
 </script>

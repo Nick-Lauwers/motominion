@@ -77,11 +77,25 @@
             </div>
           </div>
           
+          <% if logged_in? && 
+                !current_user.favorite_vehicles.exists?(vehicle_id:
+                                                        @vehicle.id) %>
+                                                        
+            <%= link_to favorite_vehicle_path(@vehicle), 
+                        class: "vehicle-overview-link" do %>
+                        
+              <i class="fa fa-heart-o" 
+                 aria-hidden="true"></i> 
+                   
+              Add to Wish List
+            <% end %>
+          <% end %>
+          
           <p class="vehicle-overview-description"><%= @vehicle.summary %></p>
           
           <!--<div class="vehicle-overview-products">-->
-            
-          <!--  <span class="products-title">1 Additional Product</span>-->
+              
+          <!--  <span class="products-title">Add to Wish List</span>-->
             
           <!--  <(perc)= link_to "Spoiler at Reduced Cost", -->
           <!--              '#', -->
@@ -96,20 +110,19 @@
           
           <%= render 'appointments/form' %>
           
-          <% if logged_in? && 
-                !current_user.favorite_vehicles.exists?(vehicle_id:
-                                                        @vehicle.id) %>
+          <!--<(perc) if logged_in? && -->
+          <!--      !current_user.favorite_vehicles.exists?(vehicle_id:-->
+          <!--                                              @vehicle.id) %>-->
                     
-            <%= button_to favorite_vehicle_path(@vehicle), 
-                          class: "btn btn-tertiary", 
-                          method: :put do %>
+          <!--  <(perc)= link_to favorite_vehicle_path(@vehicle), -->
+          <!--              class: "btn btn-tertiary btn-wish-list" do %>-->
                           
-                <i class="fa fa-heart-o" 
-                   aria-hidden="true"></i> 
+          <!--      <i class="fa fa-heart-o" -->
+          <!--         aria-hidden="true"></i> -->
                    
-                Add to Wish List
-            <% end %>
-          <% end %>
+          <!--      Add to Wish List-->
+          <!--  <(perc) end %>-->
+          <!--<(perc) end %>-->
 
           <!--<(perc)= link_to 'Purchase',-->
           <!--            new_vehicle_payment_path(@vehicle),-->
@@ -142,7 +155,7 @@
       <div class="col-xs-8">
         <div class="vehicle-details-text">
         
-          <div class="specifications">
+          <div id="specifications">
             
             <h3 class="vehicle-details-title">Specifications</h3>
             
@@ -210,7 +223,7 @@
             </div>
           </div>
           
-          <div class="features">
+          <div id="features">
             
             <h3 class="vehicle-details-title">Features</h3>
             
@@ -283,14 +296,95 @@
             </div>
           </div>
           
-          <div class="pricing">
+          <div id="pricing">
             <h3 class="vehicle-details-title">Pricing</h3>
             <p class="vehicle-details-info">From $<%= @vehicle.price %></p>
           </div>
           
-          <div class="sellers-notes">
+          <div id="sellers-notes">
             <h3 class="vehicle-details-title">Seller's Notes</h3>
             <p class="vehicle-details-info"><%= @vehicle.sellers_notes %></p>
+          </div>
+          
+          <div id="availability">
+            
+            <h3 class="vehicle-details-title">General Availability</h3>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <table class="vehicle-details-table">
+                  
+                  <tr>
+                    
+                    <td>Monday</td>
+                    
+                    <td>
+                      <strong><%= @vehicle.monday_availability %></strong>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    
+                    <td>Tuesday</td>
+                    
+                    <td>
+                      <strong><%= @vehicle.tuesday_availability %></strong>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    
+                    <td>Wednesday</td>
+                    
+                    <td>
+                      <strong><%= @vehicle.wednesday_availability %></strong>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    
+                    <td>Thursday</td>
+                    
+                    <td>
+                      <strong><%= @vehicle.thursday_availability %></strong>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              
+              <div class="col-xs-6">
+                <table class="vehicle-details-table">
+                  
+                  <tr>
+                    
+                    <td>Friday</td>
+                    
+                    <td>
+                      <strong><%= @vehicle.friday_availability %></strong>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    
+                    <td>Saturday</td>
+                    
+                    <td>
+                      <strong><%= @vehicle.saturday_availability %></strong>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    
+                    <td>Sunday</td>
+                    
+                    <td>
+                      <strong><%= @vehicle.sunday_availability %></strong>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>

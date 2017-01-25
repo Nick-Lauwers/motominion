@@ -13,9 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require jquery.ui.datepicker
-//= require private_pub
 //= require bootstrap-slider
 //= require underscore
+//= require moment
+//= require bootstrap-datetimepicker
 //= require gmaps/google
+//= require private_pub
 //= require_tree .
