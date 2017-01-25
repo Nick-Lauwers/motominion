@@ -16,7 +16,7 @@ class CreateReviews < ActiveRecord::Migration
     add_index :reviews, [:reviewer_id, :created_at]
     add_index :reviews, [:reviewed_id, :created_at]
     
-    add_foreign_key :reviews, :reviewer
-    add_foreign_key :reviews, :reviewed
+    add_foreign_key :reviews, :users, column: :reviewer_id
+    add_foreign_key :reviews, :users, column: :reviewed_id
   end
 end
