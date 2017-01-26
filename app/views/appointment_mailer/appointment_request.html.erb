@@ -5,10 +5,15 @@
 <p>Hi <%= @seller.name %>,</p>
 
 <p>
-You just received a test drive request! Click on the link below to view details:
+You just received a test drive request for 
+<strong><%= @vehicle.listing_name %></strong>! Click on the link below to view 
+the details:
 </p>
 
-<%= link_to "Test Drive Request", test_drives_url %>
+<%= link_to "Test Drive Request", 
+            conversations_url(sender_id:    @seller.id,
+                              recipient_id: @customer.id), 
+            method: :post %>
 
 <!--change Dealership.com-->
 <!--test_drives_path should specify which user-->
