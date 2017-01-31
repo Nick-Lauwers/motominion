@@ -11,9 +11,7 @@ the details:
 </p>
 
 <%= link_to "Test Drive Request", 
-            conversations_url(sender_id:    @seller.id,
-                              recipient_id: @customer.id), 
-            method: :post %>
+            conversation_messages_url(@conversation) %>
 
 <!--change Dealership.com-->
 <!--test_drives_path should specify which user-->

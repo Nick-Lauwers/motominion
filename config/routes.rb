@@ -39,10 +39,19 @@ Rails.application.routes.draw do
   end
 
   resources :conversations, only: [:index, :create] do
-    resources :messages, only: [:index, :create]
+    resources :messages, except: [:new, :edit, :show, :update] do
+      collection do
+        get 'accept'
+        get 'decline'
+      end
+    end
   end
   
   resources :posts do
     resources :responses
   end
+  
+  # match "conversations/:id/messages/accept" => "conversations#messages#accept", :as => "conversation_messages_accept_path"
+  
+  # match "conversations/:id/messages/decline" => "conversations#messages#decline", :as => "conversation_messages_decline_path"
 end

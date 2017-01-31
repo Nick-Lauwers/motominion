@@ -17,15 +17,13 @@
     <i class="fa fa-caret-down fa-lg form-caret" 
        aria-hidden="true"></i>
   </div>
+  
+  <%= f.hidden_field :status,     value: "pending" %>
 
   <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
   
-  <!--<(perc)= link_to "Check availability before booking", -->
-  <!--            '#', -->
-  <!--            class: "availability-link" %>-->
-  
   <%= f.submit "Book!", class: "btn btn-tertiary btn-appointment" %>
-    
+  
 <% end %>
 
 <script type="text/javascript">

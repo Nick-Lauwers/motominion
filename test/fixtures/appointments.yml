@@ -1,20 +1,24 @@
 latest_appointment:
+  status: pending
   date: <%= 10.days.from_now %>
   user: archer
   vehicle: avalanche
 
 later_appointment:
+  status: declined
   date: <%= 3.days.from_now %>
   user: archer
   vehicle: navigator
   
 soonest_appointment:
+  status: accepted
   date: <%= 2.days.from_now %>
   user: archer
   vehicle: most_recent
   
 <% 30.times do |n| %>
 appointment_<%= n %>:
+  status: accepted
   date: <%= Faker::Date.between(3.days.from_now, 10.days.from_now) %>
   user: archer
   vehicle: vehicle_<%= n %>

@@ -5,7 +5,7 @@ Hi <%= @seller.name %>,
 You just received a test drive request for <%= @vehicle.listing_name %>! Click 
 on the link below to view the details:
 
-<%= conversations_url(sender_id: @seller.id, recipient_id: @customer.id) %>
+<%= conversation_messages_url(@conversation) %>
 
 <!--test_drives_path should specify which user-->
 <!--should be customers_path, not test_drives_path-->

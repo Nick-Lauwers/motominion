@@ -110,12 +110,18 @@
   </div>
 </div>
 
-<!--<div id="feed">-->
-<!--  <div class="feed-content">-->
-<!--    <h3 class="feed-title">Discover Top Content</h3>-->
-<!--    <(perc)= render 'static_pages/feed_list' %>-->
-<!--  </div>-->
-<!--</div>-->
+<% if @feed_items.exists? %>
+  <div id="feed">
+    <div class="feed-content">
+      
+      <h3 class="feed-title">Discover Top Content</h3>
+      
+      <ol class="feed-list">
+        <%= render 'feed_items' %>
+      </ol>
+    </div>
+  </div>
+<% end %>
 
 <!--<div class="press">-->
   

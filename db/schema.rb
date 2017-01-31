@@ -14,13 +14,16 @@
 ActiveRecord::Schema.define(version: 20161213004644) do
 
   create_table "appointments", force: :cascade do |t|
+    t.string   "status"
+    t.datetime "date"
     t.integer  "user_id"
     t.integer  "vehicle_id"
-    t.datetime "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
+  add_index "appointments", ["conversation_id"], name: "index_appointments_on_conversation_id"
   add_index "appointments", ["user_id", "date"], name: "index_appointments_on_user_id_and_date"
   add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
   add_index "appointments", ["vehicle_id"], name: "index_appointments_on_vehicle_id"
@@ -154,9 +157,9 @@ ActiveRecord::Schema.define(version: 20161213004644) do
     t.string   "title"
     t.text     "comment"
     t.integer  "rating"
-    t.integer  "vehicle_id"
     t.integer  "reviewer_id"
     t.integer  "reviewed_id"
+    t.integer  "vehicle_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

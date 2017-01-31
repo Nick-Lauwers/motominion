@@ -1,0 +1,46 @@
+<% @feed_items.each do |feed_item| %>
+
+  <li id="feed-item-<%= feed_item.id %>" class="col-xs-4 feed-item">
+    <%= link_to feed_item, target: "_blank" do %>
+      <div class="feed-item-content">
+        
+        <div class="feed-item-image", 
+             style="background-image: url(
+                     '<%= feed_item.photos[0].image.url() if 
+                          feed_item.photos.length > 0 %>')">
+          <!--<div class="feed-item-credit">-->
+          <!--  <span>Jaguar</span>-->
+          <!--</div>-->
+        </div>
+        
+        <div class="feed-item-title">
+          <p>
+            <i class="fa fa-tag feed-item-icon" aria-hidden="true"></i>
+            <%= feed_item.listing_name %>
+          </p>
+        </div>
+        
+        <div class="feed-item-info">
+          
+          <p><%= feed_item.summary %></p>
+          
+          <div class="feed-item-stats">
+            
+            <div class="feed-item-time">
+              <span>
+                <%= time_ago_in_words(feed_item.created_at).capitalize %> ago
+              </span>
+            </div>
+            
+            <div class="feed-item-saves pull-right">
+              <span>
+                <%= pluralize(feed_item.favorited_by.count, "Save") %> | 
+                <%= pluralize(feed_item.questions.count, "Question") %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </li>
+<% end %>

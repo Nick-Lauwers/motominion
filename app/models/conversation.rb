@@ -2,10 +2,28 @@
 
 class Conversation < ActiveRecord::Base
   
-  belongs_to :sender,    class_name: 'User', foreign_key: :sender_id  
-  belongs_to :recipient, class_name: 'User', foreign_key: :recipient_id
+  belongs_to :sender,    class_name: 'User' 
+  belongs_to :recipient, class_name: 'User'
   
-  has_many :messages, dependent: :destroy
+  # belongs_to :sender,    class_name: 'User', foreign_key: :sender_id  
+  # belongs_to :recipient, class_name: 'User', foreign_key: :recipient_id
+  
+  has_many :messages,     dependent: :destroy
+  
+  # Experiment
+  has_many :appointments, dependent: :destroy
+  
+  # validates_uniqueness_of :sender, scope: :recipient
+  
+  # scope :involving, -> (user) do
+  #   where("conversations.sender = ? OR conversations.recipient = ?", user, user)
+  # end
+  
+  # scope :between, -> (sender, recipient) do
+  #   where("(conversations.sender = ? AND conversations.recipient = ?) OR 
+  #         (conversations.sender = ? AND conversations.recipient = ?)",
+  #         sender, recipient, recipient, sender)
+  # end
   
   validates_uniqueness_of :sender_id, scope: :recipient_id
   
@@ -15,7 +33,7 @@ class Conversation < ActiveRecord::Base
   
   scope :between, -> (sender_id, recipient_id) do
     where("(conversations.sender_id = ? AND conversations.recipient_id = ?) OR 
-           (conversations.sender_id = ? AND conversations.recipient_id = ?)",
+          (conversations.sender_id = ? AND conversations.recipient_id = ?)",
           sender_id, recipient_id, recipient_id, sender_id)
   end
 end

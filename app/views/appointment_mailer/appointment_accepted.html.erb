@@ -1,0 +1,12 @@
+<!--complete-->
+
+<h1>Test Drive Request Accepted | Dealership.com</h1>
+
+<p>Hi <%= @customer.name %>,</p>
+
+<p>
+Your test drive request for <strong><%= @vehicle.listing_name %></strong> was
+accepted! Click on the link below to view the details:
+</p>
+
+<%= link_to "Test Drives", test_drives_path %>

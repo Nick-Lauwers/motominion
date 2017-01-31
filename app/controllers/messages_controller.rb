@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   end
   
   def create
-    @message = @conversation.messages.new(message_params)
+    @message  = @conversation.messages.new(message_params)
     @messages = @conversation.messages.order("created_at DESC")
     
     if @message.save
@@ -21,6 +21,21 @@ class MessagesController < ApplicationController
     end
   end
   
+  def accept
+    appointment = @conversation.appointments.where(status: 'pending').first
+    appointment.update_attribute(:status, 'accepted')
+    AppointmentMailer.appointment_accepted(appointment).deliver_now
+    flash[:success] = "Test drive accepted!"
+    redirect_to :back
+  end
+  
+  def decline
+    appointment = @conversation.appointments.where(status: 'pending').first
+    appointment.update_attribute(:status, 'declined')
+    AppointmentMailer.appointment_declined(appointment).deliver_now
+    flash[:failure] = "Test drive declined."
+    redirect_to :back
+  end
 
   private
   

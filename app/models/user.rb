@@ -2,6 +2,9 @@
 
 class User < ActiveRecord::Base
   
+  # Experiment
+  has_many :conversations,     dependent: :destroy
+  
   # has_one :profile,  dependent: :destroy
   
   has_many :vehicles,          dependent: :destroy

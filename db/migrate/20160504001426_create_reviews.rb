@@ -7,7 +7,7 @@ class CreateReviews < ActiveRecord::Migration
       t.integer :rating
       t.references :reviewer
       t.references :reviewed
-      t.references :vehicle,  foreign_key: true
+      t.references :vehicle, foreign_key: true
       
       t.timestamps null: false
     end

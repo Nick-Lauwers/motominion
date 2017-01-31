@@ -12,7 +12,8 @@ class AppointmentsControllerTest < ActionController::TestCase
   test "should redirect create when not logged in" do
     assert_no_difference 'Appointment.count' do
       post :create, vehicle_id: @vehicle.id, 
-        appointment: { date: Faker::Date.forward(10) }
+        appointment: { status: "pending",
+                       date:   Faker::Date.forward(10) }
     end
     assert_not flash.empty?
     assert_redirected_to login_url

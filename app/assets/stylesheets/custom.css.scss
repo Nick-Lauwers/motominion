@@ -37,7 +37,7 @@ $red:                 #fd8649;
 .alert-info,
 .alert-success,
 .alert-warning,
-.alert-login {
+.alert-failure {
   text-align: center;
   max-width: 1008px;
   position: absolute;
@@ -47,7 +47,7 @@ $red:                 #fd8649;
   z-index: 1000;
 }
 
-.alert-login {
+.alert-failure {
   color: #b94a48;
   background-color: #f2dede;
   border-color: #eed3d7;
@@ -160,7 +160,7 @@ p {
   background-color: transparent;
   border: 1px solid $yellow-dark;
   border-radius: 2px;
-  width: 100%;
+  width: 48%;
 }
 
 .btn-cancel {
@@ -271,6 +271,7 @@ p {
 }
 
 .btn-appointment {
+  width: 100%;
   margin-top: 1.6em;
 }
 
@@ -282,6 +283,23 @@ p {
   border: 1px solid $yellow-dark;
   height: 50px;
   width: 100%;
+}
+
+.btn-test-drive-accept,
+.btn-test-drive-decline {
+  color: $gray-text;
+  background-color: transparent;
+  border-radius: 2px;
+  width: 48%;
+}
+
+.btn-test-drive-accept {
+  border: 1px solid $yellow-dark;
+}
+
+.btn-test-drive-decline {
+  border: 1px solid $gray-light;
+  float: right;
 }
 
 /* forms */
@@ -1012,7 +1030,13 @@ footer {
   line-height: 1.65;
   text-align: center;
   color: $green;
-  margin: 0 0 2.1em;
+  margin: 0 0 1em
+}
+
+.feed-list {
+  overflow: auto;
+  padding: 0;
+  margin: 0 -15px;
 }
 
 .press {
@@ -1035,7 +1059,7 @@ footer {
 }
 
 .feed-item {
-  padding-bottom: 30px;
+  margin-top: 30px;
   a {
     text-decoration: none;
   }
@@ -2971,6 +2995,36 @@ ul.pagination {
   }
 }
 
+.test-drive-response {
+  background-color: $gray-lightest;
+  padding: 1.6em;
+  overflow: auto;
+}
+
+.test-drive-response-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: $gray-text;
+  margin: 0;
+}
+
+.test-drive-response-info {
+  font-size: 1.1em;
+  line-height: 1.2;
+  color: $gray-dark;
+  display: block;
+  margin: 0.5em 0 1em;
+}
+
+.fa-clock-o {
+  margin-right: 0.25em;
+}
+
+.test-drive-response-buttons {
+  width: 45%;
+  float: right;
+}
+
 .hero-primary,
 .hero-secondary {
   background-color: $gray-hero;
@@ -3103,7 +3157,7 @@ ul.pagination {
   background-color: white;
   border: 1px solid $gray-border;
   padding: 1.6em;
-  margin-bottom: 1.7em;
+  margin-top: 1.7em;
 }
 
 .message-detail {
