@@ -1,6 +1,3 @@
-# get rid of ransack
-# https://www.elastic.co/guide/en/elasticsearch/reference/master/_installation.html#_installation
-
 source 'https://rubygems.org'
 
 gem 'rails',                           '4.2.2'
@@ -34,6 +31,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 gem 'activemerchant'
+gem 'gon'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

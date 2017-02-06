@@ -1,12 +1,14 @@
-# complete
+# questionable
 
 class VehiclesController < ApplicationController
+  
   before_action :logged_in_user, except: [:show, :search]
   before_action :get_vehicle,    only:   [:destroy, :show, :edit, :update, 
                                           :favorite]
   
   def new
     @vehicle = current_user.vehicles.build
+    @complete = "13%"
   end
   
   def create
@@ -40,6 +42,7 @@ class VehiclesController < ApplicationController
     
     if current_user.id == @vehicle.user.id
       @photos = @vehicle.photos
+      @complete = "100%"
     
     else
       flash[:danger] = "Access denied"
@@ -75,13 +78,20 @@ class VehiclesController < ApplicationController
     @booked    = Appointment.where("vehicle_id = ? AND user_id = ?", 
                                    @vehicle.id, 
                                    current_user.id).present? if current_user
+                                   
     @photos    = @vehicle.photos
     @reviews   = @vehicle.reviews
     @hasReview = @reviews.find_by(reviewer_id: current_user.id) if current_user
     
     @questions = @vehicle.questions
     @question  = current_user.questions.build if logged_in?
+    
     @reply     = current_user.replies.build   if logged_in?
+
+    gon.vehicle = @vehicle
+
+    # @replies   = @question.replies
+    # @reply     = @question.replies.build   if logged_in?
   end
   
   def search

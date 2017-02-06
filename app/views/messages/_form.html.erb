@@ -1,9 +1,9 @@
-<!--complete-->
+<!--completed-->
 
 <%= form_for([@conversation, @conversation.messages.new], 
-                     remote: true) do |f| %>
+             remote: true) do |f| %>
   
-  <%= render 'shared/error_messages', object: f.object %>
+  <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
   
   <div class="row">
     
@@ -11,9 +11,9 @@
       <div class="message-container">
         
         <%= f.text_area :content, 
-            rows: 3,
-            placeholder: "Send a personal message.", 
-            class: "form-control message-form-control" %>
+                        rows: 3,
+                        placeholder: "Send a personal message.", 
+                        class: "form-control message-form-control" %>
             
         <%= f.hidden_field :user_id, value: current_user.id %>
         
@@ -36,19 +36,8 @@
     </div>
     
     <div class="col-xs-2">
-      <div class="message-avatar message-avatar-right">
-        <%= image_tag current_user.avatar.url %>
-      </div>
+      <%= image_tag(current_user.avatar.url, 
+                    class: "message-avatar message-avatar-right") %>
     </div>
   </div>
 <% end %>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    
-    // image scaling
-    var avatar = $('.message-avatar-right');
-    
-    avatar.imagefill(); 
-  })
-</script>

@@ -1,4 +1,4 @@
-# complete
+# completed
 
 class SessionsController < ApplicationController
   
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
       end
       
     else
-      flash.now[:login] = 'Invalid email/password combination'
+      flash.now[:failure] = 'Invalid email/password combination'
       render 'new'
     end
   end

@@ -5,7 +5,7 @@ class CreateEnquiries < ActiveRecord::Migration
       t.string :email
       t.string :phone_number
       t.string :category
-      t.text :content
+      t.text   :content
 
       t.timestamps null: false
     end

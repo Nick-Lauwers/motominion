@@ -1,4 +1,4 @@
-<!--complete-->
+<!--completed-->
 
 <% provide(:title, "About") %>
 
@@ -6,14 +6,89 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<div class="about-cover-photo">
+<div class="cover-photo" style="background-image: url('/assets/about.jpg')">
   <h1 class="cover-photo-title">Welcome to Dealership</h1>
 </div>
 
 <div class="about">
+  
   <p class="about-info">
-    We bring vehicle enthusiasts together in a trusted community marketplace. 
-    Here, customers from the United States and Canada will see your vehicle 
-    featured with stunning photography and original content.
+    We bring vehicle enthusiasts together in a trusted community marketplace.
+    If you are selling your car, buyers from the United States and Canada will 
+    see your vehicle featured with stunning photography and original content. If 
+    buying, Dealership's in-app tools can help you to make the right decision. 
+    Choosing the right car is difficult. Let us do the leg work!
   </p>
+  
+  <div class="about-leadership">
+    
+    <h2 class="about-leadership-title">Leadership Team</h2>
+    
+    <div class="row vertical-align about-leadership-item">
+      
+      <div class="col-xs-4">
+        <div class="leadership-avatar" 
+             style="background-image: url('/assets/partner1.jpg')"></div>
+      </div>
+      
+      <div class="col-xs-8">
+        
+        <span class="leadership-name">Nick Lauwers</span>
+        
+        <span class="leadership-role">ceo & founder</span>
+        
+        <p class="leadership-info">
+          As founder and ceo, Nick drives the vision, strategy, and growth of 
+          the company as it develops new ways for vehicle enthusiasts to 
+          interact. Nick met cfo John Kay while both served as officers of the 
+          Canadian Forces. Nick would later work as an engineer for Ford Motor 
+          Company.
+        </p>
+      </div>
+    </div>
+    
+    <div class="row vertical-align about-leadership-item">
+      
+      <div class="col-xs-4">
+        <div class="leadership-avatar" 
+             style="background-image: url('/assets/partner2.jpg')"></div>
+      </div>
+      
+      <div class="col-xs-8">
+        
+        <span class="leadership-name">John Kay</span>
+        
+        <span class="leadership-role">cfo</span>
+        
+        <p class="leadership-info">
+          John is responsible for leading the finance systems of the company, as 
+          well as its customer experience platform. In addition to serving as an 
+          analyst of the Canada-India Business Council, John has worked as a 
+          transportation infrastructure engineer for several design firms.
+        </p>
+      </div>
+    </div>
+    
+    <div class="row vertical-align last about-leadership-item">
+      
+      <div class="col-xs-4">
+        <div class="leadership-avatar" 
+             style="background-image: url('/assets/partner3.jpg')"></div>
+      </div>
+      
+      <div class="col-xs-8">
+        
+        <span class="leadership-name">Lillian Trieu</span>
+        
+        <span class="leadership-role">cto</span>
+        
+        <p class="leadership-info">
+          As cto, Lillian manages a team of engineers and data scientists 
+          dedicated to delivering trust and transparency to the vehicle 
+          purchasing process. She holds an engineering degree from the 
+          University of Alberta and has worked as an energy systems engineer.
+        </p>
+      </div>
+    </div>
+  </div>
 </div>

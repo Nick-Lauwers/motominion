@@ -4,7 +4,7 @@
  * @license MIT (https://github.com/pixelcog/parallax.js/blob/master/LICENSE)
  */
 
-;(function ( $, window, document, undefined ) {
+(function ( $, window, document, undefined ) {
 
   // Polyfill for requestAnimationFrame
   // via: https://gist.github.com/paulirish/1579671

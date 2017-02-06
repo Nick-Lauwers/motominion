@@ -1,4 +1,4 @@
-<!--complete-->
+<!--completed-->
 
 <% if message.user_id == current_user.id %>
 
@@ -18,9 +18,8 @@
     </div>
     
     <div class="col-xs-2">
-      <div class="message-avatar message-avatar-right">
-        <%= image_tag current_user.avatar.url %>
-      </div>
+      <%= image_tag(current_user.avatar.url, 
+                    class: "message-avatar message-avatar-right") %>
     </div>
   </div>
 
@@ -29,9 +28,8 @@
   <div class="row">
   
     <div class="col-xs-2">
-      <div class="message-avatar message-avatar-left">
-        <%= image_tag @other.avatar.url %>
-      </div>
+      <%= image_tag(@other.avatar.url, 
+                    class: "message-avatar message-avatar-left") %>
     </div>
     
     <div class="col-xs-10">

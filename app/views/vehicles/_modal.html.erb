@@ -1,3 +1,5 @@
+<!--completed-->
+
 <div class="modal" id="modal-gallery" role="dialog">
   
   <div class="modal-carousel-container">
@@ -7,17 +9,14 @@
   </div>
   
   <div class="modal-caption-container">
-    
     <div class="modal-detail">
       
       <div class="row vertical-align">
-        
         <div class="col-xs-3">
           <div class="modal-avatar-border">
             <div class="modal-avatar">
-              <%=link_to user_path(@vehicle.user) do %>
-                <%= image_tag @vehicle.user.avatar.url %>
-              <% end %>
+              <%= link_to (image_tag @vehicle.user.avatar.url),
+                          user_path(@vehicle.user) %>
             </div>
           </div>
         </div>
@@ -71,100 +70,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    
-    /* copy loaded gallery-photos into carousel */
-    var galleryPhoto = $('.gallery-photo');
-    
-    galleryPhoto.on('load', function() {}).each(function(i) {
-      
-      if(this.complete) {
-        
-      	var item    = $('<div class="item"></div>');
-        var itexsiv = $(this).parents('div');
-        var caption = $(this).parent('a').attr("caption");
-        
-        item.attr("caption",caption);
-      	$(itexsiv.html()).appendTo(item);
-      	item.appendTo('.carousel-inner'); 
-      	
-        if (i==0){
-          item.addClass('active');
-          item.addClass('modal-image');
-        }
-      }
-    });
-    
-    /* activate the carousel */
-    var modalCarousel = $('#modal-carousel');
-    
-    modalCarousel.carousel({interval:false});
-    
-    /* change modal caption when slide changes */
-    var modalCarousel = $('#modal-carousel');
-    var modalCaption  = $('.modal-caption');
-    
-    modalCarousel.on('slid.bs.carousel', function () {
-      modalCaption.html($(this).find('.active img').attr("caption"));
-    });
-    
-    /* when clicking a hero-image or a gallery-photo */
-    var heroListing   = $('.hero-listing');
-    var galleryPhoto  = $('.gallery-photo');
-    var modalGallery  = $('#modal-gallery');
-    var modalCarousel = $('#modal-carousel');
-    
-    heroListing.click(function(){
-      var idx = $(this).parents('div').index();
-    	var id  = parseInt(idx);
-    	
-    	modalGallery.modal('show');
-    	
-    	var showInfo = $('.modal-show-info');
-    	showInfo.height(optionsContainer.width());
-    	
-      modalCarousel.carousel(id);
-    });
-    
-    galleryPhoto.click(function(){
-      var idx = $(this).parents('div').index();
-    	var id  = parseInt(idx);
-    	
-    	modalGallery.modal('show');
-    	
-    	var showInfo = $('.modal-show-info');
-    	showInfo.height(optionsContainer.width());
-    	
-      modalCarousel.carousel(id);
-    });
-    
-    /* expand caption */
-    var showInfo         = $('.modal-show-info');
-    var showInfoText     = $('.show-info-text')
-    var imageContainer   = $('.modal-carousel-container');
-    var captionContainer = $('.modal-caption-container');
-    
-    showInfo.click(function(e) {
-      e.preventDefault();
-      
-      if (imageContainer.hasClass('modal-carousel-container-closed')) {
-        showInfoText.html("+ Info");
-        imageContainer.removeClass('modal-carousel-container-closed');
-        captionContainer.removeClass('modal-caption-container-open');
-      } 
-      
-      else {
-        showInfoText.html("- Hide");
-        imageContainer.addClass('modal-carousel-container-closed');
-        captionContainer.addClass('modal-caption-container-open');
-      }
-    });
-    
-    // image scaling
-    var modalAvatar = $('.modal-avatar');
-    
-    modalAvatar.imagefill();
-  })
-</script>

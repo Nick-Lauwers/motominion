@@ -1,4 +1,4 @@
-<!--complete-->
+<!--completed-->
 
 <% provide(:title, 'Account') %>
 
@@ -16,8 +16,8 @@
       <li><%= link_to "Test Drives", test_drives_path %></li>
       <li>
         <%= link_to "Account",     
-            edit_user_path(current_user), 
-            class: "nav-active" %>
+                    edit_user_path(current_user), 
+                    class: "nav-active" %>
       </li>
     </ul>
   </div>
@@ -36,10 +36,7 @@
             Need to make changes? Alter the details of your account, here.
           </p>
           
-          <%= button_to 'View Profile', 
-                        user_path, 
-                        method: :get, 
-                        class: "btn btn-tertiary" %>
+          <%= link_to 'View Profile', user_path, class: "btn btn-tertiary" %>
         </div>
       </div>
       

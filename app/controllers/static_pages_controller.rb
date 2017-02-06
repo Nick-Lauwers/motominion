@@ -1,6 +1,7 @@
-# complete
+# completed
 
 class StaticPagesController < ApplicationController
+  
   def home
     @feed_items = Vehicle.all
   end
@@ -17,5 +18,3 @@ class StaticPagesController < ApplicationController
   def legal
   end
 end
-
-# remove home from static pages

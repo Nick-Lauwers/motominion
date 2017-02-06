@@ -1,4 +1,4 @@
-<!--complete-->
+<!--completed-->
 
 <% provide(:title, "Test Drives") %>
 
@@ -15,8 +15,8 @@
       <li><%= link_to "Garage", vehicles_path %></li>
       <li>
         <%= link_to "Test Drives", 
-            test_drives_path, 
-            class: "nav-active" %>
+                    test_drives_path, 
+                    class: "nav-active" %>
       </li>
       <li><%= link_to "Account", edit_user_path(current_user) %></li>
     </ul>
@@ -42,7 +42,7 @@
       </div>
       
       <div class="col-xs-8">
-        <% if @test_drives.any? %>
+        <% if @test_drives.exists? %>
           <ol class="backend-list">
             <%= render 'test_drive' %>
           </ol>

@@ -1,3 +1,5 @@
+<!--completed-->
+
 <li id="question-item-<%= question.id %>" class="question-item">
   <div class="question-item-content">
 
@@ -12,6 +14,7 @@
       <span class="question-content"><%= question.content %></span>
       
       <div class="question-date-container">
+        
         <span class="reply-number">
           <%= pluralize(question.replies.count, "Comment") %>
         </span>
@@ -23,7 +26,7 @@
     </div>
   </div>
 
-  <% if question.replies.any? %>
+  <% if question.replies.exists? %>
     <ol class="replies-list">
       
       <% question.replies.each do |reply| %>
@@ -55,11 +58,9 @@
       
       <%= form_for @reply do |f| %>
       
-        <%= render 'shared/error_messages', object: f.object %>
+        <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
         
-        <div class="reply-form-avatar">
-          <%= image_tag (@question.user.avatar.url) %>
-        </div>
+        <%= image_tag (@question.user.avatar.url, class: "reply-form-avatar") %>
         
         <div class="reply-form-container">
           
@@ -77,17 +78,3 @@
     </div>
   <% end %>
 </li>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    
-    // image scaling
-    var questionAvatar  = $('.question-avatar');
-    var replyAvatar     = $('.reply-avatar');
-    var replyFormAvatar = $('.reply-form-avatar');
-    
-    questionAvatar.imagefill();
-    replyAvatar.imagefill();
-    replyFormAvatar.imagefill();
-  })
-</script>

@@ -1,4 +1,4 @@
-<!--complete-->
+<!--completed-->
 
 <% provide(:title, "Inbox") %>
 
@@ -26,9 +26,7 @@
       <div class="col-xs-4">
         <div class="messages-info">
           
-          <div class="messages-info-avatar">
-            <%= image_tag @other.avatar.url %>
-          </div>
+          <%= image_tag(@other.avatar.url, class: "messages-info-avatar") %>
 
           <h1 class="messages-info-username"><%= @other.name %></h1>
           
@@ -92,43 +90,6 @@
 </div>
 
 <%= subscribe_to conversation_messages_path(@conversation) %>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    
-    // image scaling
-    var messagesInfoAvatar = $('.messages-info-avatar');
-
-    messagesInfoAvatar.imagefill();
-
-    // expand description
-    var description   = $('.messages-info-description');
-    var expand        = $('.messages-info-expand');
-    var initialHeight = 100;
-
-    description.each(function() {
-      $.data(this, "realHeight", $(this).height());
-    }).css({ overflow: "hidden", height: initialHeight + 'px' });
-    
-    expand.click(function(e) {
-      e.preventDefault();
-      
-      if (description.hasClass("toggled")) {
-        description.animate({ 
-          height: initialHeight
-        }, 600).removeClass("toggled");
-        expand.html("+ More");
-      } 
-      
-      else {
-        description.animate({ 
-          height: description.data("realHeight") 
-        }, 600).addClass("toggled");
-        expand.html("- Less");
-      }
-    });
-  })
-</script>
 
 <!--must login iot access-->
 <!--change title-->

@@ -1,7 +1,10 @@
+<!--completed-->
+
 <% @feed_items.each do |feed_item| %>
 
   <li id="feed-item-<%= feed_item.id %>" class="col-xs-4 feed-item">
     <%= link_to feed_item, target: "_blank" do %>
+    
       <div class="feed-item-content">
         
         <div class="feed-item-image", 

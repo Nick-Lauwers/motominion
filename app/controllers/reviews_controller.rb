@@ -1,22 +1,19 @@
-# complete
+# completed
+# Check order of reviews
 
 class ReviewsController < ApplicationController
+  
   def create
+    
     @review = current_user.authored_reviews.create(review_params)
-    redirect_to @review.vehicle
     
-    # if @review.save
-    #   respond_to do |format|
-    #     format.js
-    #   end
-    # end
-    
-    # if @review.save
-    #   flash[:success] = "Review posted!"
-    #   redirect_to @review.vehicle
-    # else
-    #   redirect_to @review.vehicle
-    # end
+    if @review.save
+      flash[:success] = "Review posted!"
+      redirect_to @review.vehicle
+    else
+      flash[:failure] = "Please include all details."
+      redirect_to @review.vehicle
+    end
   end
   
   def destroy

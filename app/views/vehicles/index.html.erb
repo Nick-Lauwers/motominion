@@ -1,4 +1,4 @@
-<!--complete-->
+<!--completed-->
 
 <% provide(:title, "Garage") %>
 
@@ -38,7 +38,7 @@
       </div>
       
       <div class="col-xs-8">
-        <% if @vehicles.any? %>
+        <% if @vehicles.exists? %>
           <ol class="backend-list">
             <%= render @vehicles %>
           </ol>

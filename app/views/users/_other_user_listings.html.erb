@@ -1,4 +1,4 @@
-<!--complete-->
+<!--completed-->
 
 <% @user.vehicles.each do |vehicle| %>
 
@@ -6,6 +6,7 @@
     <div class="row vehicle-item-summary">
 
       <div class="col-xs-4 summary-carousel-container">
+        
         <%= link_to vehicle, target: "_blank" do %>
         
           <div id="summary-carousel-<%= vehicle.id %>" 
@@ -69,6 +70,7 @@
       </div>
     
       <div class="col-xs-6 summary-detail">
+        
         <%= link_to vehicle, 
                     class: "summary-detail-content", 
                     target: "_blank" do %>
@@ -107,10 +109,7 @@
             
           <p class="summary-price-title">$<%= vehicle.price %></p>
           
-          <%= button_to "View", 
-                        vehicle, 
-                        class: "btn btn-secondary", 
-                        method: :get %>
+          <%= link_to "View", vehicle, class: "btn btn-secondary" %>
         <% end %>
       </div>
     </div>

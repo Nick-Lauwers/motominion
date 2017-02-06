@@ -1,7 +1,3 @@
-// bootstrap-slider included in both custom.css.scss and application.css; necessary?
-// line-height: remove em;
-// correct color names
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-slider";
@@ -9,6 +5,7 @@
 
 /* mixins, variables, etc. */
 
+$transparent:         rgba(0, 0, 0, 0.5);
 $gray-transparent:    rgba(54, 55, 58, 0.75);
 $gray-border:         #e7e7e7;
 $gray-modal:          #262626;
@@ -23,14 +20,17 @@ $gray-darkest:        #36373a;
 $gray-hero:           #4b4c50;
 $gray-text:           #4c4c4c;
 $gray-reply:          #f0f0f0;
-$gray-a:              #888888;
-$gray-b:              #ababab;
-$yellow-dark:         #fcce01;
+$gray-feed-a:         #888888;
+$gray-feed-b:         #ababab;
 $green:               #38b2a6;
 $green-dark:          #2b948a;
 $green-text:          #52ccc0;
 $blue:                #6d7fb4;
 $red:                 #fd8649;
+$yellow-dark:         #fcce01;
+$failure-text:        #b94a48;
+$failure-background:  #f2dede;
+$failure-border:      #eed3d7;
 
 /* general */
 
@@ -48,9 +48,9 @@ $red:                 #fd8649;
 }
 
 .alert-failure {
-  color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
+  color: $failure-text;
+  background-color: $failure-background;
+  border-color: $failure-border;
 }
 
 .vertical-align {
@@ -323,31 +323,6 @@ p {
   margin-bottom: 1.4em;
 }
 
-// .form-group-vertical,
-// .form-group-horizontal {
-//   color: $gray-darker;
-//   overflow: auto;
-//   label {
-//     font-size: 0.95em;
-//     font-weight: bold;
-//     line-height: 1.3;
-//   }
-// }
-
-// .form-group-horizontal {
-//   margin-bottom: 1.7em;
-//   &:last-child {
-//     margin-bottom: 0;
-//   }
-//   label {
-//     margin-top: 1.2em;
-//   }
-// }
-
-// .form-group-vertical label {
-//   margin-bottom: 1.2em;
-// }
-
 label {
   font-size: 0.95em;
   font-weight: bold;
@@ -607,6 +582,7 @@ select {
   background-color: transparent;
   .navbar-nav {
     li a {
+    text-shadow: 0 0 5px $transparent;
     color: white;
       &:hover,
       &:focus {
@@ -656,6 +632,7 @@ select {
   font-size: 1.7em;
   font-weight: bold;
   letter-spacing: -0.05em;
+  text-shadow: 0 0 5px $transparent;
   color: white;
   position: absolute;
   top: 50%;
@@ -925,6 +902,7 @@ footer {
   font-size: 3.5em;
   font-weight: bold;
   letter-spacing: 0.01em;
+  text-shadow: 0 0 16px $transparent;
   color: white;
   margin: 0;
 }
@@ -933,6 +911,7 @@ footer {
   font-size: 1.5em;
   font-weight: bold;
   letter-spacing: 0.01em;
+  text-shadow: 0 0 16px $transparent;
   color: white;
   margin: 0.4em 0 1.4em;
 }
@@ -955,29 +934,6 @@ footer {
 
 .search-button-primary {
   padding: 0;
-}
-
-.popular-searches {
-  background-color: $gray-text;
-  border: 1px solid $gray-text;
-  height: 40px;
-  margin: 0;
-}
-
-.popular-searches-link {
-  font-size: 1.05em;
-  font-weight: bold;
-  line-height: 2.65;
-  color: white;
-  &:hover,
-  &:focus {
-    text-decoration: none;  
-    color: white;
-  }
-}
-
-.popular-searches-icon {
-  margin-right: 0.5em;
 }
 
 .offerings {
@@ -1039,25 +995,6 @@ footer {
   margin: 0 -15px;
 }
 
-.press {
-  text-align: center;
-  background-color: white;
-  padding: 3.5em 0 1.7em;
-}
-
-.press-title {
-  font-size: 1.1em;
-  font-weight: bold;
-  line-height: 1.5;
-  color: $blue;
-  margin: 0 0 1.5em;    
-}
-
-.press-logos {
-  margin: 0 auto 2.6em;
-  max-width: 1008px;
-}
-
 .feed-item {
   margin-top: 30px;
   a {
@@ -1072,21 +1009,11 @@ footer {
 
 .feed-item-image {
   height: 300px;
+  background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-}
-
-.feed-item-credit {
-  position: absolute;
-  top: 0.7em;
-  left: 0.7em;
-  span {
-    font-size: 0.85em;
-    font-weight: bold;
-    color: $gray-modal-controls;
-  }
 }
 
 .feed-item-title {
@@ -1117,7 +1044,7 @@ footer {
     font-size: 0.9em;
     line-height: 1.4;
     text-align: left;
-    color: $gray-a;
+    color: $gray-feed-a;
     height: 35px;
     overflow: hidden;
     margin: 0;
@@ -1135,14 +1062,14 @@ footer {
     font-size: 0.8em;
     font-weight: bold;
     line-height: 1.4;
-    color: $gray-b;
+    color: $gray-feed-b;
   }
 }
 
 /* about */
 
-.about-cover-photo {
-  background-image: url("about.jpg");
+.cover-photo {
+  background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1155,6 +1082,7 @@ footer {
   font-weight: bold;
   letter-spacing: 0.01em;
   line-height: 1.3;
+  text-shadow: 0 0 16px $transparent;
   text-align: center;
   color: white;
   margin: 0;
@@ -1173,21 +1101,57 @@ footer {
 .about-info {
   line-height: 2.1;
   max-width: 850px;
-  margin: 0 auto;
+  margin: 0 auto 4.25em;
+}
+
+.about-leadership {
+  max-width: 750px;
+  margin: 0 auto
+}
+
+.about-leadership-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  text-align: center;
+  color: $gray-text;
+  margin: 0 0 2.5em;
+}
+
+.about-leadership-item {
+  margin-bottom: 5em;
+}
+
+.leadership-avatar {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 100px;
+  height: 200px;
+  width: 200px;
+}
+
+.leadership-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  line-height: 1.05;
+  margin-top: 0.7em;
+  display: block;
+}
+
+.leadership-role {
+  color: $gray-dark;
+}
+
+.leadership-info {
+  line-height: 2.1;
+  text-align: left;
+  margin: 0.8em 0 0;
 }
 
 /* how-it-works */
 
-.how-it-works-cover-photo {
-  background-image: url("how-it-works.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 430px;
-  position: relative;
-}
-
-.how-it-works-intro {
+.how-it-works {
   max-width: 1008px;
   padding: 5.1em 0;
   margin: 0 auto;
@@ -1872,16 +1836,6 @@ ul.pagination {
   margin: 1.5em 0 0;
 }
 
-// .vehicle-overview-products {
-//   margin-top: 1.5em;
-// }
-
-// .products-title {
-//   font-size: 1.1em;
-//   font-weight: bold;
-//   color: $red;
-// }
-
 .vehicle-overview-link {
   font-size: 1.1em;
   font-weight: bold;
@@ -2004,7 +1958,7 @@ ul.pagination {
 }
 
 .questions-title {
-  background-color: #f9f9f9;
+  background-color: $gray-lightest;
   border-bottom: 1px solid $gray-border;
   height: 50px;
   padding: 0 1.6em;
@@ -2196,42 +2150,6 @@ ul.pagination {
   padding: 0.5em;
 }
 
-// .appointment-scrolled {
-//   border-bottom: 1px solid $gray-border;
-//   padding: 1.6em;
-// }
-
-// .products-scrolled {
-//   padding: 1.6em;
-// }
-
-// .products-scrolled-title {
-//   font-size: 1.1em;
-//   font-weight: bold;
-//   line-height: 1.3;
-//   color: $red;
-// }
-
-// .products-scrolled-link {
-//   font-size: 1em;
-//   line-height: 1.4;
-//   text-decoration: underline;
-//   color: $gray-dark;
-//   float: right;
-//   &:hover,
-//   &:focus {
-//     color: $gray-dark;
-//   }
-// }
-
-// .products-scrolled-info {
-//   font-size: 1em;
-//   line-height: 1.4;
-//   text-align: left;
-//   color: $gray-text;
-//   margin: 0.6em 0 0;
-// }
-
 #gallery {
   background-color: white;
   border-bottom: 1px solid $gray-border;
@@ -2338,97 +2256,9 @@ ul.pagination {
   padding: 0;
 }
 
-.review-author {
-  margin-top: 1.4em;
-  transition: 0.3s;
-}
-
-.review-author-clickable:hover,
-.review-author-clickable:focus {
-  text-decoration: none;
-  opacity: 0.4;
-}
-
-.author-avatar {
-  border-radius: 23.5px;
-  height: 45px;
-  width: 45px;
-  margin-right: 1em;
-}
-
-.author-name {
-  font-size: 1.1em;
-  font-weight: bold;
-  color: $gray-text;
-}
-
-.review-container {
-  background-color: white;
-  border: 1px solid $gray-border;
-  padding: 1.6em;
-}
-
-.review-details {
-  width: 100%;
-  margin: 0.3em 0 1.1em;
-}
-
-.review-rating {
-  padding: 0.4em 0;
-  margin: 0 0.9em 0 0;
-  display: inline-block;
-}
-
-.review-title {
-  font-size: 1.1em;
-  font-weight: bold;
-  color: $gray-text;
-  display: inline-block;
-}
-
-.review-date {
-  font-size: 1em;
-  color: $gray-dark;
-  float: right;
-  margin-top: 0.5em;
-}
-
-.review-comment {
-  font-size: 1em;
-  line-height: 2;
-  text-align: left;
-  color: $gray-text;
-}
-
-.review-post-container {
-  text-align: right;
-}
-
-.review-post {
-  line-height: 2;
-  text-decoration: underline;
-  color: $gray-dark;
-  background-color: white;
-  border: none;
-  padding: 0;  
-  &:hover,
-  &:focus {
-    outline: none;
-  }
-}  
-
-.review-remove {
-  text-align: right;
-  a {
-    font-size: 1em;
-    line-height: 2;
-    text-decoration: underline;
-    color: $gray-dark;
-    &:hover,
-    &:focus {
-      color: $gray-dark;
-    }
-  }
+.reviews-list {
+  list-style: none; 
+  padding: 0;
 }
 
 #map-and-brochure {
@@ -2449,6 +2279,7 @@ ul.pagination {
 
 .brochure-image {
   background-image: url("brochure.jpg");
+  background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2538,7 +2369,7 @@ ul.pagination {
 .modal-info,
 .modal-caption {
   font-size: 0.95em;
-  line-height: 1.5em;
+  line-height: 1.5;
   color: $gray-modal-controls;
   margin: 0;
 }
@@ -2607,6 +2438,99 @@ ul.pagination {
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.review-author {
+  margin-top: 1.4em;
+  transition: 0.3s;
+}
+
+.review-author-clickable:hover,
+.review-author-clickable:focus {
+  text-decoration: none;
+  opacity: 0.4;
+}
+
+.author-avatar {
+  border-radius: 23.5px;
+  height: 45px;
+  width: 45px;
+  margin-right: 1em;
+}
+
+.author-name {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: $gray-text;
+}
+
+.review-container {
+  background-color: white;
+  border: 1px solid $gray-border;
+  padding: 1.6em;
+}
+
+.review-details {
+  width: 100%;
+  margin: 0.3em 0 1.1em;
+}
+
+.review-rating {
+  padding: 0.4em 0;
+  margin: 0 0.9em 0 0;
+  display: inline-block;
+}
+
+.review-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: $gray-text;
+  display: inline-block;
+}
+
+.review-date {
+  font-size: 1em;
+  color: $gray-dark;
+  float: right;
+  margin-top: 0.5em;
+}
+
+.review-comment {
+  font-size: 1em;
+  line-height: 2;
+  text-align: left;
+  color: $gray-text;
+}
+
+.review-post-container {
+  text-align: right;
+}
+
+.review-post {
+  line-height: 2;
+  text-decoration: underline;
+  color: $gray-dark;
+  background-color: white;
+  border: none;
+  padding: 0;  
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}  
+
+.review-remove {
+  text-align: right;
+  a {
+    font-size: 1em;
+    line-height: 2;
+    text-decoration: underline;
+    color: $gray-dark;
+    &:hover,
+    &:focus {
+      color: $gray-dark;
     }
   }
 }
@@ -2835,6 +2759,7 @@ ul.pagination {
 
 .wish-list-item-image {
   height: 250px;
+  background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2870,7 +2795,7 @@ ul.pagination {
     font-size: 0.9em;
     line-height: 1.4;
     text-align: left;
-    color: $gray-a;
+    color: $gray-feed-a;
     height: 35px;
     overflow: hidden;
     margin: 0;
@@ -2888,7 +2813,7 @@ ul.pagination {
     font-size: 0.8em;
     font-weight: bold;
     line-height: 1.4;
-    color: $gray-b;
+    color: $gray-feed-b;
   }
 }
 
@@ -3057,7 +2982,7 @@ ul.pagination {
 .hero-username {
   font-size: 1.7em;
   font-weight: bold;
-  line-height: 1.7em;
+  line-height: 1.7;
   color: white;
   margin: 0;
 }
@@ -3065,17 +2990,42 @@ ul.pagination {
 .hero-detail-title {
   font-size: 0.85em;
   font-weight: bold;
-  line-height: 1.8em;
+  line-height: 1.8;
   color: white;
   display: table-cell;
 }
 
 .hero-detail-info {
   font-size: 1.1em;
-  line-height: 2.2em;
+  line-height: 2.2;
   color: white;
   padding-left: 1em;
   display: table-cell;
+}
+
+.listing-status {
+  background-color: $gray-darker;
+  padding: 1.7em;
+}
+
+.amount-complete {
+  font-size: 2.6em;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: $yellow-dark;
+  display: block;
+}
+
+.status-description {
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1.1;
+  text-align: center;
+  color: $gray-light;
+  margin-top: 1.1em;
+  display: block;
 }
 
 .conversation-link {
@@ -3101,7 +3051,6 @@ ul.pagination {
 }
 
 .conversation-avatar {
-  // border: 2px solid white;
   border-radius: 25px;
   height: 50px;
   width: 50px;
@@ -3311,13 +3260,11 @@ ul.pagination {
 
 /* new vehicle and update vehicle */
 
-.new-vehicle,
-.update-vehicle {
+.post-vehicle {
   background-color: white;
 }
 
-.new-vehicle-content,
-.update-vehicle-content {
+.post-vehicle-content {
   max-width: 1008px;
   margin: 0 auto;
 }
@@ -3347,9 +3294,6 @@ ul.pagination {
 
 .instructions-icon {
   text-align: center;
-}
-
-.fa-rocket {
   color: $yellow-dark;
 }
 
@@ -3360,7 +3304,7 @@ ul.pagination {
 .get-ready-title {
   font-size: 1.7em;
   font-weight: bold;
-  line-height: 1.3em;
+  line-height: 1.3;
   color: $gray-text;
   margin: 0 0 20px;
 }
@@ -3370,7 +3314,7 @@ ul.pagination {
 .details-info,
 .finalize-info,
 .get-ready-info {
-  line-height: 2.2em;
+  line-height: 2.2;
   text-align: left;
   color: $gray-text;
   margin: 0;
@@ -3401,7 +3345,7 @@ ul.pagination {
     }
     input + label {
       font-size: 0.85em;
-      line-height: 2.1em;
+      line-height: 2.1;
       color: $gray-dark;
       background-color: $gray-lightest;
       border: 1px solid $gray-light;
@@ -3513,45 +3457,11 @@ ul.pagination {
   padding-bottom: 3.5em;
 }
 
-.listing-status {
-  background-color: $gray-darker;
-  padding: 1.7em;
-}
-
-.amount-complete {
-  font-size: 2.6em;
-  font-weight: bold;
-  line-height: 1;
-  letter-spacing: 0.01em;
-  text-align: center;
-  color: $yellow-dark;
-  display: block;
-}
-
-.status-description {
-  font-size: 1em;
-  font-weight: bold;
-  line-height: 1.1;
-  text-align: center;
-  color: $gray-light;
-  margin-top: 1.1em;
-  display: block;
-}
-
 /* forum */
 
 .forum {
   max-width: 1008px;
   margin: 0 auto;
-}
-
-.forum-cover-photo {
-  background-image: url("forum.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 430px;
-  position: relative;
 }
 
 .posts {
@@ -3609,6 +3519,105 @@ ul.pagination {
   width: 100%;
   margin-top: 45px;
 }
+
+// .popular-searches {
+//   background-color: $gray-text;
+//   border: 1px solid $gray-text;
+//   height: 40px;
+//   margin: 0;
+// }
+
+// .popular-searches-link {
+//   font-size: 1.05em;
+//   font-weight: bold;
+//   line-height: 2.65;
+//   color: white;
+//   &:hover,
+//   &:focus {
+//     text-decoration: none;  
+//     color: white;
+//   }
+// }
+
+// .popular-searches-icon {
+//   margin-right: 0.5em;
+// }
+
+// .press {
+//   text-align: center;
+//   background-color: white;
+//   padding: 3.5em 0 1.7em;
+// }
+
+// .press-title {
+//   font-size: 1.1em;
+//   font-weight: bold;
+//   line-height: 1.5;
+//   color: $blue;
+//   margin: 0 0 1.5em;    
+// }
+
+// .press-logos {
+//   margin: 0 auto 2.6em;
+//   max-width: 1008px;
+// }
+
+// .feed-item-credit {
+//   position: absolute;
+//   top: 0.7em;
+//   left: 0.7em;
+//   span {
+//     font-size: 0.85em;
+//     font-weight: bold;
+//     color: $gray-modal-controls;
+//   }
+// }
+
+// .vehicle-overview-products {
+//   margin-top: 1.5em;
+// }
+
+// .products-title {
+//   font-size: 1.1em;
+//   font-weight: bold;
+//   color: $red;
+// }
+
+// .appointment-scrolled {
+//   border-bottom: 1px solid $gray-border;
+//   padding: 1.6em;
+// }
+
+// .products-scrolled {
+//   padding: 1.6em;
+// }
+
+// .products-scrolled-title {
+//   font-size: 1.1em;
+//   font-weight: bold;
+//   line-height: 1.3;
+//   color: $red;
+// }
+
+// .products-scrolled-link {
+//   font-size: 1em;
+//   line-height: 1.4;
+//   text-decoration: underline;
+//   color: $gray-dark;
+//   float: right;
+//   &:hover,
+//   &:focus {
+//     color: $gray-dark;
+//   }
+// }
+
+// .products-scrolled-info {
+//   font-size: 1em;
+//   line-height: 1.4;
+//   text-align: left;
+//   color: $gray-text;
+//   margin: 0.6em 0 0;
+// }
 
 // .page-container {
 //   height: 100%;
@@ -3878,4 +3887,31 @@ ul.pagination {
 //     top: 50%;
 //     transform: translateY(-50%); 
 //   }
+// }
+
+
+
+// .form-group-vertical,
+// .form-group-horizontal {
+//   color: $gray-darker;
+//   overflow: auto;
+//   label {
+//     font-size: 0.95em;
+//     font-weight: bold;
+//     line-height: 1.3;
+//   }
+// }
+
+// .form-group-horizontal {
+//   margin-bottom: 1.7em;
+//   &:last-child {
+//     margin-bottom: 0;
+//   }
+//   label {
+//     margin-top: 1.2em;
+//   }
+// }
+
+// .form-group-vertical label {
+//   margin-bottom: 1.2em;
 // }

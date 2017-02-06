@@ -1,3 +1,5 @@
+<!--completed-->
+
 <% @reviews.order("id desc").each do |r| %>
 
   <div class="row review-item">
@@ -15,9 +17,7 @@
                             review-author-clickable 
                             vertical-align" do %>
           
-          <div class="author-avatar">
-            <%= image_tag r.reviewer.avatar.url %>
-          </div>
+          <%= image_tag(r.reviewer.avatar.url, class: "author-avatar") %>
 
           <span class="author-name"><%= r.reviewer.name %></span>
         <% end %>
@@ -31,17 +31,11 @@
           <div id="stars-<%= r.id %>"></div>
         </div>
         
-        <span class="review-title">
-          <%= r.title %>
-        </span>
+        <span class="review-title"><%= r.title %></span>
         
-        <span class="review-date">
-          <%= r.created_at.strftime("%D") %>
-        </span>
+        <span class="review-date"><%= r.created_at.strftime("%D") %></span>
         
-        <p class="review-comment">
-          <%= r.comment %>
-        </p>
+        <p class="review-comment"><%= r.comment %></p>
         
         <div class="review-remove">
           <%= link_to "Remove my review", 

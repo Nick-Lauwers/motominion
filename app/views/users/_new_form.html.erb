@@ -1,4 +1,4 @@
-<!--complete-->
+<!--completed-->
 
 <%= form_for @user do |f| %>
 
@@ -8,26 +8,27 @@
     
     <%= link_to "/auth/google", 
                 class: "btn btn-signup" do %>
-        <i class="fa fa-google fa-lg" 
-           aria-hidden="true"></i> 
+                
+        <i class="fa fa-google fa-lg" aria-hidden="true"></i> 
+        
         Sign up with Google
     <% end %>
       
     <%= f.text_field :name, 
-        placeholder: "Name", 
-        class: 'form-control form-control-primary' %>
+                     placeholder: "Name", 
+                     class: 'form-control form-control-primary' %>
         
     <%= f.email_field :email,
-        placeholder: "Email address", 
-        class: 'form-control form-control-primary' %>
+                      placeholder: "Email address", 
+                      class: 'form-control form-control-primary' %>
         
     <%= f.password_field :password, 
-        placeholder: "Password",
-        class: 'form-control form-control-primary' %>
+                         placeholder: "Password",
+                         class: 'form-control form-control-primary' %>
         
     <%= f.password_field :password_confirmation, 
-        placeholder: "Confirmation", 
-        class: 'form-control form-control-primary' %>
+                         placeholder: "Confirmation", 
+                         class: 'form-control form-control-primary' %>
   </div>
   
   <div class="terms-container">    
@@ -38,9 +39,10 @@
         <%= f.check_box :is_subscribed, class: "checkbox" %>
         
         <%= f.label :is_subscribed, 
-            "Tick here if you would like to receive our email newsletter which 
-            contains more information about our services, offers, or 
-            promotions.", class: "checkbox-label" %>
+                    "Tick here if you would like to receive our email newsletter 
+                     which contains more information about our services, offers, 
+                     or promotions.", 
+                    class: "checkbox-label" %>
       </div>
       
       <!--<span class="checkbox">-->
@@ -55,7 +57,6 @@
       <%= f.submit "Create Account", class: "btn btn-primary" %>
     </div>
     
-    <p>Already have an account? <%= link_to "Log in", login_path %> </p>
+    <p>Already have an account? <%= link_to "Log in", login_path %></p>
   </div>
-      
 <% end %>

@@ -1,14 +1,12 @@
+# questionable
+
 class RepliesController < ApplicationController
   
   before_action :logged_in_user, only: [:create, :destroy]
 
   def create
-    @reply = current_user.replies.build(reply_params)
-    # if @reply.save
-    #   respond_to do |format|
-    #     format.js
-    #   end
-    # end
+    
+    @reply = Reply.find(params[:id])
     
     if @reply.save
       flash[:success] = "Reply created!"

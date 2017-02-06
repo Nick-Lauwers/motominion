@@ -2,6 +2,7 @@
 # authenticate_user
 
 class PostsController < ApplicationController
+  
   before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
   before_action :find_post,      only: [:show, :edit, :update, :destroy]
   

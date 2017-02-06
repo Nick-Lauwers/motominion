@@ -1,4 +1,4 @@
-# complete
+# completed
 
 class EnquiriesController < ApplicationController
   

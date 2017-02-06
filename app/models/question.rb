@@ -7,6 +7,9 @@ class Question < ActiveRecord::Base
   
   has_many :replies, dependent: :destroy
   
+  # Look at extra code from railscast
+  accepts_nested_attributes_for :replies
+  
   default_scope -> { order(created_at: :desc) }
   
   validates :user_id, :vehicle_id, presence: true

@@ -1,4 +1,4 @@
-<!--complete-->
+<!--completed-->
 
 <% provide(:title, "Vehicle Search") %>
 
@@ -74,7 +74,8 @@
                 <div class="row vertical-align">
 
                   <div class="col-xs-2">
-                    <i class="fa fa-comments fa-4x advice-icon" aria-hidden="true"></i>
+                    <i class="fa fa-comments fa-4x advice-icon" 
+                       aria-hidden="true"></i>
                   </div>
                   
                   <div class="col-xs-7">
@@ -89,10 +90,9 @@
                   </div>
                   
                   <div class="col-xs-3">
-                    <%= button_to "Get In Touch", 
-                        new_enquiry_path, 
-                        class: "btn btn-green", 
-                        method: :get %>
+                    <%= link_to "Get In Touch", 
+                                new_enquiry_path, 
+                                class: "btn btn-green" %>
                   </div>
                 </div>
               </div>
@@ -114,59 +114,54 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    
-    // fixed map
-    var fixedMap = $('#search-map');
-    
-    fixedMap.stick_in_parent({ offset_top: 50 });
 
     // filters
-    var filtersButton        = $('.btn-filters');
-    var cancelButton         = $('.btn-cancel');
-    var searchFilters        = $('.search-filters');
-    var searchItemsContainer = $('.search-items-container')
+    // var filtersButton        = $('.btn-filters');
+    // var cancelButton         = $('.btn-cancel');
+    // var searchFilters        = $('.search-filters');
+    // var searchItemsContainer = $('.search-items-container')
 
-    filtersButton.click(function() {
-      // searchFilters.slideToggle();
-      // searchItemsContainer.slideToggle();
-    });
+    // filtersButton.click(function() {
+    //   // searchFilters.slideToggle();
+    //   // searchItemsContainer.slideToggle();
+    // });
     
-    cancelButton.click(function() {
-      searchFilters.slideToggle();
-      searchItemsContainer.slideToggle();
-    });
+    // cancelButton.click(function() {
+    //   searchFilters.slideToggle();
+    //   searchItemsContainer.slideToggle();
+    // });
     
     // sliders
-    var priceSlider        = $('#price_slider');
-    var mileageSlider      = $('#mileage_slider');
-    var yearSlider         = $('#year_slider');
-    var priceSliderValue   = $('#price_slider_val');
-    var mileageSliderValue = $('#mileage_slider_val');
-    var yearSliderValue    = $('#year_slider_val');
+    // var priceSlider        = $('#price_slider');
+    // var mileageSlider      = $('#mileage_slider');
+    // var yearSlider         = $('#year_slider');
+    // var priceSliderValue   = $('#price_slider_val');
+    // var mileageSliderValue = $('#mileage_slider_val');
+    // var yearSliderValue    = $('#year_slider_val');
     
-    priceSlider.slider();
-    mileageSlider.slider();
-    yearSlider.slider();
+    // priceSlider.slider();
+    // mileageSlider.slider();
+    // yearSlider.slider();
     
-    priceSlider.on('slide', function(slideEvt) {
-    	priceSliderValue.text('$' + slideEvt.value);
-    });
-    mileageSlider.on('slide', function(slideEvt) {
-    	mileageSliderValue.text(slideEvt.value + ' km');
-    });
-    yearSlider.on('slide', function(slideEvt) {
-    	yearSliderValue.text(slideEvt.value);
-    });
+    // priceSlider.on('slide', function(slideEvt) {
+    // 	priceSliderValue.text('$' + slideEvt.value);
+    // });
+    // mileageSlider.on('slide', function(slideEvt) {
+    // 	mileageSliderValue.text(slideEvt.value + ' km');
+    // });
+    // yearSlider.on('slide', function(slideEvt) {
+    // 	yearSliderValue.text(slideEvt.value);
+    // });
     
-    priceSlider.on('slideStop', function(slideEvt) {
-    	priceSliderValue.text('$' + slideEvt.value);
-    });
-    mileageSlider.on('slideStop', function(slideEvt) {
-    	mileageSliderValue.text(slideEvt.value + ' km');
-    });
-    yearSlider.on('slideStop', function(slideEvt) {
-    	yearSliderValue.text(slideEvt.value);
-    });
+    // priceSlider.on('slideStop', function(slideEvt) {
+    // 	priceSliderValue.text('$' + slideEvt.value);
+    // });
+    // mileageSlider.on('slideStop', function(slideEvt) {
+    // 	mileageSliderValue.text(slideEvt.value + ' km');
+    // });
+    // yearSlider.on('slideStop', function(slideEvt) {
+    // 	yearSliderValue.text(slideEvt.value);
+    // });
     
     // map
     var hoverMarkerIcon = {

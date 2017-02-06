@@ -1,0 +1,19 @@
+<li id="reply-item-<%= reply.id %>" class="reply-item">
+  
+  <%= link_to (image_tag reply.user.avatar.url), 
+              reply.user, 
+              class: "reply-avatar" %>
+  
+  <div class="reply-details">
+    
+    <%= link_to reply.user.name, reply.user, class: "reply-name" %>
+
+    <span class="reply-content"><%= reply.content %></span>
+    
+    <div class="reply-date-container">
+      <span class="reply-date">
+        <%= time_ago_in_words(reply.created_at).capitalize %> ago
+      </span>
+    </div>
+  </div>
+</li>
