@@ -11,14 +11,20 @@
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Inbox",  conversations_path %></li>
+      
+      <li><%= link_to "Dashboard", dashboard_path %></li>
+      
+      <li><%= link_to "Inbox", conversations_path %></li>
+      
       <li><%= link_to "Garage", vehicles_path %></li>
+      
       <li>
         <%= link_to "Test Drives", 
                     test_drives_path, 
                     class: "nav-active" %>
       </li>
-      <li><%= link_to "Account", edit_user_path(current_user) %></li>
+      
+      <li><%= link_to "Profile", edit_user_path(current_user) %></li>
     </ul>
   </div>
 </nav>
@@ -27,18 +33,20 @@
   <div class="backend-content">
     <div class="row">
     
-      <div class="col-xs-4">
-        <div class="backend-instructions">
-          
-          <h2 class="backend-instructions-title">
-            Test Drives (<%= @test_drives.count %>)
-          </h2>
-          
-          <p class="backend-instructions-info">
-            Your test drives will be displayed here. A test drive will not be 
-            displayed if the application is processing.
-          </p>
-        </div>
+      <div class="col-xs-4 sidenav">
+
+        <h2 class="sidenav-title">
+          Test Drives
+        </h2>
+        
+        <ul class="sidenav-list">
+          <li>
+            <%= link_to test_drives_path, class: "sidenav-active" do %>
+              Test Drives 
+              (<%= @test_drives.count(:conditions => "date < Time.now") %>)
+            <% end %>
+          </li>
+        </ul>
       </div>
       
       <div class="col-xs-8">
@@ -46,6 +54,17 @@
           <ol class="backend-list">
             <%= render 'test_drive' %>
           </ol>
+          
+        <% else %>
+          <div class="empty-list">
+          
+            <i class="fa fa-envelope-o fa-4x empty-list-icon" 
+               aria-hidden="true"></i>
+               
+            <p class="empty-list-info">
+              No test drives, yet.
+            </p>
+          </div>
         <% end %>
       </div>
     </div>

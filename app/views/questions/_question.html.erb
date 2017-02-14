@@ -60,7 +60,7 @@
       
         <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
         
-        <%= image_tag (@question.user.avatar.url, class: "reply-form-avatar") %>
+        <%= image_tag(current_user.avatar.url, class: "reply-form-avatar") %>
         
         <div class="reply-form-container">
           

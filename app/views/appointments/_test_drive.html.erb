@@ -95,7 +95,7 @@
           
           <% if logged_in? && 
                 !current_user.favorite_vehicles.exists?(vehicle_id:
-                                                      test_drive.vehicle_id) %>
+                                                       test_drive.vehicle_id) %>
   
             <%= link_to favorite_vehicle_path(test_drive.vehicle), 
                         method: :put do %>
@@ -117,9 +117,9 @@
               
             <p class="summary-price-title">$<%= test_drive.vehicle.price %></p>
             
-            <%= link_to "View", 
-                        test_drive.vehicle, 
-                        class: "btn btn-secondary" %>
+            <!--<(perc)= link_to "View", -->
+            <!--            test_drive.vehicle, -->
+            <!--            class: "btn btn-secondary" %>-->
           <% end %>
         </div>
       </div>

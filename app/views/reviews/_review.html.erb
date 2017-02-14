@@ -15,7 +15,7 @@
                           review-author-clickable 
                           vertical-align" do %>
         
-        <%= image_tag (review.reviewer.avatar.url, class: "author-avatar" %>
+        <%= image_tag(review.reviewer.avatar.url, class: "author-avatar") %>
 
         <span class="author-name"><%= review.reviewer.name %></span>
       <% end %>
@@ -36,11 +36,12 @@
       <p class="review-comment"><%= review.comment %></p>
       
       <div class="review-remove">
-        <%= link_to "Remove my review", 
-                    [@vehicle, review], 
-                    method: :delete, 
-                    data: { confirm: "Are you sure?" } if 
-                          current_user && current_user == review.reviewer %>
+        <%= link_to "Remove my review",
+                    '#' %>
+                    <!--[@vehicle, review], -->
+                    <!--method: :delete, -->
+                    <!--data: { confirm: "Are you sure?" } if -->
+                    <!--      current_user && current_user == review.reviewer %>-->
       </div>
     </div>
   </div>

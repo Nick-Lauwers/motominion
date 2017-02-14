@@ -6,10 +6,8 @@
   
   <div class="update-panel">
     
-    <div class="panel-header">
-      <span class="panel-title">Profile Photo</span>
-    </div>
-    
+    <h2 class="panel-title">Profile Photo</h2>
+
     <div class="row vertical-align panel-body">
         
       <div class="col-xs-4">
@@ -46,144 +44,135 @@
   
   <div class="update-panel">
     
-    <div class="panel-header">
-      <span class="panel-title">Required</span>
-    </div>
-    
-    <div class="panel-content">
-      <div class="row">
-        
-        <div class="col-md-6">
-          <div class="form-group form-group-primary">
-            
-            <%= f.label :name %>
+    <h2 class="panel-title">Required</h2>
 
-            <%= f.text_field :name, 
-                             placeholder: @user.name, 
-                             class: 'form-control form-control-primary' %>
-          </div>
-        </div>
-        
-        <div class="col-md-6">
-          <div class="form-group form-group-primary">
-            
-            <%= f.label :email %>
+    <div class="row">
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :name %>
 
-            <%= f.text_field :email, 
-                             placeholder: @user.name, 
-                             class: 'form-control form-control-primary' %>
-          </div>
-        </div>
-      </div>
-        
-      <div class="row">
-        
-        <div class="col-md-6">
-          <div class="form-group form-group-primary">
-            
-            <%= f.label :password %>
-
-            <%= f.text_field :password, 
-                             placeholder: "Password", 
-                             class: 'form-control form-control-primary' %>
-          </div>
-        </div>
-        
-        <div class="col-md-6">
-          <div class="form-group form-group-primary">
-            
-            <%= f.label :password_confirmation, "Confirmation" %>
-
-            <%= f.text_field :password_confirmation,
-                             placeholder: "Confirmation", 
-                             class: 'form-control form-control-primary' %>
-          </div>
+          <%= f.text_field :name, 
+                           placeholder: @user.name, 
+                           class: 'form-control form-control-primary' %>
         </div>
       </div>
       
-      <div class="checkbox-inline">
-        
-        <%= f.check_box :is_subscribed, class: "checkbox" %>
-        
-        <%= f.label :is_subscribed, 
-                    "Tick here if you would like to receive our email newsletter 
-                     which contains more information about our services, offers, 
-                     or promotions.",
-                    class: "checkbox-label" %>
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :email %>
+
+          <%= f.text_field :email, 
+                           placeholder: @user.name, 
+                           class: 'form-control form-control-primary' %>
+        </div>
       </div>
+    </div>
+      
+    <div class="row">
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :password %>
+
+          <%= f.text_field :password, 
+                           placeholder: "Password", 
+                           class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :password_confirmation, "Confirmation" %>
+
+          <%= f.text_field :password_confirmation,
+                           placeholder: "Confirmation", 
+                           class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="checkbox-inline">
+      
+      <%= f.check_box :is_subscribed, class: "checkbox" %>
+      
+      <%= f.label :is_subscribed, 
+                  "Tick here if you would like to receive our email newsletter 
+                   which contains more information about our services, offers, 
+                   or promotions.",
+                  class: "checkbox-label" %>
     </div>
   </div>
   
-  <div class="update-panel">
+  <div class="update-panel last">
     
-    <div class="panel-header">
-      <h2 class="panel-title">Optional</h2>
+    <h2 class="panel-title">Optional</h2>
+
+    <div class="form-group form-group-primary">
+      
+      <%= f.label :description, "Describe Yourself" %>
+
+      <%= f.text_area :description, 
+                      rows: 5,
+                      placeholder: (@user.description.present? ? 
+                                    @user.description : "Dealership.com is built on relationships. Help other people get to know you."), 
+          class: 'form-control form-control-primary' %>
     </div>
     
-    <div class="panel-content">
+    <div class="row">
       
-      <div class="form-group form-group-primary">
-        
-        <%= f.label :description, "Describe Yourself" %>
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :phone_number, "Phone Number" %>
 
-        <%= f.text_area :description, 
-                        rows: 5,
-                        placeholder: (@user.description.present? ? 
-                                      @user.description : "Dealership.com is built on relationships. Help other people get to know you."), 
-            class: 'form-control form-control-primary' %>
-      </div>
-      
-      <div class="row">
-        
-        <div class="col-md-6">
-          <div class="form-group form-group-primary">
-            
-            <%= f.label :phone_number, "Phone Number" %>
-
-            <%= f.text_field :phone_number, 
-                             placeholder: "Phone number", 
-                             class: 'form-control form-control-primary' %>
-          </div>
-        </div>
-        
-        <div class="col-md-6">
-          <div class="form-group form-group-primary">
-            
-            <%= f.label :residence, "City" %>
-
-            <%= f.text_field :residence, 
-                             placeholder: "E.g. Detroit, MI / Chicago, IL", 
-                             class: 'form-control form-control-primary' %>
-          </div>
+          <%= f.text_field :phone_number, 
+                           placeholder: "Phone number", 
+                           class: 'form-control form-control-primary' %>
         </div>
       </div>
       
-      <div class="row">
-        
-        <div class="col-md-6">
-          <div class="form-group form-group-primary">
-            
-            <%= f.label :school %>
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :residence, "City" %>
 
-            <%= f.text_field :school, 
-                             placeholder: "University of Michigan", 
-                             class: 'form-control form-control-primary' %>
-          </div>
+          <%= f.text_field :residence, 
+                           placeholder: "E.g. Detroit, MI / Chicago, IL", 
+                           class: 'form-control form-control-primary' %>
         </div>
-        
-        <div class="col-md-6">
-          <div class="form-group form-group-primary">
-            
-            <%= f.label :work %>
+      </div>
+    </div>
+    
+    <div class="row">
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :school %>
 
-            <%= f.text_field :work, 
-                             placeholder: "Company name or job title", 
-                             class: 'form-control form-control-primary' %>
-          </div>
+          <%= f.text_field :school, 
+                           placeholder: "University of Michigan", 
+                           class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :work %>
+
+          <%= f.text_field :work, 
+                           placeholder: "Company name or job title", 
+                           class: 'form-control form-control-primary' %>
         </div>
       </div>
     </div>
   </div>
 
-  <%= f.submit "Save Changes", class: "btn btn-primary" %>      
+  <%= f.submit "Save Changes", class: "btn btn-primary btn-update" %>      
 <% end %>

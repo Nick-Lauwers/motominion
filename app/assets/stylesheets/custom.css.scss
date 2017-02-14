@@ -160,7 +160,7 @@ p {
   background-color: transparent;
   border: 1px solid $yellow-dark;
   border-radius: 2px;
-  width: 48%;
+  width: 100%;
 }
 
 .btn-cancel {
@@ -220,7 +220,8 @@ p {
   margin-top: 0.2em;
 }
 
-.btn-filters {
+.btn-filters,
+.btn-profile-preview {
   font-size: 0.85em;
   font-weight: bold;
   line-height: 2.1;
@@ -228,7 +229,19 @@ p {
   background-color: white;
   border: 1px solid $gray-border;
   border-radius: 2px;
+}
+
+.btn-filters {
   padding: 0.3em 0.7em;
+}
+
+.btn-profile-preview {
+  padding: 0.7em;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $gray-text;
+  }
 }
 
 .btn-summary-carousel-left,
@@ -299,7 +312,10 @@ p {
 
 .btn-test-drive-decline {
   border: 1px solid $gray-light;
-  float: right;
+}
+
+.btn-update {
+  margin-top: 3.5em;
 }
 
 /* forms */
@@ -1433,7 +1449,8 @@ footer {
   margin: 0 0 1.7em;
 }
 
-.filters-icon {
+.filters-icon,
+.profile-preview-icon {
   color: $yellow-dark;
   margin-right: 0.5em;
 }
@@ -1915,13 +1932,21 @@ ul.pagination {
   margin-bottom: 4em;
 }
 
-.vehicle-details-title {
+.vehicle-details-title,
+.panel-title {
   font-size: 1.2em;
   font-weight: bold;
   line-height: 1.4;
   text-align: left;
   color: $blue;
+}
+
+.vehicle-details-title {
   margin: 1em 0 2.5em;
+}
+
+.panel-title {
+  margin: 0 0 2em;
 }
 
 .vehicle-details-table, 
@@ -2104,7 +2129,8 @@ ul.pagination {
 }
 
 .question-name,
-.reply-name {
+.reply-name,
+.backend-reply-name {
   font-size: 1em; 
   font-weight: bold;
   color: $gray-text;
@@ -2197,16 +2223,16 @@ ul.pagination {
   margin: 0.5em 0 1.8em;
 }
 
-.no-reviews {
+.empty-list {
   text-align: center;
 }
 
-.no-reviews-icon {
+.empty-list-icon {
   color: $yellow-dark;
   margin-bottom: 0.85em;
 }
 
-.no-reviews-info {
+.empty-list-info {
   font-size: 1.2em;
   font-weight: bold;
   color: $gray-text;
@@ -2477,16 +2503,23 @@ ul.pagination {
   margin: 0.3em 0 1.1em;
 }
 
-.review-rating {
+.review-rating,
+.backend-review-rating {
   padding: 0.4em 0;
   margin: 0 0.9em 0 0;
   display: inline-block;
 }
 
-.review-title {
+.review-title,
+.backend-review-title {
   font-size: 1.1em;
   font-weight: bold;
   color: $gray-text;
+}
+
+.review-title,
+.backend-customer-listing,
+.backend-review-title {
   display: inline-block;
 }
 
@@ -2820,7 +2853,8 @@ ul.pagination {
 /* backend */
 
 .secondary-navbar {
-  background-color: $gray-lightest;
+  background-color: white;
+  border-bottom: 1px solid $gray-border;
   height: 50px;
 }
 
@@ -2830,7 +2864,7 @@ ul.pagination {
 }
 
 .backend {
-  background-color: white;
+  background-color: $gray-lightest;
 }
 
 .backend-content {
@@ -2839,32 +2873,49 @@ ul.pagination {
   margin: 0 auto;
 }
 
-.backend-instructions,
-.messages-info {
-  background-color: $gray-lightest;
-  padding: 2.3em;
-}
-
-.backend-instructions-title {
+.sidenav-title {
   font-size: 1.7em;
   font-weight: bold;
   line-height: 1.3;
   color: $gray-text;
-  margin: 0 0 0.8em;
+  margin: 0 0 1.1em;
 }
 
-.backend-instructions-info {
-  line-height: 2.2;
-  text-align: left;
+.sidenav-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
+  li {
+    margin-bottom: 1em;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    a {
+      font-size: 1.025em;
+      font-weight: bold;
+      color: $gray-dark;
+      transition: color 0.3s;
+      &:hover {
+        text-decoration: none;
+        color: $gray-darker;
+      }
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.sidenav-active {
+  color: $gray-darker !important;
 }
 
 .backend-list {
+  list-style: none;
   padding: 0;
-}
-
-.account-info {
-  padding-bottom: 1em;
+  li {
+    list-style: none;
+  }
 }
 
 .messages-info {
@@ -2921,9 +2972,10 @@ ul.pagination {
 }
 
 .test-drive-response {
-  background-color: $gray-lightest;
+  text-align: center;
+  border: 1px solid $gray-border;
   padding: 1.6em;
-  overflow: auto;
+  margin-bottom: 1.7em;
 }
 
 .test-drive-response-title {
@@ -2936,7 +2988,7 @@ ul.pagination {
 .test-drive-response-info {
   font-size: 1.1em;
   line-height: 1.2;
-  color: $gray-dark;
+  color: $gray-text;
   display: block;
   margin: 0.5em 0 1em;
 }
@@ -2946,8 +2998,13 @@ ul.pagination {
 }
 
 .test-drive-response-buttons {
-  width: 45%;
-  float: right;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.profile-preview-container {
+  text-align: right;
+  margin-bottom: 1.7em;
 }
 
 .hero-primary,
@@ -3035,28 +3092,44 @@ ul.pagination {
   }
 }
 
+.conversation-item,
+.customer-item,
+.backend-question-item {
+  margin-bottom: 4em;
+}
+
 .conversation-item {
-  list-style: none;
-  background-color: $gray-lightest;
-  padding: 1.1em;
-  margin-bottom: 1.7em;
   transition: 0.3s;
   &:hover {
     opacity: 0.4;
   }
 }
 
-.conversation-item-content {
+.conversation-item-content,
+.customer-item-content {
   width:100%
 }
 
-.conversation-avatar {
+.conversation-avatar,
+.customer-avatar,
+.backend-question-avatar {
   border-radius: 25px;
   height: 50px;
   width: 50px;
 }
 
-.conversation-detail {
+.customer-avatar,
+.backend-question-avatar {
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    opacity: 0.4;
+  }
+}
+
+.conversation-detail,
+.customer-detail {
   width: 12em;
   padding: 0 3em 0 1em;
 }
@@ -3106,7 +3179,7 @@ ul.pagination {
   background-color: white;
   border: 1px solid $gray-border;
   padding: 1.6em;
-  margin-top: 1.7em;
+  margin-bottom: 1.7em;
 }
 
 .message-detail {
@@ -3140,16 +3213,10 @@ ul.pagination {
   border-radius: 30px;
   height: 60px;
   width: 60px;
-  margin-top: 1.8em;
-}
-
-.message-avatar-left {
-  margin-left: 0;
 }
 
 .message-avatar-right {
-  margin-right: 0;
-  margin-left: auto;
+  float: right;
 }
 
 .message-comment {
@@ -3164,6 +3231,178 @@ ul.pagination {
   border-radius: 37.5px;
   height: 75px;
   width: 75px;
+}
+
+.customer-name,
+.backend-question-name {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: $gray-text;
+  max-height: 1.4em;
+  overflow: hidden;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    opacity: 0.4;
+  }
+}
+
+.customer-listing {
+  font-size: 1em;
+  text-decoration: underline;
+  color: $gray-dark;
+  &:hover,
+  &:focus {
+    color: $gray-dark;  
+  }
+}
+
+.customer-address {
+  font-size: 1em;
+  text-align: left;
+  color: $gray-text;
+  max-height: 2.8em;
+  margin: 0;
+  overflow: hidden;
+}
+
+.customer-contact-container {
+  text-align: right;
+  width: 18em;
+}
+
+.contact-date {
+  font-size: 1em;
+  font-weight: bold;
+  text-align: left;
+  color: $red;
+}
+
+.contact-message {
+  text-align: right;
+  a {
+    font-size: 1em;
+    text-decoration: underline;
+    color: $gray-dark;
+  }
+}
+
+.backend-question-detail {
+  padding-left: 1em;
+}
+
+.backend-question-date,
+.backend-reply-date {
+  font-size: 1em;
+  color: $gray-dark;
+  display: block;
+}
+
+.backend-question {
+  margin: 0.4em 0 0.7em;
+}
+
+.backend-question-content {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: $gray-text;
+  display: block;
+}
+  
+.backend-reply-number {
+  font-size: 0.9em;
+  text-decoration: underline;
+  color: $gray-dark;
+  cursor: pointer;
+}
+
+.backend-question-vehicle,
+.backend-review-vehicle {
+  text-decoration: underline;
+  color: $gray-dark;
+  float: right;
+  &:hover,
+  &:focus {
+    color: $gray-dark;
+  }
+}
+
+.backend-replies-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+  display: none;
+}
+
+.backend-reply-item {
+  margin-bottom: 0.8em;
+}
+
+.backend-reply-avatar {
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  margin-top: 0.2em;
+  float: left;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    opacity: 0.4;
+  }
+}
+
+.backend-reply-detail {
+  margin-left: 3.2em;
+}
+
+.backend-reply-content {
+  font-size: 1em;
+  color: $gray-text;
+  display: block;
+}
+
+.backend-reply-form-avatar {
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  margin-top: 1em;
+  float: left;
+}
+
+.backend-reply-form-container {
+  background-color: white;
+  border: 1px solid $gray-border;
+  padding: 0.5em;
+  margin-left: 2.7em;
+}
+
+.backend-review-item {
+  margin-bottom: 1.7em;
+}
+
+.backend-review-author {
+  transition: 0.3s;
+}
+
+.backend-review-author-clickable:hover,
+.backend-review-author-clickable:focus {
+  text-decoration: none;
+  opacity: 0.4;
+}
+
+.backend-review-container {
+  padding-top: 0.65em;
+}
+
+.backend-review-comment {
+  text-align: left;
+  margin: 0.1em 0 1.2em;
+}
+
+.backend-review-date {
+  font-size: 1em;
+  color: $gray-dark;
 }
 
 .appointment-detail-icon,
@@ -3181,21 +3420,9 @@ ul.pagination {
 }
 
 .update-panel {
-  background-color: $gray-lightest;
-  padding: 2.3em;
-  margin-bottom: 2.5em;
-}
-
-.panel-header {
-  border-bottom: 1px solid $gray-border;
-  padding-bottom: 0.3em;
-  margin-bottom: 1.8em;
-}
-
-.panel-title {
-  font-size: 1em;
-  font-weight: bold;
-  color: $blue;
+  border: 1px solid $gray-border;
+  padding: 1.6em;
+  margin-bottom: 1.7em;
 }
 
 .panel-body {
@@ -3205,8 +3432,7 @@ ul.pagination {
 
 .avatar-container {
   background-color: $gray-darkest;
-  height: 182.594px;
-  border-radius: 5px;
+  height: 181.984px;
   overflow: hidden;
   padding: 0;
   position: relative;

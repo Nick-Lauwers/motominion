@@ -6,7 +6,7 @@ class RepliesController < ApplicationController
 
   def create
     
-    @reply = Reply.find(params[:id])
+    @reply = current_user.replies.build(reply_params)
     
     if @reply.save
       flash[:success] = "Reply created!"

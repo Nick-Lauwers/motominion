@@ -1,0 +1,107 @@
+<li id="backend-question-item-<%= question.id %>" 
+    class="row backend-question-item">
+  
+  <div class="col-xs-4 vertical-align">
+    
+    <%= link_to image_tag(question.user.avatar.url, 
+                          class: "backend-question-avatar"),
+                          question.user %>
+    
+    <div class="backend-question-detail">
+
+      <%= link_to question.user.name, 
+                  question.user,
+                  class: "backend-question-name" %>
+  
+      <span class="backend-question-date">
+        <%= time_ago_in_words(question.created_at).capitalize %> ago
+      </span>
+    </div>
+  </div>
+  
+  <div class="col-xs-8">
+    
+    <div class="backend-question">
+
+      <span class="backend-question-content"><%= question.content %></span>
+      
+      <span id="backend-reply-number-<%= question.id %>"
+            class="backend-reply-number">
+        <%= pluralize(question.replies.count, "Comment") %>
+      </span>
+    
+      <%= link_to question.vehicle.listing_name,
+                  question.vehicle,
+                  class: "backend-question-vehicle" %>
+    </div>
+                  
+    <% if question.replies.exists? %>
+      <ol id="backend-replies-list-<%= question.id %>"
+          class="backend-replies-list">
+        
+        <% question.replies.each do |reply| %>
+          <li id="backend-reply-item-<%= reply.id %>" 
+              class="backend-reply-item">
+            
+            <%= link_to (image_tag reply.user.avatar.url), 
+                        reply.user, 
+                        class: "backend-reply-avatar" %>
+            
+            <div class="backend-reply-detail">
+              
+              <%= link_to reply.user.name, reply.user, 
+                          class: "backend-reply-name" %>
+                          
+              <span class="backend-reply-content"><%= reply.content %></span>
+              
+              <span class="backend-reply-date">
+                <%= time_ago_in_words(question.created_at).capitalize %> ago
+              </span>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    <% end %>
+                
+    <div class="backend-reply-form">
+    
+      <%= form_for @reply do |f| %>
+      
+        <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
+        
+        <%= image_tag(current_user.avatar.url, 
+                      class: "backend-reply-form-avatar") %>
+        
+        <div class="backend-reply-form-container">
+          
+          <%= f.text_field :content, 
+                           placeholder: "Write a comment / answer.",
+                           class: "form-control reply-form-control" %>
+              
+          <%= f.hidden_field :question_id, value: question.id %>
+          
+          <div class="reply-submit-container">
+            <%= f.submit "Reply!", class: "reply-submit" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</li>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // image scaling
+    var backendReplyAvatar     = $('.backend-reply-avatar');
+    var backendReplyFormAvatar = $('.backend-reply-form-avatar')
+    
+    backendReplyAvatar.imagefill();
+    backendReplyFormAvatar.imagefill();
+    
+    // slideToggle
+    $('#backend-reply-number-<%= question.id %>').click(function() {
+      $('#backend-replies-list-<%= question.id %>').slideToggle();
+    });
+  });
+</script>

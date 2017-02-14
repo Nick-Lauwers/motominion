@@ -15,6 +15,9 @@ class StaticPagesController < ApplicationController
   def how_it_works
   end
   
+  def dashboard
+  end
+  
   def legal
   end
 end

@@ -7,6 +7,11 @@
   
   <div class="row">
     
+    <div class="col-xs-2">
+      <%= image_tag(current_user.avatar.url, 
+                    class: "message-avatar message-avatar-left") %>
+    </div>
+    
     <div class="col-xs-10">
       <div class="message-container">
         
@@ -33,11 +38,6 @@
           </tr>
         </table>
       </div>
-    </div>
-    
-    <div class="col-xs-2">
-      <%= image_tag(current_user.avatar.url, 
-                    class: "message-avatar message-avatar-right") %>
     </div>
   </div>
 <% end %>

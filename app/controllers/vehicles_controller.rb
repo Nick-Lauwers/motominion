@@ -80,6 +80,7 @@ class VehiclesController < ApplicationController
                                    current_user.id).present? if current_user
                                    
     @photos    = @vehicle.photos
+    
     @reviews   = @vehicle.reviews
     @hasReview = @reviews.find_by(reviewer_id: current_user.id) if current_user
     
@@ -88,7 +89,7 @@ class VehiclesController < ApplicationController
     
     @reply     = current_user.replies.build   if logged_in?
 
-    gon.vehicle = @vehicle
+    # gon.vehicle = @vehicle
 
     # @replies   = @question.replies
     # @reply     = @question.replies.build   if logged_in?

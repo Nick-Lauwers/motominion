@@ -161,3 +161,5 @@
 [2017-01-25T00:59:25,800][WARN ][o.e.d.i.m.TypeParsers    ] Expected a boolean for property [index] but got [analyzed]
 [2017-01-27T14:10:10,643][WARN ][o.e.d.s.g.GroovyScriptEngineService] [groovy] scripts are deprecated, use [painless] scripts instead
 [2017-02-04T20:47:16,566][WARN ][o.e.d.s.g.GroovyScriptEngineService] [groovy] scripts are deprecated, use [painless] scripts instead
+[2017-02-13T12:17:08,596][WARN ][o.e.d.s.g.GroovyScriptEngineService] [groovy] scripts are deprecated, use [painless] scripts instead
+[2017-02-13T12:28:52,387][WARN ][o.e.d.s.g.GroovyScriptEngineService] [groovy] scripts are deprecated, use [painless] scripts instead

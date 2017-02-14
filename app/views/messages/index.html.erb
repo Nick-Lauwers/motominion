@@ -11,10 +11,11 @@
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Dashboard",   dashboard_path %></li>
       <li><%= link_to "Inbox",  conversations_path, class: "nav-active" %></li>
-      <li><%= link_to "Garage", vehicles_path %></li>
+      <li><%= link_to "Garage",      vehicles_path %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li><%= link_to "Account", edit_user_path(current_user) %></li>
+      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
     </ul>
   </div>
 </nav>
@@ -23,37 +24,36 @@
   <div class="backend-content">
     <div class="row">
       
-      <div class="col-xs-4">
-        <div class="messages-info">
-          
-          <%= image_tag(@other.avatar.url, class: "messages-info-avatar") %>
+      <div class="col-xs-4 messages-info">
 
-          <h1 class="messages-info-username"><%= @other.name %></h1>
-          
-          <% if @other.residence.present? %>
-            <span class="messages-info-city">
-              <%= @other.residence %>
-            </span>
-          <% end %>
+        <%= image_tag(@other.avatar.url, class: "messages-info-avatar") %>
+
+        <h1 class="messages-info-username"><%= @other.name %></h1>
         
-          <% if @other.phone_number.present? %>
-            <%= link_to @other.phone_number.phony_formatted(spaces: '-'), 
-                        '#', 
-                        class: "messages-info-phone" %>
-          <% end %>
+        <% if @other.residence.present? %>
+          <span class="messages-info-city">
+            <%= @other.residence %>
+          </span>
+        <% end %>
+      
+        <% if @other.phone_number.present? %>
+          <%= link_to @other.phone_number.phony_formatted(spaces: '-'), 
+                      '#', 
+                      class: "messages-info-phone" %>
+        <% end %>
 
-          <% if @other.description.present? %>
-            <p class="messages-info-description">
-              <%= @other.description %>
-            </p>
-            
-            <span class="messages-info-expand">+ More</span>
-          <% end %>
-        </div>
+        <% if @other.description.present? %>
+        
+          <p class="messages-info-description">
+            <%= @other.description %>
+          </p>
+          
+          <span class="messages-info-expand">+ More</span>
+        <% end %>
       </div>
       
       <div class="col-xs-8">
-        
+
         <% if @conversation.appointments.exists?(status: 'pending') %>
           <div class="test-drive-response">
             

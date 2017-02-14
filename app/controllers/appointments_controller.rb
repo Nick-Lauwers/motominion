@@ -40,10 +40,9 @@ class AppointmentsController < ApplicationController
     @test_drives = current_user.appointments
   end
   
-  # def customers
-  #   @vehicles = current_user.vehicles
-  #   @customer_count = 0
-  # end
+  def customers
+    @vehicles = current_user.vehicles
+  end
   
   private
   

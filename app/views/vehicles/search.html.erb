@@ -114,7 +114,52 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-
+  
+    // map
+      var hoverMarkerIcon = {
+        url: "/assets/map-marker-aqua.png",
+        width:  32,
+        height: 32
+      };
+      
+      handler = Gmaps.build('Google');
+      
+      handler.buildMap({
+        provider: {
+          disableDefaultUI: true
+        },
+        internal: {
+          id: 'search-map'
+        }
+      }, function() {
+        markers = handler.addMarkers(<%=raw @hash.to_json %>);
+        
+        _.each(<%=raw @hash.to_json %>, function(json, index) {
+          var hoverMarker = {};
+          
+          hoverMarker.marker = void 0;
+          json.marker = markers[index];
+          
+          $("#vehicle-item-" + json.id).on("mouseover", function() {
+            
+            hoverMarker = {
+              lat: json.lat,
+              lng: json.lng,
+              picture: hoverMarkerIcon
+            };
+            
+            handler.removeMarker(json.marker);
+            hoverMarker.marker = handler.addMarker(hoverMarker);
+          }).on("mouseout", function() {
+            handler.removeMarker(hoverMarker.marker);
+            json.marker = handler.addMarker(json);
+          });
+        });
+        
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      });
+    
     // filters
     // var filtersButton        = $('.btn-filters');
     // var cancelButton         = $('.btn-cancel');
@@ -162,51 +207,6 @@
     // yearSlider.on('slideStop', function(slideEvt) {
     // 	yearSliderValue.text(slideEvt.value);
     // });
-    
-    // map
-    var hoverMarkerIcon = {
-      url: "/assets/map-marker-aqua.png",
-      width:  32,
-      height: 32
-    };
-    
-    handler = Gmaps.build('Google');
-    
-    handler.buildMap({
-      provider: {
-        disableDefaultUI: true
-      },
-      internal: {
-        id: 'search-map'
-      }
-    }, function() {
-      markers = handler.addMarkers(<%=raw @hash.to_json %>);
-      
-      _.each(<%=raw @hash.to_json %>, function(json, index) {
-        var hoverMarker = {};
-        
-        hoverMarker.marker = void 0;
-        json.marker = markers[index];
-        
-        $("#vehicle-item-" + json.id).on("mouseover", function() {
-          
-          hoverMarker = {
-            lat: json.lat,
-            lng: json.lng,
-            picture: hoverMarkerIcon
-          };
-          
-          handler.removeMarker(json.marker);
-          hoverMarker.marker = handler.addMarker(hoverMarker);
-        }).on("mouseout", function() {
-          handler.removeMarker(hoverMarker.marker);
-          json.marker = handler.addMarker(json);
-        });
-      });
-      
-    handler.bounds.extendWith(markers);
-    handler.fitMapToBounds();
-    });
   });
 </script>
 

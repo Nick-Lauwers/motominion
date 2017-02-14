@@ -1,44 +1,81 @@
-<% provide(:title, "Customers") %>
+<% provide(:title, "Garage") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<%= render 'layouts/hero_secondary' %>
+<%= render 'layouts/hero_backend' %>
 
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Inbox",  conversations_path %></li>
-      <li><%= link_to "Garage", vehicles_path %></li>
-      <li>
-        <%= link_to "Customers",
-            customers_path,
-            class: "nav-active" %>
-      </li>
+      <li><%= link_to "Dashboard",   dashboard_path %></li>
+      <li><%= link_to "Inbox",       conversations_path %></li>
+      <li><%= link_to "Garage",      vehicles_path, class: "nav-active" %></li>
       <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li><%= link_to "Account",     edit_user_path(current_user) %></li>
+      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
     </ul>
   </div>
 </nav>
 
-<div class="your-listings-container">
-  <div class="row">
-    <div class="col-md-3">
-      <% @vehicles.each do |vehicle| %>
-        <% @customer_count += vehicle.appointments.count %>
-      <% end %>
-      <h2>Your Appointments (<%= @customer_count %>)</h2>
-      <h3>
-        Your appointments will be displayed here. The body style, price,
-        and appointments may not be displayed whilst the application is
-        processing.
-      </h3>
-    </div>
-    <div class="your-listings-list col-md-9">
-      <ol class="vehicles">
-        <%= render 'customer' %>
-      </ol>
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-xs-4 sidenav"> 
+          
+        <h2 class="sidenav-title">
+          Garage
+        </h2>
+        
+        <ul class="sidenav-list">
+          
+          <li>
+            <%= link_to vehicles_path do %>
+              Your Listings (<%= @vehicles.count %>)
+            <% end %>
+          </li>
+          
+          <li>
+            
+            <% customer_count = 0 %>
+            <% @vehicles.each do |vehicle| %>
+              <% customer_count += vehicle.appointments.count %>
+            <% end %>
+          
+            <%= link_to customers_path, class: "sidenav-active" do %>
+              Reservations (<%= customer_count %>)
+            <% end %>
+          </li>
+          
+          <li>
+            <%= link_to questions_path do %>
+              Questions
+              (<%= Question.where(vehicle_id: @vehicles).count %>)
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-xs-8">
+        
+        <% if customer_count != 0 %>
+          <ol class="backend-list">
+            <%= render 'appointments/customer' %>
+          </ol>
+        
+        <% else %>
+          <div class="empty-list">
+          
+            <i class="fa fa-bell-o fa-4x empty-list-icon" 
+               aria-hidden="true"></i>
+               
+            <p class="empty-list-info">
+              No reservations, yet.
+            </p>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 <!--completed-->
 
-<% provide(:title, 'Account') %>
+<% provide(:title, 'Profile') %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -11,11 +11,17 @@
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Inbox",       conversations_path %></li>
-      <li><%= link_to "Garage",      vehicles_path %></li>
+      
+      <li><%= link_to "Dashboard", dashboard_path %></li>
+      
+      <li><%= link_to "Inbox", conversations_path %></li>
+      
+      <li><%= link_to "Garage", vehicles_path %></li>
+      
       <li><%= link_to "Test Drives", test_drives_path %></li>
+      
       <li>
-        <%= link_to "Account",     
+        <%= link_to "Profile",     
                     edit_user_path(current_user), 
                     class: "nav-active" %>
       </li>
@@ -27,20 +33,46 @@
   <div class="backend-content">
     <div class="row">
     
-      <div class="col-xs-4">
-        <div class="backend-instructions">
+      <div class="col-xs-4 sidenav">
+
+        <h2 class="sidenav-title">
+          Profile
+        </h2>
+        
+        <ul class="sidenav-list">
           
-          <h2 class="backend-instructions-title">Account Update</h2>
+          <li>
+            <%= link_to "Edit Profile", 
+                        edit_user_path, 
+                        class: "sidenav-active" %>
+          </li>
           
-          <p class="backend-instructions-info account-info">
-            Need to make changes? Alter the details of your account, here.
-          </p>
-          
-          <%= link_to 'View Profile', user_path, class: "btn btn-tertiary" %>
-        </div>
+          <li>
+            <%= link_to user_reviews_path(current_user) do %>
+              Reviews 
+              (<%= Review.where(reviewed_id: current_user.id).count %>)
+            <% end %>
+          </li>
+        </ul>
+        
+        <!--<= link_to 'View Profile', -->
+        <!--            user_path, -->
+        <!--            class: "btn btn-tertiary btn-backend-profile" %>-->
       </div>
       
       <div class="col-xs-8">
+        
+        <div class="profile-preview-container">
+          <%= link_to user_path, 
+                      class: "btn-profile-preview" do %>
+                        
+            <i class="fa fa-user-circle-o fa-lg profile-preview-icon" 
+               aria-hidden="true"></i>
+            
+            Profile Preview
+          <% end %>
+        </div>
+
         <div class="account-form">
           <%= render 'edit_form' %>
         </div>

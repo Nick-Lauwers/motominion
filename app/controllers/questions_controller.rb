@@ -2,7 +2,12 @@
 
 class QuestionsController < ApplicationController
   
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:index, :create, :destroy]
+  
+  def index
+    @questions = Question.where(vehicle: current_user.vehicles)
+    @reply     = current_user.replies.build
+  end
 
   def create
     

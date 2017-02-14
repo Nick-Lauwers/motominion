@@ -3,6 +3,10 @@
 
 class ReviewsController < ApplicationController
   
+  def index
+    @reviews = Review.where(reviewed_id: current_user.id)
+  end
+  
   def create
     
     @review = current_user.authored_reviews.create(review_params)

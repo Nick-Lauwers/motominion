@@ -4,6 +4,11 @@
 
   <div class="row">
   
+    <div class="col-xs-2">
+      <%= image_tag(current_user.avatar.url, 
+                    class: "message-avatar message-avatar-left") %>
+    </div>
+  
     <div class="col-xs-10">
       <div class="message-container">
         
@@ -15,25 +20,14 @@
           <%= message.message_time %>
         </span>
       </div>
-    </div>
-    
-    <div class="col-xs-2">
-      <%= image_tag(current_user.avatar.url, 
-                    class: "message-avatar message-avatar-right") %>
     </div>
   </div>
 
 <% else %>
   
   <div class="row">
-  
-    <div class="col-xs-2">
-      <%= image_tag(@other.avatar.url, 
-                    class: "message-avatar message-avatar-left") %>
-    </div>
     
     <div class="col-xs-10">
-      
       <div class="message-container">
         
         <p class="message-comment">
@@ -46,6 +40,10 @@
       </div>
     </div>
     
+    <div class="col-xs-2">
+      <%= image_tag(@other.avatar.url, 
+                    class: "message-avatar message-avatar-right") %>
+    </div>
   </div>
   <% end %>
 

@@ -1,0 +1,50 @@
+<!--complete-->
+
+<li id="backend-review-item-<%= review.id %>" class="row backend-review-item">
+  
+  <div class="col-xs-4">
+    <%= link_to review.reviewer, 
+                class: "backend-review-author 
+                        backend-review-author-clickable 
+                        vertical-align" do %>
+      
+      <%= image_tag(review.reviewer.avatar.url, 
+                    class: "author-avatar") %>
+
+      <span class="author-name"><%= review.reviewer.name %></span>
+    <% end %>
+  </div>
+  
+  <div class="col-xs-8 backend-review-container">
+
+      <div class="backend-review-rating">
+        <div id="stars-<%= review.id %>"></div>
+      </div>
+      
+      <span class="backend-review-title"><%= review.title %></span>
+      
+      <p class="backend-review-comment"><%= review.comment %></p>
+      
+      <span class="backend-review-date">
+        <%= review.created_at.strftime("%D") %>
+      </span>
+      
+      <%= link_to review.vehicle.listing_name,
+                  review.vehicle,
+                  class: "backend-review-vehicle" %>
+  </div>
+</li>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // rating
+    var stars = $('#stars-<%= review.id %>');
+
+    stars.raty({
+      path:     '/assets',
+      readOnly: true,
+      score:    <%= review.rating %>
+    });
+  })
+</script>

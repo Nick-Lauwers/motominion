@@ -26,17 +26,6 @@ $(function() {
   
     $(window).on('scroll', function() {
         
-      // fixed header
-        var fixedHeader = $('.header-fixed-hidden');
-        
-        var scrolltop = $(this).scrollTop();
-        if(scrolltop >= 655) {
-          fixedHeader.fadeIn(250);
-        }
-        else if(scrolltop <= 650) {
-          fixedHeader.fadeOut(250);
-        }
-        
       // fixed info
         var profileScrolled = $('#profile-scrolled');
         

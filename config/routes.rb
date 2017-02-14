@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get    'help'                    => 'static_pages#help'
   get    'about'                   => 'static_pages#about'
   get    'how-it-works'            => 'static_pages#how_it_works'
+  get    'dashboard'               => 'static_pages#dashboard'
   get    'legal'                   => 'static_pages#legal'
   get    'customers'               => 'appointments#customers'
   get    'test-drives'             => 'appointments#test_drives'
@@ -16,13 +17,13 @@ Rails.application.routes.draw do
   resources :photos
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :questions,           only: [:create, :destroy]
+  resources :questions,           only: [:index, :create, :destroy]
   resources :replies,             only: [:create, :destroy]
   resources :enquiries,           only: [:new, :create]
   resources :profiles,            only: [:show, :edit, :update]
 
   resources :users do
-    resources :reviews, only: [:destroy]
+    resources :reviews, only: [:index, :destroy]
   end
 
   resources :vehicles do
