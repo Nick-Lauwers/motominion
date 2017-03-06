@@ -247,14 +247,12 @@ ActiveRecord::Schema.define(version: 20170218210144) do
     t.boolean  "is_tow_package"
     t.boolean  "is_autonomy"
     t.integer  "user_id"
-    t.integer  "conversation_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.float    "latitude"
     t.float    "longitude"
   end
 
-  add_index "vehicles", ["conversation_id"], name: "index_vehicles_on_conversation_id"
   add_index "vehicles", ["user_id", "created_at"], name: "index_vehicles_on_user_id_and_created_at"
   add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id"
 

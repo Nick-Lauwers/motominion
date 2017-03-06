@@ -34,7 +34,7 @@ class CreateVehicles < ActiveRecord::Migration
       t.boolean     :is_tow_package
       t.boolean     :is_autonomy
       t.references  :user,         index: true, foreign_key: true
-      t.references  :conversation, index: true, foreign_key: true
+      # t.references  :conversation, index: true, foreign_key: true
 
       t.timestamps null: false
     end
