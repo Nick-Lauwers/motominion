@@ -1,6 +1,8 @@
 class CreateConversations < ActiveRecord::Migration
   def change
     create_table :conversations do |t|
+      t.integer    :next_contributor_id
+      t.boolean    :latest_message_read
       t.references :sender
       t.references :recipient
 

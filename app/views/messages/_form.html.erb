@@ -8,8 +8,10 @@
   <div class="row">
     
     <div class="col-xs-2">
-      <%= image_tag(current_user.avatar.url, 
-                    class: "message-avatar message-avatar-left") %>
+      <div class="message-avatar message-avatar-left">
+        <%= link_to (image_tag current_user.avatar.url), 
+                    user_path(current_user) %>
+      </div>
     </div>
     
     <div class="col-xs-10">

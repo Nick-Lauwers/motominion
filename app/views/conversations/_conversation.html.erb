@@ -3,50 +3,57 @@
 <% other = conversation.sender == 
            current_user ? conversation.recipient : conversation.sender %>
            
-<% if conversation.messages.exists? %>    
-
-  <%= link_to conversation_messages_path(conversation), 
-              class: "conversation-link" do %>
-     
-    <li id="conversation-item-<%= conversation.id %>" class="conversation-item">           
-      <table class="conversation-item-content">
-        <tr>
-          
-          <td>
-            <%= image_tag(other.avatar.url, class: "conversation-avatar") %>
-          </td>
-          
-          <td>
-            <div class="conversation-detail">
-              
-              <p class="conversation-name"><%= other.name %></p>
-              
-              <p class="conversation-date">
-                <%= conversation.messages.last.message_time %>
-              </p>
-            </div>
-          </td>
-          
-          <td class="conversation-content-container">
-            <p class="conversation-content">
-              <%= conversation.messages.last.content %>
+<%= link_to conversation_messages_path(conversation), 
+            class: "conversation-link" do %>
+   
+  <li id="conversation-item-<%= conversation.id %>" class="conversation-item">           
+    <table class="conversation-item-content">
+      <tr>
+        
+        <td>
+          <div class="conversation-avatar">
+            <%= image_tag other.avatar.url %>
+          </div>
+        </td>
+        
+        <td>
+          <div class="conversation-detail">
+            
+            <p class="conversation-name"><%= other.name %></p>
+            
+            <p class="conversation-date">
+              <%= conversation.updated_at.strftime("%D") %>
             </p>
-          </td>
+          </div>
+        </td>
+        
+        <td class="conversation-content-container">
+          <p class="conversation-content">
+            <% if conversation.messages.exists? %>
+              <%= conversation.messages.last.content %>
+            <% else %>
+              (No Messages)
+            <% end %>
+          </p>
+        </td>
+        
+        <td>
+          <p class="conversation-appointment">
+            <%= pluralize(conversation.appointments.count, "Request") %>
+          </p>
           
-          <td>
-            <!--<(perc)= link_to @conversation, -->
-            <!--            method: :delete, -->
-            <!--            data: { confirm: "Are you sure?" } do %>-->
-            <!--  <span class="conversation-delete-link">-->
-            <!--    <i class="fa fa-times" aria-hidden="true"></i>-->
-            <!--    Delete-->
-            <!--  </span>-->
-            <!--<(perc) end %>-->
-          </td>
-        </tr>
-      </table>
-    </li>
-  <% end %>
+          <!--<(perc)= link_to @conversation, -->
+          <!--            method: :delete, -->
+          <!--            data: { confirm: "Are you sure?" } do %>-->
+          <!--  <span class="conversation-delete-link">-->
+          <!--    <i class="fa fa-times" aria-hidden="true"></i>-->
+          <!--    Delete-->
+          <!--  </span>-->
+          <!--<(perc) end %>-->
+        </td>
+      </tr>
+    </table>
+  </li>
 <% end %>
 
 <!--simplify conversation and messages relationship (mailboxer gem)-->

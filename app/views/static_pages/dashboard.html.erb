@@ -21,13 +21,81 @@
 
 <div class="backend">
   <div class="backend-content">
-    <div class="row">
     
-      <div class="col-xs-4">
-      </div>
+    <div class="dashboard-notifications">
       
-      <div class="col-xs-8">
+      <h2 class="dashboard-title">Notifications</h3>
+      
+      <ul class="nav nav-tabs">
+        
+        <li class="active">
+          <a href="#requests_and_inquiries" data-toggle="tab">
+            Requests and Inquiries (<%= @conversations.count %>)
+          </a>
+        </li>
+        
+        <li>
+          <a href="#questions" data-toggle="tab">
+            Questions (<%= @questions.count %>)
+          </a>
+        </li>
+      </ul>
+      
+      <div class="tab-content">
+        
+        <div class="tab-pane fade active in" id="requests_and_inquiries">
+          <% if @conversations.exists? %>
+            <ol class="tab-pane-list">
+              <%= render @conversations %>
+            </ol>
+          
+          <% else %>
+            <p class="empty-list-info">
+              No recent requests or inquiries
+            </p> 
+          <% end %>
+        </div>
+        
+        <div class="tab-pane fade" id="questions">
+          <% if @questions.exists? %>
+            <ol class="tab-pane-list">
+              <%= render partial:    "new_question", 
+                         collection: @questions, 
+                         as:         :question %>
+            </ol>
+          
+          <% else %>
+            <p class="empty-list-info dashboard-empty-list-info">
+              You have not received any questions.
+            </p>
+          <% end %>
+        </div>
       </div>
+    </div>
+    
+    <div class="dashboard-test-drives">  
+    
+      <h2 class="dashboard-title">Customer Test Drives</h2>
+      
+      <% if @test_drives.exists? %>
+        <ol class="dashboard-list">
+          <%= render partial:    "test_drive",
+                     collection: @test_drives %>
+        </ol>
+      
+      <% else %>
+        <div class="empty-list">
+            
+          <i class="fa fa-tachometer fa-4x empty-list-icon" 
+             aria-hidden="true"></i>
+             
+          <p class="empty-list-info">
+            You have not accepted any test drive requests.
+          </p>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
+
+<!--incorporate logged_in into dashboard-->

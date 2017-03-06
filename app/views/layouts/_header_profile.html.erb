@@ -18,12 +18,18 @@
       <div class="col-xs-4">
 
         <% if logged_in? %>
-          <%= button_to "Contact Seller", 
-                        conversations_path(sender_id:    current_user.id, 
-                                           recipient_id: @user.id), 
-                        class: "btn-header-profile", 
-                        method: :post %>
-                        
+          <%= form_for @conversation, 
+                       url: conversations_path(@conversation), 
+                       method: :post do |f| %>
+                       
+            <%= f.hidden_field :sender_id,    value: current_user.id %>
+            
+            <%= f.hidden_field :recipient_id, value: @user.id %>
+            
+            <%= f.submit "Contact Seller", 
+                         class: "btn-header-profile" %>
+          <% end %>
+                          
         <% else %>
           <%= button_to "Contact Seller", 
                         login_path, 
@@ -45,11 +51,16 @@
           var scrolltop   = $(this).scrollTop();
           
           if(scrolltop >= 655) {
+            var headerProfileAvatar = $('.header-profile-avatar');
+
+            headerProfileAvatar.imagefill();
             fixedHeader.fadeIn(250);
           }
           else if(scrolltop <= 650) {
             fixedHeader.fadeOut(250);
           }
       });
+      
+      
   });
 </script>

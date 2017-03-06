@@ -11,28 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213004644) do
+ActiveRecord::Schema.define(version: 20170218210144) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
     t.datetime "date"
-    t.integer  "user_id"
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
     t.integer  "vehicle_id"
     t.integer  "conversation_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
+  add_index "appointments", ["buyer_id", "date"], name: "index_appointments_on_buyer_id_and_date"
   add_index "appointments", ["conversation_id"], name: "index_appointments_on_conversation_id"
-  add_index "appointments", ["user_id", "date"], name: "index_appointments_on_user_id_and_date"
-  add_index "appointments", ["user_id"], name: "index_appointments_on_user_id"
   add_index "appointments", ["vehicle_id"], name: "index_appointments_on_vehicle_id"
 
   create_table "conversations", force: :cascade do |t|
+    t.integer  "next_contributor_id"
+    t.boolean  "latest_message_read"
     t.integer  "sender_id"
     t.integer  "recipient_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "enquiries", force: :cascade do |t|
@@ -54,6 +56,20 @@ ActiveRecord::Schema.define(version: 20161213004644) do
 
   add_index "favorite_vehicles", ["user_id", "created_at"], name: "index_favorite_vehicles_on_user_id_and_created_at"
   add_index "favorite_vehicles", ["user_id", "vehicle_id"], name: "index_favorite_vehicles_on_user_id_and_vehicle_id", unique: true
+
+  create_table "inquiries", force: :cascade do |t|
+    t.datetime "date"
+    t.integer  "user_id"
+    t.integer  "vehicle_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "inquiries", ["conversation_id"], name: "index_inquiries_on_conversation_id"
+  add_index "inquiries", ["user_id", "date"], name: "index_inquiries_on_user_id_and_date"
+  add_index "inquiries", ["user_id"], name: "index_inquiries_on_user_id"
+  add_index "inquiries", ["vehicle_id"], name: "index_inquiries_on_vehicle_id"
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"
@@ -118,6 +134,7 @@ ActiveRecord::Schema.define(version: 20161213004644) do
   create_table "questions", force: :cascade do |t|
     t.text     "content"
     t.integer  "likes"
+    t.datetime "read_at"
     t.integer  "user_id"
     t.integer  "vehicle_id"
     t.datetime "created_at", null: false
@@ -230,12 +247,14 @@ ActiveRecord::Schema.define(version: 20161213004644) do
     t.boolean  "is_tow_package"
     t.boolean  "is_autonomy"
     t.integer  "user_id"
+    t.integer  "conversation_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.float    "latitude"
     t.float    "longitude"
   end
 
+  add_index "vehicles", ["conversation_id"], name: "index_vehicles_on_conversation_id"
   add_index "vehicles", ["user_id", "created_at"], name: "index_vehicles_on_user_id_and_created_at"
   add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id"
 

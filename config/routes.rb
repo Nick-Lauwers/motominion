@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :vehicles do
     
-    resources :appointments, only: [:create, :destroy]
+    resources :appointments, only: [:new, :create, :destroy]
     resources :reviews,      only: [:create, :destroy]
     resources :payments,     only: [:new, :create]
     
@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   end
 
   resources :conversations, only: [:index, :create] do
+    resources :appointments, only: [:new, :create, :destroy]
     resources :messages, except: [:new, :edit, :show, :update] do
       collection do
         get 'accept'

@@ -5,8 +5,10 @@
   <div class="row">
   
     <div class="col-xs-2">
-      <%= image_tag(current_user.avatar.url, 
-                    class: "message-avatar message-avatar-left") %>
+      <div class="message-avatar message-avatar-left">
+        <%= link_to (image_tag current_user.avatar.url), 
+                    user_path(current_user) %>
+      </div>
     </div>
   
     <div class="col-xs-10">
@@ -17,7 +19,7 @@
         </p>
         
         <span class="message-date">
-          <%= message.message_time %>
+          <%= message.created_at.strftime("%D") %>
         </span>
       </div>
     </div>
@@ -35,24 +37,27 @@
         </p>
         
         <span class="message-date">
-          <%= message.message_time %>
+          <%= message.created_at.strftime("%D") %>
         </span>
       </div>
     </div>
     
     <div class="col-xs-2">
-      <%= image_tag(@other.avatar.url, 
-                    class: "message-avatar message-avatar-right") %>
+      <div class="message-avatar message-avatar-right">
+        <%= link_to (image_tag @other.avatar.url), 
+                    user_path(@other) %>
+      </div>
     </div>
   </div>
-  <% end %>
+<% end %>
 
 <script type="text/javascript">
   $(document).ready(function() {
     
     // image scaling
-    var messageAvatar = $('.message-avatar');
     
-    messageAvatar.imagefill();
+      var messageAvatar = $('.message-avatar');
+      
+      messageAvatar.imagefill(); 
   })
 </script>

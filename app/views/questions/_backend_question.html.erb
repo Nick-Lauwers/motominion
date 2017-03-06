@@ -3,9 +3,9 @@
   
   <div class="col-xs-4 vertical-align">
     
-    <%= link_to image_tag(question.user.avatar.url, 
-                          class: "backend-question-avatar"),
-                          question.user %>
+    <div class="backend-question-avatar">
+      <%= link_to image_tag(question.user.avatar.url), question.user %>
+    </div>
     
     <div class="backend-question-detail">
 
@@ -43,9 +43,9 @@
           <li id="backend-reply-item-<%= reply.id %>" 
               class="backend-reply-item">
             
-            <%= link_to (image_tag reply.user.avatar.url), 
-                        reply.user, 
-                        class: "backend-reply-avatar" %>
+            <div class="backend-reply-avatar">
+              <%= link_to (image_tag reply.user.avatar.url), reply.user %>
+            </div>
             
             <div class="backend-reply-detail">
               
@@ -69,8 +69,10 @@
       
         <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
         
-        <%= image_tag(current_user.avatar.url, 
-                      class: "backend-reply-form-avatar") %>
+        <div class="backend-reply-form-avatar">
+          <%= link_to (image_tag current_user.avatar.url),
+                      user_path(current_user) %>
+        </div>
         
         <div class="backend-reply-form-container">
           
@@ -92,16 +94,15 @@
 <script type="text/javascript">
   $(document).ready(function() {
     
-    // image scaling
-    var backendReplyAvatar     = $('.backend-reply-avatar');
-    var backendReplyFormAvatar = $('.backend-reply-form-avatar')
-    
-    backendReplyAvatar.imagefill();
-    backendReplyFormAvatar.imagefill();
-    
     // slideToggle
-    $('#backend-reply-number-<%= question.id %>').click(function() {
-      $('#backend-replies-list-<%= question.id %>').slideToggle();
-    });
+    
+      var backendReplyAvatar     = $('.backend-reply-avatar');
+      
+      $('#backend-reply-number-<%= question.id %>').click(function() {
+        
+        backendReplyAvatar.imagefill();
+        
+        $('#backend-replies-list-<%= question.id %>').slideToggle();
+      });
   });
 </script>

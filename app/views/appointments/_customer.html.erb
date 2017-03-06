@@ -6,66 +6,142 @@
     
     <% if appointment.date.future? %>
     
-      <li id="customer-item-<%= appointment.id %>" class="customer-item">
-        <table class="customer-item-content">
-          <tr>
-            
-            <td>
-              <%= link_to image_tag(appointment.user.avatar.url, 
-                                    class: "customer-avatar"),
-                          appointment.user %>
-            </td>
-            
-            <td>
-              <div class="customer-detail">
-                <%= link_to appointment.user.name,
-                            appointment.user, 
-                            class: "customer-name" %> 
-                      
-                <%= link_to appointment.vehicle.listing_name,
-                            appointment.vehicle,
-                            class: "customer-listing" %>
-              </div>
-            </td>
-            
-            <td>
-              <p class="customer-address"><%= appointment.vehicle.address %></p>
-            </td>
-            
-            <td>
-              <div class="customer-contact-container">
-                
-                <span class="contact-date">
-                  <%= time_ago_in_words(appointment.date).capitalize %> away 
-                  (<%= appointment.date.strftime("%D") %>)
-                </span>
-                
-                <div class="contact-message">
-                  <%= link_to conversations_path(sender_id:    current_user.id, 
-                                                 recipient_id: appointment.user_id),
-                              method: :post do %>
+      <li id="dashboard-item-<%= appointment.id %>" 
+          class="col-xs-6 dashboard-item">
+        <%= link_to conversation_messages_path(appointment.conversation) do %>
       
-                      <i class="fa fa-paper-plane-o backend-customer-message-icon" aria-hidden="true"></i>
-                      
-                      Send A Message
-                    </span>
-                  <% end %>
-                </div>
+          <div class="dashboard-item-content">
+            
+            <div class="dashboard-item-image", 
+                 style="background-image: url(
+                         '<%= appointment.buyer.avatar.url() %>')">
+              <div class="dashboard-item-message">
+                <i class="fa fa-lg fa-envelope-o dashboard-item-icon" 
+                   aria-hidden="true"></i>
               </div>
-            </td>
-          </tr>
-        </table>
+            </div>
+            
+            <div class="dashboard-item-detail">
+              
+              <span class="dashboard-item-countdown">
+                In <%= time_ago_in_words(appointment.date).titleize %>
+              </span>
+              
+              <span class="dashboard-item-date">
+                <%= appointment.date.strftime("%A, %d %b (%-l:%M%p)") %>
+              </span>
+              
+              <%= link_to appointment.buyer.name,
+                          appointment.buyer,
+                          class: "dashboard-item-link" %> ·
+              
+              <%= link_to appointment.vehicle.listing_name,
+                          appointment.vehicle,
+                          class: "dashboard-item-link" %>
+            </div>
+            
+            <div class="dashboard-item-status">
+              <span class="dashboard-item-status-content">
+                <%= appointment.status.capitalize %>
+              </span>
+            </div>
+          </div>
+        <% end %>
       </li>
+
+<!--    <li id="test-drive-item-<= appointment.id %>" -->
+<!--    class="col-xs-6 test-drive-item">-->
+<!--  <= link_to conversation_messages_path(appointment.conversation) do %>-->
+
+<!--    <div class="test-drive-item-content">-->
+      
+<!--      <div class="test-drive-item-image", -->
+<!--           style="background-image: url(-->
+<!--                   '<= appointment.buyer.avatar.url() %>')">-->
+        
+<!--        <div class="test-drive-item-message">-->
+<!--          <i class="fa fa-envelope-o test-drive-item-message-icon" -->
+<!--             aria-hidden="true"></i>-->
+<!--        </div>-->
+        
+        <!--<div class="test-drive-item-name">-->
+        <!--  <span><= appointment.buyer.name %></span>-->
+        <!--</div>-->
+<!--      </div>-->
+      
+<!--      <div class="test-drive-item-detail">-->
+        
+<!--        <span class="test-drive-item-detail-countdown">-->
+<!--          In <= time_ago_in_words(appointment.created_at).titleize %>-->
+<!--        </span>-->
+        
+<!--        <span class="test-drive-item-detail-date">-->
+<!--          <= appointment.date.strftime("%A, %d %b (%-l:%M%p)") %>-->
+<!--        </span>-->
+        
+<!--        <= link_to appointment.vehicle.listing_name,-->
+<!--                    appointment.vehicle,-->
+<!--                    class: "test-drive-item-vehicle-description" %>-->
+<!--      </div>-->
+      
+<!--      <div class="test-drive-item-vehicle">-->
+<!--        <span class="test-drive-item-detail-status">-->
+<!--          <= appointment.status.capitalize %>-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  < end %>-->
+<!--</li> -->
+    
+      <!--<li id="customer-item-<(perc)= appointment.id %>" class="customer-item">-->
+      <!--  <table class="customer-item-content">-->
+      <!--    <tr>-->
+            
+      <!--      <td>-->
+      <!--        <div class="customer-avatar">-->
+      <!--          <(perc)= link_to image_tag(appointment.buyer.avatar.url),-->
+      <!--                      appointment.buyer %>-->
+      <!--        </div>-->
+      <!--      </td>-->
+            
+      <!--      <td>-->
+      <!--        <div class="customer-detail">-->
+      <!--          <(perc)= link_to appointment.buyer.name,-->
+      <!--                      appointment.buyer, -->
+      <!--                      class: "customer-name" %> -->
+                      
+      <!--          <(perc)= link_to appointment.vehicle.listing_name,-->
+      <!--                      appointment.vehicle,-->
+      <!--                      class: "customer-listing" %>-->
+      <!--        </div>-->
+      <!--      </td>-->
+            
+      <!--      <td>-->
+      <!--        <p class="customer-address"><(perc)= appointment.vehicle.address %></p>-->
+      <!--      </td>-->
+            
+      <!--      <td>-->
+      <!--        <div class="customer-contact-container">-->
+                
+      <!--          <span class="contact-date">-->
+      <!--            <(perc)= time_ago_in_words(appointment.date).capitalize %> away -->
+      <!--            (<(perc)= appointment.date.strftime("%D") %>)-->
+      <!--          </span>-->
+                
+      <!--          <div class="contact-message">-->
+      <!--            <(perc)= link_to conversation_messages_path(appointment.conversation) do %>-->
+      
+      <!--                <i class="fa fa-paper-plane-o backend-customer-message-icon" aria-hidden="true"></i>-->
+                      
+      <!--                Send A Message-->
+      <!--              </span>-->
+      <!--            <(perc) end %>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </td>-->
+      <!--    </tr>-->
+      <!--  </table>-->
+      <!--</li>-->
     <% end %>
   <% end %>
 <% end %>
-
-<script type="text/javascript">
-  $(document).ready(function() { 
-    
-    // image scaling
-      var customerAvatar = $('.customer-avatar');
-
-      customerAvatar.imagefill();
-  });
-</script>

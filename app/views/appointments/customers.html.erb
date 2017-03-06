@@ -44,14 +44,7 @@
             <% end %>
           
             <%= link_to customers_path, class: "sidenav-active" do %>
-              Reservations (<%= customer_count %>)
-            <% end %>
-          </li>
-          
-          <li>
-            <%= link_to questions_path do %>
-              Questions
-              (<%= Question.where(vehicle_id: @vehicles).count %>)
+              Customers (<%= customer_count %>)
             <% end %>
           </li>
         </ul>
@@ -61,17 +54,17 @@
         
         <% if customer_count != 0 %>
           <ol class="backend-list">
-            <%= render 'appointments/customer' %>
+            <%= render 'customer' %>
           </ol>
         
         <% else %>
           <div class="empty-list">
           
-            <i class="fa fa-bell-o fa-4x empty-list-icon" 
+            <i class="fa fa-handshake-o fa-4x empty-list-icon" 
                aria-hidden="true"></i>
                
             <p class="empty-list-info">
-              No reservations, yet.
+              No test drives have been booked with customers.        
             </p>
           </div>
         <% end %>

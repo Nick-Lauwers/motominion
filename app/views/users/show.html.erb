@@ -10,7 +10,11 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<div class="hero-profile"></div>
+<div class="hero-profile" 
+     data-parallax="scroll" 
+     data-image-src="/assets/cover-photo.jpeg"
+     data-speed="0.3" 
+     data-bleed="10"></div>
 
 <div class="user-summary">
   <div class="user-summary-content">
@@ -21,7 +25,9 @@
           
           <div class="col-xs-4 user-summary-avatar-container">
             <div class="user-summary-avatar-border">
-              <%= image_tag(@user.avatar.url, class: "user-summary-avatar") %>
+              <div class="user-summary-avatar">
+                <%= image_tag @user.avatar.url %>
+              </div>
             </div>
           </div>
           
@@ -50,6 +56,15 @@
       
       <div class="col-xs-8">
         <div class="profile-overview-text">
+          
+          <span class="profile-overview-registration">
+            Joined in <%= @user.created_at.strftime("%B %Y") %>
+          </span>
+          
+          <!--<span class="profile-overview-response">-->
+          <!--  Response rate: <strong>_ %</strong> · -->
+          <!--  Response time: <strong>_ hours</strong>-->
+          <!--</span>-->
           
           <% if @user.description.present? %>
             <p class="profile-overview-info"><%= @user.description %></p>
@@ -100,17 +115,12 @@
             </h2>
             
             <% if @user.vehicles.exists? %>
-            
-              <% if @user == current_user %>
-                <ol class="current-user-listing-items">
-                  <%= render 'current_user_listings' %>
-                </ol>
-                
-              <% else %>
-                <ol class="other-user-listing-items">
-                  <%= render 'other_user_listings' %>
-                </ol>
-              <% end %>
+              <ol class="user-listings-list">
+                <%= render 'user_listings' %>
+              </ol>
+              
+            <% else %>
+              <p class="empty-list-info">No listings posted</p>  
             <% end %>
           </div>
           
@@ -124,6 +134,9 @@
               <ol class="wish-list-items">
                 <%= render 'wish_lists' %>
               </ol>
+            
+            <% else %>
+              <p class="empty-list-info">No wish lists created</p>
             <% end %>
           </div>
         </div>
@@ -280,9 +293,11 @@
                                   review-author 
                                   review-author-clickable 
                                   vertical-align" do %>
+              
+                <div class="author-avatar">
+                  <%= image_tag r.reviewer.avatar.url %>
+                </div>
                 
-                <%= image_tag(r.reviewer.avatar.url, class: "author-avatar") %>
-
                 <span class="author-name"><%= r.reviewer.name %></span>
               <% end %>
             </div>
@@ -303,13 +318,16 @@
               
               <p class="review-comment"><%= r.comment %></p>
               
-              <div class="review-remove">
-                <%= link_to "Remove my review", 
-                            [@user, r], 
-                            method: :delete, 
-                            data: { confirm: "Are you sure?" } if 
-                                  current_user && current_user == r.reviewer %>
-              </div>
+              <%= link_to r.vehicle.listing_name,
+                          r.vehicle,
+                          class: "profile-review-date" %>
+              
+              <%= link_to "Remove my review", 
+                          [@user, r],
+                          class: "profile-review-remove",
+                          method: :delete, 
+                          data: { confirm: "Are you sure?" } if 
+                                current_user && current_user == r.reviewer %>
             </div>
           </div>
         </div>
@@ -335,7 +353,7 @@
         <i class="fa fa-balance-scale fa-4x empty-list-icon" 
            aria-hidden="true"></i>
            
-        <p class="empty-list-info">No reviews for this user, yet</p>
+        <p class="empty-list-info">No reviews for <%= @user.name %> yet</p>
       </div>
     <% end %>
   </div>

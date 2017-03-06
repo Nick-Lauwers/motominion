@@ -4,7 +4,14 @@
   
   <div class="modal-carousel-container">
 		<div class="carousel" id="modal-carousel">
-      <div class="carousel-inner"></div>
+      <div class="carousel-inner">
+        
+        <% @photos.each do |photo| %>
+          <div class="item <%= 'active' if photo == @photos[0] %>">          
+            <%= image_tag photo.image.url() %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
   
@@ -12,6 +19,7 @@
     <div class="modal-detail">
       
       <div class="row vertical-align">
+        
         <div class="col-xs-3">
           <div class="modal-avatar-border">
             <div class="modal-avatar">
@@ -22,12 +30,15 @@
         </div>
         
         <div class="col-xs-9">
-          <h1 class="modal-title"><%= @vehicle.listing_name %></h1>
-          <h2 class="modal-info"><%= @vehicle.user.name %></h2>
+          <span class="modal-title"><%= @vehicle.listing_name %></span>
+          
+          <%= link_to @vehicle.user.name,
+                      @vehicle.user,
+                      class: "modal-info" %>
         </div>
       </div>
       
-      <h3 class="modal-caption"><%= @vehicle.summary %></h3>
+      <p class="modal-caption"><%= @vehicle.summary %></p>
     </div>
   </div>
   

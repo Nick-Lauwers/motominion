@@ -3,6 +3,7 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.text       :content
       t.integer    :likes
+      t.datetime   :read_at
       t.references :user,    index: true, foreign_key: true
       t.references :vehicle, index: true, foreign_key: true
 

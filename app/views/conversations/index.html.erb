@@ -31,15 +31,26 @@
         </h2>
         
         <ul class="sidenav-list">
+          
           <li>
             
             <% conversation_count = 0 %>
             <% @conversations.each do |conversation| %>
-              <% conversation_count += 1 if conversation.messages.exists? %>
+              <% conversation_count += 1 if (
+                  conversation.messages.exists? || 
+                  conversation.appointments.exists?
+                 ) %>
             <% end %>
             
             <%= link_to conversations_path, class: "sidenav-active" do %>
               Messages (<%= conversation_count %>)
+            <% end %>
+          </li>
+          
+          <li>
+            <%= link_to questions_path do %>
+              Questions
+              (<%= Question.where(vehicle_id: @vehicles).count %>)
             <% end %>
           </li>
         </ul>
@@ -59,7 +70,7 @@
                aria-hidden="true"></i>
                
             <p class="empty-list-info">
-              No messages, yet.
+              No messages yet
             </p>
           </div>
         <% end %>

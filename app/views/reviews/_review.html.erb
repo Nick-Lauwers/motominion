@@ -15,8 +15,10 @@
                           review-author-clickable 
                           vertical-align" do %>
         
-        <%= image_tag(review.reviewer.avatar.url, class: "author-avatar") %>
-
+        <div class="author-avatar">
+          <%= image_tag review.reviewer.avatar.url %>
+        </div>
+        
         <span class="author-name"><%= review.reviewer.name %></span>
       <% end %>
     </div>

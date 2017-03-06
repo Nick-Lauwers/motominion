@@ -41,15 +41,8 @@
             
             <li>
               <%= link_to customers_path do %>
-                Reservations 
+                Customers 
                 (<%= Appointment.where(vehicle_id: @vehicles).count %>)
-              <% end %>
-            </li>
-            
-            <li>
-              <%= link_to questions_path do %>
-                Questions
-                (<%= Question.where(vehicle_id: @vehicles).count %>)
               <% end %>
             </li>
           </ul>
@@ -66,12 +59,23 @@
         <% else %>
           <div class="empty-list">
           
-            <i class="fa fa-envelope-o fa-4x empty-list-icon" 
+            <i class="fa fa-bars fa-4x empty-list-icon" 
                aria-hidden="true"></i>
                
             <p class="empty-list-info">
-              No listings, yet.
+              No listings posted
             </p>
+            
+            <div class="empty-list-button">
+              <%= link_to new_vehicle_path, 
+                          class: "btn btn-green" do %>
+            
+                List
+                
+                <i class="fa fa-arrow-right next-button-icon" 
+                   aria-hidden="true"></i> 
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>

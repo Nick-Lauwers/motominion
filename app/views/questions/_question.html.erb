@@ -3,9 +3,10 @@
 <li id="question-item-<%= question.id %>" class="question-item">
   <div class="question-item-content">
 
-    <%= link_to (image_tag question.user.avatar.url), 
-                question.user, 
-                class: "question-avatar" %>
+    <div class="question-avatar">
+      <%= link_to (image_tag question.user.avatar.url), 
+                  question.user %>
+    </div>
 
     <div class="question-details">
       
@@ -13,16 +14,18 @@
 
       <span class="question-content"><%= question.content %></span>
       
-      <div class="question-date-container">
-        
-        <span class="reply-number">
-          <%= pluralize(question.replies.count, "Comment") %>
-        </span>
-        
-        <span class="question-date">
-          <%= time_ago_in_words(question.created_at).capitalize %> ago
-        </span>
-      </div>
+      <table class="question-date-container">
+        <tr>
+          
+          <td class="reply-number">
+            <%= pluralize(question.replies.count, "Comment") %>
+          </td>
+          
+          <td class="question-date">
+            <%= time_ago_in_words(question.created_at).capitalize %> ago
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 
@@ -60,7 +63,10 @@
       
         <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
         
-        <%= image_tag(current_user.avatar.url, class: "reply-form-avatar") %>
+        <div class="reply-form-avatar">
+          <%= link_to (image_tag current_user.avatar.url), 
+                      user_path(current_user) %>
+        </div>
         
         <div class="reply-form-container">
           

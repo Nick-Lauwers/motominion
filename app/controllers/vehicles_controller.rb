@@ -74,8 +74,11 @@ class VehiclesController < ApplicationController
   end
   
   def show
+    
+    @conversation = Conversation.new
+    
     @user      = @vehicle.user
-    @booked    = Appointment.where("vehicle_id = ? AND user_id = ?", 
+    @booked    = Appointment.where("vehicle_id = ? AND buyer_id = ?", 
                                    @vehicle.id, 
                                    current_user.id).present? if current_user
                                    
@@ -99,9 +102,8 @@ class VehiclesController < ApplicationController
     
     if params[:search].present?
       @title    = params[:search]
-      @vehicles = Vehicle.search(params[:search], 
-                                 page: params[:page], 
-                                 per_page: 10)
+      @vehicles = Vehicle.search params[:search], 
+                                 page: params[:page], per_page: 10
                                  
     else
       @title    = 'All Vehicles'

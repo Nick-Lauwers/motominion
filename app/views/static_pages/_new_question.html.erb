@@ -1,0 +1,42 @@
+<!--completed-->
+
+<%= link_to questions_path, class: "new-question-link" do %>
+   
+  <li id="new-question-item-<%= question.id %>" class="new-question-item">           
+    <table class="new-question-item-content">
+      <tr>
+        
+        <td>
+          <div class="new-question-avatar">
+            <%= image_tag question.user.avatar.url %>
+          </div>
+        </td>
+        
+        <td>
+          <p class="new-question-name"><%= question.user.name %></p>
+        </td>
+        
+        <td class="conversation-content-container">
+          <p class="conversation-content">
+            <%= question.content %>
+          </p>
+        </td>
+        
+        <td>
+            <p class="conversation-date">
+              <%= time_ago_in_words(question.created_at).capitalize %> ago
+            </p>
+        </td>
+      </tr>
+    </table>
+  </li>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    var newQuestionAvatar = $('.new-question-avatar');
+    
+    newQuestionAvatar.imagefill();
+  })
+</script>

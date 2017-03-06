@@ -1,8 +1,9 @@
 <li id="reply-item-<%= reply.id %>" class="reply-item">
   
-  <%= link_to (image_tag reply.user.avatar.url), 
-              reply.user, 
-              class: "reply-avatar" %>
+  <div class="reply-avatar">
+    <%= link_to (image_tag reply.user.avatar.url), 
+                reply.user %>
+  </div>
   
   <div class="reply-details">
     

@@ -25,40 +25,159 @@
     <div class="row">
       
       <div class="col-xs-4 messages-info">
-
-        <%= image_tag(@other.avatar.url, class: "messages-info-avatar") %>
-
-        <h1 class="messages-info-username"><%= @other.name %></h1>
         
-        <% if @other.residence.present? %>
-          <span class="messages-info-city">
-            <%= @other.residence %>
-          </span>
-        <% end %>
-      
-        <% if @other.phone_number.present? %>
-          <%= link_to @other.phone_number.phony_formatted(spaces: '-'), 
-                      '#', 
-                      class: "messages-info-phone" %>
-        <% end %>
-
-        <% if @other.description.present? %>
-        
-          <p class="messages-info-description">
-            <%= @other.description %>
-          </p>
+        <div class="messages-info-recipient">
           
-          <span class="messages-info-expand">+ More</span>
+          <div class="recipient-avatar">
+            <%= link_to (image_tag @other.avatar.url), 
+                         user_path(@other) %>
+          </div>
+          
+          <div class='recipient-username'>
+            <%= link_to @other.name,
+                        user_path(@other) %>
+          </div>
+          
+          <% if @other.residence.present? %>
+            <span class="recipient-city">
+              <%= @other.residence %>
+            </span>
+          <% end %>
+        
+          <% if @other.phone_number.present? %>
+            <%= link_to @other.phone_number.phony_formatted(spaces: '-'), 
+                        '#', 
+                        class: "recipient-phone" %>
+          <% end %>
+  
+          <% if @other.description.present? %>
+          
+            <p class="recipient-description">
+              <%= @other.description %>
+            </p>
+            
+            <span class="recipient-expand">+ More</span>
+          <% end %>
+        </div>
+        
+        <% if @conversation.appointments.exists? %>
+          <div class="messages-info-requests">
+            
+            <% if @conversation.appointments.where(
+                    buyer_id: @other.id
+                  ).exists? %>
+              
+              <div class="requests-received">
+                    
+                <h2 class="requests-title">
+                  Requests Received
+                  (<%= @conversation.appointments.where(
+                         buyer_id: @other.id
+                       ).count %>)
+                </h2>
+                
+                <ol class="requests-list">
+                  <% @conversation.appointments.where(
+                       buyer_id: @other.id
+                     ).each do |appointment| %>
+                     
+                    <li id="request-item-<%= appointment.id %>" 
+                        class="request-item">
+                      <table class="request-item-content">
+                        <tr>
+                          
+                          <td class="request-item-detail">
+                            
+                            <%= link_to appointment.vehicle.listing_name,
+                                        appointment.vehicle, 
+                                        class: "request-item-vehicle" %>
+                            
+                            <span class="request-item-date">
+                              <%= appointment.date.strftime(
+                                    "%A, %d %b (%-l:%M%p)"
+                                  ) %>
+                            </span>
+                          </td>
+                          
+                          <td class="request-item-status-container">
+                            <span class="request-item-status">
+                              <%= appointment.status.capitalize %>
+                            </span>
+                          </td>
+                        </tr>
+                      </table>  
+                    </li>
+                  <% end %>
+                </ol>
+              </div>
+            <% end %>
+          
+            <% if @conversation.appointments.where(
+                    buyer_id: current_user.id
+                  ).exists? %>
+              
+              <div class="requests-sent">
+                    
+                <h2 class="requests-title">
+                  Requests Sent
+                  (<%= @conversation.appointments.where(
+                         buyer_id: current_user.id
+                       ).count %>)
+                </h2>
+                
+                <ol class="requests-list">
+                  <% @conversation.appointments.where(
+                       buyer_id: current_user.id
+                     ).each do |appointment| %>
+                     
+                    <li id="request-item-<%= appointment.id %>" 
+                        class="request-item">
+                      <table class="request-item-content">
+                        <tr>
+                          
+                          <td class="request-item-detail">
+                            
+                            <%= link_to appointment.vehicle.listing_name,
+                                        appointment.vehicle, 
+                                        class: "request-item-vehicle" %>
+                            
+                            <span class="request-item-date">
+                              <%= appointment.date.strftime(
+                                    "%A, %d %b (%-l:%M%p)"
+                                  ) %>
+                            </span>
+                          </td>
+                          
+                          <td class="request-item-status-container">
+                            <span class="request-item-status">
+                              <%= appointment.status.capitalize %>
+                            </span>
+                          </td>
+                        </tr>
+                      </table>  
+                    </li>
+                  <% end %>
+                </ol>
+              </div>
+            <% end %>
+          </div>
         <% end %>
       </div>
       
       <div class="col-xs-8">
 
-        <% if @conversation.appointments.exists?(status: 'pending') %>
+        <% if @conversation.appointments.exists?(
+                status: 'pending', seller_id: current_user.id
+              ) %>
           <div class="test-drive-response">
             
             <h1 class="test-drive-response-title">
-              Respond to <%= @other.name %>'s request
+              Respond to <%= @other.name %>'s 
+              <%= pluralize_without_count(
+                    @conversation.appointments.where(
+                      status: 'pending', seller_id: current_user.id
+                    ).count, "request"
+                  ) %>
             </h1>
             
             <span class="test-drive-response-info">
@@ -66,16 +185,44 @@
               Respond within 24 hours to maintain your response rate
             </span>
             
-            <div class="test-drive-response-buttons">
-              
-              <%= link_to "Accept",
-                          accept_conversation_messages_path, 
-                          class: "btn btn-test-drive-accept" %>
-
-              <%= link_to "Decline",
-                          decline_conversation_messages_path, 
-                          class: "btn btn-test-drive-decline" %>
-            </div>
+            <ol class="test-drive-response-list">
+              <% @conversation.appointments.where(
+                    status: 'pending', seller_id: current_user.id
+                 ).each do |appointment| %>
+                  
+                <li id="response-item-<%= appointment.id %>" 
+                    class="response-item">
+                  <table class="response-item-content">
+                    <tr>
+                      
+                      <td class="response-detail">
+                        
+                        <%= link_to appointment.vehicle.listing_name,
+                                    appointment.vehicle, 
+                                    class: "response-vehicle" %>
+                        
+                        <span class="response-date">
+                          <%= appointment.date.strftime(
+                                "%A, %d %b (%-l:%M%p)"
+                              ) %>
+                        </span>
+                      </td>
+                      
+                      <td class="response-buttons">
+                        
+                        <%= link_to "Accept",
+                                    accept_conversation_messages_path, 
+                                    class: "btn btn-test-drive-accept" %>
+          
+                        <%= link_to "Decline",
+                                    decline_conversation_messages_path, 
+                                    class: "btn btn-test-drive-decline" %>
+                      </td>
+                    </tr>
+                  </table>
+                </li>
+              <% end %>
+            </ol>
           </div>
         <% end %>
         

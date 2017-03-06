@@ -1,8 +1,17 @@
 $(function() {
+  
+  // customer
+  
+    // image scaling
+    
+      var customerAvatar = $('.customer-avatar');
+
+      customerAvatar.imagefill();
 
   // form
 
     // smooth scroll
+    
       var availabilityLink = $('.availability-link');
     
       availabilityLink.click(function(evn) {
@@ -13,6 +22,7 @@ $(function() {
       });
 
     // datetimepicker
+    
       var appointmentTime = $('#appointment-time');
       
       $(function () {

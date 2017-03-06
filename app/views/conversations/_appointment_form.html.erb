@@ -1,0 +1,39 @@
+<!--completed-->
+
+<%= form_for(@conversation) do |f| %>
+
+  <%= f.hidden_field :sender_id,    value: current_user.id if current_user %>
+  
+  <%= f.hidden_field :recipient_id, value: @vehicle.user.id %>
+
+  <%= f.fields_for :appointments, Appointment.new do |ff| %>
+  
+    <a class="availability-link">Click for availability</a>
+  
+    <div class="form-element-secondary form-element-availability">
+        
+      <%= ff.text_field :date, 
+                       placeholder: "Test Drive", 
+                       id: 'appointment-time',
+                       class: 'form-control form-control-secondary' %>
+          
+      <i class="fa fa-calendar-o fa-lg form-icon" 
+         aria-hidden="true"></i>
+         
+      <i class="fa fa-caret-down fa-lg form-caret" 
+         aria-hidden="true"></i>
+    </div>
+    
+    <%= ff.hidden_field :status,     value: "pending" %>
+    
+    <%= ff.hidden_field :seller_id,  value: @vehicle.user.id %>
+    
+    <%= ff.hidden_field :buyer_id,   value: current_user.id if current_user %>
+    
+    <%= ff.hidden_field :vehicle_id, value: @vehicle.id %>
+  <% end %>
+  
+  <%= f.submit "Book!", class: "btn btn-tertiary btn-appointment" %>
+<% end %>
+
+<!--user && conversation-->

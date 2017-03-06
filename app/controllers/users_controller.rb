@@ -38,8 +38,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user    = User.find(params[:id])
-    @reviews = @user.received_reviews
+    @user         = User.find(params[:id])
+    @conversation = Conversation.new
+    @reviews      = @user.received_reviews
   end
   
   private

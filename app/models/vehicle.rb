@@ -5,17 +5,19 @@ class Vehicle < ActiveRecord::Base
   searchkick
   
   belongs_to :user
-  
+
   # has_one :payment
   
-  has_many :appointments,      dependent: :destroy
   has_many :reviews,           dependent: :destroy
   has_many :questions,         dependent: :destroy
   has_many :photos,            dependent: :destroy
   has_many :favorite_vehicles, dependent: :destroy
   
-  has_many :favorited_by, through: :favorite_vehicles, source: :user
-  
+  has_many :appointments, dependent: :destroy
+  has_many :conversations, through: :appointments
+  # has_many :conversations, through: :inquiries
+  has_many :favorited_by,  through: :favorite_vehicles, source: :user
+
   MINIMUM_PHOTOS = 2
 
   validate :on => :save do
@@ -46,6 +48,13 @@ class Vehicle < ActiveRecord::Base
   
   geocoded_by      :address
   after_validation :geocode, if: :address_changed?
+  
+  # Adds user association to search
+  def search_data
+    attributes.merge(
+      user_name: user(&:name)
+    )
+  end
   
   # Computes average rating.
   def average_rating
