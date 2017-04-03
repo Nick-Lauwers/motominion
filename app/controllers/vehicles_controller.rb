@@ -2,12 +2,12 @@
 
 class VehiclesController < ApplicationController
   
-  before_action :logged_in_user, except: [:show, :search]
+  before_action :logged_in_user, except: [:show, :search, :autocomplete]
   before_action :get_vehicle,    only:   [:destroy, :show, :edit, :update, 
-                                          :favorite]
+                                          :favorite, :sold]
   
   def new
-    @vehicle = current_user.vehicles.build
+    @vehicle  = current_user.vehicles.build
     @complete = "13%"
   end
   
@@ -78,9 +78,12 @@ class VehiclesController < ApplicationController
     @conversation = Conversation.new
     
     @user      = @vehicle.user
-    @booked    = Appointment.where("vehicle_id = ? AND buyer_id = ?", 
+    @tested    = Appointment.where("vehicle_id = ? AND buyer_id = ? AND 
+                                    status = ? AND date <= ?", 
                                    @vehicle.id, 
-                                   current_user.id).present? if current_user
+                                   current_user.id,
+                                   "accepted",
+                                   Time.now).present? if current_user
                                    
     @photos    = @vehicle.photos
     
@@ -100,14 +103,22 @@ class VehiclesController < ApplicationController
   
   def search
     
-    if params[:search].present?
-      @title    = params[:search]
-      @vehicles = Vehicle.search params[:search], 
-                                 page: params[:page], per_page: 10
-                                 
+    if params[:vehicle].present?
+      
+      coordinates = Geocoder.coordinates(params[:city])
+      
+      @vehicles   = Vehicle.search params[:vehicle],
+                                  where: { location: { near: {
+                                                            lat: coordinates[0], 
+                                                            lon: coordinates[1]
+                                                              }, 
+                                                        within: "20mi" } },
+                                  page: params[:page], 
+                                  per_page: 10
+
     else
-      @title    = 'All Vehicles'
-      @vehicles = Vehicle.all.paginate(page: params[:page], per_page: 10)
+      @vehicles = Vehicle.near(params[:city], 20).paginate(page: params[:page], 
+                                                          per_page: 10)
     end
     
     @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
@@ -126,9 +137,37 @@ class VehiclesController < ApplicationController
   end
   
   def favorite
-    current_user.favorites << @vehicle
-    flash[:success] = "#{ @vehicle.listing_name } was added to your wishlist!"
+    
+    if current_user.favorite_vehicles.exists?(vehicle_id: @vehicle.id)
+      flash[:failure] = "#{ @vehicle.listing_name } has already been added to 
+                         your wishlist!"
+    
+    else
+      current_user.favorites << @vehicle
+      flash[:success] = "#{ @vehicle.listing_name } was added to your wishlist!"
+    end
+    
     redirect_to :back
+  end
+  
+  def sold
+    
+    if @vehicle.sold_at.present?
+      flash[:failure] = "#{ @vehicle.listing_name } has already been marked as 
+                         sold."
+
+    else
+      @vehicle.update_attribute(:sold_at, Time.now)
+      flash[:success] = "#{ @vehicle.listing_name } has been marked as sold!"
+    end
+    
+    redirect_to :back
+  end
+  
+  def autocomplete
+    render json: Vehicle.search(params[:vehicle], autocomplete: false, limit: 10).map do |vehicle|
+    { listing_name: vehicle.listing_name, city: vehicle.address.city, value: vehicle.id }
+  end
   end
   
   private
@@ -143,7 +182,8 @@ class VehiclesController < ApplicationController
                                       :sunday_availability, :vehicle_condition, 
                                       :body_style, :color, :transmission, 
                                       :fuel_type, :drivetrain, :vin, 
-                                      :listing_name, :address, :year, :price, 
+                                      :listing_name, :street_address, 
+                                      :apartment, :city, :state, :year, :price, 
                                       :mileage, :seating_capacity, :summary, 
                                       :sellers_notes, :is_leather_seats, 
                                       :is_sunroof, :is_navigation_system, 

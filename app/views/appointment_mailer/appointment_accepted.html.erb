@@ -2,11 +2,13 @@
 
 <h1>Test Drive Request Accepted | Dealership.com</h1>
 
-<p>Hi <%= @customer.name %>,</p>
+<p>Hi <%= @buyer.name %>,</p>
 
 <p>
-  Your test drive request for <strong><%= @vehicle.listing_name %></strong> was
-  accepted! Click on the link below to view the details:
+  Your test drive request for <strong><%= @seller.name %></strong>'s 
+  <strong><%= @vehicle.listing_name %></strong> was accepted! Click on the link 
+  below to view the details, or to send <%= @seller.name %> a follow-up message:
 </p>
 
-<%= link_to "Test Drives", test_drives_path %>
+<%= link_to "Test Drive Request", 
+            conversation_messages_path(@conversation) %>

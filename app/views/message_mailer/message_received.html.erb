@@ -1,0 +1,10 @@
+<h1>You Received A Message! | Dealership.com</h1>
+
+<p>Hi <%= @recipient.name %>,</p>
+
+<p>
+  You just received a message from <strong><%= @sender.name %></strong>. 
+  Click on the link below to view the details:
+</p>
+
+<%= link_to "View Message", conversation_messages_path(@conversation) %>

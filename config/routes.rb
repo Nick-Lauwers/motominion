@@ -32,20 +32,33 @@ Rails.application.routes.draw do
     resources :reviews,      only: [:create, :destroy]
     resources :payments,     only: [:new, :create]
     
-    put :favorite, on: :member
+    # put :favorite, on: :member
+    # put :sold,     on: :member
+    
+    member do
+      put :favorite
+      put :sold
+    end
     
     collection do
       get 'search'
+      get :autocomplete
     end
   end
 
   resources :conversations, only: [:index, :create] do
+    
     resources :appointments, only: [:new, :create, :destroy]
+    
     resources :messages, except: [:new, :edit, :show, :update] do
       collection do
         get 'accept'
         get 'decline'
       end
+    end
+    
+    member do
+      put :archive
     end
   end
   

@@ -23,7 +23,9 @@ class StaticPagesController < ApplicationController
     @questions     = Question.where(vehicle: current_user.vehicles, 
                                     read_at: nil)
                                     
-    @test_drives   = Appointment.where(seller_id: current_user.id)
+    @customers     = Appointment.where("seller_id = ? AND date >= ?",
+                                       current_user.id,
+                                       Time.now)
   end
   
   def legal

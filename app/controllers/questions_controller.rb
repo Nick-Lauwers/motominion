@@ -20,6 +20,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build(question_params)
     
     if @question.save
+      QuestionMailer.question_received(@question).deliver_now
       flash[:success] = "Question created!"
       redirect_to @question.vehicle
     else

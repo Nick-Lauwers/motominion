@@ -1,0 +1,12 @@
+<h1>You Received A Reply! | Dealership.com</h1>
+
+<p>Hi <%= @reply.question.user.name %>,</p>
+
+<p>
+  You just received a reply from <strong><%= @reply.user.name %></strong> for 
+  your question about 
+  <strong><%= @reply.question.vehicle.listing_name %></strong>: 
+  <%= @reply.question.content %> Click on the link below to view the details:
+</p>
+
+<%= link_to "View Reply", questions_path %>

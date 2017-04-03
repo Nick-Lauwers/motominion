@@ -65,7 +65,7 @@
             </ol>
           
           <% else %>
-            <p class="empty-list-info dashboard-empty-list-info">
+            <p class="empty-list-info">
               You have not received any questions.
             </p>
           <% end %>
@@ -77,10 +77,9 @@
     
       <h2 class="dashboard-title">Customer Test Drives</h2>
       
-      <% if @test_drives.exists? %>
+      <% if @customers.exists? %>
         <ol class="dashboard-list">
-          <%= render partial:    "test_drive",
-                     collection: @test_drives %>
+          <%= render partial: "customer", collection: @customers %>
         </ol>
       
       <% else %>

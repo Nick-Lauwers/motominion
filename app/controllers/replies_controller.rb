@@ -9,6 +9,7 @@ class RepliesController < ApplicationController
     @reply = current_user.replies.build(reply_params)
     
     if @reply.save
+      ReplyMailer.reply_received(@reply).deliver_now
       flash[:success] = "Reply created!"
       redirect_to @reply.question.vehicle
     else

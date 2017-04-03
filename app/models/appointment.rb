@@ -12,14 +12,14 @@ class Appointment < ActiveRecord::Base
             # :conversation_id,
             presence: true
   
-  validate :date_must_be_in_the_future
+  # validate :date_must_be_in_the_future
   
-  # Returns false if an appointment is scheduled for the past
-  def date_must_be_in_the_future
-    if date.present? && date <= Time.now
-      errors.add(:date, "must be in the future")
-    end
-  end
+  # # Returns false if an appointment is scheduled for the past
+  # def date_must_be_in_the_future
+  #   if date.present? && date <= Time.now
+  #     errors.add(:date, "must be in the future")
+  #   end
+  # end
 end
 
 # ensure that default scope is correct

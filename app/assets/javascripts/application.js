@@ -19,4 +19,5 @@
 //= require bootstrap-datetimepicker
 //= require gmaps/google
 //= require private_pub
+//= require typeahead
 //= require_tree .

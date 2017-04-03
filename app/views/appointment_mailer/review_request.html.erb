@@ -1,0 +1,22 @@
+<h1>Write A Review | Dealership.com</h1>
+
+<p>Hi <%= @appointment.buyer.name %>,</p>
+
+<p>
+  Tell <%= @appointment.vehicle.user.name %> what you loved and what they can do 
+  better.
+</p>
+
+<p>
+  You just completed a test drive with <%= @appointment.vehicle.user.name %>, so 
+  now is the perfect time to write your review.
+</p>
+
+<p>
+  Reviews are an important part of the Dealership.com community. Please take a
+  moment to provide the seller with some helpful feedback; it will only take a
+  few minutes.
+</p>
+
+<%= link_to "Write A Review", 
+            vehicle_path(@appointment.vehicle, anchor: "reviews") %>

@@ -2,9 +2,14 @@
 
 <%= form_for(@conversation) do |f| %>
 
-  <%= f.hidden_field :sender_id,    value: current_user.id if current_user %>
+  <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                 current_user %>
   
-  <%= f.hidden_field :recipient_id, value: @vehicle.user.id %>
+  <%= f.hidden_field :recipient_id,       value: @vehicle.user.id %>
+  
+  <%= f.hidden_field :sender_archived,    value: false %>
+  
+  <%= f.hidden_field :recipient_archived, value: false %>
 
   <%= f.fields_for :appointments, Appointment.new do |ff| %>
   
@@ -13,9 +18,9 @@
     <div class="form-element-secondary form-element-availability">
         
       <%= ff.text_field :date, 
-                       placeholder: "Test Drive", 
-                       id: 'appointment-time',
-                       class: 'form-control form-control-secondary' %>
+                        placeholder: "Test Drive", 
+                        id: 'appointment-time',
+                        class: 'form-control form-control-secondary' %>
           
       <i class="fa fa-calendar-o fa-lg form-icon" 
          aria-hidden="true"></i>

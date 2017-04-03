@@ -5,8 +5,19 @@ class ConversationsController < ApplicationController
   before_action :logged_in_user,  only: [:create]
 
   def index
-    @conversations = Conversation.involving(current_user)
-    @vehicles      = current_user.vehicles
+    
+    @conversations_primary  = Conversation.where(
+      ['sender_id = ? AND sender_archived = ?', current_user.id, false] || 
+      ['recipient_id = ? AND recipient_archived = ?', current_user.id, false]
+    )
+    
+    @conversations_archived = Conversation.where(
+      ['sender_id = ? AND sender_archived = ?', current_user.id, true] || 
+      ['recipient_id = ? AND recipient_archived = ?', current_user.id, true]
+    )
+    
+    # @conversations = Conversation.involving(current_user)
+    # @vehicles      = current_user.vehicles
   end
   
   def create
@@ -58,10 +69,35 @@ class ConversationsController < ApplicationController
     redirect_to conversations_path
   end
   
+  def archive
+    
+    @conversation = Conversation.find(params[:id])
+    
+    if (current_user.id == @conversation.sender_id && 
+        @conversation.sender_archived == false)
+      @conversation.update_attribute(:sender_archived, true)
+      
+    elsif (current_user.id == @conversation.recipient_id && 
+           @conversation.recipient_archived == false)
+      @conversation.update_attribute(:recipient_archived, true)
+      
+    elsif (current_user.id == @conversation.sender_id && 
+           @conversation.sender_archived == true)
+      @conversation.update_attribute(:sender_archived, false)
+      
+    else
+      @conversation.update_attribute(:recipient_archived, false)
+    end
+    
+    redirect_to :back
+  end
+  
   private
   
     def conversation_params
       params.require(:conversation).permit(:sender_id, :recipient_id, 
+                                           :sender_archived, 
+                                           :recipient_archived,
                                            appointments_attributes: 
                                            [:date, :status, :seller_id, 
                                             :buyer_id, :vehicle_id])

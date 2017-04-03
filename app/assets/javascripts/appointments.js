@@ -27,7 +27,9 @@ $(function() {
       
       $(function () {
         appointmentTime.datetimepicker({
-          format: 'YYYY-MM-DD LT'
+          format:            'YYYY-MM-DD LT',
+          minDate:           Date(),
+          widgetPositioning: { horizontal: 'auto', vertical: 'bottom' }
         });
       });
 });

@@ -1,0 +1,7 @@
+Hi <%= @reply.question.user.name %>,
+
+You just received a reply from <%= @reply.user.name %> for your question about 
+<%= @reply.question.vehicle.listing_name %>: <%= @reply.question.content %>
+Click on the link below to view the details:
+
+<%= questions_url %>

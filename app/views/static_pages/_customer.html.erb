@@ -1,0 +1,42 @@
+<li id="dashboard-item-<%= customer.id %>" 
+    class="col-xs-4 dashboard-item">
+  <%= link_to conversation_messages_path(customer.conversation) do %>
+
+    <div class="dashboard-item-content">
+      
+      <div class="dashboard-item-image", 
+           style="background-image: url(
+                   '<%= customer.buyer.avatar.url() %>')">
+        <div class="dashboard-item-message">
+          <i class="fa fa-lg fa-envelope-o dashboard-item-icon" 
+             aria-hidden="true"></i>
+        </div>
+      </div>
+      
+      <div class="dashboard-item-detail">
+        
+        <span class="dashboard-item-countdown">
+          In <%= time_ago_in_words(customer.date).titleize %>
+        </span>
+        
+        <span class="dashboard-item-date">
+          <%= customer.date.strftime("%A, %d %b (%-l:%M%p)") %>
+        </span>
+        
+        <%= link_to customer.buyer.name,
+                    customer.buyer,
+                    class: "dashboard-item-link" %> ·
+        
+        <%= link_to customer.vehicle.listing_name,
+                    customer.vehicle,
+                    class: "dashboard-item-link" %>
+      </div>
+      
+      <div class="dashboard-item-status">
+        <span class="dashboard-item-status-content">
+          <%= customer.status.capitalize %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+</li>

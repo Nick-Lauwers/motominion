@@ -30,7 +30,7 @@ class AppointmentsController < ApplicationController
     @appointment.save
 
     if @appointment.save
-      # AppointmentMailer.appointment_request(@appointment).deliver_now
+      AppointmentMailer.appointment_request(@appointment).deliver_now
       flash[:success] = "Test drive request sent!"
       redirect_to @vehicle
     # else
@@ -44,13 +44,17 @@ class AppointmentsController < ApplicationController
     flash[:success] = "Appointment deleted"
     redirect_to request.referrer
   end
-  
+
   def test_drives
-    @test_drives = Appointment.where(buyer_id: current_user.id)
+    @test_drives = Appointment.where("buyer_id = ? AND date >= ?", 
+                                     current_user.id, 
+                                     Time.now)
   end
   
   def customers
-    @vehicles = current_user.vehicles
+    @customers = Appointment.where("seller_id = ? AND date >= ?",
+                                   current_user.id,
+                                   Time.now)
   end
   
   private

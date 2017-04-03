@@ -19,12 +19,54 @@
         <li class="dropdown">
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-             Inbox <b class="caret"></b>
+            
+            Inbox <b class="caret"></b> 
+            
+            <% if Conversation.where(
+                    next_contributor_id: current_user.id,
+                    latest_message_read: false
+                  ).exists? or
+                                      
+                  Question.where(
+                    vehicle: current_user.vehicles, 
+                    read_at: nil
+                  ).exists? %>
+                                  
+              <div class="notification"></div>
+            <% end %>
           </a>
           
           <ul class="dropdown-menu">
-            <li><%= link_to "Messages",  conversations_path %></li>
-            <li><%= link_to "Questions", questions_path %></li>
+            
+            <li>
+              <%= link_to conversations_path do %>
+                
+                Messages
+                
+                <% if Conversation.where(
+                        next_contributor_id: current_user.id,
+                        latest_message_read: false
+                      ).exists? %>
+                      
+                  <div class="notification"></div>
+                <% end %>
+              <% end %>
+            </li>
+            
+            <li>
+              <%= link_to questions_path do %>
+                
+                Questions
+                
+                <% if Question.where(
+                        vehicle: current_user.vehicles, 
+                        read_at: nil
+                      ).exists? %>
+                      
+                  <div class="notification"></div>
+                <% end %>
+              <% end %>
+            </li>
           </ul>
         </li>
         
@@ -44,12 +86,39 @@
         <li class="dropdown">
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-            <%= current_user.name %><b class="caret"></b>
+            
+            <%= current_user.name %> <b class="caret"></b>
+            
+            <% if Review.where(
+                    reviewed_id: current_user.id, 
+                    read_at: nil
+                  ).exists? %>
+                  
+              <div class="notification"></div>
+            <% end %>
           </a>
           
           <ul class="dropdown-menu">
+            
             <li><%= link_to "Dashboard",    dashboard_path %></li>
+            
             <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+            
+            <li>
+              <%= link_to user_reviews_path(current_user) do %>
+                
+                Reviews
+                
+                <% if Review.where(
+                        reviewed_id: current_user.id, 
+                        read_at: nil
+                      ).exists? %>
+                      
+                  <div class="notification"></div>
+                <% end %>
+              <% end %>
+            </li>
+            
             <li><%= link_to "Log Out",     logout_path, method: "delete" %></li>
           </ul>
         </li>
@@ -83,26 +152,36 @@
 
     <%= form_tag search_vehicles_path, 
                  method: :get, 
-                 class: "search-form-secondary",
-                 role: "search" do %>
+                 class: "search-form-secondary" do %>
                  
       <div class="row search-form-secondary-content">
 
-        <div class="col-xs-9 search-bar-secondary">
+        <div class="col-xs-5 search-bar-secondary">
           
           <i class="fa fa-search fa-lg search-bar-secondary-icon" 
              aria-hidden="true"></i>
              
+          <%= text_field_tag :vehicle, 
+                             params[:vehicle],
+                             placeholder: "What are you looking for?", 
+                             class: "form-control header-form-control" %>
+        </div>
+        
+        <div class="col-xs-5 search-bar-secondary">
+          
+          <i class="fa fa-map-pin fa-lg search-bar-secondary-icon" 
+             aria-hidden="true"></i>
+          
           <i class="fa fa-times fa-lg search-bar-secondary-close" 
              aria-hidden="true"></i>
              
-          <%= text_field_tag :search, 
-              params[:search],
-              placeholder: "Search by vehicle, dealership, or city", 
-              class: "form-control header-form-control" %>
+          <%= text_field_tag :city_secondary, 
+                             params[:city],
+                             placeholder: "Enter city", 
+                             class: "form-control header-form-control" %>
         </div>
           
-        <div class="col-xs-3 search-button-secondary">
+        <div class="col-xs-2 search-button-secondary">
           <%= submit_tag "Search", class: "btn btn-search" %>
         </div>
       </div>

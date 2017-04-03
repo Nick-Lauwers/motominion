@@ -42,17 +42,17 @@
         <ul class="sidenav-list">
           <li>
             <%= link_to test_drives_path, class: "sidenav-active" do %>
-              Test Drives 
-              (<%= @test_drives.count(:conditions => "date < Time.now") %>)
+              Test Drives (<%= @test_drives.count %>)
             <% end %>
           </li>
         </ul>
       </div>
       
       <div class="col-xs-8">
+        
         <% if @test_drives.exists? %>
           <ol class="backend-list">
-            <%= render 'test_drive' %>
+            <%= render partial: "test_drive", collection: @test_drives %>
           </ol>
           
         <% else %>

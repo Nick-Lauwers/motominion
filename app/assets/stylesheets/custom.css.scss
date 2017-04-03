@@ -3,6 +3,8 @@
 @import "bootstrap-slider";
 @import 'bootstrap-datetimepicker';
 
+
+
 /* mixins, variables, etc. */
 
 $transparent:         rgba(0, 0, 0, 0.5);
@@ -31,6 +33,7 @@ $yellow-dark:         #fcce01;
 $failure-text:        #b94a48;
 $failure-background:  #f2dede;
 $failure-border:      #eed3d7;
+$red-ribbon:          #e43;
 
 /* general */
 
@@ -140,7 +143,8 @@ p {
   border-radius: 2px;
 }
 
-.btn-secondary {
+.btn-secondary,
+.bootstrap-datetimepicker-widget button {
   color: white;
   background-color: $blue;
   border: 1px solid $blue;
@@ -153,6 +157,11 @@ p {
     background-color: $gray-light;
     border: 1px solid $gray-light;
   }
+}
+
+.bootstrap-datetimepicker-widget button {
+  line-height: 0;
+  height: 40px;
 }
 
 .btn-tertiary {
@@ -251,6 +260,7 @@ p {
   cursor: pointer;
   position: absolute;
   top: 50%;
+  z-index: 4000;
   transform: translateY(-50%);
 }
 
@@ -433,17 +443,6 @@ label {
   margin: 0 0 1.7em;
 }
 
-.search-form-control {
-  font-size: 1.1em;
-  color: $gray-darker;
-  border: none;
-  border-radius: 0;
-  height: 50px;
-  &::-webkit-input-placeholder { 
-    color: $gray-light;
-  }
-}
-
 .search-sort-form-control {
   font-size: 1em;
   color: $gray-dark;
@@ -568,8 +567,13 @@ label {
   padding: 0 1.1em;
 }
 
-#search {
+#vehicle, 
+#city {
   padding-left: 3.4em;
+}
+
+#city {
+  border-left: 1px solid $gray-light;
 }
 
 select {
@@ -639,6 +643,8 @@ select {
 
 .header-secondary {
   background-color: $gray-darkest;
+  position: relative;
+  z-index: 3000;
   .navbar-nav {
     li a {
     color: $gray-light;
@@ -686,10 +692,20 @@ select {
   font-weight: bold;
 }
 
+.notification {
+  background-color: $green;
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  display: inline-block;
+  vertical-align: top;
+}
+
 .header-icon {
   color: $gray-light;
   cursor: pointer;
   padding: 0.8em 1em;
+  transition: 0.3s;
   &:hover,
   &:focus {
     color: white;
@@ -929,7 +945,7 @@ footer {
 
 .hero-detail {
   text-align: center;
-  width: 50%;
+  width: 55%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -968,6 +984,44 @@ footer {
   top: 50%;
   left: 0.9em;
   transform: translateY(-50%);
+  z-index: 100;
+}
+
+.typeahead {
+  font-size: 1.01em;
+  color: $gray-darker;
+  border: none;
+  border-radius: 0;
+  height: 50px;
+  &::-webkit-input-placeholder { 
+    color: $gray-light;
+  }
+}
+
+.twitter-typeahead {
+  width: 100%;
+}
+
+.tt-hint {
+  padding-left: 3.4em;
+}
+
+.tt-menu {
+  font-size: 1.01em;
+  text-align: left;
+  background-color: white;
+  border-top: 1px solid $gray-border;
+}
+
+.tt-suggestion {
+  line-height: 50px;
+  padding: 0 3.4em;
+}
+
+.tt-suggestion.tt-cursor, 
+.tt-suggestion:hover {
+  background-color: $gray-lightest;
+  padding: 0 3.4em;
 }
 
 .search-button-primary {
@@ -1615,6 +1669,8 @@ ul.pagination {
   background-color: white;
   border: 1px solid $gray-border;
   margin-bottom: 1.7em;
+  position: relative;
+  overflow: hidden;
   &:hover {
     .btn-summary-carousel-left,
     .btn-summary-carousel-right {
@@ -1750,9 +1806,42 @@ ul.pagination {
 
 /* listing */
 
+.ribbon-listing,
+.ribbon-vehicle,
+.ribbon-vehicle-scrolled {
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 50px;
+  letter-spacing: 1px;
+  text-align: center;
+  color: white;
+  background-color: $red-ribbon;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  width: 200px;
+  left: -50px;
+  z-index: 2000;
+  transform: rotate(-45deg);
+}
+
+.ribbon-listing {
+  position: absolute;
+  top: 25px;
+}
+
+.ribbon-vehicle {
+  position: absolute;
+  top: 75px;
+}
+
+.ribbon-vehicle-scrolled {
+  position: fixed;
+  top: 25px;
+}
+
 .hero-listing {
   height: 430px;
   cursor: pointer;
+  position: relative;
 }
 
 .listing-navbar {
@@ -2359,6 +2448,8 @@ ul.pagination {
 .modal {
   background-color: $gray-modal;
   padding: 0 !important;
+  position: fixed;
+  z-index: 3000;
 }
 
 .modal-carousel-container {
@@ -3019,7 +3110,7 @@ ul.pagination {
 }
 
 .tab-content {
-  padding: 4em 12em 0;
+  padding: 4em 0 0;
 }
 
 .tab-pane-list {
@@ -3184,25 +3275,25 @@ ul.pagination {
   overflow: hidden;
 }
 
-.conversation-appointment {
-  font-size: 1.05em;
-  font-weight: bold;
-  text-align: right;
-  color: $red;
-  width: 6em;
-  margin: 0;
-}
-
-// .conversation-delete-link {
-//   font-size: 1em;
+// .conversation-appointment {
+//   font-size: 1.05em;
+//   font-weight: bold;
 //   text-align: right;
-//   color: $gray-dark;
-//   width: 5.5em;
-//   display: inline-block;
-//   &:hover {
-//     text-decoration: underline;
-//   }
+//   color: $red;
+//   width: 6em;
+//   margin: 0;
 // }
+
+.conversation-delete-link {
+  font-size: 1em;
+  text-align: right;
+  color: $gray-dark;
+  width: 5.5em;
+  display: inline-block;
+  &:hover {
+    text-decoration: underline;
+  }
+}
 
 .new-question-name {
   font-size: 1.1em;

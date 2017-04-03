@@ -49,8 +49,7 @@
           
           <li>
             <%= link_to user_reviews_path(current_user) do %>
-              Reviews 
-              (<%= Review.where(reviewed_id: current_user.id).count %>)
+              Reviews (<%= Review.where(reviewed_id: current_user.id).count %>)
             <% end %>
           </li>
         </ul>

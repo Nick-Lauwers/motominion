@@ -43,8 +43,9 @@ class MessagesController < ApplicationController
     @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
     @message  = @conversation.messages.new(message_params)
     @messages = @conversation.messages.order("created_at DESC")
-
+    
     if @message.save
+      MessageMailer.message_received(@message).deliver_now
       @conversation.update_attributes(next_contributor_id: @other.id,
                                       latest_message_read: false)
       @conversation.save
@@ -59,7 +60,8 @@ class MessagesController < ApplicationController
     appointment = @conversation.appointments.where(status: 'pending').first
     appointment.update_attribute(:status, 'accepted')
     @conversation.update_attribute(:next_contributor_id, @other.id)
-    # AppointmentMailer.appointment_accepted(appointment).deliver_now
+    AppointmentMailer.appointment_accepted(appointment).deliver_now
+    ReviewNotifierJob.set(wait_until: appointment.date).perform_later(appointment)
     flash[:success] = "Test drive accepted!"
     redirect_to :back
   end
@@ -69,7 +71,7 @@ class MessagesController < ApplicationController
     appointment = @conversation.appointments.where(status: 'pending').first
     appointment.update_attribute(:status, 'declined')
     @conversation.update_attribute(:next_contributor_id, @other.id)
-    # AppointmentMailer.appointment_declined(appointment).deliver_now
+    AppointmentMailer.appointment_declined(appointment).deliver_now
     flash[:failure] = "Test drive declined."
     redirect_to :back
   end

@@ -373,13 +373,63 @@
                           class: "form-control form-control-primary" %>
         </div>
     
-        <div class="form-group form-group-primary">
+        <!--<div class="form-group form-group-primary">-->
           
-          <%= f.label :address %>
+        <!--  <(perc)= f.label :address %>-->
           
-          <%= f.text_field :address, 
-                           placeholder: "Eg. 3 Lower River Dr., Louisville, KY", 
-                           class: "form-control form-control-primary" %>
+        <!--  <(perc)= f.text_field :address, -->
+        <!--                   placeholder: "Eg. 3 Lower River Dr., Louisville, KY", -->
+        <!--                   class: "form-control form-control-primary" %>-->
+        <!--</div>-->
+        
+        <div class="row">
+          
+          <div class="col-xs-6">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :street_address, "Street Address" %>
+              
+              <%= f.text_field :street_address, 
+                               placeholder: "Eg. 3 Lower River Dr.", 
+                               class: "form-control form-control-primary" %>
+            </div>
+          </div>
+          
+          <div class="col-xs-6">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :apartment, "Apt., Bldg. (Optional)" %>
+              
+              <%= f.text_field :apartment, 
+                               placeholder: "Eg. Building 6", 
+                               class: "form-control form-control-primary" %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-xs-6">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :city %>
+              
+              <%= f.text_field :city, 
+                               placeholder: "Eg. Louisville", 
+                               class: "form-control form-control-primary" %>
+            </div>
+          </div>
+          
+          <div class="col-xs-6">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :state, "State / Province" %>
+              
+              <%= f.text_field :state, 
+                               placeholder: "Eg. KY", 
+                               class: "form-control form-control-primary" %>
+            </div>
+          </div>
         </div>
         
         <div id="photos">

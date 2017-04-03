@@ -10,7 +10,10 @@ class CreateVehicles < ActiveRecord::Migration
       t.string      :drivetrain
       t.string      :vin
       t.string      :listing_name
-      t.string      :address
+      t.string      :street_address
+      t.string      :apartment
+      t.string      :city
+      t.string      :state
       t.string      :monday_availability
       t.string      :tuesday_availability
       t.string      :wednesday_availability

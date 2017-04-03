@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170218210144) do
+ActiveRecord::Schema.define(version: 20170328151143) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
@@ -35,7 +35,25 @@ ActiveRecord::Schema.define(version: 20170218210144) do
     t.integer  "recipient_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.boolean  "sender_archived"
+    t.boolean  "recipient_archived"
   end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
 
   create_table "enquiries", force: :cascade do |t|
     t.string   "name"
@@ -179,6 +197,7 @@ ActiveRecord::Schema.define(version: 20170218210144) do
     t.integer  "vehicle_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.datetime "read_at"
   end
 
   add_index "reviews", ["reviewed_id", "created_at"], name: "index_reviews_on_reviewed_id_and_created_at"
@@ -223,7 +242,10 @@ ActiveRecord::Schema.define(version: 20170218210144) do
     t.string   "drivetrain"
     t.string   "vin"
     t.string   "listing_name"
-    t.string   "address"
+    t.string   "street_address"
+    t.string   "apartment"
+    t.string   "city"
+    t.string   "state"
     t.string   "monday_availability"
     t.string   "tuesday_availability"
     t.string   "wednesday_availability"
@@ -251,6 +273,7 @@ ActiveRecord::Schema.define(version: 20170218210144) do
     t.datetime "updated_at",                  null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.datetime "sold_at"
   end
 
   add_index "vehicles", ["user_id", "created_at"], name: "index_vehicles_on_user_id_and_created_at"

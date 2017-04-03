@@ -21,4 +21,11 @@ class AppointmentMailerPreview < ActionMailer::Preview
     appointment = Appointment.first
     AppointmentMailer.appointment_declined(appointment)
   end
+  
+  # Preview this email at 
+  # http://localhost:3000/rails/mailers/appointment_mailer/review_request
+  def review_request
+    appointment = Appointment.first
+    AppointmentMailer.review_request(appointment)
+  end
 end

@@ -1,6 +1,11 @@
 <!--completed-->
 
 <li id="garage-item-<%= vehicle.id %>" class="vehicle-item">
+  
+  <% if vehicle.sold_at.present? %>
+    <div class="ribbon-listing">SOLD</div>
+  <% end %>
+  
   <div class="row vehicle-item-summary">
 
     <div class="col-xs-4 summary-carousel-container">
@@ -91,6 +96,16 @@
              aria-hidden="true"></i>
              
           Update
+        </span>
+      <% end %>
+      
+      <%= link_to sold_vehicle_path(vehicle), method: :put do %>
+        <span class="summary-detail-link">
+          
+          <i class="fa fa-money summary-detail-link-icon" 
+             aria-hidden="true"></i>
+             
+          Mark As Sold
         </span>
       <% end %>
       

@@ -1,180 +1,182 @@
 <!--completed-->
 <!--are these ordered based on most recent?-->
 
-<% @test_drives.each do |test_drive| %>
+<li id="test-drive-item-<%= test_drive.id %>" class="vehicle-item">
+  <div class="row vehicle-item-summary">
 
-  <% if test_drive.date.future? %>
-
-    <li id="test-drive-item-<%= test_drive.id %>" class="vehicle-item">
-      <div class="row vehicle-item-summary">
-  
-        <div class="col-xs-4 summary-carousel-container">
-          <%= link_to test_drive.vehicle, target: "_blank" do %>
+    <div class="col-xs-4 summary-carousel-container">
+      <%= link_to test_drive.vehicle, target: "_blank" do %>
+      
+        <div id="summary-carousel-<%= test_drive.vehicle.id %>" 
+             class="carousel summary-carousel" 
+             data-interval="false">
           
-            <div id="summary-carousel-<%= test_drive.vehicle.id %>" 
-                 class="carousel summary-carousel" 
-                 data-interval="false">
-              
-              <div class="carousel-inner">
-                
-                <div class="item active">
-                  <img src="<%= test_drive.vehicle.photos[0].image.url() if 
-                                test_drive.vehicle.photos.length > 0 %>">
-                </div>
-                
-                <div class="item">
-                  <img src="<%= test_drive.vehicle.photos[1].image.url() if 
-                                test_drive.vehicle.photos.length > 1 %>">
-                </div>
+          <div class="carousel-inner">
             
-                <div class="item">
-                  <img src="<%= test_drive.vehicle.photos[2].image.url() if 
-                                test_drive.vehicle.photos.length > 2 %>">
-                </div>
-            
-                <div class="item">
-                  <img src="<%= test_drive.vehicle.photos[3].image.url() if 
-                                test_drive.vehicle.photos.length > 3 %>">
-                </div>
-                
-                <div class="item">
-                  <img src="<%= test_drive.vehicle.photos[4].image.url() if 
-                                test_drive.vehicle.photos.length > 4 %>">
-                </div>
-                
-                <div class="item">
-                  <img src="<%= test_drive.vehicle.photos[5].image.url() if 
-                                test_drive.vehicle.photos.length > 5 %>">
-                </div>
-                
-                <div class="item">
-                  <img src="<%= test_drive.vehicle.photos[6].image.url() if 
-                                test_drive.vehicle.photos.length > 6 %>">
-                </div>
-                
-                <div class="item">
-                  <img src="<%= test_drive.vehicle.photos[7].image.url() if 
-                                test_drive.vehicle.photos.length > 7 %>">
-                </div>
-              </div>
+            <div class="item active">
+              <img src="<%= test_drive.vehicle.photos[0].image.url() if 
+                            test_drive.vehicle.photos.length > 0 %>">
             </div>
-          <% end %>
-          
-          <a href="#summary-carousel-<%= test_drive.vehicle.id %>" 
-             data-slide="prev">
-            <i class="fa fa-chevron-left fa-2x btn-summary-carousel-left" 
-               aria-hidden="true"></i>
-          </a>
-          
-          <a href="#summary-carousel-<%= test_drive.vehicle.id %>" 
-             data-slide="next">
-            <i class="fa fa-chevron-right fa-2x btn-summary-carousel-right" 
-               aria-hidden="true"></i>
-          </a>
+            
+            <div class="item">
+              <img src="<%= test_drive.vehicle.photos[1].image.url() if 
+                            test_drive.vehicle.photos.length > 1 %>">
+            </div>
+        
+            <div class="item">
+              <img src="<%= test_drive.vehicle.photos[2].image.url() if 
+                            test_drive.vehicle.photos.length > 2 %>">
+            </div>
+        
+            <div class="item">
+              <img src="<%= test_drive.vehicle.photos[3].image.url() if 
+                            test_drive.vehicle.photos.length > 3 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= test_drive.vehicle.photos[4].image.url() if 
+                            test_drive.vehicle.photos.length > 4 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= test_drive.vehicle.photos[5].image.url() if 
+                            test_drive.vehicle.photos.length > 5 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= test_drive.vehicle.photos[6].image.url() if 
+                            test_drive.vehicle.photos.length > 6 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= test_drive.vehicle.photos[7].image.url() if 
+                            test_drive.vehicle.photos.length > 7 %>">
+            </div>
+          </div>
         </div>
+      <% end %>
       
-        <div class="col-xs-6 summary-detail">
-          
-          <%= link_to test_drive.vehicle, 
-                      class: "summary-detail-content", 
-                      target: "_blank" do %>
-              
-            <p class="summary-detail-title">
-              <%= test_drive.vehicle.listing_name %>
-            </p>
-            
-            <p class="summary-detail-seller">
-              <%= test_drive.vehicle.user.name %> · 
-              <span class="average-rating"></span>
-            </p>
-            
-            <p class="summary-detail-info">
-              <%= test_drive.vehicle.summary %>
-            </p>
-          <% end %>
-          
-          <% if logged_in? && 
-                !current_user.favorite_vehicles.exists?(vehicle_id:
-                                                       test_drive.vehicle_id) %>
+      <a href="#summary-carousel-<%= test_drive.vehicle.id %>" 
+         data-slide="prev">
+        <i class="fa fa-chevron-left fa-2x btn-summary-carousel-left" 
+           aria-hidden="true"></i>
+      </a>
+      
+      <a href="#summary-carousel-<%= test_drive.vehicle.id %>" 
+         data-slide="next">
+        <i class="fa fa-chevron-right fa-2x btn-summary-carousel-right" 
+           aria-hidden="true"></i>
+      </a>
+    </div>
   
-            <%= link_to favorite_vehicle_path(test_drive.vehicle), 
-                        method: :put do %>
-              <span class="summary-detail-link">
-                
-                <i class="fa fa-heart summary-detail-link-icon" 
-                   aria-hidden="true"></i>
-                   
-                Add to Wish List
-              </span>
-            <% end %>
-          <% end %>
-        </div>
-        
-        <div class="col-xs-2 summary-price">
-          <%= link_to test_drive.vehicle, 
-                      class: "summary-price-content", 
-                      target: "_blank" do %>
-              
-            <p class="summary-price-title">$<%= test_drive.vehicle.price %></p>
-            
-            <!--<(perc)= link_to "View", -->
-            <!--            test_drive.vehicle, -->
-            <!--            class: "btn btn-secondary" %>-->
-          <% end %>
-        </div>
-      </div>
+    <div class="col-xs-6 summary-detail">
       
-      <!--<div class="vehicle-item-deal">-->
-      <!--  <(perc)= link_to test_drive.vehicle, -->
-      <!--      class: "vehicle-item-deal-content", -->
-      <!--      target: "_blank" do %>-->
-            
-      <!--    <i class="fa fa-shopping-basket deal-detail-icon" -->
-      <!--       aria-hidden="true"></i>-->
-             
-      <!--    <span class="deal-detail-title">1 Additional Product</span> -->
+      <%= link_to test_drive.vehicle, 
+                  class: "summary-detail-content", 
+                  target: "_blank" do %>
           
-      <!--    <span class="deal-detail-info">Spoiler at reduced cost</span> -->
+        <p class="summary-detail-title">
+          <%= test_drive.vehicle.listing_name %>
+        </p>
+        
+        <p class="summary-detail-seller">
+          <%= test_drive.vehicle.user.name %> · 
+          <span class="average-rating"></span>
+        </p>
+        
+        <p class="summary-detail-info">
+          
+          <!--<(perc)= test_drive.vehicle.summary %>-->
+          
+          <% if test_drive.status == "accepted" %>
+            <%= test_drive.vehicle.address %>
+            
+          <% else %>
+            Address will be revealed when test drive request is accepted.
+          <% end %>
+        </p>
+      <% end %>
+      
+      <!--<(perc) if logged_in? && -->
+      <!--      !current_user.favorite_vehicles.exists?(vehicle_id:-->
+      <!--                                             test_drive.vehicle_id) %>-->
+
+      <!--  <(perc)= link_to favorite_vehicle_path(test_drive.vehicle), -->
+      <!--              method: :put do %>-->
+      <!--    <span class="summary-detail-link">-->
+            
+      <!--      <i class="fa fa-heart summary-detail-link-icon" -->
+      <!--         aria-hidden="true"></i>-->
+               
+      <!--      Add to Wish List-->
+      <!--    </span>-->
       <!--  <(perc) end %>-->
-      <!--</div>-->
-      
-      <div class="vehicle-item-test-drive">
-        <%= link_to conversation_messages_path(test_drive.conversation), 
-                    class: "vehicle-item-test-drive-content" do %>
-        
-          <i class="fa fa-calendar-check-o test-drive-detail-icon" 
-             aria-hidden="true"></i>
-             
-          <span class="test-drive-detail-title">
-            Status: <%= test_drive.status.capitalize %>
-          </span>
-          
-          <div class="test-drive-detail-info">
-            
-            <!--<span class="appointment-detail-primary-info">-->
-            <!--  <= time_ago_in_words(test_drive.date).capitalize %> away-->
-            <!--</span>-->
-                
-            <span class="appointment-detail-primary-info">
-              <%= test_drive.date.strftime("%A, %d %b (%-l:%M%p)") %>
-            </span>
-          </span>
-        <% end %>
-      </div>
-    </li>
+      <!--<(perc) end %>-->
+    </div>
     
-    <script type="text/javascript">
-      $(document).ready(function() {
+    <div class="col-xs-2 summary-price">
+      <%= link_to test_drive.vehicle, 
+                  class: "summary-price-content", 
+                  target: "_blank" do %>
+          
+        <p class="summary-price-title">$<%= test_drive.vehicle.price %></p>
         
-        // rating
-        var averageRating = $('.average-rating');
+        <!--<(perc)= link_to "View", -->
+        <!--            test_drive.vehicle, -->
+        <!--            class: "btn btn-secondary" %>-->
+      <% end %>
+    </div>
+  </div>
+  
+  <!--<div class="vehicle-item-deal">-->
+  <!--  <(perc)= link_to test_drive.vehicle, -->
+  <!--      class: "vehicle-item-deal-content", -->
+  <!--      target: "_blank" do %>-->
         
-        averageRating.raty({
-          path: '/assets',
-          readOnly: true,
-          score: <%= test_drive.vehicle.average_rating %>
-        });
-      });
-    </script>
-  <% end %>
-<% end %>
+  <!--    <i class="fa fa-shopping-basket deal-detail-icon" -->
+  <!--       aria-hidden="true"></i>-->
+         
+  <!--    <span class="deal-detail-title">1 Additional Product</span> -->
+      
+  <!--    <span class="deal-detail-info">Spoiler at reduced cost</span> -->
+  <!--  <(perc) end %>-->
+  <!--</div>-->
+  
+  <div class="vehicle-item-test-drive">
+    <%= link_to conversation_messages_path(test_drive.conversation), 
+                class: "vehicle-item-test-drive-content" do %>
+    
+      <i class="fa fa-calendar-check-o test-drive-detail-icon" 
+         aria-hidden="true"></i>
+         
+      <span class="test-drive-detail-title">
+        Status: <%= test_drive.status.capitalize %>
+      </span>
+      
+      <div class="test-drive-detail-info">
+        
+        <!--<span class="appointment-detail-primary-info">-->
+        <!--  <= time_ago_in_words(test_drive.date).capitalize %> away-->
+        <!--</span>-->
+            
+        <span class="appointment-detail-primary-info">
+          <%= test_drive.date.strftime("%A, %d %b (%-l:%M%p)") %>
+        </span>
+      </span>
+    <% end %>
+  </div>
+</li>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // rating
+    var averageRating = $('.average-rating');
+    
+    averageRating.raty({
+      path: '/assets',
+      readOnly: true,
+      score: <%= test_drive.vehicle.average_rating %>
+    });
+  });
+</script>

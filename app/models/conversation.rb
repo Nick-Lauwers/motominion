@@ -32,6 +32,9 @@ class Conversation < ActiveRecord::Base
   #         sender, recipient, recipient, sender)
   # end
   
+  # validates :sender_id, :recipient_id, :sender_archived, :recipient_archived, 
+  #           presence: true
+  
   validates_uniqueness_of :sender_id, scope: :recipient_id
   
   scope :involving, -> (user) do

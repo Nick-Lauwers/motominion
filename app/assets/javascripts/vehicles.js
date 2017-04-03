@@ -2,6 +2,23 @@ $(function() {
   
   // show
   
+    // fixed-ribbon
+    
+      var ribbonVehicle = $('.ribbon-vehicle')
+      
+      $(window).scroll(function() { 
+        
+        var scrolltop = $(this).scrollTop();
+        
+        if(scrolltop >= 50) {
+          ribbonVehicle.addClass('ribbon-vehicle-scrolled')
+        }
+        
+        else {
+          ribbonVehicle.removeClass('ribbon-vehicle-scrolled')
+        }
+      })
+  
     // fixed listing navbar
     
       var listingNavbar       = $('.listing-navbar');
@@ -9,12 +26,15 @@ $(function() {
       var contactSellerButton = $('.btn-navbar-contact-hidden');
     
       $(window).scroll(function() {
+        
         var scrolltop = $(this).scrollTop();
+        
         if(scrolltop >= 480) {
           listingNavbar.addClass('listing-navbar-scrolled');
           price.addClass('navbar-price-hidden');
           contactSellerButton.addClass('btn-navbar-contact-visible');
         }
+        
         else {
           listingNavbar.removeClass('listing-navbar-scrolled');
           price.removeClass('navbar-price-hidden');
@@ -37,7 +57,8 @@ $(function() {
       var aChildren           = listingNavbarAnchor.children();
       var aArray              = [];
       
-      for (var i=0; i < aChildren.length; i++) {    
+      for (var i=0; i < aChildren.length; i++) { 
+        
         var aChild = aChildren[i];
         var ahref  = $(aChild).attr('href');
         
@@ -45,6 +66,7 @@ $(function() {
       }
     
       $(window).scroll(function(){
+        
         var windowPos     = $(window).scrollTop();
         var windowHeight  = $(window).height();
         var docHeight     = $(document).height();
@@ -85,7 +107,6 @@ $(function() {
       var modalGallery  = $('#modal-gallery');
       var modalAvatar   = $('.modal-avatar');
       var galleryPhoto  = $('.gallery-photo');
-      
       var showInfo      = $('.modal-show-info');
       var modalCarousel = $('#modal-carousel');
       
@@ -121,4 +142,52 @@ $(function() {
           captionContainer.addClass('modal-caption-container-open');
         }
       });
+      
+  // search
+    
+    var vehicleTypeahead = $('#vehicle.typeahead');
+    var cityTypeahead    = $('#city.typeahead');
+  
+    var vehicles = new Bloodhound({
+      
+      datumTokenizer: function(d) {
+        return Bloodhound.tokenizers.whitespace(d.listing_name);
+      },
+      
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      
+      remote: {
+        url: '../vehicles/autocomplete?vehicle=%QUERY',
+        wildcard: '%QUERY'
+      }
+    });
+    
+    var cities = new Bloodhound({
+      
+      datumTokenizer: function(d) {
+        return Bloodhound.tokenizers.whitespace(d.city);
+      },
+      
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      
+      remote: {
+        url: '../vehicles/autocomplete?vehicle=%QUERY',
+        wildcard: '%QUERY'
+      }
+    });
+  
+    vehicles.initialize();
+    cities.initialize();
+    
+    vehicleTypeahead.typeahead(null, {
+      name:       'vehicles',
+      displayKey: 'listing_name',
+      source:     vehicles.ttAdapter()
+    });
+    
+    cityTypeahead.typeahead(null, {
+      name:       'city',
+      displayKey: 'city',
+      source:     cities.ttAdapter()
+    });
 });

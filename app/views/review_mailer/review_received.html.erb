@@ -1,0 +1,11 @@
+<h1>You Received A Review! | Dealership.com</h1>
+
+<p>Hi <%= @review.reviewed.name %>,</p>
+
+<p>
+  You just received a review from <strong><%= @review.reviewer.name %></strong> 
+  for your listing, <strong><%= @review.vehicle.listing_name %></strong>. Click 
+  on the link below to view the details:
+</p>
+
+<%= link_to "See Review", user_reviews_path(@review.reviewed) %>

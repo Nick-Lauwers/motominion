@@ -1,8 +1,9 @@
 <!--completed-->
 
-Hi <%= @customer.name %>,
+Hi <%= @buyer.name %>,
 
-Your test drive request for <%= @vehicle.listing_name %> was accepted! Click on 
-the link below to view the details:
+Your test drive request for <%= @seller.name %>'s <%= @vehicle.listing_name %> 
+was accepted! Click on the link below to view the details, or to send 
+<%= @seller.name %> a follow-up message:
 
-<%= test_drives_url %>
+<%= conversation_messages_url(@conversation) %>

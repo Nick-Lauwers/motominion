@@ -1,0 +1,7 @@
+Hi <%= @review.reviewed.name %>,
+
+You just received a review from <%= @review.reviewer.name %> for your listing, 
+<%= @review.vehicle.listing_name %>. Click on the link below to view the 
+details:
+
+<%= user_reviews_url(@review.reviewed) %>

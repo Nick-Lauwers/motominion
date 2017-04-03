@@ -17,25 +17,34 @@
       
       <div class="col-xs-4">
 
-        <% if logged_in? %>
+        <!--< if logged_in? %>-->
           <%= form_for @conversation, 
                        url: conversations_path(@conversation), 
                        method: :post do |f| %>
                        
-            <%= f.hidden_field :sender_id,    value: current_user.id %>
+            <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                           current_user %>
             
-            <%= f.hidden_field :recipient_id, value: @user.id %>
+            <%= f.hidden_field :recipient_id,       value: @user.id %>
+            
+            <%= f.hidden_field :sender_archived,    value: false %>
+  
+            <%= f.hidden_field :recipient_archived, value: false %>
             
             <%= f.submit "Contact Seller", 
                          class: "btn-header-profile" %>
-          <% end %>
+          <!--< end %>-->
                           
-        <% else %>
-          <%= button_to "Contact Seller", 
-                        login_path, 
-                        class: "btn-header-profile", 
-                        method: :get %>
+        <!--< else %>-->
+        <!--  <= button_to "Contact Seller", -->
+        <!--                login_path, -->
+        <!--                class: "btn-header-profile", -->
+        <!--                method: :get %>-->
         <% end %>
+        
+        <!--<(perc)= button_to conversations_path(@conversation), -->
+        <!--              class:  "btn-header-profile",-->
+        <!--              method: :post %>-->
       </div>
     </div>
   </div>

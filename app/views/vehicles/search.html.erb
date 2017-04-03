@@ -9,11 +9,11 @@
 <div class="search-summary">
   <div class="search-summary-content">
     
-    <h1 class="search-summary-title"><%= @title %></h1>
+    <h1 class="search-summary-title"><%= params[:vehicle]%></h1>
     
     <h2 class="search-summary-info">
-      Select from <%= pluralize(@vehicles.count, "vehicle") %> from across the 
-      Mid-West
+      <%= pluralize(@vehicles.count, "vehicle") %> found near 
+      <%= params[:city] %>
     </h2>
   </div>
 </div>
@@ -116,8 +116,9 @@
   $(document).ready(function() {
   
     // map
+    
       var hoverMarkerIcon = {
-        url: "/assets/map-marker-aqua.png",
+        url:    "/assets/map-marker-aqua.png",
         width:  32,
         height: 32
       };
@@ -125,13 +126,24 @@
       handler = Gmaps.build('Google');
       
       handler.buildMap({
+        
         provider: {
-          disableDefaultUI: true
+          
+          maxZoom:           14,
+          scrollwheel:       false,
+          mapTypeControl:    false,
+          streetViewControl: false,
+          
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.TOP_LEFT
+          }
         },
+        
         internal: {
           id: 'search-map'
         }
       }, function() {
+        
         markers = handler.addMarkers(<%=raw @hash.to_json %>);
         
         _.each(<%=raw @hash.to_json %>, function(json, index) {
@@ -156,8 +168,8 @@
           });
         });
         
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
       });
     
     // filters

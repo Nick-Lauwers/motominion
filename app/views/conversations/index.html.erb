@@ -33,24 +33,15 @@
         <ul class="sidenav-list">
           
           <li>
-            
-            <% conversation_count = 0 %>
-            <% @conversations.each do |conversation| %>
-              <% conversation_count += 1 if (
-                  conversation.messages.exists? || 
-                  conversation.appointments.exists?
-                 ) %>
-            <% end %>
-            
             <%= link_to conversations_path, class: "sidenav-active" do %>
-              Messages (<%= conversation_count %>)
+              Messages
             <% end %>
           </li>
           
           <li>
             <%= link_to questions_path do %>
               Questions
-              (<%= Question.where(vehicle_id: @vehicles).count %>)
+              (<%= Question.where(vehicle_id: current_user.vehicles).count %>)
             <% end %>
           </li>
         </ul>
@@ -58,22 +49,67 @@
       
       <div class="col-xs-8">
         
-        <% if conversation_count != 0 %>
-          <ol class="backend-list">
-            <%= render @conversations %>
-          </ol>
+        <ul class="nav nav-tabs">
           
-        <% else %>
-          <div class="empty-list">
+          <li class="active">
+            <a href="#primary_messages" data-toggle="tab">
+              Primary (<%= @conversations_primary.count %>)
+            </a>
+          </li>
           
-            <i class="fa fa-envelope-o fa-4x empty-list-icon" 
-               aria-hidden="true"></i>
-               
-            <p class="empty-list-info">
-              No messages yet
-            </p>
+          <li>
+            <a href="#archived_messages" data-toggle="tab">
+              Archived (<%= @conversations_archived.count %>)
+            </a>
+          </li>
+        </ul>
+      
+        <div class="tab-content">
+          
+          <div class="tab-pane fade active in" id="primary_messages">
+            
+            <% if @conversations_primary.exists? %>
+              <ol class="backend-list">
+                <%= render partial:    "conversation_primary", 
+                           collection: @conversations_primary, 
+                           as:         :conversation %>              
+              </ol>
+            
+            <% else %>
+              <div class="empty-list">
+              
+                <i class="fa fa-envelope-o fa-4x empty-list-icon" 
+                   aria-hidden="true"></i>
+                   
+                <p class="empty-list-info">
+                  No messages yet
+                </p>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+          
+          <div class="tab-pane fade" id="archived_messages">
+            
+            <% if @conversations_archived.exists? %>
+              <ol class="backend-list">
+                <%= render partial:    "conversation_archived", 
+                           collection: @conversations_archived, 
+                           as:         :conversation %>
+              </ol>
+            
+            <% else %>
+              <div class="empty-list">
+              
+                <i class="fa fa-envelope-o fa-4x empty-list-icon" 
+                   aria-hidden="true"></i>
+                   
+                <p class="empty-list-info">
+                  No messages yet
+                </p>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

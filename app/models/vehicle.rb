@@ -2,8 +2,8 @@
 
 class Vehicle < ActiveRecord::Base
   
-  searchkick
-  
+  searchkick word_start: [:listing_name, :city], locations: [:location]
+
   belongs_to :user
 
   # has_one :payment
@@ -30,8 +30,8 @@ class Vehicle < ActiveRecord::Base
   default_scope -> { order(created_at: :desc) }
   
   validates :vehicle_condition, :body_style, :color, :transmission, :fuel_type, 
-            :drivetrain, :address, :year, :price, :mileage, :seating_capacity,
-            :user_id,                presence: true
+            :drivetrain, :street_address, :city, :state, :year, :price, 
+            :mileage, :seating_capacity, :user_id, presence: true
   validates :listing_name,           presence: true, length: { maximum: 30 }
   validates :summary,                presence: true, length: { maximum: 600 }
   validates :monday_availability,    presence: true, length: { maximum: 30 }
@@ -49,10 +49,28 @@ class Vehicle < ActiveRecord::Base
   geocoded_by      :address
   after_validation :geocode, if: :address_changed?
   
-  # Adds user association to search
+  # Concatenates address fields
+  def address
+    
+    if apartment.present?
+      [street_address, apartment, city, state].compact.join(', ')
+      
+    else
+      [street_address, city, state].compact.join(', ')
+    end
+  end
+  
+  # Returns true if address has been updated
+  def address_changed?
+    street_address_changed? or apartment_changed? or city_changed? or 
+    state_changed?
+  end
+  
+  # Adds location and user association to search
   def search_data
-    attributes.merge(
-      user_name: user(&:name)
+	  attributes.merge(
+	    # user_name: user(&:name),
+	    location: { lat: latitude, lon: longitude }
     )
   end
   

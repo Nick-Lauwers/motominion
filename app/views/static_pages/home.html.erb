@@ -30,20 +30,30 @@
     
     <%= form_tag search_vehicles_path, 
                  method: :get, 
-                 class: "search-form-primary",
-                 role: "search" do %>
+                 class: "search-form-primary" do %>
                  
       <div class="row search-form-primary-content">
         
-        <div class="col-xs-10 search-bar-primary">
+        <div class="col-xs-5 search-bar-primary">
           
           <i class="fa fa-search fa-lg search-bar-primary-icon" 
-            aria-hidden="true"></i>
+             aria-hidden="true"></i>
             
-          <%= text_field_tag :search, 
-              params[:search], 
-              placeholder: "Search by vehicle, dealership, or city", 
-              class: "form-control search-form-control" %>
+          <%= text_field_tag :vehicle, 
+                             params[:vehicle], 
+                             placeholder: "What are you looking for?", 
+                             class: "form-control typeahead" %>
+        </div>
+        
+        <div class="col-xs-5 search-bar-primary">
+          
+          <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
+             aria-hidden="true"></i>
+          
+          <%= text_field_tag :city, 
+                             params[:city], 
+                             placeholder: "Enter city", 
+                             class: "form-control typeahead" %>
         </div>
         
         <div class="col-xs-2 search-button-primary">
@@ -162,16 +172,34 @@
     
     $(window).on('scroll', function() {
         
-        // fixed header
-          var fixedHeader = $('.header-fixed-hidden');
-          var scrolltop   = $(this).scrollTop();
+      // fixed header
+      
+        var fixedHeader = $('.header-fixed-hidden');
+        var scrolltop   = $(this).scrollTop();
+        
+        if(scrolltop >= 315) {
+          fixedHeader.fadeIn(250);
+        }
+        
+        else if(scrolltop <= 310) {
+          fixedHeader.fadeOut(250);
+        }
+    });
+  
+    // disabled search button
+      
+      var cityField    = $('#city');
+      var submitButton = $('input[type="submit"]')
+      
+      submitButton.attr('disabled', true);
+      
+      cityField.keyup(function(){
+        
+        if (cityField.val() !=  "") 
+          submitButton.attr('disabled', false);    
           
-          if(scrolltop >= 315) {
-            fixedHeader.fadeIn(250);
-          }
-          else if(scrolltop <= 310) {
-            fixedHeader.fadeOut(250);
-          }
+        else
+          submitButton.attr('disabled', true);   
       });
   });
 </script>

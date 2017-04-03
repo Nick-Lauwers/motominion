@@ -5,13 +5,15 @@
 <p>Hi <%= @seller.name %>,</p>
 
 <p>
-  You just received a test drive request for 
-  <strong><%= @vehicle.listing_name %></strong>! Click on the link below to view 
-  the details:
+  You just received a test drive request from 
+  <strong><%= @buyer.name %></strong> for your listing,
+  <strong><%= @vehicle.listing_name %></strong>! Click on the link below to 
+  either accept or to decline the request, or to send <%= @buyer.name %> a 
+  private message:
 </p>
 
 <%= link_to "Test Drive Request", 
-            conversation_messages_url(@conversation) %>
+            conversation_messages_path(@conversation) %>
 
 <!--change Dealership.com-->
 <!--test_drives_path should specify which user-->

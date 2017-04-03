@@ -1,0 +1,6 @@
+Hi <%= @recipient.name %>,
+
+You just received a message from <%= @sender.name %>. Click on the link below to 
+view the details:
+
+<%= conversation_messages_url(@conversation) %>

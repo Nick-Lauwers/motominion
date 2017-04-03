@@ -32,19 +32,13 @@
           
           <li>
             <%= link_to vehicles_path do %>
-              Your Listings (<%= @vehicles.count %>)
+              Your Listings (<%= current_user.vehicles.count %>)
             <% end %>
           </li>
           
           <li>
-            
-            <% customer_count = 0 %>
-            <% @vehicles.each do |vehicle| %>
-              <% customer_count += vehicle.appointments.count %>
-            <% end %>
-          
             <%= link_to customers_path, class: "sidenav-active" do %>
-              Customers (<%= customer_count %>)
+              Customers (<%= @customers.count %>)
             <% end %>
           </li>
         </ul>
@@ -52,9 +46,9 @@
       
       <div class="col-xs-8">
         
-        <% if customer_count != 0 %>
+        <% if @customers.exists? %>
           <ol class="backend-list">
-            <%= render 'customer' %>
+            <%= render partial: "customer", collection: @customers %>
           </ol>
         
         <% else %>

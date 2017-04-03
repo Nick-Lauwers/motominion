@@ -44,32 +44,64 @@
           </li>
           
           <li>
-            <%= link_to user_reviews_path, class: "sidenav-active" do %> 
-              Reviews (<%= @reviews.count %>)
+            <%= link_to user_reviews_path, class: "sidenav-active" do %>
+              Reviews (<%= @reviews_about_you.count %>)
             <% end %>
           </li>
         </ul>
       </div>
       
       <div class="col-xs-8">
-        <% if @reviews.exists? %>
-          <ol class="backend-list">
-            <%= render partial:    "backend_review", 
-                       collection: @reviews, 
-                       as:         :review %>
-          </ol>
+        
+        <!--<ul class="nav nav-tabs">-->
           
-        <% else %>
-          <div class="empty-list">
+        <!--  <li class="active">-->
+        <!--    <a href="#reviews_about_you" data-toggle="tab">-->
+        <!--      Reviews About You (<(perc)= @reviews_about_you.count %>)-->
+        <!--    </a>-->
+        <!--  </li>-->
           
-            <i class="fa fa-balance-scale fa-4x empty-list-icon" 
-               aria-hidden="true"></i>
-               
-            <p class="empty-list-info">
-              You have not received any reviews.
-            </p>
+        <!--  <li>-->
+        <!--    <a href="#reviews_by_you" data-toggle="tab">-->
+        <!--      Reviews By You-->
+        <!--    </a>-->
+        <!--  </li>-->
+        <!--</ul>-->
+      
+        <!--<div class="tab-content">-->
+          
+        <!--  <div class="tab-pane fade active in" id="reviews_about_you">-->
+            
+            <% if @reviews_about_you.exists? %>
+              <ol class="backend-list">
+                <%= render partial:    "review_about_you", 
+                           collection: @reviews_about_you, 
+                           as:         :review %>
+              </ol>
+              
+            <% else %>
+              <p class="empty-list-info">
+                You have not received any reviews.
+              </p>
+            <% end %>
           </div>
-        <% end %>
+          
+        <!--  <div class="tab-pane fade" id="reviews_by_you">-->
+            
+        <!--    <(perc) if @reviews_by_you.exists? %>-->
+        <!--      <ol class="backend-list">-->
+        <!--        <(perc)= render partial:    "review_by_you", -->
+        <!--                   collection: @reviews_by_you, -->
+        <!--                   as:         :review %>-->
+        <!--      </ol>-->
+              
+        <!--    <(perc) else %>-->
+        <!--      <p class="empty-list-info">-->
+        <!--        You have not posted any reviews.-->
+        <!--      </p>-->
+        <!--    <(perc) end %>-->
+        <!--  </div>-->
+        <!--</div>-->
       </div>
     </div>
   </div>
