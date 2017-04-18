@@ -1,42 +1,46 @@
-<% @posts.each do |post| %>
+<!--read more... link-->
 
+<li id="forum-item-<%= post.id %>" class="forum-item">
   
-  
-    <li id="post-<%= post.id %>" class="post-item">
-      <div class="row vertical-align post-header">
-        
-        <div class="col-md-2">
-          <div class="post-avatar">
-            <%= link_to profile_path(post.user), method: :get do %>
-              <%= image_tag post.user.profile.avatar.url %>
-            <% end %>
-          </div>
-        </div>
-        
-        <div class="col-md-10">
-          <%= link_to post do %>
-          
-            <h2 class="post-title"><%= post.title %></h2>
-            
-            <span class="post-info">
-              <%= post.user.name %> · 
-              <%= time_ago_in_words(post.created_at) %> ago 
-            </span>
-          <% end %>
-        </div>
+  <div class="row vertical-align forum-item-header">
+    
+    <div class="col-xs-2">
+      <div class="forum-item-avatar">
+        <%= link_to (image_tag post.user.avatar.url),
+                    user_path(post.user) %>
       </div>
+    </div>
+    
+    <div class="col-xs-10">
       
-      <p class="post-content"><%= post.content %></p>
-    </li>
-  
-<% end %>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-
-    // image scaling
-    var avatar = $('.post-avatar');
+      <%= link_to post.title, post, class: "forum-item-title" %>
+      
+      <%= link_to post.user, class: "forum-item-name" do %> 
+        <%= post.user.name %>
+      <% end %>
         
-    avatar.imagefill(); 
-  })
-</script>
+      <span class="forum-item-time">
+        · <%= time_ago_in_words(post.created_at).capitalize %> ago 
+      </span>
+    </div>
+  </div>
+  
+  <p class="forum-item-content"><%= post.content %></p>
+  
+  <%= link_to post do %>
+    <span class="forum-item-expand">Read more...</span> 
+  <% end %>
+  
+  <div class="forum-item-stats">
+    
+    <div class="stats-content">
+      <%= post.get_likes.size %> 
+      <i class="fa fa-thumbs-o-up fa-lg stats-icon" aria-hidden="true"></i>
+    </div>
+
+    <div class="stats-content">
+      <%= post.responses.count %> 
+      <i class="fa fa-comment-o fa-lg stats-icon" aria-hidden="true"></i>
+    </div>
+  </div>
+</li>

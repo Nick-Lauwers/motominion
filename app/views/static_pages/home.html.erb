@@ -62,29 +62,30 @@
       </div>
     <% end %>
     
-    <!--<div class="row popular-searches">-->
+    <div class="row popular-searches">
       
-    <!--  <div class="col-xs-4">-->
-    <!--    <(perc)= link_to '#feed', class: "popular-searches-link" do %>-->
-    <!--      <i class="fa fa-image popular-searches-icon" aria-hidden="true"></i>-->
-    <!--      Photos-->
-    <!--    <(perc) end %>-->
-    <!--  </div>-->
+      <div class="col-xs-4">
+        <%= link_to '#feed', class: "popular-searches-link" do %>
+          <i class="fa fa-image popular-searches-icon" aria-hidden="true"></i>
+          Photos
+        <% end %>
+      </div>
       
-    <!--  <div class="col-xs-4">-->
-    <!--    <(perc)= link_to '#feed', class: "popular-searches-link" do %>-->
-    <!--      <i class="fa fa-users popular-searches-icon" aria-hidden="true"></i>-->
-    <!--      Find Pros-->
-    <!--    <(perc) end %>-->
-    <!--  </div>-->
+      <div class="col-xs-4">
+        <%= link_to posts_path, class: "popular-searches-link" do %>
+          <i class="fa fa-users popular-searches-icon" aria-hidden="true"></i>
+          Community Center
+          <!--Find Pros-->
+        <% end %>
+      </div>
       
-    <!--  <div class="col-xs-4">-->
-    <!--    <(perc)= link_to '#feed', class: "popular-searches-link" do %>-->
-    <!--      <i class="fa fa-tag popular-searches-icon" aria-hidden="true"></i>-->
-    <!--      Products-->
-    <!--    <(perc) end %>-->
-    <!--  </div>-->
-    <!--</div>-->
+      <div class="col-xs-4">
+        <%= link_to '#feed', class: "popular-searches-link" do %>
+          <i class="fa fa-tag popular-searches-icon" aria-hidden="true"></i>
+          Products
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 

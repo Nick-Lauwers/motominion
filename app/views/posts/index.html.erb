@@ -14,27 +14,133 @@
   </h1>
 </div>
 
-<div class="row forum">
-
-  <div class="col-md-8 posts">
-    
-    <!--<(perc) if logged_in? %>-->
-    <!--    <(perc)= render 'form' %>-->
-    <!--<(perc) end %>-->
-    
-    <% if @posts.any? %>
-    
-      <h2 class="posts-tag">Recent Posts</h2>
-      
-      <ol class="posts-list">
-        <%= render 'post' %>
-      </ol>
-      
-      <%= will_paginate @posts %>
-    <% end %>
-  </div>
+<div class="forum">
+  <div class="row">
   
-  <div class="col-md-4">
-    <!--intentionally left empty-->
+    <div class="col-xs-8 forum-feed">
+      
+      <h2 class="forum-feed-title">Community Discussions</h2>
+      
+      <ul class="nav nav-tabs forum-feed-tabs">
+          
+        <li class="active">
+          <a href="#top_posts" data-toggle="tab">
+            Top
+          </a>
+        </li>
+        
+        <li>
+          <a href="#recent_posts" data-toggle="tab">
+            Recent
+          </a>
+        </li>
+        
+        <li>
+          <a href="#unanswered_posts" data-toggle="tab">
+            Unanswered
+          </a>
+        </li>
+      </ul>
+        
+      <div class="tab-content forum-feed-tab-content">
+        
+        <div class="tab-pane fade active in" id="top_posts">
+          
+          <% if @top_posts.any? %>
+            <ol class="tab-pane-list">
+              <%= render @top_posts %>
+            </ol>
+  
+          <% else %>
+            <p class="empty-list-info">
+              No top posts yet
+            </p> 
+          <% end %>
+        </div>
+        
+        <div class="tab-pane fade" id="recent_posts">
+          
+          <% if @recent_posts.any? %>
+            <ol class="tab-pane-list">
+              <%= render @recent_posts %>
+            </ol>
+            
+          <% else %>
+            <p class="empty-list-info">
+              No recent posts
+            </p>
+          <% end %>
+        </div>
+        
+        <div class="tab-pane fade" id="unanswered_posts">
+          
+          <% if @unanswered_posts.any? %>
+            <ol class="tab-pane-list">
+              <%= render @unanswered_posts %>
+            </ol>
+            
+            <!--<= will_paginate @unanswered_posts,-->
+            <!--    previous_label: -->
+            <!--      '<i class="fa fa-arrow-left" aria-hidden="true"></i>', -->
+            <!--    next_label: -->
+            <!--      '<i class="fa fa-arrow-right" aria-hidden="true"></i>',-->
+            <!--    inner_window: 1, -->
+            <!--    outer_window: 0 %>-->
+          
+          <% else %>
+            <p class="empty-list-info">
+              No unanswered posts
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-xs-4">
+      
+      <%= form_tag search_posts_path, 
+                   method: :get, 
+                   class: "search-form-forum" do %>
+                   
+        <div class="search-bar-primary">
+          
+          <i class="fa fa-search fa-lg search-bar-primary-icon" 
+             aria-hidden="true"></i>
+            
+          <%= text_field_tag :post, 
+                             params[:post], 
+                             placeholder: "Search the community", 
+                             class: "form-control typeahead" %>
+                             
+          <%= submit_tag "Search", class: "btn-forum" %>
+        </div>
+      <% end %>
+      
+      <div class="forum-intro">
+        
+        <span class="forum-intro-title">Community Center</span>
+        
+        <p class="forum-intro-info">
+          Connect with vehicle enthusiasts, share stories, ask for advice, and 
+          get updades from the Dealership team.
+        </p>
+        
+        <%= link_to "Start A Conversation", 
+                    new_post_path, 
+                    class: "btn btn-green" %>
+      </div>
+
+      <% if @top_contributors.any? %>
+        <div class="top-contributors">
+        
+          <span class="top-contributors-title">Top Contributors</span>
+          
+          <ol class="top-contributors-list">
+            <%= render partial:    "top_contributor", 
+                       collection: @top_contributors %>
+          </ol>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

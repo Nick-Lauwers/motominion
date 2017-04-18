@@ -1,6 +1,42 @@
-<h1>Edit Reply</h1>
+<% provide(:title, "Edit Response") %>
 
-<%= form_for([@post, @response]) do |f| %>
-  <%= f.text_field :comment %>
-  <%= f.submit %>
-<% end %>
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class="edit-response">
+  
+  <div class="edit-response-nav">
+    
+    <%= link_to "Community Center", 
+                posts_path, 
+                class: "edit-response-nav-link" %>
+  </div>
+  
+  <h1 class="edit-response-title">Edit Response</h1>
+  
+  <%= form_for([@post, @response]) do |f| %>
+  
+    <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
+    
+    <div class="form-group form-group-primary">
+      
+      <%= f.label :comment, "Post a response" %> 
+      
+      <%= f.text_area :comment, 
+                      class: "form-control form-control-primary", 
+                      :rows => 3 %>
+    </div>
+    
+    <div class="row">
+      
+      <div class="col-xs-3">
+        <%= f.submit "Reply", class: "btn btn-new-post" %>
+      </div>
+      
+      <div class="col-xs-9">
+        <!--intentionally left blank-->
+      </div>
+    </div>
+  <% end %>
+</div>

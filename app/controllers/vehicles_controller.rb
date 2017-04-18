@@ -108,17 +108,17 @@ class VehiclesController < ApplicationController
       coordinates = Geocoder.coordinates(params[:city])
       
       @vehicles   = Vehicle.search params[:vehicle],
-                                  where: { location: { near: {
+                                   where: { location: { near: {
                                                             lat: coordinates[0], 
                                                             lon: coordinates[1]
                                                               }, 
                                                         within: "20mi" } },
-                                  page: params[:page], 
-                                  per_page: 10
+                                   page: params[:page], 
+                                   per_page: 10
 
     else
       @vehicles = Vehicle.near(params[:city], 20).paginate(page: params[:page], 
-                                                          per_page: 10)
+                                                           per_page: 10)
     end
     
     @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
@@ -166,10 +166,10 @@ class VehiclesController < ApplicationController
   
   def autocomplete
     render json: Vehicle.search(params[:vehicle], autocomplete: false, limit: 10).map do |vehicle|
-    { listing_name: vehicle.listing_name, city: vehicle.address.city, value: vehicle.id }
+      { listing_name: vehicle.listing_name, city: vehicle.address.city, value: vehicle.id }
+    end
   end
-  end
-  
+
   private
   
     def vehicle_params

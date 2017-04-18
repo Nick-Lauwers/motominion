@@ -1,7 +1,37 @@
-<div class="response">
-  <p><%= response.comment %></p>
-  <p><%= response.user.email %></p>
+<li id="response-item-<% response.id %>" class="response-item-second">
+  <div class="row vertical-align response-header">
+    
+    <div class="col-xs-2">
+      <div class="response-avatar">
+        <%= link_to (image_tag response.user.avatar.url),
+                    user_path(response.user) %>
+      </div>
+    </div>
+    
+    <div class="col-xs-10">
+      <%= link_to response.user, class: "response-title-second" do %> 
+        <%= response.user.name %>
+      <% end %>
+        
+      <span class="response-stats">
+        <%= time_ago_in_words(response.created_at).capitalize %> ago |
+        
+        <% if logged_in? && response.user == current_user %>
+        
+          <div class="response-edit">
+                
+            <%= link_to "Edit", 
+                        edit_post_response_path(response.post, response) %>
+          
+            <%= link_to "Delete", 
+                        [response.post, response], 
+                        method: :delete, 
+                        data: { confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+      </span>
+    </div>
+  </div>
   
-  <%= link_to "Edit", edit_post_response_path(response.post, response) %>
-  <%= link_to "Delete", [response.post, response], method: :delete, data: { confirm: "Are you sure?" } %>
-</div>
+  <p class="post-content"><%= response.comment %></p>
+</li>

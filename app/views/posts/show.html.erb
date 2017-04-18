@@ -1,18 +1,164 @@
-<h1><%= @post.title %></h1>
+<% provide(:title, @post.title) %>
 
-<p><%= @post.content %></p>
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
 
-<div id="responses">
+<div class="post">
   
-  <h2><%= @post.responses.count %></h2>
-  <%= render @post.responses %>
+  <div class="post-nav">
+    <%= link_to "Community Center", posts_path, class: "post-nav-link" %>
+  </div>
   
-  <% if logged_in? %>
-    <h3>Reply to Thread</h3>
-    <%= render 'responses/form' %>
-  <% end %>
+  <div class="row">
+    
+    <div class="col-xs-8 post-details">
+      
+      <h1 class="post-title"><%= @post.title %></h1>
+      
+      <div class="row vertical-align post-header">
+    
+        <div class="col-xs-2">
+          <div class="post-avatar">
+            <%= link_to (image_tag @post.user.avatar.url),
+                        user_path(@post.user) %>
+          </div>
+        </div>
+        
+        <div class="col-xs-10">
+          
+          <%= link_to @post.user, class: "post-name" do %> 
+            <%= @post.user.name %>
+          <% end %>
+            
+          <span>
+            
+            <%= time_ago_in_words(@post.created_at).capitalize %> ago
+            
+            <% if logged_in? && @post.user == current_user %>
+            
+              <span> | </span>
+            
+              <div class="post-edit">
+                
+                <%= link_to "Edit", edit_post_path(@post) %>
+              
+                <%= link_to "Delete", 
+                            post_path(@post), 
+                            method: :delete, 
+                            data: { confirm: "Are you sure?" } %>
+              </div>
+            <% end %>
+          </span>
+        </div>
+      </div>
+      
+      <p class="post-content"><%= @post.content %></p>
+      
+      <% if logged_in? && @post.user == current_user %>
+      
+        <!--<div class="post-edit">-->
+          
+        <!--  <(perc)= link_to "Edit", edit_post_path(@post) %>-->
+          
+        <!--  <(perc)= link_to "Delete", -->
+        <!--              post_path(@post), -->
+        <!--              method: :delete, -->
+        <!--              data: { confirm: "Are you sure?" } %>-->
+        <!--</div>-->
+      <% end %>
+      
+      <div class="post-votes">
+        
+        <div class="vote-count">
+          <%= @post.get_likes.size %>
+        </div>
+        
+        <div class="vote-icon">
+          
+          <% if logged_in? %>
+          
+            <% if current_user.liked? @post %>
+            
+              <%= link_to unlike_post_path(@post), 
+                          method: :get, 
+                          class:  "unlike-post",
+                          remote: true  do %>
+                          
+                <i class="fa fa-thumbs-o-up fa-lg unlike-icon" aria-hidden="true"></i>
+              <% end %>
+                          
+            <% else %>
+            
+              <%= link_to like_post_path(@post), 
+                          method: :get, 
+                          class:  "like-post",
+                          remote: true do %>
+                
+                <i class="fa fa-thumbs-o-up fa-lg like-icon" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          
+          <% else %>
+            <i class="fa fa-thumbs-o-up fa-lg like-icon" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+      
+      <h2 class="responses-title">
+        <%= pluralize(@post.responses.count, "Reply") %>
+      </h2>
+      
+      <div class="responses">
+      
+        <% if @post.responses.exists? %>
+          <ol class="responses-list">
+            <%= render @post.responses %>
+          </ol>
+        <% end %>
+          
+        <% if logged_in? %>
+          <%= render 'responses/form' %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="col-xs-4">
+      
+      <%= form_tag posts_path, 
+                   method: :get, 
+                   class: "search-form-forum" do %>
+                   
+        <div class="search-bar-primary">
+          
+          <i class="fa fa-search fa-lg search-bar-primary-icon" 
+             aria-hidden="true"></i>
+            
+          <%= text_field_tag :post, 
+                             params[:post], 
+                             placeholder: "Search the community", 
+                             class: "form-control typeahead" %>
+                             
+          <%= submit_tag "Search", class: "btn-forum" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
+      
+      
 
-<%= link_to "Edit", edit_post_path(@post) %>
-<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
-<%= link_to "Home", posts_path %>
+      <!--<div id="responses">-->
+    
+      <!--  <h2><(perc)= @post.responses.count %></h2>-->
+      <!--  <(perc)= render @post.responses %>-->
+        
+      <!--  <(perc) if logged_in? %>-->
+      <!--    <h3>Reply to Thread</h3>-->
+      <!--    <(perc)= render 'responses/form' %>-->
+      <!--  <(perc) end %>-->
+      <!--</div>-->
+      
+      <!--<(perc)= link_to "Edit", edit_post_path(@post) %>-->
+      <!--<(perc)= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>-->
+      <!--<(perc)= link_to "Home", posts_path %>-->

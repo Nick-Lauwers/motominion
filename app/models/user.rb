@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   
   attr_accessor :remember_token, :activation_token, :reset_token
   
+  acts_as_voter
+  
   before_save   { email.downcase! }
   before_create :create_activation_digest
   # after_create  :create_profile
@@ -39,7 +41,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
-  validates :residence, :school, :work, length: { maximum: 30 }
+  validates :residence, :school, :work, length: { maximum: 70 }
   
   phony_normalize :phone_number, :default_country_code => 'US'
   validates :phone_number, phony_plausible: true

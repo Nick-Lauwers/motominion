@@ -1,0 +1,25 @@
+<%= link_to user_path(top_contributor), 
+            class: "top-contributor-link" do %>
+
+  <li id="top-contributor-item-<%= top_contributor.id %>" 
+      class="top-contributor-item">
+    
+    <div class="row vertical-align">
+      
+      <div class="col-xs-3">
+          <%= image_tag top_contributor.avatar.url, 
+              class: "top-contributor-avatar" %>
+      </div>
+      
+      <div class="col-xs-9">
+        
+        <span class="top-contributor-name"><%= top_contributor.name %></span>
+        
+        <div class="top-contributor-stats">
+          <%= top_contributor.posts.sum(:cached_votes_up) %> 
+          <i class="fa fa-thumbs-o-up stats-icon" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>

@@ -1,0 +1,73 @@
+<% provide(:title, "Forum Search") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<div class="forum-search">
+  
+  <div class="forum-search-nav">
+    <%= link_to "Community Center", 
+                posts_path, 
+                class: "forum-search-nav-link" %>
+  </div>
+  
+  <div class="row">
+    
+    <div class="col-xs-8">
+      <h1 class="forum-search-title">Results for '<%= params[:post] %>'</h1>
+    </div>
+    
+    <div class="col-xs-4">
+      
+      <%= form_tag search_posts_path, 
+                   method: :get, 
+                   class: "search-form-forum" do %>
+                   
+        <div class="search-bar-primary">
+          
+          <i class="fa fa-search fa-lg search-bar-primary-icon" 
+             aria-hidden="true"></i>
+            
+          <%= text_field_tag :post, 
+                             params[:post], 
+                             placeholder: "Search the community", 
+                             class: "form-control typeahead" %>
+                             
+          <%= submit_tag "Search", class: "btn-forum" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <span class="forum-search-size">
+    <% if @posts.count < 10 %>
+      1 - <%= @posts.count %> of <%= @posts.count %> discussions
+    <% else %>
+      1 - 10 of <%= @posts.count %> discussions
+    <% end %>
+  </span>
+  
+  <% if @posts.any? %>
+    <ol class="forum-search-list">
+      <%= render partial:    "forum_search_item", 
+                 collection: @posts,
+                 as:         :post %>
+    </ol>
+    
+  <% else %>
+    <div class="empty-list">
+      <p class="empty-list-info">
+        Empty search query; Please enter one or more keywords and try again.
+      </p>
+    </div>
+  <% end %>
+  
+  <%= will_paginate @posts, 
+                    previous_label: 
+                      '<i class="fa fa-arrow-left" aria-hidden="true"></i>', 
+                    next_label: 
+                      '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
+                    inner_window: 1, 
+                    outer_window: 0 %>
+</div>

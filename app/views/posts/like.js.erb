@@ -1,0 +1,5 @@
+$('.like-post').bind('ajax:success', function(){
+   $(this).parent().parent().find('.vote-count').html('<%= escape_javascript @post.votes_for.size.to_s %>');
+   $(this).closest('.like-post').hide();
+   $(this).closest('.vote-icon').html(' <%= link_to unlike_post_path(@post), remote: true, method: :get, class: 'unlike-post' do %> <i class="fa fa-thumbs-o-up fa-lg unlike-icon" aria-hidden="true"></i> <% end %>');
+});

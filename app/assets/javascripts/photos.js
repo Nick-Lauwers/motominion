@@ -4,7 +4,7 @@ $(function() {
   
     // image scaling
     
-      var newVehiclePhoto   = $('.new-vehicle-photo')
+      var newVehiclePhoto = $('.new-vehicle-photo')
       
       newVehiclePhoto.imagefill(); 
 });

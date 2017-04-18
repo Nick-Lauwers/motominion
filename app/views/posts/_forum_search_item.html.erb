@@ -1,0 +1,51 @@
+<li id="forum-search-item-<%= post.id %>" class="forum-search-item">
+  
+  <div class="row vertical-align forum-item-header">
+    
+    <div class="col-xs-2">
+      <div class="forum-search-avatar">
+        <%= link_to (image_tag post.user.avatar.url),
+                    user_path(post.user) %>
+      </div>
+    </div>
+    
+    <div class="col-xs-10">
+      
+      <%= link_to post.title, post, class: "forum-item-title" %>
+      
+      <%= link_to post.user, class: "forum-item-name" do %> 
+        <%= post.user.name %>
+      <% end %>
+        
+      <span class="forum-item-time">
+        · <%= time_ago_in_words(post.created_at).capitalize %> ago 
+      </span>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xs-2">
+      <!--intentionally left empty-->
+    </div>
+    
+    <div class="col-xs-10">
+      
+      <p class="forum-item-content"><%= post.content %></p>
+  
+      <%= link_to "Read more...", post, class: "forum-item-expand" %>
+      
+      <div class="forum-item-stats">
+        
+        <div class="stats-content">
+          <%= post.get_likes.size %> 
+          <i class="fa fa-thumbs-o-up fa-lg stats-icon" aria-hidden="true"></i>
+        </div>
+    
+        <div class="stats-content">
+          <%= post.responses.count %> 
+          <i class="fa fa-comment-o fa-lg stats-icon" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

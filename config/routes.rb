@@ -63,7 +63,18 @@ Rails.application.routes.draw do
   end
   
   resources :posts do
+    
     resources :responses
+    
+    member do
+      get :like,   to: "posts#like"
+      get :unlike, to: "posts#unlike"
+    end
+    
+    collection do
+      get 'search'
+      get :autocomplete
+    end
   end
   
   # match "conversations/:id/messages/accept" => "conversations#messages#accept", :as => "conversation_messages_accept_path"
