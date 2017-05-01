@@ -6,11 +6,8 @@
 
 <div class="edit-response">
   
-  <div class="edit-response-nav">
-    
-    <%= link_to "Community Center", 
-                posts_path, 
-                class: "edit-response-nav-link" %>
+  <div class="forum-nav">
+    <%= link_to "Community Center", posts_path, class: "forum-nav-link" %>
   </div>
   
   <h1 class="edit-response-title">Edit Response</h1>
@@ -25,7 +22,7 @@
       
       <%= f.text_area :comment, 
                       class: "form-control form-control-primary", 
-                      :rows => 3 %>
+                      rows: 3 %>
     </div>
     
     <div class="row">

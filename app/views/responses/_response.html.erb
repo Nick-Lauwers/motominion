@@ -1,24 +1,26 @@
-<li id="response-item-<% response.id %>" class="response-item-second">
-  <div class="row vertical-align response-header">
+<li id="post-response-item-<% response.id %>" class="post-response-item">
+  <div class="row vertical-align post-response-header">
     
     <div class="col-xs-2">
-      <div class="response-avatar">
+      <div class="post-response-avatar">
         <%= link_to (image_tag response.user.avatar.url),
                     user_path(response.user) %>
       </div>
     </div>
     
     <div class="col-xs-10">
-      <%= link_to response.user, class: "response-title-second" do %> 
-        <%= response.user.name %>
-      <% end %>
+      
+      <%= link_to response.user.name, 
+                  response.user, 
+                  class: "post-response-title" %> 
         
-      <span class="response-stats">
-        <%= time_ago_in_words(response.created_at).capitalize %> ago |
+      <span class="post-response-stats">
+        
+        <%= time_ago_in_words(response.created_at).capitalize %> ago ·
         
         <% if logged_in? && response.user == current_user %>
         
-          <div class="response-edit">
+          <div class="post-response-edit">
                 
             <%= link_to "Edit", 
                         edit_post_response_path(response.post, response) %>
@@ -33,5 +35,5 @@
     </div>
   </div>
   
-  <p class="post-content"><%= response.comment %></p>
+  <p class="post-response-info"><%= response.comment %></p>
 </li>

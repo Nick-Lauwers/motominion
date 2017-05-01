@@ -11,17 +11,12 @@
 <nav class="secondary-navbar">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      
-      <li><%= link_to "Dashboard", dashboard_path %></li>
-      
-      <li><%= link_to "Inbox", conversations_path %></li>
-      
-      <li><%= link_to "Garage", vehicles_path %></li>
-      
-      <li><%= link_to "Test Drives", test_drives_path %></li>
-      
+      <li><%= link_to "Dashboard",      dashboard_path %></li>
+      <li><%= link_to "Inbox",          conversations_path %></li>
+      <li><%= link_to "Your Garage",    vehicles_path %></li>
+      <li><%= link_to "Showroom", test_drives_path %></li>
       <li>
-        <%= link_to "Profile",     
+        <%= link_to "Profile", 
                     edit_user_path(current_user), 
                     class: "nav-active" %>
       </li>

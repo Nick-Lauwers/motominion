@@ -11,10 +11,9 @@
     <ul class="nav navbar-nav navbar-left">
       <li><%= link_to "Dashboard",   dashboard_path, class: "nav-active" %></li>
       <li><%= link_to "Inbox",       conversations_path %></li>
-      <li><%= link_to "Garage",      vehicles_path %></li>
-      <li><%= link_to "Test Drives", test_drives_path %></li>
-      <li><%= link_to "Profile",     edit_user_path(current_user) %>
-      </li>
+      <li><%= link_to "Your Garage", vehicles_path %></li>
+      <li><%= link_to "Showroom",    test_drives_path %></li>
+      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
     </ul>
   </div>
 </nav>
@@ -26,7 +25,7 @@
       
       <h2 class="dashboard-title">Notifications</h3>
       
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs dashboard-tabs">
         
         <li class="active">
           <a href="#requests_and_inquiries" data-toggle="tab">
@@ -41,12 +40,14 @@
         </li>
       </ul>
       
-      <div class="tab-content">
+      <div class="tab-content dashboard-tab-content">
         
         <div class="tab-pane fade active in" id="requests_and_inquiries">
           <% if @conversations.exists? %>
             <ol class="tab-pane-list">
-              <%= render @conversations %>
+              <%= render partial:    "new_conversation", 
+                         collection: @conversations, 
+                         as:         :conversation %>
             </ol>
           
           <% else %>
@@ -83,18 +84,29 @@
         </ol>
       
       <% else %>
-        <div class="empty-list">
+        <!--<div class="empty-list">-->
             
-          <i class="fa fa-tachometer fa-4x empty-list-icon" 
-             aria-hidden="true"></i>
+        <!--  <i class="fa fa-tachometer fa-4x empty-list-icon" -->
+        <!--     aria-hidden="true"></i>-->
              
           <p class="empty-list-info">
             You have not accepted any test drive requests.
           </p>
-        </div>
+        <!--</div>-->
       <% end %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // image scaling
+    
+      var conversationAvatar = $('.conversation-avatar');
+      
+      conversationAvatar.imagefill(); 
+  })
+</script>
 
 <!--incorporate logged_in into dashboard-->

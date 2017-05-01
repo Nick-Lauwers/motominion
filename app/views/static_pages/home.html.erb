@@ -15,7 +15,7 @@
            autoplay="autoplay" 
            loop="loop" 
            volume="0">
-           <!--poster="/assets/hero-image.jpg"-->
+           poster="/assets/hero-image.jpg"
       <source src="/assets/hero-video.mp4" type="video/mp4">
     </video>
   </div>
@@ -29,23 +29,49 @@
     </h2>
     
     <%= form_tag search_vehicles_path, 
-                 method: :get, 
-                 class: "search-form-primary" do %>
+             method: :get, 
+             class: "search-form-primary" do %>
                  
       <div class="row search-form-primary-content">
         
-        <div class="col-xs-5 search-bar-primary">
+        <div class="col-xs-3 search-bar-primary">
+          
+          <%= collection_select :vehicle, 
+                                :vehicle_make_id,
+                                VehicleMake.all,
+                                :id,
+                                :name,
+                                { include_blank: true,
+                                  prompt: "Select make" },
+                                class: "form-control
+                                        search-select-primary" %>
           
           <i class="fa fa-search fa-lg search-bar-primary-icon" 
              aria-hidden="true"></i>
-            
-          <%= text_field_tag :vehicle, 
-                             params[:vehicle], 
-                             placeholder: "What are you looking for?", 
-                             class: "form-control typeahead" %>
+             
+          <i class="fa fa-caret-down fa-lg form-caret" 
+             aria-hidden="true"></i>
         </div>
         
-        <div class="col-xs-5 search-bar-primary">
+        <div class="col-xs-3 search-bar-primary">
+          
+          <%= grouped_collection_select :vehicle, 
+                                        :vehicle_model_id, 
+                                        VehicleMake.order(:name),
+                                        :vehicle_models,
+                                        :name,
+                                        :id,
+                                        :name,
+                                        { prompt: "Select model",
+                                          include_blank: true }, 
+                                        class: "form-control
+                                                search-select-secondary" %>
+                                                
+          <i class="fa fa-caret-down fa-lg form-caret" 
+             aria-hidden="true"></i>
+        </div>
+        
+        <div class="col-xs-4 search-bar-primary">
           
           <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
              aria-hidden="true"></i>
@@ -53,7 +79,9 @@
           <%= text_field_tag :city, 
                              params[:city], 
                              placeholder: "Enter city", 
-                             class: "form-control typeahead" %>
+                             class: "form-control 
+                                     search-form-control 
+                                     typeahead" %>
         </div>
         
         <div class="col-xs-2 search-button-primary">
@@ -62,30 +90,64 @@
       </div>
     <% end %>
     
-    <div class="row popular-searches">
+    <!--<(perc)= form_tag search_vehicles_path, -->
+    <!--             method: :get, -->
+    <!--             class: "search-form-primary" do %>-->
+                 
+    <!--  <div class="row search-form-primary-content">-->
+        
+    <!--    <div class="col-xs-5 search-bar-primary">-->
+          
+    <!--      <i class="fa fa-search fa-lg search-bar-primary-icon" -->
+    <!--         aria-hidden="true"></i>-->
+            
+    <!--      <(perc)= text_field_tag :vehicle, -->
+    <!--                         params[:vehicle], -->
+    <!--                         placeholder: "What are you looking for?", -->
+    <!--                         class: "form-control typeahead" %>-->
+    <!--    </div>-->
+        
+    <!--    <div class="col-xs-5 search-bar-primary">-->
+          
+    <!--      <i class="fa fa-map-pin fa-lg search-bar-primary-icon" -->
+    <!--         aria-hidden="true"></i>-->
+          
+    <!--      <(perc)= text_field_tag :city, -->
+    <!--                         params[:city], -->
+    <!--                         placeholder: "Enter city", -->
+    <!--                         class: "form-control typeahead" %>-->
+    <!--    </div>-->
+        
+    <!--    <div class="col-xs-2 search-button-primary">-->
+    <!--      <(perc)= submit_tag "Search", class: "btn btn-search" %>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--<(perc) end %>-->
+    
+<!--    <div class="row popular-searches">-->
       
-      <div class="col-xs-4">
-        <%= link_to '#feed', class: "popular-searches-link" do %>
-          <i class="fa fa-image popular-searches-icon" aria-hidden="true"></i>
-          Photos
-        <% end %>
-      </div>
+<!--      <div class="col-xs-4">-->
+<!--        <(perc)= link_to '#feed', class: "popular-searches-link" do %>-->
+<!--          <i class="fa fa-image popular-searches-icon" aria-hidden="true"></i>-->
+<!--          Photos-->
+<!--        <(perc) end %>-->
+<!--      </div>-->
       
-      <div class="col-xs-4">
-        <%= link_to posts_path, class: "popular-searches-link" do %>
-          <i class="fa fa-users popular-searches-icon" aria-hidden="true"></i>
-          Community Center
+<!--      <div class="col-xs-4">-->
+<!--        <(perc)= link_to posts_path, class: "popular-searches-link" do %>-->
+<!--          <i class="fa fa-users popular-searches-icon" aria-hidden="true"></i>-->
+<!--          Community Center-->
           <!--Find Pros-->
-        <% end %>
-      </div>
+<!--        <(perc) end %>-->
+<!--      </div>-->
       
-      <div class="col-xs-4">
-        <%= link_to '#feed', class: "popular-searches-link" do %>
-          <i class="fa fa-tag popular-searches-icon" aria-hidden="true"></i>
-          Products
-        <% end %>
-      </div>
-    </div>
+<!--      <div class="col-xs-4">-->
+<!--        <(perc)= link_to '#feed', class: "popular-searches-link" do %>-->
+<!--          <i class="fa fa-tag popular-searches-icon" aria-hidden="true"></i>-->
+<!--          Products-->
+<!--        <(perc) end %>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>
 
@@ -125,11 +187,31 @@
   <div id="feed">
     <div class="feed-content">
       
+      <!--<ul class="site-map">-->
+        
+      <!--  <li><(perc)= link_to "For You", root_path, class: "site-map-active" %></li>-->
+  
+      <!--  <li>-->
+      <!--    <(perc)= link_to "Vehicles", -->
+      <!--                'vehicles/search?utf8=✓&vehicle%5Bvehicle_make_id%5D=&city=&commit=Search' %>-->
+      <!--  </li>-->
+        
+      <!--  <li><(perc)= link_to "Advice", posts_path %></li>-->
+      <!--</ul>-->
+      
       <h3 class="feed-title">Discover Top Content</h3>
       
-      <ol class="feed-list">
-        <%= render 'feed_items' %>
-      </ol>
+      <div id="feed-items">
+        <%= render partial: "feed_item", collection: @feed_items %>
+      </div>
+      
+      <%= will_paginate @feed_items, 
+                        previous_label: 
+                          '<i class="fa fa-arrow-left" aria-hidden="true"></i>', 
+                        next_label: 
+                          '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
+                        inner_window: 1, 
+                        outer_window: 0 %>
     </div>
   </div>
 <% end %>
@@ -189,18 +271,18 @@
   
     // disabled search button
       
-      var cityField    = $('#city');
-      var submitButton = $('input[type="submit"]')
+      // var cityField    = $('#city');
+      // var submitButton = $('input[type="submit"]')
       
-      submitButton.attr('disabled', true);
+      // submitButton.attr('disabled', true);
       
-      cityField.keyup(function(){
+      // cityField.keyup(function(){
         
-        if (cityField.val() !=  "") 
-          submitButton.attr('disabled', false);    
+      //   if (cityField.val() !=  "") 
+      //     submitButton.attr('disabled', false);    
           
-        else
-          submitButton.attr('disabled', true);   
-      });
+      //   else
+      //     submitButton.attr('disabled', true);   
+      // });
   });
 </script>

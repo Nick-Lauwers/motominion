@@ -391,7 +391,7 @@ label {
 }
 
 .search-form-secondary {
-  width: 47%;
+  width: 60%;
   display: none;
   z-index: 100;
   position: absolute;
@@ -423,13 +423,78 @@ label {
 }
 
 .form-control-primary::-webkit-input-placeholder { 
-  color: $gray-light;
+  color: $gray-light !important;
 }
 
 .form-control-secondary {
   background-color: white !important;
   &::-webkit-input-placeholder { 
       color: $gray-darker;
+  }
+}
+
+.select-primary,
+.select-secondary,
+.search-select-primary,
+.search-select-secondary,
+.header-select-primary,
+.header-select-secondary {
+  font-size: 1.1em;
+  line-height: 2;
+  color: $gray-darker;
+  border-radius: 0;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+  appearance: none;
+  -woz-appearance: none;
+  -webkit-appearance: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.select-primary,
+.select-secondary {
+  border: 1px solid $gray-border;
+  &:focus {
+    border: 1px solid $yellow-dark;
+  }
+}
+
+.select-primary,
+.search-select-primary,
+.header-select-primary {
+  padding-left: 3em;
+}
+
+.select-secondary,
+.search-select-secondary,
+.header-select-secondary {
+  padding-left: 1em;
+}
+
+.search-select-primary,
+.header-select-primary {
+  border: none;
+}
+
+.search-select-secondary,
+.header-select-secondary {
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: 1px solid $gray-border !important;
+}
+
+.search-form-control {
+  font-size: 1.01em;
+  color: $gray-darker;
+  border: none;
+  border-radius: 0;
+  height: 50px;
+  &::-webkit-input-placeholder { 
+    color: $gray-light;
   }
 }
 
@@ -488,18 +553,6 @@ label {
   }
 }
 
-.review-comment-form-control-second {
-  font-size: 1em;
-  line-height: 2;
-  color: $gray-text;
-  border: none;
-  padding: 0;
-  margin: 0;
-  &::-webkit-input-placeholder { 
-    color: $gray-light;
-  }
-}
-
 .message-form-control {
   font-size: 1em;
   line-height: 2;
@@ -532,12 +585,11 @@ label {
   }
 }
 
-.form-element-primary {
-  position: relative;
-  margin-bottom: 0.6em;
+.twitter-typeahead {
+  width: 100%;
 }
 
-.form-element-secondary {
+.form-element {
   position: relative;
 }
 
@@ -594,26 +646,7 @@ label {
 }
 
 #city {
-  border-left: 1px solid $gray-light;
-}
-
-select {
-  font-size: 1.1em;
-  line-height: 2;
-  color: $gray-darker;
-  border: 1px solid $gray-border;
-  border-radius: 0;
-  height: 50px;
-  width: 100%;
-  padding-left: 3em;
-  cursor: pointer;
-  appearance: none;
-  -woz-appearance: none;
-  -webkit-appearance: none;
-  &:focus {
-    outline: none;
-    border: 1px solid $yellow-dark;
-  }
+  border-left: 1px solid $gray-border;
 }
 
 #appointment-time { 
@@ -634,7 +667,7 @@ select {
 .header-fixed-hidden {
   width: 100%;
   position: fixed;
-  z-index: 1000;
+  z-index: 5000;
 }
 
 .header-fixed-hidden {
@@ -761,6 +794,7 @@ select {
   top: 50%;
   left: 0.9em;
   transform: translateY(-50%);
+  z-index: 1000;
 }
 
 .search-bar-secondary-close {
@@ -811,6 +845,7 @@ footer {
 .footer-call-us {
   text-align: center;
   color: white;
+  background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
   background-color: $green;
   padding: 2.5em 0;
 }
@@ -947,7 +982,7 @@ footer {
 /* home */
 
 .hero {
-  height: 515px;
+  height: 500px;
   overflow: hidden;
   position: relative;
 }
@@ -1008,20 +1043,20 @@ footer {
   z-index: 100;
 }
 
-.typeahead {
-  font-size: 1.01em;
-  color: $gray-darker;
-  border: none;
-  border-radius: 0;
-  height: 50px;
-  &::-webkit-input-placeholder { 
-    color: $gray-light;
-  }
-}
+// .typeahead {
+//   font-size: 1.01em;
+//   color: $gray-darker;
+//   border: none;
+//   border-radius: 0;
+//   height: 50px;
+//   &::-webkit-input-placeholder { 
+//     color: $gray-light;
+//   }
+// }
 
-.twitter-typeahead {
-  width: 100%;
-}
+// .twitter-typeahead {
+//   width: 100%;
+// }
 
 .tt-hint {
   padding-left: 3.4em;
@@ -1082,6 +1117,10 @@ footer {
   margin: 0;
 }
 
+.tertiary-navbar {
+  background-color: $gray-lightest !important;
+}
+
 #feed {
   background-color: $gray-lightest;
   border-bottom: 1px solid $gray-border;
@@ -1093,6 +1132,33 @@ footer {
   margin: 0 auto;
 }
 
+.site-map {
+  font-size: 1.15em;
+  font-weight: bold;
+  text-align: left;
+  list-style: none;
+  padding: 0 0 1.5em;
+  li {
+    display: inline;
+    margin-right: 4em;
+    a {
+      color: $gray-dark;
+      padding-bottom: 0.5em;
+      transition: color 0.3s;
+      &:hover,
+      &:focus {
+        text-decoration: none;
+        color: $gray-darker;
+      }
+    }
+  }
+}
+
+.site-map-active {
+  color: $gray-darker;
+  border-bottom: 4px solid $green;
+}
+
 .feed-title {
   font-size: 1.65em;
   font-weight: bold;
@@ -1102,10 +1168,8 @@ footer {
   margin: 0 0 1em
 }
 
-.feed-list {
-  list-style: none;
+#feed-items {
   overflow: auto;
-  padding: 0;
   margin: 0 -15px;
 }
 
@@ -1119,6 +1183,8 @@ footer {
 .feed-item-content {
   background-color: white;
   border: 1px solid $gray-border;
+  overflow: hidden;
+  position: relative;
 }
 
 .feed-item-image {
@@ -1159,7 +1225,7 @@ footer {
     line-height: 1.4;
     text-align: left;
     color: $gray-feed-a;
-    height: 35px;
+    height: 15px;
     overflow: hidden;
     margin: 0;
   }
@@ -1481,6 +1547,7 @@ footer {
 /* search */
 
 .search-summary {
+  background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
   background-color: $green;
   padding-top: 50px;
 }
@@ -2753,7 +2820,6 @@ ul.pagination {
   border-radius: 100px;
   height: 200px;
   width: 200px;
-  position: absolute;
   top: 2px;
   left: 2px;
 }
@@ -2965,6 +3031,8 @@ ul.pagination {
 .wish-list-item-content {
   background-color: white;
   border: 1px solid $gray-border;
+  overflow: auto;
+  position: relative;
 }
 
 .wish-list-item-image {
@@ -3006,7 +3074,7 @@ ul.pagination {
     line-height: 1.4;
     text-align: left;
     color: $gray-feed-a;
-    height: 35px;
+    height: 15px;
     overflow: hidden;
     margin: 0;
   }
@@ -3128,14 +3196,15 @@ ul.pagination {
   }
 }
 
-.dashboard-tabs li a {
+.dashboard-tabs li a,
+.inbox-tabs li a {
   font-size: 13px;
   padding: 18.5px 0 14.5px;
 }
 
-// .tab-content {
-//   padding: 4em 0 0;
-// }
+.dashboard-tab-content {
+  padding: 4em 10em 0;
+}
 
 .tab-pane-list {
   list-style: none;
@@ -3223,7 +3292,6 @@ ul.pagination {
   font-weight: bold;
   color: $red;
 }
-
 
 .conversation-avatar,
 .new-question-avatar,
@@ -3314,8 +3382,11 @@ ul.pagination {
   color: $gray-dark;
   width: 5.5em;
   display: inline-block;
-  &:hover {
+  transition: 0.3s;
+  &:hover,
+  &:focus {
     text-decoration: underline;
+    color: black;
   }
 }
 
@@ -3329,6 +3400,10 @@ ul.pagination {
   padding: 0 3em 0 1em;
   margin: 0;
   overflow: hidden;
+}
+
+.inbox-tab-content {
+  padding-top: 2.5em;
 }
 
 .messages-info {
@@ -3439,6 +3514,10 @@ ul.pagination {
   text-decoration: underline;
   color: $gray-text;
   display: block;
+  &:hover,
+  &:focus {
+    color: $gray-text;
+  }
 }
 
 .request-item-date {
@@ -3538,6 +3617,7 @@ ul.pagination {
 
 .hero-primary,
 .hero-secondary {
+  background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
   background-color: $gray-hero;
 }
 
@@ -3964,7 +4044,7 @@ ul.pagination {
 .basics,
 .details,
 .finalize,
-.get-ready {
+.about-you {
   padding: 3.5em 0 1.5em;
 }
 
@@ -3982,7 +4062,7 @@ ul.pagination {
 .basics-title,
 .details-title,
 .finalize-title,
-.get-ready-title {
+.about-you-title {
   font-size: 1.7em;
   font-weight: bold;
   line-height: 1.3;
@@ -3994,7 +4074,7 @@ ul.pagination {
 .basics-info,
 .details-info,
 .finalize-info,
-.get-ready-info {
+.about-you-info {
   line-height: 2.2;
   text-align: left;
   color: $gray-text;
@@ -4005,12 +4085,14 @@ ul.pagination {
   margin-bottom: 1.8em;
 }
 
-.installed-options-title {
+.installed-options-title,
+.photos-title ,
+.availabilities-title {
   font-size: 0.95em;
   font-weight: bold;
-  line-height: 1.3;
   color: $gray-darker;
-  margin: 0 0 1.2em;
+  margin-bottom: 0.6em;
+  display: block;
 }
 
 .installed-options-list {
@@ -4049,15 +4131,6 @@ ul.pagination {
         background-color: $green;
     }
   }
-}
-
-.photos-title {
-  font-size: 0.95em;
-  font-weight: bold;
-  line-height: 1.3;
-  color: $gray-darker;
-  margin: 0 0 1.2em;
-  display: block;
 }
 
 .photos-button {
@@ -4134,8 +4207,32 @@ ul.pagination {
   border-radius: 4px;
 }
 
+a.add_fields,
+a.remove_fields {
+  font-size: 1em;
+  text-decoration: underline;
+  color: $gray-dark;
+  &:hover,
+  &:focus {
+    color: $gray-dark;
+  }
+}
+
+.links {
+  text-align: center;
+  margin: 1em 0 1.5em;
+}
+
 .submit-vehicle {
   padding-bottom: 3.5em;
+}
+
+.nested-fields {
+  margin-bottom: 0.5em;
+}
+
+.availability-link {
+  text-align: right;
 }
 
 /* forum */
@@ -4166,6 +4263,39 @@ ul.pagination {
 
 .forum-feed-tab-content {
   margin-top: 3.5em;
+}
+
+.search-form-forum {
+  border: 1px solid $gray-border;
+  margin-bottom: 3.5em;
+  position: relative;
+}
+
+.forum-intro,
+.top-contributors {
+  background-color: $gray-lightest;
+  padding: 1.6em;
+  margin-bottom: 3.5em;
+}
+
+.forum-intro-title,
+.top-contributors-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+.forum-intro-info {
+  font-size: 1em;
+  line-height: 1.7;
+  text-align: left;
+  margin: 0.6em 0 1.2em;
+}
+
+.top-contributors-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .forum-item,
@@ -4257,39 +4387,6 @@ ul.pagination {
   margin-left: 0.25em;
 }
 
-.search-form-forum {
-  border: 1px solid $gray-border;
-  margin-bottom: 3.5em;
-  position: relative;
-}
-
-.forum-intro,
-.top-contributors {
-  background-color: $gray-lightest;
-  padding: 1.6em;
-  margin-bottom: 3.5em;
-}
-
-.forum-intro-title,
-.top-contributors-title {
-  font-size: 1.7em;
-  font-weight: bold;
-  line-height: 1.7;
-}
-
-.forum-intro-info {
-  font-size: 1em;
-  line-height: 1.7;
-  text-align: left;
-  margin: 0.6em 0 1.2em;
-}
-
-.top-contributors-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 .top-contributor-link:hover,
 .top-contributor-link:focus {
   text-decoration: none;
@@ -4322,8 +4419,8 @@ ul.pagination {
 }
 
 .post,
-.new-post,
 .forum-search,
+.new-post,
 .edit-post,
 .edit-response {
   max-width: 1008px;
@@ -4331,21 +4428,24 @@ ul.pagination {
   margin: 0 auto;
 }
 
-.post-nav,
-.new-post-nav,
-.forum-search-nav,
-.edit-post-nav,
-.edit-response-nav {
+.post-title,
+.forum-search-title,
+.new-post-title,
+.edit-post-title,
+.edit-response-title {
+  font-size: 2.3em;
+  font-weight: bold;
+  color: $gray-text;
+  margin: 0 0 0.4em;
+}
+
+.forum-nav {
   border-bottom: 1px solid $gray-border;
   padding-bottom: 2.2em;
   margin-bottom: 3.5em;
 }
 
-.post-nav-link,
-.new-post-nav-link,
-.forum-search-nav-link,
-.edit-post-nav-link,
-.edit-response-nav-link {
+.forum-nav-link {
   font-size: 1.15em;
   color: $gray-dark;
   &:hover,
@@ -4354,34 +4454,13 @@ ul.pagination {
   }
 }
 
-.post-title,
-.new-post-title,
-.forum-search-title,
-.edit-post-title,
-.edit-response-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: $gray-text;
-  margin: 0 0 0.4em;
-}
-
-.forum-search-size {
-  font-size: 0.95em;
-  font-weight: bold;
-  line-height: 1.3;
-  color: $gray-darker;
-  margin: 0 0 0.7em;
-}
-
-.forum-search-list {
-  list-style: none;
+.post-content {
   max-width: 750px;
-  padding: 4em 0 0;
   margin: 0 auto;
 }
 
-.forum-search-avatar,
-.post-avatar {
+.post-avatar,
+.forum-search-avatar {
   border-radius: 45px;
   height: 90px;
   width: 90px;
@@ -4389,15 +4468,6 @@ ul.pagination {
   &:hover {
     opacity: 0.4;
   }
-}
-
-.post-details {
-  padding-right: 7em;
-}
-
-.post-header {
-  margin-top: 3.5em;
-  margin-bottom: 1em;
 }
 
 .post-name {
@@ -4416,7 +4486,7 @@ ul.pagination {
 }
 
 .post-edit,
-.response-edit {
+.post-response-edit {
   display: inline-block;
   a {
     text-decoration: underline;
@@ -4424,7 +4494,8 @@ ul.pagination {
   }
 }
 
-.post-content {
+.post-info,
+.post-response-info {
   font-size: 1.1em;
   line-height: 2;
   text-align: left;
@@ -4463,31 +4534,33 @@ ul.pagination {
   }
 }
 
-.responses-title {
+.post-responses-title {
   font-size: 1.5em;
   font-weight: bold;
   color: $gray-text;
   margin: 1.5em 0;
 }
 
-.responses {
-  padding-left: 5em;
+.post-responses {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.responses-list {
+.post-responses-list {
   list-style: none;
   padding: 0;
-}
-
-.response-item-second {
   margin-top: 3em;
 }
 
-.response-header {
+.post-response-item {
+  margin-bottom: 3em;
+}
+
+.post-response-header {
   margin-bottom: 1em;
 }
 
-.response-avatar {
+.post-response-avatar {
   border-radius: 30px;
   height: 60px;
   width: 60px;
@@ -4497,7 +4570,7 @@ ul.pagination {
   }
 }
 
-.response-title-second {
+.post-response-title {
   font-size: 1.2em;
   font-weight: bold;
   color: $gray-text;
@@ -4511,16 +4584,55 @@ ul.pagination {
   }
 }
 
-.response-form {
-  margin-top: 3em;
+.post-response-form-container {
+  background-color: white;
+  border: 1px solid $gray-border;
+  padding: 1.6em;
 }
 
-.response-stats {
+.post-response-form-control {
   font-size: 1em;
+  line-height: 2;
+  color: $gray-text;
+  border: none;
+  padding: 0;
+  margin: 0;
+  &::-webkit-input-placeholder { 
+    color: $gray-light;
+  }
 }
 
-.margin-form {
-  padding-left: 1.5em;
+.post-response-post-container {
+  text-align: right;
+}
+
+.post-response-post {
+  line-height: 2;
+  text-decoration: underline;
+  color: $gray-dark;
+  background-color: white;
+  border: none;
+  padding: 0;  
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
+.forum-search-size {
+  font-size: 0.95em;
+  font-weight: bold;
+  line-height: 1.3;
+  color: $gray-darker;
+  margin: 0 0 4.5em;
+  display: block;
+}
+
+.forum-search-list {
+  list-style: none;
+  max-width: 750px;
+  padding: 0;
+  margin: 0 auto;
 }
 
 /* miscellaneous */
@@ -5012,3 +5124,97 @@ ul.pagination {
 // .form-group-vertical label {
 //   margin-bottom: 1.2em;
 // }
+
+// .sk-folding-cube {
+//   margin: 20px auto;
+//   width: 40px;
+//   height: 40px;
+//   position: relative;
+//   -webkit-transform: rotateZ(45deg);
+//           transform: rotateZ(45deg);
+// }
+
+// .sk-folding-cube .sk-cube {
+//   float: left;
+//   width: 50%;
+//   height: 50%;
+//   position: relative;
+//   -webkit-transform: scale(1.1);
+//       -ms-transform: scale(1.1);
+//           transform: scale(1.1); 
+// }
+// .sk-folding-cube .sk-cube:before {
+//   content: '';
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-color: $green;
+//   -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+//           animation: sk-foldCubeAngle 2.4s infinite linear both;
+//   -webkit-transform-origin: 100% 100%;
+//       -ms-transform-origin: 100% 100%;
+//           transform-origin: 100% 100%;
+// }
+// .sk-folding-cube .sk-cube2 {
+//   -webkit-transform: scale(1.1) rotateZ(90deg);
+//           transform: scale(1.1) rotateZ(90deg);
+// }
+// .sk-folding-cube .sk-cube3 {
+//   -webkit-transform: scale(1.1) rotateZ(180deg);
+//           transform: scale(1.1) rotateZ(180deg);
+// }
+// .sk-folding-cube .sk-cube4 {
+//   -webkit-transform: scale(1.1) rotateZ(270deg);
+//           transform: scale(1.1) rotateZ(270deg);
+// }
+// .sk-folding-cube .sk-cube2:before {
+//   -webkit-animation-delay: 0.3s;
+//           animation-delay: 0.3s;
+// }
+// .sk-folding-cube .sk-cube3:before {
+//   -webkit-animation-delay: 0.6s;
+//           animation-delay: 0.6s; 
+// }
+// .sk-folding-cube .sk-cube4:before {
+//   -webkit-animation-delay: 0.9s;
+//           animation-delay: 0.9s;
+// }
+// @-webkit-keyframes sk-foldCubeAngle {
+//   0%, 10% {
+//     -webkit-transform: perspective(140px) rotateX(-180deg);
+//             transform: perspective(140px) rotateX(-180deg);
+//     opacity: 0; 
+//   } 25%, 75% {
+//     -webkit-transform: perspective(140px) rotateX(0deg);
+//             transform: perspective(140px) rotateX(0deg);
+//     opacity: 1; 
+//   } 90%, 100% {
+//     -webkit-transform: perspective(140px) rotateY(180deg);
+//             transform: perspective(140px) rotateY(180deg);
+//     opacity: 0; 
+//   } 
+// }
+
+// @keyframes sk-foldCubeAngle {
+//   0%, 10% {
+//     -webkit-transform: perspective(140px) rotateX(-180deg);
+//             transform: perspective(140px) rotateX(-180deg);
+//     opacity: 0; 
+//   } 25%, 75% {
+//     -webkit-transform: perspective(140px) rotateX(0deg);
+//             transform: perspective(140px) rotateX(0deg);
+//     opacity: 1; 
+//   } 90%, 100% {
+//     -webkit-transform: perspective(140px) rotateY(180deg);
+//             transform: perspective(140px) rotateY(180deg);
+//     opacity: 0; 
+//   }
+// }
+// <!--<div class="sk-folding-cube">-->
+// <!--  <div class="sk-cube1 sk-cube"></div>-->
+// <!--  <div class="sk-cube2 sk-cube"></div>-->
+// <!--  <div class="sk-cube4 sk-cube"></div>-->
+// <!--  <div class="sk-cube3 sk-cube"></div>-->
+// <!--</div>-->

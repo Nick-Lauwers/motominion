@@ -12,8 +12,10 @@
           
           <%= image_tag photo.image.url(), class: "img_preview" %>
           
-          <%= link_to photo, remote: true, method: :delete, 
-              data: { confirm: "Are you sure?" } do %>
+          <%= link_to photo, 
+                      remote: true, 
+                      method: :delete, 
+                      data: { confirm: "Are you sure?" } do %>
               <i class="fa fa-times fa-lg remove-photo-icon"></i>
           <% end %>
         </div>

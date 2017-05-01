@@ -9,11 +9,28 @@
 <div class="search-summary">
   <div class="search-summary-content">
     
-    <h1 class="search-summary-title"><%= params[:vehicle]%></h1>
+    <h1 class="search-summary-title">
+      
+      <% if params[:vehicle][:vehicle_make_id].present? %>
+      
+        <%= VehicleMake.find_by(id: params[:vehicle][:vehicle_make_id]).name %>
+        <%= VehicleModel.find_by(id: params[:vehicle][:vehicle_make_id]).name %>
+        
+      <% else %>
+        All Makes and Models</h1>
+      <% end %>
+    </h1>
     
     <h2 class="search-summary-info">
-      <%= pluralize(@vehicles.count, "vehicle") %> found near 
-      <%= params[:city] %>
+      
+      <% if params[:city].present? %>
+      
+        <%= pluralize(@vehicles.count, "vehicle") %> found near 
+        <%= params[:city] %>
+
+      <% else %>
+        Enter a city to narrow your search
+      <% end %>
     </h2>
   </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405171506) do
+ActiveRecord::Schema.define(version: 20170424160257) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 20170405171506) do
   add_index "appointments", ["buyer_id", "date"], name: "index_appointments_on_buyer_id_and_date"
   add_index "appointments", ["conversation_id"], name: "index_appointments_on_conversation_id"
   add_index "appointments", ["vehicle_id"], name: "index_appointments_on_vehicle_id"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.string   "day"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.integer  "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "availabilities", ["vehicle_id"], name: "index_availabilities_on_vehicle_id"
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "next_contributor_id"
@@ -235,6 +246,21 @@ ActiveRecord::Schema.define(version: 20170405171506) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
+  create_table "vehicle_makes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vehicle_models", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "vehicle_make_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "vehicle_models", ["vehicle_make_id"], name: "index_vehicle_models_on_vehicle_make_id"
+
   create_table "vehicles", force: :cascade do |t|
     t.string   "vehicle_condition"
     t.string   "body_style"
@@ -248,13 +274,6 @@ ActiveRecord::Schema.define(version: 20170405171506) do
     t.string   "apartment"
     t.string   "city"
     t.string   "state"
-    t.string   "monday_availability"
-    t.string   "tuesday_availability"
-    t.string   "wednesday_availability"
-    t.string   "thursday_availability"
-    t.string   "friday_availability"
-    t.string   "saturday_availability"
-    t.string   "sunday_availability"
     t.integer  "year"
     t.integer  "price"
     t.integer  "mileage"
@@ -271,6 +290,8 @@ ActiveRecord::Schema.define(version: 20170405171506) do
     t.boolean  "is_tow_package"
     t.boolean  "is_autonomy"
     t.integer  "user_id"
+    t.integer  "vehicle_make_id"
+    t.integer  "vehicle_model_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.float    "latitude"
@@ -280,6 +301,8 @@ ActiveRecord::Schema.define(version: 20170405171506) do
 
   add_index "vehicles", ["user_id", "created_at"], name: "index_vehicles_on_user_id_and_created_at"
   add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id"
+  add_index "vehicles", ["vehicle_make_id"], name: "index_vehicles_on_vehicle_make_id"
+  add_index "vehicles", ["vehicle_model_id"], name: "index_vehicles_on_vehicle_model_id"
 
   create_table "votes", force: :cascade do |t|
     t.boolean  "vote_flag"

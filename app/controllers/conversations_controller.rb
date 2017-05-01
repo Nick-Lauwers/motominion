@@ -6,18 +6,21 @@ class ConversationsController < ApplicationController
 
   def index
     
-    @conversations_primary  = Conversation.where(
-      ['sender_id = ? AND sender_archived = ?', current_user.id, false] || 
-      ['recipient_id = ? AND recipient_archived = ?', current_user.id, false]
-    )
-    
-    @conversations_archived = Conversation.where(
-      ['sender_id = ? AND sender_archived = ?', current_user.id, true] || 
-      ['recipient_id = ? AND recipient_archived = ?', current_user.id, true]
-    )
-    
-    # @conversations = Conversation.involving(current_user)
-    # @vehicles      = current_user.vehicles
+    @conversations_primary = 
+      Conversation.includes(:messages).where(
+        ['sender_id = ? AND sender_archived = ?', current_user.id, false]).
+      or(
+        ['recipient_id = ? AND recipient_archived = ?', current_user.id, false]
+      ).
+      where.not(messages: { id: nil })
+
+    @conversations_archived = 
+      Conversation.includes(:messages).where(
+        ['sender_id = ? AND sender_archived = ?', current_user.id, true]).
+      or(
+        ['recipient_id = ? AND recipient_archived = ?', current_user.id, true]
+      ).
+      where.not(messages: { id: nil })
   end
   
   def create
@@ -33,11 +36,20 @@ class ConversationsController < ApplicationController
                       
       if conversation_params[:appointments_attributes].present?
         
-        @conversation.appointments.create(
-          conversation_params[:appointments_attributes].values.first
-        )
-        
         @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
+        
+        appointment = @conversation.appointments.create(
+                        conversation_params[:appointments_attributes].values.first
+                      )
+        
+        @conversation.messages.create!(
+          user:    current_user, 
+          content: "Hi, " + 
+                   @other.name + 
+                   ". I recently noticed your vehicle, " +
+                   appointment.vehicle.listing_name +
+                   ", and am interested in a test drive. Are you available?"
+        )
         
         @conversation.update_attributes(next_contributor_id: @other.id, 
                                         latest_message_read: false)
@@ -47,12 +59,24 @@ class ConversationsController < ApplicationController
       
       @conversation = Conversation.create(conversation_params)
       
-      @conversation.appointments.build
+      if conversation_params[:appointments_attributes].present?
       
-      @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
-      
-      @conversation.update_attributes(next_contributor_id: @other.id, 
-                                      latest_message_read: false)
+        @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
+        
+        appointment = @conversation.appointments.build
+        
+        @conversation.messages.create!(
+          user:    current_user, 
+          content: "Hi, " + 
+                   @other.name + 
+                   ". I recently noticed your vehicle, " +
+                   appointment.vehicle.listing_name +
+                   ", and am interested in a test drive. Are you available?"
+        )
+        
+        @conversation.update_attributes(next_contributor_id: @other.id, 
+                                        latest_message_read: false)
+      end
     end
     
     if conversation_params[:appointments_attributes].present?
@@ -96,6 +120,8 @@ class ConversationsController < ApplicationController
   
     def conversation_params
       params.require(:conversation).permit(:sender_id, :recipient_id, 
+                                           :next_contributor_id, 
+                                           :latest_message_read,
                                            :sender_archived, 
                                            :recipient_archived,
                                            appointments_attributes: 

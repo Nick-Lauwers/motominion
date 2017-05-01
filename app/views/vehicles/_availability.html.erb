@@ -1,0 +1,13 @@
+<div class="col-xs-6">
+  <table class="vehicle-details-table">
+    
+    <tr>
+      
+      <td><%= availability.day %></td>
+      
+      <td>
+        <strong><%= availability.start_time.strftime("%-l:%M%p") %> - <%= availability.end_time.strftime("%-l:%M%p") %></strong>
+      </td>
+    </tr>
+  </table>
+</div>

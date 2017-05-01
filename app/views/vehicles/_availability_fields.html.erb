@@ -1,0 +1,69 @@
+<div class="row vertical-align nested-fields">
+
+  <div class="col-md-4">
+    <div class="form-element">
+      
+      <%= f.select :day,
+                   [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", 
+                     "Friday", "Saturday" ],
+                   { include_blank: true, prompt: "Day" },
+                   class: "form-control select-primary" %>
+      
+      <i class="fa fa-sun-o fa-lg form-icon" 
+         aria-hidden="true"></i>
+               
+      <i class="fa fa-caret-down fa-lg form-caret" 
+         aria-hidden="true"></i>
+    </div>
+  </div>
+  
+  <div class="col-md-2">            
+    <div class="form-element">
+      
+      <%= f.text_field :start_time, 
+                       placeholder: "Start", 
+                       class: "form-control 
+                               form-control-secondary 
+                               availability-start-time" %>
+                               
+      <i class="fa fa-caret-down fa-lg form-caret" 
+         aria-hidden="true"></i>
+    </div>
+  </div>
+  
+  <div class="col-md-2">
+    <div class="form-element">
+      
+      <%= f.text_field :end_time, 
+                       placeholder: "End", 
+                       class: "form-control 
+                               form-control-secondary
+                               availability-end-time" %>
+                               
+      <i class="fa fa-caret-down fa-lg form-caret" 
+         aria-hidden="true"></i>
+    </div>
+  </div>
+  
+  <div class="col-md-4 availability-link">
+    <%= link_to_remove_association "- Remove Availability", f %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // datetimepicker
+    
+      var availabilityStartTime = $('.availability-start-time')
+      var availabilityEndTime   = $('.availability-end-time')
+    
+      availabilityStartTime.datetimepicker({
+        format: 'LT'
+      });
+      
+      availabilityEndTime.datetimepicker({
+        format: 'LT'
+      });
+  });
+</script>

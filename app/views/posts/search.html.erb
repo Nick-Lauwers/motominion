@@ -1,4 +1,4 @@
-<% provide(:title, "Forum Search") %>
+<% provide(:title, params[:post]) %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -6,10 +6,8 @@
 
 <div class="forum-search">
   
-  <div class="forum-search-nav">
-    <%= link_to "Community Center", 
-                posts_path, 
-                class: "forum-search-nav-link" %>
+  <div class="forum-nav">
+    <%= link_to "Community Center", posts_path, class: "forum-nav-link" %>
   </div>
   
   <div class="row">
@@ -24,18 +22,15 @@
                    method: :get, 
                    class: "search-form-forum" do %>
                    
-        <div class="search-bar-primary">
+        <i class="fa fa-search fa-lg search-bar-primary-icon" 
+           aria-hidden="true"></i>
           
-          <i class="fa fa-search fa-lg search-bar-primary-icon" 
-             aria-hidden="true"></i>
-            
-          <%= text_field_tag :post, 
-                             params[:post], 
-                             placeholder: "Search the community", 
-                             class: "form-control typeahead" %>
-                             
-          <%= submit_tag "Search", class: "btn-forum" %>
-        </div>
+        <%= text_field_tag :post, 
+                           params[:post], 
+                           placeholder: "Search the community", 
+                           class: "form-control typeahead" %>
+                           
+        <%= submit_tag "Search", class: "btn-forum" %>
       <% end %>
     </div>
   </div>
@@ -56,11 +51,9 @@
     </ol>
     
   <% else %>
-    <div class="empty-list">
-      <p class="empty-list-info">
-        Empty search query; Please enter one or more keywords and try again.
-      </p>
-    </div>
+    <p class="empty-list-info">
+      Empty search query; Please enter one or more keywords and try again.
+    </p>
   <% end %>
   
   <%= will_paginate @posts, 

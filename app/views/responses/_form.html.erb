@@ -1,11 +1,11 @@
-<%= form_for(([@post, @post.responses.build]), :html => {:class => 'response-form'}) do |f| %>
+<%= form_for([@post, @post.responses.build]) do |f| %>
 
   <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
   
-  <div class="row vertical-align response-header">
+  <div class="row vertical-align post-response-header">
     
     <div class="col-xs-2">
-      <div class="response-avatar">
+      <div class="post-response-avatar">
         <%= link_to (image_tag current_user.avatar.url),
                     user_path(current_user) %>
       </div>
@@ -13,24 +13,24 @@
     
     <div class="col-xs-10">
       
-      <%= link_to current_user, class: "response-title-second" do %> 
+      <%= link_to current_user, class: "post-response-title" do %> 
         <%= current_user.name %>
       <% end %>
       
-      <span class="response-stats">
+      <span class="post-response-stats">
         <%= Time.now.strftime("%D") %>
       </span>
     </div>
   </div>
   
-  <div class="review-container">
+  <div class="post-response-form-container">
     <%= f.text_area :comment,
                     rows: 3,
                     placeholder: "Post a response", 
-                    class: "form-control review-comment-form-control-second" %>
+                    class: "form-control post-response-form-control" %>
                     
-    <div class="review-post-container">
-      <%= f.submit "Post my response", class: "review-post" %>
+    <div class="post-response-post-container">
+      <%= f.submit "Post my response", class: "post-response-post" %>
     </div>
   </div>
 <% end %>

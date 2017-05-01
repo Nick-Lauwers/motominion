@@ -13,8 +13,8 @@
     <ul class="nav navbar-nav navbar-left">
       <li><%= link_to "Dashboard",   dashboard_path %></li>
       <li><%= link_to "Inbox",       conversations_path %></li>
-      <li><%= link_to "Garage",      vehicles_path, class: "nav-active" %></li>
-      <li><%= link_to "Test Drives", test_drives_path %></li>
+      <li><%= link_to "Your Garage", vehicles_path, class: "nav-active" %></li>
+      <li><%= link_to "Showroom",    test_drives_path %></li>
       <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
     </ul>
   </div>
@@ -28,21 +28,23 @@
         <!--<div class="sidenav-instructions">-->
           
           <h2 class="sidenav-title">
-            Garage
+            Your Garage
           </h2>
           
           <ul class="sidenav-list">
             
             <li>
               <%= link_to vehicles_path, class: "sidenav-active" do %>
-                Your Listings (<%= @vehicles.count %>)
+                Listings (<%= @vehicles.count %>)
               <% end %>
             </li>
             
             <li>
               <%= link_to customers_path do %>
-                Customers 
-                (<%= Appointment.where(vehicle_id: @vehicles).count %>)
+                Customers  
+                (<%= Appointment.where("seller_id = ? AND date >= ?",
+                                       current_user.id,
+                                       Time.now).count %>)
               <% end %>
             </li>
           </ul>
@@ -57,26 +59,26 @@
           </ol>
         
         <% else %>
-          <div class="empty-list">
+          <!--<div class="empty-list">-->
           
-            <i class="fa fa-bars fa-4x empty-list-icon" 
-               aria-hidden="true"></i>
+            <!--<i class="fa fa-bars fa-4x empty-list-icon" -->
+            <!--   aria-hidden="true"></i>-->
                
             <p class="empty-list-info">
               No listings posted
             </p>
             
-            <div class="empty-list-button">
-              <%= link_to new_vehicle_path, 
-                          class: "btn btn-green" do %>
+            <!--<div class="empty-list-button">-->
+            <!--  <(perc)= link_to new_vehicle_path, -->
+            <!--              class: "btn btn-green" do %>-->
             
-                List
+            <!--    List-->
                 
-                <i class="fa fa-arrow-right next-button-icon" 
-                   aria-hidden="true"></i> 
-              <% end %>
-            </div>
-          </div>
+            <!--    <i class="fa fa-arrow-right next-button-icon" -->
+            <!--       aria-hidden="true"></i> -->
+            <!--  <(perc) end %>-->
+            <!--</div>-->
+          <!--</div>-->
         <% end %>
       </div>
     </div>

@@ -1,0 +1,19 @@
+$('#feed-items').append('<%= j render(
+                                 partial: "feed_item", 
+                                 collection: @feed_items
+                               ) %>');
+
+<% if @feed_items.next_page %>                               
+  $('.pagination').replaceWith(
+    '<%= j will_paginate @feed_items, 
+                         previous_label: 
+                         '<i class="fa fa-arrow-left" aria-hidden="true"></i>', 
+                         next_label: 
+                         '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
+                         inner_window: 1, 
+                         outer_window: 0 %>'
+  );
+
+<% else %>
+  $('.pagination').remove();
+<% end %>

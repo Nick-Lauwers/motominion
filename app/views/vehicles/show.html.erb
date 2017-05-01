@@ -55,7 +55,7 @@
   
               <%= f.hidden_field :recipient_archived, value: false %>
               
-              <%= f.submit "Contact Seller", 
+              <%= f.submit "Chat with " + @vehicle.user.name, 
                            class: "btn-navbar-contact-hidden" %>
             <% end %>
                           
@@ -191,8 +191,15 @@
                 <table class="vehicle-details-table">
                   
                   <tr>
-                    <td>Vehicle Condition</td>
-                    <td><strong><%= @vehicle.vehicle_condition %></strong></td>
+                    
+                    <td>Type</td>
+                    
+                    <td>
+                      <strong>
+                        <%= @vehicle.vehicle_make.name %>
+                        <%= @vehicle.vehicle_model.name %>
+                      </strong>
+                    </td>
                   </tr>
                   
                   <tr>
@@ -281,6 +288,11 @@
                     <td><i class="fa fa-television" aria-hidden="true"></i></td>
                     <td><strong>DVD Entertainment System</strong></td>
                   </tr>
+                </table>
+              </div>
+              
+              <div class="col-xs-6">
+                <table class="vehicle-details-table">
                   
                   <tr class="<%= 'unavailable-feature' if 
                                  !@vehicle.is_bluetooth %>">
@@ -288,11 +300,6 @@
                            aria-hidden="true"></i></td>
                     <td><strong>Bluetooth</strong></td>
                   </tr>
-                </table>
-              </div>
-              
-              <div class="col-xs-6">
-                <table class="vehicle-details-table">
                   
                   <tr class="<%= 'unavailable-feature' if 
                                  !@vehicle.is_backup_camera %>">
@@ -311,12 +318,6 @@
                     <td><!--intentionally left empty--></td>
                     <td><strong>Tow Package</strong></td>
                   </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.is_autonomy %>">
-                    <td><!--intentionally left empty--></td>
-                    <td><strong>Autonomy</strong></td>
-                  </tr>
                 </table>
               </div>
             </div>
@@ -332,86 +333,17 @@
             <p class="vehicle-details-info"><%= @vehicle.sellers_notes %></p>
           </div>
           
-          <div id="availability">
-            
-            <h3 class="vehicle-details-title">General Availability</h3>
-            
-            <div class="row">
+          <% if @vehicle.availabilities.exists? %>
+            <div id="availability">
               
-              <div class="col-xs-6">
-                <table class="vehicle-details-table">
-                  
-                  <tr>
-                    
-                    <td>Monday</td>
-                    
-                    <td>
-                      <strong><%= @vehicle.monday_availability %></strong>
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    
-                    <td>Tuesday</td>
-                    
-                    <td>
-                      <strong><%= @vehicle.tuesday_availability %></strong>
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    
-                    <td>Wednesday</td>
-                    
-                    <td>
-                      <strong><%= @vehicle.wednesday_availability %></strong>
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    
-                    <td>Thursday</td>
-                    
-                    <td>
-                      <strong><%= @vehicle.thursday_availability %></strong>
-                    </td>
-                  </tr>
-                </table>
-              </div>
+              <h3 class="vehicle-details-title">General Availability</h3>
               
-              <div class="col-xs-6">
-                <table class="vehicle-details-table">
-                  
-                  <tr>
-                    
-                    <td>Friday</td>
-                    
-                    <td>
-                      <strong><%= @vehicle.friday_availability %></strong>
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    
-                    <td>Saturday</td>
-                    
-                    <td>
-                      <strong><%= @vehicle.saturday_availability %></strong>
-                    </td>
-                  </tr>
-                  
-                  <tr>
-                    
-                    <td>Sunday</td>
-                    
-                    <td>
-                      <strong><%= @vehicle.sunday_availability %></strong>
-                    </td>
-                  </tr>
-                </table>
+              <div class="row">
+                <%= render partial:    "availability", 
+                           collection: @availabilities %>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
       </div>
       

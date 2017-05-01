@@ -6,8 +6,8 @@
 
 <div class="new-post">
   
-  <div class="new-post-nav">
-    <%= link_to "Community Center", posts_path, class: "new-post-nav-link" %>
+  <div class="forum-nav">
+    <%= link_to "Community Center", posts_path, class: "forum-nav-link" %>
   </div>
   
   <h1 class="new-post-title">Start A Conversation</h1>
@@ -17,9 +17,7 @@
     <%= render 'shared/error_messages', object: f.object %>
     
     <div class="form-group form-group-primary">
-                
       <%= f.label :title, "What do you want to talk about?" %>
-      
       <%= f.text_field :title, class: "form-control form-control-primary" %>
     </div>
     
@@ -27,7 +25,9 @@
                 
       <%= f.label :content, "Add details..." %>
       
-      <%= f.text_area :content, class: "form-control form-control-primary", :rows => 5 %>
+      <%= f.text_area :content, 
+                      class: "form-control form-control-primary", 
+                      rows: 5 %>
     </div>
   
     <%= f.hidden_field :likes, value: 0 %>
@@ -35,12 +35,8 @@
     <div class="row">
       
       <div class="col-xs-3">
-        <%= f.submit "Post",
-                      class: "btn btn-new-post" %>
-  
-        <%= link_to "Cancel",
-                    posts_path, 
-                    class: "btn btn-new-post-cancel" %>
+        <%= f.submit "Post", class: "btn btn-new-post" %>
+        <%= link_to "Cancel", posts_path, class: "btn btn-new-post-cancel" %>
       </div>
       
       <div class="col-xs-9">

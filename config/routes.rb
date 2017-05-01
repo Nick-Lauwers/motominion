@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     member do
       put :favorite
       put :sold
+      put :undo_sold
     end
     
     collection do

@@ -16,6 +16,8 @@
         
         <li><%= link_to "List", new_vehicle_path %></li>
         
+        <li><%= link_to "Advice", posts_path %></li>
+        
         <li class="dropdown">
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
@@ -122,12 +124,14 @@
             <li><%= link_to "Log Out",     logout_path, method: "delete" %></li>
           </ul>
         </li>
-        
+
       <% else %>
       
         <li>
           <i class="fa fa-search fa-lg header-icon" aria-hidden="true"></i>
         </li>
+        
+        <li><%= link_to "Advice", posts_path %></li>
         
         <li><%= link_to "List", new_vehicle_path %></li>
         
@@ -150,37 +154,104 @@
       <% end %>
     </ul>
 
+    <!--<(perc)= form_tag search_vehicles_path, -->
+    <!--             method: :get, -->
+    <!--             class: "search-form-secondary" do %>-->
+                 
+    <!--  <div class="row search-form-secondary-content">-->
+
+    <!--    <div class="col-xs-5 search-bar-secondary">-->
+          
+    <!--      <i class="fa fa-search fa-lg search-bar-secondary-icon" -->
+    <!--         aria-hidden="true"></i>-->
+             
+    <!--      <(perc)= text_field_tag :vehicle, -->
+    <!--                         params[:vehicle],-->
+    <!--                         placeholder: "What are you looking for?", -->
+    <!--                         class: "form-control header-form-control" %>-->
+    <!--    </div>-->
+        
+    <!--    <div class="col-xs-5 search-bar-secondary">-->
+          
+    <!--      <i class="fa fa-map-pin fa-lg search-bar-secondary-icon" -->
+    <!--         aria-hidden="true"></i>-->
+          
+    <!--      <i class="fa fa-times fa-lg search-bar-secondary-close" -->
+    <!--         aria-hidden="true"></i>-->
+             
+    <!--      <(perc)= text_field_tag :city_secondary, -->
+    <!--                         params[:city],-->
+    <!--                         placeholder: "Enter city", -->
+    <!--                         class: "form-control header-form-control" %>-->
+    <!--    </div>-->
+          
+    <!--    <div class="col-xs-2 search-button-secondary">-->
+    <!--      <(perc)= submit_tag "Search", class: "btn btn-search" %>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--<(perc) end %>-->
+    
     <%= form_tag search_vehicles_path, 
-                 method: :get, 
-                 class: "search-form-secondary" do %>
+             method: :get, 
+             class: "search-form-secondary" do %>
                  
       <div class="row search-form-secondary-content">
-
-        <div class="col-xs-5 search-bar-secondary">
+        
+        <div class="col-xs-3 search-bar-secondary">
+          
+          <%= collection_select :vehicle, 
+                                :vehicle_make_id,
+                                VehicleMake.all,
+                                :id,
+                                :name,
+                                { include_blank: true,
+                                  prompt: "Select make" },
+                                class: "form-control 
+                                        header-form-control 
+                                        header-select-primary" %>
           
           <i class="fa fa-search fa-lg search-bar-secondary-icon" 
              aria-hidden="true"></i>
              
-          <%= text_field_tag :vehicle, 
-                             params[:vehicle],
-                             placeholder: "What are you looking for?", 
-                             class: "form-control header-form-control" %>
+          <i class="fa fa-caret-down fa-lg form-caret" 
+             aria-hidden="true"></i>
         </div>
         
-        <div class="col-xs-5 search-bar-secondary">
+        <div class="col-xs-3 search-bar-secondary">
+          
+          <%= grouped_collection_select :vehicle, 
+                                        :vehicle_model_id, 
+                                        VehicleMake.order(:name),
+                                        :vehicle_models,
+                                        :name,
+                                        :id,
+                                        :name,
+                                        { prompt: "Select model",
+                                          include_blank: true }, 
+                                        class: "form-control
+                                                header-form-control
+                                                header-select-secondary" %>
+                                                
+          <i class="fa fa-caret-down fa-lg form-caret" 
+             aria-hidden="true"></i>
+        </div>
+        
+        <div class="col-xs-4 search-bar-secondary">
           
           <i class="fa fa-map-pin fa-lg search-bar-secondary-icon" 
              aria-hidden="true"></i>
-          
+             
           <i class="fa fa-times fa-lg search-bar-secondary-close" 
              aria-hidden="true"></i>
-             
-          <%= text_field_tag :city_secondary, 
-                             params[:city],
-                             placeholder: "Enter city", 
-                             class: "form-control header-form-control" %>
-        </div>
           
+          <%= text_field_tag :city, 
+                             params[:city], 
+                             placeholder: "Enter city", 
+                             class: "form-control 
+                                     header-form-control
+                                     typeahead" %>
+        </div>
+        
         <div class="col-xs-2 search-button-secondary">
           <%= submit_tag "Search", class: "btn btn-search" %>
         </div>

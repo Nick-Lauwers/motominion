@@ -12,9 +12,9 @@
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
       <li><%= link_to "Dashboard",   dashboard_path %></li>
-      <li><%= link_to "Inbox",  conversations_path, class: "nav-active" %></li>
-      <li><%= link_to "Garage",      vehicles_path %></li>
-      <li><%= link_to "Test Drives", test_drives_path %></li>
+      <li><%= link_to "Inbox", conversations_path, class: "nav-active" %></li>
+      <li><%= link_to "Your Garage", vehicles_path %></li>
+      <li><%= link_to "Showroom",    test_drives_path %></li>
       <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
     </ul>
   </div>
@@ -64,7 +64,9 @@
           <div class="messages-info-requests">
             
             <% if @conversation.appointments.where(
-                    buyer_id: @other.id
+                    "buyer_id = ? AND date >= ?",
+                    @other.id,
+                    Time.now
                   ).exists? %>
               
               <div class="requests-received">
@@ -72,13 +74,17 @@
                 <h2 class="requests-title">
                   Requests Received
                   (<%= @conversation.appointments.where(
-                         buyer_id: @other.id
+                         "buyer_id = ? AND date >= ?",
+                         @other.id,
+                         Time.now
                        ).count %>)
                 </h2>
                 
                 <ol class="requests-list">
                   <% @conversation.appointments.where(
-                       buyer_id: @other.id
+                       "buyer_id = ? AND date >= ?",
+                       @other.id,
+                       Time.now
                      ).each do |appointment| %>
                      
                     <li id="request-item-<%= appointment.id %>" 
@@ -113,7 +119,9 @@
             <% end %>
           
             <% if @conversation.appointments.where(
-                    buyer_id: current_user.id
+                    "buyer_id = ? AND date >= ?",
+                    current_user.id,
+                    Time.now
                   ).exists? %>
               
               <div class="requests-sent">
@@ -121,13 +129,17 @@
                 <h2 class="requests-title">
                   Requests Sent
                   (<%= @conversation.appointments.where(
-                         buyer_id: current_user.id
+                         "buyer_id = ? AND date >= ?",
+                         current_user.id,
+                         Time.now
                        ).count %>)
                 </h2>
                 
                 <ol class="requests-list">
                   <% @conversation.appointments.where(
-                       buyer_id: current_user.id
+                       "buyer_id = ? AND date >= ?",
+                       current_user.id,
+                       Time.now
                      ).each do |appointment| %>
                      
                     <li id="request-item-<%= appointment.id %>" 

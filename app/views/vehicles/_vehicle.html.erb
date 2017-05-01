@@ -99,14 +99,29 @@
         </span>
       <% end %>
       
-      <%= link_to sold_vehicle_path(vehicle), method: :put do %>
-        <span class="summary-detail-link">
-          
-          <i class="fa fa-money summary-detail-link-icon" 
-             aria-hidden="true"></i>
-             
-          Mark As Sold
-        </span>
+      <% if vehicle.sold_at.present? %>
+      
+        <%= link_to undo_sold_vehicle_path(vehicle), method: :put do %>
+          <span class="summary-detail-link">
+            
+            <i class="fa fa-money summary-detail-link-icon" 
+               aria-hidden="true"></i>
+               
+            Undo "Mark As Sold"
+          </span>
+        <% end %>
+        
+      <% else %>
+      
+        <%= link_to sold_vehicle_path(vehicle), method: :put do %>
+          <span class="summary-detail-link">
+            
+            <i class="fa fa-money summary-detail-link-icon" 
+               aria-hidden="true"></i>
+               
+            Mark As Sold
+          </span>
+        <% end %>
       <% end %>
       
       <!--<(perc)= link_to vehicle, -->

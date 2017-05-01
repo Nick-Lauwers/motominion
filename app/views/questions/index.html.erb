@@ -10,9 +10,9 @@
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
       <li><%= link_to "Dashboard",   dashboard_path %></li>
-      <li><%= link_to "Inbox",  conversations_path, class: "nav-active" %></li>
-      <li><%= link_to "Garage",      vehicles_path %></li>
-      <li><%= link_to "Test Drives", test_drives_path %></li>
+      <li><%= link_to "Inbox", conversations_path, class: "nav-active" %></li>
+      <li><%= link_to "Your Garage", vehicles_path %></li>
+      <li><%= link_to "Showroom",    test_drives_path %></li>
       <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
     </ul>
   </div>
@@ -31,17 +31,8 @@
         <ul class="sidenav-list">
           
           <li>
-            
-            <% conversation_count = 0 %>
-            <% @conversations.each do |conversation| %>
-              <% conversation_count += 1 if (
-                  conversation.messages.exists? || 
-                  conversation.appointments.exists?
-                 ) %>
-            <% end %>
-            
             <%= link_to conversations_path do %>
-              Messages (<%= conversation_count %>)
+              Messages
             <% end %>
           </li>
           
@@ -63,15 +54,15 @@
           </ol>
         
         <% else %>
-          <div class="empty-list">
+          <!--<div class="empty-list">-->
           
-            <i class="fa fa-comments-o fa-4x empty-list-icon" 
-               aria-hidden="true"></i>
+          <!--  <i class="fa fa-comments-o fa-4x empty-list-icon" -->
+          <!--     aria-hidden="true"></i>-->
                
             <p class="empty-list-info">
               You have not received any questions.
             </p>
-          </div>
+          <!--</div>-->
         <% end %>
       </div>
     </div>

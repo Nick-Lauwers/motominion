@@ -20,4 +20,5 @@
 //= require gmaps/google
 //= require private_pub
 //= require typeahead
+//= require cocoon
 //= require_tree .

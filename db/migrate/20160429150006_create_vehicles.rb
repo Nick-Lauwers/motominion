@@ -2,7 +2,6 @@ class CreateVehicles < ActiveRecord::Migration
   def change
     create_table :vehicles do |t|
       
-      t.string      :vehicle_condition
       t.string      :body_style
       t.string      :color
       t.string      :transmission
@@ -14,13 +13,6 @@ class CreateVehicles < ActiveRecord::Migration
       t.string      :apartment
       t.string      :city
       t.string      :state
-      t.string      :monday_availability
-      t.string      :tuesday_availability
-      t.string      :wednesday_availability
-      t.string      :thursday_availability
-      t.string      :friday_availability
-      t.string      :saturday_availability
-      t.string      :sunday_availability
       t.integer     :year
       t.integer     :price
       t.integer     :mileage
@@ -35,8 +27,9 @@ class CreateVehicles < ActiveRecord::Migration
       t.boolean     :is_backup_camera
       t.boolean     :is_remote_start
       t.boolean     :is_tow_package
-      t.boolean     :is_autonomy
-      t.references  :user,         index: true, foreign_key: true
+      t.references  :user,          index: true, foreign_key: true
+      t.references  :vehicle_make,  index: true, foreign_key: true
+      t.references  :vehicle_model, index: true, foreign_key: true
       # t.references  :conversation, index: true, foreign_key: true
 
       t.timestamps null: false

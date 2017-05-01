@@ -5,7 +5,9 @@ class Vehicle < ActiveRecord::Base
   searchkick word_start: [:listing_name, :city], locations: [:location]
 
   belongs_to :user
-
+  belongs_to :vehicle_make
+  belongs_to :vehicle_model
+  
   # has_one :payment
   
   has_many :reviews,           dependent: :destroy
@@ -17,6 +19,9 @@ class Vehicle < ActiveRecord::Base
   has_many :conversations, through: :appointments
   # has_many :conversations, through: :inquiries
   has_many :favorited_by,  through: :favorite_vehicles, source: :user
+  
+  has_many :availabilities, dependent: :destroy
+  accepts_nested_attributes_for :availabilities, allow_destroy: true
 
   MINIMUM_PHOTOS = 2
 
@@ -29,19 +34,13 @@ class Vehicle < ActiveRecord::Base
   before_save      { vin.upcase! }
   default_scope -> { order(created_at: :desc) }
   
-  validates :vehicle_condition, :body_style, :color, :transmission, :fuel_type, 
-            :drivetrain, :street_address, :city, :state, :year, :price, 
-            :mileage, :seating_capacity, :user_id, presence: true
-  validates :listing_name,           presence: true, length: { maximum: 50 }
-  validates :summary,                presence: true
+  validates :body_style, :color, :transmission, :fuel_type, :drivetrain, 
+            :street_address, :city, :state, :year, :price, :mileage, 
+            :seating_capacity, :user_id, :vehicle_make_id, :vehicle_model_id, 
+            presence: true
+  validates :listing_name, presence: true, length: { maximum: 50 }
+  validates :summary,      presence: true
   # , length: { maximum: 600 }
-  validates :monday_availability,    presence: true, length: { maximum: 30 }
-  validates :tuesday_availability,   presence: true, length: { maximum: 30 }
-  validates :wednesday_availability, presence: true, length: { maximum: 30 }
-  validates :thursday_availability,  presence: true, length: { maximum: 30 }
-  validates :friday_availability,    presence: true, length: { maximum: 30 }
-  validates :saturday_availability,  presence: true, length: { maximum: 30 }
-  validates :sunday_availability,    presence: true, length: { maximum: 30 }
   # validates :sellers_notes,                          length: { maximum: 600 }
   
   VALID_VIN_REGEX = /[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{3}\d{5}/

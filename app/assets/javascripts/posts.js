@@ -4,20 +4,18 @@ $(function() {
   
     // image scaling
     
-      var postAvatar     = $('.post-avatar');
-      var responseAvatar = $('.response-avatar')
+      var postAvatar         = $('.post-avatar');
+      var postResponseAvatar = $('.post-response-avatar')
           
       postAvatar.imagefill(); 
-      responseAvatar.imagefill();
+      postResponseAvatar.imagefill();
   
   // index
   
     // image scaling
     
-      var forumItemAvatar      = $('.forum-item-avatar');
       var topContributorAvatar = $('.top-contributor-avatar')
           
-      forumItemAvatar.imagefill();
       topContributorAvatar.imagefill();
       
     // search

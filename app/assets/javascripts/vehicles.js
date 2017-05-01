@@ -1,5 +1,40 @@
 $(function() {
   
+  // new
+  
+    // dependent dropdown
+  
+      var vehicleModelSelect = 
+        $('#vehicle_vehicle_model_id.form-control.select-secondary');
+      var vehicleMakeSelect =
+        $('#vehicle_vehicle_make_id.form-control.select-secondary');
+      var vehicle_models = vehicleModelSelect.html();
+        
+      vehicleModelSelect.prop("disabled", true);
+      
+      vehicleMakeSelect.change(function() {
+        
+        var vehicle_make = 
+          $('#vehicle_vehicle_make_id.form-control.select-secondary :selected').
+            text();
+        var escaped_vehicle_make = 
+          vehicle_make.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options = 
+          $(vehicle_models).
+            filter("optgroup[label=" + escaped_vehicle_make + "]").
+            html();
+        
+        if (options) {
+          vehicleModelSelect.html(options);
+          vehicleModelSelect.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelSelect.empty();
+          vehicleModelSelect.prop("disabled", true);
+        }
+      });
+
   // show
   
     // fixed-ribbon
@@ -11,13 +46,13 @@ $(function() {
         var scrolltop = $(this).scrollTop();
         
         if(scrolltop >= 50) {
-          ribbonVehicle.addClass('ribbon-vehicle-scrolled')
+          ribbonVehicle.addClass('ribbon-vehicle-scrolled');
         }
         
         else {
-          ribbonVehicle.removeClass('ribbon-vehicle-scrolled')
+          ribbonVehicle.removeClass('ribbon-vehicle-scrolled');
         }
-      })
+      });
   
     // fixed listing navbar
     
@@ -190,4 +225,6 @@ $(function() {
       displayKey: 'city',
       source:     cities.ttAdapter()
     });
+    
+    
 });
