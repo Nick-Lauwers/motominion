@@ -38,17 +38,17 @@ class ConversationsController < ApplicationController
         
         @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
         
-        appointment = @conversation.appointments.create(
+        appointment = @conversation.appointments.create!(
                         conversation_params[:appointments_attributes].values.first
                       )
         
         @conversation.messages.create!(
           user:    current_user, 
           content: "Hi, " + 
-                   @other.name + 
-                   ". I recently noticed your vehicle, " +
-                   appointment.vehicle.listing_name +
-                   ", and am interested in a test drive. Are you available?"
+                  @other.name + 
+                  ". I recently noticed your vehicle, " +
+                  appointment.vehicle.listing_name +
+                  ", and am interested in a test drive. Are you available?"
         )
         
         @conversation.update_attributes(next_contributor_id: @other.id, 
@@ -63,7 +63,11 @@ class ConversationsController < ApplicationController
       
         @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
         
-        appointment = @conversation.appointments.build
+        appointment = @conversation.appointments.first
+        
+        # appointment = @conversation.appointments.create!(
+        #                 conversation_params[:appointments_attributes].values.first
+        #               )
         
         @conversation.messages.create!(
           user:    current_user, 

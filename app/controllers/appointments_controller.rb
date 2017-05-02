@@ -24,19 +24,19 @@ class AppointmentsController < ApplicationController
     
     # @appointment = current_user.appointments.build(appointment_params)
     
-    @vehicle = Vehicle.find(params[:vehicle_id])
-    @appointment = @vehicle.appointments.build(appointment_params).build_conversation
-    # @appointment = @vehicle.appointments.create(appointment_params)
-    @appointment.save
+    # @vehicle = Vehicle.find(params[:vehicle_id])
+    # @appointment = @vehicle.appointments.build(appointment_params).build_conversation
+    # # @appointment = @vehicle.appointments.create(appointment_params)
+    # @appointment.save
 
-    if @appointment.save
-      AppointmentMailer.appointment_request(@appointment).deliver_now
-      flash[:success] = "Test drive request sent!"
-      redirect_to @vehicle
+    # if @appointment.save
+    #   AppointmentMailer.appointment_request(@appointment).deliver_now
+    #   flash[:success] = "Test drive request sent!"
+    #   redirect_to @vehicle
     # else
     #   flash[:failure] = "Failed to send test drive request."
     #   redirect_to @vehicle
-    end
+    # end
   end
   
   def destroy
