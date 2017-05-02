@@ -52,3 +52,5 @@
 [2017-05-01T22:56:34,522][INFO ][o.e.n.Node               ] [ht0EVsn] started
 [2017-05-01T22:56:35,662][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [3] indices into cluster_state
 [2017-05-01T22:56:37,128][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles][1], [vehicles][3], [vehicles][4]] ...]).
+[2017-05-01T23:33:12,593][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][2153][2] duration [7.7s], collections [1]/[8.6s], total [7.7s]/[9.1s], memory [578.6mb]->[102.8mb]/[1.9gb], all_pools {[young] [532mb]->[5.3mb]/[532.5mb]}{[survivor] [46.5mb]->[66.4mb]/[66.5mb]}{[old] [0b]->[36.3mb]/[1.3gb]}
+[2017-05-01T23:33:12,657][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][2153] overhead, spent [7.7s] collecting in the last [8.6s]

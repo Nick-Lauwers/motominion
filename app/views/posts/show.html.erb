@@ -28,7 +28,9 @@
         <%= text_field_tag :post, 
                            params[:post], 
                            placeholder: "Search the community", 
-                           class: "form-control typeahead" %>
+                           class: "form-control 
+                                   search-form-control 
+                                   typeahead" %>
                            
         <%= submit_tag "Search", class: "btn-forum" %>
       <% end %>

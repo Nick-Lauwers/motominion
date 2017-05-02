@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424160257) do
+ActiveRecord::Schema.define(version: 20170421125328) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
@@ -262,7 +262,6 @@ ActiveRecord::Schema.define(version: 20170424160257) do
   add_index "vehicle_models", ["vehicle_make_id"], name: "index_vehicle_models_on_vehicle_make_id"
 
   create_table "vehicles", force: :cascade do |t|
-    t.string   "vehicle_condition"
     t.string   "body_style"
     t.string   "color"
     t.string   "transmission"
@@ -288,7 +287,6 @@ ActiveRecord::Schema.define(version: 20170424160257) do
     t.boolean  "is_backup_camera"
     t.boolean  "is_remote_start"
     t.boolean  "is_tow_package"
-    t.boolean  "is_autonomy"
     t.integer  "user_id"
     t.integer  "vehicle_make_id"
     t.integer  "vehicle_model_id"
