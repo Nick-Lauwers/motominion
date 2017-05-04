@@ -37,13 +37,13 @@ $(function() {
     
     // infinite scroll
     
-      var pagination = $('.pagination')
+      var pagination = $('#feed .pagination')
   
       if (pagination.length) {
         
         $(window).scroll(function() {
           
-          var url = $('.pagination .next_page a').attr('href');
+          var url = $('#feed .pagination .next_page a').attr('href');
           
           if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1000) {
             pagination.text("Loading more vehicles...");

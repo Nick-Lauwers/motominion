@@ -1694,6 +1694,7 @@ ul.pagination {
   border-radius: .125em !important;
 }
 
+.next_page.disabled a, 
 .previous_page.disabled a {
   color: $gray-border !important;
   background-color: transparent !important;
