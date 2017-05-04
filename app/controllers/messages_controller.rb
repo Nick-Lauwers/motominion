@@ -3,6 +3,7 @@
 class MessagesController < ApplicationController
   
   before_action :set_conversation
+  before_action :logged_in_user
   
   def index
     if current_user == @conversation.sender || current_user == @conversation.recipient
