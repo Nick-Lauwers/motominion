@@ -7,7 +7,7 @@ class AppointmentMailer < ApplicationMailer
     @buyer        = appointment.buyer
     @conversation = Conversation.between(@seller, @buyer).first
 
-    mail to: appointment.buyer.email, subject: "Test Drive Request"
+    mail to: appointment.seller.email, subject: "Test Drive Request"
   end
   
   def appointment_accepted(appointment)
