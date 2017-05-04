@@ -1,0 +1,21 @@
+id,name,email,password,password_confirmation,is_subscribed,admin,activated,activated_at,avatar
+1,Jerrod Ertle,example01@railstutorial.org,98390984,98390984,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/1.jpg
+2,Barrett Paterno,example02@railstutorial.org,98390985,98390985,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/4.jpg
+3,Drew Black,example03@railstutorial.org,98390986,98390986,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/7.jpg
+4,Darren Reyes,example04@railstutorial.org,98390987,98390987,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/8.jpg
+5,Jessie Sandoval,example05@railstutorial.org,98390988,98390988,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/11.jpg
+6,Brent Campbell,example06@railstutorial.org,98390989,98390989,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/19.jpg
+7,Ray Edwards,example07@railstutorial.org,98390990,98390990,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/21.jpg
+8,Virgil Greene,example08@railstutorial.org,98390991,98390991,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/22.jpg
+9,Bert Morgan,example09@railstutorial.org,98390992,98390992,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/23.jpg
+10,Gregory Spencer,example10@railstutorial.org,98390993,98390993,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/31.jpg
+11,Ben Hopkins,example11@railstutorial.org,98390994,98390994,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/32.jpg
+12,Eric Holland,example12@railstutorial.org,98390995,98390995,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/33.jpg
+13,Toby Ferguson,example13@railstutorial.org,98390996,98390996,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/44.jpg
+14,Kyle Summers,example14@railstutorial.org,98390997,98390997,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/men/51.jpg
+15,Gloria Arnold,example15@railstutorial.org,98390998,98390998,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/8.jpg
+16,Tiffany Mann,example16@railstutorial.org,98390999,98390999,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/10.jpg
+17,Terry Grant,example17@railstutorial.org,98391000,98391000,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/11.jpg
+18,Deborah Fields,example18@railstutorial.org,98391001,98391001,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/21.jpg
+19,Rebecca Gutierrez,example19@railstutorial.org,98391002,98391002,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/28.jpg
+20,Marcia Lawson,example20@railstutorial.org,98391003,98391003,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/35.jpg
