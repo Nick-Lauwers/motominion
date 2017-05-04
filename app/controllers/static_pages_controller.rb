@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
   def home
     @feed_items = Vehicle.
                     where(sold_at: nil).
-                    paginate(page: params[:page], per_page: 9)
+                    paginate(page: params[:page], per_page: 9).order("id ASC")
   end
 
   def help

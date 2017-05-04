@@ -53,6 +53,8 @@ class ConversationsController < ApplicationController
         
         @conversation.update_attributes(next_contributor_id: @other.id, 
                                         latest_message_read: false)
+                                        
+        AppointmentMailer.appointment_request(appointment).deliver_now
       end
       
     else
@@ -80,6 +82,8 @@ class ConversationsController < ApplicationController
         
         @conversation.update_attributes(next_contributor_id: @other.id, 
                                         latest_message_read: false)
+                                        
+        AppointmentMailer.appointment_request(appointment).deliver_now
       end
     end
     

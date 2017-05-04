@@ -47,11 +47,11 @@ $(function() {
           
           if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 1000) {
             pagination.text("Loading more vehicles...");
-            return $.getScript(url);
+            $.getScript(url);
           }
         });
         
-        return $(window).scroll();
+        $(window).scroll();
       }
 
     // smooth scroll
