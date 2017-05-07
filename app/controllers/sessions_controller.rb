@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       if @user.activated?
         log_in @user
         params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-        redirect_back_or @user
+        redirect_back_or dashboard_path
         
       else
         message  = "Account not activated. "
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   def create_social
     @user = User.from_omniauth(env['omniauth.auth'])
     log_in @user
-    redirect_back_or @user
+    redirect_back_or dashboard_path
   end
 
   def destroy

@@ -28,7 +28,6 @@ Rails.application.routes.draw do
 
   resources :vehicles do
     
-    resources :appointments, only: [:new, :create, :destroy]
     resources :reviews,      only: [:create, :destroy]
     resources :payments,     only: [:new, :create]
     
@@ -45,18 +44,19 @@ Rails.application.routes.draw do
       get 'search'
       get :autocomplete
     end
+    
+    resources :appointments, only: [:new, :create, :destroy] do
+      member do
+        put :accept
+        put :decline
+      end
+    end
   end
 
   resources :conversations, only: [:index, :create] do
     
-    resources :appointments, only: [:new, :create, :destroy]
-    
-    resources :messages, except: [:new, :edit, :show, :update] do
-      collection do
-        get 'accept'
-        get 'decline'
-      end
-    end
+    resources :appointments, only:   [:new, :create, :destroy]
+    resources :messages,     except: [:new, :edit, :show, :update]
     
     member do
       put :archive

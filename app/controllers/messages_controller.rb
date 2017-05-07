@@ -60,27 +60,6 @@ class MessagesController < ApplicationController
       end
     end
   end
-  
-  def accept
-    @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
-    appointment = @conversation.appointments.where(status: 'pending').first
-    appointment.update_attribute(:status, 'accepted')
-    @conversation.update_attributes(next_contributor_id: @other.id, latest_message_read: false)
-    AppointmentMailer.appointment_accepted(appointment).deliver_now
-    ReviewNotifierJob.set(wait_until: appointment.date).perform_later(appointment)
-    flash[:success] = "Test drive accepted!"
-    redirect_to :back
-  end
-  
-  def decline
-    @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
-    appointment = @conversation.appointments.where(status: 'pending').first
-    appointment.update_attribute(:status, 'declined')
-    @conversation.update_attributes(next_contributor_id: @other.id, latest_message_read: false)
-    AppointmentMailer.appointment_declined(appointment).deliver_now
-    flash[:failure] = "Test drive declined."
-    redirect_to :back
-  end
 
   private
   
@@ -90,6 +69,7 @@ class MessagesController < ApplicationController
       
     # Before filters
     
+    # Identifies conversation id.
     def set_conversation
       @conversation = Conversation.find(params[:conversation_id])
     end

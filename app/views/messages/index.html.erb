@@ -223,11 +223,13 @@
                       <td class="response-buttons">
                         
                         <%= link_to "Accept",
-                                    accept_conversation_messages_path, 
+                                    accept_vehicle_appointment_path(appointment.vehicle, appointment),
+                                    method: :put,
                                     class: "btn btn-test-drive-accept" %>
           
                         <%= link_to "Decline",
-                                    decline_conversation_messages_path, 
+                                    decline_vehicle_appointment_path(appointment.vehicle, appointment), 
+                                    method: :put,
                                     class: "btn btn-test-drive-decline" %>
                       </td>
                     </tr>
