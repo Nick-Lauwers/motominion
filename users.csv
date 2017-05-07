@@ -17,5 +17,3 @@ id,name,email,password,password_confirmation,is_subscribed,admin,activated,activ
 16,Tiffany Mann,example16@railstutorial.org,98390999,98390999,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/10.jpg
 17,Terry Grant,example17@railstutorial.org,98391000,98391000,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/11.jpg
 18,Deborah Fields,example18@railstutorial.org,98391001,98391001,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/21.jpg
-19,Rebecca Gutierrez,example19@railstutorial.org,98391002,98391002,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/28.jpg
-20,Marcia Lawson,example20@railstutorial.org,98391003,98391003,FALSE,FALSE,TRUE,Time.zone.now,https://randomuser.me/api/portraits/women/35.jpg
