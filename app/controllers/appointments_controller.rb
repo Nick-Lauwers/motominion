@@ -60,7 +60,8 @@ class AppointmentsController < ApplicationController
   
   def accept
     @appointment.update_attribute(:status, 'accepted')
-    @appointment.conversation.update_attributes(next_contributor_id: :buyer_id, latest_message_read: false)
+    @appointment.conversation.update_attributes(next_contributor_id: :buyer_id, 
+                                                latest_message_read: false)
     AppointmentMailer.appointment_accepted(@appointment).deliver_now
     ReviewNotifierJob.set(wait_until: @appointment.date).perform_later(@appointment)
     flash[:success] = "Test drive accepted!"
@@ -69,7 +70,8 @@ class AppointmentsController < ApplicationController
   
   def decline
     @appointment.update_attribute(:status, 'declined')
-    @appointment.conversation.update_attributes(next_contributor_id: :buyer_id, latest_message_read: false)
+    @appointment.conversation.update_attributes(next_contributor_id: :buyer_id, 
+                                                latest_message_read: false)
     AppointmentMailer.appointment_declined(@appointment).deliver_now
     flash[:failure] = "Test drive declined."
     redirect_to :back
