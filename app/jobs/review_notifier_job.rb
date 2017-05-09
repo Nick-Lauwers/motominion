@@ -3,6 +3,6 @@ class ReviewNotifierJob < ActiveJob::Base
 
   def perform(appointment)
     @appointment = appointment
-    AppointmentMailer.review_request(@appointment).deliver_later
+    AppointmentMailer.review_request(@appointment).deliver_later(wait_until: @appointment.date)
   end
 end
