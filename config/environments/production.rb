@@ -103,9 +103,6 @@ Rails.application.configure do
     path: '/:class/:attachment/:id_partition/:style/:filename'
   }
   
-  # Set up queuing backend
-  config.active_job.queue_adapter = :delayed_job
-  
   # config.after_initialize do
   #   ActiveMerchant::Billing::Base.mode = :production
   #   ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(

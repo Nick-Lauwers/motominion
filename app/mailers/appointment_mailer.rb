@@ -33,7 +33,10 @@ class AppointmentMailer < ApplicationMailer
   end
   
   def review_request(appointment)
+    
     @appointment = appointment
-    mail to: appointment.buyer.email, subject: "Write A Review!"
+    
+    mail to: appointment.buyer.email, 
+    subject: "Write A Review!"
   end
 end

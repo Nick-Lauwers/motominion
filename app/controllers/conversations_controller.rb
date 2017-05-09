@@ -48,7 +48,9 @@ class ConversationsController < ApplicationController
                   @other.name + 
                   ". I recently noticed your vehicle, " +
                   appointment.vehicle.listing_name +
-                  ", and am interested in a test drive. Are you available?"
+                  ", and am interested in a test drive. Are you available on " +
+                  appointment.date.strftime("%A, %d %b") + ", at " + 
+                  appointment.date.strftime("%-l:%M%p") + "?"
         )
         
         @conversation.update_attributes(next_contributor_id: @other.id, 
@@ -77,7 +79,9 @@ class ConversationsController < ApplicationController
                    @other.name + 
                    ". I recently noticed your vehicle, " +
                    appointment.vehicle.listing_name +
-                   ", and am interested in a test drive. Are you available?"
+                   ", and am interested in a test drive. Are you available on " +
+                   appointment.date.strftime("%A, %d %b") + ", at " + 
+                   appointment.date.strftime("%-l:%M%p") + "?"
         )
         
         @conversation.update_attributes(next_contributor_id: @other.id, 
