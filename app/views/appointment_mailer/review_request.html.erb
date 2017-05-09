@@ -1,15 +1,15 @@
 <h1>Write A Review | Dealership.com</h1>
 
-<p>Hi <%= @appointment.buyer.name %>,</p>
+<p>Hi <%= @buyer %>,</p>
 
 <p>
-  Tell <%= @appointment.vehicle.user.name %> what you loved and what they can do 
+  Tell <%= @seller %> what you loved and what they can do 
   better.
 </p>
 
 <p>
-  You just completed a test drive with <%= @appointment.vehicle.user.name %>, so 
-  now is the perfect time to write your review.
+  You just completed a test drive with <%= @seller %>, so now is the perfect 
+  time to write your review.
 </p>
 
 <p>
@@ -19,4 +19,4 @@
 </p>
 
 <%= link_to "Write A Review", 
-            vehicle_url(@appointment.vehicle, anchor: "reviews") %>
+            vehicle_url(@vehicle, anchor: "reviews") %>

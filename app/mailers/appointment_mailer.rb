@@ -32,9 +32,12 @@ class AppointmentMailer < ApplicationMailer
     subject: "Test Drive Request Declined"
   end
   
-  def review_request(appointment_id)
+  def review_request(appointment)
     
-    @appointment = Appoointment.find(appointment_id)
+    @appointment = appointment
+    @buyer       = appointment.buyer.name
+    @seller      = appointment.vehicle.user.name
+    @vehicle     = appointment.vehicle
     
     mail to: appointment.buyer.email, 
     subject: "Write A Review!"
