@@ -1,4 +1,6 @@
 class AppointmentMailer < ApplicationMailer
+  
+  include Resque::Mailer
 
   def appointment_request(appointment)
     
