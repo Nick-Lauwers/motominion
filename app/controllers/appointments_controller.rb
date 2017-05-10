@@ -63,8 +63,7 @@ class AppointmentsController < ApplicationController
     @appointment.conversation.update_attributes(next_contributor_id: :buyer_id, 
                                                 latest_message_read: false)
     AppointmentMailer.appointment_accepted(@appointment).deliver_now
-    appointment = @appointment.first
-    ReviewNotifierJob.set(wait_until: appointment.date).perform_later(appointment)
+    ReviewNotifierJob.set(wait_until: @appointment.date).perform_later(@appointment)
     flash[:success] = "Test drive accepted!"
     redirect_to :back
   end

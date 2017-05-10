@@ -127,7 +127,8 @@ class VehiclesController < ApplicationController
       @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
                                  where: { vehicle_model_id: 
                                             params[:vehicle][:vehicle_model_id],
-                                          sold_at: nil },
+                                          sold_at: nil,
+                                          latitude: { not: nil } },
                                  page: params[:page], 
                                  per_page: 10
     
@@ -138,6 +139,7 @@ class VehiclesController < ApplicationController
                           
     else
       @vehicles = Vehicle.all.where(sold_at: nil).
+                              where.not(latitude: nil).
                               paginate(page: params[:page], per_page: 10)
     end
     

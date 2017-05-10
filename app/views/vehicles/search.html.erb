@@ -14,7 +14,7 @@
       <% if params[:vehicle][:vehicle_make_id].present? %>
       
         <%= VehicleMake.find_by(id: params[:vehicle][:vehicle_make_id]).name %>
-        <%= VehicleModel.find_by(id: params[:vehicle][:vehicle_make_id]).name %>
+        <%= VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name %>
         
       <% else %>
         All Makes and Models</h1>
