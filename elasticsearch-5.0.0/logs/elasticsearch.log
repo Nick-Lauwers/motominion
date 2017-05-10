@@ -8969,3 +8969,5 @@ Caused by: java.lang.NumberFormatException: For input string: "true"
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) ~[?:1.8.0_111]
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) ~[?:1.8.0_111]
 	at java.lang.Thread.run(Thread.java:745) ~[?:1.8.0_111]
+[2017-05-10T14:21:52,855][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][8442][3] duration [5.2s], collections [1]/[5.7s], total [5.2s]/[12.3s], memory [716.9mb]->[317.6mb]/[1.9gb], all_pools {[young] [532.5mb]->[4.8mb]/[532.5mb]}{[survivor] [66.5mb]->[56.2mb]/[66.5mb]}{[old] [117.9mb]->[256.5mb]/[1.3gb]}
+[2017-05-10T14:21:52,962][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][8442] overhead, spent [5.2s] collecting in the last [5.7s]
