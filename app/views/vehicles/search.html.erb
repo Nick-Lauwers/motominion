@@ -14,7 +14,7 @@
       <% if params[:vehicle][:vehicle_make_id].present? %>
       
         <%= VehicleMake.find_by(id: params[:vehicle][:vehicle_make_id]).name %>
-        <%= VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name %>
+        <%= VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name  if VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name != "All models" %>
         
       <% else %>
         All Makes and Models</h1>
@@ -82,7 +82,9 @@
             
             <% if @vehicles.any? %>
               <ol class="search-items">
-                <%= render 'search_item' %>
+                <%= render partial:    "search_item", 
+                           collection: @vehicles, 
+                           as:         :vehicle %>
               </ol>
             <% end %>
             

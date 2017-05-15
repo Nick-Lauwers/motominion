@@ -225,6 +225,4 @@ $(function() {
       displayKey: 'city',
       source:     cities.ttAdapter()
     });
-    
-    
 });

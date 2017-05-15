@@ -108,29 +108,53 @@ class VehiclesController < ApplicationController
   
   def search
     
-    if params[:vehicle][:vehicle_make_id].present? && params[:city].present?
-
-      coordinates = Geocoder.coordinates(params[:city])
+    if params[:vehicle][:vehicle_make_id].present? && 
+       params[:city].present?
       
-      @vehicles   = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                  where: { location: { near: {
-                                                            lat: coordinates[0], 
-                                                            lon: coordinates[1]
+      coordinates = Geocoder.coordinates(params[:city])
+       
+      if VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name != "All models"
+        @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
+                                   where: { location: { near: {
+                                                              lat: coordinates[0], 
+                                                              lon: coordinates[1]
                                                               }, 
-                                                        within: "20mi" },
-                                           vehicle_model_id: params[:vehicle][:vehicle_model_id],
-                                           sold_at: nil },
-                                  page: params[:page], 
-                                  per_page: 10
-    
+                                                              within: "20mi" },
+                                            vehicle_model_id: params[:vehicle][:vehicle_model_id],
+                                            sold_at: nil },
+                                   page: params[:page], 
+                                   per_page: 10
+      
+      else 
+        @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
+                                   where: { location: { near: {
+                                                              lat: coordinates[0], 
+                                                              lon: coordinates[1]
+                                                              }, 
+                                                              within: "20mi" },
+                                            sold_at: nil },
+                                   page: params[:page], 
+                                   per_page: 10
+      end
+
     elsif params[:vehicle][:vehicle_make_id].present?
-      @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                 where: { vehicle_model_id: 
-                                            params[:vehicle][:vehicle_model_id],
-                                          sold_at: nil,
-                                          latitude: { not: nil } },
-                                 page: params[:page], 
-                                 per_page: 10
+      
+      if VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name != "All models"
+        @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
+                                   where: { vehicle_model_id: 
+                                              params[:vehicle][:vehicle_model_id],
+                                            sold_at: nil,
+                                            latitude: { not: nil } },
+                                   page: params[:page], 
+                                   per_page: 10
+      
+      else
+        @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
+                                   where: { sold_at: nil,
+                                            latitude: { not: nil } },
+                                   page: params[:page], 
+                                   per_page: 10
+      end
     
     elsif params[:city].present?
       @vehicles = Vehicle.near(params[:city], 20).
@@ -141,6 +165,7 @@ class VehiclesController < ApplicationController
       @vehicles = Vehicle.all.where(sold_at: nil).
                               where.not(latitude: nil).
                               paginate(page: params[:page], per_page: 10)
+
     end
     
     @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
