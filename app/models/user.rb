@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   validates :phone_number, phony_plausible: true
   
   has_attached_file :avatar, 
-    default_url: "/assets/avatar.jpg"
+    default_url: "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/avatar.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   
   class << self

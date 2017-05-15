@@ -174,7 +174,7 @@ class VehiclesController < ApplicationController
       marker.lng vehicle.longitude
       
       marker.picture({
-        url: "/assets/map-marker-red.png",
+        url: "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png",
         width:  32,
         height: 32
       })
