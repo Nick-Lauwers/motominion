@@ -4,7 +4,7 @@ class VehiclesController < ApplicationController
   
   before_action :logged_in_user, except: [:show, :search, :autocomplete]
   before_action :get_vehicle,    only:   [:destroy, :show, :edit, :update, 
-                                          :favorite, :sold, :undo_sold]
+                                          :favorite, :sold, :undo_sold, :bump]
   
   def new
     
@@ -123,8 +123,10 @@ class VehiclesController < ApplicationController
                                             vehicle_model_id: params[:vehicle][:vehicle_model_id],
                                             sold_at: nil },
                                    page: params[:page], 
-                                   per_page: 10
-      
+                                   per_page: 10,
+                                   order: { bumped_at: :desc, 
+                                            created_at: :desc }
+
       else 
         @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
                                    where: { location: { near: {
@@ -134,7 +136,9 @@ class VehiclesController < ApplicationController
                                                               within: "20mi" },
                                             sold_at: nil },
                                    page: params[:page], 
-                                   per_page: 10
+                                   per_page: 10,
+                                   order: { bumped_at: :desc, 
+                                            created_at: :desc }
       end
 
     elsif params[:vehicle][:vehicle_make_id].present?
@@ -146,25 +150,31 @@ class VehiclesController < ApplicationController
                                             sold_at: nil,
                                             latitude: { not: nil } },
                                    page: params[:page], 
-                                   per_page: 10
+                                   per_page: 10,
+                                   order: { bumped_at: :desc, 
+                                            created_at: :desc }
       
       else
         @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
                                    where: { sold_at: nil,
                                             latitude: { not: nil } },
                                    page: params[:page], 
-                                   per_page: 10
+                                   per_page: 10,
+                                   order: { bumped_at: :desc, 
+                                            created_at: :desc }
       end
     
     elsif params[:city].present?
       @vehicles = Vehicle.near(params[:city], 20).
                           where(sold_at: nil).
-                          paginate(page: params[:page], per_page: 10)
+                          paginate(page: params[:page], per_page: 10).
+                          order(bumped_at: :desc, created_at: :desc)
                           
     else
       @vehicles = Vehicle.all.where(sold_at: nil).
                               where.not(latitude: nil).
-                              paginate(page: params[:page], per_page: 10)
+                              paginate(page: params[:page], per_page: 10).
+                              order(bumped_at: :desc, created_at: :desc)
 
     end
     
@@ -207,6 +217,12 @@ class VehiclesController < ApplicationController
     @vehicle.update_attribute(:sold_at, nil)
     flash[:success] = 
       "#{ @vehicle.listing_name } is now available for purchase!"
+    redirect_to :back
+  end
+  
+  def bump
+    @vehicle.update_attribute(:bumped_at, Time.now)
+    flash[:success] = "#{ @vehicle.listing_name } has been bumped!"
     redirect_to :back
   end
   

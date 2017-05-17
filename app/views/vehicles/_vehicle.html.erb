@@ -138,6 +138,7 @@
     </div>
     
     <div class="col-xs-2 summary-price">
+      
       <%= link_to vehicle, 
                   class: "summary-price-content", 
                   target: "_blank" do %>
@@ -148,6 +149,16 @@
         <!--    vehicle, -->
         <!--    method: :get,-->
         <!--    class: "btn btn-secondary" %>-->
+      <% end %>
+      
+      <%= link_to bump_vehicle_path(vehicle), method: :put do %>
+        <!--<span class="summary-detail-link">-->
+          
+          <i class="fa fa-4x fa-arrow-circle-o-up summary-detail-link-icon" 
+             aria-hidden="true"></i>
+             
+          Bump!
+        <!--</span>-->
       <% end %>
     </div>
   </div>

@@ -32,7 +32,7 @@ class Vehicle < ActiveRecord::Base
   end
   
   # before_save      { vin.upcase! }
-  default_scope -> { order(created_at: :desc) }
+  # default_scope -> { order(created_at: :desc) }
   
   validates :body_style, :color, :transmission, :fuel_type, :drivetrain, 
             :street_address, :city, :state, :year, :price, :mileage, 

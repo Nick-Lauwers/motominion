@@ -89,7 +89,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  # Assign AWS configuration variables to Paperclip
+  # Assign AWS configuration variables to Paperclip.
   config.paperclip_defaults = {
     storage: :s3,
     # s3_host_name: 's3-us-east-2.amazonaws.com',
@@ -111,4 +111,7 @@ Rails.application.configure do
   #     :signature => ENV['AM_SIGNATURE']
   #   )
   # end
+  
+  # Use SSL by default.
+  config.force_ssl = true
 end

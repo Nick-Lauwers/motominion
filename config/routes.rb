@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       put :favorite
       put :sold
       put :undo_sold
+      put :bump
     end
     
     collection do
