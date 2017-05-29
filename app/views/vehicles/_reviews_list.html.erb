@@ -17,8 +17,15 @@
                             review-author-clickable 
                             vertical-align" do %>
           
-          <div class="author-avatar">
-            <%= image_tag r.reviewer.avatar.url %>
+          <div class="avatar-and-online">
+            
+            <div class="author-avatar">
+              <%= image_tag r.reviewer.avatar.url %>
+            </div>
+            
+            <% if r.reviewer.online? %>
+              <div class="online online-md-secondary"></div>
+            <% end %>
           </div>
 
           <span class="author-name"><%= r.reviewer.name %></span>

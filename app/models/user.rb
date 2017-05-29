@@ -134,6 +134,11 @@ class User < ActiveRecord::Base
     received_reviews.count == 0 ? 0 : received_reviews.average(:rating).round(2)
   end
   
+  # Checks if user is online.
+  def online?
+    updated_at > 10.minutes.ago
+  end
+  
   private
   
     # Converts email to all lower-case.

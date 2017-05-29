@@ -59,10 +59,17 @@ module SessionsHelper
   
   # Stores the URL trying to be accessed.
   def store_location
+    
     if request.get?
       session[:forwarding_url] = request.url
+      
     else
       session[:forwarding_url] = request.referrer
     end
+  end
+  
+  # Returns true if the user has a profile pic, false otherwise.
+  def profile_pic?
+    current_user.avatar.exists?
   end
 end

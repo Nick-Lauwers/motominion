@@ -19,6 +19,10 @@
             
             <h1 class="hero-username"><%= current_user.name %></h1>
             
+            <% if current_user.online? %>
+              <div class="online-name online-name-md"></div>
+            <% end %>
+
             <% if current_user.phone_number.present? or 
                   current_user.email.present? %>
               <table>

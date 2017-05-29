@@ -1,50 +1,121 @@
 <!--completed-->
 
-<div id="feed-item-<%= feed_item.id %>" class="col-xs-4 feed-item">
-  <%= link_to feed_item, target: "_blank" do %>
+<li id="feed-item-<%= feed_item.id %>" class="col-xs-4 feed-item">
   
+  <%= link_to feed_item, target: "_blank" do %>
     <div class="feed-item-content">
-      
-      <% if feed_item.sold_at.present? %>
-        <div class="ribbon-listing">SOLD</div>
-      <% end %>
       
       <div class="feed-item-image", 
            style="background-image: url(
                    '<%= feed_item.photos[0].image.url() if 
                         feed_item.photos.length > 0 %>')">
-        <!--<div class="feed-item-credit">-->
-        <!--  <span>Jaguar</span>-->
-        <!--</div>-->
       </div>
       
-      <div class="feed-item-title">
-        <p>
-          <i class="fa fa-tag feed-item-icon" aria-hidden="true"></i>
-          <%= feed_item.listing_name %>
-        </p>
-      </div>
-      
-      <div class="feed-item-info">
-        
-        <p><%= feed_item.summary %></p>
-        
-        <div class="feed-item-stats">
+      <div class="row">
           
-          <div class="feed-item-time">
-            <span>
-              <%= time_ago_in_words(feed_item.created_at).capitalize %> ago
-            </span>
+        <div class="col-xs-3 feed-item-user">
+          <div class="feed-item-user-content">
+            <div class="avatar-and-online">
+              
+              <div class="feed-item-avatar">
+                <%= image_tag feed_item.user.avatar.url %>
+              </div>
+            
+              <% if feed_item.user.online? %>
+                <div class="online online-lg-primary"></div>
+              <% end %>
+            </div>
           </div>
-          
-          <div class="feed-item-saves pull-right">
-            <span>
-              <%= pluralize(feed_item.favorited_by.count, "Save") %> | 
-              <%= pluralize(feed_item.questions.count, "Question") %>
+        </div>
+        
+        <div class="col-xs-9">
+          <div class="feed-item-info">
+            
+            <span class="feed-item-title">
+              $<%= feed_item.price %> | <%= feed_item.listing_name %>
+            </span>
+  
+            <div id="average-rating-feed-item-<%= feed_item.id %>", 
+                 class="average-rating-feed-item"></div>
+            
+            <span class="feed-item-review-count">
+              <%= pluralize(feed_item.reviews.count, "review") %>
             </span>
           </div>
         </div>
       </div>
     </div>
   <% end %>
-</div>
+  
+  <%= link_to favorite_vehicle_path(feed_item), 
+              method: :put do %>
+    <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
+  <% end %>
+</li>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // image scaling
+    
+      var feedItemAvatar = $('.feed-item-avatar');
+  
+      feedItemAvatar.imagefill();  
+    
+    // rating
+    
+      var averageRating = $('#average-rating-feed-item-<%= feed_item.id %>');
+  
+      averageRating.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= feed_item.average_rating %>
+      });  
+  });
+</script>
+
+<!--<div class="feed-item-info">-->
+  <!--<div class="feed-item-stats">-->
+    
+    <!--<div class="feed-item-time">-->
+    <!--  <span>-->
+    <!--    <(perc)= time_ago_in_words(feed_item.created_at).capitalize %> ago-->
+    <!--  </span>-->
+    <!--</div>-->
+    
+    <!--<div class="feed-item-saves pull-right">-->
+    <!--  <span>-->
+    <!--    <(perc)= pluralize(feed_item.favorited_by.count, "Save") %> | -->
+    <!--    <(perc)= pluralize(feed_item.questions.count, "Question") %>-->
+    <!--  </span>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!--<div class="feed-item-title">-->
+<!--  <p>-->
+<!--    <i class="fa fa-tag feed-item-icon" aria-hidden="true"></i>-->
+<!--    <(perc)= feed_item.listing_name %>-->
+<!--  </p>-->
+<!--</div>-->
+
+<!--<div class="feed-item-info">-->
+  
+<!--  <p><(perc)= feed_item.summary %></p>-->
+  
+<!--  <div class="feed-item-stats">-->
+    
+<!--    <div class="feed-item-time">-->
+<!--      <span>-->
+<!--        <(perc)= time_ago_in_words(feed_item.created_at).capitalize %> ago-->
+<!--      </span>-->
+<!--    </div>-->
+    
+<!--    <div class="feed-item-saves pull-right">-->
+<!--      <span>-->
+<!--        <(perc)= pluralize(feed_item.favorited_by.count, "Save") %> | -->
+<!--        <(perc)= pluralize(feed_item.questions.count, "Question") %>-->
+<!--      </span>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

@@ -36,7 +36,7 @@ class Vehicle < ActiveRecord::Base
   
   validates :body_style, :color, :transmission, :fuel_type, :drivetrain, 
             :street_address, :city, :state, :year, :price, :mileage, 
-            :seating_capacity, :user_id, :vehicle_make_id, :vehicle_model_id, 
+            :seating_capacity, :user_id, :vehicle_make_id, :vehicle_model_id,
             presence: true
   validates :listing_name, presence: true, length: { maximum: 50 }
   validates :summary,      presence: true

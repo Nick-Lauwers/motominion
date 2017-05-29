@@ -1,6 +1,11 @@
 <li id="reply-item-<%= reply.id %>" class="reply-item">
   
   <div class="reply-avatar">
+    
+    <% if reply.user.online? %>
+      <div class="online-sm"></div>
+    <% end %>
+    
     <%= link_to (image_tag reply.user.avatar.url), 
                 reply.user %>
   </div>

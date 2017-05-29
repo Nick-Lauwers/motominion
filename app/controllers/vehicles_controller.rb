@@ -2,9 +2,11 @@
 
 class VehiclesController < ApplicationController
   
-  before_action :logged_in_user, except: [:show, :search, :autocomplete]
-  before_action :get_vehicle,    only:   [:destroy, :show, :edit, :update, 
-                                          :favorite, :sold, :undo_sold, :bump]
+  before_action :logged_in_user,     except: [:show, :search, :autocomplete]
+  before_action :profile_pic_upload, only:   [:new]
+  before_action :get_vehicle,        only:   [:destroy, :show, :edit, :update, 
+                                              :favorite, :sold, :undo_sold, 
+                                              :bump]
   
   def new
     
@@ -27,7 +29,7 @@ class VehiclesController < ApplicationController
       end
       
       @photos = @vehicle.photos
-      flash[:success] = "Vehicle saved"
+      flash[:success] = "Vehicle has been posted and bumped!"
       redirect_to vehicles_path
     
     else
@@ -63,7 +65,7 @@ class VehiclesController < ApplicationController
         end
       end
       
-      flash[:success] = "Vehicle updated"
+      flash[:success] = "Vehicle has been updated and bumped!"
       redirect_to vehicles_path
     
     else
@@ -246,7 +248,7 @@ class VehiclesController < ApplicationController
                                       :is_bluetooth, :is_backup_camera, 
                                       :is_remote_start, :is_tow_package, 
                                       :vehicle_make_id, :vehicle_model_id, 
-                                      availabilities_attributes: 
+                                      :bumped_at, availabilities_attributes: 
                                       [:id, :day, :start_time, :end_time, 
                                        :vehicle_id, :_destroy])
     end

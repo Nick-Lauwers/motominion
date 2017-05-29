@@ -1,4 +1,6 @@
 <!--completed-->
+<!--<= Message.first.created_at.strftime("%A, %d %b") %>-->
+<!--<= message.created_at.strftime("%A, %d %b") %>-->
 
 <% if message.user_id == current_user.id %>
 
@@ -19,7 +21,7 @@
         </p>
         
         <span class="message-date">
-          <%= message.created_at.strftime("%D") %>
+          <%= message.created_at.strftime("%-l:%M%p") %>
         </span>
       </div>
     </div>
@@ -37,7 +39,7 @@
         </p>
         
         <span class="message-date">
-          <%= message.created_at.strftime("%D") %>
+          <%= message.created_at.strftime("%-l:%M%p") %>
         </span>
       </div>
     </div>

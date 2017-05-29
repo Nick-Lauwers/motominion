@@ -1,6 +1,6 @@
 <!--completed-->
 
-<%= form_for(@conversation) do |f| %>
+<%= form_for @conversation do |f| %>
 
   <%= f.hidden_field :sender_id,           value: current_user.id if 
                                                   current_user %>
@@ -41,8 +41,4 @@
     
     <%= ff.hidden_field :vehicle_id,          value: @vehicle.id %>
   <% end %>
-  
-  <%= f.submit "Book!", class: "btn btn-tertiary btn-appointment" %>
 <% end %>
-
-<!--user && conversation-->

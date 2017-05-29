@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516175939) do
+ActiveRecord::Schema.define(version: 20170521155758) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
@@ -44,10 +44,12 @@ ActiveRecord::Schema.define(version: 20170516175939) do
     t.boolean  "latest_message_read"
     t.integer  "sender_id"
     t.integer  "recipient_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.boolean  "sender_archived"
     t.boolean  "recipient_archived"
+    t.datetime "sender_last_viewed_at"
+    t.datetime "recipient_last_viewed_at"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|

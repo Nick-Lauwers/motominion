@@ -36,6 +36,10 @@
             
             <h1 class="user-summary-name"><%= @user.name %></h1>
             
+            <% if @user.online? %>
+              <div class="online-name online-name-lg"></div>
+            <% end %>
+            
             <p class="user-summary-info">
               <%= @user.residence + " · " if @user.residence.present? %> 
               <span class="average-rating"></span>
@@ -133,7 +137,7 @@
             
             <% if @user.favorite_vehicles.exists? %>
               <ol class="wish-list-items">
-                <%= render 'wish_lists' %>
+                <%= render 'wish_list' %>
               </ol>
             
             <% else %>
@@ -364,6 +368,7 @@
   $(document).ready(function() {
     
     // rating
+    
     var averageRating = $('.average-rating');
 
     averageRating.raty({

@@ -3,9 +3,16 @@
 <li id="question-item-<%= question.id %>" class="question-item">
   <div class="question-item-content">
 
-    <div class="question-avatar">
-      <%= link_to (image_tag question.user.avatar.url), 
-                  question.user %>
+    <div class="avatar-and-online">
+      
+      <div class="question-avatar">
+        <%= link_to (image_tag question.user.avatar.url), 
+                    question.user %>
+      </div>
+      
+      <% if question.user.online? %>
+        <div class="online online-sm-primary"></div>
+      <% end %>
     </div>
 
     <div class="question-details">
@@ -35,9 +42,16 @@
       <% question.replies.each do |reply| %>
         <li id="reply-item-<%= reply.id %>" class="reply-item">
           
-          <%= link_to (image_tag reply.user.avatar.url), 
-                      reply.user, 
-                      class: "reply-avatar" %>
+          <div class="avatar-and-online">
+            
+            <%= link_to (image_tag reply.user.avatar.url), 
+                        reply.user, 
+                        class: "reply-avatar" %>
+                        
+            <% if reply.user.online? %>
+              <div class="online online-sm-primary"></div>
+            <% end %>
+          </div>
           
           <div class="reply-details">
             
@@ -63,9 +77,16 @@
       
         <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
         
-        <div class="reply-form-avatar">
-          <%= link_to (image_tag current_user.avatar.url), 
-                      user_path(current_user) %>
+        <div class="avatar-and-online">
+          
+          <div class="reply-form-avatar">
+            <%= link_to (image_tag current_user.avatar.url), 
+                        user_path(current_user) %>
+          </div>
+          
+          <% if current_user.online? %>
+            <div class="online online-sm-primary"></div>
+          <% end %>
         </div>
         
         <div class="reply-form-container">

@@ -1,0 +1,2 @@
+[2017-05-16T05:13:17,298][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][144844] overhead, spent [313ms] collecting in the last [1s]
+[2017-05-16T18:21:07,485][INFO ][o.e.c.m.MetaDataMappingService] [ht0EVsn] [vehicles_development_20170328112843769/7RvIp9gSRDOCTngpUIpSdQ] update_mapping [vehicle]

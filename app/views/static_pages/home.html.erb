@@ -30,8 +30,8 @@
     </h2>
     
     <%= form_tag search_vehicles_path, 
-             method: :get, 
-             class: "search-form-primary" do %>
+                 method: :get, 
+                 class: "search-form-primary" do %>
                  
       <div class="row search-form-primary-content">
         
@@ -202,9 +202,9 @@
       
       <h3 class="feed-title">Discover Top Content</h3>
       
-      <div id="feed-items">
+      <ol id="feed-items">
         <%= render partial: "feed_item", collection: @feed_items %>
-      </div>
+      </ol>
       
       <%= will_paginate @feed_items, 
                         previous_label: 

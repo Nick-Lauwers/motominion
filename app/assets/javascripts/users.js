@@ -13,6 +13,7 @@ $(function() {
         
           reader.onload = function (e) {
             avatar.attr('src', e.target.result);
+            $('.btn-profile-pic').prop("disabled", false);
           };
       
           reader.readAsDataURL(input.files[0]);
@@ -37,9 +38,11 @@ $(function() {
     // image scaling
     
       var userSummaryAvatar   = $('.user-summary-avatar');
+      var wishListItemAvatar = $('.wish-list-item-avatar');
 
       userSummaryAvatar.imagefill();
-
+      wishListItemAvatar.imagefill(); 
+    
     // smooth scroll
     
       var reviewsScrolledButton = $(".btn-secondary-scrolled")

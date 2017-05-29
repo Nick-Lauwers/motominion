@@ -1,15 +1,20 @@
 <!--completed-->
-
-<%= link_to questions_path, class: "new-question-link" do %>
    
-  <li id="new-question-item-<%= question.id %>" class="new-question-item">           
+<li id="new-question-item-<%= question.id %>" class="new-question-item">
+   
+  <%= link_to questions_path do %>
     <table class="new-question-item-content">
       <tr>
         
-        <td>
+        <td class="avatar-and-online">
+          
           <div class="new-question-avatar">
             <%= image_tag question.user.avatar.url %>
           </div>
+          
+          <% if question.user.online? %>
+            <div class="online online-md-primary"></div>
+          <% end %>
         </td>
         
         <td>
@@ -29,8 +34,8 @@
         </td>
       </tr>
     </table>
-  </li>
-<% end %>
+  <% end %>
+</li>
 
 <script type="text/javascript">
   $(document).ready(function() {

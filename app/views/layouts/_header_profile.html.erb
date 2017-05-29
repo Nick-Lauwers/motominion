@@ -6,8 +6,15 @@
       
       <div class="col-xs-8 vertical-align">
         
-        <div class="header-profile-avatar">
-          <%= image_tag @user.avatar.url %>
+        <div class="avatar-and-online">
+          
+          <div class="header-profile-avatar">
+            <%= image_tag @user.avatar.url %>
+          </div>
+          
+          <% if @user.online? %>
+            <div class="online online-md-primary"></div>
+          <% end %>
         </div>
         
         <div class="header-profile-info">

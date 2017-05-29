@@ -2,18 +2,22 @@
 
 <% other = conversation.sender == 
            current_user ? conversation.recipient : conversation.sender %>
-           
-<%= link_to conversation_messages_path(conversation), 
-            class: "conversation-link" do %>
    
-  <li id="conversation-item-<%= conversation.id %>" class="conversation-item">           
+<li id="conversation-item-<%= conversation.id %>" class="conversation-item">
+  
+  <%= link_to conversation_messages_path(conversation) do %>
     <table class="conversation-item-content">
       <tr>
         
-        <td>
+        <td class="avatar-and-online">
+          
           <div class="conversation-avatar">
             <%= image_tag other.avatar.url %>
           </div>
+          
+          <% if other.online? %>
+            <div class="online online-md-primary"></div>
+          <% end %>
         </td>
         
         <td>
@@ -52,8 +56,8 @@
         </td>
       </tr>
     </table>
-  </li>
-<% end %>
+  <% end %>
+</li>
 
 <script type="text/javascript">
   $(document).ready(function() {

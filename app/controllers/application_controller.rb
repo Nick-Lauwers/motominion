@@ -4,10 +4,11 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery with: :exception
   include SessionsHelper
+  after_filter :user_activity
 
   private
   
-    # Redirects to back, or to default url if back fails
+    # Redirects to back, or to default url if back fails.
     def redirect_to_back_or_default(default = root_url)
       
       if request.env["HTTP_REFERER"].present? and 
@@ -26,5 +27,18 @@ class ApplicationController < ActionController::Base
         flash[:failure] = "Please log in."
         redirect_to login_url
       end
+    end
+    
+    # Confirms profile pic upload.
+    def profile_pic_upload
+      unless profile_pic?
+        store_location
+        redirect_to profile_pic_user_path(current_user)
+      end
+    end
+    
+    # Updates user if online.
+    def user_activity
+      current_user.try :touch
     end
 end

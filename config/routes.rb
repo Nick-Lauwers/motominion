@@ -23,7 +23,12 @@ Rails.application.routes.draw do
   resources :profiles,            only: [:show, :edit, :update]
 
   resources :users do
+    
     resources :reviews, only: [:index, :destroy]
+
+    member do
+      get 'profile_pic'
+    end
   end
 
   resources :vehicles do

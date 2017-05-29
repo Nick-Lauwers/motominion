@@ -2,7 +2,8 @@
 
 class ConversationsController < ApplicationController
 
-  before_action :logged_in_user,  only: [:create]
+  before_action :logged_in_user,     only: [:create]
+  before_action :profile_pic_upload, only: [:create]
 
   def index
     
@@ -133,9 +134,10 @@ class ConversationsController < ApplicationController
     def conversation_params
       params.require(:conversation).permit(:sender_id, :recipient_id, 
                                            :next_contributor_id, 
-                                           :latest_message_read,
                                            :sender_archived, 
                                            :recipient_archived,
+                                           :sender_last_viewed_at, 
+                                           :recipient_last_viewed_at,
                                            appointments_attributes: 
                                            [:date, :status, :seller_id, 
                                             :buyer_id, :vehicle_id])

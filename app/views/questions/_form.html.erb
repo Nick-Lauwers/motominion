@@ -3,9 +3,16 @@
   
     <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
 
-    <div class="question-form-avatar">
-      <%= link_to (image_tag @question.user.avatar.url), 
-                  user_path(@question.user) %>
+    <div class="avatar-and-online">
+      
+      <div class="question-form-avatar">
+        <%= link_to (image_tag @question.user.avatar.url), 
+                    user_path(@question.user) %>
+      </div>
+      
+      <% if @question.user.online? %>
+        <div class="online online-sm-primary"></div>
+      <% end %>
     </div>
     
     <div class="question-form-container">

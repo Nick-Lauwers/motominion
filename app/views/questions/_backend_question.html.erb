@@ -3,8 +3,15 @@
   
   <div class="col-xs-4 vertical-align">
     
-    <div class="backend-question-avatar">
-      <%= link_to image_tag(question.user.avatar.url), question.user %>
+    <div class="avatar-and-name">
+      
+      <div class="backend-question-avatar">
+        <%= link_to image_tag(question.user.avatar.url), question.user %>
+      </div>
+      
+      <% if question.user.online? %>
+        <div class="online online-md-quinary"></div>
+      <% end %>
     </div>
     
     <div class="backend-question-detail">
@@ -43,8 +50,15 @@
           <li id="backend-reply-item-<%= reply.id %>" 
               class="backend-reply-item">
             
-            <div class="backend-reply-avatar">
-              <%= link_to (image_tag reply.user.avatar.url), reply.user %>
+            <div class="avatar-and-online">
+              
+              <div class="backend-reply-avatar">
+                <%= link_to (image_tag reply.user.avatar.url), reply.user %>
+              </div>
+              
+              <% if reply.user.online? %>
+                <div class="online online-sm-primary"></div>
+              <% end %>
             </div>
             
             <div class="backend-reply-detail">
@@ -69,9 +83,16 @@
       
         <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
         
-        <div class="backend-reply-form-avatar">
-          <%= link_to (image_tag current_user.avatar.url),
-                      user_path(current_user) %>
+        <div class="avatar-and-online">
+          
+          <div class="backend-reply-form-avatar">
+            <%= link_to (image_tag current_user.avatar.url),
+                        user_path(current_user) %>
+          </div>
+          
+          <% if current_user.online? %>
+            <div class="online online-sm-secondary"></div>
+          <% end %>
         </div>
         
         <div class="backend-reply-form-container">

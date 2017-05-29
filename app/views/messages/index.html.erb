@@ -32,12 +32,17 @@
             <%= link_to (image_tag @other.avatar.url), 
                          user_path(@other) %>
           </div>
-          
+
           <div class='recipient-username'>
+            
             <%= link_to @other.name,
                         user_path(@other) %>
+                        
+            <% if @other.online? %>
+              <div class="online-name online-name-lg"></div>
+            <% end %>
           </div>
-          
+
           <% if @other.residence.present? %>
             <span class="recipient-city">
               <%= @other.residence %>
@@ -106,7 +111,8 @@
                           </td>
                           
                           <td class="request-item-status-container">
-                            <span class="request-item-status">
+                            <span class="request-item-status 
+                                         <%= appointment.status %>">
                               <%= appointment.status.capitalize %>
                             </span>
                           </td>
@@ -161,7 +167,8 @@
                           </td>
                           
                           <td class="request-item-status-container">
-                            <span class="request-item-status">
+                            <span class="request-item-status
+                                         <%= appointment.status %>">
                               <%= appointment.status.capitalize %>
                             </span>
                           </td>
@@ -240,10 +247,38 @@
           </div>
         <% end %>
         
-        <%= render 'form' %>
+        <span class="response-stats">
+          <% if (current_user.id == @conversation.sender_id  && @conversation.recipient_last_viewed_at.present?) %>
+            <% if @conversation.recipient_last_viewed_at.today? %>
+              Last viewed by <%= @other.name %>: <strong>Today</strong> at <strong><%= @conversation.recipient_last_viewed_at.strftime("%-l:%M%p") %></strong>
+            <% else %>
+              Last viewed by <%= @other.name %> on: <strong><%= @conversation.recipient_last_viewed_at.strftime("%d %B %Y") %></strong>
+            <% end %>
+          <% elsif (current_user.id == @conversation.recipient_id)  %>
+            <% if @conversation.sender_last_viewed_at.today? %>
+              Last viewed by <%= @other.name %>: <strong>Today</strong> at <strong><%= @conversation.sender_last_viewed_at.strftime("%-l:%M%p") %></strong>
+            <% else %>
+              Last viewed by <%= @other.name %> on: <strong><%= @conversation.sender_last_viewed_at.strftime("%d %B %Y") %></strong>
+            <% end %>
+          <% end %>
+        </span>
         
+        <%= render 'form' %>
+
         <div id="chat">
-          <%= render @messages, locals: { conversation: @conversation } %>
+          
+          <% @messages_by_day.sort.reverse_each do |day, messages| %>
+          
+            <% unless day.today? %>
+              <span class="response-stats">
+                <strong><%= day.strftime("%d %B %Y") %></strong>
+              </span>
+            <% end %>
+            
+            <% for message in messages %>
+              <%= render partial: 'message', object: message %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>

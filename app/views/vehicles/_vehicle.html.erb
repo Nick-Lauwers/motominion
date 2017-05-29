@@ -80,61 +80,45 @@
           
         <p class="summary-detail-title"><%= vehicle.listing_name %></p>
         
-        <p class="summary-detail-info">
+        <span class="summary-detail-info">
           Posted <%= time_ago_in_words(vehicle.created_at) %> ago
-        </p>
-        
-        <p class="summary-detail-info">
-          <%= vehicle.summary %>
-        </p>
-      <% end %>
-      
-      <%= link_to edit_vehicle_path(vehicle) do %>
-        <span class="summary-detail-link">
-          
-          <i class="fa fa-pencil-square-o summary-detail-link-icon" 
-             aria-hidden="true"></i>
-             
-          Update
         </span>
-      <% end %>
-      
-      <% if vehicle.sold_at.present? %>
-      
-        <%= link_to undo_sold_vehicle_path(vehicle), method: :put do %>
+        
+        <%= link_to edit_vehicle_path(vehicle) do %>
           <span class="summary-detail-link">
             
-            <i class="fa fa-money summary-detail-link-icon" 
+            <i class="fa fa-pencil-square-o summary-detail-link-icon" 
                aria-hidden="true"></i>
                
-            Undo "Mark As Sold"
+            Update
           </span>
         <% end %>
         
-      <% else %>
-      
-        <%= link_to sold_vehicle_path(vehicle), method: :put do %>
-          <span class="summary-detail-link">
-            
-            <i class="fa fa-money summary-detail-link-icon" 
-               aria-hidden="true"></i>
-               
-            Mark As Sold
-          </span>
-        <% end %>
+        <!--<p class="summary-detail-info">-->
+        <!--  <= vehicle.summary %>-->
+        <!--</p>-->
       <% end %>
       
-      <!--<(perc)= link_to vehicle, -->
-      <!--            method: :delete, -->
-      <!--            data: { confirm: "Are you sure?" } do %>-->
-      <!--  <span class="summary-detail-link">-->
-          
-      <!--    <i class="fa fa-times summary-detail-link-icon" -->
-      <!--       aria-hidden="true"></i>-->
-             
-      <!--    Delete-->
-      <!--  </span>-->
-      <!--<(perc) end %>-->
+      <div class="summary-buttons">
+        
+        <%= link_to "Bump",
+                    bump_vehicle_path(vehicle), 
+                    method: :put,
+                    class: "btn btn-bump" %>
+  
+        <% if vehicle.sold_at.present? %>
+          <%= link_to "Repost",
+                      undo_sold_vehicle_path(vehicle), 
+                      method: :put,
+                      class: "btn btn-mark-as-sold" %>
+                      
+        <% else %>
+          <%= link_to "Mark As Sold",
+                      sold_vehicle_path(vehicle), 
+                      method: :put,
+                      class: "btn btn-mark-as-sold" %>
+        <% end %>
+      </div>
     </div>
     
     <div class="col-xs-2 summary-price">
@@ -149,16 +133,6 @@
         <!--    vehicle, -->
         <!--    method: :get,-->
         <!--    class: "btn btn-secondary" %>-->
-      <% end %>
-      
-      <%= link_to bump_vehicle_path(vehicle), method: :put do %>
-        <!--<span class="summary-detail-link">-->
-          
-          <i class="fa fa-4x fa-arrow-circle-o-up summary-detail-link-icon" 
-             aria-hidden="true"></i>
-             
-          Bump!
-        <!--</span>-->
       <% end %>
     </div>
   </div>

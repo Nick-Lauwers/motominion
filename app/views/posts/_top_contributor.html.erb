@@ -6,10 +6,15 @@
     
     <div class="row vertical-align">
       
-      <div class="col-xs-3">
+      <div class="col-xs-3 avatar-and-online">
+        
         <div class="top-contributor-avatar">
           <%= image_tag top_contributor.avatar.url %>
         </div>
+        
+        <% if top_contributor.online? %>
+          <div class="online online-md-tertiary"></div>
+        <% end %>
       </div>
       
       <div class="col-xs-9">

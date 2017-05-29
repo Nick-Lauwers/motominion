@@ -180,49 +180,63 @@ $(function() {
       
   // search
     
-    var vehicleTypeahead = $('#vehicle.typeahead');
-    var cityTypeahead    = $('#city.typeahead');
+    // autocomplete
+    
+      var vehicleTypeahead = $('#vehicle.typeahead');
+      var cityTypeahead    = $('#city.typeahead');
+    
+      var vehicles = new Bloodhound({
+        
+        datumTokenizer: function(d) {
+          return Bloodhound.tokenizers.whitespace(d.listing_name);
+        },
+        
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        
+        remote: {
+          url: '../vehicles/autocomplete?vehicle=%QUERY',
+          wildcard: '%QUERY'
+        }
+      });
+      
+      var cities = new Bloodhound({
+        
+        datumTokenizer: function(d) {
+          return Bloodhound.tokenizers.whitespace(d.city);
+        },
+        
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        
+        remote: {
+          url: '../vehicles/autocomplete?vehicle=%QUERY',
+          wildcard: '%QUERY'
+        }
+      });
+    
+      vehicles.initialize();
+      cities.initialize();
+      
+      vehicleTypeahead.typeahead(null, {
+        name:       'vehicles',
+        displayKey: 'listing_name',
+        source:     vehicles.ttAdapter()
+      });
+      
+      cityTypeahead.typeahead(null, {
+        name:       'city',
+        displayKey: 'city',
+        source:     cities.ttAdapter()
+      });
+      
+    // fixed map
+      
+      var fixedMap = $('#search-map');
+     
+      fixedMap.stick_in_parent({ offset_top: 50 });
+    
+    // image scaling
+    
+      var searchItemAvatar = $('.search-item-avatar');
   
-    var vehicles = new Bloodhound({
-      
-      datumTokenizer: function(d) {
-        return Bloodhound.tokenizers.whitespace(d.listing_name);
-      },
-      
-      queryTokenizer: Bloodhound.tokenizers.whitespace,
-      
-      remote: {
-        url: '../vehicles/autocomplete?vehicle=%QUERY',
-        wildcard: '%QUERY'
-      }
-    });
-    
-    var cities = new Bloodhound({
-      
-      datumTokenizer: function(d) {
-        return Bloodhound.tokenizers.whitespace(d.city);
-      },
-      
-      queryTokenizer: Bloodhound.tokenizers.whitespace,
-      
-      remote: {
-        url: '../vehicles/autocomplete?vehicle=%QUERY',
-        wildcard: '%QUERY'
-      }
-    });
-  
-    vehicles.initialize();
-    cities.initialize();
-    
-    vehicleTypeahead.typeahead(null, {
-      name:       'vehicles',
-      displayKey: 'listing_name',
-      source:     vehicles.ttAdapter()
-    });
-    
-    cityTypeahead.typeahead(null, {
-      name:       'city',
-      displayKey: 'city',
-      source:     cities.ttAdapter()
-    });
+      searchItemAvatar.imagefill(); 
 });

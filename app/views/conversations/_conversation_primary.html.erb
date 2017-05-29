@@ -10,10 +10,15 @@
     <table class="conversation-item-content">
       <tr>
         
-        <td>
+        <td class="avatar-and-online">
+          
           <div class="conversation-avatar">
             <%= image_tag other.avatar.url %>
           </div>
+          
+          <% if other.online? %>
+            <div class="online online-md-primary"></div>
+          <% end %>
         </td>
         
         <td>
