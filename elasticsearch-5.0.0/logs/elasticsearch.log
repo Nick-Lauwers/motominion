@@ -24,3 +24,11 @@
 [2017-05-29T14:42:59,979][INFO ][o.e.n.Node               ] [ht0EVsn] started
 [2017-05-29T14:43:02,804][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [3] indices into cluster_state
 [2017-05-29T14:43:07,013][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles_development_20170328112843769][0], [vehicles][4], [vehicles][1], [vehicles][0]] ...]).
+[2017-05-29T15:39:08,943][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][3328][2] duration [3.1s], collections [1]/[3.2s], total [3.1s]/[3.2s], memory [577.7mb]->[104.8mb]/[1.9gb], all_pools {[young] [532.1mb]->[5.1mb]/[532.5mb]}{[survivor] [45.6mb]->[66.5mb]/[66.5mb]}{[old] [0b]->[33.1mb]/[1.3gb]}
+[2017-05-29T15:39:08,946][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][3328] overhead, spent [3.1s] collecting in the last [3.2s]
+[2017-05-29T16:35:22,017][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][6691][3] duration [9.7s], collections [1]/[10.2s], total [9.7s]/[12.9s], memory [629.3mb]->[233.8mb]/[1.9gb], all_pools {[young] [529.6mb]->[23.4mb]/[532.5mb]}{[survivor] [66.5mb]->[59.5mb]/[66.5mb]}{[old] [33.1mb]->[150.8mb]/[1.3gb]}
+[2017-05-29T16:35:22,018][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][6691] overhead, spent [9.7s] collecting in the last [10.2s]
+[2017-05-29T17:43:00,980][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][10744][4] duration [5.4s], collections [1]/[5.5s], total [5.4s]/[18.4s], memory [743mb]->[295.3mb]/[1.9gb], all_pools {[young] [532.5mb]->[6.8mb]/[532.5mb]}{[survivor] [59.5mb]->[53.9mb]/[66.5mb]}{[old] [150.8mb]->[236.4mb]/[1.3gb]}
+[2017-05-29T17:43:00,983][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][10744] overhead, spent [5.4s] collecting in the last [5.5s]
+[2017-05-29T19:27:38,765][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][17018][5] duration [2.3s], collections [1]/[2.9s], total [2.3s]/[20.7s], memory [821mb]->[295.3mb]/[1.9gb], all_pools {[young] [530.7mb]->[5.9mb]/[532.5mb]}{[survivor] [53.9mb]->[2.3mb]/[66.5mb]}{[old] [236.4mb]->[287mb]/[1.3gb]}
+[2017-05-29T19:27:38,767][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][17018] overhead, spent [2.3s] collecting in the last [2.9s]
