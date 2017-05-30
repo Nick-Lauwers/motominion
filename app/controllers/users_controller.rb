@@ -3,7 +3,7 @@
 class UsersController < ApplicationController
   
   before_action :logged_in_user, only: [:edit, :update]
-  before_action :correct_user,   only: [:edit, :update, :show, :profile_pic]
+  before_action :correct_user,   only: [:edit, :update, :profile_pic]
   
   def new
     @user = User.new
@@ -38,6 +38,8 @@ class UsersController < ApplicationController
   end
   
   def show
+    @user = User.find(params[:id])
+    
     @conversation = Conversation.new
     @reviews      = @user.received_reviews
   end
