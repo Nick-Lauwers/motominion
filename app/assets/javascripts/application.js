@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require chat
 //= require bootstrap-slider
 //= require underscore
 //= require moment

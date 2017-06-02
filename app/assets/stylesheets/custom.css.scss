@@ -199,27 +199,18 @@ p {
   }
 }
 
-.btn-signup,
-.btn-login {
+.btn-social-auth {
   color: $gray-darker;
   background-color: white;
   border: 1px solid $gray-border;
   border-radius: 2px;
+  width: 100%;
+  margin-bottom: 1.7em;
   transition: 0.3s;
   &:hover,
   &:focus {
     border: 1px solid $yellow-dark;
   }
-}
-
-.btn-signup {
-  width: 98%;
-  margin: 0 1% 0.8em;
-}
-
-.btn-login {
-  width: 100%;
-  margin-bottom: 1.7em;
 }
 
 .btn-green {
@@ -383,27 +374,12 @@ label {
   margin: 0 0 0.7em;
 }
 
-.login-form,
 .forgot-password-form,
 .reset-password-form {
   border: 1px solid $gray-border;
   width: 39%;
   padding: 2.3em;
   margin: 0 auto;
-}
-
-.signup-form {
-  background-color: $gray-lightest;
-  border: 1px solid $gray-border;
-  width: 80%;
-  overflow: auto;
-  padding: 3% 3% 1%;
-  margin: 0 auto;
-  .form-control {
-    width: 48%;
-    float: left;
-    margin: 0 1% 0.8em;
-  }
 }
 
 .profile-pic-form {
@@ -538,6 +514,7 @@ label {
 }
 
 .login-form-control,
+.signup-form-control,
 .forgot-password-form-control,
 .reset-password-form-control {
   margin: 0 0 1.7em;
@@ -988,25 +965,41 @@ footer {
   margin: 0 0 0.67em;
 }
 
-.fa-google {
-  margin-right: 7px;
+.credentials-form {
+  background-color: $gray-lightest;
+  max-width: 675px;
+  padding: 1.7em 2.3em;
+  margin: 0 auto;
 }
 
-.terms-container {
-  border: 1px solid $gray-border;
-  border-top: none;
-  width: 80%;
-  margin: 0 auto;
+.reassurance-copy-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  line-height: 1.7;
+}
+
+.reassurance-copy-info {
+  font-size: 1em;
+  line-height: 1.7;
+  list-style: none;
+  padding: 0;
+  li {
+    margin-top: 1em;
+  }
+}
+
+.fa-google {
+  margin-right: 7px;
 }
 
 .terms-text {
   padding: 5% 5% 3%;
 }
 
-.signup-button {
-  width: 40%;
-  margin: 0 auto;
-}
+// .signup-button {
+//   width: 40%;
+//   margin: 0 auto;
+// }
 
 /* home */
 

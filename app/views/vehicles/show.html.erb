@@ -41,30 +41,28 @@
             <p class="navbar-price-visible">$<%= @vehicle.price %></p>
           </div>
           
-          <!--< if logged_in? %>-->
-            <%= form_for @conversation, 
-                         url: conversations_path(@conversation), 
-                         method: :post do |f| %>
-                         
-              <%= f.hidden_field :sender_id,          value: current_user.id if 
-                                                             current_user %>
-              
-              <%= f.hidden_field :recipient_id,       value: @user.id %>
-              
-              <%= f.hidden_field :sender_archived,    value: false %>
-  
-              <%= f.hidden_field :recipient_archived, value: false %>
-              
-              <%= f.submit "Chat with " + @vehicle.user.name, 
-                           class: "btn-navbar-contact-hidden" %>
-            <% end %>
-                          
-          <!--< else %>-->
-          <!--  <= button_to "Contact Seller", -->
-          <!--                login_path, -->
-          <!--                class: "btn-navbar-contact-hidden", -->
-          <!--                method: :get %>-->
-          <!--< end %>-->
+          <!--<(perc)= link_to "Chat with <(perc)= @vehicle.user.name %>", -->
+          <!--            "#", -->
+          <!--            class: "btn-navbar-contact-hidden",-->
+          <!--            "data-sid" => current_user.id, -->
+          <!--            "data-rip" => user.id %>-->
+          
+          <%= form_for @conversation, 
+                       url: conversations_path(@conversation), 
+                       method: :post do |f| %>
+                       
+            <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                           current_user %>
+            
+            <%= f.hidden_field :recipient_id,       value: @user.id %>
+            
+            <%= f.hidden_field :sender_archived,    value: false %>
+
+            <%= f.hidden_field :recipient_archived, value: false %>
+            
+            <%= f.submit "Chat with " + @vehicle.user.name, 
+                         class: "btn-navbar-contact-hidden" %>
+          <% end %>
         </div>
       </div>
     </div>
