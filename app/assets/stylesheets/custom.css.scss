@@ -3,8 +3,6 @@
 @import "bootstrap-slider";
 @import 'bootstrap-datetimepicker';
 
-
-
 /* mixins, variables, etc. */
 
 $transparent:         rgba(0, 0, 0, 0.5);
@@ -80,9 +78,9 @@ $red-ribbon:          #e43;
 
 /* responsive design */
 
-body, header {
-  min-width: 1008px;
-}
+// body, header {
+//   min-width: 1008px;
+// }
 
 .navbar-left {
   float: left;
@@ -865,7 +863,7 @@ footer {
 .call-us-info {
   background-color: $green-dark; 
   border-radius: 28px;
-  width: 17%;
+  // width: 17%;
   padding: 0.8em;
   margin: 0 auto;
 }
