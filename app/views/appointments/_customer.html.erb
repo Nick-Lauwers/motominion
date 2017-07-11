@@ -1,52 +1,111 @@
 <!--complete-->
 
-<li id="customer-item-<%= customer.id %>" class="customer-item">
-  
+<li id="customer-item-<%= customer.id %>" class="row customer-item">
   <%= link_to conversation_messages_path(customer.conversation) do %>
-    <table class="customer-item-content">
-      <tr>
+
+    <div class="col-md-4">
+      <div class="row vertical-align">
         
-        <td class="avatar-and-online">
+        <div class="col-xs-2 avatar-and-online">
           
           <div class="customer-avatar">
             <%= image_tag(customer.buyer.avatar.url) %>
           </div>
         
           <% if customer.buyer.online? %>
-            <div class="online online-md-primary"></div>
+            <div class="online online-md-primary hidden-xs"></div>
           <% end %>
-        </td>
+        </div>
         
-        <td>
-          <div class="customer-detail">
-            
-            <span class="customer-name"><%= customer.buyer.name %></span>
-                  
-            <span class="customer-listing">
-              <%= customer.vehicle.listing_name %>
-            </span>
-          </div>
-        </td>
+        <div class="col-xs-10">
+          
+          <span class="customer-name"><%= customer.buyer.name %></span>
+                
+          <span class="customer-listing">
+            <%= customer.vehicle.listing_name %>
+          </span>
+        </div>
+      </div>  
+    </div>
+    
+    <div class="col-md-4">
+      <div class="row">
         
-        <td>
+        <div class="col-xs-2 hidden-md">
+          <!--intentionally left empty-->
+        </div>
+        
+        <div class="col-xs-10">
           <p class="customer-address"><%= customer.vehicle.address %></p>
-        </td>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 customer-contact-container">
+      <div class="row">
         
-        <td>
-          <div class="customer-contact-container">
+        <div class="col-xs-2 hidden-md">
+          <!--intentionally left empty-->
+        </div>
+        
+        <div class="col-xs-10">
+          
+          <span class="contact-date">
+            In <%= time_ago_in_words(customer.date).titleize %> 
+            (<%= customer.date.strftime("%D") %>)
+          </span>
+          
+          <span class="contact-status <%= customer.status %>">
+            <%= customer.status.capitalize %>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!--<table class="customer-item-content">-->
+    <!--  <tr>-->
+        
+    <!--    <td class="avatar-and-online">-->
+          
+    <!--      <div class="customer-avatar">-->
+    <!--        <(perc)= image_tag(customer.buyer.avatar.url) %>-->
+    <!--      </div>-->
+        
+    <!--      <(perc) if customer.buyer.online? %>-->
+    <!--        <div class="online online-md-primary hidden-xs"></div>-->
+    <!--      <(perc) end %>-->
+    <!--    </td>-->
+        
+    <!--    <td>-->
+    <!--      <div class="customer-detail">-->
             
-            <span class="contact-date">
-              In <%= time_ago_in_words(customer.date).titleize %> 
-              (<%= customer.date.strftime("%D") %>)
-            </span>
+    <!--        <span class="customer-name"><(perc)= customer.buyer.name %></span>-->
+                  
+    <!--        <span class="customer-listing">-->
+    <!--          <(perc)= customer.vehicle.listing_name %>-->
+    <!--        </span>-->
+    <!--      </div>-->
+    <!--    </td>-->
+        
+    <!--    <td>-->
+    <!--      <p class="customer-address"><(perc)= customer.vehicle.address %></p>-->
+    <!--    </td>-->
+        
+    <!--    <td>-->
+    <!--      <div class="customer-contact-container">-->
             
-            <span class="contact-status <%= customer.status %>">
-              <%= customer.status.capitalize %>
-            </span>
-          </div>
-        </td>
-      </tr>
-    </table>
+    <!--        <span class="contact-date">-->
+    <!--          In <(perc)= time_ago_in_words(customer.date).titleize %> -->
+    <!--          (<(perc)= customer.date.strftime("%D") %>)-->
+    <!--        </span>-->
+            
+    <!--        <span class="contact-status <(perc)= customer.status %>">-->
+    <!--          <(perc)= customer.status.capitalize %>-->
+    <!--        </span>-->
+    <!--      </div>-->
+    <!--    </td>-->
+    <!--  </tr>-->
+    <!--</table>-->
   <% end %>
 </li>
     

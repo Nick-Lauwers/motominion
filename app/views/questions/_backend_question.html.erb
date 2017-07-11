@@ -1,7 +1,7 @@
 <li id="backend-question-item-<%= question.id %>" 
     class="row backend-question-item">
   
-  <div class="col-xs-4 vertical-align">
+  <div class="col-md-4 vertical-align">
     
     <div class="avatar-and-name">
       
@@ -10,7 +10,7 @@
       </div>
       
       <% if question.user.online? %>
-        <div class="online online-md-quinary"></div>
+        <div class="online online-md-quinary hidden-xs"></div>
       <% end %>
     </div>
     
@@ -26,7 +26,7 @@
     </div>
   </div>
   
-  <div class="col-xs-8">
+  <div class="col-md-8">
     
     <div class="backend-question">
 
@@ -57,7 +57,7 @@
               </div>
               
               <% if reply.user.online? %>
-                <div class="online online-sm-primary"></div>
+                <div class="online online-sm-primary hidden-xs"></div>
               <% end %>
             </div>
             
@@ -91,7 +91,7 @@
           </div>
           
           <% if current_user.online? %>
-            <div class="online online-sm-secondary"></div>
+            <div class="online online-sm-secondary hidden-xs"></div>
           <% end %>
         </div>
         

@@ -2,44 +2,56 @@
 
 <li id="backend-review-item-<%= review.id %>" class="row backend-review-item">
   
-  <div class="col-xs-4">
+  <div class="col-md-4">
     <%= link_to review.reviewer, 
-                class: "backend-review-author 
-                        backend-review-author-clickable 
-                        vertical-align" do %>
-      
-      <div class="avatar-and-online">
+                class: "row
+                        vertical-align
+                        backend-review-author 
+                        backend-review-author-clickable" do %>
+
+      <div class="col-xs-2 avatar-and-online">
       
         <div class="author-avatar">
           <%= image_tag review.reviewer.avatar.url %>
         </div>
         
         <% if review.reviewer.online? %>
-          <div class="online online-md-secondary"></div>
+          <div class="online online-md-secondary hidden-xs"></div>
         <% end %>
       </div>
-
-      <span class="author-name"><%= review.reviewer.name %></span>
+      
+      <div class="col-xs-10">
+        <span class="author-name"><%= review.reviewer.name %></span>
+      </div>
     <% end %>
   </div>
   
-  <div class="col-xs-8 backend-review-container">
-
-      <div class="backend-review-rating">
-        <div id="stars-<%= review.id %>"></div>
+  <div class="col-md-8 backend-review-container">
+    <div class="row">
+      
+      <div class="col-xs-2 hidden-md">
+        <!--intentionally left empty-->
       </div>
       
-      <span class="backend-review-title"><%= review.title %></span>
-      
-      <p class="backend-review-comment"><%= review.comment %></p>
-      
-      <span class="backend-review-date">
-        <%= review.created_at.strftime("%D") %>
-      </span>
-      
-      <%= link_to review.vehicle.listing_name,
-                  review.vehicle,
-                  class: "backend-review-vehicle" %>
+      <div class="col-xs-10">
+        
+        <div class="backend-review-rating">
+          <div id="stars-<%= review.id %>"></div>
+        </div>
+        
+        <span class="backend-review-title"><%= review.title %></span>
+        
+        <p class="backend-review-comment"><%= review.comment %></p>
+        
+        <span class="backend-review-date">
+          <%= review.created_at.strftime("%D") %>
+        </span>
+        
+        <%= link_to review.vehicle.listing_name,
+                    review.vehicle,
+                    class: "backend-review-vehicle" %>
+      </div>
+    </div>
   </div>
 </li>
 

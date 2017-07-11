@@ -145,7 +145,7 @@ $(function() {
       var showInfo      = $('.modal-show-info');
       var modalCarousel = $('#modal-carousel');
       
-      heroListing.click(function(){
+      heroListing.click(function() {
       	modalGallery.modal('show');
       	modalAvatar.imagefill();
       });

@@ -6,6 +6,10 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
 <div class="search-summary">
   <div class="search-summary-content">
     
@@ -37,17 +41,17 @@
 
 <div class="search-results">
   
-  <div id="search-map"></div>
+  <div id="search-map" class="hidden-xs"></div>
   
   <div class="search-results-background">
     <div class="search-list-container">
       <div class="row">
         
-        <div class="col-xs-4">
+        <div class="col-md-4 hidden-xs">
           <!--intentionally left empty-->
         </div>
         
-        <div class="col-xs-8 search-list-content">
+        <div class="col-md-8 search-list-content">
           
           <div class="search-filters">
             <%= render 'search_filters' %>
@@ -81,7 +85,7 @@
             <!--</div>-->
             
             <% if @vehicles.any? %>
-              <ol class="search-items">
+              <ol class="row search-items">
                 <%= render partial:    "search_item", 
                            collection: @vehicles, 
                            as:         :vehicle %>
@@ -92,12 +96,12 @@
               <div class="search-advice-content">
                 <div class="row vertical-align">
 
-                  <div class="col-xs-2">
+                  <div class="col-md-2 col-xs-3">
                     <i class="fa fa-comments-o fa-4x advice-icon" 
                        aria-hidden="true"></i>
                   </div>
                   
-                  <div class="col-xs-7">
+                  <div class="col-md-7 col-xs-9">
                     
                     <h2 class="advice-title">
                       Need free advice? Talk to our team!
@@ -108,7 +112,7 @@
                     </p>
                   </div>
                   
-                  <div class="col-xs-3">
+                  <div class="col-md-3">
                     <%= link_to "Get In Touch", 
                                 new_enquiry_path, 
                                 class: "btn btn-green" %>

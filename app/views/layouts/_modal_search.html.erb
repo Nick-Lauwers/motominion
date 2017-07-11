@@ -1,0 +1,126 @@
+<div class="modal" id="modal-search" role="dialog">
+  <div class="modal-search-content">
+
+    <%= form_tag search_vehicles_path, 
+                 method: :get, 
+                 class: "modal-search-form" do %>
+      
+      <div class="form-element">
+                   
+        <%= collection_select :vehicle, 
+                              :vehicle_make_id,
+                              VehicleMake.all,
+                              :id,
+                              :name,
+                              { include_blank: true,
+                                prompt: "All makes" },
+                              class: "form-control
+                                      select-secondary" %>
+           
+        <i class="fa fa-caret-down fa-lg form-caret" 
+           aria-hidden="true"></i>
+      </div>
+      
+      <div class="form-element">
+        
+        <%= grouped_collection_select :vehicle, 
+                                      :vehicle_model_id, 
+                                      VehicleMake.order(:name),
+                                      :vehicle_models,
+                                      :name,
+                                      :id,
+                                      :name,
+                                      { prompt: "All models",
+                                        include_blank: true }, 
+                                      class: "form-control
+                                              select-secondary" %>
+                                              
+        <i class="fa fa-caret-down fa-lg form-caret" 
+           aria-hidden="true"></i>
+      </div>
+      
+      <div class="form-element">
+      
+        <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
+           aria-hidden="true"></i>
+        
+        <%= text_field_tag :city, 
+                           params[:city], 
+                           placeholder: "City (Eg. Windsor, ON)", 
+                           class: "form-control 
+                                   form-control-primary 
+                                   typeahead" %>
+      </div>
+      
+      <div>
+        <%= submit_tag "Search", class: "btn btn-search" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<!--<div class="modal" id="modal-search">-->
+  
+<!--  <(perc)= form_tag search_vehicles_path, -->
+<!--               method: :get, -->
+<!--               class: "search-form-primary" do %>-->
+               
+<!--    <div class="row search-form-primary-content">-->
+      
+<!--      <div class="col-md-3 search-bar-primary">-->
+        
+<!--        <(perc)= collection_select :vehicle, -->
+<!--                              :vehicle_make_id,-->
+<!--                              VehicleMake.all,-->
+<!--                              :id,-->
+<!--                              :name,-->
+<!--                              { include_blank: true,-->
+<!--                                prompt: "All makes" },-->
+<!--                              class: "form-control-->
+<!--                                      search-select-primary" %>-->
+        
+<!--        <i class="fa fa-search fa-lg search-bar-primary-icon" -->
+<!--           aria-hidden="true"></i>-->
+           
+<!--        <i class="fa fa-caret-down fa-lg form-caret" -->
+<!--           aria-hidden="true"></i>-->
+<!--      </div>-->
+      
+<!--      <div class="col-md-3 search-bar-primary">-->
+        
+<!--        <(perc)= grouped_collection_select :vehicle, -->
+<!--                                      :vehicle_model_id, -->
+<!--                                      VehicleMake.order(:name),-->
+<!--                                      :vehicle_models,-->
+<!--                                      :name,-->
+<!--                                      :id,-->
+<!--                                      :name,-->
+<!--                                      { prompt: "All models",-->
+<!--                                        include_blank: true }, -->
+<!--                                      class: "form-control-->
+<!--                                              search-select-secondary" %>-->
+                                              
+<!--        <i class="fa fa-caret-down fa-lg form-caret" -->
+<!--           aria-hidden="true"></i>-->
+<!--      </div>-->
+      
+<!--      <div class="col-md-4 search-bar-primary">-->
+        
+<!--        <i class="fa fa-map-pin fa-lg search-bar-primary-icon" -->
+<!--           aria-hidden="true"></i>-->
+        
+<!--        <(perc)= text_field_tag :city, -->
+<!--                           params[:city], -->
+<!--                           placeholder: "City (Eg. Windsor, ON)", -->
+<!--                           class: "form-control -->
+<!--                                   search-form-control -->
+<!--                                   typeahead" %>-->
+<!--      </div>-->
+      
+<!--      <div class="col-md-2 search-button-primary">-->
+<!--        <(perc)= submit_tag "Search", class: "btn btn-search" %>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  <(perc) end %>-->
+<!--</div>-->

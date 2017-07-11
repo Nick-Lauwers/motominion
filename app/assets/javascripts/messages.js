@@ -20,7 +20,7 @@ $(function() {
     
       var description   = $('.recipient-description');
       var expand        = $('.recipient-expand');
-      var initialHeight = 100;
+      var initialHeight = 25;
   
       description.each(function() {
         $.data(this, "realHeight", $(this).height());

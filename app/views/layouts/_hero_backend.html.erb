@@ -2,9 +2,9 @@
 
 <div class="hero-primary">
   <div class="hero-primary-content">
-    <div class="row vertical-align">
+    <div class="row hero-primary-content-align">
       
-      <div class="col-xs-9">
+      <div class="col-md-9">
         <div class="row vertical-align">
       
           <div class="col-xs-3">
@@ -14,13 +14,13 @@
               </div>
             </div>
           </div>
-              
+          
           <div class="col-xs-9">
             
             <h1 class="hero-username"><%= current_user.name %></h1>
             
             <% if current_user.online? %>
-              <div class="online-name online-name-md"></div>
+              <div class="online-name online-name-md hidden-xs"></div>
             <% end %>
 
             <% if current_user.phone_number.present? or 
@@ -64,7 +64,7 @@
         </div>
       </div>
       
-      <div class="col-xs-3">
+      <div class="col-md-3">
         <% if @complete.present? %>
           <div class="listing-status">
             <span class="amount-complete"><%= @complete %></span>

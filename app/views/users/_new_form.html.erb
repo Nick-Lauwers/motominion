@@ -2,62 +2,62 @@
 
 <%= form_for @user do |f| %>
 
-    <%= render 'shared/error_messages', object: f.object %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <%= link_to "/auth/google", 
+              class: "btn btn-social-auth" do %>
+              
+      <i class="fa fa-google fa-lg" aria-hidden="true"></i> 
+      
+      Sign up with Google
+  <% end %>
     
-    <%= link_to "/auth/google", 
-                class: "btn btn-social-auth" do %>
-                
-        <i class="fa fa-google fa-lg" aria-hidden="true"></i> 
-        
-        Sign up with Google
-    <% end %>
+  <%= f.text_field :name, 
+                   placeholder: "Name", 
+                   class: 'form-control 
+                           form-control-primary
+                           signup-form-control' %>
       
-    <%= f.text_field :name, 
-                     placeholder: "Name", 
-                     class: 'form-control 
-                             form-control-primary
-                             signup-form-control' %>
-        
-    <%= f.email_field :email,
-                      placeholder: "Email address", 
-                      class: 'form-control 
-                              form-control-primary
-                              signup-form-control' %>
-        
-    <%= f.password_field :password, 
-                         placeholder: "Password",
-                         class: 'form-control 
-                                 form-control-primary
-                                 signup-form-control' %>
-        
-    <%= f.password_field :password_confirmation, 
-                         placeholder: "Password confirmation", 
-                         class: 'form-control 
-                                 form-control-primary
-                                 signup-form-control' %>
+  <%= f.email_field :email,
+                    placeholder: "Email address", 
+                    class: 'form-control 
+                            form-control-primary
+                            signup-form-control' %>
+      
+  <%= f.password_field :password, 
+                       placeholder: "Password",
+                       class: 'form-control 
+                               form-control-primary
+                               signup-form-control' %>
+      
+  <%= f.password_field :password_confirmation, 
+                       placeholder: "Password confirmation", 
+                       class: 'form-control 
+                               form-control-primary
+                               signup-form-control' %>
 
-    <!--<div class="terms-text">-->
+  <!--<div class="terms-text">-->
+    
+    <!--<div class="checkbox-inline">-->
       
-      <!--<div class="checkbox-inline">-->
-        
-      <!--  <(perc)= f.check_box :is_subscribed, class: "checkbox" %>-->
-        
-      <!--  <(perc)= f.label :is_subscribed, -->
-      <!--              "Tick here if you would like to receive our email newsletter -->
-      <!--               which contains more information about our services, offers, -->
-      <!--               or promotions.", -->
-      <!--              class: "checkbox-label" %>-->
-      <!--</div>-->
+    <!--  <(perc)= f.check_box :is_subscribed, class: "checkbox" %>-->
       
-      <!--<span class="checkbox">-->
-      <!--  I confirm that I have read and accepted the Terms of Use, Acceptable Use-->
-      <!--  Policy, Privacy Policy, and Cookie Policy and that I consent to the -->
-      <!--  collection, storage, use, processing, and transfer of my personal data as-->
-      <!--  stated in the Privacy Policy.-->
-      <!--</span>-->
+    <!--  <(perc)= f.label :is_subscribed, -->
+    <!--              "Tick here if you would like to receive our email newsletter -->
+    <!--               which contains more information about our services, offers, -->
+    <!--               or promotions.", -->
+    <!--              class: "checkbox-label" %>-->
     <!--</div>-->
     
-    <%= f.submit "Create Account", class: "btn btn-primary" %>
+    <!--<span class="checkbox">-->
+    <!--  I confirm that I have read and accepted the Terms of Use, Acceptable Use-->
+    <!--  Policy, Privacy Policy, and Cookie Policy and that I consent to the -->
+    <!--  collection, storage, use, processing, and transfer of my personal data as-->
+    <!--  stated in the Privacy Policy.-->
+    <!--</span>-->
+  <!--</div>-->
+  
+  <%= f.submit "Create Account", class: "btn btn-primary" %>
 
-    <p>Already have an account? <%= link_to "Log in", login_path %></p>
+  <p>Already have an account? <%= link_to "Log in", login_path %></p>
 <% end %>

@@ -31,16 +31,18 @@ $(function() {
       // fixed info
       
         var profileScrolled = $('#profile-scrolled');
-        
+
         profileScrolled.stick_in_parent({ offset_top: 50 });
     });
       
     // image scaling
     
-      var userSummaryAvatar   = $('.user-summary-avatar');
-      var wishListItemAvatar = $('.wish-list-item-avatar');
+      var userSummaryAvatar       = $('.user-summary-avatar');
+      var mobileListingItemAvatar = $('.mobile-listing-item-avatar')
+      var wishListItemAvatar      = $('.wish-list-item-avatar');
 
       userSummaryAvatar.imagefill();
+      mobileListingItemAvatar.imagefill();
       wishListItemAvatar.imagefill(); 
     
     // smooth scroll

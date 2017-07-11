@@ -9,16 +9,36 @@
       
       <% if logged_in? %>
       
-        <li>
-          <i class="fa fa-search fa-lg header-icon" 
+        <li class="visible-xs">
+          <i class="fa 
+                    fa-search 
+                    fa-lg 
+                    header-icon
+                    header-icon-inactive 
+                    header-icon-search" 
              aria-hidden="true"></i>
         </li>
         
-        <li><%= link_to "List", new_vehicle_path %></li>
+        <li class="visible-xs">
+          <i class="fa 
+                    fa-bars 
+                    fa-lg 
+                    header-icon
+                    header-icon-inactive
+                    header-icon-menu" 
+             aria-hidden="true"></i>
+        </li>
         
-        <li><%= link_to "Advice", posts_path %></li>
+        <li class="hidden-xs">
+          <i class="fa fa-search fa-lg header-icon header-icon-desktop" 
+             aria-hidden="true"></i>
+        </li>
         
-        <li class="dropdown">
+        <li class="hidden-xs"><%= link_to "List", new_vehicle_path %></li>
+        
+        <li class="hidden-xs"><%= link_to "Advice", posts_path %></li>
+        
+        <li class="dropdown dropdown-frontend hidden-xs">
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
             
@@ -72,7 +92,7 @@
           </ul>
         </li>
         
-        <li class="dropdown">
+        <li class="dropdown dropdown-frontend hidden-xs">
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
              Help <b class="caret"></b>
@@ -85,7 +105,7 @@
           </ul>
         </li>
         
-        <li class="dropdown">
+        <li class="dropdown dropdown-frontend hidden-xs">
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
             
@@ -127,15 +147,36 @@
 
       <% else %>
       
-        <li>
-          <i class="fa fa-search fa-lg header-icon" aria-hidden="true"></i>
+        <li class="visible-xs">
+          <i class="fa 
+                    fa-search 
+                    fa-lg 
+                    header-icon
+                    header-icon-inactive 
+                    header-icon-search" 
+             aria-hidden="true"></i>
         </li>
         
-        <li><%= link_to "List", new_vehicle_path %></li>
+        <li class="visible-xs">
+          <i class="fa 
+                    fa-bars 
+                    fa-lg 
+                    header-icon
+                    header-icon-inactive
+                    header-icon-menu" 
+             aria-hidden="true"></i>
+        </li>
         
-        <li><%= link_to "Advice", posts_path %></li>
+        <li class="hidden-xs">
+          <i class="fa fa-search fa-lg header-icon header-icon-desktop" 
+             aria-hidden="true"></i>
+        </li>
         
-        <li class="dropdown">
+        <li class="hidden-xs"><%= link_to "List", new_vehicle_path %></li>
+        
+        <li class="hidden-xs"><%= link_to "Advice", posts_path %></li>
+        
+        <li class="dropdown dropdown-frontend hidden-xs">
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
              Help <b class="caret"></b>
@@ -148,48 +189,11 @@
           </ul>
         </li>
         
-        <li><%= link_to "Sign Up", signup_path %></li>
+        <li class="hidden-xs"><%= link_to "Sign Up", signup_path %></li>
         
-        <li><%= link_to "Log In",  login_path %></li>
+        <li class="hidden-xs"><%= link_to "Log In",  login_path %></li>
       <% end %>
     </ul>
-
-    <!--<(perc)= form_tag search_vehicles_path, -->
-    <!--             method: :get, -->
-    <!--             class: "search-form-secondary" do %>-->
-                 
-    <!--  <div class="row search-form-secondary-content">-->
-
-    <!--    <div class="col-xs-5 search-bar-secondary">-->
-          
-    <!--      <i class="fa fa-search fa-lg search-bar-secondary-icon" -->
-    <!--         aria-hidden="true"></i>-->
-             
-    <!--      <(perc)= text_field_tag :vehicle, -->
-    <!--                         params[:vehicle],-->
-    <!--                         placeholder: "What are you looking for?", -->
-    <!--                         class: "form-control header-form-control" %>-->
-    <!--    </div>-->
-        
-    <!--    <div class="col-xs-5 search-bar-secondary">-->
-          
-    <!--      <i class="fa fa-map-pin fa-lg search-bar-secondary-icon" -->
-    <!--         aria-hidden="true"></i>-->
-          
-    <!--      <i class="fa fa-times fa-lg search-bar-secondary-close" -->
-    <!--         aria-hidden="true"></i>-->
-             
-    <!--      <(perc)= text_field_tag :city_secondary, -->
-    <!--                         params[:city],-->
-    <!--                         placeholder: "Enter city", -->
-    <!--                         class: "form-control header-form-control" %>-->
-    <!--    </div>-->
-          
-    <!--    <div class="col-xs-2 search-button-secondary">-->
-    <!--      <(perc)= submit_tag "Search", class: "btn btn-search" %>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--<(perc) end %>-->
     
     <%= form_tag search_vehicles_path, 
              method: :get, 

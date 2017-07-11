@@ -6,9 +6,13 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
 <%= render 'layouts/hero_backend' %>
 
-<nav class="secondary-navbar">
+<nav class="secondary-navbar hidden-xs">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
       <li><%= link_to "Dashboard",   dashboard_path %></li>
@@ -20,11 +24,26 @@
   </div>
 </nav>
 
+<nav class="dropdown dropdown-backend visible-xs-block">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Inbox <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    <li><%= link_to "Dashboard",   dashboard_path %></li>
+    <li><%= link_to "Inbox",       conversations_path, class: "dropdown-active" %></li>
+    <li><%= link_to "Your Garage", vehicles_path %></li>
+    <li><%= link_to "Showroom",    test_drives_path %></li>
+    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+  </ul>
+</nav>
+
 <div class="backend">
   <div class="backend-content">
     <div class="row">
       
-      <div class="col-xs-4 messages-info">
+      <div class="col-md-3 messages-info">
         
         <div class="messages-info-recipient">
           
@@ -39,7 +58,7 @@
                         user_path(@other) %>
                         
             <% if @other.online? %>
-              <div class="online-name online-name-lg"></div>
+              <div class="online-name online-name-lg hidden-xs"></div>
             <% end %>
           </div>
 
@@ -66,7 +85,7 @@
         </div>
         
         <% if @conversation.appointments.exists? %>
-          <div class="messages-info-requests">
+          <div class="messages-info-requests hidden-xs">
             
             <% if @conversation.appointments.where(
                     "buyer_id = ? AND date >= ?",
@@ -183,7 +202,7 @@
         <% end %>
       </div>
       
-      <div class="col-xs-8">
+      <div class="col-md-8 col-md-offset-1">
 
         <% if @conversation.appointments.exists?(
                 status: 'pending', seller_id: current_user.id
@@ -211,36 +230,65 @@
                   
                 <li id="response-item-<%= appointment.id %>" 
                     class="response-item">
-                  <table class="response-item-content">
-                    <tr>
+                  <div class="row response-item-content">
+                    
+                    <div class="col-md-6 response-detail">
                       
-                      <td class="response-detail">
-                        
-                        <%= link_to appointment.vehicle.listing_name,
-                                    appointment.vehicle, 
-                                    class: "response-vehicle" %>
-                        
-                        <span class="response-date">
-                          <%= appointment.date.strftime(
-                                "%A, %d %b (%-l:%M%p)"
-                              ) %>
-                        </span>
-                      </td>
+                      <%= link_to appointment.vehicle.listing_name,
+                                  appointment.vehicle, 
+                                  class: "response-vehicle" %>
                       
-                      <td class="response-buttons">
+                      <span class="response-date">
+                        <%= appointment.date.strftime(
+                              "%A, %d %b (%-l:%M%p)"
+                            ) %>
+                      </span>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      
+                      <%= link_to "Accept",
+                                  accept_vehicle_appointment_path(appointment.vehicle, appointment),
+                                  method: :put,
+                                  class: "btn btn-test-drive-accept" %>
+        
+                      <%= link_to "Decline",
+                                  decline_vehicle_appointment_path(appointment.vehicle, appointment),
+                                  method: :put,
+                                  class: "btn btn-test-drive-decline" %>
+                    </div>
+                  </div>
+                  
+                  <!--<table class="response-item-content">-->
+                  <!--  <tr>-->
+                      
+                  <!--    <td class="response-detail">-->
                         
-                        <%= link_to "Accept",
-                                    accept_vehicle_appointment_path(appointment.vehicle, appointment),
-                                    method: :put,
-                                    class: "btn btn-test-drive-accept" %>
+                  <!--      <(perc)= link_to appointment.vehicle.listing_name,-->
+                  <!--                  appointment.vehicle, -->
+                  <!--                  class: "response-vehicle" %>-->
+                        
+                  <!--      <span class="response-date">-->
+                  <!--        <(perc)= appointment.date.strftime(-->
+                  <!--              "%A, %d %b (%-l:%M%p)"-->
+                  <!--            ) %>-->
+                  <!--      </span>-->
+                  <!--    </td>-->
+                      
+                  <!--    <td class="response-buttons">-->
+                        
+                  <!--      <(perc)= link_to "Accept",-->
+                  <!--                  accept_vehicle_appointment_path(appointment.vehicle, appointment),-->
+                  <!--                  method: :put,-->
+                  <!--                  class: "btn btn-test-drive-accept" %>-->
           
-                        <%= link_to "Decline",
-                                    decline_vehicle_appointment_path(appointment.vehicle, appointment),
-                                    method: :put,
-                                    class: "btn btn-test-drive-decline" %>
-                      </td>
-                    </tr>
-                  </table>
+                  <!--      <(perc)= link_to "Decline",-->
+                  <!--                  decline_vehicle_appointment_path(appointment.vehicle, appointment),-->
+                  <!--                  method: :put,-->
+                  <!--                  class: "btn btn-test-drive-decline" %>-->
+                  <!--    </td>-->
+                  <!--  </tr>-->
+                  <!--</table>-->
                 </li>
               <% end %>
             </ol>

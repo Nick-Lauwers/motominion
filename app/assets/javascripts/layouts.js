@@ -4,11 +4,11 @@ $(function() {
   
     // search bar
     
-      var search = $('.header-icon');
-      var form   = $('.search-form-secondary');
-      var close  = $('.search-bar-secondary-close');
+      var icon  = $('.header-icon-desktop');
+      var form  = $('.search-form-secondary');
+      var close = $('.search-bar-secondary-close');
       
-      search.click(function() {
+      icon.click(function() {
         form.fadeIn(300);
       });
       
@@ -46,6 +46,43 @@ $(function() {
         else {
           vehicleModelSelect.empty();
           vehicleModelSelect.prop("disabled", true);
+        }
+      });
+      
+    // modal
+    
+      var headerIconSearch = $('.header-icon-search');
+      var headerIconMenu   = $('.header-icon-menu');
+      var modalSearch      = $('#modal-search');
+      var modalMenu        = $('#modal-menu');
+      
+      headerIconSearch.click(function() {
+        
+        if (headerIconSearch.hasClass('header-icon-inactive')) {
+          headerIconSearch.removeClass('header-icon-inactive').addClass('header-icon-active');
+          headerIconMenu.removeClass('header-icon-active').addClass('header-icon-inactive');
+        	modalSearch.modal('show');
+        	modalMenu.modal('hide');
+        }
+        
+        else {
+          headerIconSearch.removeClass('header-icon-active').addClass('header-icon-inactive');
+        	modalSearch.modal('hide');
+        }
+      });
+      
+      headerIconMenu.click(function() {
+        
+        if (headerIconMenu.hasClass('header-icon-inactive')) {
+        	headerIconSearch.removeClass('header-icon-active').addClass('header-icon-inactive');
+          headerIconMenu.removeClass('header-icon-inactive').addClass('header-icon-active');
+        	modalSearch.modal('hide');
+        	modalMenu.modal('show');
+        }
+        
+        else {
+          headerIconMenu.removeClass('fa-close header-icon-active').addClass('fa-bars header-icon-inactive');
+        	modalMenu.modal('hide');
         }
       });
     

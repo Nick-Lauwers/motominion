@@ -2,7 +2,7 @@
 
 <% @user.vehicles.each do |vehicle| %>
 
-  <li id="user-listing-<%= vehicle.id %>" class="vehicle-item">
+  <li id="user-listing-<%= vehicle.id %>" class="vehicle-item hidden-xs">
     
     <% if vehicle.sold_at.present? %>
       <div class="ribbon-listing">SOLD</div>
@@ -137,17 +137,80 @@
     <!--</div>-->
   </li>
   
+  <li id="mobile-listing-<%= vehicle.id %>" 
+      class="col-md-6 mobile-listing-item visible-xs">
+  
+    <%= link_to vehicle, target: "_blank" do %>
+      <div class="mobile-listing-item-content">
+        
+        <div class="mobile-listing-item-image", 
+             style="background-image: url(
+                     '<%= vehicle.photos[0].image.url() if 
+                          vehicle.photos.length > 0 %>')">
+        </div>
+        
+        <div class="row">
+            
+          <div class="col-xs-3 mobile-listing-item-user">
+            <div class="mobile-listing-item-user-content">
+              <div class="avatar-and-online">
+                
+                <div class="mobile-listing-item-avatar">
+                  <%= image_tag vehicle.user.avatar.url %>
+                </div>
+              
+                <% if vehicle.user.online? %>
+                  <div class="online online-lg-primary hidden-xs"></div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-xs-9">
+            <div class="mobile-listing-item-info">
+              
+              <span class="mobile-listing-item-title">
+                $<%= vehicle.price %> | <%= vehicle.listing_name %>
+              </span>
+    
+              <div id="average-rating-mobile-listing-item-<%= vehicle.id %>", 
+                   class="average-rating-mobile-listing-item"></div>
+              
+              <span class="mobile-listing-item-review-count">
+                <%= pluralize(vehicle.reviews.count, "review") %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    
+    <%= link_to favorite_vehicle_path(vehicle), 
+                method: :put do %>
+      <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
+    <% end %>
+  </li>
+  
   <script type="text/javascript">
     $(document).ready(function() {
       
       // rating
-      var averageRating = $('#average-rating-<%= vehicle.id %>');
+      var averageRatingVehicle = $('#average-rating-<%= vehicle.id %>');
+      var averageRatingMobile  = 
+                     $('#average-rating-mobile-listing-item-<%= vehicle.id %>');
       
-      averageRating.raty({
+      averageRatingVehicle.raty({
         path:     '/assets',
         readOnly: true,
         score:    <%= vehicle.average_rating %>
       });
+      
+      averageRatingMobile.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= vehicle.average_rating %>
+      }); 
     });
   </script>
 <% end %>
+

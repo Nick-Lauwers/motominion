@@ -4,7 +4,7 @@
   
   <div class="row vertical-align post-response-header">
     
-    <div class="col-xs-2 avatar-and-online">
+    <div class="col-md-2 col-xs-3 avatar-and-online">
       
       <div class="post-response-avatar">
         <%= link_to (image_tag current_user.avatar.url),
@@ -12,11 +12,11 @@
       </div>
       
       <% if current_user.online? %>
-        <div class="online online-md-quaternary"></div>
+        <div class="online online-md-quaternary hidden-xs"></div>
       <% end %>
     </div>
     
-    <div class="col-xs-10">
+    <div class="col-md-10 col-xs-9">
       
       <%= link_to current_user, class: "post-response-title" do %> 
         <%= current_user.name %>

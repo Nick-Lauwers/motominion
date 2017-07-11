@@ -4,9 +4,13 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
 <%= render 'layouts/hero_backend' %>
 
-<nav class="secondary-navbar">
+<nav class="secondary-navbar hidden-xs">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
       <li><%= link_to "Dashboard",   dashboard_path, class: "nav-active" %></li>
@@ -16,6 +20,21 @@
       <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
     </ul>
   </div>
+</nav>
+
+<nav class="dropdown dropdown-backend visible-xs-block">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Dashboard <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    <li><%= link_to "Dashboard",   dashboard_path, class: "dropdown-active" %></li>
+    <li><%= link_to "Inbox",       conversations_path %></li>
+    <li><%= link_to "Your Garage", vehicles_path %></li>
+    <li><%= link_to "Showroom",    test_drives_path %></li>
+    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+  </ul>
 </nav>
 
 <div class="backend">
@@ -29,7 +48,7 @@
         
         <li class="active">
           <a href="#requests_and_inquiries" data-toggle="tab">
-            Requests and Inquiries (<%= @conversations.count %>)
+            Messages (<%= @conversations.count %>)
           </a>
         </li>
         
@@ -52,7 +71,7 @@
           
           <% else %>
             <p class="empty-list-info">
-              No recent requests or inquiries
+              No recent messages or questions
             </p> 
           <% end %>
         </div>

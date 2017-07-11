@@ -1,21 +1,28 @@
 <!--completed-->
 
-<header class="header-fixed-hidden">
+<header class="hidden-xs header-fixed-hidden">
   <%= render 'layouts/header_secondary' %>
 </header>
 
-<header class="header-static-transparent">
+<header class="hidden-xs header-static-transparent">
   <%= render 'layouts/header_primary' %>
 </header>
 
-<div class="hero">
+<header class="visible-xs-block header-fixed-visible">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="hidden-xs hero">
   
   <div class="hero-video-container">
     <video class="hero-video" 
            autoplay="autoplay" 
            loop="loop" 
            volume="0">
-           poster="/assets/hero-image.jpg"
       <source src="https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/hero-video.mp4" 
               type="video/mp4">
     </video>
@@ -25,13 +32,13 @@
     
     <h1 class="hero-title">Cars Made Easy</h1>
     
-    <h2 class="hero-info">
+    <h2 class="hero-info hidden-xs">
       Search for used vehicles from across the Mid-West
     </h2>
     
     <%= form_tag search_vehicles_path, 
                  method: :get, 
-                 class: "search-form-primary" do %>
+                 class: "hidden-xs search-form-primary" do %>
                  
       <div class="row search-form-primary-content">
         
@@ -152,7 +159,16 @@
   </div>
 </div>
 
-<div class="offerings">
+<!--<div class="hero-mobile visible-xs">-->
+  
+<!--  <h1 class="hero-mobile-title">Cars Made Easy</h1>-->
+
+<!--  <div class="hero-mobile-search">-->
+<!--    <span class="hero-mobile-search-text">Search by make, model, or ...</span>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="hidden-xs offerings">
   <div class="row offerings-content">
 
       <div class="col-xs-4 offerings-detail">
@@ -200,7 +216,7 @@
       <!--  <li><(perc)= link_to "Advice", posts_path %></li>-->
       <!--</ul>-->
       
-      <h3 class="feed-title">Discover Top Content</h3>
+      <h3 class="hidden-xs feed-title">Discover Top Content</h3>
       
       <ol id="feed-items">
         <%= render partial: "feed_item", collection: @feed_items %>

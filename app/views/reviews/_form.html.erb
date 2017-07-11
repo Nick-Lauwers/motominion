@@ -6,21 +6,21 @@
 
   <div class="row review-item">
     
-    <div class="col-xs-4">
+    <div class="col-md-4">
       <div class="row">
         
-        <div class="col-xs-3">
+        <div class="col-md-3">
           <!--intentionally left empty-->
         </div>
         
-        <div class="col-xs-9 review-author vertical-align">
+        <div class="col-md-9 review-author vertical-align">
           
           <div class="avatar-and-online">
             
             <%= image_tag(current_user.avatar.url, class: "author-avatar") %>
             
             <% if current_user.online? %>
-              <div class="online online-md-secondary"></div>
+              <div class="online online-md-secondary hidden-xs"></div>
             <% end %>
           </div>
 
@@ -29,7 +29,7 @@
       </div>
     </div>
     
-    <div class="col-xs-8">
+    <div class="col-md-8">
       <div class="review-container">
         
         <div class="review-rating">
@@ -45,7 +45,7 @@
         </span>
         
         <%= f.text_area :comment, 
-                        rows: 3,
+                        rows: 2,
                         placeholder: "Review comments", 
                         class: "form-control review-comment-form-control" %>
         

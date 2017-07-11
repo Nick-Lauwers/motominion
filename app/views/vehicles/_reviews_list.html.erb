@@ -4,15 +4,15 @@
 
   <li id="review-item-<%= r.id %>" class="row review-item">
     
-    <div class="col-xs-4">
+    <div class="col-md-4">
       <div class="row">
         
-        <div class="col-xs-3">
+        <div class="col-md-3">
           <!--intentionally left empty-->
         </div>
         
         <%= link_to r.reviewer, 
-                    class: "col-xs-9 
+                    class: "col-md-9 
                             review-author 
                             review-author-clickable 
                             vertical-align" do %>
@@ -24,7 +24,7 @@
             </div>
             
             <% if r.reviewer.online? %>
-              <div class="online online-md-secondary"></div>
+              <div class="online online-md-secondary hidden-xs"></div>
             <% end %>
           </div>
 
@@ -33,7 +33,7 @@
       </div>
     </div>
     
-    <div class="col-xs-8">
+    <div class="col-md-8">
       <div class="review-container">
   
         <div class="review-rating">

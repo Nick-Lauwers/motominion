@@ -8,7 +8,7 @@
   
   <div class="row vehicle-item-summary">
 
-    <div class="col-xs-4 summary-carousel-container">
+    <div class="col-md-4 summary-carousel-container">
       
       <%= link_to vehicle, target: "_blank" do %>
       
@@ -72,13 +72,16 @@
       </a>
     </div>
     
-    <div class="col-xs-6 summary-detail">
+    <div class="col-md-8 summary-detail">
       
       <%= link_to vehicle, 
                   class: "summary-detail-content", 
                   target: "_blank" do %>
-          
-        <p class="summary-detail-title"><%= vehicle.listing_name %></p>
+        
+        <div>
+          <span class="summary-detail-title"><%= vehicle.listing_name %></span>
+          <span class="summary-detail-price">$<%= vehicle.price %></span>
+        </div>
         
         <span class="summary-detail-info">
           Posted <%= time_ago_in_words(vehicle.created_at) %> ago
@@ -121,20 +124,20 @@
       </div>
     </div>
     
-    <div class="col-xs-2 summary-price">
+    <!--<div class="col-md-2 summary-price">-->
       
-      <%= link_to vehicle, 
-                  class: "summary-price-content", 
-                  target: "_blank" do %>
+    <!--  <(perc)= link_to vehicle, -->
+    <!--              class: "summary-price-content", -->
+    <!--              target: "_blank" do %>-->
           
-        <p class="summary-price-title">$<%= vehicle.price %></p>
+    <!--    <p class="summary-price-title">$<(perc)= vehicle.price %></p>-->
         
         <!--<(perc)= button_to "View", -->
         <!--    vehicle, -->
         <!--    method: :get,-->
         <!--    class: "btn btn-secondary" %>-->
-      <% end %>
-    </div>
+    <!--  <(perc) end %>-->
+    <!--</div>-->
   </div>
   
   <!--<div class="vehicle-item-deal">-->

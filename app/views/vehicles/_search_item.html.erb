@@ -1,7 +1,7 @@
 <!--completed-->
 <!--https://www.elastic.co/guide/en/elasticsearch/reference/master/_installation.html#_installation-->
 
-<li id="search-item-<%= vehicle.id %>" class="col-xs-6 search-item">
+<li id="search-item-<%= vehicle.id %>" class="col-md-6 search-item">
   
   <%= link_to vehicle, target: "_blank" do %>
     <div class="search-item-content">
@@ -23,7 +23,7 @@
               </div>
             
               <% if vehicle.user.online? %>
-                <div class="online online-lg-primary"></div>
+                <div class="online online-lg-primary hidden-xs"></div>
               <% end %>
             </div>
           </div>

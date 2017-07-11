@@ -1,6 +1,6 @@
 <!--completed-->
 
-<li id="feed-item-<%= feed_item.id %>" class="col-xs-4 feed-item">
+<li id="feed-item-<%= feed_item.id %>" class="col-md-4 feed-item">
   
   <%= link_to feed_item, target: "_blank" do %>
     <div class="feed-item-content">
@@ -22,7 +22,7 @@
               </div>
             
               <% if feed_item.user.online? %>
-                <div class="online online-lg-primary"></div>
+                <div class="online online-lg-primary hidden-xs"></div>
               <% end %>
             </div>
           </div>

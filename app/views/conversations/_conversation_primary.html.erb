@@ -17,7 +17,7 @@
           </div>
           
           <% if other.online? %>
-            <div class="online online-md-primary"></div>
+            <div class="online online-md-primary hidden-xs"></div>
           <% end %>
         </td>
         
@@ -32,13 +32,13 @@
           </div>
         </td>
         
-        <td class="conversation-content-container">
+        <td class="conversation-content-container hidden-xs">
           <p class="conversation-content">
-            <% if conversation.messages.exists? %>
+            <!--<(perc) if conversation.messages.exists? %>-->
               <%= conversation.messages.last.content %>
-            <% else %>
-              (No Messages)
-            <% end %>
+            <!--<(perc) else %>-->
+            <!--  (No Messages)-->
+            <!--<(perc) end %>-->
           </p>
         </td>
         

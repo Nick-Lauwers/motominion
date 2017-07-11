@@ -2,9 +2,35 @@
 
 <li id="forum-item-<%= post.id %>" class="forum-item">
   
-  <div class="row vertical-align forum-item-header">
+  <div class="visible-xs">
     
-    <div class="col-xs-2 avatar-and-online">
+    <%= link_to post.title, post, class: "forum-item-title" %>
+    
+    <div class="row forum-item-mobile-detail">
+      
+      <div class="col-xs-4">
+        <div class="forum-item-avatar">
+          <%= link_to (image_tag post.user.avatar.url),
+                      user_path(post.user) %>
+        </div>
+      </div>
+      
+      <div class="col-xs-8">
+        
+        <%= link_to post.user, class: "forum-item-name" do %> 
+          <%= post.user.name %>
+        <% end %>
+        
+        <span class="forum-item-time">
+          <%= time_ago_in_words(post.created_at).capitalize %> ago 
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row vertical-align forum-item-header hidden-xs">
+    
+    <div class="col-md-2 avatar-and-online">
       
       <div class="forum-item-avatar">
         <%= link_to (image_tag post.user.avatar.url),
@@ -16,7 +42,7 @@
       <% end %>
     </div>
     
-    <div class="col-xs-10">
+    <div class="col-md-10">
       
       <%= link_to post.title, post, class: "forum-item-title" %>
       

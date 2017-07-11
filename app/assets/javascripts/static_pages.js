@@ -34,6 +34,14 @@ $(function() {
           vehicleModelSelect.prop("disabled", true);
         }
       });
+      
+    // mobile search bar
+    
+      var heroMobileSearch = $('.hero-mobile-search');
+      
+      heroMobileSearch.click(function() {
+      	modalSearch.modal('show');
+      });
     
     // infinite scroll
     

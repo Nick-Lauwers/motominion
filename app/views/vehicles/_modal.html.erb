@@ -4,8 +4,12 @@
   
   <div class="modal-carousel-container">
 		<div class="carousel" id="modal-carousel">
+		  
+		  <i class="fa fa-times fa-lg btn-modal-mobile visible-xs" 
+		     aria-hidden="true" 
+         data-dismiss="modal"></i>
+         
       <div class="carousel-inner">
-        
         <% @photos.each do |photo| %>
           <div class="item <%= 'active' if photo == @photos[0] %>">          
             <%= image_tag photo.image.url() %>
@@ -15,7 +19,7 @@
     </div>
   </div>
   
-  <div class="modal-caption-container">
+  <div class="modal-caption-container hidden-xs">
     <div class="modal-detail">
       
       <div class="row vertical-align">
@@ -47,7 +51,7 @@
     </div>
   </div>
   
-  <div class="modal-options-container">
+  <div class="modal-options-container hidden-xs">
     
     <div class="modal-carousel-options">
       

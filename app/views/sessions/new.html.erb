@@ -6,6 +6,10 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
 <div class="credentials">
   
   <h1 class="credentials-title">Log in to your Mototrova account</h1>
@@ -13,11 +17,11 @@
   <div class="credentials-form">
     <div class="row">
       
-      <div class="col-xs-7">
+      <div class="col-md-7">
         <%= render 'form' %>
       </div>
     
-      <div class="col-xs-5">
+      <div class="col-md-5 hidden-xs">
 
         <span class="reassurance-copy-title">Why you'll love it...</span>
         

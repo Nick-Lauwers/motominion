@@ -13,24 +13,28 @@
           </div>
           
           <% if question.user.online? %>
-            <div class="online online-md-primary"></div>
+            <div class="online online-md-primary hidden-xs"></div>
           <% end %>
         </td>
         
         <td>
           <p class="new-question-name"><%= question.user.name %></p>
+          
+          <p class="conversation-date visible-xs-block">
+            <%= time_ago_in_words(question.created_at).capitalize %> ago
+          </p>
         </td>
         
-        <td class="conversation-content-container">
+        <td class="conversation-content-container hidden-xs">
           <p class="conversation-content">
             <%= question.content %>
           </p>
         </td>
         
         <td>
-            <p class="conversation-date">
-              <%= time_ago_in_words(question.created_at).capitalize %> ago
-            </p>
+          <p class="conversation-date hidden-xs">
+            <%= time_ago_in_words(question.created_at).capitalize %> ago
+          </p>
         </td>
       </tr>
     </table>
