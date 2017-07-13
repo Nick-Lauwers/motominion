@@ -49,6 +49,8 @@ $(function() {
     // image scaling
     
       var forumSearchAvatar = $('.forum-search-avatar');
+      var forumItemAvatar = $('.forum-item-avatar');
       
       forumSearchAvatar.imagefill(); 
+      forumItemAvatar.imagefill(); 
 });

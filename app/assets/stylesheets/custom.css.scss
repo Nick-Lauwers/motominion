@@ -346,7 +346,8 @@ p {
 }
 
 .btn-forum {
-  display: none;
+  position: absolute;
+  visibility: hidden;
 }
 
 /* forms */
@@ -2995,13 +2996,34 @@ ul.pagination {
 }
 
 .btn-modal-mobile {
-  text-align: right;
+  padding: 0.5em;
+  position: absolute;
+  z-index: 5000;
 }
 
 .btn-modal {
   text-align: center;
   width: 100%;
   padding: 1.8em 0;
+}
+
+.dismiss-modal {
+  top: 0;
+  right: 0;
+}
+
+.prev-modal,
+.next-modal {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prev-modal {
+  left: 0;
+}
+
+.next-modal {
+  right: 0;
 }
 
 // #modal-gallery {
@@ -5831,6 +5853,7 @@ a.remove_fields {
   .new-post,
   .edit-post,
   .edit-response,
+  .forum-search,
   .footer-links {
     margin: 0 5%;
     overflow: hidden;
@@ -5929,6 +5952,7 @@ a.remove_fields {
   
   .modal-carousel-container {
     width: 100%;
+    padding: 1em;
   }
   
   .hero-avatar-border {

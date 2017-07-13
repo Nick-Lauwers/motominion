@@ -16,11 +16,7 @@
   
   <div class="row">
     
-    <div class="col-xs-8">
-      <h1 class="forum-search-title">Results for '<%= params[:post] %>'</h1>
-    </div>
-    
-    <div class="col-xs-4">
+    <div class="col-md-4 col-md-push-8">
       
       <%= form_tag search_posts_path, 
                    method: :get, 
@@ -38,6 +34,10 @@
                            
         <%= submit_tag "Search", class: "btn-forum" %>
       <% end %>
+    </div>
+    
+    <div class="col-md-8 col-md-pull-4">
+      <h1 class="forum-search-title">Results for '<%= params[:post] %>'</h1>
     </div>
   </div>
   
