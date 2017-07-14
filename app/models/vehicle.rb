@@ -78,4 +78,14 @@ class Vehicle < ActiveRecord::Base
   def average_rating
     reviews.count == 0 ? 0 : reviews.average(:rating).round(2)
   end
+  
+  # Removes spaces and commas from price and mileage.
+  
+  def price=(val)
+    write_attribute :price, val.to_s.gsub(/[\s,]/, '').to_i
+  end
+  
+  def mileage=(val)
+    write_attribute :mileage, val.to_s.gsub(/[\s,]/, '').to_i
+  end
 end
