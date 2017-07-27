@@ -51,7 +51,13 @@
           
           <li>
             <%= link_to vehicles_path do %>
-              Listings (<%= current_user.vehicles.count %>)
+              Vehicles (<%= current_user.vehicles.count %>)
+            <% end %>
+          </li>
+          
+          <li>
+            <%= link_to autoparts_path do %>
+              Parts (<%= current_user.autoparts.count %>)
             <% end %>
           </li>
           

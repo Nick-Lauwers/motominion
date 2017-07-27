@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170713113429) do
+ActiveRecord::Schema.define(version: 20170716213159) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
@@ -27,6 +27,39 @@ ActiveRecord::Schema.define(version: 20170713113429) do
   add_index "appointments", ["buyer_id", "date"], name: "index_appointments_on_buyer_id_and_date"
   add_index "appointments", ["conversation_id"], name: "index_appointments_on_conversation_id"
   add_index "appointments", ["vehicle_id"], name: "index_appointments_on_vehicle_id"
+
+  create_table "autopart_photos", force: :cascade do |t|
+    t.integer  "autopart_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "autopart_photos", ["autopart_id"], name: "index_autopart_photos_on_autopart_id"
+
+  create_table "autoparts", force: :cascade do |t|
+    t.string   "listing_name"
+    t.string   "street_address"
+    t.string   "apartment"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "price"
+    t.text     "summary"
+    t.text     "shipping_info"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "bumped_at"
+    t.datetime "sold_at"
+    t.integer  "user_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "autoparts", ["user_id", "created_at"], name: "index_autoparts_on_user_id_and_created_at"
+  add_index "autoparts", ["user_id"], name: "index_autoparts_on_user_id"
 
   create_table "availabilities", force: :cascade do |t|
     t.string   "day"
@@ -77,6 +110,16 @@ ActiveRecord::Schema.define(version: 20170713113429) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "favorite_autoparts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "autopart_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "favorite_autoparts", ["user_id", "autopart_id"], name: "index_favorite_autoparts_on_user_id_and_autopart_id", unique: true
+  add_index "favorite_autoparts", ["user_id", "created_at"], name: "index_favorite_autoparts_on_user_id_and_created_at"
 
   create_table "favorite_vehicles", force: :cascade do |t|
     t.integer  "user_id"

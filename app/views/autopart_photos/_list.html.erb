@@ -1,0 +1,22 @@
+<span class="autopart-photos-title">Photos</span>
+
+<% if @autopart_photos %>
+  <div class="row new-autopart-gallery">
+    
+    <% @autopart_photos.each do |autopart_photo| %>
+      <div class="col-md-4 new-autopart-photo-container">
+        <div class="new-autopart-photo">
+          
+          <%= image_tag autopart_photo.image.url(), class: "img_preview" %>
+          
+          <%= link_to autopart_photo, 
+                      remote: true, 
+                      method: :delete, 
+                      data: { confirm: "Are you sure?" } do %>
+              <i class="fa fa-times fa-lg remove-photo-icon"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

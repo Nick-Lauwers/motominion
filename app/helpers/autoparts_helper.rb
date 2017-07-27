@@ -1,0 +1,2 @@
+module AutopartsHelper
+end

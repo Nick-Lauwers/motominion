@@ -37,11 +37,11 @@ class VehiclesController < ApplicationController
     end
   end
   
-  def destroy
-    @vehicle.destroy
-    flash[:success] = "Vehicle deleted"
-    redirect_to vehicles_path
-  end
+  # def destroy
+  #   @vehicle.destroy
+  #   flash[:success] = "Vehicle deleted"
+  #   redirect_to vehicles_path
+  # end
   
   def edit
     

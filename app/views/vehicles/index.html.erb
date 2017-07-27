@@ -24,7 +24,7 @@
   </div>
 </nav>
 
-<nav class="dropdown dropdown-backend visible-xs-block">
+<nav class="dropdown dropdown-backend visible-xs">
   
   <a href='#' class="dropdown-toggle" data-toggle="dropdown">
     Your Garage <b class="caret"></b>
@@ -54,7 +54,13 @@
             
             <li>
               <%= link_to vehicles_path, class: "sidenav-active" do %>
-                Listings (<%= @vehicles.count %>)
+                Vehicles (<%= @vehicles.count %>)
+              <% end %>
+            </li>
+            
+            <li>
+              <%= link_to autoparts_path do %>
+                Parts (<%= current_user.autoparts.count %>)
               <% end %>
             </li>
             

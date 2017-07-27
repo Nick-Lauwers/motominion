@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  get 'autopart_photos/destroy'
+
+  get 'autoparts/new'
+
+  get 'autoparts/create'
+
+  get 'autoparts/edit'
+
+  get 'autoparts/update'
+
+  get 'autoparts/index'
+
+  get 'autoparts/show'
+
   root                                'static_pages#home'
   get    'help'                    => 'static_pages#help'
   get    'about'                   => 'static_pages#about'
@@ -15,6 +29,7 @@ Rails.application.routes.draw do
   delete 'logout'                  => 'sessions#destroy'
   
   resources :photos
+  resources :autopart_photos
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :questions,           only: [:index, :create, :destroy]
@@ -81,6 +96,15 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       get :autocomplete
+    end
+  end
+  
+  resources :autoparts do
+    member do
+      put :favorite
+      put :sold
+      put :undo_sold
+      put :bump
     end
   end
   

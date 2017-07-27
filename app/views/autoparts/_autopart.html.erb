@@ -1,0 +1,192 @@
+<li id="garage-item-<%= autopart.id %>" class="vehicle-item">
+  
+  <% if autopart.sold_at.present? %>
+    <div class="ribbon-listing">SOLD</div>
+  <% end %>
+  
+  <div class="row vehicle-item-summary">
+
+    <div class="col-md-4 summary-carousel-container">
+      
+      <%= link_to autopart, target: "_blank" do %>
+      
+        <div id="summary-carousel-<%= autopart.id %>" 
+             class="carousel summary-carousel" 
+             data-interval="false">
+          
+          <div class="carousel-inner">
+            
+            <div class="item active">
+              <img src="<%= autopart.autopart_photos[0].image.url() if 
+                            autopart.autopart_photos.length > 0 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= autopart.autopart_photos[1].image.url() if 
+                            autopart.autopart_photos.length > 1 %>">
+            </div>
+        
+            <div class="item">
+              <img src="<%= autopart.autopart_photos[2].image.url() if 
+                            autopart.autopart_photos.length > 2 %>">
+            </div>
+        
+            <div class="item">
+              <img src="<%= autopart.autopart_photos[3].image.url() if 
+                            autopart.autopart_photos.length > 3 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= autopart.autopart_photos[4].image.url() if 
+                            autopart.autopart_photos.length > 4 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= autopart.autopart_photos[5].image.url() if 
+                            autopart.autopart_photos.length > 5 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= autopart.autopart_photos[6].image.url() if 
+                            autopart.autopart_photos.length > 6 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= autopart.autopart_photos[7].image.url() if 
+                            autopart.autopart_photos.length > 7 %>">
+            </div>
+          </div>
+        </div>
+      <% end %>
+      
+      <a href="#summary-carousel-<%= autopart.id %>" data-slide="prev">
+        <i class="fa fa-chevron-left fa-2x btn-summary-carousel-left" 
+           aria-hidden="true"></i>
+      </a>
+      
+      <a href="#summary-carousel-<%= autopart.id %>" data-slide="next">
+        <i class="fa fa-chevron-right fa-2x btn-summary-carousel-right" 
+           aria-hidden="true"></i>
+      </a>
+    </div>
+    
+    <div class="col-md-8 summary-detail">
+      
+      <%= link_to autopart, 
+                  class: "summary-detail-content", 
+                  target: "_blank" do %>
+        
+        <div>
+          <span class="summary-detail-title"><%= autopart.listing_name %></span>
+          <span class="summary-detail-price">$<%= autopart.price %></span>
+        </div>
+        
+        <span class="summary-detail-info">
+          Posted <%= time_ago_in_words(autopart.created_at) %> ago
+        </span>
+        
+        <%= link_to edit_autopart_path(autopart) do %>
+          <span class="summary-detail-link">
+            
+            <i class="fa fa-pencil-square-o summary-detail-link-icon" 
+               aria-hidden="true"></i>
+               
+            Update
+          </span>
+        <% end %>
+        
+        <!--<p class="summary-detail-info">-->
+        <!--  <= vehicle.summary %>-->
+        <!--</p>-->
+      <% end %>
+      
+      <div class="summary-buttons">
+        
+        <%= link_to "Bump",
+                    bump_autopart_path(autopart), 
+                    method: :put,
+                    class: "btn btn-bump" %>
+  
+        <% if autopart.sold_at.present? %>
+          <%= link_to "Repost",
+                      undo_sold_autopart_path(autopart), 
+                      method: :put,
+                      class: "btn btn-mark-as-sold" %>
+                      
+        <% else %>
+          <%= link_to "Mark As Sold",
+                      sold_autopart_path(autopart), 
+                      method: :put,
+                      class: "btn btn-mark-as-sold" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <!--<div class="col-md-2 summary-price">-->
+      
+    <!--  <(perc)= link_to vehicle, -->
+    <!--              class: "summary-price-content", -->
+    <!--              target: "_blank" do %>-->
+          
+    <!--    <p class="summary-price-title">$<(perc)= vehicle.price %></p>-->
+        
+        <!--<(perc)= button_to "View", -->
+        <!--    vehicle, -->
+        <!--    method: :get,-->
+        <!--    class: "btn btn-secondary" %>-->
+    <!--  <(perc) end %>-->
+    <!--</div>-->
+  </div>
+  
+  <!--<div class="vehicle-item-deal">-->
+  <!--  <(perc)= link_to vehicle, -->
+  <!--      class: "vehicle-item-deal-content", -->
+  <!--      target: "_blank" do %>-->
+        
+  <!--    <i class="fa fa-shopping-basket deal-detail-icon" -->
+  <!--       aria-hidden="true"></i>-->
+         
+  <!--    <span class="deal-detail-title">1 Additional Product</span> -->
+      
+  <!--    <span class="deal-detail-info">Spoiler at reduced cost</span> -->
+  <!--  <(perc) end %>-->
+  <!--</div>-->
+  
+  <!--<(perc) if vehicle.appointments.exists? %>-->
+  
+  <!--  <ol class="vehicle-item-list">-->
+  <!--    <(perc) vehicle.appointments.each do |appointment| %>-->
+      
+  <!--      <(perc) if appointment.date.future? %>-->
+        
+  <!--        <li id="vehicle-item-appointment-<(perc)= appointment.id %>" -->
+  <!--            class="vehicle-item-appointment">-->
+  <!--          <(perc)= link_to conversations_path(sender_id:    current_user.id, -->
+  <!--                                         recipient_id: appointment.user_id), -->
+  <!--                      class: "vehicle-item-appointment-content",-->
+  <!--                      method: :post do %>-->
+            
+  <!--            <i class="fa fa-calendar-check-o appointment-detail-icon" -->
+  <!--               aria-hidden="true"></i>-->
+                 
+  <!--            <span class="appointment-detail-title">-->
+  <!--              <(perc)= appointment.user.name %>-->
+  <!--            </span>-->
+              
+  <!--            <div class="appointment-detail-info">-->
+                
+  <!--              <span class="appointment-detail-primary-info">-->
+  <!--                Test drive in <(perc)= time_ago_in_words(appointment.date) %> -->
+  <!--              </span>-->
+                
+  <!--              <span class="appointment-detail-secondary-info">-->
+  <!--                (<(perc)= appointment.date.strftime("%D") %>)-->
+  <!--              </span>-->
+  <!--            </div>-->
+  <!--          <(perc) end %>-->
+  <!--        </li>-->
+  <!--      <(perc) end %>-->
+  <!--    <(perc) end %>-->
+  <!--  </ol>-->
+  <!--<(perc) end %>-->
+</li>

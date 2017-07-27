@@ -1,0 +1,2 @@
+module AutopartPhotosHelper
+end

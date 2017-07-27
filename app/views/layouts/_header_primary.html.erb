@@ -9,7 +9,17 @@
       
       <% if logged_in? %>
       
-        <li><%= link_to "List", new_vehicle_path %></li>
+        <li class="dropdown dropdown-frontend hidden-xs">
+          
+          <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+             List <b class="caret"></b>
+          </a>
+          
+          <ul class="dropdown-menu">
+            <li><%= link_to "List Your Vehicle", new_vehicle_path %></li>
+            <li><%= link_to "List a Part",    new_autopart_path %></li>
+          </ul>
+        </li>
         
         <li><%= link_to "Advice", posts_path %></li>
       
@@ -122,7 +132,17 @@
         
       <% else %>
       
-        <li class="hidden-xs"><%= link_to "List", new_vehicle_path %></li>
+        <li class="dropdown dropdown-frontend hidden-xs">
+          
+          <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+             List <b class="caret"></b>
+          </a>
+          
+          <ul class="dropdown-menu">
+            <li><%= link_to "List Your Vehicle", new_vehicle_path %></li>
+            <li><%= link_to "List a Part",    new_autopart_path %></li>
+          </ul>
+        </li>
         
         <li class="hidden-xs"><%= link_to "Advice", posts_path %></li>
       

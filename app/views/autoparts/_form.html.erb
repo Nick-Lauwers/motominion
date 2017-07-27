@@ -1,0 +1,160 @@
+<%= form_for @autopart, html: { multipart: true } do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <div class="basics">
+    <div class="row">
+      
+      <div class="col-md-4">
+        
+        <h2 class="basics-title">The Basics</h2>
+        
+        <p class="basics-info">
+          Start with the basics.
+        </p>
+      </div>
+      
+      <div class="col-md-8">
+        
+        <div class="row">
+          
+          <div class="col-md-6 form-group">
+
+            <%= f.label :price %>
+            
+            <div class= "input-group">
+              
+              <div class="input-group-addon">$</div>
+              
+              <%= f.text_field :price, 
+                               placeholder: "Eg. 400", 
+                               class: "form-control form-control-primary" %>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <!--intentionally left empty-->
+          </div>
+        </div>
+        
+        <div class="form-group">
+          
+          <%= f.label :listing_name, "Listing Name" %>
+          
+          <%= f.text_field :listing_name, 
+                           placeholder: "Eg. Dodge Dakota Truck Cap", 
+                           class: "form-control form-control-primary" %>
+        </div>
+        
+        <div class="form-group">
+          
+          <%= f.label :summary %>
+          
+          <%= f.text_area :summary, 
+                          rows: 3,
+                          placeholder: "Eg. Features tinted windows and full-length side doors.", 
+                          class: "form-control form-control-primary" %>
+        </div>
+        
+        <div class="form-group">
+          
+          <%= f.label :shipping_info, "Shipping Details" %>
+          
+          <%= f.text_area :shipping_info,
+                          rows: 3,
+                          placeholder: "Enter shipping details if part can be mailed (optional).", 
+                          class: "form-control form-control-primary" %>
+        </div>
+        
+        <div id="autopart-photos">
+          <%= render 'autopart_photos/list' %>
+        </div>
+        
+        <div class="photos-button">
+          
+          <button class="btn btn-secondary btn-file">Add Photos</button>
+          
+          <%= file_field_tag "images[]", 
+                             class: "multi with-preview",
+                             maxlength: "8",
+                            # accept: "jpg|gif|png",
+                             type: :file  %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="about-you">
+    <div class="row">
+      
+      <div class="col-md-4">
+        
+        <h2 class="about-you-title">About You</h2>
+        
+        <p class="about-you-info">
+          Include your address and availability so that buyers know when and 
+          where to book a test drive. For safety, your address will be hidden 
+          from a customer until you accept his / her test drive request.
+        </p>
+      </div>
+      
+      <div class="col-md-8">
+        
+        <div class="row">
+          
+          <div class="col-md-6 form-group">
+
+            <%= f.label :street_address, "Street Address" %>
+            
+            <%= f.text_field :street_address, 
+                             placeholder: "Eg. 3 Lower River Dr.", 
+                             class: "form-control form-control-primary" %>
+          </div>
+          
+          <div class="col-md-6 form-group">
+
+            <%= f.label :apartment, "Apt., Bldg. (Optional)" %>
+            
+            <%= f.text_field :apartment, 
+                             placeholder: "Eg. Building 6", 
+                             class: "form-control form-control-primary" %>
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-md-6 form-group">
+
+            <%= f.label :city %>
+            
+            <%= f.text_field :city, 
+                             placeholder: "Eg. Louisville", 
+                             class: "form-control form-control-primary" %>
+          </div>
+          
+          <div class="col-md-6 form-group">
+
+            <%= f.label :state, "State / Province" %>
+            
+            <%= f.text_field :state, 
+                             placeholder: "Eg. KY", 
+                             class: "form-control form-control-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <%= f.hidden_field :bumped_at,  value: Time.now %>
+  
+  <div class="row submit-vehicle">
+    
+    <div class="col-md-4">
+      <!--intentionally left blank-->
+    </div>
+    
+    <div class="col-md-8">
+      <%= f.submit "Submit Details", class: "submit btn btn-secondary" %>
+    </div>
+  </div>
+<% end %>

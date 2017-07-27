@@ -9,19 +9,22 @@ class User < ActiveRecord::Base
   
   # has_one :profile,  dependent: :destroy
   
-  has_many :vehicles,          dependent: :destroy
-  has_many :posts,             dependent: :destroy
-  has_many :responses,         dependent: :destroy 
-  has_many :questions,         dependent: :destroy
-  has_many :replies,           dependent: :destroy
-  has_many :favorite_vehicles, dependent: :destroy
+  has_many :vehicles,           dependent: :destroy
+  has_many :autoparts,          dependent: :destroy
+  has_many :posts,              dependent: :destroy
+  has_many :responses,          dependent: :destroy 
+  has_many :questions,          dependent: :destroy
+  has_many :replies,            dependent: :destroy
+  has_many :favorite_vehicles,  dependent: :destroy
+  has_many :favorite_autoparts, dependent: :destroy
   
   has_many :authored_reviews, class_name: 'Review', dependent: :destroy,
     foreign_key: :reviewer_id
   has_many :received_reviews, class_name: 'Review', dependent: :destroy, 
     foreign_key: :reviewed_id
     
-  has_many :favorites, through: :favorite_vehicles, source: :vehicle
+  has_many :favorites, through: :favorite_vehicles,  source: :vehicle
+  has_many :favorites, through: :favorite_autoparts, source: :autopart
   
   attr_accessor :remember_token, :activation_token, :reset_token
   
