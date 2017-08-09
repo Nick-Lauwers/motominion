@@ -33,7 +33,7 @@
     <h1 class="hero-title">Cars Made Easy</h1>
     
     <h2 class="hero-info hidden-xs">
-      Search for used vehicles from across the Mid-West
+      Discover vehicles in your own backyard
     </h2>
     
     <%= form_tag search_vehicles_path, 
@@ -51,6 +51,7 @@
                                 :name,
                                 { include_blank: true,
                                   prompt: "All makes" },
+                                id: "vehicle-make-search",
                                 class: "form-control
                                         search-select-primary" %>
           
@@ -71,7 +72,8 @@
                                         :id,
                                         :name,
                                         { prompt: "All models",
-                                          include_blank: true }, 
+                                          include_blank: true },
+                                        id: "vehicle-model-search",
                                         class: "form-control
                                                 search-select-secondary" %>
                                                 

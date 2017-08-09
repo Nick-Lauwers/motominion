@@ -3,35 +3,32 @@ $(function() {
   // new
   
     // dependent dropdown
-  
-      var vehicleModelSelect = 
-        $('#vehicle_vehicle_model_id.form-control.select-secondary');
-      var vehicleMakeSelect =
-        $('#vehicle_vehicle_make_id.form-control.select-secondary');
-      var vehicle_models = vehicleModelSelect.html();
+    
+      var vehicleModelNew   = $('#vehicle-model-new');
+      var vehicleMakeNew    = $('#vehicle-make-new');
+      var vehicle_model_new = vehicleModelNew.html();
         
-      vehicleModelSelect.prop("disabled", true);
+      vehicleModelNew.prop("disabled", true);
       
-      vehicleMakeSelect.change(function() {
+      vehicleMakeNew.change(function() {
         
-        var vehicle_make = 
-          $('#vehicle_vehicle_make_id.form-control.select-secondary :selected').
-            text();
-        var escaped_vehicle_make = 
-          vehicle_make.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-        var options = 
-          $(vehicle_models).
-            filter("optgroup[label=" + escaped_vehicle_make + "]").
+        var vehicle_make_new = $('#vehicle-make-new :selected').text();
+        var escaped_vehicle_make_new = 
+          vehicle_make_new.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_new = 
+          $(vehicle_model_new).
+            filter("optgroup[label=" + escaped_vehicle_make_new + "]").
             html();
         
-        if (options) {
-          vehicleModelSelect.html(options);
-          vehicleModelSelect.prop("disabled", false);
+        if (options_new) {
+          vehicleModelNew.html(options_new);
+          vehicleModelNew.prop("disabled", false);
         } 
         
         else {
-          vehicleModelSelect.empty();
-          vehicleModelSelect.prop("disabled", true);
+          vehicleModelNew.empty();
+          vehicleModelNew.prop("disabled", true);
         }
       });
 
@@ -239,4 +236,36 @@ $(function() {
       var searchItemAvatar = $('.search-item-avatar');
   
       searchItemAvatar.imagefill(); 
+      
+  // basics
+  
+    // dependent dropdown
+      
+      var vehicleModelBasics   = $('#vehicle-model-basics');
+      var vehicleMakeBasics    = $('#vehicle-make-basics');
+      var vehicle_model_basics = vehicleModelBasics.html();
+        
+      vehicleModelBasics.prop("disabled", true);
+      
+      vehicleMakeBasics.change(function() {
+        
+        var vehicle_make_basics = $('#vehicle-make-basics :selected').text();
+        var escaped_vehicle_make_basics = 
+          vehicle_make_basics.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_basics = 
+          $(vehicle_model_basics).
+            filter("optgroup[label=" + escaped_vehicle_make_basics + "]").
+            html();
+        
+        if (options_basics) {
+          vehicleModelBasics.html(options_basics);
+          vehicleModelBasics.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelBasics.empty();
+          vehicleModelBasics.prop("disabled", true);
+        }
+      });
 });

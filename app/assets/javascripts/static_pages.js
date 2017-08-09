@@ -4,34 +4,31 @@ $(function() {
   
     // dependent dropdown
     
-      var vehicleModelSelect = 
-        $('#vehicle_vehicle_model_id.form-control.search-select-secondary');
-      var vehicleMakeSelect =
-        $('#vehicle_vehicle_make_id.form-control.search-select-primary');
-      var vehicle_models = vehicleModelSelect.html();
+      var vehicleModelSearch   = $('#vehicle-model-search');
+      var vehicleMakeSearch    = $('#vehicle-make-search');
+      var vehicle_model_search = vehicleModelSearch.html();
         
-      vehicleModelSelect.prop("disabled", true);
+      vehicleModelSearch.prop("disabled", true);
       
-      vehicleMakeSelect.change(function() {
+      vehicleMakeSearch.change(function() {
         
-        var vehicle_make = 
-          $('#vehicle_vehicle_make_id.form-control.search-select-primary :selected').
-            text();
-        var escaped_vehicle_make = 
-          vehicle_make.replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-        var options = 
-          $(vehicle_models).
-            filter("optgroup[label=" + escaped_vehicle_make + "]").
+        var vehicle_make_search = $('#vehicle-make-search :selected').text();
+        var escaped_vehicle_make_search = 
+          vehicle_make_search.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_search = 
+          $(vehicle_model_search).
+            filter("optgroup[label=" + escaped_vehicle_make_search + "]").
             html();
         
-        if (options) {
-          vehicleModelSelect.html(options);
-          vehicleModelSelect.prop("disabled", false);
+        if (options_search) {
+          vehicleModelSearch.html(options_search);
+          vehicleModelSearch.prop("disabled", false);
         } 
         
         else {
-          vehicleModelSelect.empty();
-          vehicleModelSelect.prop("disabled", true);
+          vehicleModelSearch.empty();
+          vehicleModelSearch.prop("disabled", true);
         }
       });
       

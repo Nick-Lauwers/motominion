@@ -4,16 +4,17 @@ class VehiclesController < ApplicationController
   
   before_action :logged_in_user,     except: [:show, :search, :autocomplete]
   before_action :profile_pic_upload, only:   [:new]
-  before_action :get_vehicle,        only:   [:destroy, :show, :edit, :update, 
-                                              :favorite, :sold, :undo_sold, 
-                                              :bump]
+  before_action :get_vehicle,        only:   [:destroy, :show, :update, :basics,
+                                              :details, :photos, :finalize, 
+                                              :about_you, :post, :favorite, 
+                                              :sold, :undo_sold, :bump]
   
   def new
     
     @vehicle = current_user.vehicles.build
     @vehicle.availabilities.build
     
-    @complete = "13%"
+    # @complete = "13%"
   end
   
   def create
@@ -22,15 +23,16 @@ class VehiclesController < ApplicationController
     
     if @vehicle.save
       
-      if params[:images]
-        params[:images].each do |image|
-          @vehicle.photos.create(image: image)
-        end
-      end
+      # if params[:images]
+      #   params[:images].each do |image|
+      #     @vehicle.photos.create(image: image)
+      #   end
+      # end
       
-      @photos = @vehicle.photos
-      flash[:success] = "Vehicle has been posted and bumped!"
-      redirect_to vehicles_path
+      # @photos = @vehicle.photos
+      flash[:success] = "Basics saved; Complete all remaining details, then 
+                         select 'Post Vehicle'."
+      redirect_to details_vehicle_path(@vehicle)
     
     else
       render 'new'
@@ -43,35 +45,36 @@ class VehiclesController < ApplicationController
   #   redirect_to vehicles_path
   # end
   
-  def edit
+  # def edit
     
-    if current_user.id == @vehicle.user.id
-      @photos = @vehicle.photos
-      @complete = "100%"
+  #   if current_user.id == @vehicle.user.id
+  #     @photos = @vehicle.photos
+  #     # @complete = "100%"
     
-    else
-      flash[:danger] = "Access denied"
-      redirect_to_back_or_default
-    end
-  end
+  #   else
+  #     flash[:danger] = "Access denied"
+  #     redirect_to_back_or_default
+  #   end
+  # end
 
   def update
     
     if @vehicle.update(vehicle_params)
       
-      if params[:images]
-        params[:images].each do |image|
-          @vehicle.photos.create(image: image)
-        end
-      end
+      # if params[:images]
+      #   params[:images].each do |image|
+      #     @vehicle.photos.create(image: image)
+      #   end
+      # end
       
-      flash[:success] = "Vehicle has been updated and bumped!"
-      redirect_to vehicles_path
+      flash[:success] = "Updates saved."
     
     else
-      # flash[:danger] = "Please provide all information for this vehicle."
-      render 'edit'
+      flash[:danger] = "Update failed."
+      # render 'edit'
     end
+    
+    redirect_to :back
   end
   
   def index
@@ -123,7 +126,8 @@ class VehiclesController < ApplicationController
                                                               }, 
                                                               within: "20mi" },
                                             vehicle_model_id: params[:vehicle][:vehicle_model_id],
-                                            sold_at: nil },
+                                            sold_at: nil,
+                                            posted_at: { not: nil } },
                                    page: params[:page], 
                                    per_page: 10,
                                    order: { bumped_at: :desc, 
@@ -136,7 +140,8 @@ class VehiclesController < ApplicationController
                                                               lon: coordinates[1]
                                                               }, 
                                                               within: "20mi" },
-                                            sold_at: nil },
+                                            sold_at: nil,
+                                            posted_at: { not: nil } },
                                    page: params[:page], 
                                    per_page: 10,
                                    order: { bumped_at: :desc, 
@@ -150,6 +155,7 @@ class VehiclesController < ApplicationController
                                    where: { vehicle_model_id: 
                                               params[:vehicle][:vehicle_model_id],
                                             sold_at: nil,
+                                            posted_at: { not: nil },
                                             latitude: { not: nil } },
                                    page: params[:page], 
                                    per_page: 10,
@@ -159,6 +165,7 @@ class VehiclesController < ApplicationController
       else
         @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
                                    where: { sold_at: nil,
+                                            posted_at: { not: nil },
                                             latitude: { not: nil } },
                                    page: params[:page], 
                                    per_page: 10,
@@ -169,12 +176,13 @@ class VehiclesController < ApplicationController
     elsif params[:city].present?
       @vehicles = Vehicle.near(params[:city], 20).
                           where(sold_at: nil).
+                          where.not(posted_at: nil).
                           paginate(page: params[:page], per_page: 10).
                           order(bumped_at: :desc, created_at: :desc)
                           
     else
       @vehicles = Vehicle.all.where(sold_at: nil).
-                              where.not(latitude: nil).
+                              where.not(posted_at: nil, latitude: nil).
                               paginate(page: params[:page], per_page: 10).
                               order(bumped_at: :desc, created_at: :desc)
 
@@ -193,6 +201,28 @@ class VehiclesController < ApplicationController
       
       marker.json({ :id => vehicle.id })
     end
+  end
+  
+  def basics
+  end
+  
+  def details
+  end
+  
+  def photos
+    @photos = @vehicle.photos
+  end
+  
+  def finalize
+  end
+  
+  def about_you
+  end
+  
+  def post
+    @vehicle.update_attribute(:posted_at, Time.now)
+    flash[:success] = "#{ @vehicle.listing_name } posted!"
+    redirect_to vehicles_path
   end
   
   def favorite
@@ -248,9 +278,10 @@ class VehiclesController < ApplicationController
                                       :is_bluetooth, :is_backup_camera, 
                                       :is_remote_start, :is_tow_package, 
                                       :vehicle_make_id, :vehicle_model_id, 
-                                      :bumped_at, availabilities_attributes: 
-                                      [:id, :day, :start_time, :end_time, 
-                                       :vehicle_id, :_destroy])
+                                      :bumped_at, :posted_at, 
+                                      availabilities_attributes: [:id, :day, 
+                                      :start_time, :end_time, :vehicle_id, 
+                                      :_destroy])
     end
     
     # Before filters

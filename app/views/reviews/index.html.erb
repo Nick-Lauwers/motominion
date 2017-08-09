@@ -10,63 +10,14 @@
 
 <%= render 'layouts/hero_backend' %>
 
-<nav class="secondary-navbar hidden-xs">
-  <div class="secondary-navbar-nav">
-    <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Dashboard",   dashboard_path %></li>
-      <li><%= link_to "Inbox",       conversations_path %></li>
-      <li><%= link_to "Your Garage", vehicles_path %></li>
-      <li><%= link_to "Showroom",    test_drives_path %></li>
-      <li>
-        <%= link_to "Profile",     
-                    edit_user_path(current_user), 
-                    class: "nav-active" %>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-<nav class="dropdown dropdown-backend visible-xs-block">
-  
-  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-    Profile <b class="caret"></b>
-  </a>
-  
-  <ul class="dropdown-menu">
-    <li><%= link_to "Dashboard",      dashboard_path %></li>
-    <li><%= link_to "Inbox",          conversations_path %></li>
-    <li><%= link_to "Your Garage",    vehicles_path %></li>
-    <li><%= link_to "Showroom",       test_drives_path %></li>
-    <li>
-      <%= link_to "Profile",     
-                  edit_user_path(current_user), 
-                  class: "dropdown-active" %>
-    </li>
-  </ul>
-</nav>
+<%= render 'layouts/secondary_navbar' %>
 
 <div class="backend">
   <div class="backend-content">
     <div class="row">
     
       <div class="col-md-4 sidenav">
-
-        <h2 class="sidenav-title">
-          Profile
-        </h2>
-        
-        <ul class="sidenav-list">
-          
-          <li>
-            <%= link_to "Edit Profile", edit_user_path(current_user) %>
-          </li>
-          
-          <li>
-            <%= link_to user_reviews_path, class: "sidenav-active" do %>
-              Reviews (<%= @reviews_about_you.count %>)
-            <% end %>
-          </li>
-        </ul>
+        <%= render 'layouts/sidenav_profile' %>
       </div>
       
       <div class="col-md-8">

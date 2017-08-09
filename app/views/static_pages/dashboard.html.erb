@@ -10,32 +10,7 @@
 
 <%= render 'layouts/hero_backend' %>
 
-<nav class="secondary-navbar hidden-xs">
-  <div class="secondary-navbar-nav">
-    <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Dashboard",   dashboard_path, class: "nav-active" %></li>
-      <li><%= link_to "Inbox",       conversations_path %></li>
-      <li><%= link_to "Your Garage", vehicles_path %></li>
-      <li><%= link_to "Showroom",    test_drives_path %></li>
-      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
-    </ul>
-  </div>
-</nav>
-
-<nav class="dropdown dropdown-backend visible-xs-block">
-  
-  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-    Dashboard <b class="caret"></b>
-  </a>
-  
-  <ul class="dropdown-menu">
-    <li><%= link_to "Dashboard",   dashboard_path, class: "dropdown-active" %></li>
-    <li><%= link_to "Inbox",       conversations_path %></li>
-    <li><%= link_to "Your Garage", vehicles_path %></li>
-    <li><%= link_to "Showroom",    test_drives_path %></li>
-    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
-  </ul>
-</nav>
+<%= render 'layouts/secondary_navbar' %>
 
 <div class="backend">
   <div class="backend-content">

@@ -1,0 +1,138 @@
+<% provide(:title, "Garage") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<nav class="secondary-navbar hidden-xs">
+  <div class="secondary-navbar-nav">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Dashboard",   dashboard_path %></li>
+      <li><%= link_to "Inbox",       conversations_path %></li>
+      <li class="nav-active"><%= link_to "Your Garage", vehicles_path %></li>
+      <li><%= link_to "Showroom",    test_drives_path %></li>
+      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="dropdown dropdown-backend visible-xs">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Your Garage <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    <li><%= link_to "Dashboard",   dashboard_path %></li>
+    <li><%= link_to "Inbox",       conversations_path %></li>
+    <li class="dropdown-active"><%= link_to "Your Garage", vehicles_path %></li>
+    <li><%= link_to "Showroom",    test_drives_path %></li>
+    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+  </ul>
+</nav>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-md-4 sidenav"> 
+        <%= render 'sidenav' %>
+      </div>
+      
+      <div class="col-md-8">
+        <%= form_for @vehicle, html: { multipart: true } do |f| %>
+          
+          <div class="update-panel">
+            
+            <h2 class="panel-title">Address</h2>
+            
+            <p class="panel-instructions">
+              Your address will only be shared with customers if you have 
+              confirmed their test drive request.
+            </p>
+            
+            <div class="row">
+              
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :street_address, "Street Address" %>
+                
+                <%= f.text_field :street_address, 
+                                 placeholder: "Eg. 3 Lower River Dr.", 
+                                 class: "form-control form-control-primary",
+                                 required: true %>
+              </div>
+              
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :apartment, "Apt., Bldg. (Optional)" %>
+                
+                <%= f.text_field :apartment, 
+                                 placeholder: "Eg. Building 6", 
+                                 class: "form-control form-control-primary" %>
+              </div>
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :city %>
+                
+                <%= f.text_field :city, 
+                                 placeholder: "Eg. Louisville", 
+                                 class: "form-control form-control-primary",
+                                 required: true %>
+              </div>
+              
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :state, "State / Province" %>
+                
+                <%= f.text_field :state, 
+                                 placeholder: "Eg. KY", 
+                                 class: "form-control form-control-primary",
+                                 required: true %>
+              </div>
+            </div>
+          </div>
+          
+          <div class="update-panel">
+            
+            <h2 class="panel-title">Availabilities</h2>
+            
+            <p class="panel-instructions">
+              Share your availabilities in order to make it faster for customers 
+              to book a test drive.
+            </p>
+            
+            <!--<div class="availabilities">-->
+              
+              <!--<span class="availabilities-title">Availabilities</span>-->
+              
+              <%= f.fields_for :availabilities do |availability| %>
+                <%= render 'availability_fields', f: availability %>
+              <% end %>
+                
+              <div class="links">
+                <%= link_to_add_association "+ Add Availability", 
+                                            f, 
+                                            :availabilities %>
+              </div>
+            <!--</div>-->
+          </div>
+    
+          <%= f.hidden_field :bumped_at,  value: Time.now %>
+          
+          <%= f.submit "Save", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

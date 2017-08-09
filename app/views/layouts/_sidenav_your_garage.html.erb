@@ -1,0 +1,27 @@
+<h2 class="sidenav-title">
+  Your Garage
+</h2>
+
+<ul class="sidenav-list">
+  
+  <li class="<%= 'sidenav-active' if current_page?(vehicles_path) %>">
+    <%= link_to vehicles_path do %>
+      Vehicles (<%= current_user.vehicles.count %>)
+    <% end %>
+  </li>
+  
+  <!--<li>-->
+  <!--  <(perc)= link_to autoparts_path do %>-->
+  <!--    Parts (<(perc)= current_user.autoparts.count %>)-->
+  <!--  <(perc) end %>-->
+  <!--</li>-->
+  
+  <li class="<%= 'sidenav-active' if current_page?(customers_path) %>">
+    <%= link_to customers_path do %>
+      Customers  
+      (<%= Appointment.where("seller_id = ? AND date >= ?",
+                             current_user.id,
+                             Time.now).count %>)
+    <% end %>
+  </li>
+</ul>

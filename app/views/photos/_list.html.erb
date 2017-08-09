@@ -1,24 +1,22 @@
 <!--completed-->
 <!--http://stackoverflow.com/questions/25474329/how-to-preview-uploaded-image-instantly-with-paperclip-in-ruby-on-rails-->
 
-<span class="photos-title">Photos</span>
-
 <% if @photos %>
   <div class="row new-vehicle-gallery">
     
     <% @photos.each do |photo| %>
       <div class="col-md-4 new-vehicle-photo-container">
+        
         <div class="new-vehicle-photo">
-          
-          <%= image_tag photo.image.url(), class: "img_preview" %>
-          
-          <%= link_to photo, 
+          <%= image_tag photo.image.url() %>
+        </div>
+        
+        <%= link_to vehicle_photo_path(photo.vehicle_id, photo), 
                       remote: true, 
                       method: :delete, 
                       data: { confirm: "Are you sure?" } do %>
-              <i class="fa fa-times fa-lg remove-photo-icon"></i>
-          <% end %>
-        </div>
+              <i class="fa fa-trash-o fa-2x remove-photo-icon"></i>
+        <% end %>
       </div>
     <% end %>
   </div>

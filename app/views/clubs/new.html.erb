@@ -1,0 +1,51 @@
+<% provide(:title, "New Club") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="new-post">
+  
+  <div class="forum-nav">
+    <%= link_to "Community Center", posts_path, class: "forum-nav-link" %>
+  </div>
+  
+  <h1 class="new-post-title">Start A Club</h1>
+  
+  <%= form_for(@club) do |f| %>
+  
+    <%= render 'shared/error_messages', object: f.object %>
+    
+    <div class="form-group form-group-primary">
+      <%= f.label :name, "What do you want to talk about?" %>
+      <%= f.text_field :name, class: "form-control form-control-primary" %>
+    </div>
+    
+    <div class="form-group form-group-primary">
+                
+      <%= f.label :description, "Add details..." %>
+      
+      <%= f.text_area :description, 
+                      class: "form-control form-control-primary", 
+                      rows: 5 %>
+    </div>
+    
+    <%= f.file_field :cover_photo %>
+  
+    <div class="row">
+      
+      <div class="col-md-3">
+        <%= f.submit "Submit", class: "btn btn-new-post" %>
+        <%= link_to "Cancel", clubs_overview_path, class: "btn btn-new-post-cancel" %>
+      </div>
+      
+      <div class="col-md-9">
+        <!--intentionally left blank-->
+      </div>
+    </div>
+  <% end %>
+</div>

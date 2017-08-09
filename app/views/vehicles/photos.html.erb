@@ -1,0 +1,79 @@
+<% provide(:title, "Garage") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<nav class="secondary-navbar hidden-xs">
+  <div class="secondary-navbar-nav">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Dashboard",   dashboard_path %></li>
+      <li><%= link_to "Inbox",       conversations_path %></li>
+      <li class="nav-active"><%= link_to "Your Garage", vehicles_path %></li>
+      <li><%= link_to "Showroom",    test_drives_path %></li>
+      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="dropdown dropdown-backend visible-xs">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Your Garage <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    <li><%= link_to "Dashboard",   dashboard_path %></li>
+    <li><%= link_to "Inbox",       conversations_path %></li>
+    <li class="dropdown-active"><%= link_to "Your Garage", vehicles_path %></li>
+    <li><%= link_to "Showroom",    test_drives_path %></li>
+    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+  </ul>
+</nav>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-md-4"> 
+        <%= render 'sidenav' %>
+      </div>
+      
+      <div class="col-md-8">
+        <%= form_for @vehicle, 
+                     url:    vehicle_photos_path(@vehicle), 
+                     method: 'post', 
+                     html:   { multipart: true } do |f| %>
+        
+          <div class="update-panel">
+            
+            <h2 class="panel-title">Photos</h2>
+            
+            <div id="photos">
+              <%= render 'photos/list' %>
+            </div>
+
+            <span class="btn btn-green btn-file">
+              
+              Select Photos
+              
+              <%= file_field_tag "images[]", 
+                               type: :file, 
+                               multiple: true %>
+            </span>
+
+            <%= f.hidden_field :bumped_at,  value: Time.now %>
+          </div>
+          
+          <%= f.submit "Upload Photos", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

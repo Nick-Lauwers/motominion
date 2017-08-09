@@ -83,17 +83,25 @@
           <span class="summary-detail-price">$<%= vehicle.price %></span>
         </div>
         
-        <span class="summary-detail-info">
-          Posted <%= time_ago_in_words(vehicle.created_at) %> ago
-        </span>
+        <% if vehicle.posted_at.present? %>
         
-        <%= link_to edit_vehicle_path(vehicle) do %>
-          <span class="summary-detail-link">
-            
-            <i class="fa fa-pencil-square-o summary-detail-link-icon" 
-               aria-hidden="true"></i>
-               
-            Update
+          <span class="summary-detail-info">
+            Posted <%= time_ago_in_words(vehicle.posted_at) %> ago
+          </span>
+          
+          <%= link_to basics_vehicle_path(vehicle) do %>
+            <span class="summary-detail-link">
+              
+              <i class="fa fa-pencil-square-o summary-detail-link-icon" 
+                 aria-hidden="true"></i>
+                 
+              Update
+            </span>
+          <% end %>
+        
+        <% else %>
+          <span class="summary-detail-info">
+            Started <%= time_ago_in_words(vehicle.created_at) %> ago
           </span>
         <% end %>
         
@@ -104,22 +112,30 @@
       
       <div class="summary-buttons">
         
-        <%= link_to "Bump",
-                    bump_vehicle_path(vehicle), 
-                    method: :put,
-                    class: "btn btn-bump" %>
-  
-        <% if vehicle.sold_at.present? %>
-          <%= link_to "Repost",
-                      undo_sold_vehicle_path(vehicle), 
+        <% if vehicle.posted_at.present? %>
+        
+          <%= link_to "Bump",
+                      bump_vehicle_path(vehicle), 
                       method: :put,
-                      class: "btn btn-mark-as-sold" %>
-                      
+                      class: "btn btn-bump" %>
+    
+          <% if vehicle.sold_at.present? %>
+            <%= link_to "Repost",
+                        undo_sold_vehicle_path(vehicle), 
+                        method: :put,
+                        class: "btn btn-mark-as-sold" %>
+                        
+          <% else %>
+            <%= link_to "Mark As Sold",
+                        sold_vehicle_path(vehicle), 
+                        method: :put,
+                        class: "btn btn-mark-as-sold" %>
+          <% end %>
+          
         <% else %>
-          <%= link_to "Mark As Sold",
-                      sold_vehicle_path(vehicle), 
-                      method: :put,
-                      class: "btn btn-mark-as-sold" %>
+          <%= link_to "Finish Listing",
+                      basics_vehicle_path(vehicle), 
+                      class: "btn btn-bump" %>
         <% end %>
       </div>
     </div>

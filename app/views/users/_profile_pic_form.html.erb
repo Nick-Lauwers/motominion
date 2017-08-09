@@ -3,25 +3,15 @@
   <div class="profile-pic-form">
     <div class="row profile-pic-form-content">
       
-      <div class="col-md-4">
-        <div class="row">
-          
-          <div class="col-md-10 profile-pic-container">
-            <%= image_tag @user.avatar.url, class: "avatar" %>
-          </div>
-          
-          <div class="col-md-2">
-            <!--intentioanlly left empty-->
-          </div>
-        </div>
+      <div class="col-md-4 profile-pic-container">
+        <%= image_tag @user.avatar.url, class: "avatar" %>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-md-6 col-md-offset-1">
       
         <p class="avatar-instructions-text">
-           Clear frontal face photos are an important 
-              to instill trust in our community. Upload a 
-              profile pic before communicating with buyers and sellers.
+           Clear frontal face photos are an important to instill trust in our 
+           community.
         </p>
         
         <div class="button-container">
@@ -33,12 +23,16 @@
           <%= f.file_field :avatar, class: "avatar-upload" %>
         </div>
       </div>
+      
+      <div class="col-md-1">
+        <!--intentionally left empty-->
+      </div>
     </div>
   </div>
   
-  <div class="signup-button">
+  <div class="profile-pic-button">
     <%= f.submit "Save Changes", 
-                 class: "btn btn-green btn-update btn-profile-pic", 
+                 class: "btn btn-green btn-profile-pic", 
                  disabled: true %> 
   </div>
 <% end %>

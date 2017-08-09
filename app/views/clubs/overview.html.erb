@@ -1,0 +1,75 @@
+<% provide(:title, "Car Clubs Overview") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="edit-post">
+  
+  <div class="forum-nav">
+    <%= link_to "Community Center", posts_path, class: "forum-nav-link" %>
+  </div>
+  
+  <div class="club-cover-photo" 
+     style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/car-club.jpg')">
+    <h1 class="cover-photo-title">Car Clubs</h1>
+  </div>
+  
+  <div class="row">
+    
+    <div class="col-md-7">
+      
+      <h3><strong>Get local, get involved</strong></h3>
+      
+      <span>
+        Car Clubs are a place for enthusiasts to connect with each other, serve 
+        their communities and support a fair vehicle purchasing experience.
+      </span>
+      
+      <h3><strong>Most Active Clubs</strong></h3>
+      
+      <ol class="clubs">
+        <%= render @clubs %>
+      </ol>
+      
+      <%= link_to "View All Car Clubs", clubs_path %>
+    </div>
+    
+    <div class="col-md-4 col-md-offset-1">
+      <%= form_tag search_posts_path, 
+                   method: :get, 
+                   class: "search-form-forum" do %>
+                   
+        <i class="fa fa-search fa-lg search-bar-primary-icon" 
+           aria-hidden="true"></i>
+          
+        <%= text_field_tag :post, 
+                           params[:post], 
+                           placeholder: "Search the community", 
+                           class: "form-control 
+                                   search-form-control
+                                   typeahead" %>
+                           
+        <%= submit_tag "Search", class: "btn-forum" %>
+      <% end %>
+
+      <div class="forum-intro">
+        
+        <span class="forum-intro-title">Don't See Your Club?</span>
+        
+        <p class="forum-intro-info">
+          Interested in starting a car club in your own community?
+        </p>
+        
+        <%= link_to "Reach Out to Us", 
+                    new_club_path, 
+                    class: "btn btn-green" %>
+      </div>
+    </div>
+  </div>
+</div>
+

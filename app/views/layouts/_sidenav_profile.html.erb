@@ -1,0 +1,21 @@
+<h2 class="sidenav-title">
+  Profile
+</h2>
+
+<ul class="sidenav-list">
+  
+  <li class="<%= 'sidenav-active' if current_page?(edit_user_path(current_user)) %>">
+    <%= link_to "Edit Profile", edit_user_path(current_user) %>
+  </li>
+  
+  <li class="<%= 'sidenav-active' if 
+            current_page?(user_reviews_path(current_user)) %>">
+    <%= link_to user_reviews_path(current_user) do %>
+      Reviews (<%= Review.where(reviewed_id: current_user.id).count %>)
+    <% end %>
+  </li>
+</ul>
+
+<!--<= link_to 'View Profile', -->
+<!--            user_path, -->
+<!--            class: "btn btn-tertiary btn-backend-profile" %>-->

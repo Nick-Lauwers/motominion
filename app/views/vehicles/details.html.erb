@@ -1,0 +1,291 @@
+<% provide(:title, "Garage") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<nav class="secondary-navbar hidden-xs">
+  <div class="secondary-navbar-nav">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Dashboard",   dashboard_path %></li>
+      <li><%= link_to "Inbox",       conversations_path %></li>
+      <li class="nav-active"><%= link_to "Your Garage", vehicles_path %></li>
+      <li><%= link_to "Showroom",    test_drives_path %></li>
+      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="dropdown dropdown-backend visible-xs">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Your Garage <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    <li><%= link_to "Dashboard",   dashboard_path %></li>
+    <li><%= link_to "Inbox",       conversations_path %></li>
+    <li class="dropdown-active"><%= link_to "Your Garage", vehicles_path %></li>
+    <li><%= link_to "Showroom",    test_drives_path %></li>
+    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+  </ul>
+</nav>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-md-4"> 
+        <%= render 'sidenav' %>
+      </div>
+      
+      <div class="col-md-8">
+        <%= form_for @vehicle do |f| %>
+        
+          <div class="update-panel">
+            
+            <h2 class="panel-title">Vehicle Description</h2>
+            
+            <div class="form-group">
+            
+              <%= f.label :listing_name, "Listing Name" %>
+              
+              <%= f.text_field :listing_name, 
+                               placeholder: "Eg. Jaguar F-Type", 
+                               class: "form-control form-control-primary",
+                               required: true %>
+            </div>
+          
+            <div class="form-group">
+              
+              <%= f.label :summary %>
+              
+              <%= f.text_area :summary, 
+                              rows: 3,
+                              placeholder: "Eg. Based on the XK convertible.", 
+                              class: "form-control form-control-primary",
+                              required: true %>
+            </div>
+        
+            <div class="form-group">
+              
+              <%= f.label :sellers_notes, "Seller's Notes" %>
+              
+              <%= f.text_area :sellers_notes,
+                              rows: 3,
+                              placeholder: "Eg. Now selling at reduced cost.", 
+                              class: "form-control form-control-primary" %>
+            </div>
+          </div>
+        
+          <div class="update-panel">
+            
+            <h2 class="panel-title">Features</h2>
+        
+            <div class="row">
+            
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :body_style, "Body Style" %>
+                
+                <div class="form-element">
+                  
+                  <%= f.select :body_style, 
+                               [ "Convertible", "Coupe", "Crossover", 
+                                 "Hatchback", "Minivan", "Off-Road", "Pickup", 
+                                 "Sedan", "SUV", "Van", "Wagon" ],
+                               { include_blank: true, 
+                                 prompt: "Select body style" },
+                               { required: true,
+                                 class: "form-control select-primary" } %>
+                      
+                  <i class="fa fa-car fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                     
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :color %>
+                
+                <div class="form-element">
+                  
+                  <%= f.select :color, 
+                               [ "Black", "Blue", "Brown", "Gold", "Gray", 
+                                 "Green", "Orange", "Pink", "Purple", "Red", 
+                                 "Silver", "Teal", "Unknown", "White", 
+                                 "Yellow" ],
+                               { include_blank: true, prompt: "Select color" }, 
+                               { required: true, 
+                                 class: "form-control select-primary" } %>
+                      
+                  <i class="fa fa-paint-brush fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                   
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :seating_capacity, "Seating Capacity" %>
+                
+                <div class="form-element">
+                  
+                  <%= f.select :seating_capacity, 
+                               [ ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], 
+                                 ["7", 7], ["8", 8], ["9+", 9] ],
+                               { include_blank: true, 
+                                 prompt: "Select seating capacity" },
+                               { required: true,
+                                 class: "form-control select-primary" } %>
+                      
+                  <i class="fa fa-users fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                   
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :fuel_type, "Fuel Type" %>
+                
+                <div class="form-element">
+                  
+                  <%= f.select :fuel_type, 
+                               [ "Biodiesel", "Compressed Natural Gas", 
+                                 "Diesel", "Electric", "Flex Fuel", "Gasoline", 
+                                 "Hybrid", "Propane"],
+                               { include_blank: true, 
+                                 prompt: "Select fuel type" }, 
+                               { required: true,
+                                 class: "form-control select-primary" } %>
+                      
+                  <i class="fa fa-leaf fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                     
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+    
+            <div class="row">
+              
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :transmission %>
+                
+                <div class="form-element">
+                  
+                  <%= f.select :transmission, 
+                               [ "Automatic", "Manual" ],
+                               { include_blank: true,
+                                 prompt: "Select transmission" },
+                               { required: true,
+                                 class: "form-control select-primary" } %>
+                      
+                  <i class="fa fa-cogs fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                     
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+    
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :drivetrain %>
+                
+                <div class="form-element">
+                  
+                  <%= f.select :drivetrain, 
+                               [ "Front-Wheel Drive", "Rear-Wheel Drive", "4X2", 
+                                 "Four-Wheel Drive", "All-Wheel Drive" ],
+                               { include_blank: true, 
+                                 prompt: "Select drivetrain" }, 
+                               { required: true,
+                                 class: "form-control select-primary" } %>
+                    
+                  <i class="fa fa-wrench fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                     
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="installed-options">
+              
+              <span class="installed-options-title">Installed Options</span>
+              
+              <ul class="installed-options-list">
+                
+                <li>
+                  <%= f.check_box :is_backup_camera %>
+                  <%= f.label :is_backup_camera, "Backup Camera" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_bluetooth %>
+                  <%= f.label :is_bluetooth, "Bluetooth" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_dvd_entertainment_system %>
+                  <%= f.label :is_dvd_entertainment_system, 
+                              "DVD Entertainment System" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_leather_seats %>
+                  <%= f.label :is_leather_seats, "Leather Seats" %>
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_navigation_system %>
+                  <%= f.label :is_navigation_system, "Navigation System" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_remote_start %>
+                  <%= f.label :is_remote_start, "Remote Start" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_sunroof %>
+                  <%= f.label :is_sunroof, "Sunroof" %>       
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_tow_package %>
+                  <%= f.label :is_tow_package, "Tow Package" %>          
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <%= f.hidden_field :bumped_at,  value: Time.now %>
+            
+          <%= f.submit "Save", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

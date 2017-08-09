@@ -1,0 +1,11 @@
+<h2 class="sidenav-title">
+  Showroom
+</h2>
+
+<ul class="sidenav-list">
+  <li class="<%= 'sidenav-active' if current_page?(test_drives_path) %>">
+    <%= link_to test_drives_path do %>
+      Test Drives (<%= @test_drives.count %>)
+    <% end %>
+  </li>
+</ul>

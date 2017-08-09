@@ -23,27 +23,27 @@ class Vehicle < ActiveRecord::Base
   has_many :availabilities, dependent: :destroy
   accepts_nested_attributes_for :availabilities, allow_destroy: true
 
-  MINIMUM_PHOTOS = 2
+  # MINIMUM_PHOTOS = 2
 
-  validate :on => :save do
-    if self.photos.size < MINIMUM_PHOTOS
-      errors.add :vehicle, "Must have at least #{MINIMUM_PHOTOS} photos."
-    end
-  end
+  # validate :on => :save do
+  #   if self.photos.size < MINIMUM_PHOTOS
+  #     errors.add :vehicle, "Must have at least #{MINIMUM_PHOTOS} photos."
+  #   end
+  # end
   
   # before_save      { vin.upcase! }
   # default_scope -> { order(created_at: :desc) }
   
-  validates :body_style, :color, :transmission, :fuel_type, :drivetrain, 
-            :street_address, :city, :state, :year, :price, :mileage, 
-            :seating_capacity, :user_id, :vehicle_make_id, :vehicle_model_id,
-            presence: true
-  validates :listing_name, presence: true, length: { maximum: 50 }
-  validates :summary,      presence: true
+  validates :vehicle_make_id, :vehicle_model_id, :year, :price, :mileage, presence: true
+            # :user_id, :body_style, :color, :transmission, :fuel_type, 
+            # :drivetrain, :street_address, :city, :state, :seating_capacity, 
+            # presence: true
+  # validates :listing_name, presence: true, length: { maximum: 50 }
+  # validates :summary,      presence: true
   # , length: { maximum: 600 }
   # validates :sellers_notes,                          length: { maximum: 600 }
   
-  VALID_VIN_REGEX = /[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{3}\d{5}/
+  # VALID_VIN_REGEX = /[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{3}\d{5}/
   # validates :vin, presence: true, format: { with: VALID_VIN_REGEX }
   
   geocoded_by      :address

@@ -12,58 +12,14 @@
 
 <%= render 'layouts/hero_backend' %>
 
-<nav class="secondary-navbar hidden-xs">
-  <div class="secondary-navbar-nav">
-    <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Dashboard",   dashboard_path %></li>
-      <li><%= link_to "Inbox", conversations_path, class: "nav-active" %></li>
-      <li><%= link_to "Your Garage", vehicles_path %></li>
-      <li><%= link_to "Showroom",    test_drives_path %></li>
-      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
-    </ul>
-  </div>
-</nav>
-
-<nav class="dropdown dropdown-backend visible-xs-block">
-  
-  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-    Inbox <b class="caret"></b>
-  </a>
-  
-  <ul class="dropdown-menu">
-    <li><%= link_to "Dashboard",   dashboard_path %></li>
-    <li><%= link_to "Inbox",       conversations_path, class: "dropdown-active" %></li>
-    <li><%= link_to "Your Garage", vehicles_path %></li>
-    <li><%= link_to "Showroom",    test_drives_path %></li>
-    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
-  </ul>
-</nav>
+<%= render 'layouts/secondary_navbar' %>
 
 <div class="backend">
   <div class="backend-content">
     <div class="row">
       
-      <div class="col-md-4 sidenav">
-
-        <h2 class="sidenav-title">
-          Inbox
-        </h2>
-        
-        <ul class="sidenav-list">
-          
-          <li>
-            <%= link_to conversations_path, class: "sidenav-active" do %>
-              Messages
-            <% end %>
-          </li>
-          
-          <li>
-            <%= link_to questions_path do %>
-              Questions
-              (<%= Question.where(vehicle_id: current_user.vehicles).count %>)
-            <% end %>
-          </li>
-        </ul>
+      <div class="col-md-4">
+        <%= render 'layouts/sidenav_inbox' %>
       </div>
       
       <div class="col-md-8">

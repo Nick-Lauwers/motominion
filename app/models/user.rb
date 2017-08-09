@@ -12,11 +12,12 @@ class User < ActiveRecord::Base
   has_many :vehicles,           dependent: :destroy
   has_many :autoparts,          dependent: :destroy
   has_many :posts,              dependent: :destroy
-  has_many :responses,          dependent: :destroy 
+  has_many :responses,          dependent: :destroy
   has_many :questions,          dependent: :destroy
   has_many :replies,            dependent: :destroy
   has_many :favorite_vehicles,  dependent: :destroy
   has_many :favorite_autoparts, dependent: :destroy
+  has_many :memberships,        dependent: :destroy
   
   has_many :authored_reviews, class_name: 'Review', dependent: :destroy,
     foreign_key: :reviewer_id
@@ -25,6 +26,7 @@ class User < ActiveRecord::Base
     
   has_many :favorites, through: :favorite_vehicles,  source: :vehicle
   has_many :favorites, through: :favorite_autoparts, source: :autopart
+  has_many :clubs, through: :memberships
   
   attr_accessor :remember_token, :activation_token, :reset_token
   

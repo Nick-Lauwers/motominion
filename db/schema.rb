@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170716213159) do
+ActiveRecord::Schema.define(version: 20170802114552) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
@@ -71,6 +71,41 @@ ActiveRecord::Schema.define(version: 20170716213159) do
   end
 
   add_index "availabilities", ["vehicle_id"], name: "index_availabilities_on_vehicle_id"
+
+  create_table "club_posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "club_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "club_posts", ["club_id"], name: "index_club_posts_on_club_id"
+  add_index "club_posts", ["user_id"], name: "index_club_posts_on_user_id"
+
+  create_table "club_responses", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "user_id"
+    t.integer  "club_post_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "club_responses", ["club_post_id", "created_at"], name: "index_club_responses_on_club_post_id_and_created_at"
+  add_index "club_responses", ["club_post_id"], name: "index_club_responses_on_club_post_id"
+  add_index "club_responses", ["user_id"], name: "index_club_responses_on_user_id"
+
+  create_table "clubs", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "cover_photo_file_name"
+    t.string   "cover_photo_content_type"
+    t.integer  "cover_photo_file_size"
+    t.datetime "cover_photo_updated_at"
+  end
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "next_contributor_id"
@@ -144,6 +179,17 @@ ActiveRecord::Schema.define(version: 20170716213159) do
   add_index "inquiries", ["user_id", "date"], name: "index_inquiries_on_user_id_and_date"
   add_index "inquiries", ["user_id"], name: "index_inquiries_on_user_id"
   add_index "inquiries", ["vehicle_id"], name: "index_inquiries_on_vehicle_id"
+
+  create_table "memberships", force: :cascade do |t|
+    t.boolean  "admin"
+    t.integer  "user_id"
+    t.integer  "club_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "memberships", ["user_id", "club_id"], name: "index_memberships_on_user_id_and_club_id", unique: true
+  add_index "memberships", ["user_id", "created_at"], name: "index_memberships_on_user_id_and_created_at"
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"
@@ -342,6 +388,7 @@ ActiveRecord::Schema.define(version: 20170716213159) do
     t.float    "longitude"
     t.datetime "sold_at"
     t.datetime "bumped_at"
+    t.datetime "posted_at"
   end
 
   add_index "vehicles", ["user_id", "created_at"], name: "index_vehicles_on_user_id_and_created_at"

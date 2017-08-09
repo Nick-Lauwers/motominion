@@ -1,19 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'autopart_photos/destroy'
-
-  get 'autoparts/new'
-
-  get 'autoparts/create'
-
-  get 'autoparts/edit'
-
-  get 'autoparts/update'
-
-  get 'autoparts/index'
-
-  get 'autoparts/show'
-
   root                                'static_pages#home'
   get    'help'                    => 'static_pages#help'
   get    'about'                   => 'static_pages#about'
@@ -22,13 +8,13 @@ Rails.application.routes.draw do
   get    'legal'                   => 'static_pages#legal'
   get    'customers'               => 'appointments#customers'
   get    'test-drives'             => 'appointments#test_drives'
+  get    'clubs-overview'          => 'clubs#overview'
   get    'signup'                  => 'users#new'
   get    'login'                   => 'sessions#new'
   get    'auth/:provider/callback' => 'sessions#create_social'
   post   'login'                   => 'sessions#create'
   delete 'logout'                  => 'sessions#destroy'
   
-  resources :photos
   resources :autopart_photos
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
@@ -36,6 +22,7 @@ Rails.application.routes.draw do
   resources :replies,             only: [:create, :destroy]
   resources :enquiries,           only: [:new, :create]
   resources :profiles,            only: [:show, :edit, :update]
+  resources :clubs
 
   resources :users do
     
@@ -48,6 +35,7 @@ Rails.application.routes.draw do
 
   resources :vehicles do
     
+    resources :photos,       only: [:create, :destroy]
     resources :reviews,      only: [:create, :destroy]
     resources :payments,     only: [:new, :create]
     
@@ -55,10 +43,18 @@ Rails.application.routes.draw do
     # put :sold,     on: :member
     
     member do
+      
+      put :post
       put :favorite
       put :sold
       put :undo_sold
       put :bump
+      
+      get 'basics'
+      get 'details'
+      get 'photos'
+      get 'finalize'
+      get 'about_you'
     end
     
     collection do

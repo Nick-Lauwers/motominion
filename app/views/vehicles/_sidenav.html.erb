@@ -1,0 +1,116 @@
+<h2 class="sidenav-title">
+  Finish Listing
+</h2>
+
+<ul class="sidenav-list">
+  
+  <li class="<%= 'sidenav-active' if current_page?(basics_vehicle_path) %>">
+    <%= link_to basics_vehicle_path do %>
+      <table>
+        <tr>
+          
+          <td class="sidenav-check">
+            <i class="fa fa-check"></i>
+          </td>
+          
+          <td>
+            Basics
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </li>
+  
+  <li class="<%= 'sidenav-active' if current_page?(details_vehicle_path) %>">
+    <%= link_to details_vehicle_path do %>
+      <table>
+        <tr>
+          
+          <td class="sidenav-check">
+            <% if !@vehicle.body_style.blank? %>
+              <i class="fa fa-check"></i>
+            <% end %>
+          </td>
+          
+          <td>
+            Details
+        </tr>
+      </table>
+    <% end %>
+  </li>
+  
+  <li class="<%= 'sidenav-active' if current_page?(photos_vehicle_path) %>">
+    <%= link_to photos_vehicle_path do %>
+      <table>
+        <tr>
+          
+          <td class="sidenav-check">
+            <% if !@vehicle.photos.blank? %>
+              <i class="fa fa-check"></i>
+            <% end %>
+          </td>
+          
+          <td>
+            Photos
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </li>
+  
+  <li class="<%= 'sidenav-active' if current_page?(about_you_vehicle_path) %>">
+    <%= link_to about_you_vehicle_path do %>
+      <table>
+        <tr>
+          
+          <td class="sidenav-check">
+            <% if !@vehicle.address.blank? %>
+              <i class="fa fa-check"></i>
+            <% end %>
+          </td>
+          
+          <td>
+            About You
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  </li>
+</ul>
+
+<% if @vehicle.posted_at.blank? && 
+      !@vehicle.body_style.blank? && 
+      !@vehicle.photos.blank? &&
+      !@vehicle.listing_name.blank? && 
+      !@vehicle.address.blank? %>
+  <div class="post-listing-button">
+    <%= link_to post_vehicle_path(@vehicle), 
+                method: :put, 
+                class: "btn-post-listing" do %>
+                          
+      <i class="fa fa-thumb-tack fa-lg profile-preview-icon" 
+         aria-hidden="true"></i>
+                
+      Post Vehicle
+    
+    <% end %>
+  </div>
+<% end %>
+
+<!--<= form_for @vehicle do |f| %>-->
+
+<!--  <= f.hidden_field :posted_at, value: Time.now %>-->
+
+<!--  <= button_tag(id:       "post-listing-button", -->
+<!--                 class:    "btn-post-listing", -->
+<!--                 disabled: !is_ready) do %>-->
+    
+<!--    <i class="fa -->
+<!--              fa-thumb-tack -->
+<!--              fa-lg -->
+<!--              post-listing-icon" -->
+<!--       aria-hidden="true"></i>-->
+                  
+<!--    Post Vehicle-->
+<!--  < end %>-->
+<!--< end %>-->

@@ -1,3 +1,13 @@
 <!--completed-->
 
-$('#photos').html("<%= j render 'photos/list' %>")
+$('#photos').html("<%= j render 'list' %>")
+
+<% if @vehicle.photos.blank? %>
+  $('#photo-check').html();
+<% end %>
+
+<% if @vehicle.posted_at.blank? && !@vehicle.body_style.blank? && !@vehicle.photos.blank? && !@vehicle.listing_name.blank? && !@vehicle.address.blank? %>
+  $('#post-listing-button').attr('disabled', false);
+<% else %>
+  $('#post-listing-button').attr('disabled', true);
+<% end %>

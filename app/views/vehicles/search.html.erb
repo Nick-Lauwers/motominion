@@ -94,14 +94,15 @@
             
             <div class="search-advice">
               <div class="search-advice-content">
-                <div class="row vertical-align">
-
-                  <div class="col-md-2 col-xs-3">
+                
+                <div class="row vertical-align hidden-xs">
+                  
+                  <div class="col-md-2">
                     <i class="fa fa-comments-o fa-4x advice-icon" 
                        aria-hidden="true"></i>
                   </div>
-                  
-                  <div class="col-md-7 col-xs-9">
+                
+                  <div class="col-md-7">
                     
                     <h2 class="advice-title">
                       Need free advice? Talk to our team!
@@ -111,16 +112,41 @@
                       Our experts can help you find the perfect vehicle.
                     </p>
                   </div>
-                  
+                
                   <div class="col-md-3">
                     <%= link_to "Get In Touch", 
                                 new_enquiry_path, 
                                 class: "btn btn-green" %>
                   </div>
                 </div>
+                
+                <div class="visible-xs">
+                  <div class="row vertical-align">
+                    
+                    <div class="col-xs-3">
+                      <i class="fa fa-comments-o fa-4x advice-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  
+                    <div class="col-xs-9">
+                      
+                      <h2 class="advice-title">
+                        Need free advice? Talk to our team!
+                      </h2>
+                      
+                      <p class="advice-info">
+                        Our experts can help you find the perfect vehicle.
+                      </p>
+                    </div>
+                  </div>
+                
+                  <%= link_to "Get In Touch", 
+                              new_enquiry_path, 
+                              class: "btn btn-green btn-get-in-touch" %>
+                </div>
               </div>
             </div>
-            
+
             <%= will_paginate @vehicles, 
                 previous_label: 
                   '<i class="fa fa-arrow-left" aria-hidden="true"></i>', 

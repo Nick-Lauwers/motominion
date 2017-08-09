@@ -1,0 +1,17 @@
+<h2 class="sidenav-title">
+  Inbox
+</h2>
+
+<ul class="sidenav-list">
+  
+  <li class="<%= 'sidenav-active' if current_page?(conversations_path) %>">
+    <%= link_to "Messages", conversations_path %>
+  </li>
+  
+  <li class="<%= 'sidenav-active' if current_page?(questions_path) %>">
+    <%= link_to questions_path do %>
+      Questions
+      (<%= Question.where(vehicle_id: current_user.vehicles).count %>)
+    <% end %>
+  </li>
+</ul>

@@ -12,34 +12,61 @@
 
 <%= render 'layouts/hero_backend' %>
 
-<div class="post-vehicle">
-  <div class="post-vehicle-content">
+<nav class="secondary-navbar hidden-xs">
+  <div class="secondary-navbar-nav">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Dashboard",   dashboard_path %></li>
+      <li><%= link_to "Inbox",       conversations_path %></li>
+      <li class="nav-active"><%= link_to "Your Garage", vehicles_path %></li>
+      <li><%= link_to "Showroom",    test_drives_path %></li>
+      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="dropdown dropdown-backend visible-xs">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Your Garage <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    <li><%= link_to "Dashboard",   dashboard_path %></li>
+    <li><%= link_to "Inbox",       conversations_path %></li>
+    <li class="dropdown-active"><%= link_to "Your Garage", vehicles_path %></li>
+    <li><%= link_to "Showroom",    test_drives_path %></li>
+    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+  </ul>
+</nav>
+
+<div class="backend">
+  <div class="backend-content">
     
-    <div class="instructions">
-      <div class="instructions-content">
-        <div class="row instructions-content-align">
+    <!--<div class="instructions">-->
+    <!--  <div class="instructions-content">-->
+    <!--    <div class="row instructions-content-align">-->
           
-          <div class="col-md-2 instructions-icon">
-            <i class="fa fa-rocket fa-5x hidden-xs" aria-hidden="true"></i>
-          </div>
+    <!--      <div class="col-md-2 instructions-icon">-->
+    <!--        <i class="fa fa-rocket fa-5x hidden-xs" aria-hidden="true"></i>-->
+    <!--      </div>-->
           
-          <div class="col-md-7">
+    <!--      <div class="col-md-7">-->
             
-            <h2 class="instructions-title">Accelerate Your Sale</h2>
+    <!--        <h2 class="instructions-title">Accelerate Your Sale</h2>-->
             
-            <p class="instructions-info">
-              Now you need to complete your listing. Our guide will make sure 
-              that you attract the most promising customers as quickly as 
-              possible.
-            </p>
-          </div>
+    <!--        <p class="instructions-info">-->
+              <!--Now you need to complete your listing. Our guide will make sure -->
+              <!--that you attract the most promising customers as quickly as -->
+              <!--possible.-->
+    <!--        </p>-->
+    <!--      </div>-->
           
-          <div class="col-md-3">
+    <!--      <div class="col-md-3">-->
             <!--intentionally left empty-->
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</div>-->
     
     <%= render 'form' %>
   </div>
