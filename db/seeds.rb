@@ -68,6 +68,7 @@ CSV.foreach(Rails.root.join("vehicles.csv"), headers: true) do |row|
     vehicle.latitude                    = row[29]
     vehicle.longitude                   = row[30]
     vehicle.bumped_at                   = row[31]
+    vehicle.posted_at                   = row[32]
   end
 end
 
