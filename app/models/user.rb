@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
     foreign_key: :reviewed_id
     
   has_many :favorites, through: :favorite_vehicles,  source: :vehicle
-  has_many :favorites, through: :favorite_autoparts, source: :autopart
+  # has_many :favorites, through: :favorite_autoparts, source: :autopart
   has_many :clubs, through: :memberships
   
   attr_accessor :remember_token, :activation_token, :reset_token

@@ -4,7 +4,7 @@ class Autopart < ActiveRecord::Base
   
   has_many :autopart_photos, dependent: :destroy
   
-  has_many :favorited_by, through: :favorite_autoparts, source: :user
+  # has_many :favorited_by, through: :favorite_autoparts, source: :user
   
   validates :price, :summary, :street_address, :city, :state, presence: true
   validates :listing_name, presence: true, length: { maximum: 50 }
