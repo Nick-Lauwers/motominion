@@ -1,6 +1,6 @@
-class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+# class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
-  def stripe_connect
+#   def stripe_connect
     
     # auth_data = request.env["omniauth.auth"]
     # @user     = current_user
@@ -30,5 +30,5 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       
     #   redirect_to dashboard_path
     # end
-  end
-end
+#   end
+# end
