@@ -1,8 +1,9 @@
 # completed
+# ensure that before actions are correct for payment and add_card
 
 class UsersController < ApplicationController
   
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :add_card]
   before_action :correct_user,   only: [:edit, :update, :profile_pic]
   
   def new
@@ -47,6 +48,44 @@ class UsersController < ApplicationController
   def profile_pic
   end
   
+  def payment
+  end
+  
+  def payout
+    if !current_user.merchant_id.blank?
+      account     = Stripe::Account.retrieve(current_user.merchant_id)
+      @login_link = account.login_links.create()
+    end
+  end
+  
+  def add_card
+    
+    if current_user.stripe_id.blank?
+      
+      customer = Stripe::Customer.create(
+        email: current_user.email
+      )
+      current_user.stripe_id = customer.id
+      
+      current_user.save
+      customer.sources.create(source: params[:stripeToken])
+      
+    else
+      
+      customer        = Stripe::Customer.retrieve(current_user.stripe_id)
+      customer.source = params[:stripeToken]
+      
+      customer.save
+    end
+    
+    flash[:notice] = "Your card is saved."
+    redirect_to payment_method_path
+    
+    rescue Stripe::CardError => e
+      flash[:alert] = e.message
+      redirect_to payment_method_path
+  end
+      
   private
   
     def user_params

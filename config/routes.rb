@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   get    'customers'               => 'appointments#customers'
   get    'test-drives'             => 'appointments#test_drives'
   get    'clubs-overview'          => 'clubs#overview'
+  get    'payment_method'          => 'users#payment'
+  get    'payout_method'           => 'users#payout'
   get    'signup'                  => 'users#new'
   get    'login'                   => 'sessions#new'
   get    'auth/:provider/callback' => 'sessions#create_social'
+  post   'add_card'                => 'users#add_card'
   post   'login'                   => 'sessions#create'
   delete 'logout'                  => 'sessions#destroy'
   

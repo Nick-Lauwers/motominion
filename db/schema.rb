@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802114552) do
+ActiveRecord::Schema.define(version: 20170815000006) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
@@ -217,16 +217,15 @@ ActiveRecord::Schema.define(version: 20170802114552) do
   add_index "payment_statuses", ["payment_id"], name: "index_payment_statuses_on_payment_id"
 
   create_table "payments", force: :cascade do |t|
-    t.string   "ip_address"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "card_type"
-    t.date     "card_expiration"
+    t.boolean  "received"
+    t.integer  "user_id"
     t.integer  "vehicle_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id"
+  add_index "payments", ["vehicle_id", "created_at"], name: "index_payments_on_vehicle_id_and_created_at"
   add_index "payments", ["vehicle_id"], name: "index_payments_on_vehicle_id"
 
   create_table "photos", force: :cascade do |t|
@@ -334,6 +333,8 @@ ActiveRecord::Schema.define(version: 20170802114552) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "stripe_id"
+    t.string   "merchant_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

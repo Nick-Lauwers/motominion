@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  received: false
+  user_id: 
   vehicle_id: 
-  first_name: MyString
-  last_name: MyString
 
 two:
+  received: false
+  user_id: 
   vehicle_id: 
-  first_name: MyString
-  last_name: MyString

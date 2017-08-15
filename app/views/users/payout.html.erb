@@ -1,0 +1,34 @@
+<% provide(:title, "Account") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<%= render 'layouts/secondary_navbar' %>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-md-4"> 
+        <%= render 'layouts/sidenav_account' %>
+      </div>
+      
+      <div class="col-md-8">
+        <% if current_user.merchant_id.blank? %>
+          <%= link_to image_tag('stripe-button.png'), stripe_express_path %>
+        <% else %>
+          <%= link_to "Express Dashboard", 
+                      @login_link.url, 
+                      class: "btn btn-normal" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

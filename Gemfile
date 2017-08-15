@@ -17,6 +17,8 @@ gem 'jbuilder',                        '2.2.3'
 gem 'aws-sdk',                         '~> 2.3'
 gem 'momentjs-rails',                  '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
+gem 'stripe',                          '~> 3.0.0'
+gem 'omniauth-stripe-connect',         '~> 2.10.0'
 gem 'sdoc',                            '0.4.0', group: :doc
 gem 'paperclip'               
 gem 'geocoder'

@@ -1,10 +1,15 @@
 # complete
 
 Rails.application.config.middleware.use OmniAuth::Builder do
+  
   # provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
   #   image_size: 'large'
+  
   provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
     access_type: 'online', name: 'google'
+    
+  provider :stripe_connect, ENV['STRIPE_CONNECT_CLIENT_ID'], 
+    ENV['STRIPE_SECRET']
 end
 
 # http://stackoverflow.com/questions/20719735/omniauth-facebook-sessions-controller-create-action-integration-after-michael-ha

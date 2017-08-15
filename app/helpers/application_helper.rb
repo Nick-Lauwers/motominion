@@ -21,4 +21,9 @@ module ApplicationHelper
       count == 1 ? "#{noun}#{text}" : "#{noun.pluralize}#{text}"
     end
   end
+  
+  # Returns Stripe payout path
+  def stripe_express_path
+    "https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_BD8r53QcoGgaAFIftErGpz8z6PnJWA5p&scope=read_write"
+  end
 end
