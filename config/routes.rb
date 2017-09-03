@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get    'legal'                   => 'static_pages#legal'
   get    'customers'               => 'appointments#customers'
   get    'test-drives'             => 'appointments#test_drives'
-  get    'clubs-overview'          => 'clubs#overview'
   get    'payment_method'          => 'users#payment'
   get    'payout_method'           => 'users#payout'
   get    'signup'                  => 'users#new'
@@ -25,7 +24,20 @@ Rails.application.routes.draw do
   resources :replies,             only: [:create, :destroy]
   resources :enquiries,           only: [:new, :create]
   resources :profiles,            only: [:show, :edit, :update]
-  resources :clubs
+  
+  resources :clubs do
+    
+    resources :invitations
+    
+    member do
+      put :join
+    end
+    
+    collection do
+      get 'search'
+      get :autocomplete
+    end
+  end
 
   resources :users do
     
@@ -95,6 +107,16 @@ Rails.application.routes.draw do
     collection do
       get 'search'
       get :autocomplete
+    end
+  end
+  
+  resources :club_posts do
+    
+    resources :club_responses
+    
+    member do
+      get :like,   to: "club_posts#like"
+      get :unlike, to: "club_posts#unlike"
     end
   end
   

@@ -35,6 +35,10 @@
                        class: 'form-control 
                                form-control-primary
                                signup-form-control' %>
+  
+  <% if @token != nil %>
+    <%= f.hidden_field :invitation_token, value: @token %>
+  <% end %>
 
   <!--<div class="terms-text">-->
     

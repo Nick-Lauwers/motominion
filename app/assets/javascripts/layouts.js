@@ -1,4 +1,14 @@
 $(function() {
+  
+  // general
+  
+    // floating action button
+      
+        var actionButton = $('.action-button');
+      
+        actionButton.on('click', function(){
+          $(this).toggleClass('active');
+        })
 
   // header-secondary
   

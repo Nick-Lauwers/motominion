@@ -368,24 +368,32 @@
   </div>
 </div>
 
-<div class="contact-seller">
+<div class='multi-action visible-xs'>
   
-  <%= form_for @conversation, 
-                         url: conversations_path(@conversation), 
-                         method: :post do |f| %>
-                         
-    <%= f.hidden_field :sender_id,          value: current_user.id if 
-                                                   current_user %>
-    
-    <%= f.hidden_field :recipient_id,       value: @user.id %>
-    
-    <%= f.hidden_field :sender_archived,    value: false %>
+  <button class='action-button'><i class='fa fa-plus fa-lg'></i></button>
   
-    <%= f.hidden_field :recipient_archived, value: false %>
+  <ul class='actions'>
     
-    <%= f.submit "Chat with " + @user.name, 
-                 class: "btn btn-primary visible-xs" %>
-  <% end %>
+    <li><a>
+      <%= form_for @conversation, 
+                   url: conversations_path(@conversation), 
+                   method: :post do |f| %>
+               
+        <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                       current_user %>
+        
+        <%= f.hidden_field :recipient_id,       value: @user.id %>
+        
+        <%= f.hidden_field :sender_archived,    value: false %>
+    
+        <%= f.hidden_field :recipient_archived, value: false %>
+        
+        <%= button_tag(class: "btn-message-mobile") do %>
+          <i class='fa fa-comments-o'></i>
+        <% end %>
+      <% end %>
+    </a></li>
+  </ul>
 </div>
 
 <script type="text/javascript">

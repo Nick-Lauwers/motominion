@@ -1,6 +1,13 @@
+<!--complete-->
+
 <div class="modal" id="modal-menu" role="dialog">
-  <div class="modal-menu-content">
-    <div class="modal-menu-nav">
+  
+  <header class="header-static-gray">
+    <%= render 'layouts/header_secondary' %>
+  </header>
+  
+  <div class="modal-menu-body">
+    <div class="modal-menu-body-content">
       
       <%= link_to new_vehicle_path, class: "btn btn-primary" do %>
         
@@ -10,7 +17,7 @@
            aria-hidden="true"></i> 
       <% end %>
       
-      <ul class="modal-menu-list">
+      <ul class="modal-menu-nav">
         
         <% if logged_in? %>
           <li><%= link_to "Dashboard", dashboard_path %></li>

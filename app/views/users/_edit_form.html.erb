@@ -13,8 +13,8 @@
       <div class="col-md-4">
         <div class="row">
           
-          <div class="col-md-11 avatar-container">
-            <%= image_tag @user.avatar.url, class: "avatar" %>
+          <div class="col-md-11 avatar">
+            <%= image_tag @user.avatar.url, class: "uploaded-photo" %>
           </div>
           
           <div class="col-md-1">
@@ -25,18 +25,18 @@
       
       <div class="col-md-8">
         
-        <p class="avatar-instructions-text">
+        <p class="upload-instructions">
           Clear frontal face photos are an important way for community members 
           to learn about one another. 
         </p>
         
-        <div class="button-container">
+        <div class="upload-button">
           
-          <div class="avatar-instructions-button">
+          <div class="upload-button-content">
             Upload Photo
           </div>
           
-          <%= f.file_field :avatar, class: "avatar-upload" %>
+          <%= f.file_field :avatar, class: "upload-hidden" %>
         </div>
       </div>
     </div>
@@ -54,7 +54,7 @@
           <%= f.label :name %>
 
           <%= f.text_field :name, 
-                           placeholder: @user.name, 
+                           placeholder: "Name", 
                            class: 'form-control form-control-primary' %>
         </div>
       </div>
@@ -65,7 +65,7 @@
           <%= f.label :email %>
 
           <%= f.text_field :email, 
-                           placeholder: @user.name, 
+                           placeholder: "Email address", 
                            class: 'form-control form-control-primary' %>
         </div>
       </div>

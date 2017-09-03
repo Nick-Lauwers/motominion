@@ -8,44 +8,35 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<div class="new-post">
+<div class="new-club">
   
-  <div class="forum-nav">
-    <%= link_to "Community Center", posts_path, class: "forum-nav-link" %>
-  </div>
-  
-  <h1 class="new-post-title">Start A Club</h1>
-  
-  <%= form_for(@club) do |f| %>
-  
-    <%= render 'shared/error_messages', object: f.object %>
+  <ol class="social-nav">
     
-    <div class="form-group form-group-primary">
-      <%= f.label :name, "What do you want to talk about?" %>
-      <%= f.text_field :name, class: "form-control form-control-primary" %>
-    </div>
+    <li class="hidden-xs">
+      <%= link_to "Community Center", posts_path, class: "social-nav-link" %>
+    </li>
     
-    <div class="form-group form-group-primary">
-                
-      <%= f.label :description, "Add details..." %>
+    <li>
       
-      <%= f.text_area :description, 
-                      class: "form-control form-control-primary", 
-                      rows: 5 %>
-    </div>
+      <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+         aria-hidden="true"></i>
+      
+      <i class="fa fa-angle-right social-nav-separator hidden-xs" 
+         aria-hidden="true"></i>
+         
+      <%= link_to "Car Clubs", clubs_path, class: "social-nav-link" %>
+    </li>
     
-    <%= f.file_field :cover_photo %>
+    <li class="hidden-xs">
+      
+      <i class="fa fa-angle-right social-nav-separator" 
+         aria-hidden="true"></i>
+         
+      <span class="social-nav-active">New Car Club</span>
+    </li>
+  </ol>
   
-    <div class="row">
-      
-      <div class="col-md-3">
-        <%= f.submit "Submit", class: "btn btn-new-post" %>
-        <%= link_to "Cancel", clubs_overview_path, class: "btn btn-new-post-cancel" %>
-      </div>
-      
-      <div class="col-md-9">
-        <!--intentionally left blank-->
-      </div>
-    </div>
-  <% end %>
+  <h1 class="new-club-title">Create A Club</h1>
+  
+  <%= render 'form' %>
 </div>

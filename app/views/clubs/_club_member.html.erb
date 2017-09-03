@@ -1,0 +1,31 @@
+<%= link_to user_path(member.user), 
+            class: "top-contributor-link" do %>
+
+  <li id="top-contributor-item-<%= member.user.id %>" 
+      class="top-contributor-item">
+    
+    <div class="row vertical-align">
+      
+      <div class="col-xs-3 avatar-and-online">
+        
+        <div class="top-contributor-avatar">
+          <%= image_tag member.user.avatar.url %>
+        </div>
+        
+        <% if member.user.online? %>
+          <div class="online online-md-tertiary"></div>
+        <% end %>
+      </div>
+      
+      <div class="col-xs-9">
+        
+        <span class="top-contributor-name"><%= member.user.name %></span>
+        
+        <div class="top-contributor-stats">
+          <%= member.user.posts.sum(:cached_votes_up) %> 
+          <i class="fa fa-thumbs-o-up stats-icon" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>

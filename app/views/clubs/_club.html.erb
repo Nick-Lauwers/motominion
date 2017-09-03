@@ -1,52 +1,30 @@
-<li id="club-<%= club.id %>" class="col-md-6 club">
+<li id="club-item-<%= club.id %>" class="col-md-6 club-item">
   
   <%= link_to club do %>
-    <div class="club-content">
-      
-      <div class="club-item-image", 
-           style="background-image: url(
-                   '<%= club.cover_photo.url() if 
-                        club.cover_photo.exists? %>')">
+
+    <div class="club-item-image", 
+         style="background-image: url(
+                 '<%= club.cover_photo.url() if 
+                      club.cover_photo.exists? %>')">
+      <div class="club-item-location-container">
+        <span class="club-item-location">
+          <%= club.city %>, <%= club.state %>
+        </span>
       </div>
-      
-      <!--<div class="row">-->
-          
-      <!--  <div class="col-xs-3 feed-item-user">-->
-      <!--    <div class="feed-item-user-content">-->
-      <!--      <div class="avatar-and-online">-->
-              
-      <!--        <div class="feed-item-avatar">-->
-      <!--          <= image_tag feed_item.user.avatar.url %>-->
-      <!--        </div>-->
-            
-      <!--        < if feed_item.user.online? %>-->
-      <!--          <div class="online online-lg-primary hidden-xs"></div>-->
-      <!--        <W end %>-->
-      <!--      </div>-->
-      <!--    </div>-->
-      <!--  </div>-->
-        
-      <!--  <div class="col-xs-9">-->
-      <!--    <div class="feed-item-info">-->
-            
-      <!--      <span class="feed-item-title">-->
-      <!--        $<= feed_item.price %> | <= feed_item.listing_name %>-->
-      <!--      </span>-->
-  
-      <!--      <div id="average-rating-feed-item-<= feed_item.id %>", -->
-      <!--           class="average-rating-feed-item"></div>-->
-            
-      <!--      <span class="feed-item-review-count">-->
-      <!--        <= pluralize(feed_item.reviews.count, "review") %>-->
-      <!--      </span>-->
-      <!--    </div>-->
-      <!--  </div>-->
-      <!--</div>-->
     </div>
+      
+    <span class="club-item-name">
+      <%= club.name %>
+    </span>
+
+    <span class="club-item-conversations">
+      <i class="fa fa-comments-o" aria-hidden="true"></i>
+      <%= pluralize(Post.where(club_id: club.id).count, "Conversation") %>
+    </span>
+
+    <span class="club-item-members">
+      <i class="fa fa-user-o" aria-hidden="true"></i>
+      <%= pluralize(club.memberships.count, "Member") %>
+    </span>
   <% end %>
-  
-  <!--<= link_to favorite_vehicle_path(feed_item), -->
-  <!--            method: :put do %>-->
-  <!--  <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>-->
-  <!--< end %>-->
 </li>

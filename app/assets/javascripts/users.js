@@ -4,15 +4,16 @@ $(function() {
   
     // image preview
     
-      var avatar       = $('.avatar');
-      var avatarUpload = $('.avatar-upload')
+      var uploadedPhoto = $('.uploaded-photo');
+      var uploadHidden  = $('.upload-hidden');
+      
       
       function readURL(input) {
         if (input.files && input.files[0]) {
           var reader = new FileReader();
         
           reader.onload = function (e) {
-            avatar.attr('src', e.target.result);
+            uploadedPhoto.attr('src', e.target.result);
             $('.btn-profile-pic').prop("disabled", false);
           };
       
@@ -20,9 +21,13 @@ $(function() {
         }
       }
       
-     avatarUpload.change(function(){
-          readURL(this);
-      });
+     uploadHidden.change(function(){
+       readURL(this);
+     });
+     
+    // clubPicUpload.change(function(){
+    //   readURL(this);
+    // });
   
   // show
   

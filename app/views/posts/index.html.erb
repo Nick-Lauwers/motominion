@@ -10,7 +10,7 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<div class="cover-photo" 
+<div class="forum-cover-photo" 
      style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/forum.jpg')">
   <h1 class="cover-photo-title">
     Pull up a chair;
@@ -19,10 +19,94 @@
   </h1>
 </div>
 
+<div class="forum-offerings">
+  <div class="forum-offerings-content">
+    <div class="row">
+      
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-10 forum-offerings-detail">
+            <%= link_to new_post_path(club_id: nil) do %>
+                    
+              <span class="forum-offerings-title">
+                
+                <i class="fa fa-comments-o forum-offerings-title-icon" 
+                   aria-hidden="true"></i>
+                
+                Start A Conversation
+                
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </span>
+              
+              <p class="forum-offerings-info">
+                Connect with vehicle enthusiasts, share stories, and ask for 
+                advice.
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 forum-offerings-detail">
+            <%= link_to clubs_path do %>
+                    
+              <span class="forum-offerings-title">
+                
+                <i class="fa fa-map-pin forum-offerings-title-icon" 
+                   aria-hidden="true"></i>
+                
+                Connect Locally
+                
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </span>
+              
+              <p class="forum-offerings-info">
+                Join friends of your own car club and discuss issues relevant to 
+                your group.
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-2 forum-offerings-detail last">
+            <%= link_to '#' do %>
+                    
+              <span class="forum-offerings-title">
+                
+                <i class="fa fa-coffee forum-offerings-title-icon" 
+                   aria-hidden="true"></i>
+                
+                Cars and Coffee
+                
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </span>
+              
+              <p class="forum-offerings-info">
+                Connect with owners and enthusiasts of your favorite make and
+                model. 
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="forum">
   <div class="row">
   
     <div class="col-md-7">
+      
+      <div class="visible-xs">
+        <%= render 'search_form' %>
+        <%= render 'post_button' %>
+      </div>
       
       <h2 class="forum-feed-title">Community Discussions</h2>
       
@@ -103,35 +187,12 @@
   
     <div class="col-md-4 col-md-offset-1">
       
-      <%= form_tag search_posts_path, 
-                   method: :get, 
-                   class: "search-form-forum" do %>
-                   
-        <i class="fa fa-search fa-lg search-bar-primary-icon" 
-           aria-hidden="true"></i>
-          
-        <%= text_field_tag :post, 
-                           params[:post], 
-                           placeholder: "Search the community", 
-                           class: "form-control 
-                                   search-form-control
-                                   typeahead" %>
-                           
-        <%= submit_tag "Search", class: "btn-forum" %>
-      <% end %>
-
-      <div class="forum-intro">
-        
-        <span class="forum-intro-title">Community Center</span>
-        
-        <p class="forum-intro-info">
-          Connect with vehicle enthusiasts, share stories, ask for advice, and 
-          get updades from the Mototrova team.
-        </p>
-        
-        <%= link_to "Start A Conversation", 
-                    new_post_path, 
-                    class: "btn btn-green" %>
+      <div class="hidden-xs">
+        <%= render 'search_form' %>
+      </div>
+      
+      <div class="hidden-xs">
+        <%= render 'post_button' %>
       </div>
 
       <% if @top_contributors.any? %>

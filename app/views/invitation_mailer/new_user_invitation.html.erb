@@ -1,0 +1,8 @@
+<h1><%= @invitation.club.name %> Invitation | Mototrova</h1>
+
+<p>
+  <%= @invitation.club.name %> just sent you an invitation to join Mototrova! 
+  Click on the link below to join:
+</p>
+
+<%= link_to "Join", signup_url(invitation_token: @invitation.token) %>

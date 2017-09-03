@@ -130,6 +130,20 @@ $(function() {
       var linksScrolled = $('#vehicle-scrolled');
       
       linksScrolled.stick_in_parent({ offset_top: 50 });
+      
+    // appointment modal
+    
+      var modalAppointment            = $('#modal-appointment')
+      var mobileAppointmentButton     = $('.btn-appointment-mobile')
+      var modalAppointmentHeaderClose = $('.modal-appointment-header-close');
+      
+      mobileAppointmentButton.click(function() {
+        modalAppointment.modal('show');
+      });
+      
+      modalAppointmentHeaderClose.click(function() {
+        modalAppointment.modal('hide');
+      });
   
   // modal
   

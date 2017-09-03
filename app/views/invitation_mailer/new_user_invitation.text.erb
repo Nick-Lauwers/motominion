@@ -1,0 +1,4 @@
+<%= @invitation.club.name %> just sent you an invitation to join Mototrova! 
+Click on the link below to join:
+
+<%= signup_url(invitation_token: @invitation.token) %>

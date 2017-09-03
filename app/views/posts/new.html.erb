@@ -10,42 +10,56 @@
 
 <div class="new-post">
   
-  <div class="forum-nav">
-    <%= link_to "Community Center", posts_path, class: "forum-nav-link" %>
-  </div>
+  <ol class="social-nav">
+      
+    <% if params[:club_id].nil? %>
+    
+      <li>
+        
+        <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+           aria-hidden="true"></i>
+        
+        <%= link_to "Community Center", posts_path, class: "social-nav-link" %>
+      </li>
+      
+    <% else %>
+    
+      <li class="hidden-xs">
+        <%= link_to "Community Center", posts_path, class: "social-nav-link" %>
+      </li>
+      
+      <li class="hidden-xs">
+        
+        <i class="fa fa-angle-right social-nav-separator" 
+           aria-hidden="true"></i>
+           
+        <%= link_to "Car Clubs", clubs_path, class: "social-nav-link" %>
+      </li>
+      
+      <li>
+        
+        <i class="fa fa-angle-right social-nav-separator hidden-xs" 
+           aria-hidden="true"></i>
+        
+        <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+           aria-hidden="true"></i>
+           
+        <%= link_to Club.find(params[:club_id]), class: "social-nav-link" do %>
+          <%= Club.find(params[:club_id]).name %>
+        <% end %>
+      </li>
+    <% end %>
+      
+    <li class="hidden-xs">
+      
+      <i class="fa fa-angle-right social-nav-separator" 
+         aria-hidden="true"></i>
+         
+      <span class="social-nav-active">New Post</span>
+    </li>
+  </ol>
   
   <h1 class="new-post-title">Start A Conversation</h1>
   
-  <%= form_for(@post) do |f| %>
-  
-    <%= render 'shared/error_messages', object: f.object %>
-    
-    <div class="form-group form-group-primary">
-      <%= f.label :title, "What do you want to talk about?" %>
-      <%= f.text_field :title, class: "form-control form-control-primary" %>
-    </div>
-    
-    <div class="form-group form-group-primary">
-                
-      <%= f.label :content, "Add details..." %>
-      
-      <%= f.text_area :content, 
-                      class: "form-control form-control-primary", 
-                      rows: 5 %>
-    </div>
-  
-    <%= f.hidden_field :likes, value: 0 %>
-    
-    <div class="row">
-      
-      <div class="col-md-3">
-        <%= f.submit "Post", class: "btn btn-new-post" %>
-        <%= link_to "Cancel", posts_path, class: "btn btn-new-post-cancel" %>
-      </div>
-      
-      <div class="col-md-9">
-        <!--intentionally left blank-->
-      </div>
-    </div>
-  <% end %>
+  <%= render 'new_form' %>
 </div>

@@ -10,30 +10,59 @@
 
 <div class="post">
   
-  <div class="forum-nav">
-    <%= link_to "Community Center", posts_path, class: "forum-nav-link" %>
-  </div>
+  <ol class="social-nav">
+    
+    <% if @post.club_id.nil? %>
+    
+      <li>
+        
+        <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+           aria-hidden="true"></i>
+        
+        <%= link_to "Community Center", posts_path, class: "social-nav-link" %>
+      </li>
+    
+    <% else %>
+    
+      <li class="hidden-xs">
+        <%= link_to "Community Center", posts_path, class: "social-nav-link" %>
+      </li>
+      
+      <li class="hidden-xs">
+        
+        <i class="fa fa-angle-right social-nav-separator" 
+           aria-hidden="true"></i>
+           
+        <%= link_to "Car Clubs", clubs_path, class: "social-nav-link" %>
+      </li>
+      
+      <li>
+        
+        <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+           aria-hidden="true"></i>
+        
+        <i class="fa fa-angle-right social-nav-separator hidden-xs" 
+           aria-hidden="true"></i>
+           
+        <%= link_to Club.find(@post.club_id), class: "social-nav-link" do %>
+          <%= Club.find(@post.club_id).name %>
+        <% end %>
+      </li>
+    <% end %>
+    
+    <li class="hidden-xs">
+      
+      <i class="fa fa-angle-right social-nav-separator" 
+         aria-hidden="true"></i>
+         
+      <span class="social-nav-active">Conversation</span>
+    </li>
+  </ol>
   
   <div class="row">
     
     <div class="col-md-4 col-md-push-8">
-      
-      <%= form_tag search_posts_path, 
-                   method: :get, 
-                   class: "search-form-forum" do %>
-                   
-        <i class="fa fa-search fa-lg search-bar-primary-icon" 
-           aria-hidden="true"></i>
-          
-        <%= text_field_tag :post, 
-                           params[:post], 
-                           placeholder: "Search the community", 
-                           class: "form-control 
-                                   search-form-control 
-                                   typeahead" %>
-                           
-        <%= submit_tag "Search", class: "btn-forum" %>
-      <% end %>
+      <%= render 'search_form' %>
     </div>
     
     <div class="col-md-8 col-md-pull-4">

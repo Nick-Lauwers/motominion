@@ -10,44 +10,56 @@
 
 <div class="edit-post">
   
-  <div class="forum-nav">
-    <%= link_to "Community Center", posts_path, class: "forum-nav-link" %>
-  </div>
+  <ol class="social-nav">
+    
+    <li class="hidden-xs">
+      <%= link_to "Community Center", posts_path, class: "social-nav-link" %>
+    </li>
+    
+    <% if !@post.club_id.nil? %>
+      
+      <li class="hidden-xs">
+        
+        <i class="fa fa-angle-right social-nav-separator" 
+           aria-hidden="true"></i>
+           
+        <%= link_to "Car Clubs", clubs_path, class: "social-nav-link" %>
+      </li>
+      
+      <li class="hidden-xs">
+        
+        <i class="fa fa-angle-right social-nav-separator" 
+           aria-hidden="true"></i>
+           
+        <%= link_to Club.find(@post.club_id), class: "social-nav-link" do %>
+          <%= Club.find(@post.club_id).name %>
+        <% end %>
+      </li>
+    <% end %>
+    
+    <li>
+        
+      <i class="fa fa-angle-right social-nav-separator hidden-xs" 
+         aria-hidden="true"></i>
+      
+      <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+         aria-hidden="true"></i>
+      
+      <%= link_to "Conversation", @post, class: "social-nav-link" %>
+    </li>
+    
+    <li class="hidden-xs">
+      
+      <i class="fa fa-angle-right social-nav-separator" 
+         aria-hidden="true"></i>
+         
+      <span class="social-nav-active">Edit Post</span>
+    </li>
+  </ol>
   
   <h1 class="edit-post-title">Edit Post</h1>
   
-  <%= form_for(@post) do |f| %>
-  
-    <%= render 'shared/error_messages', object: f.object %>
-    
-    <div class="form-group form-group-primary">
-      <%= f.label :title, "What do you want to talk about?" %>
-      <%= f.text_field :title, class: "form-control form-control-primary" %>
-    </div>
-    
-    <div class="form-group form-group-primary">
-                
-      <%= f.label :content, "Add details..." %>
-      
-      <%= f.text_area :content, 
-                      class: "form-control form-control-primary", 
-                      rows: 5 %>
-    </div>
-  
-    <%= f.hidden_field :likes, value: 0 %>
-    
-    <div class="row">
-      
-      <div class="col-md-3">
-        <%= f.submit "Post", class: "btn btn-new-post" %>
-        <%= link_to "Cancel", post_path, class: "btn btn-new-post-cancel" %>
-      </div>
-      
-      <div class="col-md-9">
-        <!--intentionally left blank-->
-      </div>
-    </div>
-  <% end %>
+  <%= render 'edit_form' %>
 </div>
 
 <!--<h1>Edit Post</h1>-->

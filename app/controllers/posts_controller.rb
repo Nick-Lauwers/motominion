@@ -3,13 +3,15 @@
 
 class PostsController < ApplicationController
   
-  before_action :logged_in_user, except: [:index, :show, :search, :autocomplete]
-  before_action :find_post,      only:   [:show, :edit, :update, :destroy, 
-                                          :like, :unlike]
+  before_action :logged_in_user,     except: [:index, :show, :search, 
+                                              :autocomplete]
+  before_action :profile_pic_upload, only:   [:new]
+  before_action :find_post,          only:   [:show, :edit, :update, :destroy, 
+                                              :like, :unlike]
   
   def index
     
-    @top_posts        = Post.order(
+    @top_posts        = Post.where(club_id: nil).order(
                           cached_votes_up: :desc, 
                           created_at:      :desc
                         ).limit(10)
@@ -113,6 +115,6 @@ class PostsController < ApplicationController
     end
   
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :club_id)
     end
 end

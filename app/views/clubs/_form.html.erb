@@ -1,0 +1,69 @@
+<%= form_for(@club) do |f| %>
+  
+  <div class="row">
+    
+    <div class="col-md-7 col-md-offset-1 col-md-push-4">
+      
+      <%= render 'shared/error_messages', object: f.object %>
+  
+      <div class="form-group form-group-primary">
+        <%= f.label :name, "Club name" %>
+        <%= f.text_field :name, class: "form-control form-control-primary" %>
+      </div>
+      
+      <div class="form-group form-group-primary">
+                  
+        <%= f.label :description, "Tell us about your club." %>
+        
+        <%= f.text_area :description, 
+                        class: "form-control form-control-primary", 
+                        rows: 5 %>
+      </div>
+      
+      <div class="form-group form-group-primary">
+        <%= f.label :city %>
+        <%= f.text_field :city, class: "form-control form-control-primary" %>
+      </div>
+      
+      <div class="form-group form-group-primary">
+        <%= f.label :state %>
+        <%= f.text_field :state, class: "form-control form-control-primary" %>
+      </div>
+    </div>
+    
+    <div class="col-md-4 col-md-pull-8">
+      
+      <div class="club-pic">
+        
+        <i class="fa fa-camera-retro club-pic-icon fa-5x" 
+           aria-hidden="true"></i>
+           
+        <%= image_tag @club.cover_photo.url, class: "uploaded-photo" %>
+      </div>
+      
+      <p class="upload-instructions">
+        Select a photo to represent your club.
+      </p>
+      
+      <div class="upload-button">
+        
+        <div class="upload-button-content">
+          Upload Photo
+        </div>
+        
+        <%= f.file_field :cover_photo, class: "upload-hidden" %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row new-club-submit">
+    <div class="col-md-7 col-md-offset-5">
+      <!--<div class="row">-->
+        <!--<div class="col-md-6">-->
+          <%= f.submit "Submit", class: "btn btn-new-post" %>
+          <%= link_to "Cancel", clubs_path, class: "btn btn-new-post-cancel" %>
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+<% end %>

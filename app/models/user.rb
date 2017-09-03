@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
   has_many :received_reviews, class_name: 'Review', dependent: :destroy, 
     foreign_key: :reviewed_id
     
+  has_many :sent_invitations, class_name: 'Invitation', dependent: :destroy,
+    foreign_key: :sender_id
+  has_many :received_invitations, class_name: 'Invitation', dependent: :destroy, 
+    foreign_key: :recipient_id
+    
   has_many :favorites, through: :favorite_vehicles,  source: :vehicle
   # has_many :favorites, through: :favorite_autoparts, source: :autopart
   has_many :clubs, through: :memberships
@@ -39,8 +44,8 @@ class User < ActiveRecord::Base
   validates :name,  presence: true, length: { maximum: 50 }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 },
-                                    format: { with: VALID_EMAIL_REGEX },
+  validates :email, presence: true, length:     { maximum: 255 },
+                                    format:     { with: VALID_EMAIL_REGEX },
                                     uniqueness: { case_sensitive: false }
                                     
   has_secure_password
@@ -146,7 +151,7 @@ class User < ActiveRecord::Base
   
   private
   
-    # Converts email to all lower-case.
+    # Converts email to all lower-case (never used, I think).
     def downcase_email
       self.email = email.downcase
     end

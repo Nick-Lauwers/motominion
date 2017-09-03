@@ -3,24 +3,24 @@
   <div class="profile-pic-form">
     <div class="row profile-pic-form-content">
       
-      <div class="col-md-4 profile-pic-container">
-        <%= image_tag @user.avatar.url, class: "avatar" %>
+      <div class="col-md-4 profile-pic">
+        <%= image_tag @user.avatar.url, class: "uploaded-photo" %>
       </div>
       
       <div class="col-md-6 col-md-offset-1">
       
-        <p class="avatar-instructions-text">
-           Clear frontal face photos are an important to instill trust in our 
-           community.
+        <p class="upload-instructions">
+          Clear frontal face photos are an important part of maintaining trust 
+          within our community.
         </p>
         
-        <div class="button-container">
+        <div class="upload-button">
           
-          <div class="avatar-instructions-button">
+          <div class="upload-button-content">
             Upload Photo
           </div>
           
-          <%= f.file_field :avatar, class: "avatar-upload" %>
+          <%= f.file_field :avatar, class: "upload-hidden" %>
         </div>
       </div>
       

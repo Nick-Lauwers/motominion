@@ -7,14 +7,23 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update, :profile_pic]
   
   def new
-    @user = User.new
+    @user  = User.new
+    @token = params[:invitation_token]
   end
   
   def create
     
-    @user = User.new(user_params)
+    @user  = User.new(user_params)
+    @token = params[:invitation_token]
     
     if @user.save
+      
+      # Determine if there is a way to add token after account activation.
+      if @token != nil
+        org = Invitation.find_by_token(@token).club
+        @user.clubs.push(org)
+      end
+      
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url

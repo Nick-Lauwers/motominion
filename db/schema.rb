@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815000006) do
+ActiveRecord::Schema.define(version: 20170821140952) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
@@ -72,30 +72,6 @@ ActiveRecord::Schema.define(version: 20170815000006) do
 
   add_index "availabilities", ["vehicle_id"], name: "index_availabilities_on_vehicle_id"
 
-  create_table "club_posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "user_id"
-    t.integer  "club_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "club_posts", ["club_id"], name: "index_club_posts_on_club_id"
-  add_index "club_posts", ["user_id"], name: "index_club_posts_on_user_id"
-
-  create_table "club_responses", force: :cascade do |t|
-    t.text     "comment"
-    t.integer  "user_id"
-    t.integer  "club_post_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "club_responses", ["club_post_id", "created_at"], name: "index_club_responses_on_club_post_id_and_created_at"
-  add_index "club_responses", ["club_post_id"], name: "index_club_responses_on_club_post_id"
-  add_index "club_responses", ["user_id"], name: "index_club_responses_on_user_id"
-
   create_table "clubs", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -105,6 +81,8 @@ ActiveRecord::Schema.define(version: 20170815000006) do
     t.string   "cover_photo_content_type"
     t.integer  "cover_photo_file_size"
     t.datetime "cover_photo_updated_at"
+    t.string   "city"
+    t.string   "state"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -180,6 +158,20 @@ ActiveRecord::Schema.define(version: 20170815000006) do
   add_index "inquiries", ["user_id"], name: "index_inquiries_on_user_id"
   add_index "inquiries", ["vehicle_id"], name: "index_inquiries_on_vehicle_id"
 
+  create_table "invitations", force: :cascade do |t|
+    t.string   "email"
+    t.string   "token"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.integer  "club_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "invitations", ["club_id", "created_at"], name: "index_invitations_on_club_id_and_created_at"
+  add_index "invitations", ["recipient_id", "created_at"], name: "index_invitations_on_recipient_id_and_created_at"
+  add_index "invitations", ["sender_id", "created_at"], name: "index_invitations_on_sender_id_and_created_at"
+
   create_table "memberships", force: :cascade do |t|
     t.boolean  "admin"
     t.integer  "user_id"
@@ -201,20 +193,6 @@ ActiveRecord::Schema.define(version: 20170815000006) do
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
-
-  create_table "payment_statuses", force: :cascade do |t|
-    t.string   "action"
-    t.string   "message"
-    t.string   "authorization"
-    t.text     "params"
-    t.integer  "amount"
-    t.boolean  "success"
-    t.integer  "payment_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "payment_statuses", ["payment_id"], name: "index_payment_statuses_on_payment_id"
 
   create_table "payments", force: :cascade do |t|
     t.boolean  "received"
@@ -248,6 +226,7 @@ ActiveRecord::Schema.define(version: 20170815000006) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "cached_votes_up", default: 0
+    t.integer  "club_id"
   end
 
   add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
