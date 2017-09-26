@@ -47,10 +47,12 @@
         
         <div class="messages-info-recipient">
           
-          <div class="recipient-avatar">
-            <%= link_to (image_tag @other.avatar.url), 
-                         user_path(@other) %>
-          </div>
+          <%= link_to user_path(@other) do %>
+            <div class="recipient-avatar avatar-general", 
+                 style="background-image: url(
+                         '<%= @other.avatar.url(:thumb) %>')">
+            </div>
+          <% end %>
 
           <div class='recipient-username'>
             

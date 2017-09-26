@@ -17,8 +17,11 @@
           
           <div class="avatar-and-online">
             
-            <%= image_tag(current_user.avatar.url, class: "author-avatar") %>
-            
+            <div class="author-avatar avatar-general", 
+                 style="background-image: url(
+                         '<%= current_user.avatar.url(:thumb) %>')">
+            </div>
+
             <% if current_user.online? %>
               <div class="online online-md-secondary hidden-xs"></div>
             <% end %>

@@ -1,0 +1,95 @@
+<% provide(:title, "Update Discussion") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="edit-discussion">
+  
+  <ol class="social-nav">
+    
+    <li class="hidden-xs">
+      <%= link_to "Community Center", 
+                  discussions_path, 
+                  class: "social-nav-link" %>
+    </li>
+    
+    <% if @discussion.club_id %>
+    
+      <li class="hidden-xs">
+        
+        <i class="fa fa-angle-right social-nav-separator" 
+           aria-hidden="true"></i>
+           
+        <%= link_to "Car Clubs", clubs_path, class: "social-nav-link" %>
+      </li>
+      
+      <li class="hidden-xs">
+        
+        <i class="fa fa-angle-right social-nav-separator" 
+           aria-hidden="true"></i>
+           
+        <%= link_to discussions_club_path(Club.find(@discussion.club_id)), 
+                    class: "social-nav-link" do %>
+          <%= Club.find(@discussion.club_id).name %>
+        <% end %>
+      </li>
+    
+    <% elsif @discussion.vehicle_make_id %>
+    
+      <li class="hidden-xs">
+        
+        <i class="fa fa-angle-right social-nav-separator" 
+           aria-hidden="true"></i>
+           
+        <%= link_to "Vehicle Makes", 
+                    '#', 
+                    class: "social-nav-link" %>
+      </li>
+      
+      <li class="hidden-xs">
+        
+        <i class="fa fa-angle-right social-nav-separator" 
+           aria-hidden="true"></i>
+           
+        <%= link_to discussions_vehicle_make_path(
+                      VehicleMake.find(@discussion.vehicle_make_id)
+                    ), 
+                    class: "social-nav-link" do %>
+          <%= VehicleMake.find(@discussion.vehicle_make_id).name %>
+        <% end %>
+      </li>
+    <% end %>
+    
+    <li>
+        
+      <i class="fa fa-angle-right social-nav-separator hidden-xs" 
+         aria-hidden="true"></i>
+      
+      <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+         aria-hidden="true"></i>
+      
+      <%= link_to "Discussion", @discussion, class: "social-nav-link" %>
+    </li>
+    
+    <li class="hidden-xs">
+      
+      <i class="fa fa-angle-right social-nav-separator" 
+         aria-hidden="true"></i>
+         
+      <span class="social-nav-active">Update Discussion</span>
+    </li>
+  </ol>
+  
+  <%= render 'edit_form' %>
+</div>
+
+<!--<h1>Edit Post</h1>-->
+
+<!--<= render 'form' %>-->
+
+<!--<= link_to "Cancel", post_path %>-->

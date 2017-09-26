@@ -8,8 +8,8 @@
         
         <div class="avatar-and-online">
           
-          <div class="header-profile-avatar">
-            <%= image_tag @user.avatar.url %>
+          <div class="header-profile-avatar avatar-general",
+               style="background-image: url('<%= @user.avatar.url(:thumb) %>')">
           </div>
           
           <% if @user.online? %>
@@ -67,9 +67,6 @@
           var scrolltop   = $(this).scrollTop();
           
           if(scrolltop >= 655) {
-            var headerProfileAvatar = $('.header-profile-avatar');
-
-            headerProfileAvatar.imagefill();
             fixedHeader.fadeIn(250);
           }
           else if(scrolltop <= 650) {

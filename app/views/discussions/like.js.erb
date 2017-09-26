@@ -1,0 +1,5 @@
+$('.like-discussion').bind('ajax:success', function(){
+   $(this).parent().parent().find('.vote-count').html('<%= escape_javascript @discussion.votes_for.size.to_s %>');
+   $(this).closest('.like-discussion').hide();
+   $(this).closest('.vote-icon').html(' <%= link_to unlike_discussion_path(@discussion), remote: true, method: :get, class: 'unlike-discussion' do %> <i class="fa fa-thumbs-o-up fa-lg unlike-icon" aria-hidden="true"></i> <% end %>');
+});

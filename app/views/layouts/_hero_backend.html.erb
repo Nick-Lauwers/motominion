@@ -9,8 +9,9 @@
       
           <div class="col-xs-3">
             <div class="hero-avatar-border">
-              <div class="hero-avatar">
-                <%= image_tag current_user.avatar.url %>
+              <div class="hero-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= current_user.avatar.url(:thumb) %>')">
               </div>
             </div>
           </div>

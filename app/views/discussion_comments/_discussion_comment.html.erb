@@ -1,0 +1,49 @@
+<li id="discussion-comment-item-<% discussion_comment.id %>" 
+    class="discussion-comment-item">
+  <div class="row vertical-align discussion-comment-header">
+    
+    <div class="col-md-2 col-xs-3 avatar-and-online">
+      
+      <%= link_to user_path(discussion_comment.user) do %>
+        <div class="discussion-comment-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= discussion_comment.user.avatar.url(:thumb) %>')">
+        </div>
+      <% end %>
+      
+      <% if discussion_comment.user.online? %>
+        <div class="online online-md-quaternary hidden-xs"></div>
+      <% end %>
+    </div>
+    
+    <div class="col-md-10 col-xs-9">
+      
+      <%= link_to discussion_comment.user.name, 
+                  discussion_comment.user, 
+                  class: "discussion-comment-title" %> 
+        
+      <span class="discussion-comment-stats">
+        
+        <%= time_ago_in_words(discussion_comment.created_at).capitalize %> ago
+        
+        <% if logged_in? && discussion_comment.user == current_user %>
+        
+          ·
+          
+          <div class="discussion-comment-edit">
+                
+            <%= link_to "Edit", 
+                        edit_discussion_discussion_comment_path(discussion_comment.discussion, discussion_comment) %>
+          
+            <%= link_to "Delete", 
+                        [discussion_comment.discussion, discussion_comment], 
+                        method: :delete, 
+                        data: { confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+      </span>
+    </div>
+  </div>
+  
+  <p class="post-comment-info"><%= discussion_comment.comment %></p>
+</li>

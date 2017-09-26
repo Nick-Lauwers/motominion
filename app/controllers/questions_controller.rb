@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
     @conversations = Conversation.involving(current_user)
     @vehicles      = current_user.vehicles
     @questions     = Question.where(vehicle: current_user.vehicles)
-    @reply         = current_user.replies.build
+    @answer        = current_user.answers.build
     
     @questions.each do |question|
       question.update_attribute(:read_at, Time.now)

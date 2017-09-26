@@ -8,8 +8,9 @@
         
         <div class="col-xs-2 avatar-and-online">
           
-          <div class="customer-avatar">
-            <%= image_tag(customer.buyer.avatar.url) %>
+          <div class="customer-avatar avatar-general", 
+               style="background-image: url(
+                       '<%= customer.buyer.avatar.url(:thumb) %>')">
           </div>
         
           <% if customer.buyer.online? %>

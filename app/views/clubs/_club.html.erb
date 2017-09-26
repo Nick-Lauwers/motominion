@@ -1,6 +1,6 @@
-<li id="club-item-<%= club.id %>" class="col-md-6 club-item">
+<li id="club-item-<%= club.id %>" class="col-md-4 club-item">
   
-  <%= link_to club do %>
+  <%= link_to posts_club_path(club) do %>
 
     <div class="club-item-image", 
          style="background-image: url(
@@ -18,8 +18,14 @@
     </span>
 
     <span class="club-item-conversations">
+      
       <i class="fa fa-comments-o" aria-hidden="true"></i>
-      <%= pluralize(Post.where(club_id: club.id).count, "Conversation") %>
+      
+      <%= pluralize(
+            Discussion.where(club_id: club.id).count + 
+            Post.where(club_id: club.id).count, 
+            "Discussion"
+          ) %>
     </span>
 
     <span class="club-item-members">

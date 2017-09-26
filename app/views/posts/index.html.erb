@@ -1,6 +1,4 @@
-<!--revise title-->
-
-<% provide(:title, "Community Center") %>
+<% provide(:title, @club.name) %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -10,202 +8,234 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<div class="forum-cover-photo" 
-     style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/forum.jpg')">
-  <h1 class="cover-photo-title">
-    Pull up a chair;
-    </br>
-    It's just us talking...
-  </h1>
-</div>
-
-<div class="forum-offerings">
-  <div class="forum-offerings-content">
+<div class="club-profile-hero">
+  <div class="club-profile-hero-content">
     <div class="row">
       
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-md-10 forum-offerings-detail">
-            <%= link_to new_post_path(club_id: nil) do %>
-                    
-              <span class="forum-offerings-title">
-                
-                <i class="fa fa-comments-o forum-offerings-title-icon" 
-                   aria-hidden="true"></i>
-                
-                Start A Conversation
-                
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </span>
-              
-              <p class="forum-offerings-info">
-                Connect with vehicle enthusiasts, share stories, and ask for 
-                advice.
-              </p>
-            <% end %>
-          </div>
+      <div class="col-md-8 col-md-push-4">
+        <div class="club-profile-hero-photo" 
+             style="background-image: url(
+                   '<%= @club.cover_photo.url() if 
+                        @club.cover_photo.exists? %>')">
         </div>
       </div>
       
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-md-10 col-md-offset-1 forum-offerings-detail">
-            <%= link_to clubs_path do %>
-                    
-              <span class="forum-offerings-title">
-                
-                <i class="fa fa-map-pin forum-offerings-title-icon" 
-                   aria-hidden="true"></i>
-                
-                Connect Locally
-                
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </span>
-              
-              <p class="forum-offerings-info">
-                Join friends of your own car club and discuss issues relevant to 
-                your group.
-              </p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-4">
-        <div class="row">
-          <div class="col-md-10 col-md-offset-2 forum-offerings-detail last">
-            <%= link_to '#' do %>
-                    
-              <span class="forum-offerings-title">
-                
-                <i class="fa fa-coffee forum-offerings-title-icon" 
-                   aria-hidden="true"></i>
-                
-                Cars and Coffee
-                
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </span>
-              
-              <p class="forum-offerings-info">
-                Connect with owners and enthusiasts of your favorite make and
-                model. 
-              </p>
-            <% end %>
-          </div>
-        </div>
+      <div class="col-md-4 col-md-pull-8 club-profile-hero-info">
+        <h1><%= @club.name %></h1>
+        <p><%= @club.description %></p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="forum">
-  <div class="row">
-  
-    <div class="col-md-7">
-      
-      <div class="visible-xs">
-        <%= render 'search_form' %>
-        <%= render 'post_button' %>
+<div class="club-profile-navbar">
+  <div class="club-profile-navbar-content">
+    <div class="row">
+    
+      <div class="col-md-8">
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+            <li class="nav-active"><%= link_to "Posts", posts_path %></li>
+            <li><%= link_to "Discussions", discussions_path %></li>
+          </ul>
+        </nav>
       </div>
       
-      <h2 class="forum-feed-title">Community Discussions</h2>
-      
-      <ul class="nav nav-tabs forum-feed-tabs">
+      <!--<div class="col-md-4 hidden-xs">-->
+      <!--  <div class="club-profile-navbar-button">-->
+        
+      <!--    <div class="navbar-price-container">-->
+      <!--      <p class="navbar-price-visible">$<(perc)= @vehicle.price %></p>-->
+      <!--    </div>-->
           
-        <li class="active">
-          <a href="#top_posts" data-toggle="tab">
-            Top
-          </a>
-        </li>
-        
-        <li>
-          <a href="#recent_posts" data-toggle="tab">
-            Recent
-          </a>
-        </li>
-        
-        <li>
-          <a href="#unanswered_posts" data-toggle="tab">
-            Unanswered
-          </a>
-        </li>
-      </ul>
-        
-      <div class="tab-content forum-feed-tab-content">
-        
-        <div class="tab-pane fade active in" id="top_posts">
+          <!--<(perc)= link_to "Chat with <(perc)= @vehicle.user.name %>", -->
+          <!--            "#", -->
+          <!--            class: "btn-navbar-contact-hidden",-->
+          <!--            "data-sid" => current_user.id, -->
+          <!--            "data-rip" => user.id %>-->
           
-          <% if @top_posts.any? %>
-            <ol class="tab-pane-list">
-              <%= render @top_posts %>
-            </ol>
-  
-          <% else %>
-            <p class="empty-list-info">
-              No top posts yet
-            </p> 
-          <% end %>
-        </div>
-        
-        <div class="tab-pane fade" id="recent_posts">
-          
-          <% if @recent_posts.any? %>
-            <ol class="tab-pane-list">
-              <%= render @recent_posts %>
-            </ol>
+      <!--    <(perc)= form_for @conversation, -->
+      <!--                 url: conversations_path(@conversation), -->
+      <!--                 method: :post do |f| %>-->
+                       
+      <!--      <(perc)= f.hidden_field :sender_id,          value: current_user.id if -->
+      <!--                                                     current_user %>-->
             
-          <% else %>
-            <p class="empty-list-info">
-              No recent posts
-            </p>
-          <% end %>
-        </div>
-        
-        <div class="tab-pane fade" id="unanswered_posts">
-          
-          <% if @unanswered_posts.any? %>
-            <ol class="tab-pane-list">
-              <%= render @unanswered_posts %>
-            </ol>
+      <!--      <(perc)= f.hidden_field :recipient_id,       value: @user.id %>-->
             
-            <!--<= will_paginate @unanswered_posts,-->
-            <!--    previous_label: -->
-            <!--      '<i class="fa fa-arrow-left" aria-hidden="true"></i>', -->
-            <!--    next_label: -->
-            <!--      '<i class="fa fa-arrow-right" aria-hidden="true"></i>',-->
-            <!--    inner_window: 1, -->
-            <!--    outer_window: 0 %>-->
-          
-          <% else %>
-            <p class="empty-list-info">
-              No unanswered posts
-            </p>
-          <% end %>
-        </div>
-      </div>
+      <!--      <(perc)= f.hidden_field :sender_archived,    value: false %>-->
+
+      <!--      <(perc)= f.hidden_field :recipient_archived, value: false %>-->
+            
+      <!--      <(perc)= f.submit "Chat with " + @user.name, -->
+      <!--                   class: "btn-navbar-contact-hidden" %>-->
+      <!--    <(perc) end %>-->
+      <!--  </div>-->
+      <!--</div>-->
     </div>
+  </div>
+</div>
+
+
+
+<div class="club-profile">
   
-    <div class="col-md-4 col-md-offset-1">
+  <ol class="social-nav">
+    
+    <li class="hidden-xs">
+      <%= link_to "Community Center", 
+                  discussions_path, 
+                  class: "social-nav-link" %>
+    </li>
+    
+    <li>
       
-      <div class="hidden-xs">
-        <%= render 'search_form' %>
-      </div>
+      <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+         aria-hidden="true"></i>
       
-      <div class="hidden-xs">
-        <%= render 'post_button' %>
+      <i class="fa fa-angle-right social-nav-separator hidden-xs" 
+         aria-hidden="true"></i>
+         
+      <%= link_to "Car Clubs", clubs_path, class: "social-nav-link" %>
+    </li>
+    
+    <li class="hidden-xs">
+      
+      <i class="fa fa-angle-right social-nav-separator" 
+         aria-hidden="true"></i>
+         
+      <span class="social-nav-active"><%= @club.name %></span>
+    </li>
+  </ol>
+  
+  <div class="row">
+    
+    <div class="col-md-4 col-md-offset-1 col-md-push-7">
+      
+      <!--<(perc)= form_tag search_clubs_path, -->
+      <!--            method: :get, -->
+      <!--            class: "search-form-forum" do %>-->
+                   
+      <!--  <i class="fa fa-search fa-lg search-bar-primary-icon" -->
+      <!--    aria-hidden="true"></i>-->
+          
+      <!--  <(perc)= text_field_tag :city, -->
+      <!--                    params[:city], -->
+      <!--                    placeholder: "City (Eg. Detroit, MI)", -->
+      <!--                    class: "form-control -->
+      <!--                            search-form-control-->
+      <!--                            typeahead" %>-->
+                           
+      <!--  <(perc)= submit_tag "Search", class: "btn-forum" %>-->
+      <!--<(perc) end %>-->
+      
+      
+      
+      <h1 class="club-profile-title"><%= @club.name %></h1>
+      
+      <%= link_to "Update", 
+                  edit_club_path,
+                  class: "club-profile-update" if 
+                    ( logged_in? && 
+                      current_user.
+                        memberships.
+                        where(club_id: @club.id, admin: true).
+                        exists? ) %>
+
+      <p class="club-profile-info"><%= @club.description %></p>
+      
+      <div class="club-profile-buttons">
+        
+        <%= link_to "Send Invitations",
+                    new_club_invitation_path(@club),
+                    class: "btn btn-club-invitation" if 
+                      ( logged_in? && 
+                        current_user.
+                          memberships.
+                          where(club_id: @club.id, admin: true).
+                          exists? ) %>
+                          
+        <% if logged_in? && 
+              current_user.memberships.where(club_id: @club.id).exists? %>
+          <%= link_to "Start A Conversation", 
+                      new_discussion_path(club_id: @club.id), 
+                      class: "btn btn-club-conversation" %>
+        
+        <% else %>
+          <%= link_to "Join Club", 
+                      join_club_path(@club), 
+                      method: :put,
+                      class: "btn btn-club-conversation" %>
+        <% end %>
+        
+        <%= link_to "Post Content", 
+                    new_post_path,
+                    class: "btn btn-primary" %>
       </div>
 
-      <% if @top_contributors.any? %>
-        <div class="top-contributors">
+      <div class="club-members">
+      
+        <span class="club-members-title">Members</span>
         
-          <span class="top-contributors-title">Top Contributors</span>
-          
-          <ol class="top-contributors-list">
-            <%= render partial:    "top_contributor", 
-                       collection: @top_contributors %>
+        <ol class="club-members-list">
+          <%= render partial:    "club_member", 
+                     collection: @club.memberships,
+                     as:         :member %>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="col-md-7 col-md-pull-5">
+      
+      <div class="club-profile-cover-photo hidden-xs" 
+           style="background-image: url(
+                   '<%= @club.cover_photo.url() if 
+                        @club.cover_photo.exists? %>')">
+      </div>
+      
+      <div class="club-profile-feed-detail">
+        <h2 class="club-profile-feed-title">Recent Conversations</h2>
+      </div>
+      
+      <div class="club-profile-feed">
+      
+        <% if logged_in? && 
+              current_user.memberships.where(club_id: @club.id).exists? && 
+              @discussions.any? %>
+          <ol class="club-discussions-list">
+            <%= render partial:    "discussions/discussion", 
+                       collection: @discussions,
+                       as:         :discussion %>
           </ol>
-        </div>
-      <% end %>
+        
+        <% elsif logged_in? && 
+                 current_user.memberships.where(club_id: @club.id).exists? %>
+          <p class="empty-list-info">
+            No recent conversations
+          </p> 
+
+        <% else %>
+          <p class="empty-list-info">
+            This is a closed group; ask to join the club in order to view 
+            content.
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="experiment-container">
+  <div class="experiment">
+    <div class="row">
+      <div class="col-md-8">
+        <ol class=experiment-content>
+          <% if @posts.exists? %>
+            <%= render @posts %>
+          <% end %>
+        </ol>
+      </div>
     </div>
   </div>
 </div>

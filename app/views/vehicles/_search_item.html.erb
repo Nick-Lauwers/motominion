@@ -18,8 +18,9 @@
           <div class="search-item-user-content">
             <div class="avatar-and-online">
               
-              <div class="search-item-avatar">
-                <%= image_tag vehicle.user.avatar.url %>
+              <div class="search-item-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= vehicle.user.avatar.url(:thumb) %>')">
               </div>
             
               <% if vehicle.user.online? %>

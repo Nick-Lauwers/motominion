@@ -15,8 +15,9 @@
                           review-author-clickable 
                           vertical-align" do %>
         
-        <div class="author-avatar">
-          <%= image_tag review.reviewer.avatar.url %>
+        <div class="author-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= review.reviewer.avatar.url(:thumb) %>')">
         </div>
         
         <span class="author-name"><%= review.reviewer.name %></span>

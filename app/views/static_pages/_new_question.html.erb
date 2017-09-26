@@ -8,8 +8,9 @@
         
         <td class="avatar-and-online">
           
-          <div class="new-question-avatar">
-            <%= image_tag question.user.avatar.url %>
+          <div class="new-question-avatar avatar-general", 
+               style="background-image: url('
+                       <%= question.user.avatar.url(:thumb) %>')">
           </div>
           
           <% if question.user.online? %>
@@ -40,12 +41,3 @@
     </table>
   <% end %>
 </li>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    
-    var newQuestionAvatar = $('.new-question-avatar');
-    
-    newQuestionAvatar.imagefill();
-  })
-</script>

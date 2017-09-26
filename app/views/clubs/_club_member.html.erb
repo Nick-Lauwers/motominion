@@ -22,7 +22,7 @@
         <span class="top-contributor-name"><%= member.user.name %></span>
         
         <div class="top-contributor-stats">
-          <%= member.user.posts.sum(:cached_votes_up) %> 
+          <%= member.user.discussions.sum(:cached_votes_up) %> 
           <i class="fa fa-thumbs-o-up stats-icon" aria-hidden="true"></i>
         </div>
       </div>

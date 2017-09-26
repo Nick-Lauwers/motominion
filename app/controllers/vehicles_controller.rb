@@ -101,7 +101,7 @@ class VehiclesController < ApplicationController
     @questions = @vehicle.questions
     @question  = current_user.questions.build if logged_in?
     
-    @reply     = current_user.replies.build   if logged_in?
+    @answer     = current_user.answers.build   if logged_in?
     
     @availabilities = @vehicle.availabilities
 

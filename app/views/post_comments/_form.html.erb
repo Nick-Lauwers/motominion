@@ -1,0 +1,44 @@
+<%= form_for([@post, @post.post_comments.build]) do |f| %>
+
+  <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
+  
+  <div class="row vertical-align post-response-header">
+    
+    <div class="col-md-2 col-xs-3 avatar-and-online">
+      
+      <%= link_to current_user do %>
+        <div class="post-response-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= current_user.avatar.url(:thumb) %>')">
+        </div>
+      <% end %>
+      
+      <% if current_user.online? %>
+        <div class="online online-md-quaternary hidden-xs"></div>
+      <% end %>
+    </div>
+    
+    <div class="col-md-10 col-xs-9">
+      
+      <%= link_to current_user, class: "post-response-title" do %> 
+        <%= current_user.name %>
+      <% end %>
+      
+      <span class="post-response-stats">
+        <%= Time.now.strftime("%D") %>
+      </span>
+    </div>
+  </div>
+  
+  <div class="post-response-form-container">
+    
+    <%= f.text_area :content,
+                    rows: 3,
+                    placeholder: "Post a comment", 
+                    class: "form-control post-response-form-control" %>
+                    
+    <div class="post-response-post-container">
+      <%= f.submit "Post my comment", class: "post-response-post" %>
+    </div>
+  </div>
+<% end %>

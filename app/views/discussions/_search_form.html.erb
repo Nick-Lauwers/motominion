@@ -1,0 +1,18 @@
+<!--completed-->
+
+<%= form_tag search_discussions_path, 
+             method: :get, 
+             class: "search-form-forum" do %>
+             
+  <i class="fa fa-search fa-lg search-bar-primary-icon" 
+     aria-hidden="true"></i>
+    
+  <%= text_field_tag :discussion, 
+                     params[:discussion], 
+                     placeholder: "Search the community", 
+                     class: "form-control 
+                             search-form-control
+                             typeahead" %>
+                     
+  <%= submit_tag "Search", class: "btn-forum" %>
+<% end %>

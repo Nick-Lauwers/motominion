@@ -1,40 +1,154 @@
 <%= form_for(@post) do |f| %>
-  
-  <%= render 'shared/error_messages', object: f.object %>
-  
-  <div class="form-group form-group-primary">
-    <%= f.label :title, "What do you want to talk about?" %>
-    <%= f.text_field :title, class: "form-control form-control-primary" %>
-  </div>
-  
-  <div class="form-group form-group-primary">
-              
-    <%= f.label :content, "Add details..." %>
-    
-    <%= f.text_area :content, 
-                    class: "form-control form-control-primary", 
-                    rows: 5 %>
-  </div>
-
-  <%= f.hidden_field :likes,   value: 0 %>
-  
-  <%= f.hidden_field :club_id, value: params[:club_id] %>
-
   <div class="row">
     
-    <div class="col-md-3">
+    <div class="col-md-8">
       
-      <%= f.submit "Post", class: "btn btn-new-post" %>
+      <h1 class="new-post-title">Create a Post</h1>
       
-      <% if params[:club_id].nil? %>
-        <%= link_to "Cancel", posts_path, class: "btn btn-new-post-cancel" %>
-      <% else %>
-        <%= link_to "Cancel", @club, class: "btn btn-new-post-cancel" %>
-      <% end %>
+      <!--<= render 'shared/error_messages', object: f.object %>-->
+      
+      <div class="row">
+        
+        <div class="col-md-6">
+          <div class="post-pic">
+        
+            <i class="fa fa-camera-retro post-pic-icon fa-5x" 
+               aria-hidden="true"></i>
+             
+            <%= image_tag @post.photo.url, class: "uploaded-photo" %>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          
+          <div class="upload-post-photo-button hidden-xs">
+        
+            <div class="upload-button-content">
+              Upload Photo
+            </div>
+            
+            <%= f.file_field :photo, class: "upload-hidden" %>
+          </div>
+          
+          <div class="upload-button visible-xs">
+        
+            <div class="upload-button-content">
+              Upload Photo
+            </div>
+            
+            <%= f.file_field :photo, class: "upload-hidden" %>
+          </div>
+          
+          <div class="form-group form-group-primary">
+              
+            <%= f.label :content, "Add caption" %>
+            
+            <%= f.text_area :content, 
+                            class: "form-control form-control-primary", 
+                            rows: 5 %>
+          </div>
+          
+          <!--<div class="form-group form-group-primary">-->
+              
+          <!--  <= f.label :video_url, "Video URL" %>-->
+            
+          <!--  <= f.text_field :video_url, -->
+          <!--                   class: "form-control form-control-primary" %>-->
+          <!--</div>-->
+          
+          <%= f.hidden_field :likes,   value: 0 %>
+      
+          <%= f.hidden_field :club_id, value: params[:club_id] %>
+          
+          <%= f.submit "Post", class: "btn btn-new-post" %>
+          
+          <% if params[:club_id] %>
+            <%= link_to "Cancel", 
+                        posts_club_path(
+                          Club.find(params[:club_id])
+                        ),
+                        class: "btn btn-new-post-cancel" %>
+          
+          <% else %>            
+            <%= link_to "Cancel",
+                        posts_vehicle_make_path(
+                          VehicleMake.find(params[:vehicle_make_id])
+                        ),
+                        class: "btn btn-new-post-cancel" %>
+          <% end %>
+        </div>
+      </div>
     </div>
     
-    <div class="col-md-9">
-      <!--intentionally left blank-->
+    <div class="col-md-4">
+      <% if params[:vehicle_make_id].blank? %>
+        <div class="make-model">
+          <div class="row vertical-align">
+              
+            <div class="col-xs-3 make-model-icon">
+              <i class="fa fa-bullhorn fa-3x" aria-hidden="true"></i>
+            </div>
+              
+            <div class="col-md-9">
+              <h2 class="make-model-title">Make It Known!</h2>
+            </div>
+          </div>
+          
+          <p class="make-model-info">
+            If you choose, select a vehicle make and model; if you have a topic 
+            related to a particular model, it will be publically posted to our 
+            "Cars and Coffee" section, where it can be viewed by model 
+            enthusiasts.
+            <!--Publicly post your discussion to any vehicle forum, right here on -->
+            <!--Mototrova. This ensures that, if you have a question related to a -->
+            <!--certain model, it can be viewed by model enthusiasts.-->
+          </p>
+        
+          <div class="form-group">
+      
+            <%= f.label :vehicle_make_id, "Make (Optional)" %>
+            
+            <div class="form-element">
+              
+              <%= f.collection_select :vehicle_make_id,
+                                      VehicleMake.order(:name),
+                                      :id,
+                                      :name,
+                                      { include_blank: true, 
+                                        prompt: "Select make" },
+                                      { id: "vehicle-make-post",
+                                        class: "form-control 
+                                                select-secondary" } %>
+                 
+              <i class="fa fa-caret-down fa-lg form-caret" 
+                 aria-hidden="true"></i>
+            </div>
+          </div>
+          
+          <div class="form-group last">
+      
+            <%= f.label :vehicle_model_id, "Model (Optional)" %>
+            
+            <div class="form-element last">
+              
+              <%= f.grouped_collection_select :vehicle_model_id, 
+                                              VehicleMake.order(:name),
+                                              :vehicle_models,
+                                              :name,
+                                              :id,
+                                              :name,
+                                              { prompt: "Select model", 
+                                                include_blank: true },
+                                              { id: "vehicle-model-post",
+                                                class: "form-control 
+                                                        select-secondary" } %>
+                 
+              <i class="fa fa-caret-down fa-lg form-caret" 
+                 aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>

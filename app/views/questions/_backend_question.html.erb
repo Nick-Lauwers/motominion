@@ -5,9 +5,12 @@
     
     <div class="avatar-and-name">
       
-      <div class="backend-question-avatar">
-        <%= link_to image_tag(question.user.avatar.url), question.user %>
-      </div>
+      <%= link_to question.user do %>
+        <div class="backend-question-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= question.user.avatar.url(:thumb) %>')">
+        </div>
+      <% end %>
       
       <% if question.user.online? %>
         <div class="online online-md-quinary hidden-xs"></div>
@@ -32,9 +35,9 @@
 
       <span class="backend-question-content"><%= question.content %></span>
       
-      <span id="backend-reply-number-<%= question.id %>"
-            class="backend-reply-number">
-        <%= pluralize(question.replies.count, "Comment") %>
+      <span id="backend-answer-number-<%= question.id %>"
+            class="backend-answer-number">
+        <%= pluralize(question.answers.count, "Comment") %>
       </span>
     
       <%= link_to question.vehicle.listing_name,
@@ -42,33 +45,36 @@
                   class: "backend-question-vehicle" %>
     </div>
                   
-    <% if question.replies.exists? %>
-      <ol id="backend-replies-list-<%= question.id %>"
-          class="backend-replies-list">
+    <% if question.answers.exists? %>
+      <ol id="backend-answers-list-<%= question.id %>"
+          class="backend-answers-list">
         
-        <% question.replies.each do |reply| %>
-          <li id="backend-reply-item-<%= reply.id %>" 
-              class="backend-reply-item">
+        <% question.answers.each do |answer| %>
+          <li id="backend-answer-item-<%= answer.id %>" 
+              class="backend-answer-item">
             
             <div class="avatar-and-online">
               
-              <div class="backend-reply-avatar">
-                <%= link_to (image_tag reply.user.avatar.url), reply.user %>
-              </div>
+              <%= link_to answer.user do %>
+                <div class="backend-answer-avatar avatar-general", 
+                     style="background-image: url(
+                             '<%= answer.user.avatar.url(:thumb) %>')">
+                </div>
+              <% end %>
               
-              <% if reply.user.online? %>
+              <% if answer.user.online? %>
                 <div class="online online-sm-primary hidden-xs"></div>
               <% end %>
             </div>
             
-            <div class="backend-reply-detail">
+            <div class="backend-answer-detail">
               
-              <%= link_to reply.user.name, reply.user, 
-                          class: "backend-reply-name" %>
+              <%= link_to answer.user.name, answer.user, 
+                          class: "backend-answer-name" %>
                           
-              <span class="backend-reply-content"><%= reply.content %></span>
+              <span class="backend-answer-content"><%= answer.content %></span>
               
-              <span class="backend-reply-date">
+              <span class="backend-answer-date">
                 <%= time_ago_in_words(question.created_at).capitalize %> ago
               </span>
             </div>
@@ -77,34 +83,36 @@
       </ol>
     <% end %>
                 
-    <div class="backend-reply-form">
+    <div class="backend-answer-form">
     
-      <%= form_for @reply do |f| %>
+      <%= form_for @answer do |f| %>
       
         <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
         
         <div class="avatar-and-online">
           
-          <div class="backend-reply-form-avatar">
-            <%= link_to (image_tag current_user.avatar.url),
-                        user_path(current_user) %>
-          </div>
+          <%= link_to user_path(current_user) do %>
+            <div class="backend-answer-form-avatar avatar-general", 
+                 style="background-image: url(
+                         '<%= current_user.avatar.url(:thumb) %>')">
+            </div>
+          <% end %>
           
           <% if current_user.online? %>
             <div class="online online-sm-secondary hidden-xs"></div>
           <% end %>
         </div>
         
-        <div class="backend-reply-form-container">
+        <div class="backend-answer-form-container">
           
           <%= f.text_field :content, 
                            placeholder: "Write a comment / answer.",
-                           class: "form-control reply-form-control" %>
+                           class: "form-control answer-form-control" %>
               
           <%= f.hidden_field :question_id, value: question.id %>
           
-          <div class="reply-submit-container">
-            <%= f.submit "Reply!", class: "reply-submit" %>
+          <div class="answer-submit-container">
+            <%= f.submit "Answer!", class: "answer-submit" %>
           </div>
         </div>
       <% end %>
@@ -117,13 +125,8 @@
     
     // slideToggle
     
-      var backendReplyAvatar     = $('.backend-reply-avatar');
-      
-      $('#backend-reply-number-<%= question.id %>').click(function() {
-        
-        backendReplyAvatar.imagefill();
-        
-        $('#backend-replies-list-<%= question.id %>').slideToggle();
+      $('#backend-answer-number-<%= question.id %>').click(function() {
+        $('#backend-answers-list-<%= question.id %>').slideToggle();
       });
   });
 </script>

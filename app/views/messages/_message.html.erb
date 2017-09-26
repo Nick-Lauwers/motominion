@@ -7,10 +7,12 @@
   <div class="row">
   
     <div class="col-xs-2">
-      <div class="message-avatar message-avatar-left">
-        <%= link_to (image_tag current_user.avatar.url), 
-                    user_path(current_user) %>
-      </div>
+      <%= link_to user_path(current_user) do %>
+        <div class="message-avatar message-avatar-left avatar-general", 
+             style="background-image: url(
+                     '<%= current_user.avatar.url(:thumb) %>')">
+        </div>
+      <% end %>
     </div>
   
     <div class="col-xs-10">
@@ -45,21 +47,12 @@
     </div>
     
     <div class="col-xs-2">
-      <div class="message-avatar message-avatar-right">
-        <%= link_to (image_tag @other.avatar.url), 
-                    user_path(@other) %>
-      </div>
+      <%= link_to user_path(@other) do %>
+        <div class="message-avatar message-avatar-right avatar-general", 
+             style="background-image: url(
+                     '<%= @other.avatar.url(:thumb) %>')">
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    
-    // image scaling
-    
-      var messageAvatar = $('.message-avatar');
-      
-      messageAvatar.imagefill(); 
-  })
-</script>

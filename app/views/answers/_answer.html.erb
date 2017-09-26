@@ -1,0 +1,25 @@
+<li id="answer-item-<%= answer.id %>" class="answer-item">
+  
+  <div class="answer-avatar">
+    
+    <% if answer.user.online? %>
+      <div class="online-sm"></div>
+    <% end %>
+    
+    <%= link_to (image_tag answer.user.avatar.url), 
+                 answer.user %>
+  </div>
+  
+  <div class="answer-details">
+    
+    <%= link_to answer.user.name, answer.user, class: "answer-name" %>
+
+    <span class="answer-content"><%= answer.content %></span>
+    
+    <div class="answer-date-container">
+      <span class="answer-date">
+        <%= time_ago_in_words(answer.created_at).capitalize %> ago
+      </span>
+    </div>
+  </div>
+</li>

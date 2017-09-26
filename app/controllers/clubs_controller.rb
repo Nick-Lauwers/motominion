@@ -1,7 +1,9 @@
 class ClubsController < ApplicationController
   
-  before_action :logged_in_user, except: [:index, :show, :search, :autocomplete]
-  before_action :get_club,       only:   [:edit, :update, :show, :join]
+  before_action :logged_in_user, except: [:index, :posts, :discussions, 
+                                          :autocomplete]
+  before_action :get_club,       only:   [:edit, :update, :posts, :discussions, 
+                                          :join]
   
   def new
     @club = Club.new
@@ -14,7 +16,7 @@ class ClubsController < ApplicationController
 
     if @club.save
       flash[:success] = "Club created"
-      redirect_to @club
+      redirect_to posts_club_path(@club)
     
     else
       render 'new'
@@ -41,15 +43,31 @@ class ClubsController < ApplicationController
       # render 'edit'
     end
     
-    redirect_to @club
+    redirect_to posts_club_path(@club)
   end
   
   def index
-    @clubs = Club.first(10)
+    
+    if params[:city].present?
+      
+      @clubs = Club.search params[:city],
+                           page: params[:page], 
+                           per_page: 10
+
+    else
+      @clubs = Club.all.paginate(page: params[:page], per_page: 10)
+    end
   end
   
-  def show
-    @posts = Post.where(club_id: @club.id)
+  # def show
+  #   @discussions = Discussion.where(club_id: @club.id)
+  # end
+  
+  def posts
+  end
+  
+  def discussions
+    @discussions = @club.discussions
   end
   
   def join
@@ -64,20 +82,7 @@ class ClubsController < ApplicationController
     
     redirect_to :back
   end
-  
-  def search
-  
-    if params[:city].present?
-      
-      @clubs = Club.search params[:city],
-                           page: params[:page], 
-                           per_page: 10
 
-    else
-      @clubs = Club.all.paginate(page: params[:page], per_page: 10)
-    end
-  end
-  
   def autocomplete
     render json: Club.search(params[:club], autocomplete: false, limit: 10).map do |club|
       { city: club.city, value: club.id }

@@ -1,12 +1,4 @@
 $(function() {
-  
-  // customer
-  
-    // image scaling
-    
-      var customerAvatar = $('.customer-avatar');
-
-      customerAvatar.imagefill();
 
   // form
 

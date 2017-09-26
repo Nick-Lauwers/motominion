@@ -1,0 +1,53 @@
+<li id="post-comment-desktop-item-<% post_comment_desktop.id %>" 
+    class="post-comment-item">
+  <div class="row vertical-align">
+    
+    <div class="col-xs-3 avatar-and-online">
+      
+      <div class="post-comment-desktop-avatar-border">
+        <%= link_to user_path(post_comment_desktop.user) do %>
+          <div class="post-comment-desktop-avatar avatar-general", 
+               style="background-image: url(
+                       '<%= post_comment_desktop.user.avatar.url(:thumb) %>')">
+          </div>
+        <% end %>
+      </div>
+      
+      <% if post_comment_desktop.user.online? %>
+        <div class="online online-md-primary"></div>
+      <% end %>
+    </div>
+    
+    <div class="col-xs-9">
+      
+      <%= link_to post_comment_desktop.user.name, 
+                  post_comment_desktop.user, 
+                  class: "post-comment-desktop-name" %> 
+        
+      <span class="post-comment-desktop-info">
+        
+        <%= time_ago_in_words(post_comment_desktop.created_at).capitalize %> ago
+        
+        <% if logged_in? && post_comment_desktop.user == current_user %>
+        
+          ·
+          
+          <div class="post-comment-desktop-edit">
+                
+            <%= link_to "Edit", 
+                        edit_post_post_comment_path(
+                          post_comment_desktop.post, post_comment_desktop
+                        ) %>
+          
+            <%= link_to "Delete", 
+                        [post_comment_desktop.post, post_comment_desktop], 
+                        method: :delete, 
+                        data: { confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+      </span>
+    </div>
+  </div>
+  
+  <p class="post-comment-desktop-caption"><%= post_comment_desktop.content %></p>
+</li>

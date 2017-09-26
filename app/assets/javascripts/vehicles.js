@@ -119,10 +119,8 @@ $(function() {
   
     // image scaling
     
-      var vehicleOverviewAvatar = $('.vehicle-overview-avatar');
       var galleryPhotoContainer = $('.gallery-photo-container');
         
-      vehicleOverviewAvatar.imagefill();
       galleryPhotoContainer.imagefill();
       
     // fixed links
@@ -151,25 +149,21 @@ $(function() {
     
       var heroListing   = $('.hero-listing');
       var modalGallery  = $('#modal-gallery');
-      var modalAvatar   = $('.modal-avatar');
       var galleryPhoto  = $('.gallery-photo');
-      var showInfo      = $('.modal-show-info');
       var modalCarousel = $('#modal-carousel');
       
       heroListing.click(function() {
       	modalGallery.modal('show');
-      	modalAvatar.imagefill();
       });
       
       galleryPhoto.click(function(){
       	modalGallery.modal('show');
-      	modalAvatar.imagefill();
       });
       
     // expand caption
     
-      var showInfo         = $('.modal-show-info');
-      var showInfoText     = $('.show-info-text')
+      var showInfo         = $('.show-info');
+      var showInfoText     = $('.show-info-text');
       var imageContainer   = $('.modal-carousel-container');
       var captionContainer = $('.modal-caption-container');
       
@@ -244,12 +238,6 @@ $(function() {
       var fixedMap = $('#search-map');
      
       fixedMap.stick_in_parent({ offset_top: 50 });
-    
-    // image scaling
-    
-      var searchItemAvatar = $('.search-item-avatar');
-  
-      searchItemAvatar.imagefill(); 
       
   // basics
   

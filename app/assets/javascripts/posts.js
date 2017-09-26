@@ -1,56 +1,59 @@
-$(function() { 
+$(function() {
   
-  // show
+  // new
   
-    // image scaling
-    
-      var postAvatar         = $('.post-avatar');
-      var postResponseAvatar = $('.post-response-avatar')
-          
-      postAvatar.imagefill(); 
-      postResponseAvatar.imagefill();
-  
-  // index
-  
-    // image scaling
-    
-      var topContributorAvatar = $('.top-contributor-avatar')
-          
-      topContributorAvatar.imagefill();
+    // dependent dropdown
       
-    // search
-    
-      var postTypeahead = $('#post.typeahead');
-
-      var posts = new Bloodhound({
+      var vehicleModelPost   = $('#vehicle-model-post');
+      var vehicleMakePost    = $('#vehicle-make-post');
+      var vehicle_model_post = vehicleModelPost.html();
         
-        datumTokenizer: function(d) {
-          return Bloodhound.tokenizers.whitespace(d.title);
-        },
+      vehicleModelPost.prop("disabled", true);
+      
+      vehicleMakePost.change(function() {
         
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        var vehicle_make_post = $('#vehicle-make-post :selected').text();
+        var escaped_vehicle_make_post = 
+          vehicle_make_post.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_post = 
+          $(vehicle_model_post).
+            filter("optgroup[label=" + escaped_vehicle_make_post + "]").
+            html();
         
-        remote: {
-          url: '../posts/autocomplete?post=%QUERY',
-          wildcard: '%QUERY'
+        if (options_post) {
+          vehicleModelPost.html(options_post);
+          vehicleModelPost.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelPost.empty();
+          vehicleModelPost.prop("disabled", true);
         }
       });
-    
-      posts.initialize();
+      
+  // post_desktop
   
-      postTypeahead.typeahead(null, {
-        name:       'posts',
-        displayKey: 'title',
-        source:     posts.ttAdapter()
+    // retract caption
+    
+      var postDesktopHideInfo         = $('.post-desktop-hide-info');
+      var postDesktopHideInfoText     = $('.post-desktop-hide-info-text');
+      var postDesktopGallery          = $('.post-desktop-gallery');
+      var postDesktopCaptionContainer = $('.post-desktop-caption-container');
+      
+      postDesktopHideInfo.click(function(e) {
+        e.preventDefault();
+        
+        if (postDesktopGallery.hasClass('post-desktop-gallery-open')) {
+          postDesktopHideInfoText.html("- Hide");
+          postDesktopGallery.removeClass('post-desktop-gallery-open');
+          postDesktopCaptionContainer.removeClass('post-desktop-caption-container-closed');
+        } 
+        
+        else {
+          postDesktopHideInfoText.html("+ Info");
+          postDesktopGallery.addClass('post-desktop-gallery-open');
+          postDesktopCaptionContainer.addClass('post-desktop-caption-container-closed');
+        }
       });
-      
-  // search
-  
-    // image scaling
-    
-      var forumSearchAvatar = $('.forum-search-avatar');
-      var forumItemAvatar = $('.forum-item-avatar');
-      
-      forumSearchAvatar.imagefill(); 
-      forumItemAvatar.imagefill(); 
 });

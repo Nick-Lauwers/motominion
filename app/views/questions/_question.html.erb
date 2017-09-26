@@ -5,10 +5,12 @@
 
     <div class="avatar-and-online">
       
-      <div class="question-avatar">
-        <%= link_to (image_tag question.user.avatar.url), 
-                    question.user %>
-      </div>
+      <%= link_to question.user do %>
+        <div class="question-avatar avatar-general", 
+                     style="background-image: url(
+                             '<%= question.user.avatar.url(:thumb) %>')">
+        </div>
+      <% end %>
       
       <% if question.user.online? %>
         <div class="online online-sm-primary"></div>
@@ -24,8 +26,8 @@
       <table class="question-date-container">
         <tr>
           
-          <td class="reply-number">
-            <%= pluralize(question.replies.count, "Comment") %>
+          <td class="answer-number">
+            <%= pluralize(question.answers.count, "Comment") %>
           </td>
           
           <td class="question-date">
@@ -36,31 +38,34 @@
     </div>
   </div>
 
-  <% if question.replies.exists? %>
-    <ol class="replies-list">
+  <% if question.answers.exists? %>
+    <ol class="answers-list">
       
-      <% question.replies.each do |reply| %>
-        <li id="reply-item-<%= reply.id %>" class="reply-item">
+      <% question.answers.each do |answer| %>
+        <li id="answer-item-<%= answer.id %>" class="answer-item">
           
           <div class="avatar-and-online">
             
-            <%= link_to (image_tag reply.user.avatar.url), 
-                        reply.user, 
-                        class: "reply-avatar" %>
+            <%= link_to answer.user do %>
+              <div class="answer-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= answer.user.avatar.url(:thumb) %>')">
+              </div>
+            <% end %>
                         
-            <% if reply.user.online? %>
+            <% if answer.user.online? %>
               <div class="online online-sm-primary"></div>
             <% end %>
           </div>
           
-          <div class="reply-details">
+          <div class="answer-details">
             
-            <%= link_to reply.user.name, reply.user, class: "reply-name" %>
+            <%= link_to answer.user.name, answer.user, class: "answer-name" %>
 
-            <span class="reply-content"><%= reply.content %></span>
+            <span class="answer-content"><%= answer.content %></span>
             
-            <div class="reply-date-container">
-              <span class="reply-date">
+            <div class="answer-date-container">
+              <span class="answer-date">
                 <%= time_ago_in_words(question.created_at).capitalize %> ago
               </span>
             </div>
@@ -71,34 +76,36 @@
   <% end %>
   
   <% if logged_in? %>
-    <div class="reply-form">
+    <div class="answer-form">
       
-      <%= form_for @reply do |f| %>
+      <%= form_for @answer do |f| %>
       
         <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
         
         <div class="avatar-and-online">
           
-          <div class="reply-form-avatar">
-            <%= link_to (image_tag current_user.avatar.url), 
-                        user_path(current_user) %>
-          </div>
+          <%= link_to user_path(current_user) do %>
+            <div class="answer-form-avatar avatar-general", 
+                 style="background-image: url(
+                         '<%= current_user.avatar.url(:thumb) %>')">
+            </div>
+          <% end %>
           
           <% if current_user.online? %>
             <div class="online online-sm-primary hidden-xs"></div>
           <% end %>
         </div>
         
-        <div class="reply-form-container">
+        <div class="answer-form-container">
           
           <%= f.text_field :content, 
                            placeholder: "Write a comment / answer.",
-                           class: "form-control reply-form-control" %>
+                           class: "form-control answer-form-control" %>
               
           <%= f.hidden_field :question_id, value: question.id %>
           
-          <div class="reply-submit-container">
-            <%= f.submit "Reply!", class: "reply-submit" %>
+          <div class="answer-submit-container">
+            <%= f.submit "Answer!", class: "answer-submit" %>
           </div>
         </div>
       <% end %>

@@ -1,0 +1,156 @@
+<%= form_for(@discussion) do |f| %>
+
+  <div class="row">
+    
+    <div class="col-md-8">
+       
+      <h1 class="new-discussion-title">Start A Discussion</h1>
+   
+      <%= render 'shared/error_messages', object: f.object %>
+      
+      <div class="form-group form-group-primary">
+        <%= f.label :title, "What do you want to talk about?" %>
+        <%= f.text_field :title, class: "form-control form-control-primary" %>
+      </div>
+      
+      <div class="form-group form-group-primary">
+                  
+        <%= f.label :content, "Add details..." %>
+        
+        <%= f.text_area :content, 
+                        class: "form-control form-control-primary", 
+                        rows: 7 %>
+      </div>
+      
+      <%= f.hidden_field :likes,   value: 0 %>
+  
+      <%= f.hidden_field :club_id, value: params[:club_id] %>
+      
+      <div class="row discussion-submit-desktop hidden-xs">
+    
+        <div class="col-md-6">
+          
+          <%= f.submit "Post", class: "btn btn-new-discussion" %>
+          
+          <% if params[:club_id] %>
+            <%= link_to "Cancel", 
+                        discussions_club_path(
+                          Club.find(params[:club_id])
+                        ), 
+                        class: "btn btn-new-discussion-cancel" %>
+                        
+          <% elsif params[:vehicle_make_id] %>
+            <%= link_to "Cancel",
+                        discussions_vehicle_make_path(
+                          VehicleMake.find(params[:vehicle_make_id])
+                        ),
+                        class: "btn btn-new-discussion-cancel" %>
+          
+          <% else %>
+            <%= link_to "Cancel", 
+                        discussions_path, 
+                        class: "btn btn-new-discussion-cancel" %>
+          <% end %>
+        </div>
+        
+        <div class="col-md-6">
+          <!--intentionally left blank-->
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="make-model">
+        <div class="row vertical-align">
+
+          <div class="col-xs-3 make-model-icon">
+            <i class="fa fa-bullhorn fa-3x" aria-hidden="true"></i>
+          </div>
+
+          <div class="col-xs-9">
+            <h2 class="make-model-title">Make It Known!</h2>
+          </div>
+        </div>
+        
+        <p class="make-model-info">
+          If you choose, select a vehicle make and model; if you have a topic 
+          related to a particular model, it will be publically posted to our 
+          "Cars and Coffee" section, where it can be viewed by model 
+          enthusiasts.
+          <!--Publicly post your discussion to any vehicle forum, right here on -->
+          <!--Mototrova. This ensures that, if you have a question related to a -->
+          <!--certain model, it can be viewed by model enthusiasts.-->
+        </p>
+      
+        <div class="form-group">
+    
+          <%= f.label :vehicle_make_id, "Make (Optional)" %>
+          
+          <div class="form-element">
+            
+            <%= f.collection_select :vehicle_make_id,
+                                    VehicleMake.order(:name),
+                                    :id,
+                                    :name,
+                                    { include_blank: true, 
+                                      prompt: "Select make" },
+                                    { id: "vehicle-make-discussion",
+                                      class: "form-control 
+                                              select-secondary" } %>
+               
+            <i class="fa fa-caret-down fa-lg form-caret" 
+               aria-hidden="true"></i>
+          </div>
+        </div>
+        
+        <div class="form-group last">
+    
+          <%= f.label :vehicle_model_id, "Model (Optional)" %>
+          
+          <div class="form-element last">
+            
+            <%= f.grouped_collection_select :vehicle_model_id, 
+                                            VehicleMake.order(:name),
+                                            :vehicle_models,
+                                            :name,
+                                            :id,
+                                            :name,
+                                            { prompt: "Select model", 
+                                              include_blank: true },
+                                            { id: "vehicle-model-discussion",
+                                              class: "form-control 
+                                                      select-secondary" } %>
+               
+            <i class="fa fa-caret-down fa-lg form-caret" 
+               aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="discussion-submit-mobile visible-xs">
+  
+    <%= f.submit "Post", class: "btn btn-new-discussion" %>
+            
+    <% if params[:club_id] %>
+      <%= link_to "Cancel", 
+                  discussions_club_path(
+                    Club.find(params[:club_id])
+                  ), 
+                  class: "btn btn-new-discussion-cancel" %>
+                  
+    <% elsif params[:vehicle_make_id] %>
+      <%= link_to "Cancel",
+                  discussions_vehicle_make_path(
+                    VehicleMake.find(params[:vehicle_make_id])
+                  ),
+                  class: "btn btn-new-discussion-cancel" %>
+    
+    <% else %>
+      <%= link_to "Cancel", 
+                  discussions_path, 
+                  class: "btn btn-new-discussion-cancel" %>
+    <% end %>
+  </div>
+<% end %>

@@ -17,8 +17,9 @@
           <div class="feed-item-user-content">
             <div class="avatar-and-online">
               
-              <div class="feed-item-avatar">
-                <%= image_tag feed_item.user.avatar.url %>
+              <div class="feed-item-avatar avatar-general",
+                   style="background-image: url(
+                     '<%= feed_item.user.avatar.url(:thumb) %>')">
               </div>
             
               <% if feed_item.user.online? %>
@@ -55,12 +56,6 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    
-    // image scaling
-    
-      var feedItemAvatar = $('.feed-item-avatar');
-  
-      feedItemAvatar.imagefill();  
     
     // rating
     

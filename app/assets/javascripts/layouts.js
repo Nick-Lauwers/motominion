@@ -120,12 +120,4 @@ $(function() {
           vehicleModelModal.prop("disabled", true);
         }
       });
-    
-  // hero-backend
-  
-    // image scaling
-    
-      var heroAvatar = $('.hero-avatar');
-      
-      heroAvatar.imagefill(); 
 });

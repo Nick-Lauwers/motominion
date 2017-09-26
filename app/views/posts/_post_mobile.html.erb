@@ -1,0 +1,185 @@
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="social-nav-post">
+    
+  <% if @post.club_id %>
+    
+    <i class="fa fa-angle-left social-nav-separator-mobile" 
+       aria-hidden="true"></i>
+       
+    <%= link_to posts_club_path(Club.find(@post.club_id)), 
+                class: "social-nav-link" do %>
+      <%= Club.find(@post.club_id).name %>
+    <% end %>
+
+  <% else %>
+    
+    <i class="fa fa-angle-left social-nav-separator-mobile" 
+       aria-hidden="true"></i>
+       
+    <%= link_to posts_vehicle_make_path(
+                  VehicleMake.find(@post.vehicle_make_id)
+                ), 
+                class: "social-nav-link" do %>
+      <%= VehicleMake.find(@post.vehicle_make_id).name %>
+    <% end %>
+  <% end %>
+</div >
+
+<div class="post-mobile-header">
+  <div class="row vertical-align">
+  
+    <div class="col-xs-3 avatar-and-online">
+      
+      <%= link_to user_path(@post.user) do %>
+        <div class="post-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= @post.user.avatar.url(:thumb) %>')">
+        </div>
+      <% end %>
+      
+      <% if @post.user.online? %>
+        <div class="online online-lg-tertiary hidden-xs"></div>
+      <% end %>
+    </div>
+    
+    <div class="col-xs-9">
+      
+      <%= link_to @post.user.name, @post.user, class: "post-name" %> 
+
+      <span>
+        
+        <%= time_ago_in_words(@post.created_at).capitalize %> ago
+        
+        <% if logged_in? && @post.user == current_user %>
+                        
+          ·
+          
+          <div class="post-mobile-edit">
+             
+            <%= link_to "Edit", edit_post_path(@post) %>
+          
+            <%= link_to "Delete", 
+                        post_path(@post), 
+                        method: :delete, 
+                        data: { confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="post-mobile-photo",
+     style="background-image: url('<%= @post.photo.url() %>')">
+</div>
+
+<div class="post-mobile-body">
+  
+  <p class="post-mobile-caption"><%= @post.content %></p>
+  
+  <div class="post-votes">
+      
+    <div class="vote-count">
+      <%= @post.cached_votes_up %>
+    </div>
+    
+    <div class="vote-icon">
+      
+      <% if logged_in? %>
+      
+        <% if current_user.liked? @post %>
+        
+          <%= link_to unlike_post_path(@post), 
+                      method: :get, 
+                      class:  "unlike-post",
+                      remote: true  do %>
+                      
+            <i class="fa fa-thumbs-o-up fa-lg unlike-icon" 
+               aria-hidden="true"></i>
+          <% end %>
+                      
+        <% else %>
+        
+          <%= link_to like_post_path(@post), 
+                      method: :get, 
+                      class:  "like-post",
+                      remote: true do %>
+            
+            <i class="fa fa-thumbs-o-up fa-lg like-icon" 
+               aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      
+      <% else %>
+        <i class="fa fa-thumbs-o-up fa-lg like-icon" aria-hidden="true"></i>
+      <% end %>
+    </div>
+  </div>
+  
+  <h2 class="post-comments-mobile-title">
+    <%= pluralize(@post.post_comments.count, "Comment") %>
+  </h2>
+  
+  <% if @post.post_comments.exists? %>
+    <ol class="post-comments-mobile-list">
+      <%= render partial:    "post_comments/post_comment_mobile",
+                 collection: @post.post_comments,
+                 as:         :post_comment_mobile %>
+    </ol>
+  <% end %>
+      
+  <% if logged_in? %>
+    <%= form_for([@post, PostComment.new]) do |f| %>
+
+      <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
+      
+      <div class="row vertical-align post-comment-header">
+        
+        <div class="col-xs-3 avatar-and-online">
+          
+          <%= link_to current_user do %>
+            <div class="post-comment-avatar avatar-general", 
+                 style="background-image: url(
+                         '<%= current_user.avatar.url(:thumb) %>')">
+            </div>
+          <% end %>
+          
+          <% if current_user.online? %>
+            <div class="online online-md-quaternary hidden-xs"></div>
+          <% end %>
+        </div>
+        
+        <div class="col-xs-9">
+          
+          <%= link_to current_user, class: "post-comment-title" do %> 
+            <%= current_user.name %>
+          <% end %>
+          
+          <span class="post-comment-stats">
+            <%= Time.now.strftime("%D") %>
+          </span>
+        </div>
+      </div>
+      
+      <div class="post-comment-form-container">
+        
+        <%= f.text_area :content,
+                        rows: 3,
+                        placeholder: "Post a comment", 
+                        class: "form-control post-comment-form-control" %>
+                        
+        <div class="post-comment-post-container">
+          <%= f.submit "Post my comment", class: "post-comment-post" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+

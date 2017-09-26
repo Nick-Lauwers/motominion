@@ -1,17 +1,17 @@
 # questionable
 
-class RepliesController < ApplicationController
+class AnswersController < ApplicationController
   
   before_action :logged_in_user, only: [:create, :destroy]
 
   def create
     
-    @reply = current_user.replies.build(reply_params)
+    @answer = current_user.answers.build(answer_params)
     
-    if @reply.save
-      ReplyMailer.reply_received(@reply).deliver_now
-      flash[:success] = "Reply created!"
-      redirect_to @reply.question.vehicle
+    if @answer.save
+      answerMailer.answer_received(@answer).deliver_now
+      flash[:success] = "Answer created!"
+      redirect_to @answer.question.vehicle
     else
       redirect_to request.referrer || root_url    
     end
@@ -22,7 +22,7 @@ class RepliesController < ApplicationController
 
   private
 
-    def reply_params
-      params.require(:reply).permit(:content, :question_id)
+    def answer_params
+      params.require(:answer).permit(:content, :question_id)
     end
 end

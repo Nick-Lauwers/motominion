@@ -7,8 +7,7 @@ class Photo < ActiveRecord::Base
   before_save   :adjust_rotation
   before_update :reprocess_image
 
-  has_attached_file :image, 
-    styles: { medium: "300x300>", small: "250x250>", thumb: "100x100>" }
+  has_attached_file :image
   
   validates                         :vehicle_id, :image, presence: true 
   validates_attachment_content_type :image,      content_type: /\Aimage\/.*\Z/

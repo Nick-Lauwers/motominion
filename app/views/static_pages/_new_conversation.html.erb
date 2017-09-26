@@ -8,8 +8,9 @@
       <tr>
         
         <td class="avatar-and-online">
-          <div class="conversation-avatar">
-            <%= image_tag other.avatar.url %>
+          
+          <div class="conversation-avatar avatar-general", 
+               style="background-image: url('<%= other.avatar.url(:thumb) %>')">
           </div>
           
           <% if other.online? %>

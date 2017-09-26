@@ -1,46 +1,32 @@
 $(function() { 
   
-  // form
-  
-    // image scaling
-    
-      var messageAvatar = $('.message-avatar');
-      
-      messageAvatar.imagefill(); 
-    
   // index
-  
-    // image scaling
-    
-      var recipientAvatar = $('.recipient-avatar');
-  
-      recipientAvatar.imagefill();
 
     // expand description
     
-      var description   = $('.recipient-description');
-      var expand        = $('.recipient-expand');
-      var initialHeight = 25;
+      var recipientDescription     = $('.recipient-description');
+      var recipientExpand          = $('.recipient-expand');
+      var descriptionInitialHeight = 25;
   
-      description.each(function() {
+      recipientDescription.each(function() {
         $.data(this, "realHeight", $(this).height());
-      }).css({ overflow: "hidden", height: initialHeight + 'px' });
+      }).css({ overflow: "hidden", height: descriptionInitialHeight + 'px' });
       
-      expand.click(function(e) {
+      recipientExpand.click(function(e) {
         e.preventDefault();
         
-        if (description.hasClass("toggled")) {
-          description.animate({ 
-            height: initialHeight
+        if (recipientDescription.hasClass("toggled")) {
+          recipientDescription.animate({ 
+            height: descriptionInitialHeight
           }, 600).removeClass("toggled");
-          expand.html("+ More");
+          recipientExpand.html("+ More");
         } 
         
         else {
-          description.animate({ 
-            height: description.data("realHeight") 
+          recipientDescription.animate({ 
+            height: recipientDescription.data("realHeight") 
           }, 600).addClass("toggled");
-          expand.html("- Less");
+          recipientExpand.html("- Less");
         }
       });
 });

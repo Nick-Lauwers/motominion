@@ -1,4 +1,4 @@
-<% provide(:title, "Car Clubs") %>
+<% provide(:title, "Find Car Clubs In Your City") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -8,82 +8,202 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<div class="clubs-social-nav">
-  
-  <ol class="social-nav">
+<div class="clubs-hero">
+  <div class="clubs-hero-content">
     
-    <li>
-      
-      <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
-         aria-hidden="true"></i>
-      
-      <%= link_to "Community Center", posts_path, class: "social-nav-link" %>
-    </li>
-    
-    <li class="hidden-xs">
-      
-      <i class="fa fa-angle-right social-nav-separator" 
-         aria-hidden="true"></i>
-         
-      <span class="social-nav-active">Car Clubs</span>
-    </li>
-  </ol>
-</div>
-  
-<div class="clubs-overview-cover-photo" 
-     style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/car-club.jpg')">
-  <h1 class="cover-photo-title">Car Clubs</h1>
-</div>
+    <div class="row clubs-hero-text">
 
-<div class="clubs-overview">
-  <div class="row">
-    
-    <div class="col-md-7">
-      
-      <div class="clubs-overview-detail">
-      
-        <h2 class="clubs-overview-title">Connect Locally</h2>
-        
-        <p class="clubs-overview-info">
-          Car Clubs are a place for vehicle enthusiasts to connect online with 
-          members of their local club, and to strengthen the passion for 
-          motoring within their communities.
-        </p>
-        
-        <div class="visible-xs">
-          <%= render 'search_form' %>
-        </div>
+      <div class="col-md-3 clubs-hero-image">
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/car-clubs.jpg", 
+                      class: "hidden-xs") %>
       </div>
       
-      <h2 class="clubs-overview-list-title">Most Active Clubs</h2>
-      
-      <ol class="clubs-overview-list">
-        <%= render @clubs %>
-      </ol>
-      
-      <%= link_to "View All Car Clubs",
-                  search_clubs_path, 
-                  class: "btn btn-all-clubs" %>
+      <div class="col-md-8 col-md-offset-1">
+
+        <h1 class="clubs-hero-title">Connect Locally</h1>
+        
+        <h2 class="clubs-hero-subtitle">
+          <% if params[:city].present? %>
+            Find car clubs in <%= params[:city] %>
+          <% else %>
+            Find your car club online
+          <% end %>
+        </h2>
+        
+        <p class="clubs-hero-info">
+          
+          <% if params[:city].present? %>
+            Find out more about <%= params[:city] %>'s most active car clubs by 
+            selecting from the clubs below.
+            
+          <% else %>
+            Connect with members of your local club, and strengthen the 
+            passion for motoring within your community.
+          <% end %>
+        </p>
+      </div>
     </div>
     
-    <div class="col-md-4 col-md-offset-1">
-      
-      <div class="hidden-xs">
-        <%= render 'search_form' %>
-      </div>
+    <%= form_tag clubs_path, 
+                 method: :get, 
+                 class: "search-form-clubs" do %>
+           
+      <i class="fa fa-search fa-lg search-bar-primary-icon" 
+         aria-hidden="true"></i>
+        
+      <%= text_field_tag :city, 
+                         params[:city], 
+                         placeholder: "Search by city (Eg. Detroit, MI)", 
+                         class: "form-control 
+                                 clubs-form-control
+                                 typeahead" %>
 
-      <div class="forum-intro">
-        
-        <span class="forum-intro-title">Don't See Your Club?</span>
-        
-        <p class="forum-intro-info">
-          Interested in starting a car club in your own community?
-        </p>
-        
-        <%= link_to "Reach Out to Us", 
-                    new_club_path, 
-                    class: "btn btn-green" %>
-      </div>
-    </div>
+      <%= submit_tag "Search", class: "btn-forum" %>
+    <% end %>
   </div>
 </div>
+
+<div class="clubs">
+  
+  <ol class="clubs-nav">
+    
+    <li><%= link_to "Community Center", discussions_path %></li>
+            
+    <li>
+      
+      <% if params[:city].present? %>
+        <%= link_to clubs_path do %>
+        
+          <i class="fa fa-angle-right clubs-nav-separator"
+             aria-hidden="true"></i>
+             
+          Car Clubs
+        <% end %>
+      
+      <% else %>
+      
+        <i class="fa fa-angle-right clubs-nav-separator"
+           aria-hidden="true"></i>
+           
+        Car Clubs
+      <% end %>
+    </li>
+    
+    <% if params[:city].present? %>
+      <li>
+        
+        <i class="fa fa-angle-right clubs-nav-separator"
+           aria-hidden="true"></i>
+           
+        <%= params[:city] %>
+      </li>
+    <% end %>
+  </ol>
+  
+  <h2 class="clubs-list-title">
+    <% if params[:city].present? %>
+      Most active car clubs in <%= params[:city] %>
+    <% else %>
+      Most active car clubs 
+    <% end %>
+  </h2>
+  
+  <!--< if @clubs.exists? %>-->
+    <ol class="clubs-list">
+      <%= render @clubs %>
+    </ol>
+  <!--< end %>-->
+</div>
+
+<%= link_to new_club_path, class: "single-action" do %>
+  <i class='fa fa-group fa-lg single-action-icon'></i>
+<% end %>
+
+  <!--<ul class='actions'>-->
+  <!--  <li>-->
+  <!--    <= link_to new_club_path do %>-->
+  <!--      <i class='fa fa-group'></i>-->
+  <!--    < end %>-->
+  <!--  </li>-->
+  <!--</ul>-->
+<!--</div>-->
+
+<!--<div class="clubs-social-nav">-->
+  
+<!--  <ol class="social-nav">-->
+    
+<!--    <li>-->
+      
+<!--      <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" -->
+<!--         aria-hidden="true"></i>-->
+      
+<!--      <= link_to "Community Center", discussions_path, class: "social-nav-link" %>-->
+<!--    </li>-->
+    
+<!--    <li class="hidden-xs">-->
+      
+<!--      <i class="fa fa-angle-right social-nav-separator" -->
+<!--         aria-hidden="true"></i>-->
+         
+<!--      <span class="social-nav-active">Car Clubs</span>-->
+<!--    </li>-->
+<!--  </ol>-->
+<!--</div>-->
+  
+<!--<div class="clubs-overview-cover-photo" -->
+<!--     style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/car-club.jpg')">-->
+<!--  <h1 class="cover-photo-title">Car Clubs</h1>-->
+<!--</div>-->
+
+<!--<div class="clubs-overview">-->
+<!--  <div class="row">-->
+    
+<!--    <div class="col-md-7">-->
+      
+<!--      <div class="clubs-overview-detail">-->
+      
+<!--        <h2 class="clubs-overview-title">Connect Locally</h2>-->
+        
+<!--        <p class="clubs-overview-info">-->
+<!--          Car Clubs are a place for vehicle enthusiasts to connect online with -->
+<!--          members of their local club, and to strengthen the passion for -->
+<!--          motoring within their communities.-->
+<!--        </p>-->
+        
+<!--        <div class="visible-xs">-->
+<!--          <= render 'search_form' %>-->
+<!--        </div>-->
+<!--      </div>-->
+      
+<!--      <h2 class="clubs-overview-list-title">Most Active Clubs</h2>-->
+      
+<!--      <ol class="clubs-overview-list">-->
+<!--        <= render @clubs %>-->
+<!--      </ol>-->
+      
+<!--      <= link_to "View All Car Clubs",-->
+<!--                  search_clubs_path, -->
+<!--                  class: "btn btn-all-clubs" %>-->
+<!--    </div>-->
+    
+<!--    <div class="col-md-4 col-md-offset-1">-->
+      
+<!--      <div class="hidden-xs">-->
+<!--        <= render 'search_form' %>-->
+<!--      </div>-->
+
+<!--      <div class="forum-intro">-->
+        
+<!--        <span class="forum-intro-title">Don't See Your Club?</span>-->
+        
+<!--        <p class="forum-intro-info">-->
+<!--          Interested in starting a car club in your own community?-->
+<!--        </p>-->
+        
+<!--        <= link_to "Reach Out to Us", -->
+<!--                    new_club_path, -->
+<!--                    class: "btn btn-green" %>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

@@ -1,0 +1,213 @@
+<% provide(:title, @discussion.title) %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="discussion">
+  
+  <ol class="social-nav">
+    
+    <% if @discussion.club_id || @discussion.vehicle_make_id %>
+      
+      <li class="hidden-xs">
+        <%= link_to "Community Center", 
+                    discussions_path, 
+                    class: "social-nav-link" %>
+      </li>
+      
+      <% if @discussion.club_id %>
+        
+        <li class="hidden-xs">
+        
+          <i class="fa fa-angle-right social-nav-separator" 
+             aria-hidden="true"></i>
+             
+          <%= link_to "Car Clubs", clubs_path, class: "social-nav-link" %>
+        </li>
+        
+        <li>
+          
+          <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+             aria-hidden="true"></i>
+          
+          <i class="fa fa-angle-right social-nav-separator hidden-xs" 
+             aria-hidden="true"></i>
+             
+          <%= link_to discussions_club_path(Club.find(@discussion.club_id)), 
+                      class: "social-nav-link" do %>
+            <%= Club.find(@discussion.club_id).name %>
+          <% end %>
+        </li>
+        
+      <% else %>
+      
+        <li class="hidden-xs">
+        
+          <i class="fa fa-angle-right social-nav-separator" 
+             aria-hidden="true"></i>
+             
+          <%= link_to "Vehicle Makes", 
+                      '#', 
+                      class: "social-nav-link" %>
+        </li>
+        
+        <li>
+          
+          <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+             aria-hidden="true"></i>
+          
+          <i class="fa fa-angle-right social-nav-separator hidden-xs" 
+             aria-hidden="true"></i>
+             
+          <%= link_to discussions_vehicle_make_path(
+                        VehicleMake.find(@discussion.vehicle_make_id)
+                      ), 
+                      class: "social-nav-link" do %>
+            <%= VehicleMake.find(@discussion.vehicle_make_id).name %>
+          <% end %>
+        </li>
+      
+      <% end %>
+      
+    <% else %>
+    
+      <li>
+        
+        <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+           aria-hidden="true"></i>
+        
+        <%= link_to "Community Center", 
+                    discussions_path, 
+                    class: "social-nav-link" %>
+      </li>
+    <% end %>
+    
+    <li class="hidden-xs">
+      
+      <i class="fa fa-angle-right social-nav-separator" 
+         aria-hidden="true"></i>
+         
+      <span class="social-nav-active">Discussion</span>
+    </li>
+  </ol>
+  
+  <div class="row">
+    
+    <div class="col-md-4 col-md-push-8">
+      <%= render 'search_form' %>
+    </div>
+    
+    <div class="col-md-8 col-md-pull-4">
+      <h1 class="discussion-title"><%= @discussion.title %></h1>
+    </div>
+  </div>
+    
+  <div class="discussion-content">
+    <div class="row vertical-align discussion-header">
+    
+      <div class="col-md-2 col-xs-3 avatar-and-online">
+        
+        <%= link_to user_path(@discussion.user) do %>
+          <div class="discussion-avatar avatar-general", 
+               style="background-image: url(
+                       '<%= @discussion.user.avatar.url(:thumb) %>')">
+          </div>
+        <% end %>
+        
+        <% if @discussion.user.online? %>
+          <div class="online online-lg-tertiary hidden-xs"></div>
+        <% end %>
+      </div>
+      
+      <div class="col-md-10 col-xs-9">
+        
+        <%= link_to @discussion.user.name, 
+                    @discussion.user, 
+                    class: "discussion-name" %> 
+
+        <span>
+          
+          <%= time_ago_in_words(@discussion.created_at).capitalize %> ago
+          
+          <% if logged_in? && @discussion.user == current_user %>
+                          
+            ·
+            
+            <div class="discussion-edit">
+               
+              <%= link_to "Edit", edit_discussion_path(@discussion) %>
+            
+              <%= link_to "Delete", 
+                          discussion_path(@discussion), 
+                          method: :delete, 
+                          data: { confirm: "Are you sure?" } %>
+            </div>
+          <% end %>
+        </span>
+      </div>
+    </div>
+    
+    <p class="discussion-info"><%= @discussion.content %></p>
+    
+    <div class="discussion-votes">
+        
+      <div class="vote-count">
+        <%= @discussion.cached_votes_up %>
+      </div>
+      
+      <div class="vote-icon">
+        
+        <% if logged_in? %>
+        
+          <% if current_user.liked? @discussion %>
+          
+            <%= link_to unlike_discussion_path(@discussion), 
+                        method: :get, 
+                        class:  "unlike-discussion",
+                        remote: true  do %>
+                        
+              <i class="fa fa-thumbs-o-up fa-lg unlike-icon" aria-hidden="true">
+              </i>
+            <% end %>
+                        
+          <% else %>
+          
+            <%= link_to like_discussion_path(@discussion), 
+                        method: :get, 
+                        class:  "like-discussion",
+                        remote: true do %>
+              
+              <i class="fa fa-thumbs-o-up fa-lg like-icon" aria-hidden="true">
+              </i>
+            <% end %>
+          <% end %>
+        
+        <% else %>
+          <i class="fa fa-thumbs-o-up fa-lg like-icon" aria-hidden="true"></i>
+        <% end %>
+      </div>
+    </div>
+    
+    <h2 class="discussion-comments-title">
+      <%= pluralize(@discussion.discussion_comments.count, "Reply") %>
+    </h2>
+    
+    <div class="discussion-comments">
+    
+      <% if @discussion.discussion_comments.exists? %>
+        <ol class="discussion-comments-list">
+          <%= render @discussion.discussion_comments %>
+        </ol>
+      <% end %>
+        
+      <% if logged_in? %>
+        <%= render 'discussion_comments/form' %>
+      <% end %>
+    </div>
+  </div>   
+</div>

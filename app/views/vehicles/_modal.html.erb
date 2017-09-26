@@ -47,10 +47,12 @@
         <div class="col-xs-3 avatar-and-online">
           
           <div class="modal-avatar-border">
-            <div class="modal-avatar">
-              <%= link_to (image_tag @vehicle.user.avatar.url),
-                          user_path(@vehicle.user) %>
-            </div>
+            <%= link_to user_path(@vehicle.user) do %>
+              <div class="modal-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= @vehicle.user.avatar.url(:thumb) %>')">
+              </div>
+            <% end %>
           </div>
           
           <% if @vehicle.user.online? %>
@@ -89,7 +91,7 @@
       
       <div class="modal-options-text">
         
-        <div class="modal-show-info">
+        <div class="show-info">
           <p class="show-info-text">+ Info</p>
         </div>
         

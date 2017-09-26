@@ -22,7 +22,7 @@
         
         <span class="searched-club-item-conversations">
           <i class="fa fa-comments-o" aria-hidden="true"></i>
-          <%= pluralize(Post.where(club_id: club.id).count, "Conversation") %>
+          <%= pluralize(Discussion.where(club_id: club.id).count, "Conversation") %>
         </span>
         
         <span class="searched-club-item-members">

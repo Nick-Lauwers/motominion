@@ -1,0 +1,27 @@
+<div class="answer-form">
+  <%= form_for @answer do |f| %>
+  
+    <%= render 'shared/error_messages', object: f.object %>
+    
+    <% if current_user.online? %>
+      <div class="online-sm"></div>
+    <% end %>
+    
+    <div class="answer-form-avatar">
+      <%= image_tag (current_user.avatar.url) %>
+    </div>
+    
+    <div class="answer-form-container">
+      
+      <%= f.text_field :content, 
+                       placeholder: "Write a comment / answer.",
+                       class: "form-control answer-form-control" %>
+          
+      <%= f.hidden_field :question_id, value: question_id %>
+      
+      <div class="answer-submit-container">
+        <%= f.submit "answer!", class: "answer-submit" %>
+      </div>
+    </div>
+  <% end %>
+</div>

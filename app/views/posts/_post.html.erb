@@ -1,88 +1,93 @@
-<!--read more... link-->
-
-<li id="forum-item-<%= post.id %>" class="forum-item">
-  
-  <div class="visible-xs">
-    
-    <%= link_to post.title, post, class: "forum-item-title" %>
-    
-    <div class="row forum-item-mobile-detail">
+<li id="post-item-<%= post.id %>" class="col-md-6 post-item">
+  <div class="post-item-content">
       
-      <div class="col-xs-4">
-        <div class="forum-item-avatar">
-          <%= link_to (image_tag post.user.avatar.url),
-                      user_path(post.user) %>
+    <div class="post-item-header">
+      <div class="row vertical-align">
+        
+        <div class="col-xs-2">
+          <div class="post-item-avatar avatar-general", 
+               style="background-image: url(
+                       '<%= post.user.avatar.url(:thumb) %>')">
+          </div>
+        </div>
+        
+        <div class="col-xs-10">
+          <div class="post-item-overview">
+          
+            <span class="post-item-user">
+              
+              <%= link_to post.user.name, 
+                          post.user, 
+                          class: "post-item-user-name" %> 
+            
+              <% if logged_in? && post.user == current_user %>
+                            
+                ·
+                
+                <div class="post-item-edit">
+                   
+                  <%= link_to "Edit", edit_post_path(post) %>
+                
+                  <%= link_to "Delete", 
+                              post_path(post), 
+                              method: :delete, 
+                              data: { confirm: "Are you sure?" } %>
+                </div>
+              <% end %>
+            </span>
+  
+            <% if post.vehicle_make_id.present? %>
+            
+              <span class="post-item-vehicle-make">
+                
+                Posted in
+                
+                <%= link_to VehicleMake.find(post.vehicle_make_id).name, 
+                            posts_vehicle_make_path(
+                              VehicleMake.find(post.vehicle_make_id)
+                            ) %>
+              </span>
+            <% end %>
+          </div>
+        </div> 
+      </div>
+    </div>
+    
+    <%= link_to post, class: "post-item-link" do %>
+      <div class="post-item-photo", 
+           style="background-image: url(
+                   '<%= post.photo.url() if 
+                        post.photo.exists? %>')">
+      </div>
+    <% end %>
+    
+    <%= link_to post, class: "post-item-link" do %>
+    
+      <div class="post-item-body">
+        
+        <p class="post-item-caption">
+          <%= post.content %>
+        </p>
+
+        <span class="post-item-time">
+          <%= time_ago_in_words(post.created_at).capitalize %> ago
+        </span>
+        
+        <div class="post-item-stats">
+        
+          <div class="stats-content">
+            <%= post.cached_votes_up %> 
+            <i class="fa fa-thumbs-o-up fa-lg stats-icon" aria-hidden="true"></i>
+          </div>
+      
+          <div class="stats-content">
+            <%= post.post_comments.count %> 
+            <i class="fa fa-comment-o fa-lg stats-icon" aria-hidden="true"></i>
+          </div>
         </div>
       </div>
-      
-      <div class="col-xs-8">
-        
-        <%= link_to post.user, class: "forum-item-name" do %> 
-          <%= post.user.name %>
-        <% end %>
-        
-        <span class="forum-item-time">
-          <%= time_ago_in_words(post.created_at).capitalize %> ago 
-        </span>
-      </div>
-    </div>
+    <% end %>
   </div>
   
-  <div class="row vertical-align forum-item-header hidden-xs">
-    
-    <div class="col-md-2 avatar-and-online">
-      
-      <div class="forum-item-avatar">
-        <%= link_to (image_tag post.user.avatar.url),
-                    user_path(post.user) %>
-      </div>
-      
-      <% if post.user.online? %>
-        <div class="online online-lg-secondary"></div>
-      <% end %>
-    </div>
-    
-    <div class="col-md-10">
-      
-      <%= link_to post.title, post, class: "forum-item-title" %>
-      
-      <%= link_to post.user, class: "forum-item-name" do %> 
-        <%= post.user.name %>
-      <% end %>
-        
-      <span class="forum-item-time">
-        · <%= time_ago_in_words(post.created_at).capitalize %> ago 
-      </span>
-    </div>
-  </div>
-  
-  <p class="forum-item-content"><%= post.content %></p>
-  
-  <%= link_to post do %>
-    <span class="forum-item-expand">Read more...</span> 
-  <% end %>
-  
-  <div class="forum-item-stats">
-    
-    <div class="stats-content">
-      <%= post.cached_votes_up %> 
-      <i class="fa fa-thumbs-o-up fa-lg stats-icon" aria-hidden="true"></i>
-    </div>
-
-    <div class="stats-content">
-      <%= post.responses.count %> 
-      <i class="fa fa-comment-o fa-lg stats-icon" aria-hidden="true"></i>
-    </div>
-  </div>
+  <!--<iframe src='https://www.youtube.com/embed/PfN7HKO0E2k?rel=0&autoplay=<(perc)= params[:autoplay] || 0 %>' frameborder='0' allowfullscreen></iframe>-->
 </li>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    
-    // image scaling
-    
-      var forumItemAvatar = $('.forum-item-avatar');
-      
-      forumItemAvatar.imagefill(); 
-  })
-</script>

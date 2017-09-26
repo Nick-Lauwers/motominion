@@ -11,8 +11,8 @@
         
         <td class="avatar-and-online">
           
-          <div class="conversation-avatar">
-            <%= image_tag other.avatar.url %>
+          <div class="conversation-avatar avatar-general", 
+               style="background-image: url('<%= other.avatar.url(:thumb) %>')">
           </div>
           
           <% if other.online? %>
@@ -58,17 +58,6 @@
     </table>
   <% end %>
 </li>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    
-    // image scaling
-    
-      var conversationAvatar = $('.conversation-avatar');
-      
-      conversationAvatar.imagefill(); 
-  })
-</script>
 
 <!--simplify conversation and messages relationship (mailboxer gem)-->
 <!--stay gray after selected-->

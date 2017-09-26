@@ -1,0 +1,51 @@
+<li id="post-comment-mobile-item-<% post_comment_mobile.id %>" 
+    class="post-comment-item">
+  <div class="row vertical-align post-comment-header">
+    
+    <div class="col-xs-3 avatar-and-online">
+      
+      <%= link_to user_path(post_comment_mobile.user) do %>
+        <div class="post-comment-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= post_comment_mobile.user.avatar.url(:thumb) %>')">
+        </div>
+      <% end %>
+      
+      <% if post_comment_mobile.user.online? %>
+        <div class="online online-md-quaternary hidden-xs"></div>
+      <% end %>
+    </div>
+    
+    <div class="col-xs-9">
+      
+      <%= link_to post_comment_mobile.user.name, 
+                  post_comment_mobile.user, 
+                  class: "post-comment-title" %> 
+        
+      <span class="post-comment-stats">
+        
+        <%= time_ago_in_words(post_comment_mobile.created_at).capitalize %> ago
+        
+        <% if logged_in? && post_comment_mobile.user == current_user %>
+        
+          ·
+          
+          <div class="post-comment-edit">
+                
+            <%= link_to "Edit", 
+                        edit_post_post_comment_path(
+                          post_comment_mobile.post, post_comment_mobile
+                        ) %>
+          
+            <%= link_to "Delete", 
+                        [post_comment_mobile.post, post_comment_mobile], 
+                        method: :delete, 
+                        data: { confirm: "Are you sure?" } %>
+          </div>
+        <% end %>
+      </span>
+    </div>
+  </div>
+  
+  <p class="post-comment-info"><%= post_comment_mobile.content %></p>
+</li>

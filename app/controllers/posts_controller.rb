@@ -1,38 +1,12 @@
-# destroy redirect
-# authenticate_user
-
 class PostsController < ApplicationController
   
-  before_action :logged_in_user,     except: [:index, :show, :search, 
-                                              :autocomplete]
-  before_action :profile_pic_upload, only:   [:new]
-  before_action :find_post,          only:   [:show, :edit, :update, :destroy, 
+  before_action :logged_in_user,     except: [:index, :show]
+  before_action :get_post,           only:   [:show, :edit, :update, :destroy,
                                               :like, :unlike]
+  before_action :profile_pic_upload, only:   [:new]
   
   def index
-    
-    @top_posts        = Post.where(club_id: nil).order(
-                          cached_votes_up: :desc, 
-                          created_at:      :desc
-                        ).limit(10)
-                        
-    @recent_posts     = Post.order(created_at: :desc).limit(10)
-    
-    @unanswered_posts = Post.
-                        includes(:responses).
-                        where('responses.id IS NULL').
-                        references(:responses).
-                        order(created_at: :desc).
-                        limit(10)
-                        # .
-                        # paginate(page: params[:page], per_page: 2)
-                        
-    @top_contributors = User.joins(:posts).group('users.id').order('sum(posts.cached_votes_up) desc')\
-    
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   ajax_respond format, :section_id => "page"
-    # end
+    @posts = @club.posts
   end
   
   def show
@@ -46,10 +20,12 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     
     if @post.save
-      flash[:success] = "Comment posted"
+      flash[:success] = "Post submitted"
       redirect_to @post
     else
-      render 'new'
+      redirect_to new_post_path(club_id: @post.club_id)
+      # redirect_to :back
+      flash[:failure] = "Be sure to include a photo and a caption."
     end
   end
   
@@ -58,6 +34,7 @@ class PostsController < ApplicationController
   
   def update
     if @post.update(post_params)
+      flash[:success] = "Updates saved"
       redirect_to @post
     else
       render 'edit'
@@ -66,7 +43,9 @@ class PostsController < ApplicationController
   
   def destroy
     @post.destroy
-    redirect_to posts_path
+    flash[:success] = "Post deleted"
+    redirect_to discussions_path
+    # Does not redirect to correct place if in clubs or in vehicle makes
   end
   
   def like
@@ -89,32 +68,17 @@ class PostsController < ApplicationController
     end
   end
   
-  def search
-    
-    if params[:post].present?
-      
-      @posts = Post.search params[:post],
-                           page: params[:page], 
-                           per_page: 10
-
-    else
-      @posts = Post.all.paginate(page: params[:page], per_page: 10)
-    end
-  end
-  
-  def autocomplete
-    render json: Post.search(params[:post], autocomplete: false, limit: 10).map do |post|
-      { title: post.title, value: post.id }
-    end
-  end
-  
   private
   
-    def find_post
-      @post = Post.find(params[:id])
-    end
-  
     def post_params
-      params.require(:post).permit(:title, :content, :club_id)
+      params.require(:post).permit(:content, :vehicle_make_id, 
+                                   :vehicle_model_id, :photo, :club_id)
+    end
+    
+    # Before filters
+    
+    # Identifies post id.
+    def get_post
+      @post = Post.find(params[:id])
     end
 end

@@ -1,0 +1,74 @@
+<% provide(:title, @vehicle_make.name) %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="vehicle-make">
+  <div class="vehicle-make-content">
+    
+    <div class="vehicle-make-hero", 
+         style="background-image: url(
+                 '<%= @vehicle_make.cover_photo_url %>')">
+      <div class="vehicle-make-hero-detail">
+        <span class="vehicle-make-hero-info">Discover</span>
+        <h1 class="vehicle-make-hero-title"><%= @vehicle_make.name %></h1>
+      </div>
+    </div>
+    
+    <nav class="dropdown dropdown-backend visible-xs">
+  
+      <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+        Discussions <b class="caret"></b>
+      </a>
+      
+      <ul class="dropdown-menu">
+        
+        <li><%= link_to "Posts", posts_vehicle_make_path %></li>
+        
+        <li class="dropdown-active">
+          <%= link_to "Discussions", discussions_vehicle_make_path %>
+        </li>
+      </ul>
+    </nav>
+    
+    <div class="vehicle-make-discussions">
+      <div class="row">
+        
+        <div class="col-md-4">
+          <ol class="vehicle-make-nav hidden-xs">
+            
+            <li class="vehicle-make-nav-active">
+              <%= link_to "Posts", posts_vehicle_make_path %>
+            </li>
+            
+            <li><%= link_to "Discussions", discussions_vehicle_make_path %></li>
+          </ol>
+        </div>
+        
+        <div class="col-md-8 vehicle-make-discussions-list">
+          
+          <% if @vehicle_make.discussions.exists? %>
+            <ol class="vehicle-make-discussions-list-content">
+              <%= render @vehicle_make.discussions %>
+            </ol>
+          
+          <% else %>
+            <p class="empty-list-info">
+              Be the first to post!
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to new_discussion_path(vehicle_make_id: @vehicle_make.id), 
+            class: "single-action" do %>
+  <i class='fa fa-pencil fa-lg single-action-icon'></i>
+<% end %>

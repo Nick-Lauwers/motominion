@@ -1,0 +1,12 @@
+<h1>You Received An Answer! | Mototrova</h1>
+
+<p>Hi <%= @answer.question.user.name %>,</p>
+
+<p>
+  You just received a answer from <strong><%= @answer.user.name %></strong> for 
+  your question about 
+  <strong><%= @answer.question.vehicle.listing_name %></strong>: 
+  <%= @answer.question.content %> Click on the link below to view the details:
+</p>
+
+<%= link_to "View Answer", questions_url %>

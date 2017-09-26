@@ -21,8 +21,13 @@
             <div class="wish-list-item-user-content">
               <div class="avatar-and-online">
                 
-                <div class="wish-list-item-avatar">
-                  <%= image_tag favorite_vehicle.vehicle.user.avatar.url %>
+                <div class="wish-list-item-avatar avatar-general", 
+                     style="background-image: url(
+                             '<%= favorite_vehicle.
+                                    vehicle.
+                                    user.
+                                    avatar.
+                                    url(:thumb) %>')">
                 </div>
               
                 <% if favorite_vehicle.vehicle.user.online? %>

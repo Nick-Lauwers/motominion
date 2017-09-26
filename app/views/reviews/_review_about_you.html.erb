@@ -10,9 +10,10 @@
                         backend-review-author-clickable" do %>
 
       <div class="col-xs-2 avatar-and-online">
-      
-        <div class="author-avatar">
-          <%= image_tag review.reviewer.avatar.url %>
+        
+        <div class="author-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= review.reviewer.avatar.url(:thumb) %>')">
         </div>
         
         <% if review.reviewer.online? %>

@@ -1,0 +1,81 @@
+<!--read more... link-->
+
+<li id="forum-item-<%= discussion.id %>" class="forum-item">
+  
+  <div class="visible-xs">
+    
+    <%= link_to discussion.title, discussion, class: "forum-item-title" %>
+    
+    <div class="row forum-item-mobile-detail">
+      
+      <div class="col-xs-4">
+        <%= link_to user_path(discussion.user) do %>
+          <div class="forum-item-avatar avatar-general", 
+               style="background-image: url(
+                       '<%= discussion.user.avatar.url(:thumb) %>')">
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="col-xs-8">
+        
+        <%= link_to discussion.user, class: "forum-item-name" do %> 
+          <%= discussion.user.name %>
+        <% end %>
+        
+        <span class="forum-item-time">
+          <%= time_ago_in_words(discussion.created_at).capitalize %> ago 
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row vertical-align forum-item-header hidden-xs">
+    
+    <div class="col-md-2 avatar-and-online">
+      
+      <%= link_to user_path(discussion.user) do %>
+        <div class="forum-item-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= discussion.user.avatar.url(:thumb) %>')">
+        </div>
+      <% end %>
+      
+      <% if discussion.user.online? %>
+        <div class="online online-lg-secondary"></div>
+      <% end %>
+    </div>
+    
+    <div class="col-md-10">
+      
+      <%= link_to discussion.title, discussion, class: "forum-item-title" %>
+      
+      <%= link_to discussion.user, class: "forum-item-name" do %> 
+        <%= discussion.user.name %>
+      <% end %>
+        
+      <span class="forum-item-time">
+        · <%= time_ago_in_words(discussion.created_at).capitalize %> ago 
+      </span>
+    </div>
+  </div>
+  
+  <p class="forum-item-content"><%= discussion.content %></p>
+  
+  <%= link_to discussion do %>
+    <span class="forum-item-expand">Read more...</span> 
+  <% end %>
+  
+  <div class="forum-item-stats">
+    
+    <div class="stats-content">
+      <%= discussion.cached_votes_up %> 
+      <i class="fa fa-thumbs-o-up fa-lg stats-icon" aria-hidden="true"></i>
+    </div>
+
+    <div class="stats-content">
+      <%= discussion.discussion_comments.count %> 
+      <i class="fa fa-comment-o fa-lg stats-icon" aria-hidden="true"></i>
+    </div>
+  </div>
+</li>

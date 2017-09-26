@@ -21,15 +21,26 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :questions,           only: [:index, :create, :destroy]
-  resources :replies,             only: [:create, :destroy]
+  resources :answers,             only: [:create, :destroy]
   resources :enquiries,           only: [:new, :create]
   resources :profiles,            only: [:show, :edit, :update]
+  
+  resources :vehicle_makes do
+    member do
+      get 'posts'
+      get 'discussions'
+    end
+  end
   
   resources :clubs do
     
     resources :invitations
-    
+   
     member do
+      
+      get 'posts'
+      get 'discussions'
+      
       put :join
     end
     
@@ -95,13 +106,13 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :posts do
+  resources :discussions do
     
-    resources :responses
+    resources :discussion_comments
     
     member do
-      get :like,   to: "posts#like"
-      get :unlike, to: "posts#unlike"
+      get :like,   to: "discussions#like"
+      get :unlike, to: "discussions#unlike"
     end
     
     collection do
@@ -110,13 +121,13 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :club_posts do
+  resources :posts do
     
-    resources :club_responses
+    resources :post_comments
     
     member do
-      get :like,   to: "club_posts#like"
-      get :unlike, to: "club_posts#unlike"
+      get :like,   to: "posts#like"
+      get :unlike, to: "posts#unlike"
     end
   end
   

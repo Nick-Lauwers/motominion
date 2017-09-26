@@ -3,8 +3,9 @@ require 'csv'
 # Makes
 CSV.foreach(Rails.root.join("vehicle_makes.csv"), headers: true) do |row|
   VehicleMake.create! do |vehicle_make|
-    vehicle_make.id   = row[0]
-    vehicle_make.name = row[1]
+    vehicle_make.id              = row[0]
+    vehicle_make.name            = row[1]
+    vehicle_make.cover_photo_url = row[2]
   end
 end
 
@@ -80,23 +81,23 @@ CSV.foreach(Rails.root.join("photos.csv"), headers: true) do |row|
   end
 end
 
-# Posts
-CSV.foreach(Rails.root.join("posts.csv"), headers: true) do |row|
-  Post.create! do |post|
-    post.id              = row[0]
-    post.title           = row[1]
-    post.content         = row[2]
-    post.user_id         = row[3]
-    post.cached_votes_up = row[4]
+# Discussions
+CSV.foreach(Rails.root.join("discussions.csv"), headers: true) do |row|
+  Discussion.create! do |discussion|
+    discussion.id              = row[0]
+    discussion.title           = row[1]
+    discussion.content         = row[2]
+    discussion.user_id         = row[3]
+    discussion.cached_votes_up = row[4]
   end
 end
 
-# Responses
-CSV.foreach(Rails.root.join("responses.csv"), headers: true) do |row|
-  Response.create! do |response|
-    response.comment = row[0]
-    response.post_id = row[1]
-    response.user_id = row[2]
+# Discussion Comments
+CSV.foreach(Rails.root.join("discussion_comments.csv"), headers: true) do |row|
+  DiscussionComment.create! do |discussion_comment|
+    discussion_comment.comment       = row[0]
+    discussion_comment.discussion_id = row[1]
+    discussion_comment.user_id       = row[2]
   end
 end
   

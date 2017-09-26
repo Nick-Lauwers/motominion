@@ -9,15 +9,17 @@ class User < ActiveRecord::Base
   
   # has_one :profile,  dependent: :destroy
   
-  has_many :vehicles,           dependent: :destroy
-  has_many :autoparts,          dependent: :destroy
-  has_many :posts,              dependent: :destroy
-  has_many :responses,          dependent: :destroy
-  has_many :questions,          dependent: :destroy
-  has_many :replies,            dependent: :destroy
-  has_many :favorite_vehicles,  dependent: :destroy
-  has_many :favorite_autoparts, dependent: :destroy
-  has_many :memberships,        dependent: :destroy
+  has_many :vehicles,            dependent: :destroy
+  has_many :autoparts,           dependent: :destroy
+  has_many :discussions,         dependent: :destroy
+  has_many :discussion_comments, dependent: :destroy
+  has_many :posts,               dependent: :destroy
+  has_many :post_comments,       dependent: :destroy
+  has_many :questions,           dependent: :destroy
+  has_many :answers,             dependent: :destroy
+  has_many :favorite_vehicles,   dependent: :destroy
+  has_many :favorite_autoparts,  dependent: :destroy
+  has_many :memberships,         dependent: :destroy
   
   has_many :authored_reviews, class_name: 'Review', dependent: :destroy,
     foreign_key: :reviewer_id
@@ -56,7 +58,7 @@ class User < ActiveRecord::Base
   phony_normalize :phone_number, :default_country_code => 'US'
   validates :phone_number, phony_plausible: true
   
-  has_attached_file :avatar, 
+  has_attached_file :avatar, styles: { thumb: "200x200#"},
     default_url: "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/avatar.jpg"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   

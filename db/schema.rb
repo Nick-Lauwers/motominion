@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821140952) do
+ActiveRecord::Schema.define(version: 20170918191024) do
+
+  create_table "answers", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "likes"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "answers", ["question_id", "created_at"], name: "index_answers_on_question_id_and_created_at"
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id"
 
   create_table "appointments", force: :cascade do |t|
     t.string   "status"
@@ -83,6 +96,8 @@ ActiveRecord::Schema.define(version: 20170821140952) do
     t.datetime "cover_photo_updated_at"
     t.string   "city"
     t.string   "state"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "conversations", force: :cascade do |t|
@@ -113,6 +128,40 @@ ActiveRecord::Schema.define(version: 20170821140952) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
+  create_table "discussion_comments", force: :cascade do |t|
+    t.text     "comment"
+    t.integer  "discussion_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "discussion_comments", ["discussion_id", "created_at"], name: "index_discussion_comments_on_discussion_id_and_created_at"
+  add_index "discussion_comments", ["discussion_id"], name: "index_discussion_comments_on_discussion_id"
+  add_index "discussion_comments", ["user_id"], name: "index_discussion_comments_on_user_id"
+
+  create_table "discussions", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "club_id"
+    t.integer  "vehicle_make_id"
+    t.integer  "vehicle_model_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "cached_votes_up",  default: 0
+  end
+
+  add_index "discussions", ["cached_votes_up"], name: "index_discussions_on_cached_votes_up"
+  add_index "discussions", ["club_id", "created_at"], name: "index_discussions_on_club_id_and_created_at"
+  add_index "discussions", ["club_id"], name: "index_discussions_on_club_id"
+  add_index "discussions", ["user_id", "created_at"], name: "index_discussions_on_user_id_and_created_at"
+  add_index "discussions", ["user_id"], name: "index_discussions_on_user_id"
+  add_index "discussions", ["vehicle_make_id", "created_at"], name: "index_discussions_on_vehicle_make_id_and_created_at"
+  add_index "discussions", ["vehicle_make_id"], name: "index_discussions_on_vehicle_make_id"
+  add_index "discussions", ["vehicle_model_id", "created_at"], name: "index_discussions_on_vehicle_model_id_and_created_at"
+  add_index "discussions", ["vehicle_model_id"], name: "index_discussions_on_vehicle_model_id"
 
   create_table "enquiries", force: :cascade do |t|
     t.string   "name"
@@ -219,18 +268,43 @@ ActiveRecord::Schema.define(version: 20170821140952) do
 
   add_index "photos", ["vehicle_id"], name: "index_photos_on_vehicle_id"
 
-  create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "content"
+  create_table "post_comments", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "post_id"
     t.integer  "user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.integer  "cached_votes_up", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "post_comments", ["post_id", "created_at"], name: "index_post_comments_on_post_id_and_created_at"
+  add_index "post_comments", ["post_id"], name: "index_post_comments_on_post_id"
+  add_index "post_comments", ["user_id"], name: "index_post_comments_on_user_id"
+
+  create_table "posts", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "user_id"
     t.integer  "club_id"
+    t.integer  "vehicle_make_id"
+    t.integer  "vehicle_model_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "cached_votes_up",    default: 0
+    t.string   "video_url"
   end
 
   add_index "posts", ["cached_votes_up"], name: "index_posts_on_cached_votes_up"
+  add_index "posts", ["club_id", "created_at"], name: "index_posts_on_club_id_and_created_at"
+  add_index "posts", ["club_id"], name: "index_posts_on_club_id"
+  add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+  add_index "posts", ["vehicle_make_id", "created_at"], name: "index_posts_on_vehicle_make_id_and_created_at"
+  add_index "posts", ["vehicle_make_id"], name: "index_posts_on_vehicle_make_id"
+  add_index "posts", ["vehicle_model_id", "created_at"], name: "index_posts_on_vehicle_model_id_and_created_at"
+  add_index "posts", ["vehicle_model_id"], name: "index_posts_on_vehicle_model_id"
 
   create_table "questions", force: :cascade do |t|
     t.text     "content"
@@ -245,31 +319,6 @@ ActiveRecord::Schema.define(version: 20170821140952) do
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
   add_index "questions", ["vehicle_id", "created_at"], name: "index_questions_on_vehicle_id_and_created_at"
   add_index "questions", ["vehicle_id"], name: "index_questions_on_vehicle_id"
-
-  create_table "replies", force: :cascade do |t|
-    t.text     "content"
-    t.integer  "likes"
-    t.integer  "user_id"
-    t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "replies", ["question_id", "created_at"], name: "index_replies_on_question_id_and_created_at"
-  add_index "replies", ["question_id"], name: "index_replies_on_question_id"
-  add_index "replies", ["user_id"], name: "index_replies_on_user_id"
-
-  create_table "responses", force: :cascade do |t|
-    t.text     "comment"
-    t.integer  "post_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "responses", ["post_id", "created_at"], name: "index_responses_on_post_id_and_created_at"
-  add_index "responses", ["post_id"], name: "index_responses_on_post_id"
-  add_index "responses", ["user_id"], name: "index_responses_on_user_id"
 
   create_table "reviews", force: :cascade do |t|
     t.string   "title"
@@ -320,8 +369,9 @@ ActiveRecord::Schema.define(version: 20170821140952) do
 
   create_table "vehicle_makes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "cover_photo_url"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "vehicle_models", force: :cascade do |t|
