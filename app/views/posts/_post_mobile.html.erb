@@ -1,3 +1,5 @@
+<!--completed-->
+
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
 </header>
@@ -38,7 +40,7 @@
     <div class="col-xs-3 avatar-and-online">
       
       <%= link_to user_path(@post.user) do %>
-        <div class="post-avatar avatar-general", 
+        <div class="post-mobile-avatar avatar-general", 
              style="background-image: url(
                      '<%= @post.user.avatar.url(:thumb) %>')">
         </div>
@@ -51,7 +53,7 @@
     
     <div class="col-xs-9">
       
-      <%= link_to @post.user.name, @post.user, class: "post-name" %> 
+      <%= link_to @post.user.name, @post.user, class: "post-mobile-name" %> 
 
       <span>
         
@@ -168,15 +170,16 @@
         </div>
       </div>
       
-      <div class="post-comment-form-container">
+      <div class="post-comment-mobile-form-container">
         
         <%= f.text_area :content,
                         rows: 3,
                         placeholder: "Post a comment", 
-                        class: "form-control post-comment-form-control" %>
+                        class: "form-control 
+                                post-comment-mobile-form-control" %>
                         
-        <div class="post-comment-post-container">
-          <%= f.submit "Post my comment", class: "post-comment-post" %>
+        <div class="post-comment-mobile-post-container">
+          <%= f.submit "Post my comment", class: "post-comment-mobile-post" %>
         </div>
       </div>
     <% end %>

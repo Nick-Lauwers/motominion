@@ -1,0 +1,106 @@
+<% provide(:title, @club_product.name) %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="autopart">
+  <div class=
+  <div class="autopart-content">
+    <div class="row">
+      
+      <div class="something col-md-6">
+        <div class="row vertical-align">
+          
+          <div class="col-md-2">
+            
+            <div class="autopart-thumbnail autopart-active"
+                 style="background-image: url(
+                         '<%= @club_product.club_product_photos[0].image.url() if
+                              @club_product.club_product_photos.length > 0 %>')"></div>
+                              
+            <div class="autopart-thumbnail"
+                 style="background-image: url(
+                         '<%= @club_product.club_product_photos[1].image.url() if
+                              @club_product.club_product_photos.length > 1 %>')"></div>
+                              
+            <div class="autopart-thumbnail last"
+                 style="background-image: url(
+                         '<%= @club_product.club_product_photos[2].image.url() if
+                              @club_product.club_product_photos.length > 2 %>')"></div>
+          </div>
+          
+          <div class="col-md-10">
+            <div class="autopart-image"
+                 style="background-image: url(
+                         '<%= @club_product.club_product_photos[0].image.url() if
+                              @club_product.club_product_photos.length > 0 %>')"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="else col-md-4 col-md-offset-1">
+        
+        <h1><%= @club_product.name %></h1>
+        
+        <h3>$<%= @club_product.price %></h3>
+        
+        <div class="row vertical-align">
+    
+          <div class="col-md-2 avatar-and-online">
+            
+            <%= link_to club_path(@club_product.club) do %>
+              <div class="post-comment-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= @club_product.club.cover_photo.url %>')">
+              </div>
+            <% end %>
+            
+            <!--<(perc) if @club_product.club.online? %>-->
+            <!--  <div class="online online-md-quaternary hidden-xs"></div>-->
+            <!--<(perc) end %>-->
+          </div>
+          
+          <div class="col-md-10 col-xs-9">
+            
+            <%= link_to @club_product.club.name, 
+                        @club_product.club, 
+                        class: "post-response-title" %> 
+              
+            <span class="post-response-stats">
+              
+              <%= time_ago_in_words(@club_product.created_at).capitalize %> ago
+              
+            </span>
+          </div>
+        </div>
+        
+        <span><%= @club_product.description %></span>
+        
+        <span><%= @club_product.shipping_info %></span>
+        
+        <div class="vehicle-reviews">
+          
+          <span class="vehicle-reviews-title">Need Some Advice?</span>
+          
+          <p class="vehicle-reviews-info">
+            Read <%= @club_product.club.name %>'s reviews!
+          </p>
+          
+          <%= link_to club_path(@club_product.club, anchor: "profile-reviews"), 
+                      class: "btn btn-secondary" do %>
+          
+            Reviews
+            
+            <i class="fa fa-arrow-right next-button-icon" 
+               aria-hidden="true"></i> 
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

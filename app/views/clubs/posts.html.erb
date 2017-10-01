@@ -51,6 +51,10 @@
                   where(club_id: @club.id, admin: true).
                   exists? %>
                   
+            <!--<= link_to "Update", edit_club_path %>-->
+            
+            <!--<(perc)= link_to "Add A Product", new_club_club_product_path(@club) %>-->
+            
             <%= link_to new_club_invitation_path(@club),
                         class: "btn btn-club-invitation" do %>
               
@@ -90,8 +94,14 @@
       <div class="col-md-8">
         <nav>
           <ul class="nav navbar-nav navbar-left">
+            
             <li class="nav-active"><%= link_to "Posts", posts_club_path %></li>
+            
             <li><%= link_to "Discussions", discussions_club_path %></li>
+            
+            <!--<li>-->
+            <!--  <(perc)= link_to "Merchandise", club_club_products_path(@club) %>-->
+            <!--</li>-->
           </ul>
         </nav>
       </div>
@@ -123,6 +133,7 @@
   <ul class="dropdown-menu">
     <li class="dropdown-active"><%= link_to "Posts", posts_club_path %></li>
     <li><%= link_to "Discussions", discussions_club_path %></li>
+    <!--<li><(perc)= link_to "Merchandise", club_club_products_path(@club) %></li>-->
   </ul>
 </nav>
 
@@ -144,8 +155,8 @@
       <% end %>
     </div>
     
-    <div id="club-map-container" class="col-md-4">
-      <div id="club-map" class="hidden-xs"></div>
+    <div id="club-map-container" class="col-md-4 hidden-xs">
+      <div id="club-map-posts"></div>
     </div>
   </div>
 </div>
@@ -179,7 +190,7 @@
         },
         
         internal: {
-          id: 'club-map'
+          id: 'club-map-posts'
         }
       }, function() {
         

@@ -1,3 +1,5 @@
+<!--completed-->
+
 <%= form_for([@club, @invitation]) do |f| %>
   
   <%= render 'shared/error_messages', object: f.object %>
@@ -14,12 +16,13 @@
   <div class="row">
     
     <div class="col-md-3">
+      
       <%= f.submit "Send Invitation",
-                    class: "btn btn-new-invitation" %>
+                    class: "btn btn-add-content" %>
 
       <%= link_to "Cancel",
                   club_path(@club), 
-                  class: "btn btn-new-invitation-cancel" %>
+                  class: "btn btn-add-content-cancel" %>
     </div>
     
     <div class="col-md-9">

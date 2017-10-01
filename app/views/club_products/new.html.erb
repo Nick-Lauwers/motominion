@@ -1,0 +1,44 @@
+<% provide(:title, "Club Merchandise") %>
+
+<header class="header-normal">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<div class="post-autopart">
+  <div class="post-autopart-content">
+    
+    <div class="instructions">
+      <div class="instructions-content">
+        <div class="row instructions-content-align">
+          
+          <div class="col-md-2 instructions-icon">
+            <i class="fa fa-rocket fa-5x hidden-xs" aria-hidden="true"></i>
+          </div>
+          
+          <div class="col-md-7">
+            
+            <h2 class="instructions-title">Accelerate Your Sale</h2>
+            
+            <p class="instructions-info">
+              Now you need to complete your listing. Our guide will make sure 
+              that you attract the most promising customers as quickly as 
+              possible.
+            </p>
+          </div>
+          
+          <div class="col-md-3">
+            <!--intentionally left empty-->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <%= render 'form' %>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+<!--completed-->
+
 <!--revise title-->
 
 <% provide(:title, "Community Center") %>
@@ -25,6 +27,7 @@
       
       <div class="col-md-4">
         <div class="row">
+          
           <div class="col-md-10 forum-offerings-detail">
             <%= link_to new_discussion_path(club_id: nil) do %>
               
@@ -44,11 +47,16 @@
               </p>
             <% end %>
           </div>
+          
+          <div class="col-md-2">
+            <!--intentionally left empty-->
+          </div>
         </div>
       </div>
       
       <div class="col-md-4">
         <div class="row">
+          
           <div class="col-md-10 col-md-offset-1 forum-offerings-detail middle">
             <%= link_to clubs_path do %>
                     
@@ -67,6 +75,10 @@
                 your group.
               </p>
             <% end %>
+          </div>
+          
+          <div class="col-md-1">
+            <!--intentionally left empty-->
           </div>
         </div>
       </div>

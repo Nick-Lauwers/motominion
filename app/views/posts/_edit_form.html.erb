@@ -4,7 +4,7 @@
     
     <div class="col-md-8">
       
-      <h1 class="edit-post-title">Update Post</h1>
+      <h1 class="add-content-title">Update Post</h1>
 
       <%= render 'shared/error_messages', object: f.object %>
       
@@ -21,17 +21,8 @@
         </div>
         
         <div class="col-md-6">
-            
-          <div class="upload-post-photo-button hidden-xs">
-        
-            <div class="upload-button-content">
-              Upload Photo
-            </div>
-            
-            <%= f.file_field :photo, class: "upload-hidden" %>
-          </div>
           
-          <div class="upload-button visible-xs">
+          <div class="upload-button-clubs">
         
             <div class="upload-button-content">
               Upload Photo
@@ -57,9 +48,9 @@
           <!--                   class: "form-control form-control-primary" %>-->
           <!--</div>-->
           
-          <div class="post-submit-desktop hidden-xs">
-            <%= f.submit "Post", class: "btn btn-edit-post" %>
-            <%= link_to "Cancel", @post, class: "btn btn-new-post-cancel" %>
+          <div class="hidden-xs">
+            <%= f.submit "Update", class: "btn btn-add-content" %>
+            <%= link_to "Cancel", @post, class: "btn btn-add-content-cancel" %>
           </div>
         </div>
       </div>
@@ -135,9 +126,9 @@
     </div>
   </div>
   
-  <div class="post-submit-mobile visible-xs">
-    <%= f.submit "Update", class: "btn btn-edit-post" %>
-    <%= link_to "Cancel", @post, class: "btn btn-new-post-cancel" %>
+  <div class="visible-xs">
+    <%= f.submit "Update", class: "btn btn-add-content" %>
+    <%= link_to "Cancel", @post, class: "btn btn-add-content-cancel" %>
   </div>
 <% end %>
   

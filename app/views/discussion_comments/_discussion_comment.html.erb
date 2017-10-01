@@ -33,7 +33,10 @@
           <div class="discussion-comment-edit">
                 
             <%= link_to "Edit", 
-                        edit_discussion_discussion_comment_path(discussion_comment.discussion, discussion_comment) %>
+                        edit_discussion_discussion_comment_path(
+                          discussion_comment.discussion, 
+                          discussion_comment
+                        ) %>
           
             <%= link_to "Delete", 
                         [discussion_comment.discussion, discussion_comment], 
@@ -45,5 +48,5 @@
     </div>
   </div>
   
-  <p class="post-comment-info"><%= discussion_comment.comment %></p>
+  <p class="discussion-comment-info"><%= discussion_comment.comment %></p>
 </li>

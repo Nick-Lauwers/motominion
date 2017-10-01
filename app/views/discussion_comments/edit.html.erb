@@ -8,12 +8,14 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<div class="edit-response">
+<div class="add-content">
   
   <ol class="social-nav">
     
     <li class="hidden-xs">
-      <%= link_to "Community Center", discussions_path, class: "social-nav-link" %>
+      <%= link_to "Community Center", 
+                  discussions_path, 
+                  class: "social-nav-link" %>
     </li>
     
     <% if !@discussion.club_id.nil? %>
@@ -31,7 +33,8 @@
         <i class="fa fa-angle-right social-nav-separator" 
            aria-hidden="true"></i>
            
-        <%= link_to Club.find(@discussion.club_id), class: "social-nav-link" do %>
+        <%= link_to Club.find(@discussion.club_id), 
+                    class: "social-nav-link" do %>
           <%= Club.find(@discussion.club_id).name %>
         <% end %>
       </li>
@@ -57,7 +60,7 @@
     </li>
   </ol>
   
-  <h1 class="edit-response-title">Update Comment</h1>
+  <h1 class="add-content-title">Update Comment</h1>
   
   <%= form_for([@discussion, @discussion_comment]) do |f| %>
   
@@ -75,11 +78,12 @@
     <div class="row">
       
       <div class="col-md-4">
-        <%= f.submit "Update", class: "btn btn-new-post" %>
+        
+        <%= f.submit "Update", class: "btn btn-add-content" %>
         
         <%= link_to "Cancel", 
                     @discussion, 
-                    class: "btn btn-edit-discussion-cancel" %>
+                    class: "btn btn-add-content-cancel" %>
       </div>
       
       <div class="col-md-8">

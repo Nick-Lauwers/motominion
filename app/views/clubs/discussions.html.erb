@@ -96,6 +96,10 @@
             <li class="nav-active">
               <%= link_to "Discussions", discussions_club_path %>
             </li>
+            
+            <li>
+              <!--<(perc)= link_to "Merchandise", club_club_products_path(@club) %>-->
+            </li>
           </ul>
         </nav>
       </div>
@@ -131,15 +135,17 @@
     <li class="dropdown-active">
       <%= link_to "Discussions", discussions_club_path %>
     </li>
+    
+    <!--<li><(perc)= link_to "Merchandise", club_club_products_path(@club) %></li>-->
   </ul>
 </nav>
 
 <div class="club-profile-discussions">
   <div class="row">
     
-    <div class="col-md-8 club-profile-discussions-list">
+    <div class="col-md-7 club-profile-discussions-list">
       
-      <% if @club.posts.exists? %>
+      <% if @club.discussions.exists? %>
         <ol class="club-profile-discussions-list-content">
           <%= render partial:    'discussions/discussion',
                      collection: @club.discussions %>
@@ -152,8 +158,12 @@
       <% end %>
     </div>
     
-    <div id="club-map-container" class="col-md-4">
-      <div id="club-map" class="hidden-xs"></div>
+    <div class="col-md-1">
+      <!--intentionally left empty-->
+    </div>
+    
+    <div id="club-map-container" class="col-md-4 hidden-xs">
+      <div id="club-map-discussions"></div>
     </div>
   </div>
 </div>
@@ -187,7 +197,7 @@
         },
         
         internal: {
-          id: 'club-map'
+          id: 'club-map-discussions'
         }
       }, function() {
         

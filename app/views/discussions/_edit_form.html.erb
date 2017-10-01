@@ -1,10 +1,12 @@
+<!--completed-->
+
 <%= form_for(@discussion) do |f| %>
 
   <div class="row">
     
     <div class="col-md-8">
       
-      <h1 class="edit-discussion-title">Update Discussion</h1>
+      <h1 class="add-content-title">Update Discussion</h1>
   
       <%= render 'shared/error_messages', object: f.object %>
   
@@ -26,11 +28,11 @@
     
         <div class="col-md-6">
           
-          <%= f.submit "Update", class: "btn btn-edit-discussion" %>
+          <%= f.submit "Update", class: "btn btn-add-content" %>
           
           <%= link_to "Cancel", 
                       @discussion, 
-                      class: "btn btn-edit-discussion-cancel" %>
+                      class: "btn btn-add-content-cancel" %>
         </div>
         
         <div class="col-md-6">
@@ -111,10 +113,10 @@
   
   <div class="discussion-submit-mobile visible-xs">
     
-    <%= f.submit "Update", class: "btn btn-edit-discussion" %>
+    <%= f.submit "Update", class: "btn btn-add-content" %>
           
     <%= link_to "Cancel", 
                 @discussion, 
-                class: "btn btn-edit-discussion-cancel" %>
+                class: "btn btn-add-content-cancel" %>
   </div>
 <% end %>

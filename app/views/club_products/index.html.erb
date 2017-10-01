@@ -1,0 +1,213 @@
+<% provide(:title, @club.name) %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="club-profile-hero">
+  <div class="club-profile-hero-content">
+    <div class="row">
+      
+      <div class="col-md-8 col-md-push-4">
+        <div class="club-profile-hero-photo" 
+             style="background-image: url('<%= @club.cover_photo.url() %>')">
+          <div class="club-profile-hero-caption-container visible-xs">
+            <span class="club-profile-hero-caption">
+              <%= @club.city %>, <%= @club.state %>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4 col-md-pull-8">
+        <div class="club-profile-hero-text">
+        
+          <ol class="club-profile-hero-nav">
+            
+            <li><%= link_to "Community Center", discussions_path %></li>
+            
+            <li>
+              
+              <i class="fa fa-angle-right club-profile-hero-nav-separator"
+                 aria-hidden="true"></i>
+                 
+              <%= link_to "Car Clubs", clubs_path %>
+            </li>
+          </ol>
+          
+          <h1 class="club-profile-hero-title"><%= @club.name %></h1>
+          
+          <p class="club-profile-hero-info"><%= @club.description %></p>
+          
+          <span class="club-profile-hero-expand">+ More</span>
+          
+          <% if logged_in? && 
+                current_user.
+                  memberships.
+                  where(club_id: @club.id, admin: true).
+                  exists? %>
+                  
+            <!--<= link_to "Update", edit_club_path %>-->
+            
+            <!--<(perc)= link_to "Add A Product", new_club_club_product_path(@club) %>-->
+            
+            <%= link_to new_club_invitation_path(@club),
+                        class: "btn btn-club-invitation" do %>
+              
+              <i class="fa fa-paper-plane club-invitation-icon" 
+                 aria-hidden="true"></i>
+              
+              Send Invitations
+            <% end %>
+            
+          <% elsif logged_in? && 
+                   Invitation.where(email: current_user.email).exists? &&
+                   !current_user.
+                     memberships.
+                     where(club_id: @club.id).
+                     exists? %>
+          
+            <%= link_to join_club_path(@club), 
+                        method: :put,
+                        class: "btn btn-club-join" do %>
+              
+              <i class="fa fa-user-plus club-join-icon" 
+                 aria-hidden="true"></i>
+              
+              Join Club
+            <% end %>          
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="club-profile-navbar hidden-xs">
+  <div class="club-profile-navbar-content">
+    <div class="row">
+    
+      <div class="col-md-8">
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+            
+            <li><%= link_to "Posts", posts_club_path(@club) %></li>
+            
+            <li><%= link_to "Discussions", discussions_club_path(@club) %></li>
+            
+            <li class="nav-active">
+              <%= link_to "Merchandise", club_club_products_path %>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="club-profile-navbar-button">
+        
+          <div class="navbar-location-container">
+            <p class="navbar-location-visible">
+              <%= @club.city %>, <%= @club.state %>
+            </p>
+          </div>
+          
+          <div class="btn-navbar-share-hidden">
+            <%= @club.city %>, <%= @club.state %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="dropdown dropdown-backend visible-xs">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Merchandise <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    
+    <li><%= link_to "Posts", posts_club_path(@club) %></li>
+    
+    <li><%= link_to "Discussions", discussions_club_path(@club) %></li>
+    
+    <li class="dropdown-active">
+      <%= link_to "Merchandise", club_club_products_path %>
+    </li>
+  </ul>
+</nav>
+
+<div class="club-profile-posts">
+  <div class="row">
+    
+    <div class="col-md-8 club-profile-posts-list">
+      
+      <% if @club.club_products.exists? %>
+        <ol class="club-profile-posts-list-content">
+          <%= render @club.club_products, as: :club_product %>
+        </ol>
+        
+      <% else %>
+        <p class="empty-list-info">
+          No merchandise listed yet
+        </p>
+      <% end %>
+      
+      <%= link_to "List Merchandise", new_club_club_product_path %>
+    </div>
+    
+    <div id="club-map-container" class="col-md-4 hidden-xs">
+      <div id="club-map-merchandise"></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // map
+    
+      handler = Gmaps.build('Google');
+      
+      handler.buildMap({ 
+        
+        provider: {
+          
+          maxZoom:        15,
+          scrollwheel:    false,
+          mapTypeControl: false,
+
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.TOP_LEFT
+          },
+          
+          streetViewControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+          }, 
+        },
+        
+        internal: {
+          id: 'club-map-merchandise'
+        }
+      }, function() {
+        
+        markers = handler.addCircles( [{
+                    lat: <%= @club.latitude %>, 
+                    lng: <%= @club.longitude %>, 
+                    radius: 700
+                  }], { 
+                    strokeColor: '#38b2a6',
+                    fillColor: '#38b2a6',
+                    strokeWeight: 2 
+                  });
+        
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+  });
+</script>

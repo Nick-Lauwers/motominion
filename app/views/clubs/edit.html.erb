@@ -1,4 +1,6 @@
-<% provide(:title, "Edit Club Info") %>
+<!--complete-->
+
+<% provide(:title, "Update Club") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -8,12 +10,14 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<div class="edit-club">
+<div class="add-content">
   
   <ol class="social-nav">
     
     <li class="hidden-xs">
-      <%= link_to "Community Center", discussions_path, class: "social-nav-link" %>
+      <%= link_to "Community Center", 
+                  discussions_path, 
+                  class: "social-nav-link" %>
     </li>
     
     <li class="hidden-xs">
@@ -32,9 +36,9 @@
       <i class="fa fa-angle-right social-nav-separator hidden-xs" 
          aria-hidden="true"></i>
          
-      <%= link_to @club, class: "social-nav-link" do %>
-        <%= @club.name %>
-      <% end %>
+      <%= link_to @club.name, 
+                  posts_club_path(@club), 
+                  class: "social-nav-link" %>
     </li>
     
     <li class="hidden-xs">
@@ -46,7 +50,7 @@
     </li>
   </ol>
   
-  <h1 class="edit-club-title">Edit Club Info</h1>
+  <h1 class="add-content-title">Update Club</h1>
   
   <%= render 'form' %>
 </div>

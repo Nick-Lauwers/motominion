@@ -1,3 +1,5 @@
+<!--completed-->
+
 <% provide(:title, params[:discussion]) %>
 
 <header class="header-static-gray">
@@ -50,9 +52,7 @@
   
   <% if @discussions.any? %>
     <ol class="forum-search-list">
-      <%= render partial:    "forum_search_item", 
-                 collection: @discussions,
-                 as:         :discussion %>
+      <%= render @discussions %>
     </ol>
     
   <% else %>

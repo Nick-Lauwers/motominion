@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170918191024) do
+ActiveRecord::Schema.define(version: 20170926114233) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -84,6 +84,30 @@ ActiveRecord::Schema.define(version: 20170918191024) do
   end
 
   add_index "availabilities", ["vehicle_id"], name: "index_availabilities_on_vehicle_id"
+
+  create_table "club_product_photos", force: :cascade do |t|
+    t.integer  "club_product_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "club_product_photos", ["club_product_id"], name: "index_club_product_photos_on_club_product_id"
+
+  create_table "club_products", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.text     "description"
+    t.text     "shipping_info"
+    t.integer  "club_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "club_products", ["club_id"], name: "index_club_products_on_club_id"
 
   create_table "clubs", force: :cascade do |t|
     t.string   "name"

@@ -32,7 +32,7 @@
   
   <ul class="dropdown-menu">
     <li><%= link_to "Dashboard",   dashboard_path %></li>
-    <li><%= link_to "Inbox",       conversations_path, class: "dropdown-active" %></li>
+    <li class="dropdown-active"><%= link_to "Inbox", conversations_path %></li>
     <li><%= link_to "Your Garage", vehicles_path %></li>
     <li><%= link_to "Showroom",    test_drives_path %></li>
     <li><%= link_to "Profile",     edit_user_path(current_user) %></li>

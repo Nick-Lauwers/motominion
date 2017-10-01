@@ -1,9 +1,14 @@
 class ClubsController < ApplicationController
   
-  before_action :logged_in_user, except: [:index, :posts, :discussions, 
-                                          :autocomplete]
-  before_action :get_club,       only:   [:edit, :update, :posts, :discussions, 
-                                          :join]
+  # validate that invited user has not already been invited
+  
+  before_action :logged_in_user,     except: [:index, :posts, :discussions, 
+                                              :autocomplete]
+  before_action :get_club,           only:   [:edit, :update, :posts, 
+                                              :discussions, :join]
+  before_action :profile_pic_upload, only:   [:new]
+  before_action :club_admin,         only:   [:edit]
+  before_action :invited_user,       only:   [:join]
   
   def new
     @club = Club.new
@@ -101,5 +106,13 @@ class ClubsController < ApplicationController
     # Identifies club id.
     def get_club
       @club = Club.find(params[:id])
+    end
+    
+    # Confirms an invited user.
+    def invited_user
+      unless Invitation.where(email: current_user.email).exists?
+        flash[:failure] = "Access restricted."
+        redirect_to_back_or_default
+      end
     end
 end

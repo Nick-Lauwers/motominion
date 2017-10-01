@@ -109,10 +109,10 @@ $(function() {
           var divHeight = $(theID).height();
           
           if (windowPos >= divPos && windowPos < (divPos + divHeight)) {
-            $("a[href='" + theID + "']").addClass("nav-active");
+            $("a[href='" + theID + "']").parent().addClass("nav-active");
           } 
           else {
-            $("a[href='" + theID + "']").removeClass("nav-active");
+            $("a[href='" + theID + "']").parent().removeClass("nav-active");
           }
         }
       });
@@ -141,6 +141,16 @@ $(function() {
       
       modalAppointmentHeaderClose.click(function() {
         modalAppointment.modal('hide');
+      });
+      
+      var appointmentTimeModal = $('#appointment-time-modal');
+      
+      $(function () {
+        appointmentTimeModal.datetimepicker({
+          format:            'YYYY-MM-DD LT',
+          minDate:           Date(),
+          widgetPositioning: { horizontal: 'auto', vertical: 'bottom' }
+        });
       });
   
   // modal

@@ -1,6 +1,7 @@
 class DiscussionCommentsController < ApplicationController
   
-  before_action :logged_in_user, only: [:create, :edit, :update, :destroy]
+  before_action :logged_in_user
+  before_action :profile_pic_upload, only: [:create]
 
   def create
     @discussion = Discussion.find(params[:discussion_id])

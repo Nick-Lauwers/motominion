@@ -2,11 +2,12 @@ class Club < ActiveRecord::Base
   
   searchkick word_start: [:city]
   
-  has_many :memberships, dependent: :destroy
-  has_many :invitations, dependent: :destroy
-  has_many :posts,       dependent: :destroy
-  has_many :discussions, dependent: :destroy
-  has_many :users,       through:   :memberships
+  has_many :memberships,   dependent: :destroy
+  has_many :invitations,   dependent: :destroy
+  has_many :posts,         dependent: :destroy
+  has_many :discussions,   dependent: :destroy
+  has_many :club_products, dependent: :destroy
+  has_many :users,         through:   :memberships
   
   validates :name, :description, :city, :state, presence: true
   

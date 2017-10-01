@@ -1,4 +1,6 @@
-<% provide(:title, "New Club") %>
+<!--complete-->
+
+<% provide(:title, "Add A Club") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -8,12 +10,14 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<div class="new-club">
+<div class="add-content">
   
   <ol class="social-nav">
     
     <li class="hidden-xs">
-      <%= link_to "Community Center", discussions_path, class: "social-nav-link" %>
+      <%= link_to "Community Center", 
+                  discussions_path, 
+                  class: "social-nav-link" %>
     </li>
     
     <li>
@@ -36,7 +40,7 @@
     </li>
   </ol>
   
-  <h1 class="new-club-title">Create A Club</h1>
+  <h1 class="add-content-title">Add A Club</h1>
   
   <%= render 'form' %>
 </div>

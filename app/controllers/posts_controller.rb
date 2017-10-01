@@ -23,8 +23,9 @@ class PostsController < ApplicationController
       flash[:success] = "Post submitted"
       redirect_to @post
     else
-      redirect_to new_post_path(club_id: @post.club_id)
-      # redirect_to :back
+      # check this one
+      # redirect_to new_post_path(club_id: @post.club_id)
+      redirect_to :back
       flash[:failure] = "Be sure to include a photo and a caption."
     end
   end

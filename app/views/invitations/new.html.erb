@@ -1,3 +1,5 @@
+<!--completed-->
+
 <% provide(:title, "New Invitation") %>
 
 <header class="header-static-gray">
@@ -8,7 +10,7 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<div class="new-invitation">
+<div class="add-content">
   
   <ol class="social-nav">
     
@@ -32,9 +34,9 @@
       <i class="fa fa-angle-right social-nav-separator hidden-xs" 
          aria-hidden="true"></i>
          
-      <%= link_to @club, class: "social-nav-link" do %>
-        <%= @club.name %>
-      <% end %>
+      <%= link_to @club.name, 
+                  posts_club_path(@club), 
+                  class: "social-nav-link" %>
     </li>
     
     <li class="hidden-xs">
@@ -46,7 +48,7 @@
     </li>
   </ol>
   
-  <h1 class="new-invitation-title">Invite Your Friends</h1>
+  <h1 class="add-content-title">Invite Your Friends</h1>
   
   <%= render 'form' %>
 </div>

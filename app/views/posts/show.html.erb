@@ -1,9 +1,11 @@
-<% provide(:title, @post.content) %>
+<!--complete-->
 
-<div class="post-mobile visible-xs">
-  <%= render 'post_mobile' %>
-</div>
+<% provide(:title, @post.content) %>
 
 <div class="post-desktop hidden-xs">
   <%= render 'post_desktop' %>
+</div>
+
+<div class="post-mobile visible-xs">
+  <%= render 'post_mobile' %>
 </div>

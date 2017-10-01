@@ -26,7 +26,7 @@ class InvitationsController < ApplicationController
       end
     end
     
-    redirect_to @club
+    redirect_to posts_club_path(@club)
   end
   
   private
@@ -40,16 +40,5 @@ class InvitationsController < ApplicationController
     # Identifies club id.
     def get_club
       @club = Club.find(params[:club_id])
-    end
-    
-    # Confirms that current user is club admin.
-    def club_admin
-      unless current_user.
-               memberships.
-               where(club_id: params[:club_id], admin: true).
-               exists?
-        flash[:failure] = "Access restricted."
-        redirect_to_back_or_default
-      end
     end
 end

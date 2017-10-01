@@ -31,7 +31,12 @@ class DiscussionsController < ApplicationController
                                 # .
                                 # paginate(page: params[:page], per_page: 2)
                         
-    @top_contributors = User.joins(:discussions).group('users.id').order('sum(discussions.cached_votes_up) desc')\
+    @top_contributors = User.
+                          joins(:discussions).
+                          group('users.id').
+                          order('sum(discussions.cached_votes_up) desc', 
+                                created_at: :asc).
+                          limit(5)
     
     # respond_to do |format|
     #   format.html # index.html.erb
@@ -117,12 +122,15 @@ class DiscussionsController < ApplicationController
   
   private
   
-    def get_discussion
-      @discussion = Discussion.find(params[:id])
-    end
-  
     def discussion_params
       params.require(:discussion).permit(:title, :content, :vehicle_make_id, 
                                          :vehicle_model_id, :club_id)
+    end
+  
+    # Before filters
+    
+    # Identifies discussion id.
+    def get_discussion
+      @discussion = Discussion.find(params[:id])
     end
 end

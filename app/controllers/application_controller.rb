@@ -37,6 +37,17 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    # Confirms that current user is club admin.
+    def club_admin
+      unless current_user.
+               memberships.
+               where(club_id: @club.id, admin: true).
+               exists?
+        flash[:failure] = "Access restricted."
+        redirect_to_back_or_default
+      end
+    end
+    
     # Updates user if online.
     def user_activity
       current_user.try :touch
