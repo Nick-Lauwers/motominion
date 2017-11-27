@@ -1,0 +1,54 @@
+<% provide(:title, 'Dealer Signup') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-form-background">
+  
+  <div class="dealer-form">
+    
+    <div class="col-md-5 dealer-form-content">
+      
+      <div class="dealer-form-detail">
+        
+        <h1 class="dealer-form-title">Send Invitations</h1>
+        
+        <h2 class="dealer-form-subtitle">
+          Send invitations to your colleagues.
+        </h2>
+        
+        <p class="dealer-form-info">
+          Enter the email addresses of colleagues needing access to your 
+          dealership's account.
+        </p>
+        
+        <%= form_for([@dealership, @dealer_invitation]) do |f| %>
+    
+          <%= render 'shared/error_messages', object: f.object %>
+          
+          
+          <%= f.text_area :email, 
+                          rows: 3,
+                          placeholder: "Email Address",
+                          class: "form-control 
+                                  form-control-primary 
+                                  signup-form-control" %>
+          
+          <%= f.submit "Send Invitation",
+                        class: "btn btn-tertiary" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="col-md-7">
+      <!--intentionally left empty-->
+    </div>
+  </div>
+
+  <div class="dealer-form-photo"></div>
+</div>

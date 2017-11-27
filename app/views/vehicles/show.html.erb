@@ -47,28 +47,72 @@
             <p class="navbar-price-visible">$<%= @vehicle.price %></p>
           </div>
           
-          <!--<(perc)= link_to "Chat with <(perc)= @vehicle.user.name %>", -->
-          <!--            "#", -->
-          <!--            class: "btn-navbar-contact-hidden",-->
-          <!--            "data-sid" => current_user.id, -->
-          <!--            "data-rip" => user.id %>-->
+          <% if @vehicle.user.dealership_id.present? %>
           
-          <%= form_for @conversation, 
-                       url: conversations_path(@conversation), 
-                       method: :post do |f| %>
-                       
-            <%= f.hidden_field :sender_id,          value: current_user.id if 
-                                                           current_user %>
-            
-            <%= f.hidden_field :recipient_id,       value: @user.id %>
-            
-            <%= f.hidden_field :sender_archived,    value: false %>
+            <% if current_user && 
+                  @vehicle.purchases.where(email: current_user.email).exists? %>
+              <%= link_to basics_purchase_path(@vehicle.purchases.first), 
+                          class: "btn-navbar-contact-hidden" do %>
+                          
+                <i class="fa fa-shopping-cart listing-navbar-icon" 
+                   aria-hidden="true"></i>
+                
+                Buy Now
+              <% end %>
 
-            <%= f.hidden_field :recipient_archived, value: false %>
-            
-            <%= f.submit "Chat with " + @user.name, 
-                         class: "btn-navbar-contact-hidden" %>
+            <% else %>
+              <%= link_to new_purchase_path(vehicle_id: @vehicle.id), 
+                          class: "btn-navbar-contact-hidden" do %>
+                          
+                <i class="fa fa-shopping-cart listing-navbar-icon" 
+                   aria-hidden="true"></i>
+                
+                Buy Now
+              <% end %>
+            <% end %>
+          
+          <% else %>
+            <div class="btn-navbar-share-hidden">
+              $<%= @vehicle.price %>
+            </div>
           <% end %>
+          
+          <!--<div class="single-action">-->
+          <!--  <= form_for @conversation, -->
+          <!--               url: conversations_path(@conversation), -->
+          <!--               method: :post do |f| %>-->
+                     
+          <!--    <= f.hidden_field :sender_id,          value: current_user.id if -->
+          <!--                                                   current_user %>-->
+              
+          <!--    <= f.hidden_field :recipient_id,       value: @user.id %>-->
+              
+          <!--    <= f.hidden_field :sender_archived,    value: false %>-->
+            
+          <!--    <= f.hidden_field :recipient_archived, value: false %>-->
+              
+          <!--    <= button_tag(class: "hidden-xs") do %>-->
+          <!--      <i class='fa fa-comments-o single-action-icon'></i>-->
+          <!--    < end %>-->
+          <!--  < end %>-->
+          <!--</div>-->
+          
+          <!--<(perc)= form_for @conversation, -->
+          <!--             url: conversations_path(@conversation), -->
+          <!--             method: :post do |f| %>-->
+                       
+          <!--  <(perc)= f.hidden_field :sender_id,          value: current_user.id if -->
+          <!--                                                 current_user %>-->
+            
+          <!--  <(perc)= f.hidden_field :recipient_id,       value: @user.id %>-->
+            
+          <!--  <(perc)= f.hidden_field :sender_archived,    value: false %>-->
+
+          <!--  <(perc)= f.hidden_field :recipient_archived, value: false %>-->
+            
+          <!--  <(perc)= f.submit "Chat with " + @user.first_name, -->
+          <!--               class: "btn-navbar-contact-hidden" %>-->
+          <!--<(perc) end %>-->
         </div>
       </div>
     </div>
@@ -110,7 +154,7 @@
                   <%= @vehicle.listing_name %>
                 </h1>
                 
-                <%= link_to @vehicle.user.name, 
+                <%= link_to @vehicle.user.full_name, 
                             @vehicle.user,
                             class: "vehicle-overview-subheading" %>
                 
@@ -137,7 +181,7 @@
           <!--<(perc) end %>-->
           
           <p class="vehicle-overview-description"><%= @vehicle.summary %></p>
-          
+
           <!--<div class="vehicle-overview-products">-->
               
           <!--  <span class="products-title">Add to Wish List</span>-->
@@ -179,7 +223,7 @@
           <span class="vehicle-reviews-title">Need Some Advice?</span>
           
           <p class="vehicle-reviews-info">
-            Read <%= @vehicle.user.name %>'s reviews!
+            Read <%= @vehicle.user.first_name %>'s reviews!
           </p>
           
           <%= link_to user_path(@vehicle.user, anchor: "profile-reviews"), 
@@ -640,37 +684,74 @@
   </div>
 </div>
 
+<!--<= link_to new_club_path, class: "single-action hidden-xs" do %>-->
+<!--  <i class='fa fa-group fa-lg single-action-icon'></i>-->
+<!--< end %>-->
+<div class="single-action">
+  <%= form_for @conversation, 
+               url: conversations_path(@conversation), 
+               method: :post do |f| %>
+           
+    <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                   current_user %>
+    
+    <%= f.hidden_field :recipient_id,       value: @user.id %>
+    
+    <%= f.hidden_field :sender_archived,    value: false %>
+  
+    <%= f.hidden_field :recipient_archived, value: false %>
+    
+    <%= button_tag(class: "hidden-xs") do %>
+      <i class='fa fa-comments-o single-action-icon'></i>
+    <% end %>
+  <% end %>
+</div>
+
 <div class='multi-action visible-xs'>
   
   <button class='action-button'><i class='fa fa-plus fa-lg'></i></button>
   
   <ul class='actions'>
     
-    <li><a><i class='fa fa-credit-card'></i></a></li>
+    <li>
+      <%= link_to new_purchase_path(vehicle_id: @vehicle.id) do %>
+        <i class='fa fa-credit-card'></i>
+      <% end %> 
+    </li>
     
-    <li class="btn-appointment-mobile"><a><i class='fa fa-calendar-check-o'></i></a></li>
+    <li class="btn-appointment-mobile">
+      <a>
+        <i class='fa fa-calendar-check-o'></i>
+      </a>
+    </li>
     
-    <li><a>
-      <%= form_for @conversation, 
-                   url: conversations_path(@conversation), 
-                   method: :post do |f| %>
-               
-        <%= f.hidden_field :sender_id,          value: current_user.id if 
-                                                       current_user %>
-        
-        <%= f.hidden_field :recipient_id,       value: @user.id %>
-        
-        <%= f.hidden_field :sender_archived,    value: false %>
-    
-        <%= f.hidden_field :recipient_archived, value: false %>
-        
-        <%= button_tag(class: "btn-message-mobile") do %>
-          <i class='fa fa-comments-o'></i>
+    <li>
+      <a>
+        <%= form_for @conversation, 
+                     url: conversations_path(@conversation), 
+                     method: :post do |f| %>
+                 
+          <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                         current_user %>
+          
+          <%= f.hidden_field :recipient_id,       value: @user.id %>
+          
+          <%= f.hidden_field :sender_archived,    value: false %>
+      
+          <%= f.hidden_field :recipient_archived, value: false %>
+          
+          <%= button_tag(class: "btn-message-mobile") do %>
+            <i class='fa fa-comments-o'></i>
+          <% end %>
         <% end %>
-      <% end %>
-    </a></li>
+      </a>
+    </li>
   </ul>
 </div>
+
+<!--<(perc)= link_to new_club_path, class: "single-action" do %>-->
+<!--  <i class='fa fa-group fa-lg single-action-icon'></i>-->
+<!--<(perc) end %>-->
 
 <!--<div class="message-button visible-xs">-->
 <!--  <(perc)= form_for @conversation, -->

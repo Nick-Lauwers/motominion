@@ -1,0 +1,66 @@
+<!--complete-->
+
+<li id="customer-item-<%= order.id %>" class="row customer-item">
+  <%= link_to order_received_purchase_path(order) do %>
+
+    <div class="col-md-4">
+      <div class="row vertical-align">
+        
+        <div class="col-xs-2 avatar-and-online">
+          
+          <div class="customer-avatar avatar-general", 
+               style="background-image: url(
+                       '<%= order.buyer.avatar.url(:thumb) %>')">
+          </div>
+        
+          <% if order.buyer.online? %>
+            <div class="online online-md-primary hidden-xs"></div>
+          <% end %>
+        </div>
+        
+        <div class="col-xs-10">
+          
+          <span class="customer-name"><%= order.buyer.full_name %></span>
+                
+          <span class="customer-listing">
+            <%= order.vehicle.listing_name %>
+          </span>
+        </div>
+      </div>  
+    </div>
+    
+    <div class="col-md-4">
+      <div class="row">
+        
+        <div class="col-xs-2 hidden-md">
+          <!--intentionally left empty-->
+        </div>
+        
+        <div class="col-xs-10">
+          <!--<p class="customer-address"><= order.vehicle.address %></p>-->
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 customer-contact-container">
+      <div class="row">
+        
+        <div class="col-xs-2 hidden-md">
+          <!--intentionally left empty-->
+        </div>
+        
+        <div class="col-xs-10">
+          
+          <span class="contact-date">
+            Placed <%= time_ago_in_words(order.processed_at).titleize %> Ago
+            (<%= order.processed_at.strftime("%D") %>)
+          </span>
+          
+          <!--<span class="contact-status <= customer.status %>">-->
+            <!--<= customer.status.capitalize %>-->
+          <!--</span>-->
+        </div>
+      </div>
+    </div>
+  <% end %>
+</li>

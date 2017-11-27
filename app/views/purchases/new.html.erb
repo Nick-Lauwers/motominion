@@ -1,0 +1,127 @@
+<!--completed-->
+
+<% provide(:title, "New Purchase") %>
+
+<header class="header-normal">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="purchase">
+  <div class="purchase-content">
+    
+    <div class="purchase-hero", 
+         style="background-image: url('<%= @vehicle.photos[0].image.url() if 
+                                           @vehicle.photos.length > 0 %>')">
+      <div class="purchase-hero-price-container">
+        <span class="purchase-hero-price">
+          $<%= @vehicle.price %>
+        </span>
+      </div>
+      
+      <div class="purchase-hero-title hidden-xs">
+        <div class="row vertical-align">
+        
+          <div class="col-md-2 avatar-and-online">
+            
+            <%= link_to user_path(@vehicle.user) do %>
+              <div class="purchase-hero-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= @vehicle.user.avatar.url(:thumb) %>')">
+              </div>
+            <% end %>
+
+            <% if @vehicle.user.online? %>
+              <div class="online online-lg-primary"></div>
+            <% end %>
+          </div>
+          
+          <div class="col-md-10">
+            
+            <%= link_to @vehicle.listing_name, 
+                        @vehicle,
+                        class: "purchase-hero-heading" %>
+            
+            <%= link_to @vehicle.user.full_name, 
+                        @vehicle.user,
+                        class: "purchase-hero-subheading" %>
+            
+            <span> · </span>
+                        
+            <span class="average-rating"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="dropdown dropdown-backend visible-xs">
+  
+      <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+        Basics <b class="caret"></b>
+      </a>
+      
+      <ul class="dropdown-menu">
+        
+        <li class="dropdown-active">
+          <%= link_to "Basics", new_purchase_path %>
+        </li>
+        
+        <li><%= link_to "Details",    '#' %></li>
+        
+        <li><%= link_to "Billing",    '#' %></li>
+        
+        <li><%= link_to "Employment", '#' %></li>
+        
+        <li><%= link_to "Financial",  '#' %></li>
+      </ul>
+    </nav>
+    
+    <div class="purchase-form">
+      <div class="row">
+        
+        <div class="col-md-3">
+          <ul class="vehicle-make-nav hidden-xs">
+            
+            <li class="vehicle-make-nav-active">
+              <%= link_to "Basics", new_purchase_path %>
+            </li>
+            
+            <!--<li class="<= 'vehicle-make-nav-active' if current_page?(upgrades_purchase_path) %>">-->
+            <!--  <(perc)= link_to "Upgrades", upgrades_purchase_path %>-->
+            <!--</li>-->
+            
+            <li><%= link_to "Details",    '#' %></li>
+            
+            <li><%= link_to "Billing",    '#' %></li>
+            
+            <li><%= link_to "Employment", '#' %></li>
+            
+            <li><%= link_to "Financial",  '#' %></li>
+          </ul>
+        </div>
+        
+        <div class="col-md-8 col-md-offset-1">
+          <%= render 'form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // rating
+    
+      var averageRating = $('.average-rating');
+      
+      averageRating.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= @vehicle.average_rating %>
+      });
+  });
+</script>

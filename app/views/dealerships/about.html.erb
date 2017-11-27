@@ -1,0 +1,53 @@
+<% provide(:title, 'Dealer Signup') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-form-background">
+  
+  <div class="dealer-form">
+    
+    <div class="col-md-5 dealer-form-content">
+      
+      <div class="dealer-form-detail">
+        
+        <h1 class="dealer-form-title">Introductions</h1>
+        
+        <h2 class="dealer-form-subtitle">
+          Mototrova is built on relationships. Introduce yourself to 
+          consumers.
+        </h2>
+        
+        <p class="dealer-form-info">
+          Enter a brief overview of your dealership.
+        </p>
+        
+        <%= form_for @dealership do |f| %> 
+        
+          <%= f.text_area :description,
+                          rows: 3,
+                          placeholder: "E.g. Fontanet Chrysler prides itself on the highest quality sales and servicing experience.",
+                          class: 'form-control 
+                                  form-control-primary
+                                  signup-form-control',
+                          required: true %>
+
+          <%= hidden_field_tag :redirect_location, contact_dealership_path %>
+  
+          <%= f.submit "Save", class: "btn btn-tertiary" %>
+        <% end %>
+      </div>
+    </div>
+  
+    <div class="col-md-7">
+      <!--intentionally left empty-->
+    </div>
+  </div>
+  
+  <div class="dealer-form-photo hidden-xs"></div>
+</div>

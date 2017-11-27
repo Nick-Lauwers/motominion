@@ -1,0 +1,50 @@
+<% provide(:title, 'Dealer Signup') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-form-background">
+  
+  <div class="dealer-form">
+    
+    <div class="col-md-5 dealer-form-content">
+      
+      <div class="dealer-form-detail">
+        
+        <h1 class="dealer-form-title">Welcome!</h1>
+        
+        <h2 class="dealer-form-subtitle">
+          Begin connecting with consumers in only a few short steps.
+        </h2>
+        
+        <p class="dealer-form-info">
+          Please verify the name of your company.
+        </p>
+        
+        <%= form_for @dealership do |f| %> 
+        
+          <%= f.text_field :name, 
+                           placeholder: "E.g. Fontanet Chrysler",
+                           class: 'form-control 
+                                   form-control-primary
+                                   signup-form-control' %>
+
+          <%= hidden_field_tag :redirect_location, about_dealership_path %>
+  
+          <%= f.submit "Verify", class: "btn btn-tertiary" %>
+        <% end %>
+      </div>
+    </div>
+  
+    <div class="col-md-7">
+      <!--intentionally left empty-->
+    </div>
+  </div>
+  
+  <div class="dealer-form-photo hidden-xs"></div>
+</div>

@@ -1,0 +1,150 @@
+<% provide(:title, 'Dealer Signup') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-signup-hero-desktop hidden-xs" 
+     style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/dealer-signup.png')">
+  <div class="dealer-signup-detail-desktop">
+    
+    <h1 class="dealer-signup-title-desktop">
+      Customer outreach?
+    </h1>
+    
+    <p class="dealer-signup-info-desktop">
+      Relax. We've got you covered. Mototrova builds modern sales teams, 
+      bringing all aspects of a healthy outreach strategy together in one place. 
+      From early social engagement to post-sales support, we're with you every 
+      step of the way.
+    </p>
+    
+    <%= form_for @dealership do |f| %>
+    
+      <div class="row dealer-form-desktop">
+        
+        <div class="col-md-9">
+          <div class="row">
+            
+            <div class="col-md-6 form-element-dealer">
+              <%= f.text_field :email, 
+                               placeholder: "Email address",
+                               class: 'form-control
+                                       form-control-dealer-desktop' %>
+            
+            </div>
+              
+            <div class="col-md-6 form-element-dealer">
+              <%= f.text_field :name, 
+                               placeholder: "Company name", 
+                               class: 'form-control 
+                                       form-control-dealer-desktop' %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3 form-element-dealer">
+          <%= f.submit "Sign up for free", class: "btn btn-dealer-desktop" %>
+        </div>
+      </div> 
+    <% end %>
+  </div>
+</div>
+
+<div class="dealer-signup-hero-mobile visible-xs">
+  <div class="dealer-signup-detail-mobile">
+    
+    <h1 class="dealer-signup-title-mobile">
+      Customer Outreach?
+    </h1>
+    
+    <h2 class="dealer-signup-subtitle-mobile">
+      Relax. We've got you covered.
+    </h2>
+    
+    <p class="dealer-signup-info-mobile">
+      Mototrova builds modern sales teams, bringing all aspects of a healthy 
+      outreach strategy together in one place. From early social engagement to 
+      post-sales support, we're with you every step of the way.
+    </p>
+    
+    <%= form_for @dealership, 
+                 html: { class: "dealer-form-mobile" } do |f| %> 
+  
+      <%= f.text_field :email, 
+                       placeholder: "Email address",
+                       class: 'form-control
+                               form-control-dealer-mobile
+                               form-control-dealer-mobile-top' %>
+    
+      <%= f.text_field :name, 
+                       placeholder: "Company name", 
+                       class: 'form-control 
+                               form-control-dealer-mobile' %>
+                               
+      <%= submit_tag "Search", class: "btn-dealer-mobile" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="dealer-signup-tour">
+  <div class="dealer-signup-tour-detail">
+  
+    <!--<p class="dealer-signup-info">-->
+    <!--  Mototrova is free to use for as long as you want and with an unlimited -->
+    <!--  number of people.-->
+    <!--</p>-->
+    
+    <p class="dealer-signup-tour-info">
+      Learn what Mototrova can do for you:
+    </p>
+    
+    <div class="dealer-signup-tour-title">
+      <%= link_to '#', class: "dealer-signup-tour-title-content" do %>
+        
+        Take the tour
+        
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      <% end %>
+    </div>
+
+    <p class="dealer-signup-tour-info">
+      Screenshots, feature descriptions, and more...
+    </p>
+  </div>
+</div>
+
+<div class="dealer-signup-testimonial">
+  <div class="dealer-signup-testimonial-content">
+  
+    <div class="row dealer-signup-testimonial-detail">
+    
+      <div class="col-md-3">
+        
+        <div class="dealer-signup-testimonial-avatar",
+             style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/testimonial-avatar.jpg')">
+        </div>
+        
+        <span class="dealer-signup-testimonial-name visible-xs">
+          Tony Conrad, Paroli Toyota
+        </span>
+      </div>
+      
+      <div class="col-md-9">
+        
+        <p class="dealer-signup-testimonial-info">
+          "I am basically in love with Mototrova. It took us less than 24 hours to 
+          on-board, and it is amazing." 
+        </p>
+          
+        <span class="dealer-signup-testimonial-name hidden-xs">
+          Tony Conrad, Paroli Toyota
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

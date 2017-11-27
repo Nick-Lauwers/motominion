@@ -10,18 +10,21 @@
     <% end %>
   </li>
   
-  <!--<li>-->
-  <!--  <(perc)= link_to autoparts_path do %>-->
-  <!--    Parts (<(perc)= current_user.autoparts.count %>)-->
-  <!--  <(perc) end %>-->
-  <!--</li>-->
-  
   <li class="<%= 'sidenav-active' if current_page?(customers_path) %>">
     <%= link_to customers_path do %>
       Customers  
       (<%= Appointment.where("seller_id = ? AND date >= ?",
                              current_user.id,
                              Time.now).count %>)
+    <% end %>
+  </li>
+  
+  <li class="<%= 'sidenav-active' if current_page?(orders_received_path) %>">
+    <%= link_to orders_received_path do %>
+      Orders (<%= Purchase.
+                    where(seller_id: current_user.id).
+                    where.not(processed_at: nil).
+                    count %>)
     <% end %>
   </li>
 </ul>

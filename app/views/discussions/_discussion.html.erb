@@ -22,7 +22,7 @@
       <div class="col-xs-8">
         
         <%= link_to discussion.user, class: "discussion-item-name" do %> 
-          <%= discussion.user.name %>
+          <%= discussion.user.full_name %>
         <% end %>
         
         <span class="discussion-item-time">
@@ -54,7 +54,7 @@
                   class: "discussion-item-title" %>
       
       <%= link_to discussion.user, class: "discussion-item-name" do %> 
-        <%= discussion.user.name %>
+        <%= discussion.user.full_name %>
       <% end %>
         
       <span class="discussion-item-time">

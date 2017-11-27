@@ -3,9 +3,17 @@
 </h2>
 
 <ul class="sidenav-list">
+  
   <li class="<%= 'sidenav-active' if current_page?(test_drives_path) %>">
     <%= link_to test_drives_path do %>
       Test Drives (<%= @test_drives.count %>)
+    <% end %>
+  </li>
+  
+  <li class="<%= 'sidenav-active' if 
+    (current_page?(purchases_made_path)) %>">
+    <%= link_to purchases_made_path do %>
+      Purchases (<%= @purchases.count %>)
     <% end %>
   </li>
 </ul>

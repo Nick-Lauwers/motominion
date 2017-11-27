@@ -1,0 +1,12 @@
+<h1>Account Activation | Mototrova</h1>
+
+<p><%= @dealership.name %>,</p>
+
+<p>
+Welcome to Mototrova! Click on the link below to activate your account:
+</p>
+
+<%= link_to "Activate", edit_dealership_activation_url(
+                          @dealership.activation_token, 
+                          email: @dealership.email
+                        ) %>

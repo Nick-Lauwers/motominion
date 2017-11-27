@@ -7,8 +7,18 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update, :profile_pic]
   
   def new
+    
     @user  = User.new
-    @token = params[:invitation_token]
+    
+    if params[:dealership_admin] == 'true'
+      render 'new_dealer_admin'
+    elsif params[:dealership_id].present?
+      render 'new_dealer'
+    else
+      render 'new'
+    end
+    
+    # @token = params[:invitation_token]
   end
   
   def create
@@ -24,12 +34,23 @@ class UsersController < ApplicationController
         @user.clubs.push(org)
       end
       
-      @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
-      redirect_to root_url
+      if @user.dealership_admin
+        log_in @user
+        redirect_to new_dealership_dealer_invitation_path(@user.dealership_id)
+      else
+        @user.send_activation_email
+        flash[:info] = "Please check your email to activate your account."
+        redirect_to root_url
+      end
       
     else
-      render 'new'
+      # if params[:dealership_admin].present?
+      #   render 'new_dealer_admin'
+      # elsif params[:dealership_id].present?
+      #   render 'new_dealer'
+      # else
+        render 'new'
+      # end
     end
   end
   
@@ -98,10 +119,11 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:user).permit(:name, :email, :password, 
+      params.require(:user).permit(:first_name, :last_name, :email, :password, 
                                    :password_confirmation, :is_subscribed, 
                                    :phone_number, :residence, :school, :work, 
-                                   :description, :avatar)
+                                   :description, :avatar, :dealership_id, 
+                                   :dealership_admin, :activated, :activated_at)
     end
     
     # Before filters

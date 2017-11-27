@@ -1,0 +1,98 @@
+<% provide(:title, 'Dealer SignUp') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-form-background">
+    
+  <div class="dealer-form">
+    
+    <div class="col-md-5 dealer-form-content">
+      
+      <div class="dealer-form-detail">
+        
+        <h1 class="dealer-form-title">User Details</h1>
+        
+        <h2 class="dealer-form-subtitle">
+          You're about to set up a personal account that will be linked to
+          your company.
+        </h2>
+        
+        <p class="dealer-form-info">
+          Please provide a few details.
+        </p>
+        
+        <%= form_for @user do |f| %>
+        
+          <div class="row">
+            
+            <div class="col-md-6">
+              <%= f.text_field :first_name, 
+                               placeholder: "First name", 
+                               class: 'form-control 
+                                       form-control-primary
+                                       signup-form-control' %>
+            </div>
+            
+            <div class="col-md-6">
+              <%= f.text_field :last_name, 
+                               placeholder: "Last name", 
+                               class: 'form-control 
+                                       form-control-primary
+                                       signup-form-control' %>
+            </div>
+          </div>
+          
+          <%= f.email_field :email,
+                            placeholder: "Email address",
+                            value: Dealership.find(params[:dealership_id]).email,
+                            class: 'form-control 
+                                    form-control-primary
+                                    signup-form-control' %>
+                                    
+          <div class="row">
+            
+            <div class="col-md-6">
+              <%= f.password_field :password, 
+                                   placeholder: "Password",
+                                   class: 'form-control 
+                                           form-control-primary
+                                           signup-form-control' %>
+            </div>
+            
+            <div class="col-md-6">
+              <%= f.password_field :password_confirmation, 
+                                   placeholder: "Password confirmation", 
+                                   class: 'form-control 
+                                           form-control-primary
+                                           signup-form-control' %>
+            </div>
+          </div>    
+          
+          <%= hidden_field_tag "thing", params[:dealership_admin] %>
+          
+          <%= f.hidden_field :dealership_admin, value: true %>
+          <%= f.hidden_field :activated,        value: true %>
+          <%= f.hidden_field :activated_at,     value: Time.now %>
+        
+          <% if params[:dealership_id] %>
+            <%= f.hidden_field :dealership_id, value: params[:dealership_id] %>
+          <% end %>
+          
+          <%= f.submit "Create Account", class: "btn btn-tertiary" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="col-md-7">
+      <!--intentionally left empty-->
+    </div>
+  </div>
+  
+  <div class="dealer-form-photo"></div>
+</div>

@@ -1,0 +1,34 @@
+<!--completed-->
+
+<%= link_to user_path(dealer), 
+            class: "top-contributor-link" do %>
+  <li id="top-contributor-item-<%= dealer.id %>" 
+      class="top-contributor-item">
+    <div class="row vertical-align">
+      
+      <div class="col-xs-3 avatar-and-online">
+        
+        <div class="top-contributor-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= dealer.avatar.url(:thumb) %>')">
+        </div>
+        
+        <% if dealer.online? %>
+          <div class="online online-md-tertiary"></div>
+        <% end %>
+      </div>
+      
+      <div class="col-xs-9">
+        
+        <span class="top-contributor-name">
+          <%= dealer.full_name %>
+        </span>
+        
+        <div class="top-contributor-stats">
+          <%= dealer.discussions.sum(:cached_votes_up) %> 
+          <i class="fa fa-thumbs-o-up stats-icon" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>

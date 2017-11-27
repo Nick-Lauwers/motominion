@@ -124,7 +124,12 @@
           </div>
         </div>
         
-        <%= f.hidden_field :bumped_at,  value: Time.now %>
+        <%= f.hidden_field :bumped_at, value: Time.now %>
+        
+        <% if current_user.dealership_id.present? %>
+          <%= f.hidden_field :dealership_id, 
+                             value: current_user.dealership_id %>
+        <% end %>
         
         <%= f.submit "Save", class: "btn btn-primary btn-basics" %>
       <% end %>

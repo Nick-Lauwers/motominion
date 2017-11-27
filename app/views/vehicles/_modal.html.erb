@@ -63,7 +63,7 @@
         <div class="col-xs-9">
           <span class="modal-title"><%= @vehicle.listing_name %></span>
           
-          <%= link_to @vehicle.user.name,
+          <%= link_to @vehicle.user.full_name,
                       @vehicle.user,
                       class: "modal-info" %>
         </div>

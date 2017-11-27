@@ -51,13 +51,27 @@
       <div class="col-md-6">
         <div class="form-group form-group-primary">
           
-          <%= f.label :name %>
+          <%= f.label :first_name, "First Name" %>
 
-          <%= f.text_field :name, 
-                           placeholder: "Name", 
+          <%= f.text_field :first_name, 
+                           placeholder: "First name", 
                            class: 'form-control form-control-primary' %>
         </div>
       </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :last_name, "Last Name" %>
+
+          <%= f.text_field :last_name, 
+                           placeholder: "Last name", 
+                           class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+    </div>
+      
+    <div class="row">
       
       <div class="col-md-6">
         <div class="form-group form-group-primary">
@@ -69,9 +83,6 @@
                            class: 'form-control form-control-primary' %>
         </div>
       </div>
-    </div>
-      
-    <div class="row">
       
       <div class="col-md-6">
         <div class="form-group form-group-primary">
@@ -83,6 +94,9 @@
                            class: 'form-control form-control-primary' %>
         </div>
       </div>
+    </div>
+    
+    <div class="row">
       
       <div class="col-md-6">
         <div class="form-group form-group-primary">
@@ -93,6 +107,10 @@
                            placeholder: "Confirmation", 
                            class: 'form-control form-control-primary' %>
         </div>
+      </div>
+      
+      <div class="col-md-6">
+        <!--intentionally left empty-->
       </div>
     </div>
     
@@ -108,7 +126,7 @@
     </div>
   </div>
   
-  <div class="update-panel last">
+  <div class="update-panel">
     
     <h2 class="panel-title">Optional</h2>
 

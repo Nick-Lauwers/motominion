@@ -11,9 +11,15 @@
       
       Sign up with Google
   <% end %>
-    
-  <%= f.text_field :name, 
-                   placeholder: "Name", 
+  
+  <%= f.text_field :first_name, 
+                   placeholder: "First name", 
+                   class: 'form-control 
+                           form-control-primary
+                           signup-form-control' %>
+                           
+  <%= f.text_field :last_name, 
+                   placeholder: "Last name", 
                    class: 'form-control 
                            form-control-primary
                            signup-form-control' %>

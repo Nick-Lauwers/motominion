@@ -1,0 +1,39 @@
+<% provide(:title, "Garage") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<%= render 'layouts/secondary_navbar' %>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-md-4"> 
+        <%= render 'layouts/sidenav_your_garage' %>
+      </div>
+      
+      <div class="col-md-8">
+        
+        <% if @orders.exists? %>
+          <ol class="backend-list">
+            <%= render partial:    'order', 
+                       collection: @orders %>
+          </ol>
+        
+        <% else %>
+          <p class="empty-list-info">
+            No orders received
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+[2017-10-05T00:02:41,760][WARN ][o.e.a.a.c.n.s.TransportNodesStatsAction] [ht0EVsn] ignoring unexpected response [null] of type [null], expected [NodeStats] or [FailedNodeException]
+[2017-10-05T00:39:50,728][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][2891] overhead, spent [387ms] collecting in the last [1s]
+[2017-10-05T02:37:19,342][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][9937] overhead, spent [332ms] collecting in the last [1s]

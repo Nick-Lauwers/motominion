@@ -1,6 +1,6 @@
 <!--completed-->
 
-<% provide(:title, @user.name) %>
+<% provide(:title, @user.full_name) %>
 
 <header class="header-fixed-hidden hidden-xs">
   <%= render 'layouts/header_profile' %>
@@ -39,7 +39,7 @@
           
           <div class="col-xs-8">
             
-            <h1 class="user-summary-name"><%= @user.name %></h1>
+            <h1 class="user-summary-name"><%= @user.full_name %></h1>
             
             <% if @user.online? %>
               <div class="online-name online-name-lg hidden-xs"></div>
@@ -71,6 +71,18 @@
             Joined in <%= @user.created_at.strftime("%B %Y") %>
           </span>
           
+          <% if @user.dealership_id.present? %>
+          
+            <span class="profile-overview-position">General Partner ·</span>
+            
+            <%= link_to Dealership.find(@user.dealership_id).name,
+                        Dealership.find(@user.dealership_id), 
+                        class: "profile-overview-dealership" %>
+          
+          <% else %>
+            <span class="profile-overview-position">Private Seller</span>
+          <% end %>
+          
           <!--<span class="profile-overview-response">-->
           <!--  Response rate: <strong>_ %</strong> · -->
           <!--  Response time: <strong>_ hours</strong>-->
@@ -99,7 +111,7 @@
           <span class="profile-reviews-title">Some Background...</span>
           
           <p class="profile-reviews-info">
-            Read <%= @user.name %>'s reviews!
+            Read <%= @user.first_name %>'s reviews!
           </p>
           
           <%= link_to "Reviews", 
@@ -151,8 +163,12 @@
           </div>
         <!--</div>-->
       </div>
+
+      <div class="col-md-1">
+        <!--intentionally left empty-->
+      </div>
       
-      <div class="col-md-4 col-md-offset-1" id="profile-scrolled">
+      <div class="col-md-4" id="profile-scrolled">
         
         <% if (@user.phone_number.present?) or
               (@user.residence.present?) or 
@@ -308,7 +324,7 @@
                   <%= image_tag r.reviewer.avatar.url %>
                 </div>
                 
-                <span class="author-name"><%= r.reviewer.name %></span>
+                <span class="author-name"><%= r.reviewer.full_name %></span>
               <% end %>
             </div>
           </div>
@@ -363,7 +379,7 @@
         <i class="fa fa-balance-scale fa-4x empty-list-icon" 
            aria-hidden="true"></i>
            
-        <p class="empty-list-info">No reviews for <%= @user.name %> yet</p>
+        <p class="empty-list-info">No reviews for <%= @user.first_name %> yet</p>
       </div>
     <% end %>
   </div>

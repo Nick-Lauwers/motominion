@@ -14,16 +14,20 @@
       
       <li class="<%= 'nav-active' if 
         (current_page?(vehicles_path) || 
-         current_page?(customers_path)) %>">
+         current_page?(customers_path) ||
+         current_page?(orders_received_path)) %>">
         <%= link_to "Your Garage", vehicles_path %>
       </li>
       
-      <li class="<%= 'nav-active' if current_page?(test_drives_path) %>">
+      <li class="<%= 'nav-active' if 
+        (current_page?(test_drives_path) ||
+         current_page?(purchases_made_path)) %>">
         <%= link_to "Showroom", test_drives_path %>
       </li>
       
       <li class="<%= 'nav-active' if 
-        (current_page?(edit_user_path(current_user)) || 
+        (current_page?(edit_user_path(current_user)) ||
+        # current_page?(edit_dealership_path) ||
          current_page?(user_reviews_path(current_user))) %>">
         <%= link_to "Profile", edit_user_path(current_user) %>
       </li>
@@ -53,19 +57,22 @@
   <% end %>
   
   <% if (current_page?(vehicles_path) || 
-         current_page?(customers_path)) %>
+         current_page?(customers_path) ||
+         current_page?(orders_received_path)) %>
     <a href='#' class="dropdown-toggle" data-toggle="dropdown">
       Your Garage <b class="caret"></b>
     </a>
   <% end %>
   
-  <% if current_page?(test_drives_path) %>
+  <% if (current_page?(test_drives_path) ||
+         current_page?(purchases_made_path)) %>
     <a href='#' class="dropdown-toggle" data-toggle="dropdown">
       Showroom <b class="caret"></b>
     </a>
   <% end %>
   
   <% if (current_page?(edit_user_path(current_user)) || 
+        # current_page?(edit_dealership_path) ||
          current_page?(user_reviews_path(current_user))) %>
     <a href='#' class="dropdown-toggle" data-toggle="dropdown">
       Profile <b class="caret"></b>
@@ -93,17 +100,20 @@
     
     <li class="<%= 'dropdown-active' if 
       (current_page?(vehicles_path) || 
-       current_page?(customers_path)) %>">
+       current_page?(customers_path) ||
+       current_page?(orders_received_path)) %>">
       <%= link_to "Your Garage", vehicles_path %>
     </li>
     
-    <li class="<%= 'dropdown-active' if current_page?(test_drives_path) %>">
+    <li class="<%= 'dropdown-active' if 
+      (current_page?(test_drives_path) ||
+       current_page?(purchases_made_path)) %>">
       <%= link_to "Showroom", test_drives_path %>
     </li>
     
     <li class="<%= 'dropdown-active' if 
-              (current_page?(edit_user_path(current_user)) || 
-               current_page?(user_reviews_path(current_user))) %>">
+      (current_page?(edit_user_path(current_user)) || 
+       current_page?(user_reviews_path(current_user))) %>">
       <%= link_to "Profile", edit_user_path(current_user) %>
     </li>
     

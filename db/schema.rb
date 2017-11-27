@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926114233) do
+ActiveRecord::Schema.define(version: 20171123203342) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -85,6 +85,18 @@ ActiveRecord::Schema.define(version: 20170926114233) do
 
   add_index "availabilities", ["vehicle_id"], name: "index_availabilities_on_vehicle_id"
 
+  create_table "business_hours", force: :cascade do |t|
+    t.string   "day"
+    t.time     "open_time"
+    t.time     "close_time"
+    t.boolean  "is_closed"
+    t.integer  "dealership_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "business_hours", ["dealership_id"], name: "index_business_hours_on_dealership_id"
+
   create_table "club_product_photos", force: :cascade do |t|
     t.integer  "club_product_id"
     t.datetime "created_at",         null: false
@@ -136,6 +148,48 @@ ActiveRecord::Schema.define(version: 20170926114233) do
     t.datetime "sender_last_viewed_at"
     t.datetime "recipient_last_viewed_at"
   end
+
+  create_table "dealer_invitations", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "sender_id"
+    t.integer  "dealership_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "dealer_invitations", ["dealership_id", "created_at"], name: "index_dealer_invitations_on_dealership_id_and_created_at"
+  add_index "dealer_invitations", ["sender_id", "created_at"], name: "index_dealer_invitations_on_sender_id_and_created_at"
+
+  create_table "dealerships", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "user_id"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "activation_digest"
+    t.boolean  "activated",          default: false
+    t.datetime "activated_at"
+    t.string   "description"
+    t.string   "website"
+    t.string   "sales_phone"
+    t.string   "service_phone"
+    t.string   "street_address"
+    t.string   "building"
+    t.string   "city"
+    t.string   "state"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "dealerships", ["user_id"], name: "index_dealerships_on_user_id"
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -330,6 +384,60 @@ ActiveRecord::Schema.define(version: 20170926114233) do
   add_index "posts", ["vehicle_model_id", "created_at"], name: "index_posts_on_vehicle_model_id_and_created_at"
   add_index "posts", ["vehicle_model_id"], name: "index_posts_on_vehicle_model_id"
 
+  create_table "purchased_upgrades", force: :cascade do |t|
+    t.integer  "purchases_id"
+    t.integer  "upgrades_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "purchased_upgrades", ["purchases_id"], name: "index_purchased_upgrades_on_purchases_id"
+  add_index "purchased_upgrades", ["upgrades_id"], name: "index_purchased_upgrades_on_upgrades_id"
+
+  create_table "purchases", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.string   "billing_first_name"
+    t.string   "billing_last_name"
+    t.string   "billing_street_address"
+    t.string   "billing_apartment"
+    t.string   "billing_city"
+    t.string   "billing_state"
+    t.string   "education"
+    t.string   "employment"
+    t.string   "employer_name"
+    t.string   "employer_phone"
+    t.string   "current_title"
+    t.string   "residence_type"
+    t.integer  "annual_income"
+    t.integer  "time_at_job"
+    t.integer  "monthly_payment"
+    t.integer  "time_at_address"
+    t.boolean  "is_extended_service_contract"
+    t.boolean  "is_wheel_tire_care"
+    t.boolean  "is_ding_dent_care"
+    t.boolean  "is_key_replacement"
+    t.boolean  "is_resistall_protection"
+    t.datetime "date_of_birth"
+    t.datetime "processed_at"
+    t.integer  "buyer_id"
+    t.integer  "seller_id"
+    t.integer  "vehicle_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "purchases", ["buyer_id", "created_at"], name: "index_purchases_on_buyer_id_and_created_at"
+  add_index "purchases", ["seller_id", "created_at"], name: "index_purchases_on_seller_id_and_created_at"
+  add_index "purchases", ["vehicle_id"], name: "index_purchases_on_vehicle_id"
+
+  create_table "purchases_upgrades", id: false, force: :cascade do |t|
+    t.integer "upgrade_id",  null: false
+    t.integer "purchase_id", null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text     "content"
     t.integer  "likes"
@@ -351,17 +459,32 @@ ActiveRecord::Schema.define(version: 20170926114233) do
     t.integer  "reviewer_id"
     t.integer  "reviewed_id"
     t.integer  "vehicle_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.datetime "read_at"
+    t.integer  "dealership_id"
   end
 
+  add_index "reviews", ["dealership_id", "created_at"], name: "index_reviews_on_dealership_id_and_created_at"
+  add_index "reviews", ["dealership_id"], name: "index_reviews_on_dealership_id"
   add_index "reviews", ["reviewed_id", "created_at"], name: "index_reviews_on_reviewed_id_and_created_at"
   add_index "reviews", ["reviewer_id", "created_at"], name: "index_reviews_on_reviewer_id_and_created_at"
   add_index "reviews", ["vehicle_id", "created_at"], name: "index_reviews_on_vehicle_id_and_created_at"
 
+  create_table "upgrades", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "duration"
+    t.integer  "price"
+    t.integer  "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "upgrades", ["vehicle_id"], name: "index_upgrades_on_vehicle_id"
+
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email"
     t.boolean  "is_subscribed"
     t.datetime "created_at",                          null: false
@@ -387,6 +510,8 @@ ActiveRecord::Schema.define(version: 20170926114233) do
     t.datetime "avatar_updated_at"
     t.string   "stripe_id"
     t.string   "merchant_id"
+    t.integer  "dealership_id"
+    t.boolean  "dealership_admin",    default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -443,8 +568,11 @@ ActiveRecord::Schema.define(version: 20170926114233) do
     t.datetime "sold_at"
     t.datetime "bumped_at"
     t.datetime "posted_at"
+    t.integer  "dealership_id"
   end
 
+  add_index "vehicles", ["dealership_id", "created_at"], name: "index_vehicles_on_dealership_id_and_created_at"
+  add_index "vehicles", ["dealership_id"], name: "index_vehicles_on_dealership_id"
   add_index "vehicles", ["user_id", "created_at"], name: "index_vehicles_on_user_id_and_created_at"
   add_index "vehicles", ["user_id"], name: "index_vehicles_on_user_id"
   add_index "vehicles", ["vehicle_make_id"], name: "index_vehicles_on_vehicle_make_id"

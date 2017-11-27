@@ -1,0 +1,72 @@
+<% provide(:title, 'Dealer Signup') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-form-background">
+  
+  <div class="dealer-form">
+    
+    <div class="col-md-5 dealer-form-content">
+      
+      <div class="dealer-form-detail">
+        
+        <h1 class="dealer-form-title">Contact Info</h1>
+        
+        <h2 class="dealer-form-subtitle">
+          So that consumers can reach out...
+        </h2>
+        
+        <p class="dealer-form-info">
+          Please include all phone numbers and corporate websites.
+        </p>
+        
+        <%= form_for @dealership do |f| %> 
+          
+          <div class="row">
+            
+            <div class="col-md-6">
+              <%= f.text_field :sales_phone, 
+                               placeholder: "Sales phone", 
+                               class: 'form-control 
+                                       form-control-primary 
+                                       signup-form-control',
+                               required: true %>
+            </div>
+            
+            <div class="col-md-6">                          
+              <%= f.text_field :service_phone, 
+                               placeholder: "Service phone", 
+                               class: 'form-control 
+                                       form-control-primary 
+                                       signup-form-control',
+                               required: true %>
+            </div>
+          </div>
+        
+          <%= f.text_field :website, 
+                           placeholder: "Website", 
+                           class: 'form-control 
+                                   form-control-primary 
+                                   signup-form-control',
+                           required: true %>
+          
+          <%= hidden_field_tag :redirect_location, hours_dealership_path %>
+  
+          <%= f.submit "Save", class: "btn btn-tertiary" %>
+        <% end %>
+      </div>
+    </div>
+  
+    <div class="col-md-7">
+      <!--intentionally left empty-->
+    </div>
+  </div>
+  
+  <div class="dealer-form-photo hidden-xs"></div>
+</div>

@@ -19,7 +19,7 @@
       
       <div class="col-xs-9">
         
-        <span class="top-contributor-name"><%= member.user.name %></span>
+        <span class="top-contributor-name"><%= member.user.full_name %></span>
         
         <div class="top-contributor-stats">
           <%= member.user.discussions.sum(:cached_votes_up) %> 

@@ -47,6 +47,9 @@ class AppointmentsController < ApplicationController
   end
 
   def test_drives
+    
+    @purchases = Purchase.where(buyer_id: current_user.id)
+    
     @test_drives = Appointment.where("buyer_id = ? AND date >= ?", 
                                      current_user.id, 
                                      Time.now)

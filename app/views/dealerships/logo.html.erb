@@ -1,0 +1,71 @@
+<% provide(:title, 'Dealer Signup') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-form-background">
+  
+  <div class="dealer-form">
+    
+    <div class="col-md-5 dealer-form-content">
+      
+      <div class="dealer-form-detail">
+        
+        <h1 class="dealer-form-title">Logo</h1>
+        
+        <h2 class="dealer-form-subtitle">
+          Upload your dealership logo.
+        </h2>
+        
+        <p class="dealer-form-info">
+          The logo be displayed on your dealership profile.
+        </p>
+        
+        <%= form_for @dealership, html: { multipart: true } do |f| %> 
+        
+          <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+              
+              <div class="dealer-pic">
+                
+                <i class="fa fa-camera-retro dealer-pic-icon fa-5x" 
+                   aria-hidden="true"></i>
+                   
+                <%= image_tag @dealership.logo.url, class: "uploaded-photo" %>
+              </div>
+              
+              <div class="upload-button-dealerships">
+                    
+                <div class="upload-button-content">
+                  Upload Photo
+                </div>
+                
+                <%= f.file_field :logo, class: "upload-hidden" %>
+              </div>
+            </div>
+            
+            <div class="col-md-2">
+              <!--intentionally left empty-->
+            </div>
+          </div>
+          
+          <%= hidden_field_tag :redirect_location, photo_dealership_path %>
+          
+          <%= f.submit "Save", class: "btn btn-tertiary" %>
+        <% end %>
+      </div>
+    </div>
+  
+    <div class="col-md-7">
+      <!--intentionally left empty-->
+    </div>
+  </div>
+  
+  <div class="dealer-form-photo hidden-xs"></div>
+</div>

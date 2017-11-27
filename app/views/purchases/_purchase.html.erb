@@ -1,0 +1,70 @@
+<li id="test-drive-item-<%= purchase.id %>" 
+    class="col-md-6 test-drive-item">
+  
+  <% if purchase.processed_at.present? %>
+    <%= link_to purchase do %>
+      <div class="test-drive-item-content">
+        
+        <div class="test-drive-item-image", 
+             style="background-image: url('<%= 
+                     purchase.vehicle.photos[0].image.url() if 
+                     purchase.vehicle.photos.length > 0 %>')">
+        </div>
+        
+        <div class="test-drive-item-detail">
+          
+          <span class="test-drive-item-countdown">
+            <%= purchase.vehicle.listing_name %>
+          </span>
+          
+          <span class="test-drive-item-date">
+            $ <%= purchase.vehicle.price %>
+          </span>
+          
+          <span class="test-drive-item-info">
+            <%= Dealership.find(purchase.seller.dealership_id).name %> · 
+            <%= purchase.seller.full_name %>
+          </span>
+        </div>
+        
+        <div class="test-drive-item-status">
+          <span class="test-drive-item-status-content">
+            Processing...
+          </span>
+        </div>
+      </div>
+    <% end %>
+
+  <% else %>
+    <%= link_to basics_purchase_path(purchase) do %>
+      <div class="test-drive-item-content">
+        
+        <div class="test-drive-item-image", 
+             style="background-image: url('<%= purchase.buyer.avatar.url() %>')">
+        </div>
+        
+        <div class="test-drive-item-detail">
+          
+          <span class="test-drive-item-countdown">
+            <%= purchase.vehicle.listing_name %>
+          </span>
+          
+          <span class="test-drive-item-date">
+            $ <%= purchase.vehicle.price %>
+          </span>
+          
+          <span class="test-drive-item-info">
+            <%= Dealership.find(purchase.seller.dealership_id).name %> · 
+            <%= purchase.seller.full_name %>
+          </span>
+        </div>
+        
+        <div class="test-drive-item-status">
+          <span class="test-drive-item-status-content">
+            Awaiting Submission
+          </span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</li>

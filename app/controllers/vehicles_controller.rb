@@ -5,7 +5,7 @@ class VehiclesController < ApplicationController
   before_action :logged_in_user,     except: [:show, :search, :autocomplete]
   before_action :profile_pic_upload, only:   [:new]
   before_action :get_vehicle,        only:   [:destroy, :show, :update, :basics,
-                                              :details, :photos, :finalize, 
+                                              :details, :upgrades, :photos, 
                                               :about_you, :post, :favorite, 
                                               :sold, :undo_sold, :bump]
   
@@ -13,7 +13,7 @@ class VehiclesController < ApplicationController
     
     @vehicle = current_user.vehicles.build
     @vehicle.availabilities.build
-    
+
     # @complete = "13%"
   end
   
@@ -70,6 +70,7 @@ class VehiclesController < ApplicationController
       flash[:success] = "Updates saved."
     
     else
+      Rails.logger.info(@vehicle.errors.messages.inspect)
       flash[:danger] = "Update failed."
       # render 'edit'
     end
@@ -213,9 +214,6 @@ class VehiclesController < ApplicationController
     @photos = @vehicle.photos
   end
   
-  def finalize
-  end
-  
   def about_you
   end
   
@@ -278,9 +276,11 @@ class VehiclesController < ApplicationController
                                       :is_bluetooth, :is_backup_camera, 
                                       :is_remote_start, :is_tow_package, 
                                       :vehicle_make_id, :vehicle_model_id, 
-                                      :bumped_at, :posted_at, 
+                                      :bumped_at, :posted_at, :dealership_id,
                                       availabilities_attributes: [:id, :day, 
                                       :start_time, :end_time, :vehicle_id, 
+                                      :_destroy], upgrades_attributes: [:id, 
+                                      :title, :description, :duration, :price,
                                       :_destroy])
     end
     

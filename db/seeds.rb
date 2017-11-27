@@ -22,15 +22,16 @@ end
 CSV.foreach(Rails.root.join("users.csv"), headers: true) do |row|
   User.create! do |user|
     user.id                    = row[0]
-    user.name                  = row[1]
-    user.email                 = row[2]
-    user.password              = row[3]
-    user.password_confirmation = row[4]
-    user.is_subscribed         = row[5]
-    user.admin                 = row[6]
-    user.activated             = row[7]
-    user.activated_at          = row[8]
-    user.avatar                = open(row[9])
+    user.first_name            = row[1]
+    user.last_name             = row[2]
+    user.email                 = row[3]
+    user.password              = row[4]
+    user.password_confirmation = row[5]
+    user.is_subscribed         = row[6]
+    user.admin                 = row[7]
+    user.activated             = row[8]
+    user.activated_at          = row[9]
+    user.avatar                = open(row[10])
   end
 end
 

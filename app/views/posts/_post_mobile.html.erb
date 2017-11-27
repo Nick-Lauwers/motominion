@@ -53,7 +53,9 @@
     
     <div class="col-xs-9">
       
-      <%= link_to @post.user.name, @post.user, class: "post-mobile-name" %> 
+      <%= link_to @post.user.full_name, 
+                  @post.user, 
+                  class: "post-mobile-name" %> 
 
       <span>
         
@@ -161,7 +163,7 @@
         <div class="col-xs-9">
           
           <%= link_to current_user, class: "post-comment-title" do %> 
-            <%= current_user.name %>
+            <%= current_user.full_name %>
           <% end %>
           
           <span class="post-comment-stats">

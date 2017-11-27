@@ -1,0 +1,405 @@
+<% provide(:title, @dealership.name) %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-profile-hero">
+  <div class="dealer-profile-hero-content">
+    <div class="row">
+      
+      <div class="col-md-8">
+        <div class="dealer-profile-hero-photo" 
+             style="background-image: url('<%= @dealership.photo.url() %>')">
+          <div class="dealer-profile-hero-logo"
+               style="background-image: url('<%= @dealership.logo.url() %>')">
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="dealer-profile-hero-detail">
+          
+          <h1 class="dealer-profile-hero-title">
+            <%= @dealership.name %>
+          </h1>
+          
+          <!--<div class="row vertical-align visible-xs">-->
+            
+          <!--  <div class="col-xs-8">-->
+          <!--    <h1 class="dealer-profile-hero-title"><(perc)= @dealership.name %></h1>-->
+          <!--  </div>-->
+            
+          <!--  <div class="col-xs-4">-->
+          <!--    <div class="dealer-profile-hero-avatar avatar-general", -->
+          <!--         style="background-image: url(-->
+          <!--                 '<(perc)= @dealership.logo.url(:thumb) %>')">-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+
+          <div class="dealer-profile-hero-info">
+            
+            <table>
+              <tr>
+                
+                <td class="dealer-profile-hero-table-title">Sales</td>
+                
+                <td>
+                  <%= @dealership.sales_phone.phony_formatted(spaces: '-') %>
+                </td>
+              </tr>
+              
+              <tr>
+                
+                <td class="dealer-profile-hero-table-title">Servicing</td>
+                
+                <td>
+                  <%= @dealership.service_phone.phony_formatted(spaces: '-') %>
+                </td>
+              </tr>
+            </table>
+            
+            <%= @dealership.email %>
+            
+            <%= link_to @dealership.website, 
+                        class: "dealer-profile-hero-website" do %>
+              <%= @dealership.website %>
+            <% end %>
+          </div>
+          
+          <!--<p class="dealer-profile-hero-info"><= @dealership.description %></p>-->
+          
+          <!--<span class="dealer-profile-hero-expand">+ More</span>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dealer-profile-navbar hidden-xs">
+  <div class="dealer-profile-navbar-content">
+    <div class="row">
+    
+      <div class="col-md-8">
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+            
+            <li class="nav-active">
+              <%= link_to "Overview", dealership_path %>
+            </li>
+            
+            <li><%= link_to "Inventory", vehicles_dealership_path %></li>
+            
+            <li><%= link_to "Reviews",   reviews_dealership_path %></li>
+          </ul>
+        </nav>
+      </div>
+      
+      <div class="col-md-4">
+        <!--<div class="listing-navbar-button">-->
+        
+        <!--  <div class="navbar-price-container">-->
+        <!--    <p class="navbar-price-visible">-->
+        <!--      <= @dealership.users.count %> Partners Online-->
+        <!--    </p>-->
+        <!--  </div>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="dropdown dropdown-backend visible-xs">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Overview <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    
+    <li class="dropdown-active"><%= link_to "Overview", dealership_path %></li>
+    
+    <li><%= link_to "Inventory", vehicles_dealership_path %></li>
+    
+    <li><%= link_to "Reviews",   reviews_dealership_path %></li>
+  </ul>
+</nav>
+
+<div class="dealership-profile-overview">
+  <div class="dealership-profile-overview-content">
+    <div class="row">
+      
+      <div class="col-md-7">
+        <div class="profile-overview-text">
+          
+          <span class="profile-overview-registration">
+            Joined in <%= @dealership.created_at.strftime("%B %Y") %>
+          </span>
+          
+          <% if @dealership.description.present? %>
+            <p class="profile-overview-info"><%= @dealership.description %></p>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="col-md-4 col-md-offset-1">
+        <div class="top-contributors">
+        
+          <span class="top-contributors-title">Partners</span>
+          
+          <ol class="top-contributors-list">
+            <%= render partial:    'dealer', 
+                       collection: @dealership.users %>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="vehicle-details">
+  <div class="vehicle-details-content">
+    <div class="row">
+      
+      <div class="col-md-7">
+        
+        <div id="specifications">
+          
+          <h3 class="vehicle-details-title">Hours of Operation</h3>
+          
+          <div class="row">
+                
+            <div class="col-md-6">
+              <table class="vehicle-details-table">
+                
+                <tr>
+                  
+                  <td class="specifications-table-column">Monday</td>
+                  
+                  <td><strong>
+                      
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Monday").
+                          first.
+                          open_time.
+                          strftime("%-l:%M%p") %> - 
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Monday").
+                          first.
+                          close_time.
+                          strftime("%-l:%M%p") %>
+                  </strong></td>
+                </tr>
+                
+                <tr>
+                  
+                  <td>Tuesday</td>
+                  
+                  <td><strong>
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Tuesday").
+                          first.
+                          open_time.
+                          strftime("%-l:%M%p") %> - 
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Tuesday").
+                          first.
+                          close_time.
+                          strftime("%-l:%M%p") %>
+                  </strong></td>
+                </tr>
+                
+                <tr>
+                  
+                  <td>Wednesday</td>
+                  
+                  <td><strong>
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Wednesday").
+                          first.
+                          open_time.
+                          strftime("%-l:%M%p") %> - 
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Wednesday").
+                          first.
+                          close_time.
+                          strftime("%-l:%M%p") %>
+                  </strong></td>
+                </tr>
+                
+                <tr>
+                  
+                  <td>Thursday</td>
+                  
+                  <td><strong>
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Thursday").
+                          first.
+                          open_time.
+                          strftime("%-l:%M%p") %> - 
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Thursday").
+                          first.
+                          close_time.
+                          strftime("%-l:%M%p") %>
+                  </strong></td>
+                </tr>
+              </table>
+            </div>
+            
+            <div class="col-md-6">
+              <table class="vehicle-details-table">
+                
+                <tr>
+                  
+                  <td class="specifications-table-column">Friday</td>
+                  
+                  <td><strong>
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Friday").
+                          first.
+                          open_time.
+                          strftime("%-l:%M%p") %> - 
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Friday").
+                          first.
+                          close_time.
+                          strftime("%-l:%M%p") %>
+                  </strong></td>
+                </tr>
+                
+                <tr>
+                  
+                  <td>Saturday</td>
+                  
+                  <td><strong>
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Saturday").
+                          first.
+                          open_time.
+                          strftime("%-l:%M%p") %> - 
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Saturday").
+                          first.
+                          close_time.
+                          strftime("%-l:%M%p") %>
+                  </strong></td>
+                </tr>
+                
+                <tr>
+                  
+                  <td>Sunday</td>
+                  
+                  <td><strong>
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Sunday").
+                          first.
+                          open_time.
+                          strftime("%-l:%M%p") %> - 
+                    
+                    <%= @dealership.
+                          business_hours.
+                          where(day: "Sunday").
+                          first.
+                          close_time.
+                          strftime("%-l:%M%p") %>
+                  </strong></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <div id="specifications">
+          
+          <h3 class="vehicle-details-title">Location</h3>
+          
+          <p class="profile-overview-info">
+            <%= @dealership.street_address %>, <%= @dealership.building %>
+            <br>
+            <%= @dealership.city %>, <%= @dealership.state %> 
+          </p>
+        </div>
+      </div>
+  
+      <div class="col-md-4 col-md-offset-1">
+        <div id="dealer-map"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // map
+    
+      handler = Gmaps.build('Google');
+      
+      handler.buildMap({ 
+        
+        provider: {
+          
+          maxZoom:        15,
+          scrollwheel:    false,
+          mapTypeControl: false,
+          
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.TOP_LEFT
+          },
+          
+          streetViewControlOptions: {
+            position: google.maps.ControlPosition.LEFT_TOP
+          }, 
+        },
+        
+        internal: {
+          id: 'dealer-map'
+        }
+      }, function() {
+        
+        markers = handler.addCircles( [{
+                    lat: <%= @dealership.latitude %>, 
+                    lng: <%= @dealership.longitude %>, 
+                    radius: 700
+                  }], { 
+                    strokeColor: '#38b2a6',
+                    fillColor: '#38b2a6',
+                    strokeWeight: 2 
+                  });
+        
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+  });
+</script>

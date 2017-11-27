@@ -1,7 +1,7 @@
-Hi <%= @question.vehicle.user.name %>,
+Hi <%= @question.vehicle.user.first_name %>,
 
 You just received a question about your listing, 
-<%= @question.vehicle.listing_name %>, from <%= @question.user.name %>. Click on 
-the link below to view the details:
+<%= @question.vehicle.listing_name %>, from <%= @question.user.first_name %>. 
+Click on the link below to view the details:
 
 <%= questions_url %>

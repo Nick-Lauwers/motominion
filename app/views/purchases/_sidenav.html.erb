@@ -1,0 +1,45 @@
+<ul class="vehicle-make-nav hidden-xs">
+            
+  <li class="<%= 'vehicle-make-nav-active' if 
+                   current_page?(basics_purchase_path) %>">
+    <%= link_to "Basics", basics_purchase_path %>
+  </li>
+  
+  <li class="<%= 'vehicle-make-nav-active' if 
+                       current_page?(details_purchase_path) %>">
+    <%= link_to "Details", details_purchase_path %>
+  </li>
+  
+  <li class="<%= 'vehicle-make-nav-active' if 
+                   current_page?(billing_purchase_path) %>">
+    <%= link_to "Billing", billing_purchase_path %>
+  </li>
+  
+  <li class="<%= 'vehicle-make-nav-active' if 
+                   current_page?(employment_purchase_path) %>">
+    <%= link_to "Employment", employment_purchase_path %>
+  </li>
+  
+  <li class="<%= 'vehicle-make-nav-active' if 
+                   current_page?(financial_purchase_path) %>">
+    <%= link_to "Financial", financial_purchase_path %>
+  </li>
+</ul>
+
+<% if @purchase.processed_at.blank? && 
+      !@purchase.billing_first_name.blank? && 
+      !@purchase.education.blank? &&
+      !@purchase.residence_type.blank? %>
+  <div class="post-listing-button">
+    <%= link_to submit_purchase_path(@purchase), 
+                method: :put, 
+                class:  "btn-post-listing" do %>
+                          
+      <i class="fa fa-thumb-tack fa-lg profile-preview-icon" 
+        aria-hidden="true"></i>
+                
+      Process Purchase
+    
+    <% end %>
+  </div>
+<% end %>

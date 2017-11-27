@@ -1,0 +1,140 @@
+<% provide(:title, @dealership.name) %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-profile-hero">
+  <div class="dealer-profile-hero-content">
+    <div class="row">
+      
+      <div class="col-md-8">
+        <div class="dealer-profile-hero-photo" 
+             style="background-image: url('<%= @dealership.photo.url() %>')">
+          <div class="dealer-profile-hero-logo"
+               style="background-image: url('<%= @dealership.logo.url() %>')">
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <div class="dealer-profile-hero-detail">
+          
+          <h1 class="dealer-profile-hero-title"><%= @dealership.name %></h1>
+          
+          <div class="dealer-profile-hero-info">
+            
+            <table>
+              <tr>
+                
+                <td class="dealer-profile-hero-table-title">Sales</td>
+                
+                <td>
+                  <%= @dealership.sales_phone.phony_formatted(spaces: '-') %>
+                </td>
+              </tr>
+              
+              <tr>
+                
+                <td class="dealer-profile-hero-table-title">Servicing</td>
+                
+                <td>
+                  <%= @dealership.service_phone.phony_formatted(spaces: '-') %>
+                </td>
+              </tr>
+            </table>
+            
+            <%= link_to @dealership.website, 
+                        class: "dealer-profile-hero-website" do %>
+              <%= @dealership.website %>
+            <% end %>
+          </div>
+          
+          <!--<p class="dealer-profile-hero-info"><= @dealership.description %></p>-->
+          
+          <!--<span class="dealer-profile-hero-expand">+ More</span>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="dealer-profile-navbar hidden-xs">
+  <div class="dealer-profile-navbar-content">
+    <div class="row">
+    
+      <div class="col-md-8">
+        <nav>
+          <ul class="nav navbar-nav navbar-left">
+            
+            <li><%= link_to "Overview",  dealership_path %></li>
+            
+            <li class="nav-active">
+              <%= link_to "Inventory",   vehicles_dealership_path %>
+            </li>
+            
+            <li><%= link_to "Reviews",   reviews_dealership_path %></li>
+          </ul>
+        </nav>
+      </div>
+      
+      <div class="col-md-4">
+        <!--<div class="listing-navbar-button">-->
+        
+        <!--  <div class="navbar-price-container">-->
+        <!--    <p class="navbar-price-visible">-->
+        <!--      <= @dealership.users.count %> Partners Online-->
+        <!--    </p>-->
+        <!--  </div>-->
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="dropdown dropdown-backend visible-xs">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Inventory <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    
+    <li><%= link_to "Overview",  dealership_path %></li>
+    
+    <li class="dropdown-active">
+      <%= link_to "Inventory",   vehicles_dealership_path %>
+    </li>
+    
+    <li><%= link_to "Reviews",   reviews_dealership_path %></li>
+  </ul>
+</nav>
+
+<div class="dealership-profile-overview">
+  <div class="dealership-profile-overview-content">
+    
+    <% if @dealership.
+            vehicles.
+            where(sold_at: nil).
+            where.not(posted_at: nil).
+            exists? %>
+      <ol class="dealer-profile-list">
+        <%= render partial:    'vehicle',
+                   collection: @dealership.
+                                 vehicles.
+                                 where(sold_at: nil).
+                                 where.not(posted_at: nil),
+                   as:         :vehicle %>
+      </ol>
+      
+    <% else %>
+      <p class="empty-list-info">
+        No listings yet
+      </p>
+    <% end %>
+  </div>
+</div>

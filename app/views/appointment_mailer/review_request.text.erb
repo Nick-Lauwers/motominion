@@ -1,10 +1,11 @@
-Hi <%= @appointment.buyer.name %>,
+Hi <%= @appointment.buyer.first_name %>,
 
-Tell <%= @appointment.vehicle.user.name %> what you loved and what they can do 
-better.
+Tell <%= @appointment.vehicle.user.first_name %> what you loved and what they 
+can do better.
 
-You just completed a test drive with <%= @appointment.vehicle.user.name %>, so 
-now is the perfect time to write your review.
+You just completed a test drive with 
+<%= @appointment.vehicle.user.first_name %>, so now is the perfect time to write 
+your review.
 
 Reviews are an important part of the Mototrova community. Please take a
 moment to provide the seller with some helpful feedback; it will only take a

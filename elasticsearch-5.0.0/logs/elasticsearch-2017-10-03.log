@@ -1,0 +1,32 @@
+[2017-10-03T23:44:50,953][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-10-03T23:44:51,212][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [6.6gb], net total_space [10.6gb], spins? [possibly], types [aufs]
+[2017-10-03T23:44:51,213][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-10-03T23:44:51,302][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-10-03T23:44:51,308][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[91663], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.9.17-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-10-03T23:44:55,265][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-10-03T23:44:55,265][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-10-03T23:44:55,266][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-10-03T23:44:55,266][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-10-03T23:44:55,266][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-10-03T23:44:55,266][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-10-03T23:44:55,267][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-10-03T23:44:55,267][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-10-03T23:44:55,267][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-10-03T23:44:55,267][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-10-03T23:44:55,268][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-10-03T23:46:17,518][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-10-03T23:46:17,741][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [6.6gb], net total_space [10.6gb], spins? [possibly], types [aufs]
+[2017-10-03T23:46:17,741][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-10-03T23:46:17,827][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-10-03T23:46:17,831][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[91715], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.9.17-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-10-03T23:46:20,844][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-10-03T23:46:20,844][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-10-03T23:46:20,844][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-10-03T23:46:20,844][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-10-03T23:46:20,844][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-10-03T23:46:20,845][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-10-03T23:46:20,845][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-10-03T23:46:20,845][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-10-03T23:46:20,845][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-10-03T23:46:20,845][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-10-03T23:46:20,846][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded

@@ -1,0 +1,60 @@
+<nav class="dropdown dropdown-backend visible-xs">
+  
+  <% if current_page?(basics_purchase_path) %>
+    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+      Basics <b class="caret"></b>
+    </a>
+  <% end %>
+  
+  <% if current_page?(details_purchase_path) %>
+    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+      Details <b class="caret"></b>
+    </a>
+  <% end %>
+  
+  <% if current_page?(billing_purchase_path) %>
+    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+      Billing <b class="caret"></b>
+    </a>
+  <% end %>
+  
+  <% if current_page?(employment_purchase_path) %>
+    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+      Employment <b class="caret"></b>
+    </a>
+  <% end %>
+  
+  <% if current_page?(financial_purchase_path) %>
+    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+      Financial <b class="caret"></b>
+    </a>
+  <% end %>
+  
+  <ul class="dropdown-menu">
+    
+    <li class="<%= 'dropdown-active' if 
+                     current_page?(basics_purchase_path) %>">
+      <%= link_to "Basics", basics_purchase_path %>
+    </li>
+    
+    <li class="<%= 'dropdown-active' if 
+                     current_page?(details_purchase_path) %>">
+      <%= link_to "Details", details_purchase_path %>
+    </li>
+    
+    <li class="<%= 'dropdown-active' if 
+                     current_page?(billing_purchase_path) %>">
+      <%= link_to "Billing", billing_purchase_path %>
+    </li>
+    
+    <li class="<%= 'dropdown-active' if 
+                     current_page?(employment_purchase_path) %>">
+      <%= link_to "Employment", employment_purchase_path %>
+    </li>
+    
+    <li class="<%= 'dropdown-active' if 
+                     current_page?(financial_purchase_path) %>">
+      <%= link_to "Financial", financial_purchase_path %>
+    </li>
+  </ul>
+</nav>

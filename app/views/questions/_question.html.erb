@@ -19,7 +19,9 @@
 
     <div class="question-details">
       
-      <%= link_to question.user.name, question.user, class: "question-name" %>
+      <%= link_to question.user.full_name, 
+                  question.user, 
+                  class: "question-name" %>
 
       <span class="question-content"><%= question.content %></span>
       
@@ -60,7 +62,9 @@
           
           <div class="answer-details">
             
-            <%= link_to answer.user.name, answer.user, class: "answer-name" %>
+            <%= link_to answer.user.full_name, 
+                        answer.user, 
+                        class: "answer-name" %>
 
             <span class="answer-content"><%= answer.content %></span>
             

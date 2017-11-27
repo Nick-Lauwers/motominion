@@ -46,7 +46,7 @@ class ConversationsController < ApplicationController
         @conversation.messages.create!(
           user:    current_user, 
           content: "Hi, " + 
-                  @other.name + 
+                  @other.first_name + 
                   ". I recently noticed your vehicle, " +
                   appointment.vehicle.listing_name +
                   ", and am interested in a test drive. Are you available on " +
@@ -77,7 +77,7 @@ class ConversationsController < ApplicationController
         @conversation.messages.create!(
           user:    current_user, 
           content: "Hi, " + 
-                   @other.name + 
+                   @other.first_name + 
                    ". I recently noticed your vehicle, " +
                    appointment.vehicle.listing_name +
                    ", and am interested in a test drive. Are you available on " +

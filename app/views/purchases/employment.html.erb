@@ -1,0 +1,179 @@
+<% provide(:title, "New Purchase") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="purchase">
+  <div class="purchase-content">
+    
+    <div class="purchase-hero", 
+         style="background-image: url(
+                 '<%= @purchase.vehicle.photos[0].image.url() if 
+                      @purchase.vehicle.photos.length > 0 %>')">
+      
+      <div class="purchase-hero-price-container">
+        <span class="purchase-hero-price">
+          $<%= @purchase.vehicle.price %>
+        </span>
+      </div>
+      
+      <div class="purchase-hero-title hidden-xs">
+        <div class="row vertical-align">
+        
+          <div class="col-md-2 avatar-and-online">
+            
+            <%= link_to user_path(@purchase.vehicle.user) do %>
+              <div class="purchase-hero-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= @purchase.vehicle.user.avatar.url(:thumb) %>')">
+              </div>
+            <% end %>
+
+            <% if @purchase.vehicle.user.online? %>
+              <div class="online online-lg-primary"></div>
+            <% end %>
+          </div>
+          
+          <div class="col-md-10">
+            
+            <%= link_to @purchase.vehicle.listing_name, 
+                        @purchase.vehicle,
+                        class: "purchase-hero-heading" %>
+            
+            <%= link_to @purchase.vehicle.user.full_name, 
+                        @purchase.vehicle.user,
+                        class: "purchase-hero-subheading" %>
+            
+            <span> · </span>
+                        
+            <span class="average-rating"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <%= render 'dropdown' %>
+    
+    <div class="purchase-form">
+      <div class="row">
+    
+        <div class="col-md-3"> 
+          <%= render 'sidenav' %>
+        </div>
+        
+        <div class="col-md-8 col-md-offset-1">
+          <%= form_for @purchase do |f| %>
+            
+            <div class="row">
+              
+              <div class="col-md-6 form-group">
+                  
+                <%= f.label :education %>
+              
+                <%= f.text_field :education, 
+                                 placeholder: "Education", 
+                                 class: "form-control form-control-primary",
+                                 required: true %>
+              </div>
+              
+              <div class="col-md-6 form-group">
+              
+                <%= f.label :employment %>
+                
+                <%= f.text_field :employment, 
+                                 placeholder: "Employment", 
+                                 class: "form-control form-control-primary",
+                                 required: true %>
+              </div>
+            </div>
+
+            <div class="form-group">
+  
+              <%= f.label :employer_name, "Employer Name" %>
+              
+              <%= f.text_field :employer_name, 
+                               placeholder: "Employer name", 
+                               class: "form-control form-control-primary",
+                               required: true %>
+            </div>
+            
+            <div class="form-group">
+  
+              <%= f.label :employer_phone, "Employer Phone" %>
+              
+              <%= f.text_field :employer_phone, 
+                               placeholder: "Employer phone", 
+                               class: "form-control form-control-primary",
+                               required: true %>
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :annual_income, "Annual Income" %>
+                
+                <div class= "input-group">
+                  
+                  <div class="input-group-addon">$</div>
+                  
+                  <%= f.text_field :annual_income, 
+                                   placeholder: "Eg. 100 000", 
+                                   class: "form-control form-control-primary",
+                                   required: true %>
+                </div>
+              </div>
+                  
+              <div class="col-md-6 form-group">
+    
+                <%= f.label :time_at_job, "Time at Job" %>
+                
+                <div class= "input-group">
+                  
+                  <%= f.text_field :time_at_job, 
+                                   placeholder: "Eg. 2", 
+                                   class: "form-control form-control-primary",
+                                   required: true %>
+                      
+                  <div class="input-group-addon">years</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+  
+              <%= f.label :current_title, "Current Title" %>
+              
+              <%= f.text_field :current_title, 
+                               placeholder: "Current title", 
+                               class: "form-control form-control-primary",
+                               required: true %>
+            </div>
+            
+            <%= f.submit "Save", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // rating
+    
+      var averageRating = $('.average-rating');
+      
+      averageRating.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= @purchase.vehicle.average_rating %>
+      });
+  });
+</script>

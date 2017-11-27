@@ -18,7 +18,7 @@
         </div>
         
         <div class="header-profile-info">
-          <span class="header-profile-username"><%= @user.name %></span>
+          <span class="header-profile-username"><%= @user.full_name %></span>
         </div>
       </div>
       
@@ -38,7 +38,7 @@
   
             <%= f.hidden_field :recipient_archived, value: false %>
             
-            <%= f.submit "Chat with " + @user.name, 
+            <%= f.submit "Chat with " + @user.first_name, 
                          class: "btn-header-profile" %>
           <% end %>
                           

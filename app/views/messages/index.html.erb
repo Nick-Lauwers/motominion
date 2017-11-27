@@ -56,7 +56,7 @@
 
           <div class='recipient-username'>
             
-            <%= link_to @other.name,
+            <%= link_to @other.full_name,
                         user_path(@other) %>
                         
             <% if @other.online? %>
@@ -212,7 +212,7 @@
           <div class="test-drive-response">
             
             <h1 class="test-drive-response-title">
-              Respond to <%= @other.name %>'s 
+              Respond to <%= @other.first_name %>'s 
               <%= pluralize_without_count(
                     @conversation.appointments.where(
                       status: 'pending', seller_id: current_user.id
@@ -300,15 +300,15 @@
         <span class="response-stats">
           <% if (current_user.id == @conversation.sender_id  && @conversation.recipient_last_viewed_at.present?) %>
             <% if @conversation.recipient_last_viewed_at.today? %>
-              Last viewed by <%= @other.name %>: <strong>Today</strong> at <strong><%= @conversation.recipient_last_viewed_at.strftime("%-l:%M%p") %></strong>
+              Last viewed by <%= @other.first_name %>: <strong>Today</strong> at <strong><%= @conversation.recipient_last_viewed_at.strftime("%-l:%M%p") %></strong>
             <% else %>
-              Last viewed by <%= @other.name %> on: <strong><%= @conversation.recipient_last_viewed_at.strftime("%d %B %Y") %></strong>
+              Last viewed by <%= @other.first_name %> on: <strong><%= @conversation.recipient_last_viewed_at.strftime("%d %B %Y") %></strong>
             <% end %>
           <% elsif (current_user.id == @conversation.recipient_id)  %>
             <% if @conversation.sender_last_viewed_at.today? %>
-              Last viewed by <%= @other.name %>: <strong>Today</strong> at <strong><%= @conversation.sender_last_viewed_at.strftime("%-l:%M%p") %></strong>
+              Last viewed by <%= @other.first_name %>: <strong>Today</strong> at <strong><%= @conversation.sender_last_viewed_at.strftime("%-l:%M%p") %></strong>
             <% else %>
-              Last viewed by <%= @other.name %> on: <strong><%= @conversation.sender_last_viewed_at.strftime("%d %B %Y") %></strong>
+              Last viewed by <%= @other.first_name %> on: <strong><%= @conversation.sender_last_viewed_at.strftime("%d %B %Y") %></strong>
             <% end %>
           <% end %>
         </span>

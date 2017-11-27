@@ -7,7 +7,6 @@ $(function() {
       var uploadedPhoto = $('.uploaded-photo');
       var uploadHidden  = $('.upload-hidden');
       
-      
       function readURL(input) {
         if (input.files && input.files[0]) {
           var reader = new FileReader();
@@ -21,9 +20,9 @@ $(function() {
         }
       }
       
-     uploadHidden.change(function(){
-       readURL(this);
-     });
+      uploadHidden.change(function(){
+        readURL(this);
+      });
      
     // clubPicUpload.change(function(){
     //   readURL(this);

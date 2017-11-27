@@ -19,7 +19,7 @@
         </td>
         
         <td>
-          <p class="new-question-name"><%= question.user.name %></p>
+          <p class="new-question-name"><%= question.user.full_name %></p>
           
           <p class="conversation-date visible-xs-block">
             <%= time_ago_in_words(question.created_at).capitalize %> ago

@@ -68,7 +68,7 @@
           
           <div class="col-md-10 col-xs-9">
             
-            <%= link_to @autopart.user.name, 
+            <%= link_to @autopart.user.full_name, 
                         @autopart.user, 
                         class: "post-response-title" %> 
               
@@ -99,7 +99,7 @@
           <span class="vehicle-reviews-title">Need Some Advice?</span>
           
           <p class="vehicle-reviews-info">
-            Read <%= @autopart.user.name %>'s reviews!
+            Read <%= @autopart.user.first_name %>'s reviews!
           </p>
           
           <%= link_to user_path(@autopart.user, anchor: "profile-reviews"), 

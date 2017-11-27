@@ -1,7 +1,7 @@
-Hi <%= @review.reviewed.name %>,
+Hi <%= @review.reviewed.first_name %>,
 
-You just received a review from <%= @review.reviewer.name %> for your listing, 
-<%= @review.vehicle.listing_name %>. Click on the link below to view the 
-details:
+You just received a review from <%= @review.reviewer.first_name %> for your 
+listing, <%= @review.vehicle.listing_name %>. Click on the link below to view 
+the details:
 
 <%= user_reviews_url(@review.reviewed) %>

@@ -19,8 +19,9 @@
           
           <div class="avatar-and-online">
             
-            <div class="author-avatar">
-              <%= image_tag r.reviewer.avatar.url %>
+            <div class="author-avatar avatar-general", 
+                 style="background-image: url(
+                         '<%= r.reviewer.avatar.url(:thumb) %>')">>
             </div>
             
             <% if r.reviewer.online? %>
@@ -28,7 +29,7 @@
             <% end %>
           </div>
 
-          <span class="author-name"><%= r.reviewer.name %></span>
+          <span class="author-name"><%= r.reviewer.full_name %></span>
         <% end %>
       </div>
     </div>

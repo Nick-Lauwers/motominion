@@ -281,6 +281,28 @@
             </div>
           </div>
           
+          <% if current_user.dealership_id.present? %>
+            <div class="update-panel">
+              
+              <h2 class="panel-title">Upgrades</h2>
+              
+              <p class="panel-instructions">
+                Drive consumer satisfaction and increase revenue by offering
+                additional services to consumers.
+              </p>
+              
+              <%= f.fields_for :upgrades do |upgrade| %>
+                <%= render 'upgrade_fields', f: upgrade %>
+              <% end %>
+                
+              <div class="links">
+                <%= link_to_add_association "+ Add Upgrade", 
+                                            f, 
+                                            :upgrades %>
+              </div>
+            </div>
+          <% end %>
+          
           <%= f.hidden_field :bumped_at,  value: Time.now %>
             
           <%= f.submit "Save", class: "btn btn-primary" %>

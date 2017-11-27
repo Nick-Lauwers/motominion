@@ -1,0 +1,571 @@
+<% provide(:title, 'Dealer Signup') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-hours">
+  <div class="dealer-hours-content">
+    
+    <div class="row">
+      
+      <div class="col-md-5">
+        <div class="dealer-hours-detail">
+          
+          <h1 class="dealer-form-title">Hours of Operation</h1>
+        
+          <h2 class="dealer-form-subtitle">
+            So that consumers can visit you...
+          </h2>
+          
+          <p class="dealer-form-info">
+            Please indicate when your location will be open and when it will be 
+            closed.
+          </p>
+        </div>
+      </div>
+      
+      <div class="col-md-7">
+        <!--intentionally left empty-->
+      </div>
+    </div>
+    
+    <div class="row">
+      <%= form_for @dealership do |f| %> 
+      
+        <div class="col-md-5">
+          
+          <%= f.fields_for :business_hours do |g| %>
+            
+            <span class="business-hours-day">Monday</span>
+            
+            <%= g.hidden_field :day, value: "Monday" %>
+            
+            <div class="checkbox-business-hours">
+              (
+                <div class="checkbox-inline">
+          
+                  <%= g.check_box :is_closed,
+                                  id: "monday-closed",
+                                  class: "checkbox" %>
+                  
+                  <%= g.label :is_closed, 
+                              "Closed",
+                              class: "checkbox-label" %> 
+                </div>
+              )
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+                  
+                  <%= g.text_field :open_time, 
+                                   placeholder: "Open", 
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           monday-business-hours" %>
+                  
+                  <i class="fa fa-sun-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+        
+                  <%= g.text_field :close_time, 
+                                   placeholder: "Close",
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           monday-business-hours" %>
+                  
+                  <i class="fa fa-moon-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          
+          <%= f.fields_for :business_hours do |g| %>
+            
+            <span class="business-hours-day">Tuesday</span>
+            
+            <%= g.hidden_field :day, value: "Tuesday" %>
+            
+            <div class="checkbox-business-hours">
+              (
+                <div class="checkbox-inline">
+          
+                  <%= g.check_box :is_closed,
+                                  id: "tuesday-closed",
+                                  class: "checkbox" %>
+                  
+                  <%= g.label :is_closed, 
+                              "Closed",
+                              class: "checkbox-label" %> 
+                </div>
+              )
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+                  
+                  <%= g.text_field :open_time, 
+                                   placeholder: "Open", 
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           tuesday-business-hours" %>
+                  
+                  <i class="fa fa-sun-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+        
+                  <%= g.text_field :close_time, 
+                                   placeholder: "Close",
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           tuesday-business-hours" %>
+                  
+                  <i class="fa fa-moon-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          
+          <%= f.fields_for :business_hours do |g| %>
+            
+            <span class="business-hours-day">Wednesday</span>
+            
+            <%= g.hidden_field :day, value: "Wednesday" %>
+            
+            <div class="checkbox-business-hours">
+              (
+                <div class="checkbox-inline">
+          
+                  <%= g.check_box :is_closed, 
+                                  id: "wednesday-closed",
+                                  class: "checkbox" %>
+                  
+                  <%= g.label :is_closed, 
+                              "Closed",
+                              class: "checkbox-label" %> 
+                </div>
+              )
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+                  
+                  <%= g.text_field :open_time, 
+                                   placeholder: "Open", 
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           wednesday-business-hours" %>
+                  
+                  <i class="fa fa-sun-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+        
+                  <%= g.text_field :close_time, 
+                                   placeholder: "Close",
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           wednesday-business-hours" %>
+                  
+                  <i class="fa fa-moon-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          
+          <%= f.fields_for :business_hours do |g| %>
+            
+            <span class="business-hours-day">Thursday</span>
+            
+            <%= g.hidden_field :day, value: "Thursday" %>
+            
+            <div class="checkbox-business-hours">
+              (
+                <div class="checkbox-inline">
+          
+                  <%= g.check_box :is_closed, 
+                                  id: "thursday-closed",
+                                  class: "checkbox" %>
+                  
+                  <%= g.label :is_closed, 
+                              "Closed",
+                              class: "checkbox-label" %> 
+                </div>
+              )
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+                  
+                  <%= g.text_field :open_time, 
+                                   placeholder: "Open", 
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           thursday-business-hours" %>
+                  
+                  <i class="fa fa-sun-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+        
+                  <%= g.text_field :close_time, 
+                                   placeholder: "Close",
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           thursday-business-hours" %>
+                  
+                  <i class="fa fa-moon-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class="col-md-5 col-md-offset-2">
+          
+          <%= f.fields_for :business_hours do |g| %>
+            
+            <span class="business-hours-day">Friday</span>
+            
+            <%= g.hidden_field :day, value: "Friday" %>
+            
+            <div class="checkbox-business-hours">
+              (
+                <div class="checkbox-inline">
+          
+                  <%= g.check_box :is_closed, 
+                                  id: "friday-closed",
+                                  class: "checkbox" %>
+                  
+                  <%= g.label :is_closed, 
+                              "Closed",
+                              class: "checkbox-label" %> 
+                </div>
+              )
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+                  
+                  <%= g.text_field :open_time, 
+                                   placeholder: "Open", 
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           friday-business-hours" %>
+                  
+                  <i class="fa fa-sun-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+        
+                  <%= g.text_field :close_time, 
+                                   placeholder: "Close",
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           friday-business-hours" %>
+                  
+                  <i class="fa fa-moon-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          
+          <%= f.fields_for :business_hours do |g| %>
+            
+            <span class="business-hours-day">Saturday</span>
+            
+            <%= g.hidden_field :day, value: "Saturday" %>
+            
+            <div class="checkbox-business-hours">
+              (
+                <div class="checkbox-inline">
+          
+                  <%= g.check_box :is_closed, 
+                                  id: "saturday-closed",
+                                  class: "checkbox" %>
+                  
+                  <%= g.label :is_closed, 
+                              "Closed",
+                              class: "checkbox-label" %> 
+                </div>
+              )
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+                  
+                  <%= g.text_field :open_time, 
+                                   placeholder: "Open",
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           saturday-business-hours" %>
+                  
+                  <i class="fa fa-sun-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+        
+                  <%= g.text_field :close_time, 
+                                   placeholder: "Close",
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           saturday-business-hours" %>
+                  
+                  <i class="fa fa-moon-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          
+          <%= f.fields_for :business_hours do |g| %>
+            
+            <span class="business-hours-day">Sunday</span>
+            
+            <%= g.hidden_field :day, value: "Sunday" %>
+            
+            <div class="checkbox-business-hours">
+              (
+                <div class="checkbox-inline">
+          
+                  <%= g.check_box :is_closed, 
+                                  id: "sunday-closed", 
+                                  class: "checkbox" %>
+                  
+                  <%= g.label :is_closed, 
+                              "Closed",
+                              class: "checkbox-label" %> 
+                </div>
+              )
+            </div>
+            
+            <div class="row">
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+                  
+                  <%= g.text_field :open_time, 
+                                   placeholder: "Open",
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           sunday-business-hours" %>
+                  
+                  <i class="fa fa-sun-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-xs-6">
+                <div class="form-element">
+        
+                  <%= g.text_field :close_time, 
+                                   placeholder: "Close",
+                                   class: "form-control 
+                                           form-control-secondary 
+                                           business-hours
+                                           sunday-business-hours" %>
+                  
+                  <i class="fa fa-moon-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                                           
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          
+          <%= hidden_field_tag :redirect_location, address_dealership_path %>
+  
+          <%= f.submit "Save", class: "btn btn-tertiary btn-business-hours" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // datetimepicker
+    
+      var businessHours = $('.business-hours')
+
+      businessHours.datetimepicker({
+        format: 'LT'
+      });
+    
+    // disable time fields if closed
+    
+      $('#monday-closed').on('click', function(){
+        
+        if($(this).prop('checked')) {
+          $('.monday-business-hours').prop("disabled", true);
+        } 
+        
+        else {
+          $('.monday-business-hours').prop("disabled", false);
+        }
+      })
+      
+      $('#tuesday-closed').on('click', function(){
+        
+        if($(this).prop('checked')) {
+          $('.tuesday-business-hours').prop("disabled", true);
+        } 
+        
+        else {
+          $('.tuesday-business-hours').prop("disabled", false);
+        }
+      })
+      
+      $('#wednesday-closed').on('click', function(){
+        
+        if($(this).prop('checked')) {
+          $('.wednesday-business-hours').prop("disabled", true);
+        } 
+        
+        else {
+          $('.wednesday-business-hours').prop("disabled", false);
+        }
+      })
+      
+      $('#thursday-closed').on('click', function(){
+        
+        if($(this).prop('checked')) {
+          $('.thursday-business-hours').prop("disabled", true);
+        } 
+        
+        else {
+          $('.thursday-business-hours').prop("disabled", false);
+        }
+      })
+      
+      $('#friday-closed').on('click', function(){
+        
+        if($(this).prop('checked')) {
+          $('.friday-business-hours').prop("disabled", true);
+        } 
+        
+        else {
+          $('.friday-business-hours').prop("disabled", false);
+        }
+      })
+      
+      $('#saturday-closed').on('click', function(){
+        
+        if($(this).prop('checked')) {
+          $('.saturday-business-hours').prop("disabled", true);
+        } 
+        
+        else {
+          $('.saturday-business-hours').prop("disabled", false);
+        }
+      })
+    
+      $('#sunday-closed').on('click', function(){
+        
+        if($(this).prop('checked')) {
+          $('.sunday-business-hours').prop("disabled", true);
+        } 
+        
+        else {
+          $('.sunday-business-hours').prop("disabled", false);
+        }
+      })
+  })
+</script>

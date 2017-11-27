@@ -1,0 +1,203 @@
+<!--completed-->
+
+<%= form_for @dealership, html: { multipart: true } do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <div class="update-panel">
+    
+    <h2 class="panel-title">Company Details</h2>
+    
+    <div class="form-group form-group-primary">
+          
+      <%= f.label :name, "Company Name" %>
+
+      <%= f.text_field :name, 
+                       placeholder: "E.g. Fontanet Chrysler", 
+                       class: 'form-control form-control-primary' %>
+    </div>
+    
+    <div class="form-group form-group-primary">
+      
+      <%= f.label :description, "Describe Your Company" %>
+
+      <%= f.text_area :description, 
+                      rows: 5,
+                      placeholder: "E.g. Fontanet Chrysler prides itself on the highest quality sales and servicing experience.",
+          class: 'form-control form-control-primary' %>
+    </div>
+  </div>
+  
+  <div class="update-panel">
+    
+    <h2 class="panel-title">Contact Information</h2>
+
+    <div class="form-group form-group-primary">
+      
+      <%= f.label :website %>
+
+      <%= f.url_field :website, 
+                      placeholder: "Website", 
+                      class: 'form-control form-control-primary' %>
+    </div>
+      
+    <div class="row">
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :sales_phone, "Sales Phone" %>
+
+          <%= f.text_field :sales_phone, 
+                           placeholder: "Sales phone", 
+                           class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :service_phone, "Service Phone" %>
+
+          <%= f.text_field :service_phone, 
+                           placeholder: "Service phone", 
+                           class: 'form-control form-control-primary' %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+              
+      <div class="col-md-6 form-group">
+  
+        <%= f.label :street_address, "Street Address" %>
+        
+        <%= f.text_field :street_address, 
+                         placeholder: "Eg. 3 Lower River Dr.", 
+                         class: "form-control form-control-primary" %>
+      </div>
+      
+      <div class="col-md-6 form-group">
+  
+        <%= f.label :building, "Apt., Bldg. (Optional)" %>
+        
+        <%= f.text_field :building, 
+                         placeholder: "Eg. Building 6", 
+                         class: "form-control form-control-primary" %>
+      </div>
+    </div>
+    
+    <div class="row">
+      
+      <div class="col-md-6 form-group">
+  
+        <%= f.label :city %>
+        
+        <%= f.text_field :city, 
+                         placeholder: "Eg. Louisville", 
+                         class: "form-control form-control-primary" %>
+      </div>
+      
+      <div class="col-md-6 form-group">
+  
+        <%= f.label :state, "State / Province" %>
+        
+        <%= f.text_field :state, 
+                         placeholder: "Eg. KY", 
+                         class: "form-control form-control-primary" %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="update-panel">
+    
+    <h2 class="panel-title">Company Photos</h2>
+
+    <div class="row">
+        
+      <div class="col-md-5">
+        
+        <span class="dealer-edit-title">Dealership Logo</span>
+
+        <div class="avatar">
+          <%= image_tag @dealership.logo.url, 
+                        class: "uploaded-dealership-logo" %>
+        </div>
+          
+        <div class="upload-button-dealerships-edit">
+        
+          <div class="upload-button-content">
+            Upload Photo
+          </div>
+          
+          <%= f.file_field :logo, class: "upload-logo-hidden" %>
+        </div>
+      </div>
+      
+      <div class="col-md-5 col-md-offset-2">
+        
+        <span class="dealer-edit-title">Team Photo</span>
+        
+        <div class="avatar">
+          <%= image_tag @dealership.photo.url, 
+                        class: "uploaded-dealership-photo" %>
+        </div>
+          
+        <div class="upload-button-dealerships-edit">
+        
+          <div class="upload-button-content">
+            Upload Photo
+          </div>
+          
+          <%= f.file_field :photo, class: "upload-photo-hidden" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <%= hidden_field_tag :redirect_location, edit_dealership_path %>
+
+  <%= f.submit "Save Changes", class: "btn btn-primary btn-update" %>      
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+      var uploadedDealershipLogo  = $('.uploaded-dealership-logo');
+      var uploadedDealershipPhoto = $('.uploaded-dealership-photo');
+      var uploadLogoHidden        = $('.upload-logo-hidden');
+      var uploadPhotoHidden       = $('.upload-photo-hidden');
+      
+      function readURLa(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+        
+          reader.onload = function (e) {
+            uploadedDealershipLogo.attr('src', e.target.result);
+          };
+      
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      
+      uploadLogoHidden.change(function(){
+        readURLa(this);
+      });
+      
+      function readURLB(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+        
+          reader.onload = function (e) {
+            uploadedDealershipPhoto.attr('src', e.target.result);
+          };
+      
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      
+      uploadPhotoHidden.change(function(){
+        readURLB(this);
+      });
+  })
+</script>

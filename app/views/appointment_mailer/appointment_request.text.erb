@@ -1,10 +1,11 @@
 <!--completed-->
 
-Hi <%= @seller.name %>,
+Hi <%= @seller.first_name %>,
 
-You just received a test drive request from <%= @buyer.name %> for your listing,
-<%= @vehicle.listing_name %>! Click on the link below to either accept or to
-decline the request, or to send <%= @buyer.name %> a private message:
+You just received a test drive request from <%= @buyer.first_name %> for your 
+listing, <%= @vehicle.listing_name %>! Click on the link below to either accept 
+or to decline the request, or to send <%= @buyer.first_name %> a private 
+message:
 
 <%= conversation_messages_url(@conversation) %>
 

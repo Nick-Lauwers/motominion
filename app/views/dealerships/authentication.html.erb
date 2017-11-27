@@ -1,0 +1,49 @@
+<% provide(:title, 'Dealer Signup') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="dealer-authentication">
+  <div class="dealer-authentication-content">
+    
+    <h1 class="dealer-authentication-title">It's Official!</h1>
+    
+    <%= image_tag('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/authentication.png',
+                  class: "dealer-authentication-image") %>
+    
+    <h2 class="dealer-authentication-subtitle">
+      You're now a member of Mototrova.
+    </h2>
+    
+    <p class="dealer-authentication-info">
+      Check your email (<%= @dealership.email %>) to activate your account.
+    </p>
+    
+    <div class="dealer-authentication-ribbon"> 
+      <h1 class="dealer-authentication-ribbon-content">
+        <strong class="dealer-authentication-ribbon-text">
+          Complete our brief survey and receive a $100 service credit
+        </strong>
+      </h1>
+    </div>
+    
+    <div class="dealer-authentication-tour-detail">
+      
+      <p class="dealer-authentication-tour-info">
+        Learn what Mototrova can do for you:.
+      </p>
+      
+      <%= link_to '#', class: "dealer-authentication-tour-title" do %>
+        
+        Take the tour
+        
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

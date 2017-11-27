@@ -1,0 +1,44 @@
+<!--completed-->
+
+<% provide(:title, 'Profile') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<%= render 'layouts/secondary_navbar' %>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-md-4 sidenav">
+        <%= render 'layouts/sidenav_profile' %>
+      </div>
+      
+      <div class="col-md-8">
+        
+        <div class="profile-preview-button">
+          <%= link_to dealership_path, 
+                      class: "btn-profile-preview" do %>
+                        
+            <i class="fa fa-user-circle-o fa-lg profile-preview-icon" 
+               aria-hidden="true"></i>
+            
+            Dealer Preview
+          <% end %>
+        </div>
+
+        <div class="account-form">
+          <%= render 'edit_form' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

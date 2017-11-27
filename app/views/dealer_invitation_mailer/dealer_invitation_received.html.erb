@@ -1,0 +1,4 @@
+<%= @dealer_invitation.dealership.name %> just sent you an invitation to join 
+Mototrova! Click on the link below to join:
+
+<%= new_user_url(dealership_id: @dealer_invitation.dealership.id) %>

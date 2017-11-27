@@ -1,9 +1,10 @@
 <h1>You Received A Review! | Mototrova</h1>
 
-<p>Hi <%= @review.reviewed.name %>,</p>
+<p>Hi <%= @review.reviewed.first_name %>,</p>
 
 <p>
-  You just received a review from <strong><%= @review.reviewer.name %></strong> 
+  You just received a review from 
+  <strong><%= @review.reviewer.first_name %></strong> 
   for your listing, <strong><%= @review.vehicle.listing_name %></strong>. Click 
   on the link below to view the details:
 </p>

@@ -1,0 +1,130 @@
+<% provide(:title, "New Purchase") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="purchase">
+  <div class="purchase-content">
+    
+    <div class="purchase-hero", 
+         style="background-image: url('<%= 
+                 @purchase.vehicle.photos[0].image.url() if 
+                 @purchase.vehicle.photos.length > 0 %>')">
+      
+      <div class="purchase-hero-price-container">
+        <span class="purchase-hero-price">
+          $<%= @purchase.vehicle.price %>
+        </span>
+      </div>
+      
+      <div class="purchase-hero-title">
+        <div class="row vertical-align">
+        
+          <div class="col-md-2 avatar-and-online">
+            
+            <%= link_to user_path(@purchase.vehicle.user) do %>
+              <div class="purchase-hero-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= @purchase.vehicle.user.avatar.url(:thumb) %>')">
+              </div>
+            <% end %>
+
+            <% if @purchase.vehicle.user.online? %>
+              <div class="online online-lg-primary"></div>
+            <% end %>
+          </div>
+          
+          <div class="col-md-10">
+            
+            <%= link_to @purchase.vehicle.listing_name, 
+                        @purchase.vehicle,
+                        class: "purchase-hero-heading" %>
+            
+            <%= link_to @purchase.vehicle.user.full_name, 
+                        @purchase.vehicle.user,
+                        class: "purchase-hero-subheading" %>
+            
+            <span> · </span>
+                        
+            <span class="average-rating"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="purchase-form">
+      <div class="row">
+    
+        <div class="col-md-3"> 
+          <%= render 'sidenav' %>
+        </div>
+        
+        <div class="col-md-8 col-md-offset-1">
+          
+          <%= form_for @purchase do |f| %>
+            
+            <span class="installed-options-title">Vehicle Upgrades</span>
+            
+            <%= f.collection_check_boxes :upgrade_ids, 
+                                         Upgrade.all, 
+                                         :id, 
+                                         :title do |g| %>
+              <div class="collection-check-box">
+                <%= g.check_box %>
+                <%= g.label class: "checkbox-label" %>
+              </div>
+            <% end %>
+            
+            <%= f.submit "Save", class: "btn btn-primary" %>
+          <% end %>
+          
+          <!--<= form_for :purchased_upgrades do |f| %>-->
+              
+          <!--  < for upgrade in @purchase.vehicle.upgrades %>-->
+          <!--    <= check_box_tag "purchase[upgrade_ids][]", upgrade.id %>-->
+          <!--    <= upgrade.title %>-->
+          <!--  < end %>-->
+              
+              <!--<= f.collection_check_boxes(:purchase, :upgrades_ids, @purchase.vehicle.upgrades, :id, :name) do |upgrade| %>-->
+              <!--  <= upgrade.label { upgrade.check_box } %>-->
+              <!--< end %>-->
+
+          <!--    <span class="installed-options-title">Installed Options</span>-->
+              
+              <!--<ul class="installed-options-list">-->
+                
+              <!--  < @purchase.vehicle.upgrades.each do |upgrade| %>-->
+              <!--    <li>-->
+              <!--      <= upgrade.title %>-->
+              <!--    </li>-->
+              <!--  < end %>-->
+                
+              <!--</ul>-->
+
+          <!--  <= f.submit "Save", class: "btn btn-primary" %>-->
+          <!--< end %>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // rating
+    
+      var averageRating = $('.average-rating');
+      
+      averageRating.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= @purchase.vehicle.average_rating %>
+      });
+  });
+</script>

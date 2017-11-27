@@ -8,6 +8,8 @@ class Vehicle < ActiveRecord::Base
   belongs_to :vehicle_make
   belongs_to :vehicle_model
   
+  has_many :purchases, dependent: :destroy
+  
   # has_one :payment
   
   has_many :reviews,           dependent: :destroy
@@ -22,6 +24,9 @@ class Vehicle < ActiveRecord::Base
   
   has_many :availabilities, dependent: :destroy
   accepts_nested_attributes_for :availabilities, allow_destroy: true
+  
+  has_many :upgrades, dependent: :destroy
+  accepts_nested_attributes_for :upgrades, allow_destroy: true
 
   # MINIMUM_PHOTOS = 2
 

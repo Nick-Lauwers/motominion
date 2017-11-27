@@ -27,7 +27,7 @@
             <% end %>
           </div>
 
-          <span class="author-name"><%= current_user.name %></span>
+          <span class="author-name"><%= current_user.full_name %></span>
         </div>
       </div>
     </div>
@@ -55,6 +55,11 @@
         <%= f.hidden_field :vehicle_id,  value: @vehicle.id %>
         
         <%= f.hidden_field :reviewed_id, value: @vehicle.user.id %>
+        
+        <% if @vehicle.user.dealership_id.present? %>
+          <%= f.hidden_field :dealership_id, 
+                             value: @vehicle.user.dealership_id %>
+        <% end %>
   
         <div class="review-post-container">
           <%= f.submit "Post my review", class: "review-post" %>

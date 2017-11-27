@@ -1,0 +1,6 @@
+[2017-11-13T00:01:07,062][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][493][2] duration [1.4s], collections [1]/[2s], total [1.4s]/[1.6s], memory [578.9mb]->[151.9mb]/[1.9gb], all_pools {[young] [532.5mb]->[6.4mb]/[532.5mb]}{[survivor] [46.3mb]->[66.5mb]/[66.5mb]}{[old] [0b]->[85.4mb]/[1.3gb]}
+[2017-11-13T00:01:07,100][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][493] overhead, spent [1.4s] collecting in the last [2s]
+[2017-11-13T01:15:56,993][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][4964][3] duration [11.6s], collections [1]/[11.6s], total [11.6s]/[13.2s], memory [684.5mb]->[219.2mb]/[1.9gb], all_pools {[young] [532.5mb]->[3.2mb]/[532.5mb]}{[survivor] [66.5mb]->[54.9mb]/[66.5mb]}{[old] [85.4mb]->[160.9mb]/[1.3gb]}
+[2017-11-13T01:15:57,000][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][4964] overhead, spent [11.6s] collecting in the last [11.6s]
+[2017-11-13T02:49:07,289][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][10551][4] duration [1.9s], collections [1]/[2.1s], total [1.9s]/[15.2s], memory [745.9mb]->[214.4mb]/[1.9gb], all_pools {[young] [529.9mb]->[3.9mb]/[532.5mb]}{[survivor] [54.9mb]->[1.9mb]/[66.5mb]}{[old] [160.9mb]->[210.1mb]/[1.3gb]}
+[2017-11-13T02:49:07,424][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][10551] overhead, spent [1.9s] collecting in the last [2.1s]

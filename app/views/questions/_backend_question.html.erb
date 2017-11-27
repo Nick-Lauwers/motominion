@@ -19,7 +19,7 @@
     
     <div class="backend-question-detail">
 
-      <%= link_to question.user.name, 
+      <%= link_to question.user.full_name, 
                   question.user,
                   class: "backend-question-name" %>
   
@@ -69,7 +69,8 @@
             
             <div class="backend-answer-detail">
               
-              <%= link_to answer.user.name, answer.user, 
+              <%= link_to answer.user.full_name, 
+                          answer.user, 
                           class: "backend-answer-name" %>
                           
               <span class="backend-answer-content"><%= answer.content %></span>

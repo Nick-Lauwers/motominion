@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get    'legal'                   => 'static_pages#legal'
   get    'customers'               => 'appointments#customers'
   get    'test-drives'             => 'appointments#test_drives'
+  get    'purchases_made'          => 'purchases#purchases_made'
+  get    'orders_received'         => 'purchases#orders_received'
   get    'payment_method'          => 'users#payment'
   get    'payout_method'           => 'users#payout'
   get    'signup'                  => 'users#new'
@@ -18,13 +20,14 @@ Rails.application.routes.draw do
   delete 'logout'                  => 'sessions#destroy'
   
   resources :autopart_photos
-  resources :account_activations, only: [:edit]
-  resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :questions,           only: [:index, :create, :destroy]
-  resources :answers,             only: [:create, :destroy]
-  resources :enquiries,           only: [:new, :create]
-  resources :profiles,            only: [:show, :edit, :update]
-  
+  resources :account_activations,    only: [:edit]
+  resources :dealership_activations, only: [:edit]
+  resources :password_resets,        only: [:new, :create, :edit, :update]
+  resources :questions,              only: [:index, :create, :destroy]
+  resources :answers,                only: [:create, :destroy]
+  resources :enquiries,              only: [:new, :create]
+  resources :profiles,               only: [:show, :edit, :update]
+
   resources :vehicle_makes do
     member do
       get 'posts'
@@ -80,7 +83,6 @@ Rails.application.routes.draw do
       get 'basics'
       get 'details'
       get 'photos'
-      get 'finalize'
       get 'about_you'
     end
     
@@ -94,6 +96,25 @@ Rails.application.routes.draw do
         put :accept
         put :decline
       end
+    end
+  end
+  
+  resources :dealerships do
+    
+    resources :dealer_invitations
+    resources :reviews, only: :destroy
+    
+    member do
+      get 'authentication'
+      get 'basics'
+      get 'about'
+      get 'contact'
+      get 'hours'
+      get 'address'
+      get 'logo'
+      get 'photo'
+      get 'vehicles'
+      get 'reviews'
     end
   end
 
@@ -138,6 +159,20 @@ Rails.application.routes.draw do
       put :sold
       put :undo_sold
       put :bump
+    end
+  end
+  
+  resources :purchases do
+    member do
+      
+      put :submit
+      
+      get 'order_received'
+      get 'basics'
+      get 'details'
+      get 'billing'
+      get 'employment'
+      get 'financial'
     end
   end
   

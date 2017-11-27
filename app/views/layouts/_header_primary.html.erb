@@ -98,7 +98,7 @@
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
             
-            <%= current_user.name %> <b class="caret"></b>
+            <%= current_user.first_name %> <b class="caret"></b>
             
             <% if Review.where(
                     reviewed_id: current_user.id, 
