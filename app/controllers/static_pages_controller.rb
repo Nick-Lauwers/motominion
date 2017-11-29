@@ -32,6 +32,9 @@ class StaticPagesController < ApplicationController
                                        Time.now)
   end
   
+  def tour
+  end
+  
   def legal
   end
 end

@@ -687,6 +687,7 @@
 <!--<= link_to new_club_path, class: "single-action hidden-xs" do %>-->
 <!--  <i class='fa fa-group fa-lg single-action-icon'></i>-->
 <!--< end %>-->
+
 <div class="single-action">
   <%= form_for @conversation, 
                url: conversations_path(@conversation), 
@@ -701,8 +702,8 @@
   
     <%= f.hidden_field :recipient_archived, value: false %>
     
-    <%= button_tag(class: "hidden-xs") do %>
-      <i class='fa fa-comments-o single-action-icon'></i>
+    <%= button_tag(class: "single-action-button hidden-xs") do %>
+      <i class='fa fa-lg fa-comments-o single-action-icon'></i>
     <% end %>
   <% end %>
 </div>

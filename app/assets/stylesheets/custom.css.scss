@@ -6112,26 +6112,31 @@ a.remove_fields {
 
 /* clubs */
 
-.clubs-hero {
+.clubs-hero,
+.tour-hero {
   background-color: $gray-lightest;
 }
 
-.clubs-hero-content {
+.clubs-hero-content,
+.tour-hero-content {
   max-width: 885px;
   padding: 7em 0;
   margin: 0 auto;
   position: relative;
 }
 
-.clubs-hero-text {
+.clubs-hero-text,
+.tour-hero-text {
   padding: 0 5em;
 }
 
-.clubs-hero-image {
+.clubs-hero-image,
+.tour-hero-image {
   text-align: center;
 }
 
-.clubs-hero-title {
+.clubs-hero-title,
+.tour-hero-title {
   font-size: 2.3em;
   font-weight: bold;
   line-height: 1.5;
@@ -6139,7 +6144,8 @@ a.remove_fields {
   margin: 0;
 }
 
-.clubs-hero-subtitle {
+.clubs-hero-subtitle,
+.tour-hero-subtitle {
   font-size: 1.1em;
   font-weight: bold;
   line-height: 2.1;
@@ -6147,7 +6153,8 @@ a.remove_fields {
   margin: 1.6em 0 0.6em;
 }
 
-.clubs-hero-info {
+.clubs-hero-info,
+.tour-hero-info {
   line-height: 2.1;
   text-align: left;
   margin: 0;
@@ -6206,6 +6213,14 @@ a.remove_fields {
   bottom: 15px;
   right: 15px;
   z-index: 1000;
+}
+
+.single-action-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  height: 56px;
+  width: 56px;
 }
 
 .single-action-icon {
@@ -6616,7 +6631,8 @@ a.remove_fields {
   margin: 0 auto;
 }
 
-.dealer-signup-testimonial-avatar {
+.dealer-signup-testimonial-avatar,
+.feature-testimonial-avatar {
   background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
@@ -6626,7 +6642,8 @@ a.remove_fields {
   width: 70px;
 }
 
-.dealer-signup-testimonial-name {
+.dealer-signup-testimonial-name,
+.feature-testimonial-name {
   font-weight: bold;
   text-align: left;
   color: $gray-text;
@@ -6634,7 +6651,8 @@ a.remove_fields {
   display: block;
 }
 
-.dealer-signup-testimonial-info {
+.dealer-signup-testimonial-info,
+.feature-testimonial-info {
   text-align: left;
   margin: 0;
 }
@@ -6897,6 +6915,48 @@ a.remove_fields {
 
 .popular-searches-icon {
   margin-right: 0.5em;
+}
+
+.tour-feature-white,
+.tour-feature-gray {
+  border-top: 1px solid $gray-border;
+  padding: 6em 0;
+}
+
+.tour-feature-white {
+  background-color: white;
+}
+
+.tour-feature-gray {
+  background-color: $gray-lightest;
+}
+
+.tour-feature {
+  max-width: 1008px;
+  margin: 0 auto;
+}
+
+.feature-title {
+  font-size: 1.6em;
+  font-weight: bold;
+  line-height: 1.5;
+  color: $gray-text;
+  margin: 0;
+}
+
+.feature-info {
+  line-height: 2.1;
+  text-align: left;
+  margin: 2em 0;
+}
+
+.feature-screenshot {
+  height: 250px;
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 1px solid $gray-border;
 }
 
 // .press {
@@ -7484,6 +7544,9 @@ a.remove_fields {
   z-index: 100;
 }
 
+/* tour */
+
+
 @media (min-width: 768px) {
   
   .review-date {
@@ -7498,7 +7561,10 @@ a.remove_fields {
   .about-leadership-team,
   .profile-pic-form-content,
   .clubs-hero-text,
-  .dealer-signup-testimonial-detail {
+  .dealer-signup-testimonial-detail,
+  .feature-testimonial,
+  .tour-feature-content,
+  .tour-hero-text {
     display: flex;
     align-items: center;
   }
@@ -7588,7 +7654,8 @@ a.remove_fields {
   .dealer-signup-testimonial-content,
   .dealer-authentication-content,
   .dealer-profile-hero-detail,
-  .dealership-profile-overview-content {
+  .dealership-profile-overview-content,
+  .tour-feature {
     margin: 0 5%;
     overflow: hidden;
   }
@@ -8017,7 +8084,8 @@ a.remove_fields {
     padding-top: 3em;
   }
   
-  .clubs-hero-content {
+  .clubs-hero-content,
+  .tour-hero-content {
     margin: 0 5%;
     padding: 0;
   }
@@ -8026,15 +8094,18 @@ a.remove_fields {
     padding: 2em 0 5em;
   }
   
-  .clubs-hero-title {
+  .clubs-hero-title,
+  .tour-hero-title {
     font-size: 1.8em;
   }
   
-  .clubs-hero-subtitle {
+  .clubs-hero-subtitle,
+  .tour-hero-subtitle {
     font-size: 1em;
   }
   
-  .clubs-hero-info {
+  .clubs-hero-info,
+  .tour-hero-info {
     font-size: 1em;
     line-height: 1.8;
   }
@@ -8128,11 +8199,13 @@ a.remove_fields {
     padding: 3em 0;
   }
   
-  .dealer-signup-testimonial-avatar {
+  .dealer-signup-testimonial-avatar,
+  .feature-testimonial-avatar {
     margin: 0 auto;
   }
   
-  .dealer-signup-testimonial-name {
+  .dealer-signup-testimonial-name,
+  .feature-testimonial-name {
     font-size: 1em;
     line-height: 2.1;
     text-align: center;
@@ -8140,7 +8213,8 @@ a.remove_fields {
     margin: 1em 0 0.5em;
   }
   
-  .dealer-signup-testimonial-info {
+  .dealer-signup-testimonial-info,
+  .feature-testimonial-info {
     font-size: 1em;
     line-height: 1.8;
     text-align: center;
@@ -8201,6 +8275,10 @@ a.remove_fields {
   
   .receipt-detail {
     width: 65%;
+  }
+  
+  .tour-hero-text {
+    padding: 2em 0
   }
   
 .begin-here {
@@ -8355,11 +8433,11 @@ a.remove_fields {
   }
 }
 
-.single-action-button {
-      &.active {
-        box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19), 0 12px 15px 0 rgba(0, 0, 0, 0.24);
-      }
-}
+// .single-action-button {
+//       &.active {
+//         box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19), 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+//       }
+// }
 
     .action-button {
       &.active {

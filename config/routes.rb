@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get    'about'                   => 'static_pages#about'
   get    'how-it-works'            => 'static_pages#how_it_works'
   get    'dashboard'               => 'static_pages#dashboard'
+  get    'tour'                    => 'static_pages#tour'
   get    'legal'                   => 'static_pages#legal'
   get    'customers'               => 'appointments#customers'
   get    'test-drives'             => 'appointments#test_drives'
