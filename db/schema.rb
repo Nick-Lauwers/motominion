@@ -384,16 +384,6 @@ ActiveRecord::Schema.define(version: 20171123203342) do
   add_index "posts", ["vehicle_model_id", "created_at"], name: "index_posts_on_vehicle_model_id_and_created_at"
   add_index "posts", ["vehicle_model_id"], name: "index_posts_on_vehicle_model_id"
 
-  create_table "purchased_upgrades", force: :cascade do |t|
-    t.integer  "purchases_id"
-    t.integer  "upgrades_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "purchased_upgrades", ["purchases_id"], name: "index_purchased_upgrades_on_purchases_id"
-  add_index "purchased_upgrades", ["upgrades_id"], name: "index_purchased_upgrades_on_upgrades_id"
-
   create_table "purchases", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"

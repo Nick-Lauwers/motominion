@@ -1,0 +1,3 @@
+id,name,description,cover_photo,city,state,latitude,longitude
+1,Capitol City Motorcycles,"Capitol City Motorcycles brings bike enthusiasts together to celebrate the classic motorcycle.",https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/capitol-city-motorcycles.jpg,Lansing,MI,42.732536,-84.555534
+2,Detroit Street Rods,"Detroit Street Rods is a non-profit classic car club made up of auto enthusiasts with the common interest of enjoying, maintaining, and restoring classic vehicles.",https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/detroit-street-rods.jpg,Detroit,MI,42.3314,-83.0458
