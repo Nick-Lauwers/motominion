@@ -104,6 +104,20 @@ CSV.foreach(Rails.root.join("discussion_comments.csv"), headers: true) do |row|
   end
 end
 
+# Clubs
+CSV.foreach(Rails.root.join("clubs.csv"), headers: true) do |row|
+  Club.create! do |club|
+    club.id          = row[0]
+    club.name        = row[1]
+    club.description = row[2]
+    club.cover_photo = open(row[3])
+    club.city        = row[4]
+    club.state       = row[5]
+    club.latitude    = row[6]
+    club.longitude   = row[7]
+  end
+end
+
 # Dealerships
 CSV.foreach(Rails.root.join("dealerships.csv"), headers: true) do |row|
   Dealership.create! do |dealership|
@@ -127,17 +141,15 @@ CSV.foreach(Rails.root.join("dealerships.csv"), headers: true) do |row|
   end
 end
 
-# Clubs
-CSV.foreach(Rails.root.join("clubs.csv"), headers: true) do |row|
-  Club.create! do |club|
-    club.id          = row[0]
-    club.name        = row[1]
-    club.description = row[2]
-    club.cover_photo = open(row[3])
-    club.city        = row[4]
-    club.state       = row[5]
-    club.latitude    = row[6]
-    club.longitude   = row[7]
+# Business Hours
+CSV.foreach(Rails.root.join("business_hours.csv"), headers: true) do |row|
+  BusinessHour.create! do |business_hour|
+    business_hour.id            = row[0]
+    business_hour.day           = row[1]
+    business_hour.open_time     = row[2]
+    business_hour.close_time    = row[3]
+    business_hour.is_closed     = row[4]
+    business_hour.dealership_id = row[5]
   end
 end
   
