@@ -104,20 +104,6 @@ CSV.foreach(Rails.root.join("discussion_comments.csv"), headers: true) do |row|
   end
 end
 
-# Clubs
-CSV.foreach(Rails.root.join("clubs.csv"), headers: true) do |row|
-  Club.create! do |club|
-    club.id          = row[0]
-    club.name        = row[1]
-    club.description = row[2]
-    club.cover_photo = open(row[3])
-    club.city        = row[4]
-    club.state       = row[5]
-    club.latitude    = row[6]
-    club.longitude   = row[7]
-  end
-end
-
 # Dealerships
 CSV.foreach(Rails.root.join("dealerships.csv"), headers: true) do |row|
   Dealership.create! do |dealership|
@@ -138,6 +124,20 @@ CSV.foreach(Rails.root.join("dealerships.csv"), headers: true) do |row|
     dealership.longitude      = row[14]
     dealership.logo           = open(row[15])
     dealership.photo          = open(row[16])
+  end
+end
+
+# Clubs
+CSV.foreach(Rails.root.join("clubs.csv"), headers: true) do |row|
+  Club.create! do |club|
+    club.id          = row[0]
+    club.name        = row[1]
+    club.description = row[2]
+    club.cover_photo = open(row[3])
+    club.city        = row[4]
+    club.state       = row[5]
+    club.latitude    = row[6]
+    club.longitude   = row[7]
   end
 end
   
