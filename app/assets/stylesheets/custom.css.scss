@@ -6112,31 +6112,26 @@ a.remove_fields {
 
 /* clubs */
 
-.clubs-hero,
-.tour-hero {
+.clubs-hero {
   background-color: $gray-lightest;
 }
 
-.clubs-hero-content,
-.tour-hero-content {
+.clubs-hero-content {
   max-width: 885px;
   padding: 7em 0;
   margin: 0 auto;
   position: relative;
 }
 
-.clubs-hero-text,
-.tour-hero-text {
+.clubs-hero-text {
   padding: 0 5em;
 }
 
-.clubs-hero-image,
-.tour-hero-image {
+.clubs-hero-image {
   text-align: center;
 }
 
-.clubs-hero-title,
-.tour-hero-title {
+.clubs-hero-title {
   font-size: 2.3em;
   font-weight: bold;
   line-height: 1.5;
@@ -6144,8 +6139,7 @@ a.remove_fields {
   margin: 0;
 }
 
-.clubs-hero-subtitle,
-.tour-hero-subtitle {
+.clubs-hero-subtitle {
   font-size: 1.1em;
   font-weight: bold;
   line-height: 2.1;
@@ -6153,8 +6147,7 @@ a.remove_fields {
   margin: 1.6em 0 0.6em;
 }
 
-.clubs-hero-info,
-.tour-hero-info {
+.clubs-hero-info {
   line-height: 2.1;
   text-align: left;
   margin: 0;
@@ -6917,23 +6910,67 @@ a.remove_fields {
   margin-right: 0.5em;
 }
 
-.tour-feature-white,
-.tour-feature-gray {
-  border-top: 1px solid $gray-border;
-  padding: 6em 0;
+// .cover-photo-a {
+//   background-color: $gray-darkest;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   height: 250px;
+//   position: relative;
+// }
+
+.tour-feature-list {
+  list-style: none;
+  padding-left: 0;
 }
 
-.tour-feature-white {
+.tour-feature-container:nth-child(1), 
+.tour-feature-container:nth-child(3),
+.tour-success {
   background-color: white;
 }
 
-.tour-feature-gray {
+.tour-feature-container:nth-child(2),
+.tour-feature-container:last-child {
   background-color: $gray-lightest;
 }
 
-.tour-feature {
+.tour-feature,
+.tour-success-content {
   max-width: 1008px;
+  padding: 5em 0;
   margin: 0 auto;
+}
+
+.tour-success-content {
+  text-align: center;
+}
+
+.feature-image-container {
+  text-align: center;
+}
+
+.feature-step {
+  background-color: $gray-border;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%);
+  &:after {
+    content: "";
+    background-color: $gray-border;
+    width: 2px;
+    height: 30em;
+    position: absolute;
+    right: 7px;
+  }
+}
+
+.tour-feature-container:last-child .feature-step:after {
+  height: 21em;
 }
 
 .feature-title {
@@ -6947,16 +6984,38 @@ a.remove_fields {
 .feature-info {
   line-height: 2.1;
   text-align: left;
-  margin: 2em 0;
+  margin: 2em 0 0;
 }
 
-.feature-screenshot {
-  height: 250px;
-  background-color: $gray-darkest;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 1px solid $gray-border;
+.success-step {
+  background-color: $green;
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.success-step-check {
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.success-title {
+  font-size: 2.3em;
+  font-weight: bold;
+  line-height: 1.5;
+  color: $gray-text;
+  margin: 1em 0 0.5em;
+}
+
+.success-info {
+  line-height: 2.1;
+  margin: 0 0 3em;
 }
 
 // .press {
@@ -7546,6 +7605,32 @@ a.remove_fields {
 
 /* tour */
 
+.tour-hero {
+  text-align: center;
+  color: white;
+  background-image: url(https://www.transparenttextures.com/patterns/inspiration-geometry.png);
+  background-color: $green;
+  padding: 5em 0;
+}
+
+.tour-hero-detail {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.tour-hero-title {
+  font-size: 2.3em;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.tour-hero-subtitle {
+  font-size: 1.1em;
+  font-weight: bold;
+  line-height: 2.1;
+  margin: 1.6em 0 0;
+}
 
 @media (min-width: 768px) {
   
@@ -7563,8 +7648,7 @@ a.remove_fields {
   .clubs-hero-text,
   .dealer-signup-testimonial-detail,
   .feature-testimonial,
-  .tour-feature-content,
-  .tour-hero-text {
+  .tour-feature-content {
     display: flex;
     align-items: center;
   }
@@ -7655,6 +7739,7 @@ a.remove_fields {
   .dealer-authentication-content,
   .dealer-profile-hero-detail,
   .dealership-profile-overview-content,
+  .tour-hero-detail,
   .tour-feature {
     margin: 0 5%;
     overflow: hidden;
@@ -8277,8 +8362,19 @@ a.remove_fields {
     width: 65%;
   }
   
-  .tour-hero-text {
-    padding: 2em 0
+  .tour-hero,
+  .tour-feature,
+  .tour-success-content {
+    padding: 3em 0;
+  }
+  
+  .feature-image {
+    height: 15em;
+    margin-bottom: 2.5em;
+  }
+  
+  .success-title {
+    margin-top: 0;
   }
   
 .begin-here {

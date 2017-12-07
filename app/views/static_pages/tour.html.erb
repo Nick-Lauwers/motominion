@@ -9,177 +9,198 @@
 <%= render 'layouts/modal_menu' %>
 
 <div class="tour-hero">
-  <div class="tour-hero-content">
+  <div class="tour-hero-detail">
     
-    <div class="row tour-hero-text">
-
-      <div class="col-md-3 tour-hero-image">
-        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour.png", 
-                      class: "hidden-xs") %>
-      </div>
-      
-      <div class="col-md-8 col-md-offset-1">
-
-        <h1 class="tour-hero-title">Experience Mototrova</h1>
-        
-        <h2 class="tour-hero-subtitle">
-          Simplifying auto retail
-        </h2>
-        
-        <p class="tour-hero-info">
-          Mototrova consolidates the vehicle purchasing experience, making your 
-          team more productive, less stressed, and just a little bit happier.
-        </p>
-      </div>
-    </div>
+    <h1 class="tour-hero-title">Experience Mototrova</h1>
+    
+    <h2 class="tour-hero-subtitle">
+      Mototrova consolidates the vehicle purchasing experience, making your 
+      team more productive, less stressed, and just a little bit happier.    
+    </h2>
   </div>
 </div>
 
-<div class="tour-feature-white">
-  <div class="tour-feature">
-    <div class="row">
-      
-      <div class="col-md-5 col-md-offset-1 col-md-push-6">
-        <div class="feature-screenshot"
-             style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-screenshot-a.png')">
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-md-pull-6">
+<ol class="tour-feature-list">
+  
+  <li class="tour-feature-container">
+    <div class="tour-feature">
+      <div class="row tour-feature-content">
         
-        <h1 class="feature-title">Enables consumer outreach</h1>
-        
-        <p class="feature-info">
-          Mototrova employs a robust social strategy that strengthens buyer-seller
-          trust.
-        </p>
-        
-        <div class="row feature-testimonial">
-    
-          <div class="col-md-3">
+        <div class="col-md-6 feature-image-container feature-step-container">
+          
+          <div class="row">
             
-            <div class="feature-testimonial-avatar",
-                 style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-avatar-a.jpg')">
+            <div class="col-md-10">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-list-your-vehicle.png",
+                            class: "feature-image") %>
             </div>
             
-            <span class="feature-testimonial-name visible-xs">
-              Darren Coates, Ortega Chevrolet
-            </span>
+            <div class="col-md-2">
+              <!--intentionally left empty-->
+            </div>
           </div>
           
-          <div class="col-md-9">
+          <div class="feature-step hidden-xs"></div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="row">
             
-            <p class="feature-testimonial-info">
-              "Mototrova has allowed our team to interact one-on-one with 
-              consumers." 
-            </p>
+            <div class="col-md-10 col-md-offset-2">
               
-            <span class="feature-testimonial-name hidden-xs">
-              Darren Coates, Ortega Chevrolet
-            </span>
+              <h1 class="feature-title">1. List your vehicle</h1>
+              
+              <p class="feature-info">
+                Before listing, users are required to upload a profile photo meant
+                to strengthen buyer-seller trust. Once that is done, include as
+                many details in your listing as possible
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      
-      
     </div>
-  </div>
-</div>
+  </li>
 
-<div class="tour-feature-gray">
-  <div class="tour-feature">
-    <div class="row tour-feature-content">
-      
-      <div class="col-md-5">
-        <div class="feature-screenshot"
-             style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-screenshot-c.png')">
+  <li class="tour-feature-container">
+    <div class="tour-feature">
+      <div class="row tour-feature-content">
+        
+        <div class="col-md-6 col-md-push-6 feature-image-container">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-approve-test-drives.png", 
+                            class: "feature-image") %>
+            </div>
+          </div>
         </div>
-      </div>
-      
-      <div class="col-md-6 col-md-offset-1">
         
-        <h1 class="feature-title">Online purchasing</h1>
-        
-        <p class="feature-info">
-          Consumers are able to submit orders for vehicles and F&I products.
-        </p>
-        
-        <div class="row feature-testimonial">
-    
-          <div class="col-md-3">
+        <div class="col-md-6 col-md-pull-6 feature-step-container">
+          
+          <div class="row">
             
-            <div class="feature-testimonial-avatar",
-                 style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-avatar-b.jpg')">
+            <div class="col-md-10">
+              
+              <h1 class="feature-title">
+                2. Approve test drives
+              </h1>
+              
+              <p class="feature-info">
+                After your vehicle has been posted, accept or decline all 
+                appointments for test drives made by customers. Your response rate 
+                will be displayed on your profile page for customers to view.
+              </p>
             </div>
             
-            <span class="feature-testimonial-name visible-xs">
-              Kellie Greer, Quinn Buick GMC
-            </span>
+            <div class="col-md-2">
+              <!--intentionally left empty-->
+            </div>
           </div>
           
-          <div class="col-md-9">
+          <div class="feature-step hidden-xs"></div>
+        </div>
+      </div>
+    </div>
+  </li>
+  
+  <li class="tour-feature-container">
+    <div class="tour-feature">
+      <div class="row tour-feature-content">
+        
+        <div class="col-md-6 feature-image-container feature-step-container">
+          
+          <div class="row">
             
-            <p class="feature-testimonial-info">
-              "The 'Buy Now' feature has allowed our customers to submit orders from the
-              comfort of their own homes, even when the dealership is closed." 
-            </p>
+            <div class="col-md-10">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-process-orders.png", 
+                            class: "feature-image") %>
+            </div>
+            
+            <div class="col-md-2">
+              <!--intentionally left empty-->
+            </div>
+          </div>
+          
+          <div class="feature-step hidden-xs"></div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2">
               
-            <span class="feature-testimonial-name hidden-xs">
-              Kellie Greer, Quinn Buick GMC
-            </span>
+              <h1 class="feature-title">
+                3. Process orders
+              </h1>
+              
+              <p class="feature-info">
+                Monitor any vehicle orders submitted by customers. Consumers are able
+                to purchase vehicles outside of dealership hours and to select F&I 
+                products with their purchase.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </li>
+  
+  <li class="tour-feature-container">
+    <div class="tour-feature">
+      <div class="row tour-feature-content">
+        
+        <div class="col-md-6 col-md-push-6 feature-image-container">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-remain-engaged.png", 
+                            class: "feature-image") %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-md-pull-6 feature-step-container">
+          
+          <div class="row">
+            
+            <div class="col-md-10">
+          
+              <h1 class="feature-title">
+                4. Remain engaged
+              </h1>
+              
+              <p class="feature-info">
+                Use in-app messaging to offer post-sale support to consumers. The
+                ability to interact with car clubs and with motor enthusiasts 
+                through vehicle forums provides a strong social outreach strategy.
+              </p>
+            </div>
+            
+            <div class="col-md-2">
+              <!--intentionally left empty-->
+            </div>
+          </div>
+          
+          <div class="feature-step hidden-xs"></div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ol>
 
-<div class="tour-feature-white">
-  <div class="tour-feature">
-    <div class="row tour-feature-content">
-      
-      <div class="col-md-5 col-md-offset-1 col-md-push-6">
-        <div class="feature-screenshot"
-             style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-screenshot-c.png')">
-        </div>
-      </div>
-      
-      <div class="col-md-6 col-md-pull-6">
-        
-        <h1 class="feature-title">Personalization of the dealership</h1>
-        
-        <p class="feature-info">
-          Dealership associates establish a personal relationship with the
-          consumer. Individual profile pages and the ability to interact with car
-          clubs and vehicle enthusiasts strengthen this relationship.
-        </p>
-        
-        <div class="row feature-testimonial">
+<div class="tour-success">
+  <div class="tour-success-content">
     
-          <div class="col-md-3">
-            
-            <div class="feature-testimonial-avatar",
-                 style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-avatar-c.jpg')">
-            </div>
-            
-            <span class="feature-testimonial-name visible-xs">
-              Dan Goodwin, Chrysler of Jackson
-            </span>
-          </div>
-          
-          <div class="col-md-9">
-            
-            <p class="feature-testimonial-info">
-              "Our associates are no longer viewed as dealership employees, but as real 
-              people. Consumer trust has grown." 
-            </p>
-              
-            <span class="feature-testimonial-name hidden-xs">
-              Dan Goodwin, Chrysler of Jackson
-            </span>
-          </div>
-        </div>
-      </div>
+    <div class="success-step hidden-xs">
+      <i class="fa fa-check success-step-check" aria-hidden="true"></i>
     </div>
+    
+    <h1 class="success-title">
+      Sold!
+    </h1>
+    
+    <p class="success-info">
+      Deliver the vehicle to your customer and remember to stay connected!
+    </p>
+    
+    <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-sold.png" %>
   </div>
 </div>
