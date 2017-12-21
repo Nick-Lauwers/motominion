@@ -30,9 +30,9 @@
       </a>   
          
       <div class="carousel-inner">
-        <% @extra_photos.each do |photo| %>
-          <div class="item <%= 'active' if photo == @extra_photos[0] %>">          
-            <%= image_tag photo.url() %>
+        <% @photos.each do |photo| %>
+          <div class="item <%= 'active' if photo == @photos[0] %>">          
+            <%= image_tag photo.image.url() %>
           </div>
         <% end %>
       </div>
