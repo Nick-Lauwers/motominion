@@ -3,11 +3,11 @@
     
     <div class="col-md-4 basics-detail">
       
-      <h2 class="basics-title">The Basics</h2>
+      <h2 class="basics-title">New Listing</h2>
       
       <p class="basics-info">
         Our guide will make sure that you attract the most promising customers 
-        as quickly as possible. Let's start with the basics.
+        as quickly as possible. Let's get started with the basics.
       </p>
     </div>
     
@@ -15,115 +15,163 @@
       <%= form_for @vehicle, html: { multipart: true } do |f| %>
 
         <%= render 'shared/error_messages', object: f.object %>
-      
-        <div class="row">
+        
+        <div class="update-panel">
           
-          <div class="col-md-6 form-group">
-
-            <%= f.label :vehicle_make_id, "Make" %>
-            
-            <div class="form-element">
-              
-              <%= f.collection_select :vehicle_make_id,
-                                      VehicleMake.order(:name),
-                                      :id,
-                                      :name,
-                                      { include_blank: true, 
-                                        prompt: "Select make" },
-                                      id: "vehicle-make-basics",
-                                      class: "form-control select-secondary" %>
-                 
-              <i class="fa fa-caret-down fa-lg form-caret" 
-                 aria-hidden="true"></i>
-            </div>
-          </div>
-
-          <div class="col-md-6 form-group">
+          <h2 class="panel-title">Basic Vehicle Information</h2>
+          
+          <div class="row">
+          
+            <div class="col-md-6 form-group">
   
-            <%= f.label :vehicle_model_id, "Model" %>
-            
-            <div class="form-element">
+              <%= f.label :vehicle_make_id, "Make" %>
               
-              <%= f.grouped_collection_select :vehicle_model_id, 
-                                              VehicleMake.order(:name),
-                                              :vehicle_models,
-                                              :name,
-                                              :id,
-                                              :name,
-                                              { prompt: "Select model", 
-                                                include_blank: true }, 
-                                              id: "vehicle-model-basics",
-                                              class: "form-control 
-                                                      select-secondary" %>
-                 
-              <i class="fa fa-caret-down fa-lg form-caret" 
-                 aria-hidden="true"></i>
+              <div class="form-element">
+                
+                <%= f.collection_select :vehicle_make_id,
+                                        VehicleMake.order(:name),
+                                        :id,
+                                        :name,
+                                        { include_blank: true, 
+                                          prompt: "Select make" },
+                                        id: "vehicle-make-basics",
+                                        class: "form-control select-secondary" %>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+  
+            <div class="col-md-6 form-group">
+    
+              <%= f.label :vehicle_model_id, "Model" %>
+              
+              <div class="form-element">
+                
+                <%= f.grouped_collection_select :vehicle_model_id, 
+                                                VehicleMake.order(:name),
+                                                :vehicle_models,
+                                                :name,
+                                                :id,
+                                                :name,
+                                                { prompt: "Select model", 
+                                                  include_blank: true }, 
+                                                id: "vehicle-model-basics",
+                                                class: "form-control 
+                                                        select-secondary" %>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="row">
-          
-          <div class="col-md-6 form-group">
-
-            <%= f.label :year %>
+  
+          <div class="row">
             
-            <div class="form-element">
+            <div class="col-md-6 form-group">
+  
+              <%= f.label :year %>
               
-              <%= f.select :year, 
-                           1981..(Time.zone.now.year + 1),
-                           { include_blank: true, prompt: "Select year" }, 
-                           class: "form-control select-primary" %>
-                  
-              <i class="fa fa-calendar-o fa-lg form-icon" 
-                 aria-hidden="true"></i>
-                 
-              <i class="fa fa-caret-down fa-lg form-caret" 
-                 aria-hidden="true"></i>
+              <div class="form-element">
+                
+                <%= f.select :year, 
+                             1981..(Time.zone.now.year + 1),
+                             { include_blank: true, prompt: "Select year" }, 
+                             class: "form-control select-primary" %>
+                    
+                <i class="fa fa-calendar-o fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
             </div>
-          </div>
-          
-          <div class="col-md-6 form-group">
-
-            <%= f.label :vin, "VIN" %>
             
-            <%= f.text_field :vin, 
-                             placeholder: "Eg. VA4T58201DB390436", 
-                             class: "form-control form-control-primary" %>
-          </div>
-        </div>
-        
-        <div class="row">
-          
-          <div class="col-md-6 form-group">
-
-            <%= f.label :price %>
-            
-            <div class= "input-group">
+            <div class="col-md-6 form-group">
+  
+              <%= f.label :vin, "VIN" %>
               
-              <div class="input-group-addon">$</div>
-              
-              <%= f.text_field :price, 
-                               placeholder: "Eg. 100 000", 
+              <%= f.text_field :vin, 
+                               placeholder: "Eg. VA4T58201DB390436", 
                                class: "form-control form-control-primary" %>
             </div>
           </div>
-              
-          <div class="col-md-6 form-group">
-
-            <%= f.label :mileage %>
+          
+          <div class="row">
             
-            <div class= "input-group">
+            <div class="col-md-6 form-group">
+  
+              <%= f.label :price %>
               
-              <%= f.text_field :mileage, 
-                               placeholder: "Eg. 25 000", 
-                               class: "form-control form-control-primary" %>
-                  
-              <div class="input-group-addon">mi</div>
+              <div class= "input-group">
+                
+                <div class="input-group-addon">$</div>
+                
+                <%= f.text_field :price, 
+                                 placeholder: "Eg. 100 000", 
+                                 class: "form-control form-control-primary" %>
+              </div>
+            </div>
+                
+            <div class="col-md-6 form-group">
+  
+              <%= f.label :mileage %>
+              
+              <div class= "input-group">
+                
+                <%= f.text_field :mileage, 
+                                 placeholder: "Eg. 25 000", 
+                                 class: "form-control form-control-primary" %>
+                    
+                <div class="input-group-addon">mi</div>
+              </div>
             </div>
           </div>
         </div>
         
+        <div class="update-panel">
+          
+            <h2 class="panel-title">Cover Photo</h2>
+            
+            <div class="row panel-body basics-photo-panel">
+          
+              <div class="col-md-4">
+                <div class="row">
+                  
+                  <div class="col-md-11 basics-pic">
+                    
+                    <i class="fa fa-camera-retro basics-pic-icon fa-5x" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag @vehicle.cover_photo.url, 
+                                  class: "uploaded-photo" %>
+                  </div>
+                  
+                  <div class="col-md-1">
+                    <!--intentionally left empty-->
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-8">
+                
+                <p class="upload-instructions">
+                  Select a clear photo of your vehicle to serve as the listing's 
+                  cover photo. 
+                </p>
+                
+                <div class="upload-button">
+                  
+                  <div class="upload-button-content">
+                    Upload Photo
+                  </div>
+                  
+                  <%= f.file_field :cover_photo, class: "upload-hidden" %>
+                </div>
+              </div>
+            </div>
+          </div>
+
         <%= f.hidden_field :bumped_at, value: Time.now %>
         
         <% if current_user.dealership_id.present? %>

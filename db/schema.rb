@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123203342) do
+ActiveRecord::Schema.define(version: 20171218143137) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -559,6 +559,10 @@ ActiveRecord::Schema.define(version: 20171123203342) do
     t.datetime "bumped_at"
     t.datetime "posted_at"
     t.integer  "dealership_id"
+    t.string   "cover_photo_file_name"
+    t.string   "cover_photo_content_type"
+    t.integer  "cover_photo_file_size"
+    t.datetime "cover_photo_updated_at"
   end
 
   add_index "vehicles", ["dealership_id", "created_at"], name: "index_vehicles_on_dealership_id_and_created_at"

@@ -66,9 +66,8 @@ Rails.application.routes.draw do
 
   resources :vehicles do
     
-    resources :photos,       only: [:create, :destroy]
-    resources :reviews,      only: [:create, :destroy]
-    resources :payments,     only: [:new, :create]
+    resources :reviews,  only: [:create, :destroy]
+    resources :payments, only: [:new, :create]
     
     # put :favorite, on: :member
     # put :sold,     on: :member
@@ -96,6 +95,12 @@ Rails.application.routes.draw do
       member do
         put :accept
         put :decline
+      end
+    end
+    
+    resources :photos,   only: [:create, :destroy] do
+      member do
+        put :rotate
       end
     end
   end

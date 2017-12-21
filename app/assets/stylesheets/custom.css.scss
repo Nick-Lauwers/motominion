@@ -890,7 +890,8 @@ label {
 }
 
 #appointment-time,
-#appointment-time-modal { 
+#appointment-time-modal,
+#purchase-dob { 
   cursor: pointer;
   padding: 1.1em 1.9em 1.1em 3.2em;
 }
@@ -2300,6 +2301,7 @@ ul.pagination {
   pointer-events: none;
 }
 
+.form-element-label,
 .installed-options-title,
 .business-hours-day,
 .dealer-edit-title {
@@ -4899,14 +4901,16 @@ ul.pagination {
 .avatar,
 .club-pic,
 .post-pic,
-.dealer-pic {
+.dealer-pic,
+.basics-pic {
   background-color: $gray-darkest;
   overflow: hidden;
   padding: 0;
   position: relative;
 }
 
-.profile-pic {
+.profile-pic,
+.basics-pic {
   height: 205.547px;
 }
 
@@ -5078,6 +5082,7 @@ ul.pagination {
   margin-bottom: 1.8em;
 }
 
+.form-element-label,
 .installed-options-title,
 .photos-title,
 .availabilities-title,
@@ -5189,17 +5194,26 @@ ul.pagination {
 //   position: relative;
 // }
 
-.remove-photo-icon, 
+.rotate-photo-icon,
+.remove-photo-icon,
 .MultiFile-remove {
   position: absolute;
   z-index: 200;
-  right: 10px;
   top: 10px;
   color: $gray-modal-controls;
   &:hover, 
   &:focus {
     color: white;
   }
+}
+
+.rotate-photo-icon {
+  left: 10px;
+}
+
+.remove-photo-icon,
+.Multifile-remove {
+  right: 10px;
 }
 
 #images__list {
@@ -6351,7 +6365,8 @@ a.remove_fields {
 
 .club-pic-icon,
 .post-pic-icon,
-.dealer-pic-icon {
+.dealer-pic-icon,
+.basics-pic-icon {
   color: $gray-light;
   position: absolute;
   top: 50%;
@@ -7640,6 +7655,7 @@ a.remove_fields {
   
   .nested-fields,
   .profile-photo-panel,
+  .basics-photo-panel,
   .customer-item,
   .hero-primary-content-align,
   .instructions-content-align,
@@ -7740,7 +7756,8 @@ a.remove_fields {
   .dealer-profile-hero-detail,
   .dealership-profile-overview-content,
   .tour-hero-detail,
-  .tour-feature {
+  .tour-feature,
+  .contact {
     margin: 0 5%;
     overflow: hidden;
   }
@@ -7961,6 +7978,8 @@ a.remove_fields {
   }
   
   .contact-form {
+    padding-left: 0;
+    padding-right: 0;
     margin-bottom: 2em;
   }
   
@@ -8375,6 +8394,14 @@ a.remove_fields {
   
   .success-title {
     margin-top: 0;
+  }
+  
+  .upload-button {
+    width: 100%;
+  }
+  
+  .upload-instructions {
+    margin: 1em 0;
   }
   
 .begin-here {

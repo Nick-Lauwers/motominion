@@ -72,11 +72,24 @@
             <div class="form-group">
                 
               <%= f.label :residence_type, "Residence Type" %>
-            
-              <%= f.text_field :residence_type, 
-                               placeholder: "Residence type", 
-                               class: "form-control form-control-primary",
-                               required: true %>
+              
+              <div class="form-element">
+                
+                <%= f.select :residence_type, 
+                             [ "Apartment (Rental)", "Apartment (Purchased)",
+                               "Single Family Home (Rental)", 
+                               "Single Family Home (Purchased)"],
+                             { include_blank: true, 
+                               prompt: "Select residence type" }, 
+                             { required: true,
+                               class: "form-control select-primary" } %>
+                      
+                <i class="fa fa-home fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
             </div>
             
             <div class="row">
@@ -107,7 +120,7 @@
                                    class: "form-control form-control-primary",
                                    required: true %>
                       
-                  <div class="input-group-addon">years</div>
+                  <div class="input-group-addon">year(s)</div>
                 </div>
               </div>
             </div>
@@ -116,10 +129,20 @@
   
               <%= f.label :date_of_birth, "Date of Birth" %>
               
-              <%= f.text_field :date_of_birth, 
-                               placeholder: "Date of birth", 
-                               class: "form-control form-control-primary",
-                               required: true %>
+              <div class="form-element">
+        
+                <%= f.text_field :date_of_birth, 
+                                 placeholder: "Select date of birth", 
+                                 id: "purchase-dob",
+                                 class: "form-control form-control-secondary",
+                                 required: true %>
+                    
+                <i class="fa fa-calendar-o fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
             </div>
             
             <%= f.submit "Save", class: "btn btn-primary" %>

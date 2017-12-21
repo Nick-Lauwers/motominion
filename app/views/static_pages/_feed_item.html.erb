@@ -6,9 +6,7 @@
     <div class="feed-item-content">
       
       <div class="feed-item-image", 
-           style="background-image: url(
-                   '<%= feed_item.photos[0].image.url() if 
-                        feed_item.photos.length > 0 %>')">
+           style="background-image: url('<%= feed_item.cover_photo.url() %>')">
       </div>
       
       <div class="row">

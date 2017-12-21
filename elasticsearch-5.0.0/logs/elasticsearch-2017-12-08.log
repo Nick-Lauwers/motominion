@@ -1,0 +1,65 @@
+[2017-12-08T15:59:26,149][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-12-08T15:59:26,433][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [6.4gb], net total_space [10.6gb], spins? [possibly], types [aufs]
+[2017-12-08T15:59:26,433][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-12-08T15:59:26,559][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-12-08T15:59:26,567][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[71321], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.9.17-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-12-08T15:59:33,307][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-12-08T15:59:33,308][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-12-08T15:59:33,308][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-12-08T15:59:33,308][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-12-08T15:59:33,308][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-12-08T15:59:33,308][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-12-08T15:59:33,309][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-12-08T15:59:33,309][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-12-08T15:59:33,309][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-12-08T15:59:33,309][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-12-08T15:59:33,310][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-12-08T15:59:58,056][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2017-12-08T15:59:58,056][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2017-12-08T15:59:59,577][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2017-12-08T15:59:59,595][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][1][1] duration [907ms], collections [1]/[1.5s], total [907ms]/[907ms], memory [511.3mb]->[62.4mb]/[1.9gb], all_pools {[young] [511.3mb]->[21.3mb]/[532.5mb]}{[survivor] [0b]->[46.4mb]/[66.5mb]}{[old] [0b]->[0b]/[1.3gb]}
+[2017-12-08T15:59:59,600][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2017-12-08T15:59:59,600][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][1] overhead, spent [907ms] collecting in the last [1.5s]
+[2017-12-08T15:59:59,601][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2017-12-08T16:00:21,410][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-12-08T16:00:21,708][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [6.4gb], net total_space [10.6gb], spins? [possibly], types [aufs]
+[2017-12-08T16:00:21,708][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-12-08T16:00:21,785][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-12-08T16:00:21,788][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[71395], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.9.17-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-12-08T16:00:29,399][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-12-08T16:00:29,541][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-12-08T16:00:29,542][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-12-08T16:00:29,542][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-12-08T16:00:29,542][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-12-08T16:00:29,542][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-12-08T16:00:29,543][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-12-08T16:00:29,543][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-12-08T16:00:29,543][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-12-08T16:00:29,543][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-12-08T16:00:29,544][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-12-08T16:00:45,791][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2017-12-08T16:00:45,792][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2017-12-08T16:00:46,219][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2017-12-08T16:00:46,231][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2017-12-08T16:00:46,231][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2017-12-08T16:01:08,020][INFO ][o.e.n.Node               ] [] initializing ...
+[2017-12-08T16:01:08,220][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [6.4gb], net total_space [10.6gb], spins? [possibly], types [aufs]
+[2017-12-08T16:01:08,220][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2017-12-08T16:01:08,300][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2017-12-08T16:01:08,304][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[71478], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.9.17-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2017-12-08T16:01:10,750][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2017-12-08T16:01:10,750][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2017-12-08T16:01:10,750][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2017-12-08T16:01:10,751][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2017-12-08T16:01:10,751][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2017-12-08T16:01:10,751][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2017-12-08T16:01:10,751][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2017-12-08T16:01:10,751][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2017-12-08T16:01:10,751][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2017-12-08T16:01:10,751][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2017-12-08T16:01:10,752][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2017-12-08T16:01:16,623][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2017-12-08T16:01:16,623][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2017-12-08T16:01:17,576][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2017-12-08T16:01:17,595][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
+[2017-12-08T16:01:17,596][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]

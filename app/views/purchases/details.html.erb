@@ -22,7 +22,7 @@
         </span>
       </div>
       
-      <div class="purchase-hero-title">
+      <div class="purchase-hero-title hidden-xs">
         <div class="row vertical-align">
         
           <div class="col-md-2 avatar-and-online">
@@ -57,6 +57,8 @@
       </div>
     </div>
     
+    <%= render 'dropdown' %>
+    
     <div class="purchase-form">
       <div class="row">
     
@@ -68,19 +70,25 @@
           
           <%= form_for @purchase do |f| %>
             
-            <span class="installed-options-title">Vehicle Upgrades</span>
+            <span class="form-element-label">Vehicle Upgrades</span>
             
-            <%= f.collection_check_boxes :upgrade_ids, 
-                                         Upgrade.all, 
-                                         :id, 
-                                         :title do |g| %>
-              <div class="collection-check-box">
-                <%= g.check_box %>
-                <%= g.label class: "checkbox-label" %>
-              </div>
+            <% if @purchase.upgrades.empty? %>
+              <p>No vehicle upgrades available</p>
+            
+            <% else %>
+            
+              <%= f.collection_check_boxes :upgrade_ids, 
+                                           Upgrade.all, 
+                                           :id, 
+                                           :title do |g| %>
+                <div class="collection-check-box">
+                  <%= g.check_box %>
+                  <%= g.label class: "checkbox-label" %>
+                </div>
+              <% end %>
+              
+              <%= f.submit "Save", class: "btn btn-primary" %>
             <% end %>
-            
-            <%= f.submit "Save", class: "btn btn-primary" %>
           <% end %>
           
           <!--<= form_for :purchased_upgrades do |f| %>-->

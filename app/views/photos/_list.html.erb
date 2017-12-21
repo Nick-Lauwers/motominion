@@ -11,11 +11,19 @@
           <%= image_tag photo.image.url() %>
         </div>
         
+        <%= link_to rotate_vehicle_photo_path(photo.vehicle_id, photo),
+                    method: :put do %>
+          <i class="fa 
+                    fa-repeat 
+                    fa-2x 
+                    rotate-photo-icon" aria-hidden="true"></i>
+        <% end %>
+        
         <%= link_to vehicle_photo_path(photo.vehicle_id, photo), 
-                      remote: true, 
-                      method: :delete, 
-                      data: { confirm: "Are you sure?" } do %>
-              <i class="fa fa-trash-o fa-2x remove-photo-icon"></i>
+                    remote: true, 
+                    method: :delete, 
+                    data: { confirm: "Are you sure?" } do %>
+          <i class="fa fa-trash-o fa-2x remove-photo-icon"></i>
         <% end %>
       </div>
     <% end %>

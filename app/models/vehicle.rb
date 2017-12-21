@@ -51,6 +51,10 @@ class Vehicle < ActiveRecord::Base
   # VALID_VIN_REGEX = /[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{3}\d{5}/
   # validates :vin, presence: true, format: { with: VALID_VIN_REGEX }
   
+  has_attached_file                 :cover_photo
+  validates_attachment_presence     :cover_photo
+  validates_attachment_content_type :cover_photo, content_type: /\Aimage\/.*\z/
+  
   geocoded_by      :address
   after_validation :geocode, if: :address_changed?
   

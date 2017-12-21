@@ -74,21 +74,45 @@
               <div class="col-md-6 form-group">
                   
                 <%= f.label :education %>
-              
-                <%= f.text_field :education, 
-                                 placeholder: "Education", 
-                                 class: "form-control form-control-primary",
-                                 required: true %>
+                
+                <div class="form-element">
+                
+                  <%= f.select :education,
+                               ["No Diploma", "High School Graduate", 
+                                "Vocational Degree", "Bachelor's Degree", 
+                                "Master's Degree", "Doctoral Degree"],
+                               { include_blank: true, 
+                                 prompt: "Highest level of schooling" }, 
+                               { required: true,
+                                 class: "form-control select-primary" } %>
+                  
+                  <i class="fa fa-leaf fa-lg form-icon" 
+                       aria-hidden="true"></i>
+                       
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
               </div>
               
               <div class="col-md-6 form-group">
-              
+                  
                 <%= f.label :employment %>
                 
-                <%= f.text_field :employment, 
-                                 placeholder: "Employment", 
-                                 class: "form-control form-control-primary",
-                                 required: true %>
+                <div class="form-element">
+                
+                  <%= f.select :employment,
+                               ["Full-time", "Part-time"],
+                               { include_blank: true, 
+                                 prompt: "Select employment contract" }, 
+                               { required: true,
+                                 class: "form-control select-primary" } %>
+                  
+                  <i class="fa fa-industry fa-lg form-icon" 
+                       aria-hidden="true"></i>
+                       
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
               </div>
             </div>
 
