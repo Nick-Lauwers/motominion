@@ -10,8 +10,6 @@
 
 <%= render 'layouts/hero_backend' %>
 
-<%= render 'layouts/secondary_navbar' %>
-
 <nav class="secondary-navbar hidden-xs">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
@@ -164,49 +162,6 @@
                                    required: true %>
                       
                   <div class="input-group-addon">mi</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="update-panel">
-          
-            <h2 class="panel-title">Cover Photo</h2>
-            
-            <div class="row panel-body basics-photo-panel">
-          
-              <div class="col-md-4">
-                <div class="row">
-                  
-                  <div class="col-md-11 basics-pic">
-                    
-                    <i class="fa fa-camera-retro basics-pic-icon fa-5x" 
-                       aria-hidden="true"></i>
-                    
-                    <%= image_tag @vehicle.cover_photo.url, 
-                                  class: "uploaded-photo" %>
-                  </div>
-                  
-                  <div class="col-md-1">
-                    <!--intentionally left empty-->
-                  </div>
-                </div>
-              </div>
-              
-              <div class="col-md-8">
-                
-                <p class="upload-instructions">
-                  Select a clear photo of your vehicle to serve as the listing's 
-                  cover photo. 
-                </p>
-                
-                <div class="upload-button">
-                  
-                  <div class="upload-button-content">
-                    Upload Photo
-                  </div>
-                  
-                  <%= f.file_field :cover_photo, class: "upload-hidden" %>
                 </div>
               </div>
             </div>

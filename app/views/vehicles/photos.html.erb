@@ -55,6 +55,13 @@
             
             <h2 class="panel-title">Photos</h2>
             
+            <p class="panel-instructions">
+              Choose photos and then select "Upload Images". Photos are best 
+              displayed when taken in the landscape orientation. <strong>The 
+              first photo that you select will be used as the cover photo for 
+              your listing.</strong>
+            </p>
+            
             <div id="photos">
               <%= render 'photos/list' %>
             </div>
@@ -71,7 +78,7 @@
             <%= f.hidden_field :bumped_at,  value: Time.now %>
           </div>
           
-          <%= f.submit "Upload Photos", class: "btn btn-primary" %>
+          <%= f.submit "Upload Images", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>

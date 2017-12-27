@@ -11,13 +11,13 @@
           <%= image_tag photo.image.url() %>
         </div>
         
-        <%= link_to rotate_vehicle_photo_path(photo.vehicle_id, photo),
-                    method: :put do %>
-          <i class="fa 
-                    fa-repeat 
-                    fa-2x 
-                    rotate-photo-icon" aria-hidden="true"></i>
-        <% end %>
+        <!--<(perc)= link_to rotate_vehicle_photo_path(photo.vehicle_id, photo),-->
+        <!--            method: :put do %>-->
+        <!--  <i class="fa -->
+        <!--            fa-repeat -->
+        <!--            fa-2x -->
+        <!--            rotate-photo-icon" aria-hidden="true"></i>-->
+        <!--<(perc) end %>-->
         
         <%= link_to vehicle_photo_path(photo.vehicle_id, photo), 
                     remote: true, 

@@ -19,10 +19,6 @@
           <div class="carousel-inner">
             
             <div class="item active">
-              <img src="<%= vehicle.cover_photo.url %>">
-            </div>
-            
-            <div class="item">
               <img src="<%= vehicle.photos[0].image.url() if 
                             vehicle.photos.length > 0 %>">
             </div>
@@ -54,6 +50,11 @@
             
             <div class="item">
               <img src="<%= vehicle.photos[6].image.url() if 
+                            vehicle.photos.length > 6 %>">
+            </div>
+            
+            <div class="item">
+              <img src="<%= vehicle.photos[7].image.url() if 
                             vehicle.photos.length > 6 %>">
             </div>
           </div>

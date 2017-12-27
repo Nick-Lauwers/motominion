@@ -95,8 +95,7 @@ class VehiclesController < ApplicationController
                                    Time.now).present? if current_user
                                    
     @photos    = @vehicle.photos
-    @extra_photos = [Photo.all]
-    
+
     @reviews   = @vehicle.reviews
     @hasReview = @reviews.find_by(reviewer_id: current_user.id) if current_user
     
@@ -278,11 +277,10 @@ class VehiclesController < ApplicationController
                                       :is_remote_start, :is_tow_package, 
                                       :vehicle_make_id, :vehicle_model_id, 
                                       :bumped_at, :posted_at, :dealership_id,
-                                      :cover_photo, availabilities_attributes: 
-                                      [:id, :day, :start_time, :end_time, 
-                                      :vehicle_id, :_destroy], 
-                                      upgrades_attributes: [:id, :title, 
-                                      :description, :duration, :price, 
+                                      availabilities_attributes: [:id, :day, 
+                                      :start_time, :end_time, :vehicle_id, 
+                                      :_destroy], upgrades_attributes: [:id, 
+                                      :title, :description, :duration, :price, 
                                       :_destroy])
     end
     

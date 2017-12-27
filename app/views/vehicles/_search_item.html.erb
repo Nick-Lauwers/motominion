@@ -7,7 +7,8 @@
     <div class="search-item-content">
       
       <div class="search-item-image", 
-           style="background-image: url('<%= vehicle.cover_photo.url() %>')">
+           style="background-image: url('<%= vehicle.photos[0].image.url() if 
+                                             vehicle.photos.length > 0 %>')">
       </div>
       
       <div class="row">

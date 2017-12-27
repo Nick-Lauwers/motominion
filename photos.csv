@@ -1,4 +1,5 @@
 vehicle_id,image_url
+1,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle01a.jpg
 1,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle01b.jpg
 1,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle01c.jpg
 1,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle01d.jpg
@@ -6,6 +7,7 @@ vehicle_id,image_url
 1,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle01f.jpg
 1,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle01g.jpg
 1,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle01h.jpg
+2,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle02a.jpg
 2,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle02b.jpg
 2,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle02c.jpg
 2,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle02d.jpg
@@ -13,6 +15,7 @@ vehicle_id,image_url
 2,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle02f.jpg
 2,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle02g.jpg
 2,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle02h.jpg
+3,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle03a.jpg
 3,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle03b.jpg
 3,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle03c.jpg
 3,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle03d.jpg
@@ -20,6 +23,7 @@ vehicle_id,image_url
 3,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle03f.jpg
 3,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle03g.jpg
 3,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle03h.jpg
+4,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle04a.jpg
 4,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle04b.jpg
 4,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle04c.jpg
 4,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle04d.jpg
@@ -27,6 +31,7 @@ vehicle_id,image_url
 4,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle04f.jpg
 4,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle04g.jpg
 4,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle04h.jpg
+5,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle05a.jpg
 5,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle05b.jpg
 5,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle05c.jpg
 5,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle05d.jpg
@@ -34,6 +39,7 @@ vehicle_id,image_url
 5,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle05f.jpg
 5,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle05g.jpg
 5,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle05h.jpg
+6,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle06a.jpg
 6,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle06b.jpg
 6,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle06c.jpg
 6,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle06d.jpg
@@ -41,6 +47,7 @@ vehicle_id,image_url
 6,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle06f.jpg
 6,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle06g.jpg
 6,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle06h.jpg
+7,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle07a.jpg
 7,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle07b.jpg
 7,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle07c.jpg
 7,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle07d.jpg
@@ -48,6 +55,7 @@ vehicle_id,image_url
 7,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle07f.jpg
 7,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle07g.jpg
 7,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle07h.jpg
+8,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle08a.jpg
 8,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle08b.jpg
 8,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle08c.jpg
 8,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle08d.jpg
@@ -55,6 +63,7 @@ vehicle_id,image_url
 8,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle08f.jpg
 8,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle08g.jpg
 8,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle08h.jpg
+9,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle09a.jpg
 9,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle09b.jpg
 9,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle09c.jpg
 9,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle09d.jpg
@@ -62,6 +71,7 @@ vehicle_id,image_url
 9,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle09f.jpg
 9,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle09g.jpg
 9,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle09h.jpg
+10,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle10a.jpg
 10,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle10b.jpg
 10,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle10c.jpg
 10,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle10d.jpg
@@ -69,6 +79,7 @@ vehicle_id,image_url
 10,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle10f.jpg
 10,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle10g.jpg
 10,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle10h.jpg
+11,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle11a.jpg
 11,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle11b.jpg
 11,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle11c.jpg
 11,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle11d.jpg
@@ -76,12 +87,14 @@ vehicle_id,image_url
 11,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle11f.jpg
 11,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle11g.jpg
 11,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle11h.jpg
+12,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle12a.jpg
 12,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle12b.jpg
 12,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle12c.jpg
 12,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle12d.jpg
 12,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle12e.jpg
 12,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle12f.jpg
 12,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle12g.jpg
+13,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle13a.jpg
 13,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle13b.jpg
 13,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle13c.jpg
 13,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle13d.jpg
@@ -89,6 +102,7 @@ vehicle_id,image_url
 13,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle13f.jpg
 13,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle13g.jpg
 13,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle13h.jpg
+14,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle14a.jpg
 14,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle14b.jpg
 14,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle14c.jpg
 14,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle14d.jpg
@@ -96,6 +110,7 @@ vehicle_id,image_url
 14,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle14f.jpg
 14,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle14g.jpg
 14,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle14h.jpg
+15,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle15a.jpg
 15,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle15b.jpg
 15,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle15c.jpg
 15,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle15d.jpg
@@ -103,6 +118,7 @@ vehicle_id,image_url
 15,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle15f.jpg
 15,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle15g.jpg
 15,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle15h.jpg
+16,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle16a.jpg
 16,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle16b.jpg
 16,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle16c.jpg
 16,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle16d.jpg
@@ -110,6 +126,7 @@ vehicle_id,image_url
 16,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle16f.jpg
 16,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle16g.jpg
 16,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle16h.jpg
+17,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle17a.jpg
 17,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle17b.jpg
 17,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle17c.jpg
 17,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle17d.jpg
@@ -117,6 +134,7 @@ vehicle_id,image_url
 17,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle17f.jpg
 17,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle17g.jpg
 17,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle17h.jpg
+18,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle18a.jpg
 18,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle18b.jpg
 18,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle18c.jpg
 18,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle18d.jpg
@@ -124,6 +142,7 @@ vehicle_id,image_url
 18,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle18f.jpg
 18,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle18g.jpg
 18,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle18h.jpg
+19,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle19a.jpg
 19,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle19b.jpg
 19,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle19c.jpg
 19,https://s3.us-east-2.amazonaws.com/online-dealership-assets/seed-data/photos/vehicle19d.jpg
