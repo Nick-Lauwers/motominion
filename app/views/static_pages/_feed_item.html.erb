@@ -1,18 +1,33 @@
 <!--completed-->
 
 <li id="feed-item-<%= feed_item.id %>" class="col-md-4 feed-item">
-  
-  <%= link_to feed_item, target: "_blank" do %>
-    <div class="feed-item-content">
-      
-      <div class="feed-item-image", 
+  <div class="feed-item-image">
+    
+    <%= link_to feed_item, target: "_blank" do %>
+      <div class="feed-item-image-content", 
            style="background-image: url('<%= feed_item.photos[0].image.url() if 
                                              feed_item.photos.length > 0 %>')">
+        
       </div>
-      
-      <div class="row">
+    <% end %>
+    
+    <%= link_to favorite_vehicle_path(feed_item), 
+                method: :put do %>
+      <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
+    <% end %>
+    
+    <% if feed_item.user.dealership_id.present? %>
+      <div class="special-offer">
+        <i class="fa fa-lg fa-tag special-offer-icon"></i>
+        Special Offer
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to feed_item, target: "_blank" do %>
+    <div class="row">
           
-        <div class="col-xs-3 feed-item-user">
+      <div class="col-xs-3 feed-item-user">
           <div class="feed-item-user-content">
             <div class="avatar-and-online">
               
@@ -41,15 +56,55 @@
             <span class="feed-item-review-count">
               <%= pluralize(feed_item.reviews.count, "review") %>
             </span>
+            
+            <div class="feature-list">
+            
+              <i class="fa fa-lg fa-info-circle feature-list-icon"></i>
+    
+              <ol class="feature-list-content">
+              
+                <li>Vehicle Features</li>
+              
+                <% if feed_item.is_leather_seats %>
+                  <li>Leather Seats</li>
+                <% end %>
+                
+                <% if feed_item.is_sunroof %>
+                  <li>Sunroof</li>
+                <% end %>
+                
+                <% if feed_item.is_navigation_system %>
+                  <li>Navigation System</li>
+                <% end %>
+                
+                <% if feed_item.is_dvd_entertainment_system %>
+                  <li>DVD Entertainment System</li>
+                <% end %>
+                
+                <% if feed_item.is_bluetooth %>
+                  <li>Bluetooth</li>
+                <% end %>
+                
+                <% if feed_item.is_leather_seats %>
+                  <li>Leather Seats</li>
+                <% end %>
+                
+                <% if feed_item.is_backup_camera %>
+                  <li>Backup Camera</li>
+                <% end %>
+                
+                <% if feed_item.is_remote_start %>
+                  <li>Remote Start</li>
+                <% end %>
+                
+                <% if feed_item.is_tow_package %>
+                  <li>Tow Package</li>
+                <% end %>
+              </ol>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
-  
-  <%= link_to favorite_vehicle_path(feed_item), 
-              method: :put do %>
-    <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
   <% end %>
 </li>
 

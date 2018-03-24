@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'message_photos/create'
+
   root                                'static_pages#home'
   get    'help'                    => 'static_pages#help'
   get    'about'                   => 'static_pages#about'
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
   delete 'logout'                  => 'sessions#destroy'
   
   resources :autopart_photos
+  resources :message_photos
+  resources :blogs
   resources :account_activations,    only: [:edit]
   resources :dealership_activations, only: [:edit]
   resources :password_resets,        only: [:new, :create, :edit, :update]

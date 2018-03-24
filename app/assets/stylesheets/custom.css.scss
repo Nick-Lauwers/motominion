@@ -84,6 +84,10 @@ $purple-c:            #804f7c;
   color: $blue;
 }
 
+.trix-button--icon-code {
+  display: none;
+}
+
 /* responsive design */
 
 // header {
@@ -233,6 +237,21 @@ p {
     background-color: $gray-light;
     border: 1px solid $gray-light;
   }
+}
+
+.btn-white {
+  color: $gray-text;
+  background-color: white;
+  border: 1px solid $gray-border;
+  border-radius: 2px;
+  width: 60%;
+  transition: background-color 0.3s, border 0.3s;
+  // &:hover,
+  // &:focus {
+  //   color: white;
+  //   background-color: $gray-light;
+  //   border: 1px solid $gray-light;
+  // }
 }
 
 .btn-contact {
@@ -388,7 +407,9 @@ p {
 .btn-add-content,
 .btn-add-content-cancel,
 .btn-bump,
-.btn-mark-as-sold {
+.btn-mark-as-sold,
+.btn-apply-filters,
+.btn-cancel-filters {
   color: $gray-text;
   background-color: transparent;
   border-radius: 2px;
@@ -397,14 +418,16 @@ p {
 
 .btn-test-drive-accept,
 .btn-add-content,
-.btn-bump {
+.btn-bump,
+.btn-apply-filters {
   border: 1px solid $yellow-dark;
   float: left;
 }
 
 .btn-test-drive-decline,
 .btn-add-content-cancel,
-.btn-mark-as-sold {
+.btn-mark-as-sold,
+.btn-cancel-filters {
   border: 1px solid $gray-light;
   float: right;
 }
@@ -440,6 +463,14 @@ p {
 
 .btn-business-hours {
   margin-top: 2.5em;
+}
+
+.btn-feed-forum {
+  width: 70%;
+}
+
+.filter-button-filler {
+  height: 50px;
 }
 
 /* forms */
@@ -730,6 +761,10 @@ label {
   margin: 0 0 1.1em;
   &::-webkit-input-placeholder { 
     color: $gray-light;
+  }
+  div {
+    height: 100%;
+    overflow-y: scroll;
   }
 }
 
@@ -1290,6 +1325,58 @@ footer {
   z-index: 10000;
 }
 
+#modal-special-offer {
+  height: 60%;
+  width: 42%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-special-offer-header {
+  text-align: center;
+  color: white;
+  background-image: url("https://www.transparenttextures.com/patterns/inspiration-geometry.png");
+  background-color: $red;
+  padding: 4em 0;
+  position: relative;
+}
+
+.modal-special-offer-header-content {
+  width: 65%;
+  margin: 0 auto;
+}
+
+.modal-special-offer-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.modal-special-offer-body {
+  color: $gray-text;
+  background-color: white;
+}
+
+.modal-special-offer-body-content {
+  width: 65%;
+  padding: 4em 0;
+  margin: 0 auto;
+}
+
+.modal-special-offer-subtitle {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+  margin: 0 0 8px;
+}
+
+.modal-special-offer-info {
+  font-size: 14px;
+  line-height: 24px;
+  color: $gray-dark;
+}
+
 .modal-menu-body,
 .modal-search-body,
 .modal-appointment-body {
@@ -1668,6 +1755,13 @@ footer {
   margin: 0;
 }
 
+.feed-items {
+  list-style: none;
+  overflow: auto;
+  padding: 0;
+  margin: 0 -15px;
+}
+
 #feed-items {
   list-style: none;
   overflow: auto;
@@ -1675,19 +1769,84 @@ footer {
   margin: 0 -15px;
 }
 
-.feed-item,
-.search-item,
+.feed-forum-container,
+.feed-car-clubs-container {
+  border-top: 1px solid $gray-border;
+  border-bottom: 1px solid $gray-border;
+  margin-top: 3.5em;
+}
+
+.feed-forum,
+.feed-car-clubs {
+  max-width: 725px;
+  padding: 3.5em 0;
+  margin: 0 auto;
+}
+
+.feed-forum-image,
+.feed-car-clubs-image {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 210px;
+}
+
+.feed-forum-title,
+.feed-car-clubs-title {
+  font-size: 1.65em;
+  font-weight: bold;
+  color: $gray-darker;
+  margin: 0;
+}
+
+.feed-forum-info,
+.feed-car-clubs-info {
+  font-size: 1.1em;
+  text-align: left;
+  line-height: 1.5;
+  color: $gray-darker;
+  margin: 0.75em 0 2em;
+}
+
+// .feed-item,
+// .search-item,
 .mobile-listing-item,
 .wish-list-item,
 .dealer-vehicle-item {
   position: relative;
+  overflow: hidden;
 }
 
 .feed-item {
   margin-top: 3.5em;
 }
 
+.feed-blog {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  max-width: 725px;
+  height: 250px;
+  margin: 3.5em auto 0;
+}
+
+.feed-blog-content {
+  padding: 2.3em;
+}
+
+.feed-blog-title {
+  font-size: 1.65em;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 16px $transparent;
+  color: white;
+  margin: 0;
+}
+
 .search-item {
+  z-index: 2000000000000000;
   margin-bottom: 1.5em;
 }
 
@@ -1698,7 +1857,7 @@ footer {
 }
 
 .feed-item-content,
-.search-item-content,
+// .search-item-content,
 .mobile-listing-item-content,
 .wish-list-item-content {
   overflow: hidden;
@@ -1710,17 +1869,32 @@ footer {
 }
 
 .feed-item-image,
-.search-item-image,
+.search-item-image {
+  overflow: hidden;
+  position: relative;
+}
+
+// .feed-item-image,
 .mobile-listing-item-image,
 .wish-list-item-image {
   background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
 }
 
-.feed-item-image, 
-.search-item-image {
+.feed-item-image-content,
+.search-item-image-content {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 210px;
+}
+
+.feed-item-image {
   height: 210px;
 }
 
@@ -1762,6 +1936,11 @@ footer {
   margin: 0.2em 0.4em;
 }
 
+.feed-item-info,
+.search-item-info {
+  position: relative;
+}
+
 .feed-item-title,
 .search-item-title,
 .mobile-listing-item-title,
@@ -1786,15 +1965,100 @@ footer {
 .search-item-review-count,
 .mobile-listing-item-review-count,
 .wish-list-item-review-count {
-  font-size: 0.85em;
+  font-size: 0.8em;
   font-weight: bold;
+}
+
+.feature-list:hover {
+  .feature-list-content {
+    display: block;
+  }
+}
+
+.feature-list-icon {
+  color: $green;
+  position: absolute;
+  bottom: 2px;
+  right: 5px;
+}
+
+.feature-list-content {
+  font-size: 0.85em;
+  list-style: none;
+  color: white;
+  background-color: $gray-darker;
+  border-radius: 2px;
+  padding: 1.2em;
+  min-width: 15em;
+  opacity: 0.85;
+  position: absolute;
+  display: none;
+  bottom: 25px;
+  right: 0;
+  z-index: 200;
+  :before {
+    content: " ";
+    border-right: solid transparent 7px;
+    border-top: solid $gray-darker 7px;
+    border-left: solid transparent 7px;
+    position: absolute;
+    bottom: -7px;
+    right: 6px;
+  }
+  li:first-child {
+    font-weight: bold;
+    margin-bottom: 0.3em;
+  }
 }
 
 .wish-list-icon {
   color: white;
   position: absolute;
   top: 10px;
-  right: 25px;
+  right: 10px;
+}
+
+body {
+  background: #151515;
+}
+
+.special-offer {
+  font-size: 1.05em;
+  font-weight: bold;
+  line-height: 30px;
+  text-align: center;
+  color: white;
+  background-color: $red;
+  height: 30px;
+  padding: 0 3em 0 0.5em;
+  position: absolute;
+  bottom: 10px;
+  right: -135px;
+  transition: transform 0.5s;
+  cursor: pointer;
+  &:hover {
+    transform: translateX(-100px)
+  }
+}
+
+.special-offer:before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  border-left: 7px solid transparent;
+  border-top: 15px solid $red;
+  border-bottom: 15px solid $red;
+}
+
+.special-offer-icon {
+  margin-right: 0.3em;
+}
+
+.special-offer-button {
+  background-color: $red;
+  border: none;
+  padding: 0;
+  display: inline-block;
 }
 
 // .feed-item-icon {
@@ -2222,6 +2486,113 @@ footer {
   list-style: none;
   padding: 0;
 }
+
+.search-introduction {
+  background-color: white;
+  box-shadow: 0 2px 16px 0 $gray-form-control;
+  margin-bottom: 1.7em;
+}
+
+.search-introduction-static {
+  padding: 1.1em;
+  position: relative;
+}
+
+.search-introduction-static-close {
+  color: $gray-dark;
+  position: absolute;
+  right: 1.1em;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.search-introduction-static-title {
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 2em;
+}
+
+.search-introduction-static-info {
+  font-size: 0.85em;
+  line-height: 20px;
+  text-align: left;
+  color: $gray-dark;
+  margin: 0;
+}
+
+.search-introduction-dynamic {
+  border-top: 1px solid $gray-border;
+  padding: 0.5em 1.1em;
+}
+
+.search-introduction-dynamic-title {
+  font-size: 12px;
+  font-weight: bold;
+  color: $blue;
+}
+
+.marquee {
+  height: 25px;
+  width: 480px;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee div {
+  width: 300%;
+  height: 30px;
+  display: block;
+  position: absolute;
+  overflow: hidden;
+  animation: marquee 15s linear infinite;
+}
+
+.marquee span {
+  font-size: 12px;
+  float: left;
+  width: 50%;
+}
+
+@keyframes marquee {
+  0% { left: 0; }
+  100% { left: -150%; }
+}
+
+// .marquee-text {
+//   font-size: 12px;
+//   font-weight: bold;
+//   position: absolute;
+//   text-align: center;
+//   /* Starting position */
+//   -moz-transform:translateX(100%);
+//   -webkit-transform:translateX(100%);	
+//   transform:translateX(100%);
+//   /* Apply animation to this element */	
+//   -moz-animation: marquee 15s linear infinite;
+//   -webkit-animation: marquee 15s linear infinite;
+//   animation: marquee 15s linear infinite;
+// }
+
+// @-moz-keyframes marquee {
+// 0%   { -moz-transform: translateX(100%); }
+// 100% { -moz-transform: translateX(-100%); }
+// }
+// @-webkit-keyframes marquee {
+// 0%   { -webkit-transform: translateX(100%); }
+// 100% { -webkit-transform: translateX(-100%); }
+// }
+// @keyframes marquee {
+// 0%   { 
+// -moz-transform: translateX(100%); /* Firefox bug fix */
+// -webkit-transform: translateX(100%); /* Firefox bug fix */
+// transform: translateX(100%); 		
+// }
+// 100% { 
+// -moz-transform: translateX(-100%); /* Firefox bug fix */
+// -webkit-transform: translateX(-100%); /* Firefox bug fix */
+// transform: translateX(-100%); 
+// }
+// }
 
 // .search-items {
 //   // overflow: auto;
@@ -2819,6 +3190,18 @@ ul.pagination {
   margin: 1.5em 0 0;
 }
 
+.vehicle-overview-views {
+  margin-top: 2.5em;
+}
+
+.vehicle-overview-views-info {
+  font-size: 1.1em;
+  line-height: 2;
+  text-align: left;
+  color: $gray-text;
+  margin: 0;
+}
+
 .vehicle-overview-link {
   font-size: 1.1em;
   font-weight: bold;
@@ -3162,6 +3545,11 @@ ul.pagination {
   background-color: $gray-modal;
   border: 2px solid white;
   height: 100%;
+  transition: 0.4s;
+  &:hover,
+  &:focus {
+    opacity: 0.4;
+  }
 }
 
 .gallery-row-secondary {
@@ -3272,7 +3660,6 @@ ul.pagination {
 }
 
 .brochure-image {
-  background-image: url("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/brochure.jpg");
   background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
@@ -3280,6 +3667,11 @@ ul.pagination {
   border: 2px solid white;
   height: 450px;
   padding: 0;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    opacity: 0.4;
+  }
 }
 
 .brochure-detail {
@@ -3288,14 +3680,16 @@ ul.pagination {
 }
 
 .brochure-detail-title {
-  font-size: 3.5em;
+  font-size: 4.5em;
   font-weight: bold;
+  text-shadow: 0 0 16px $transparent;
   color: white;
 }
 
 .brochure-detail-info {
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: bold;
+  text-shadow: 0 0 16px $transparent;
   color: white;
 }
 
@@ -3358,6 +3752,14 @@ ul.pagination {
   text-align: center;
   width: 100%;
   padding: 1.8em 0;
+}
+
+.btn-modal-special-offer {
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 1.5em;
+  right: 1.5em;
 }
 
 .dismiss-modal {
@@ -5265,6 +5667,48 @@ a.remove_fields {
   text-align: right;
 }
 
+.info {
+  position: relative;
+  display: inline-block;
+  &:hover {
+    .info-text {
+      display: block;
+    }
+  }
+}
+
+.info-icon {
+  color: $green;
+  margin-left: 0.5em;
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+}
+
+.info-text {
+  font-size: 0.85em;
+  text-align: left;
+  color: white;
+  background-color: $gray-darker;
+  border-radius: 2px;
+  padding: 1.2em;
+  min-width: 25em;
+  opacity: 0.85;
+  position: absolute;
+  left: -5px;
+  display: none;
+  z-index: 100;
+  &:before {
+    content: " ";
+    border-right: solid transparent 7px;
+    border-bottom: solid $gray-darker 7px;
+    border-left: solid transparent 7px;
+    position: absolute;
+    top: -7px;
+    left: 15px;
+  }
+}
+
 /* forum */
 
 .forum-cover-photo {
@@ -6028,20 +6472,157 @@ a.remove_fields {
 
 /* vehicle make */
 
+.dropdown-vehicle-makes-secondary {
+  background-color: white;
+  border: 1px solid $gray-border;
+  padding: 1em 0;
+  margin-left: 2em;
+  .dropdown-toggle {
+    text-decoration: none;
+    color: $gray-light;
+    .fa-search {
+      margin: 0 0.8em 0 1em;
+    }
+  }
+  .dropdown-menu {
+    width: 100%;
+    height: 13em;
+    overflow-y: scroll;
+  }
+}
+
+.dropdown-vehicle-makes-primary {
+  background-color: white;
+  border: 1px solid $gray-border;
+  box-shadow: 0 2px 16px 0 $gray-form-control;
+  width: 100%;
+  padding: 1.3em 0;
+  position: absolute;
+  bottom: -30px;
+  .dropdown-toggle {
+    font-size: 1.12em;
+    text-decoration: none;
+    color: $gray-light;
+    padding: 1.3em 40em 1.3em 0;
+    position: relative;
+    .fa-search {
+      margin: 0 0.7em;
+    }
+  }
+  .dropdown-menu {
+    width: 100%;
+    height: 13em;
+    overflow-y: scroll;
+  }
+}
+
+.other-forums-item {
+  font-size: 0.9em;
+  color: $gray-dark;
+  margin-bottom: 0.5em;
+  display: block;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $gray-dark;
+  }
+}
+
+// .dropdown-backend {
+//   background-color: $green;
+//   .dropdown-toggle {
+//     font-weight: bold;
+//     text-decoration: none;
+//     color: white;
+//     padding: 0.5em 0;
+//     margin: 0 5%;
+//     position: relative;
+//     display: block;
+//     .caret {
+//       position: absolute;
+//       top: 50%;
+//       right: 0;
+//       transform: translateY(-50%)
+//     }
+//   }
+//   .dropdown-menu {
+//     width: 100%;
+//     li a {
+//       color: $gray-dark;
+//       &:hover {
+//         color: $gray-darker;
+//         background-color: white;
+//       }
+//     }
+//   }
+// }
+
+// font-size: 1.01em;
+//   color: $gray-darker;
+//   border: 1px solid $gray-border;
+//   border-radius: 0;
+//   box-shadow: 0 2px 16px 0 $gray-form-control;
+//   height: 60px;
+//   -webkit-appearance: none;
+//   -webkit-box-shadow: 0 2px 16px 0 $gray-form-control;
+//   &::-webkit-input-placeholder { 
+//     color: $gray-light;
+//   }
+//   &:focus {
+//     border: 1px solid $gray-border;
+//     box-shadow: 0 2px 16px 0 $gray-form-control;
+//   }
+
+// color: $gray-light;
+//   position: absolute;
+//   top: 50%;
+//   left: 0.9em;
+//   transform: translateY(-50%);
+//   z-index: 100;
+
+//   .dropdown-toggle {
+//     font-weight: bold;
+//     text-decoration: none;
+//     color: white;
+//     padding: 0.5em 0;
+//     margin: 0 5%;
+//     position: relative;
+//     display: block;
+//     .caret {
+//       position: absolute;
+//       top: 50%;
+//       right: 0;
+//       transform: translateY(-50%)
+//     }
+//   }
+//   .dropdown-menu {
+//     width: 100%;
+//     li a {
+//       color: $gray-dark;
+//       &:hover {
+//         color: $gray-darker;
+//         background-color: white;
+//       }
+//     }
+  // }
+
 .vehicle-make,
-.purchase {
+.purchase,
+.blog {
   background-color: $gray-lightest;
 }
 
 .vehicle-make-content,
-.purchase-content {
+.purchase-content,
+.blog-content {
   background-color: white;
   max-width: 1008px;
   margin: 0 auto;
 }
 
 .vehicle-make-hero,
-.purchase-hero {
+.purchase-hero,
+.blog-hero {
   background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
@@ -6126,26 +6707,43 @@ a.remove_fields {
 
 /* clubs */
 
-.clubs-hero {
+.clubs-hero,
+.vehicle-makes-hero,
+.tour-hero {
   background-color: $gray-lightest;
 }
 
-.clubs-hero-content {
+.clubs-hero-content,
+.vehicle-makes-hero-content,
+.tour-hero-content {
   max-width: 885px;
-  padding: 7em 0;
   margin: 0 auto;
+}
+
+.clubs-hero-content,
+.vehicle-makes-hero-content {
+  padding: 7em 0;
   position: relative;
 }
 
-.clubs-hero-text {
+.tour-hero-content {
+  text-align: center;
+  padding: 7em 5em;
+}
+
+.clubs-hero-text,
+.vehicle-makes-hero-text {
   padding: 0 5em;
 }
 
-.clubs-hero-image {
+.clubs-hero-image,
+.vehicle-makes-hero-image {
   text-align: center;
 }
 
-.clubs-hero-title {
+.clubs-hero-title,
+.vehicle-makes-hero-title,
+.tour-hero-title {
   font-size: 2.3em;
   font-weight: bold;
   line-height: 1.5;
@@ -6153,7 +6751,9 @@ a.remove_fields {
   margin: 0;
 }
 
-.clubs-hero-subtitle {
+.clubs-hero-subtitle,
+.vehicle-makes-hero-subtitle,
+.tour-hero-subtitle {
   font-size: 1.1em;
   font-weight: bold;
   line-height: 2.1;
@@ -6161,19 +6761,27 @@ a.remove_fields {
   margin: 1.6em 0 0.6em;
 }
 
-.clubs-hero-info {
+.clubs-hero-info,
+.vehicle-makes-hero-info,
+.tour-hero-info {
   line-height: 2.1;
-  text-align: left;
   margin: 0;
 }
 
-.clubs {
+.clubs-hero-info,
+.vehicle-makes-hero-info {
+  text-align: left;
+}
+
+.clubs,
+.vehicle-makes {
   max-width: 1008px;
   padding: 8em 0 4em;
   margin: 0 auto;
 }
 
-.clubs-nav {
+.clubs-nav,
+.vehicle-makes-nav {
   padding-left: 0;
   li {
     color: $gray-text;
@@ -6191,11 +6799,14 @@ a.remove_fields {
   }
 }
 
-.clubs-nav-separator {
+.clubs-nav-separator,
+.vehicle-makes-nav-separator {
   margin: 0 0.5em;
 }
 
-.clubs-list-title {
+.clubs-list-title,
+.vehicle-makes-list-title,
+.other-forums-title {
   font-size: 1.7em;
   font-weight: bold;
   line-height: 1.3;
@@ -6203,7 +6814,8 @@ a.remove_fields {
   margin: 0.7em 0 2em;
 }
 
-.clubs-list {
+.clubs-list,
+.vehicle-makes-list {
   list-style: none;
   overflow: auto;
   padding: 0;
@@ -6374,7 +6986,8 @@ a.remove_fields {
   transform: translate(-50%, -50%);
 }
 
-.club-item {
+.club-item,
+.vehicle-make-item {
   margin-bottom: 3em;
   transition: 0.3s;
   &:hover,
@@ -6387,12 +7000,16 @@ a.remove_fields {
   }
 }
 
-.club-item-image {
+.club-item-image,
+.vehicle-make-item-image {
   background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 210px;
+}
+
+.club-item-image {
   position: relative;
 }
 
@@ -6411,7 +7028,8 @@ a.remove_fields {
   color: white;
 }
 
-.club-item-name {
+.club-item-name,
+.vehicle-make-item-name {
   font-size: 1.3em;
   font-weight: bold;
   color: $gray-text;
@@ -6420,16 +7038,20 @@ a.remove_fields {
 }
 
 .club-item-conversations,
-.club-item-members {
+.club-item-members,
+.vehicle-make-item-posts,
+.vehicle-make-item-conversations {
   font-size: 0.9em;
   color: $gray-dark;
 }
 
-.club-item-conversations {
+.club-item-conversations,
+.vehicle-make-item-posts {
   float: left;
 }
 
-.club-item-members {
+.club-item-members,
+.vehicle-make-item-conversations {
   float: right;
 }
 
@@ -6449,7 +7071,8 @@ a.remove_fields {
   color: white;
 }
 
-.purchase-hero-title {
+.purchase-hero-title,
+.blog-hero-title {
   background-color: white;
   width: 800px;
   padding: 2em 10.5em 0 3.5em;
@@ -6608,18 +7231,20 @@ a.remove_fields {
   background-color: $gray-lightest;
 }
 
-.dealer-signup-tour-detail {
-  text-align: center;
+.dealer-signup-tour-content {
   color: $gray-text;
-  padding: 4em 0;
+  max-width: 800px;
+  padding: 6em 0;
+  margin: 0 auto;
 }
 
 .dealer-signup-tour-info {
+  text-align: left;
   margin: 0;
 }
 
 .dealer-signup-tour-title {
-  margin: 0.75em 0;
+  margin: 1.5em 0;
 }
 
 .dealer-signup-tour-title-content {
@@ -6888,11 +7513,6 @@ a.remove_fields {
   margin: 0 -15px;
 }
 
-// .dealership-basics-content {
-//   max-width: 1008px;
-//   margin: 0 auto;
-// }
-
 /* miscellaneous */
 
 .debug_dump {
@@ -7032,6 +7652,88 @@ a.remove_fields {
   line-height: 2.1;
   margin: 0 0 3em;
 }
+
+/* blog */
+
+.blog-header {
+  background-color: $green;
+  position: relative;
+  z-index: 100;
+}
+
+.blog-header-content {
+  max-width: 1008px;
+  padding: 5em 0;
+  margin: 0 auto;
+}
+
+.blog-title {
+  font-size: 6em;
+  font-weight: bold;
+  color: white;
+  margin: 0;
+}
+
+.blog-subtitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  margin: 0.6em 0 0;
+}
+
+.blog-body {
+  background-color: $gray-lightest;
+}
+
+.blog-body-content {
+  max-width: 1008px;
+  margin: -35px auto 0;
+}
+
+.blog-list {
+  list-style: none;
+  overflow: auto;
+  padding-left: 0;
+  margin: 0 -15px;
+  position: relative;
+  z-index: 200;
+}
+
+.blog-item {
+  margin-bottom: 24px !important;
+}
+
+.blog-item-image {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 210px;
+}
+
+.blog-item-content {
+  padding: 24px;
+  background-color: white;
+}
+
+.blog-item-title {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 2;
+  color: $gray-darker;
+  height: 4em;
+  margin: 0 0 1.5em;
+  overflow: hidden;
+}
+
+.blog-info {
+  
+}
+
+// list-style: none;
+// overflow: auto;
+// padding: 0;
+  
 
 // .press {
 //   text-align: center;
@@ -7618,35 +8320,6 @@ a.remove_fields {
   z-index: 100;
 }
 
-/* tour */
-
-.tour-hero {
-  text-align: center;
-  color: white;
-  background-image: url(https://www.transparenttextures.com/patterns/inspiration-geometry.png);
-  background-color: $green;
-  padding: 5em 0;
-}
-
-.tour-hero-detail {
-  max-width: 550px;
-  margin: 0 auto;
-}
-
-.tour-hero-title {
-  font-size: 2.3em;
-  font-weight: bold;
-  line-height: 1.5;
-  margin: 0;
-}
-
-.tour-hero-subtitle {
-  font-size: 1.1em;
-  font-weight: bold;
-  line-height: 2.1;
-  margin: 1.6em 0 0;
-}
-
 @media (min-width: 768px) {
   
   .review-date {
@@ -7662,9 +8335,13 @@ a.remove_fields {
   .about-leadership-team,
   .profile-pic-form-content,
   .clubs-hero-text,
+  .vehicle-makes-hero-text,
   .dealer-signup-testimonial-detail,
   .feature-testimonial,
-  .tour-feature-content {
+  .tour-feature-content,
+  .dealer-signup-tour-text,
+  .feed-forum-content,
+  .feed-car-clubs-content {
     display: flex;
     align-items: center;
   }
@@ -7755,9 +8432,11 @@ a.remove_fields {
   .dealer-authentication-content,
   .dealer-profile-hero-detail,
   .dealership-profile-overview-content,
-  .tour-hero-detail,
   .tour-feature,
-  .contact {
+  .contact,
+  .vehicle-makes,
+  .blog-header-content,
+  .blog-body-content {
     margin: 0 5%;
     overflow: hidden;
   }
@@ -8189,36 +8868,48 @@ a.remove_fields {
   }
   
   .clubs-hero-content,
+  .vehicle-makes-hero-content,
   .tour-hero-content {
     margin: 0 5%;
     padding: 0;
   }
   
-  .clubs-hero-text {
+  .clubs-hero-text,
+  .vehicle-makes-hero-text {
     padding: 2em 0 5em;
   }
   
+  .tour-hero-content,
+  .tour-hero-info {
+    text-align: left;
+  }
+  
   .clubs-hero-title,
+  .vehicle-makes-hero-title,
   .tour-hero-title {
     font-size: 1.8em;
   }
   
   .clubs-hero-subtitle,
+  .vehicle-makes-hero-subtitle,
   .tour-hero-subtitle {
     font-size: 1em;
   }
   
   .clubs-hero-info,
+  .vehicle-makes-hero-info,
   .tour-hero-info {
     font-size: 1em;
     line-height: 1.8;
   }
 
-  .clubs {
+  .clubs,
+  .vehicle-makes {
     padding-top: 5em;
   }
   
-  .clubs-list-title {
+  .clubs-list-title,
+  .vehicle-makes-list-title {
     font-size: 1.2em;
     margin-top: 1.2em;
   }
@@ -8404,6 +9095,20 @@ a.remove_fields {
     margin: 1em 0;
   }
   
+  .feed-forum-title,
+  .feed-car-clubs-title {
+    margin-top: 1em;
+  }
+  
+  .btn-feed-forum,
+  .btn-feed-car-clubs {
+    width: 100%;
+  }
+  
+  .brochure-image {
+    height: 150px;
+  }
+  
 .begin-here {
   
 }  
@@ -8425,7 +9130,8 @@ a.remove_fields {
   
   
   
-  .club-item {
+  .club-item,
+  .vehicle-make-item {
     margin-bottom: 4em;
   }
   

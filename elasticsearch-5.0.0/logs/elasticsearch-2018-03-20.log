@@ -1,0 +1,5 @@
+[2018-03-20T11:32:06,973][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][900220] overhead, spent [262ms] collecting in the last [1s]
+[2018-03-20T15:27:43,172][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][914351] overhead, spent [270ms] collecting in the last [1s]
+[2018-03-20T17:25:50,941][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][921436] overhead, spent [528ms] collecting in the last [1s]
+[2018-03-20T21:21:24,378][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][935564] overhead, spent [666ms] collecting in the last [1s]
+[2018-03-20T23:18:59,896][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][942616] overhead, spent [430ms] collecting in the last [1.4s]

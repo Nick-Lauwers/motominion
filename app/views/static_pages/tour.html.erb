@@ -9,18 +9,59 @@
 <%= render 'layouts/modal_menu' %>
 
 <div class="tour-hero">
-  <div class="tour-hero-detail">
-    
+  <div class="tour-hero-content">
+
     <h1 class="tour-hero-title">Experience Mototrova</h1>
+
+    <h2 class="tour-hero-subtitle">A new way to sell</h2>
     
-    <h2 class="tour-hero-subtitle">
+    <p class="tour-hero-info">
       Mototrova consolidates the vehicle purchasing experience, making your 
       team more productive, less stressed, and just a little bit happier.    
-    </h2>
+    </p>
   </div>
 </div>
 
 <ol class="tour-feature-list">
+  
+  <li class="tour-feature-container">
+    <div class="tour-feature">
+      <div class="row tour-feature-content">
+        
+        <div class="col-md-6 col-md-push-6 feature-image-container">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-list-your-vehicle.png",
+                            class: "feature-image") %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-md-pull-6 feature-step-container">
+          
+          <div class="row">
+            
+            <div class="col-md-10">
+              
+              <h1 class="feature-title">1. List your vehicle</h1>
+              
+              <p class="feature-info">
+                Before listing, users are required to upload a profile photo meant
+                to strengthen buyer-seller trust. Once that is done, include as
+                many details in your listing as possible
+              </p>
+            </div>
+            
+            <div class="col-md-2">
+              <!--intentionally left empty-->
+            </div>
+          </div>
+          
+          <div class="feature-step hidden-xs"></div>
+        </div>
+      </div>
+    </div>
+  </li>
   
   <li class="tour-feature-container">
     <div class="tour-feature">
@@ -31,7 +72,7 @@
           <div class="row">
             
             <div class="col-md-10">
-              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-list-your-vehicle.png",
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-approve-test-drives.png", 
                             class: "feature-image") %>
             </div>
             
@@ -47,39 +88,6 @@
           <div class="row">
             
             <div class="col-md-10 col-md-offset-2">
-              
-              <h1 class="feature-title">1. List your vehicle</h1>
-              
-              <p class="feature-info">
-                Before listing, users are required to upload a profile photo meant
-                to strengthen buyer-seller trust. Once that is done, include as
-                many details in your listing as possible
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </li>
-
-  <li class="tour-feature-container">
-    <div class="tour-feature">
-      <div class="row tour-feature-content">
-        
-        <div class="col-md-6 col-md-push-6 feature-image-container">
-          <div class="row">
-            <div class="col-md-10 col-md-offset-2">
-              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-approve-test-drives.png", 
-                            class: "feature-image") %>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-6 col-md-pull-6 feature-step-container">
-          
-          <div class="row">
-            
-            <div class="col-md-10">
               
               <h1 class="feature-title">
                 2. Approve test drives
@@ -91,6 +99,41 @@
                 will be displayed on your profile page for customers to view.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+
+  <li class="tour-feature-container">
+    <div class="tour-feature">
+      <div class="row tour-feature-content">
+        
+        <div class="col-md-6 col-md-push-6 feature-image-container">
+          <div class="row">
+            <div class="col-md-10 col-md-offset-2">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-process-orders.png", 
+                            class: "feature-image") %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-md-pull-6 feature-step-container">
+          
+          <div class="row">
+            
+            <div class="col-md-10">
+          
+              <h1 class="feature-title">
+                3. Process orders
+              </h1>
+              
+              <p class="feature-info">
+                Monitor any vehicle orders submitted by customers. Consumers are able
+                to purchase vehicles outside of dealership hours and to select F&I 
+                products with their purchase.
+              </p>
+            </div>
             
             <div class="col-md-2">
               <!--intentionally left empty-->
@@ -112,7 +155,7 @@
           <div class="row">
             
             <div class="col-md-10">
-              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-process-orders.png", 
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-remain-engaged.png", 
                             class: "feature-image") %>
             </div>
             
@@ -129,41 +172,6 @@
             <div class="col-md-10 col-md-offset-2">
               
               <h1 class="feature-title">
-                3. Process orders
-              </h1>
-              
-              <p class="feature-info">
-                Monitor any vehicle orders submitted by customers. Consumers are able
-                to purchase vehicles outside of dealership hours and to select F&I 
-                products with their purchase.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </li>
-  
-  <li class="tour-feature-container">
-    <div class="tour-feature">
-      <div class="row tour-feature-content">
-        
-        <div class="col-md-6 col-md-push-6 feature-image-container">
-          <div class="row">
-            <div class="col-md-10 col-md-offset-2">
-              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/tour-remain-engaged.png", 
-                            class: "feature-image") %>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-md-6 col-md-pull-6 feature-step-container">
-          
-          <div class="row">
-            
-            <div class="col-md-10">
-          
-              <h1 class="feature-title">
                 4. Remain engaged
               </h1>
               
@@ -173,13 +181,7 @@
                 through vehicle forums provides a strong social outreach strategy.
               </p>
             </div>
-            
-            <div class="col-md-2">
-              <!--intentionally left empty-->
-            </div>
           </div>
-          
-          <div class="feature-step hidden-xs"></div>
         </div>
       </div>
     </div>

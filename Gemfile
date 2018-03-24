@@ -38,6 +38,7 @@ gem 'delayed_job_active_record'
 gem 'acts_as_votable'
 gem 'rails_or'
 gem 'cocoon'
+gem 'trix'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

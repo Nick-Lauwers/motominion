@@ -1,0 +1,28 @@
+<% provide(:title, 'Blog') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="blog-header">
+  <div class="blog-header-content">
+    
+    <h1 class="blog-title">BLOG</h1>
+  
+    <h2 class="blog-subtitle">
+      Expert comment and student stories from the world of international study
+    </h2>
+  </div>
+</div>
+
+<div class="blog-body">
+  <div class="blog-body-content">
+    <ol class="blog-list">
+      <%= render @blogs %>
+    </ol>
+  </div>
+</div>

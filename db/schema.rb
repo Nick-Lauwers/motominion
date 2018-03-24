@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218143137) do
+ActiveRecord::Schema.define(version: 20180228014601) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -84,6 +84,20 @@ ActiveRecord::Schema.define(version: 20171218143137) do
   end
 
   add_index "availabilities", ["vehicle_id"], name: "index_availabilities_on_vehicle_id"
+
+  create_table "blogs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "cover_photo_file_name"
+    t.string   "cover_photo_content_type"
+    t.integer  "cover_photo_file_size"
+    t.datetime "cover_photo_updated_at"
+  end
+
+  add_index "blogs", ["user_id"], name: "index_blogs_on_user_id"
 
   create_table "business_hours", force: :cascade do |t|
     t.string   "day"
@@ -309,6 +323,15 @@ ActiveRecord::Schema.define(version: 20171218143137) do
 
   add_index "memberships", ["user_id", "club_id"], name: "index_memberships_on_user_id_and_club_id", unique: true
   add_index "memberships", ["user_id", "created_at"], name: "index_memberships_on_user_id_and_created_at"
+
+  create_table "message_photos", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"

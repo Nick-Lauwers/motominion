@@ -121,12 +121,15 @@ class VehiclesController < ApplicationController
        
       if VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name != "All models"
         @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                   where: { location: { near: {
+                                   where: { vehicle_make_id: 
+                                              params[:vehicle][:vehicle_model_id],
+                                            vehicle_model_id: 
+                                              params[:vehicle][:vehicle_model_id],
+                                            location: { near: {
                                                               lat: coordinates[0], 
                                                               lon: coordinates[1]
                                                               }, 
                                                               within: "20mi" },
-                                            vehicle_model_id: params[:vehicle][:vehicle_model_id],
                                             sold_at: nil,
                                             posted_at: { not: nil } },
                                    page: params[:page], 
@@ -136,7 +139,9 @@ class VehiclesController < ApplicationController
 
       else 
         @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                   where: { location: { near: {
+                                   where: { vehicle_make_id: 
+                                              params[:vehicle][:vehicle_make_id],
+                                            location: { near: {
                                                               lat: coordinates[0], 
                                                               lon: coordinates[1]
                                                               }, 
@@ -153,7 +158,9 @@ class VehiclesController < ApplicationController
       
       if VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name != "All models"
         @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                   where: { vehicle_model_id: 
+                                   where: { vehicle_make_id:
+                                              params[:vehicle][:vehicle_make_id],
+                                            vehicle_model_id: 
                                               params[:vehicle][:vehicle_model_id],
                                             sold_at: nil,
                                             posted_at: { not: nil },
@@ -165,7 +172,9 @@ class VehiclesController < ApplicationController
       
       else
         @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                   where: { sold_at: nil,
+                                   where: { vehicle_make_id:
+                                              params[:vehicle][:vehicle_make_id],
+                                            sold_at: nil,
                                             posted_at: { not: nil },
                                             latitude: { not: nil } },
                                    page: params[:page], 
@@ -202,6 +211,8 @@ class VehiclesController < ApplicationController
       
       marker.json({ :id => vehicle.id })
     end
+    
+    @vehicle = Vehicle.new
   end
   
   def basics

@@ -210,7 +210,33 @@
     
               <div class="col-md-6 form-group">
     
-                <%= f.label :drivetrain %>
+                <%= f.label :drivetrain do %>
+                
+                  Drivetrain
+                  
+                  <div class="info">
+                
+                    <i class="fa fa-lg fa-info-circle info-icon"></i>
+                    
+                    <p class="info-text">
+                      
+                      Front-Wheel Drive: Engine power is diverted to front 
+                      wheels
+                      </br>
+                      
+                      Rear-Wheel Drive: Engine power is diverted to rear wheels
+                      </br>
+                      
+                      4X2:
+                      </br>
+                      
+                      Four-Wheel Drive:
+                      </br>
+                      
+                      All-Wheel Drive:
+                    </p>
+                  </div>
+                <% end %>
                 
                 <div class="form-element">
                   

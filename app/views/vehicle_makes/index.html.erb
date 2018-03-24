@@ -1,0 +1,149 @@
+<% provide(:title, "Discuss Your Favorite Vehicles") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="vehicle-makes-hero">
+  <div class="vehicle-makes-hero-content">
+    
+    <div class="row vehicle-makes-hero-text">
+      
+      <div class="col-md-3 vehicle-makes-hero-image">
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/coffee.png",
+                      class: "hidden-xs") %>
+      </div>
+      
+      <div class="col-md-8 col-md-offset-1">
+        
+        <h1 class="vehicle-makes-hero-title">Cars and Coffee</h1>
+        
+        <h2 class="vehicle-makes-hero-subtitle">
+          Participate in forums
+        </h2>
+        
+        <p class="vehicle-makes-hero-info">
+          Connect with owners and ethusiasts of your favorite make and model. 
+          Share stories and pass on knowledge in our vehicle forums.
+        </p>
+      </div>
+    </div>
+    
+    <nav class="dropdown dropdown-vehicle-makes-primary">
+  
+      <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+        
+        <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+        
+        Select vehicle make 
+      </a>
+    
+      <ol class="dropdown-menu">
+        <% VehicleMake.all.each do |vehicle_make| %>
+          <li>
+            <%= link_to vehicle_make.name, 
+                        posts_vehicle_make_path(vehicle_make) %>
+          </li>
+        <% end %>
+      </ol>
+    </nav>
+  </div>
+</div>
+
+<div class="vehicle-makes">
+  
+  <ol class="vehicle-makes-nav">
+    
+    <li><%= link_to "Community Center", discussions_path %></li>
+    
+    <li>
+      
+      <i class="fa fa-angle-right vehicle-makes-nav-separator"
+         aria-hidden="true"></i>
+         
+      Vehicle Forums
+    </li>
+  </ol>
+  
+  <h2 class="vehicle-makes-list-title">Most active forums</h2>
+  
+  <ol class="vehicle-makes-list">
+    <%= render @vehicle_makes %>
+  </ol>
+  
+  <h2 class="other-forums-title">Other forums</h2>
+  
+  <div class="row hidden-xs">
+    
+    <div class="col-md-2">
+      <% VehicleMake.first(7).each do |vehicle_make| %>
+        <%= link_to vehicle_make.name, 
+                    posts_vehicle_make_path(vehicle_make), 
+                    class: "other-forums-item" %>
+      <% end %>
+    </div>
+    
+    <div class="col-md-2">
+      <% VehicleMake.find(8, 9, 10, 11, 12, 13, 14).each do |vehicle_make| %>
+        <%= link_to vehicle_make.name, 
+                    posts_vehicle_make_path(vehicle_make),
+                    class: "other-forums-item" %>
+      <% end %>
+    </div>
+    
+    <div class="col-md-2">
+      <% VehicleMake.find(15, 16, 17, 18, 19, 20, 21).each do |vehicle_make| %>
+        <%= link_to vehicle_make.name, 
+                    posts_vehicle_make_path(vehicle_make),
+                    class: "other-forums-item" %>
+      <% end %>
+    </div>
+    
+    <div class="col-md-2">
+      <% VehicleMake.find(22, 23, 24, 25, 26, 27, 28).each do |vehicle_make| %>
+        <%= link_to vehicle_make.name, 
+                    posts_vehicle_make_path(vehicle_make),
+                    class: "other-forums-item" %>
+      <% end %>
+    </div>
+    
+    <div class="col-md-2">
+      <% VehicleMake.find(29, 30, 31, 32, 33, 34, 35).each do |vehicle_make| %>
+        <%= link_to vehicle_make.name, 
+                    posts_vehicle_make_path(vehicle_make),
+                    class: "other-forums-item" %>
+      <% end %>
+    </div>
+    
+    <div class="col-md-2">
+      <% VehicleMake.find(36, 37).each do |vehicle_make| %>
+        <%= link_to vehicle_make.name, 
+                    posts_vehicle_make_path(vehicle_make),
+                    class: "other-forums-item" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="row visible-xs">
+    
+    <div class="col-xs-6">
+      <% VehicleMake.first(19).each do |vehicle_make| %>
+        <%= link_to vehicle_make.name, 
+                    posts_vehicle_make_path(vehicle_make),
+                    class: "other-forums-item" %>
+      <% end %>
+    </div>
+    
+    <div class="col-xs-6">
+      <% VehicleMake.last(18).each do |vehicle_make| %>
+        <%= link_to vehicle_make.name, 
+                    posts_vehicle_make_path(vehicle_make),
+                    class: "other-forums-item" %>
+      <% end %>
+    </div>
+  </div>
+</div>

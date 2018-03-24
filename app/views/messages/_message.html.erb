@@ -19,7 +19,7 @@
       <div class="message-container">
         
         <p class="message-comment">
-          <%= message.content %>
+          <%= sanitize message.content %>
         </p>
         
         <span class="message-date">
@@ -37,7 +37,7 @@
       <div class="message-container">
         
         <p class="message-comment">
-          <%= message.content %>
+          <%= sanitize message.content %>
         </p>
         
         <span class="message-date">

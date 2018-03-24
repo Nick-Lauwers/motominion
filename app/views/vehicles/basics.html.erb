@@ -125,7 +125,21 @@
               
               <div class="col-md-6 form-group">
     
-                <%= f.label :vin, "VIN" %>
+                <%= f.label :vin do %>
+                  
+                  VIN
+                  
+                  <div class="info">
+                
+                    <i class="fa fa-lg fa-info-circle info-icon"></i>
+                    
+                    <p class="info-text">
+                      The VIN can often be found on the lower-left corner of the 
+                      dashboard, in front of the steering wheel. You can read 
+                      the number by looking through the windshield.
+                    </p>
+                  </div>
+                <% end %>
                 
                 <%= f.text_field :vin, 
                                  placeholder: "Eg. VA4T58201DB390436", 

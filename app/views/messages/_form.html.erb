@@ -19,11 +19,11 @@
     <div class="col-xs-10">
       <div class="message-container">
         
-        <%= f.text_area :content, 
-                        rows: 2,
-                        placeholder: "Send a personal message.", 
-                        class: "form-control message-form-control" %>
-            
+        <%= f.trix_editor :content, 
+                          rows: 2,
+                          placeholder: "Send a personal message.", 
+                          class: "form-control message-form-control" %>
+
         <%= f.hidden_field :user_id, value: current_user.id %>
         
         <table class="message-detail">

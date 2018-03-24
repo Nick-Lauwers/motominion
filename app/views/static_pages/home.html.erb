@@ -220,17 +220,111 @@
       
       <h3 class="hidden-xs feed-title">Discover Top Content</h3>
       
-      <ol id="feed-items">
-        <%= render partial: "feed_item", collection: @feed_items %>
+      <ol class="feed-items">
+        <%= render partial: "feed_item", 
+                   collection: Vehicle.
+                                 where(sold_at: nil).
+                                 where.not(posted_at: nil).
+                                 order(bumped_at: :desc).
+                                 first(6) %>
+      </ol>
+
+      <div class="feed-forum-container">
+        <div class="feed-forum">
+          <div class="row feed-forum-content">
+          
+            <div class="col-md-5 feed-forum-image",
+                 style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/feed-forum.jpg')">
+            </div>
+          
+            <div class="col-md-6 col-md-offset-1">
+              
+              <h3 class="feed-forum-title">
+                Join the Conversation
+              </h3>
+              
+              <p class="feed-forum-info">
+                Connect with vehicle enthusiasts, share stories, and ask for 
+                advice.
+              </p>
+              
+              <%= link_to discussions_path, 
+                          class: "btn btn-green btn-feed-forum" do %>
+          
+                Start A Discussion
+                
+                <i class="fa fa-arrow-right next-button-icon" 
+                   aria-hidden="true"></i> 
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <ol class="feed-items">
+        <%= render partial: "feed_item", 
+                   collection: Vehicle.
+                                 where(sold_at: nil).
+                                 where.not(posted_at: nil).
+                                 order(bumped_at: :desc).
+                                 offset(6).
+                                 first(6) %>
       </ol>
       
-      <%= will_paginate @feed_items, 
-                        previous_label: 
-                          '<i class="fa fa-arrow-left" aria-hidden="true"></i>', 
-                        next_label: 
-                          '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
-                        inner_window: 1, 
-                        outer_window: 0 %>
+      <div class="feed-car-clubs-container">
+        <div class="feed-car-clubs">
+          <div class="row feed-car-clubs-content">
+          
+            <div class="col-md-5 feed-car-clubs-image",
+                 style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/feed-car-clubs.jpg')">
+            </div>
+          
+            <div class="col-md-6 col-md-offset-1">
+              
+              <h3 class="feed-car-clubs-title">
+                Connect Locally
+              </h3>
+              
+              <p class="feed-car-clubs-info">
+                Join friends of your own car club and discuss issues relevant to
+                your group.
+              </p>
+              
+              <%= link_to clubs_path, 
+                          class: "btn btn-green btn-feed-forum" do %>
+          
+                Look For Your Club
+                
+                <i class="fa fa-arrow-right next-button-icon" 
+                   aria-hidden="true"></i> 
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <ol class="feed-items">
+        <%= render partial: "feed_item", 
+                   collection: Vehicle.
+                                 where(sold_at: nil).
+                                 where.not(posted_at: nil).
+                                 order(bumped_at: :desc).
+                                 offset(12).
+                                 first(6) %>
+      </ol>
+      
+      <!--<ol class="feed-items">-->
+      <!--<ol id="feed-items">-->
+      <!--  <(perc)= render partial: "feed_item", collection: @feed_items %>-->
+      <!--</ol>-->
+      
+      <!--<(perc)= will_paginate @feed_items, -->
+      <!--                  previous_label: -->
+      <!--                    '<i class="fa fa-arrow-left" aria-hidden="true"></i>', -->
+      <!--                  next_label: -->
+      <!--                    '<i class="fa fa-arrow-right" aria-hidden="true"></i>',-->
+      <!--                  inner_window: 1, -->
+      <!--                  outer_window: 0 %>-->
     </div>
   </div>
 <% end %>

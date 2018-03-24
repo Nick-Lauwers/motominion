@@ -32,10 +32,10 @@
       <div class="col-md-8">
         <nav>
           <ul class="nav navbar-nav navbar-left">
-            <li><%= link_to "Vehicle Details",  '#vehicle-details' %></li>
-            <li><%= link_to "Gallery",          '#gallery' %></li>
-            <li><%= link_to "Reviews",          '#reviews' %></li>
-            <li><%= link_to "Map and Brochure", '#map-and-brochure' %></li>
+            <li><%= link_to "Vehicle Details", '#vehicle-details' %></li>
+            <li><%= link_to "Gallery",         '#gallery' %></li>
+            <li><%= link_to "Reviews",         '#reviews' %></li>
+            <li><%= link_to "Map and Forums",  '#map-and-brochure' %></li>
           </ul>
         </nav>
       </div>
@@ -47,7 +47,7 @@
             <p class="navbar-price-visible">$<%= @vehicle.price %></p>
           </div>
           
-          <% if @vehicle.user.dealership_id.present? %>
+          <!--<(perc) if @vehicle.user.dealership_id.present? %>-->
           
             <% if current_user && 
                   @vehicle.purchases.where(email: current_user.email).exists? %>
@@ -57,7 +57,7 @@
                 <i class="fa fa-shopping-cart listing-navbar-icon" 
                    aria-hidden="true"></i>
                 
-                Buy Now
+                Make An Offer
               <% end %>
 
             <% else %>
@@ -67,15 +67,15 @@
                 <i class="fa fa-shopping-cart listing-navbar-icon" 
                    aria-hidden="true"></i>
                 
-                Buy Now
+                Make An Offer
               <% end %>
             <% end %>
           
-          <% else %>
-            <div class="btn-navbar-share-hidden">
-              $<%= @vehicle.price %>
-            </div>
-          <% end %>
+          <!--<(perc) else %>-->
+          <!--  <div class="btn-navbar-share-hidden">-->
+          <!--    $<(perc)= @vehicle.price %>-->
+          <!--  </div>-->
+          <!--<(perc) end %>-->
           
           <!--<div class="single-action">-->
           <!--  <= form_for @conversation, -->
@@ -181,6 +181,28 @@
           <!--<(perc) end %>-->
           
           <p class="vehicle-overview-description"><%= @vehicle.summary %></p>
+          
+          <div class="vehicle-overview-views">
+            <div class="row vertical-align">
+              
+              <div class="col-md-2">
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/creativity.png") %>
+              </div>
+              
+              <div class="col-md-10">
+                <p class="vehicle-overview-views-info">
+                  
+                  <strong>
+                    <%= @vehicle.user.first_name %>'s car is on people's minds.
+                  </strong>
+                  
+                  <br>
+                  
+                  It's received 500+ views this week.
+                </p>
+              </div>
+            </div>
+          </div>
 
           <!--<div class="vehicle-overview-products">-->
               
@@ -429,8 +451,33 @@
           </div>
           
           <div id="pricing">
+            
             <h3 class="vehicle-details-title">Pricing</h3>
+            
             <p class="vehicle-details-info">$<%= @vehicle.price %></p>
+            
+            <div class="vehicle-overview-views">
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal.png") %>
+                </div>
+                
+                <div class="col-md-10">
+                  <p class="vehicle-overview-views-info">
+                    
+                    <strong>
+                      Make <%= @vehicle.user.first_name %> an offer.
+                    </strong>
+                    
+                    <br>
+                    
+                    Your identity will remain anonymous until an offer is 
+                    accepted.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
           
           <% if @vehicle.sellers_notes.present? %>
@@ -670,17 +717,23 @@
 <div id="map-and-brochure">
   <div class="row map-and-brochure-content">
 
-    <div class="col-xs-12" id="vehicle-map"></div>
+    <div class="col-md-6" id="vehicle-map"></div>
     
-    <!--<(perc)= link_to "http://www.jaguar.com/Images/ebrochure_f-type_17MY_tcm76-271771.pdf", -->
-    <!--              target: "_blank" do %>-->
-    <!--  <div class="col-xs-6 brochure-image">-->
-    <!--    <div class="brochure-detail">-->
-    <!--      <h2 class="brochure-detail-title">Jaguar F-Type</h1>-->
-    <!--      <h3 class="brochure-detail-info">View Brochure</h5>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--<(perc) end %>-->
+    <%= link_to posts_vehicle_make_path(@vehicle.vehicle_make), 
+                target: "_blank" do %>
+      <div class="col-md-6 brochure-image",
+           style="background-image: url(
+                 '<%= @vehicle.vehicle_make.cover_photo_url %>')">
+        <div class="brochure-detail">
+          
+          <h2 class="brochure-detail-title">
+            <%= @vehicle.vehicle_make.name %>
+          </h1>
+          
+          <h3 class="brochure-detail-info">Community Forums</h5>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 

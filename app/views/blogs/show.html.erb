@@ -1,0 +1,52 @@
+<% provide(:title, @blog.title) %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="blog">
+  <div class="blog-content">
+    
+    <div class="blog-hero", 
+         style="background-image: url(
+                 '<%= @blog.cover_photo.url() %>')">
+      <div class="blog-hero-title hidden-xs">
+        <div class="row vertical-align">
+        
+          <div class="col-md-2 avatar-and-online">
+            
+            <%= link_to user_path(@blog.user) do %>
+              <div class="purchase-hero-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= @blog.user.avatar.url(:thumb) %>')">
+              </div>
+            <% end %>
+
+            <% if @blog.user.online? %>
+              <div class="online online-lg-primary"></div>
+            <% end %>
+          </div>
+          
+          <div class="col-md-10">
+            
+            <%= link_to @blog.user.full_name, 
+                        @blog.user,
+                        class: "purchase-hero-heading" %>
+            
+            <%= link_to @blog.user.full_name, 
+                        @blog.user,
+                        class: "purchase-hero-subheading" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="blog-info">
+      
+    </div>
+  </div>
+</div>

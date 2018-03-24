@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :discussion_comments, dependent: :destroy
   has_many :posts,               dependent: :destroy
   has_many :post_comments,       dependent: :destroy
+  has_many :blogs,               dependent: :destroy
   has_many :questions,           dependent: :destroy
   has_many :answers,             dependent: :destroy
   has_many :favorite_vehicles,   dependent: :destroy

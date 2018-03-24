@@ -249,6 +249,33 @@ $(function() {
      
       fixedMap.stick_in_parent({ offset_top: 50 });
       
+    // search introduction
+      
+      var searchIntroductionStaticClose = $('.search-introduction-static-close');
+      var searchIntroduction            = $('.search-introduction');
+      
+      searchIntroductionStaticClose.click(function () {
+        searchIntroduction.css("display", "none");
+      });
+      
+    // special offer modal
+      
+      var specialOffer           = $('.special-offer');
+      var specialOfferButton     = $('.special-offer-button');
+      var modalSpecialOffer      = $('#modal-special-offer');
+      var modalSpecialOfferClose = $('.modal-special-offer-close');
+      
+      specialOffer.click(function() {
+        var myVehicleId = $('.special-offer-button').data('id');
+        $("#vehicleId").val(myVehicleId);
+        
+        // modalSpecialOffer.modal('show');
+      });
+      
+      modalSpecialOfferClose.click(function() {
+        modalSpecialOffer.modal('hide');
+      });
+
   // basics
   
     // dependent dropdown

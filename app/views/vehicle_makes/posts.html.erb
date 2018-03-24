@@ -44,6 +44,7 @@
       <div class="row">
         
         <div class="col-md-3">
+          
           <ol class="vehicle-make-nav hidden-xs">
             
             <li class="vehicle-make-nav-active">
@@ -52,10 +53,29 @@
             
             <li><%= link_to "Discussions", discussions_vehicle_make_path %></li>
           </ol>
+          
+          <nav class="dropdown dropdown-vehicle-makes-secondary">
+  
+            <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+              
+              <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+              
+              Select vehicle make 
+            </a>
+          
+            <ol class="dropdown-menu">
+              <% VehicleMake.all.each do |vehicle_make| %>
+                <li>
+                  <%= link_to vehicle_make.name, 
+                              posts_vehicle_make_path(vehicle_make) %>
+                </li>
+              <% end %>
+            </ol>
+          </nav>
         </div>
         
         <div class="col-md-8 vehicle-make-posts-list">
-          
+  
           <% if @vehicle_make.posts.exists? %>
             <ol class="vehicle-make-posts-list-content">
               <%= render @vehicle_make.posts %>

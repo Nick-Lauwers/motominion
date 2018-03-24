@@ -22,4 +22,5 @@
 //= require private_pub
 //= require typeahead
 //= require cocoon
+//= require trix
 //= require_tree .

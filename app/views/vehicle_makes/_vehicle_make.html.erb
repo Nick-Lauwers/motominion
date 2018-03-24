@@ -1,0 +1,33 @@
+<li id="vehicle-make-item-<%= vehicle_make.id %>" 
+    class="col-md-4 vehicle-make-item">
+  <%= link_to posts_vehicle_make_path(vehicle_make) do %>
+  
+    <div class="vehicle-make-item-image", 
+         style="background-image: url(
+                 '<%= vehicle_make.cover_photo_url %>')">
+    </div>
+    
+    <span class="vehicle-make-item-name">
+      <%= vehicle_make.name %>
+    </span>
+    
+    <span class="vehicle-make-item-posts">
+      
+      <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+      
+      <%= pluralize(
+            Post.where(vehicle_make_id: vehicle_make.id).count, "Post"
+          ) %>
+    </span>
+
+    <span class="vehicle-make-item-conversations">
+      
+      <i class="fa fa-comments-o" aria-hidden="true"></i>
+      
+      <%= pluralize(
+            Discussion.where(vehicle_make_id: vehicle_make.id).count, 
+            "Conversation"
+          ) %>
+    </span>
+  <% end %>
+</li>

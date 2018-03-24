@@ -1,0 +1,44 @@
+<% provide(:title, "New Blog Entry") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="add-content">
+  
+  <ol class="social-nav">
+    
+    <li class="hidden-xs">
+      <%= link_to "Community Center", 
+                  discussions_path, 
+                  class: "social-nav-link" %>
+    </li>
+    
+    <li>
+      
+      <i class="fa fa-angle-left social-nav-separator-mobile visible-xs" 
+         aria-hidden="true"></i>
+      
+      <i class="fa fa-angle-right social-nav-separator hidden-xs" 
+         aria-hidden="true"></i>
+         
+      <%= link_to "Blog Posts", blogs_path, class: "social-nav-link" %>
+    </li>
+    
+    <li class="hidden-xs">
+      
+      <i class="fa fa-angle-right social-nav-separator" 
+         aria-hidden="true"></i>
+         
+      <span class="social-nav-active">New Blog Entry</span>
+    </li>
+  </ol>
+  
+  <h1 class="add-content-title">Create a Blog Entry</h1>
+  
+  <%= render 'form' %>
+</div>
