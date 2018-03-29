@@ -328,14 +328,14 @@
                     </td>
                   </tr>
                   
-                  <tr>
-                    <td>Seating</td>
-                    <td><strong><%= @vehicle.seating_capacity %></strong></td>
-                  </tr>
+                  <!--<tr>-->
+                  <!--  <td>Seating</td>-->
+                  <!--  <td><strong><(perc)= @vehicle.seating_capacity %></strong></td>-->
+                  <!--</tr>-->
                   
                   <tr>
-                    <td>Transmission</td>
-                    <td><strong><%= @vehicle.transmission %></strong></td>
+                    <td>Engine</td>
+                    <td><strong><%= @vehicle.engine_type %></strong></td>
                   </tr>
                   
                   <tr>
@@ -343,10 +343,10 @@
                     <td><strong><%= @vehicle.fuel_type %></strong></td>
                   </tr>
                   
-                  <tr>
-                    <td>Drivetrain</td>
-                    <td><strong><%= @vehicle.drivetrain %></strong></td>
-                  </tr>
+                  <!--<tr>-->
+                  <!--  <td>Drivetrain</td>-->
+                  <!--  <td><strong><(perc)= @vehicle.drivetrain %></strong></td>-->
+                  <!--</tr>-->
                 </table>
               </div>
             </div>
@@ -362,43 +362,43 @@
                 <table class="vehicle-details-table">
                   
                   <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.is_leather_seats %>">
+                                 !@vehicle.is_cruise_control %>">
                     
                     <td class="features-table-column">
                       <!--intentionally left empty-->
                     </td>
                     
-                    <td><strong>Leather Seats</strong></td>
+                    <td><strong>Cruise Control</strong></td>
                   </tr>
                   
                   <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.is_sunroof %>">
+                                 !@vehicle.is_am_fm %>">
                     
                     <td class="features-table-column">
                       <i class="fa fa-umbrella" aria-hidden="true"></i>
                     </td>
                     
-                    <td><strong>Sunroof</strong></td>
+                    <td><strong>AM / FM Radio</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_cb_radio %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-map-signs" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td><strong>CB Radio</strong></td>
                   </tr>
                   
                   <tr class="<%= 'unavailable-feature' if 
                                  !@vehicle.is_navigation_system %>">
                     
                     <td class="features-table-column">
-                      <i class="fa fa-map-signs" aria-hidden="true"></i>
-                    </td>
-                    
-                    <td><strong>Navigation System</strong></td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.is_dvd_entertainment_system %>">
-                    
-                    <td class="features-table-column">
                       <i class="fa fa-television" aria-hidden="true"></i>
                     </td>
                     
-                    <td><strong>DVD Entertainment System</strong></td>
+                    <td><strong>Navigation System</strong></td>
                   </tr>
                 </table>
               </div>
@@ -407,43 +407,73 @@
                 <table class="vehicle-details-table">
                   
                   <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.is_bluetooth %>">
+                                 !@vehicle.is_heated_seats %>">
                     
                     <td class="features-table-column">
                       <i class="fa fa-bluetooth-b" aria-hidden="true"></i>
                     </td>
                     
-                    <td><strong>Bluetooth</strong></td>
+                    <td><strong>Heated Seats</strong></td>
                   </tr>
                   
                   <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.is_backup_camera %>">
+                                 !@vehicle.is_heated_hand_grips %>">
                     
                     <td class="features-table-column">
                       <i class="fa fa-eye" aria-hidden="true"></i>
                     </td>
                     
-                    <td><strong>Backup Camera</strong></td>
+                    <td><strong>Heated Hand Grips</strong></td>
                   </tr>
                   
                   <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.is_remote_start %>">
+                                 !@vehicle.is_alarm_system %>">
                     
                     <td class="features-table-column">
                       <i class="fa fa-key" aria-hidden="true"></i>
                     </td>
                     
-                    <td><strong>Remote Start</strong></td>
+                    <td><strong>Alarm System</strong></td>
                   </tr>
                   
                   <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.is_tow_package %>">
+                                 !@vehicle.is_saddlebags %>">
                     
                     <td class="features-table-column">
                       <!--intentionally left empty-->
                     </td>
                     
-                    <td><strong>Tow Package</strong></td>
+                    <td><strong>Saddlebags</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_trunk %>">
+                    
+                    <td class="features-table-column">
+                      <!--intentionally left empty-->
+                    </td>
+                    
+                    <td><strong>Trunk</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_tow_hitch %>">
+                    
+                    <td class="features-table-column">
+                      <!--intentionally left empty-->
+                    </td>
+                    
+                    <td><strong>Tow Hitch</strong></td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.is_cycle_cover %>">
+                    
+                    <td class="features-table-column">
+                      <!--intentionally left empty-->
+                    </td>
+                    
+                    <td><strong>Cycle Cover</strong></td>
                   </tr>
                 </table>
               </div>

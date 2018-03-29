@@ -1,38 +1,80 @@
-[2018-03-24T03:09:15,226][INFO ][o.e.n.Node               ] [] initializing ...
-[2018-03-24T03:09:15,492][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [6.2gb], net total_space [10.6gb], spins? [possibly], types [aufs]
-[2018-03-24T03:09:15,493][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
-[2018-03-24T03:09:15,612][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
-[2018-03-24T03:09:15,618][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[43757], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.9.80-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
-[2018-03-24T03:09:20,145][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
-[2018-03-24T03:09:20,145][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
-[2018-03-24T03:09:20,146][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
-[2018-03-24T03:09:20,146][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
-[2018-03-24T03:09:20,146][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
-[2018-03-24T03:09:20,147][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
-[2018-03-24T03:09:20,149][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
-[2018-03-24T03:09:20,152][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
-[2018-03-24T03:09:20,152][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
-[2018-03-24T03:09:20,152][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
-[2018-03-24T03:09:20,154][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
-[2018-03-24T03:09:32,706][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
-[2018-03-24T03:09:32,707][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
-[2018-03-24T03:09:33,189][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
-[2018-03-24T03:09:33,295][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max file descriptors [8192] for elasticsearch process likely too low, increase to at least [65536]
-[2018-03-24T03:09:33,295][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
-[2018-03-24T03:09:36,426][INFO ][o.e.c.s.ClusterService   ] [ht0EVsn] new_master {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{r2oBk_6aS7iHgM3cckXTEg}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
-[2018-03-24T03:09:36,475][INFO ][o.e.h.HttpServer         ] [ht0EVsn] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
-[2018-03-24T03:09:36,475][INFO ][o.e.n.Node               ] [ht0EVsn] started
-[2018-03-24T03:09:37,967][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [5] indices into cluster_state
-[2018-03-24T03:09:40,396][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles][1]] ...]).
-[2018-03-24T03:27:07,740][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][624][2] duration [8.2s], collections [1]/[8.3s], total [8.2s]/[8.3s], memory [579mb]->[187.6mb]/[1.9gb], all_pools {[young] [532.5mb]->[5.9mb]/[532.5mb]}{[survivor] [46.4mb]->[66.5mb]/[66.5mb]}{[old] [0b]->[119.7mb]/[1.3gb]}
-[2018-03-24T03:27:07,742][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][624] overhead, spent [8.2s] collecting in the last [8.3s]
-[2018-03-24T05:19:01,684][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][7302][3] duration [33.2s], collections [1]/[33.8s], total [33.2s]/[41.6s], memory [718.8mb]->[191.5mb]/[1.9gb], all_pools {[young] [532.5mb]->[8.1mb]/[532.5mb]}{[survivor] [66.5mb]->[7.3mb]/[66.5mb]}{[old] [119.7mb]->[178.4mb]/[1.3gb]}
-[2018-03-24T05:19:01,685][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][7302] overhead, spent [33.2s] collecting in the last [33.8s]
-[2018-03-24T07:14:51,677][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][14249] overhead, spent [384ms] collecting in the last [1s]
-[2018-03-24T17:00:57,903][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][49401] overhead, spent [386ms] collecting in the last [1s]
-[2018-03-24T18:26:05,883][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][54498][10] duration [9.6s], collections [1]/[9.8s], total [9.6s]/[52.5s], memory [711.4mb]->[293.4mb]/[1.9gb], all_pools {[young] [532.5mb]->[758.8kb]/[532.5mb]}{[survivor] [357.6kb]->[66.2mb]/[66.5mb]}{[old] [178.5mb]->[226.5mb]/[1.3gb]}
-[2018-03-24T18:26:05,884][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][54498] overhead, spent [9.6s] collecting in the last [9.8s]
-[2018-03-24T20:23:48,501][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][61537][11] duration [22.1s], collections [1]/[22.1s], total [22.1s]/[1.2m], memory [825.3mb]->[294.1mb]/[1.9gb], all_pools {[young] [532.5mb]->[602.1kb]/[532.5mb]}{[survivor] [66.2mb]->[1mb]/[66.5mb]}{[old] [226.5mb]->[292.5mb]/[1.3gb]}
-[2018-03-24T20:23:48,511][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][61537] overhead, spent [22.1s] collecting in the last [22.1s]
-[2018-03-24T22:21:13,413][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][68579] overhead, spent [520ms] collecting in the last [1s]
-[2018-03-24T23:50:33,509][WARN ][o.e.t.TransportService   ] [ht0EVsn] Received response for a request that has timed out, sent [64792ms] ago, timed out [42230ms] ago, action [cluster:monitor/nodes/stats[n]], node [{ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{r2oBk_6aS7iHgM3cckXTEg}{127.0.0.1}{127.0.0.1:9300}], id [5334]
+[2018-03-29T13:18:01,998][INFO ][o.e.n.Node               ] [] initializing ...
+[2018-03-29T13:18:02,214][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] using [1] data paths, mounts [[/ (none)]], net usable_space [6gb], net total_space [10.6gb], spins? [possibly], types [aufs]
+[2018-03-29T13:18:02,215][INFO ][o.e.e.NodeEnvironment    ] [ht0EVsn] heap size [1.9gb], compressed ordinary object pointers [true]
+[2018-03-29T13:18:02,338][INFO ][o.e.n.Node               ] [ht0EVsn] node name [ht0EVsn] derived from node ID; set [node.name] to override
+[2018-03-29T13:18:02,343][INFO ][o.e.n.Node               ] [ht0EVsn] version[5.0.0], pid[19491], build[253032b/2016-10-26T04:37:51.531Z], OS[Linux/4.9.80-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2018-03-29T13:18:05,889][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [aggs-matrix-stats]
+[2018-03-29T13:18:05,889][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [ingest-common]
+[2018-03-29T13:18:05,889][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-expression]
+[2018-03-29T13:18:05,890][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-groovy]
+[2018-03-29T13:18:05,890][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-mustache]
+[2018-03-29T13:18:05,890][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [lang-painless]
+[2018-03-29T13:18:05,890][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [percolator]
+[2018-03-29T13:18:05,891][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [reindex]
+[2018-03-29T13:18:05,891][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty3]
+[2018-03-29T13:18:05,891][INFO ][o.e.p.PluginsService     ] [ht0EVsn] loaded module [transport-netty4]
+[2018-03-29T13:18:05,892][INFO ][o.e.p.PluginsService     ] [ht0EVsn] no plugins loaded
+[2018-03-29T13:18:12,494][INFO ][o.e.n.Node               ] [ht0EVsn] initialized
+[2018-03-29T13:18:12,495][INFO ][o.e.n.Node               ] [ht0EVsn] starting ...
+[2018-03-29T13:18:13,500][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][1] overhead, spent [544ms] collecting in the last [1s]
+[2018-03-29T13:18:13,673][INFO ][o.e.t.TransportService   ] [ht0EVsn] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2018-03-29T13:18:13,684][WARN ][o.e.b.BootstrapCheck     ] [ht0EVsn] max virtual memory areas vm.max_map_count [65530] likely too low, increase to at least [262144]
+[2018-03-29T13:18:17,067][INFO ][o.e.c.s.ClusterService   ] [ht0EVsn] new_master {ht0EVsn}{ht0EVsnlRuyePr1G07P69g}{t2Z5pnu3QAmKssaJv9cdbA}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2018-03-29T13:18:17,094][INFO ][o.e.h.HttpServer         ] [ht0EVsn] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2018-03-29T13:18:17,095][INFO ][o.e.n.Node               ] [ht0EVsn] started
+[2018-03-29T13:18:18,387][INFO ][o.e.g.GatewayService     ] [ht0EVsn] recovered [5] indices into cluster_state
+[2018-03-29T13:18:20,708][INFO ][o.e.c.r.a.AllocationService] [ht0EVsn] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[vehicles][2], [vehicles][0]] ...]).
+[2018-03-29T13:23:18,622][INFO ][o.e.c.m.MetaDataMappingService] [ht0EVsn] [vehicles_development_20170328112843769/7RvIp9gSRDOCTngpUIpSdQ] update_mapping [vehicle]
+[2018-03-29T13:23:19,723][DEBUG][o.e.a.b.TransportShardBulkAction] [ht0EVsn] [vehicles_development_20170328112843769][2] failed to execute bulk item (index) index {[vehicles_development][vehicle][2], source[{"id":2,"body_style":"Cruiser","color":"Teal","engine_type":"V-Twin","fuel_type":"Gasoline","vin":null,"listing_name":"2003 Suzuki Boulevard 800","street_address":"1000 3rd Street","apartment":null,"city":"San Francisco","state":"CA","year":2003,"price":3250,"mileage":10000,"engine_size":805,"summary":"This is an easy-to-ride, mid-sized cruiser. Although it looks large and bulky, it rides and feels like a smaller cruiser. It has a well-balanced center-of-gravity with the majority of its weight under the rider's seat. It seat is at a comfortable height.","sellers_notes":null,"is_cruise_control":false,"is_am_fm":false,"is_cb_radio":true,"is_navigation_system":false,"is_heated_seats":false,"is_heated_hand_grips":false,"is_alarm_system":false,"is_saddlebags":true,"is_trunk":false,"is_tow_hitch":false,"is_cycle_cover":false,"user_id":11,"vehicle_make_id":963,"vehicle_model_id":37,"created_at":"2018-03-29T09:23:19.274-04:00","updated_at":"2018-03-29T09:23:19.274-04:00","latitude":-122.3902,"longitude":1.0,"sold_at":null,"bumped_at":"2000-01-01T12:59:00.000-05:00","posted_at":null,"dealership_id":null,"location":{"lat":-122.3902,"lon":1.0}}]}
+org.elasticsearch.index.mapper.MapperParsingException: failed to parse
+	at org.elasticsearch.index.mapper.DocumentParser.wrapInMapperParsingException(DocumentParser.java:175) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentParser.parseDocument(DocumentParser.java:69) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentMapper.parse(DocumentMapper.java:274) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.prepareIndex(IndexShard.java:529) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.prepareIndexOnPrimary(IndexShard.java:506) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.index.TransportIndexAction.prepareIndexOperationOnPrimary(TransportIndexAction.java:174) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.index.TransportIndexAction.executeIndexRequestOnPrimary(TransportIndexAction.java:179) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.shardIndexOperation(TransportShardBulkAction.java:351) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.index(TransportShardBulkAction.java:158) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.handleItem(TransportShardBulkAction.java:137) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.onPrimaryShard(TransportShardBulkAction.java:123) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.bulk.TransportShardBulkAction.onPrimaryShard(TransportShardBulkAction.java:74) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportWriteAction.shardOperationOnPrimary(TransportWriteAction.java:78) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportWriteAction.shardOperationOnPrimary(TransportWriteAction.java:50) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryShardReference.perform(TransportReplicationAction.java:902) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryShardReference.perform(TransportReplicationAction.java:872) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.ReplicationOperation.execute(ReplicationOperation.java:113) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$AsyncPrimaryAction.onResponse(TransportReplicationAction.java:319) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$AsyncPrimaryAction.onResponse(TransportReplicationAction.java:254) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$1.onResponse(TransportReplicationAction.java:838) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$1.onResponse(TransportReplicationAction.java:835) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShardOperationsLock.acquire(IndexShardOperationsLock.java:142) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.shard.IndexShard.acquirePrimaryOperationLock(IndexShard.java:1651) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction.acquirePrimaryShardReference(TransportReplicationAction.java:847) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$AsyncPrimaryAction.doRun(TransportReplicationAction.java:271) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryOperationTransportHandler.messageReceived(TransportReplicationAction.java:250) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.action.support.replication.TransportReplicationAction$PrimaryOperationTransportHandler.messageReceived(TransportReplicationAction.java:242) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.RequestHandlerRegistry.processMessageReceived(RequestHandlerRegistry.java:69) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.transport.TransportService$6.doRun(TransportService.java:548) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingAbstractRunnable.doRun(ThreadContext.java:504) [elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.common.util.concurrent.AbstractRunnable.run(AbstractRunnable.java:37) [elasticsearch-5.0.0.jar:5.0.0]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_111]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_111]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_111]
+Caused by: java.lang.IllegalArgumentException: illegal latitude value [-122.3902] for location
+	at org.elasticsearch.index.mapper.LatLonPointFieldMapper.parse(LatLonPointFieldMapper.java:135) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.BaseGeoPointFieldMapper.parse(BaseGeoPointFieldMapper.java:541) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentParser.parseObjectOrField(DocumentParser.java:438) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentParser.parseObject(DocumentParser.java:455) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentParser.innerParseObject(DocumentParser.java:371) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentParser.parseObjectOrNested(DocumentParser.java:361) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentParser.internalParseDocument(DocumentParser.java:93) ~[elasticsearch-5.0.0.jar:5.0.0]
+	at org.elasticsearch.index.mapper.DocumentParser.parseDocument(DocumentParser.java:66) ~[elasticsearch-5.0.0.jar:5.0.0]
+	... 33 more
+[2018-03-29T13:45:29,952][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][1581][2] duration [1.4s], collections [1]/[1.4s], total [1.4s]/[1.5s], memory [579.6mb]->[114mb]/[1.9gb], all_pools {[young] [531.5mb]->[8.2mb]/[532.5mb]}{[survivor] [48.1mb]->[66.5mb]/[66.5mb]}{[old] [0b]->[39.3mb]/[1.3gb]}
+[2018-03-29T13:45:29,953][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][1581] overhead, spent [1.4s] collecting in the last [1.4s]
+[2018-03-29T14:17:28,866][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][3475][3] duration [23.1s], collections [1]/[23.9s], total [23.1s]/[24.7s], memory [636.7mb]->[308.2mb]/[1.9gb], all_pools {[young] [530.9mb]->[8.5mb]/[532.5mb]}{[survivor] [66.5mb]->[58.6mb]/[66.5mb]}{[old] [39.3mb]->[242.4mb]/[1.3gb]}
+[2018-03-29T14:17:28,867][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][3475] overhead, spent [23.1s] collecting in the last [23.9s]
+[2018-03-29T16:00:25,255][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][9639][4] duration [10.2s], collections [1]/[11s], total [10.2s]/[34.9s], memory [832.5mb]->[301.6mb]/[1.9gb], all_pools {[young] [531.4mb]->[3.7mb]/[532.5mb]}{[survivor] [58.6mb]->[3.8mb]/[66.5mb]}{[old] [242.4mb]->[295.7mb]/[1.3gb]}
+[2018-03-29T16:00:25,259][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][9639] overhead, spent [10.2s] collecting in the last [11s]
