@@ -2543,7 +2543,7 @@ body {
 }
 
 .marquee div {
-  width: 300%;
+  width: 350%;
   height: 30px;
   display: block;
   position: absolute;
@@ -2559,7 +2559,7 @@ body {
 
 @keyframes marquee {
   0% { left: 0; }
-  100% { left: -150%; }
+  100% { left: -175%; }
 }
 
 // .marquee-text {
