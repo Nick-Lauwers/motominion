@@ -2236,7 +2236,7 @@ body {
   margin: 0 0 1em;
 }
 
-.fa-bullhorn {
+.contact-icon {
   color: $yellow-dark;
   margin: 0 0.3em 0 0;
 }
@@ -4015,6 +4015,8 @@ ul.pagination {
 .user-summary {
   background-color: white;
   border-bottom: 1px solid $gray-border;
+  position: relative;
+  z-index: 1;
 }
 
 .user-summary-content {
@@ -7243,11 +7245,12 @@ a.remove_fields {
 }
 
 .dealer-signup-tour-info {
-  text-align: left;
+  // text-align: left;
   margin: 0;
 }
 
 .dealer-signup-tour-title {
+  text-align: center;
   margin: 1.5em 0;
 }
 

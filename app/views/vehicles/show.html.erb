@@ -20,7 +20,8 @@
      data-parallax="scroll" 
      data-image-src="<%= @photos[0].image.url() if @photos.length > 0 %>"
      data-speed="0.3" 
-     data-bleed="10">
+     data-bleed="10"
+     data-z-index="0">
 </div>
 
 <%= render 'modal' %>
@@ -32,7 +33,7 @@
       <div class="col-md-8">
         <nav>
           <ul class="nav navbar-nav navbar-left">
-            <li><%= link_to "Vehicle Details", '#vehicle-details' %></li>
+            <li><%= link_to "Details", '#vehicle-details' %></li>
             <li><%= link_to "Gallery",         '#gallery' %></li>
             <li><%= link_to "Reviews",         '#reviews' %></li>
             <li><%= link_to "Map and Forums",  '#map-and-brochure' %></li>
@@ -193,7 +194,8 @@
                 <p class="vehicle-overview-views-info">
                   
                   <strong>
-                    <%= @vehicle.user.first_name %>'s car is on people's minds.
+                    <%= @vehicle.user.first_name %>'s motorcycle is on people's 
+                    minds.
                   </strong>
                   
                   <br>
@@ -334,8 +336,33 @@
                   <!--</tr>-->
                   
                   <tr>
+                    
                     <td>Engine</td>
-                    <td><strong><%= @vehicle.engine_type %></strong></td>
+                    
+                    <td>
+                      <strong>
+                        <% if @vehicle.engine_type == "Unknown" %>
+                          Unavailable
+                        <% else %>
+                          <%= @vehicle.engine_type %>
+                        <% end %>
+                      </strong>
+                    </td>
+                  </tr>
+                  
+                  <tr>
+                    
+                    <td>Size</td>
+                    
+                    <td>
+                      <strong>
+                        <% if @vehicle.engine_size.present? %>
+                          <%= @vehicle.engine_size %> cc
+                        <% else %>
+                          Unavailable
+                        <% end %>
+                      </strong>
+                    </td>
                   </tr>
                   
                   <tr>
@@ -365,7 +392,7 @@
                                  !@vehicle.is_cruise_control %>">
                     
                     <td class="features-table-column">
-                      <!--intentionally left empty-->
+                      <i class="fa fa-tachometer" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>Cruise Control</strong></td>
@@ -375,7 +402,7 @@
                                  !@vehicle.is_am_fm %>">
                     
                     <td class="features-table-column">
-                      <i class="fa fa-umbrella" aria-hidden="true"></i>
+                      <i class="fa fa-signal" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>AM / FM Radio</strong></td>
@@ -385,7 +412,7 @@
                                  !@vehicle.is_cb_radio %>">
                     
                     <td class="features-table-column">
-                      <i class="fa fa-map-signs" aria-hidden="true"></i>
+                      <i class="fa fa-microphone" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>CB Radio</strong></td>
@@ -395,22 +422,18 @@
                                  !@vehicle.is_navigation_system %>">
                     
                     <td class="features-table-column">
-                      <i class="fa fa-television" aria-hidden="true"></i>
+                      <i class="fa fa-map-signs" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>Navigation System</strong></td>
                   </tr>
-                </table>
-              </div>
-              
-              <div class="col-md-6">
-                <table class="vehicle-details-table">
                   
                   <tr class="<%= 'unavailable-feature' if 
                                  !@vehicle.is_heated_seats %>">
                     
                     <td class="features-table-column">
-                      <i class="fa fa-bluetooth-b" aria-hidden="true"></i>
+                      <i class="fa fa-thermometer-three-quarters" 
+                         aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>Heated Seats</strong></td>
@@ -420,17 +443,22 @@
                                  !@vehicle.is_heated_hand_grips %>">
                     
                     <td class="features-table-column">
-                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <i class="fa fa-fire" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>Heated Hand Grips</strong></td>
                   </tr>
+                </table>
+              </div>
+              
+              <div class="col-md-6">
+                <table class="vehicle-details-table">
                   
                   <tr class="<%= 'unavailable-feature' if 
                                  !@vehicle.is_alarm_system %>">
                     
                     <td class="features-table-column">
-                      <i class="fa fa-key" aria-hidden="true"></i>
+                      <i class="fa fa-bullhorn" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>Alarm System</strong></td>
@@ -440,7 +468,7 @@
                                  !@vehicle.is_saddlebags %>">
                     
                     <td class="features-table-column">
-                      <!--intentionally left empty-->
+                      <i class="fa fa-suitcase" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>Saddlebags</strong></td>
@@ -450,7 +478,7 @@
                                  !@vehicle.is_trunk %>">
                     
                     <td class="features-table-column">
-                      <!--intentionally left empty-->
+                      <i class="fa fa-briefcase" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>Trunk</strong></td>
@@ -460,7 +488,7 @@
                                  !@vehicle.is_tow_hitch %>">
                     
                     <td class="features-table-column">
-                      <!--intentionally left empty-->
+                      <i class="fa fa-plug" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>Tow Hitch</strong></td>
@@ -470,7 +498,7 @@
                                  !@vehicle.is_cycle_cover %>">
                     
                     <td class="features-table-column">
-                      <!--intentionally left empty-->
+                      <i class="fa fa-umbrella" aria-hidden="true"></i>
                     </td>
                     
                     <td><strong>Cycle Cover</strong></td>

@@ -428,16 +428,19 @@
     
     // sliders
     
-      var priceSlider        = $('#price_slider');
-      var mileageSlider      = $('#mileage_slider');
-      var yearSlider         = $('#year_slider');
-      var priceSliderValue   = $('#price_slider_val');
-      var mileageSliderValue = $('#mileage_slider_val');
-      var yearSliderValue    = $('#year_slider_val');
+      var priceSlider           = $('#price_slider');
+      var mileageSlider         = $('#mileage_slider');
+      var yearSlider            = $('#year_slider');
+      var engineSizeSlider      = $('#engine_size_slider');
+      var priceSliderValue      = $('#price_slider_val');
+      var mileageSliderValue    = $('#mileage_slider_val');
+      var yearSliderValue       = $('#year_slider_val');
+      var engineSizeSliderValue = $('#engine_size_slider_val')
       
       priceSlider.slider();
       mileageSlider.slider();
       yearSlider.slider();
+      engineSizeSlider.slider();
       
       priceSlider.on('slide', function(slideEvt) {
       	priceSliderValue.text('$' + slideEvt.value);
@@ -448,6 +451,9 @@
       yearSlider.on('slide', function(slideEvt) {
       	yearSliderValue.text(slideEvt.value);
       });
+      engineSizeSlider.on('slide', function(slideEvt) {
+      	engineSizeSliderValue.text(slideEvt.value + ' cc');
+      });
       
       priceSlider.on('slideStop', function(slideEvt) {
       	priceSliderValue.text('$' + slideEvt.value);
@@ -457,6 +463,9 @@
       });
       yearSlider.on('slideStop', function(slideEvt) {
       	yearSliderValue.text(slideEvt.value);
+      });
+      engineSizeSlider.on('slideStop', function(slideEvt) {
+      	engineSizeSliderValue.text(slideEvt.value + ' cc');
       });
   });
 </script>

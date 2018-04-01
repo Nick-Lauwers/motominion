@@ -1,4 +1,8 @@
-<%= @invitation.club.name %> just sent you an invitation to join Mototrova! 
-Click on the link below to join:
+<h1><%= @invitation.club.name %> Invitation | Motominion</h1>
+
+<p>
+  <%= @invitation.club.name %> just sent you an invitation to join Motominion! 
+  Click on the link below to join:
+</p>
 
 <%= club_url(@invitation.club) %>

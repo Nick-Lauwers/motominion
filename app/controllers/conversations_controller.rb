@@ -47,7 +47,7 @@ class ConversationsController < ApplicationController
           user:    current_user, 
           content: "Hi, " + 
                   @other.first_name + 
-                  ". I recently noticed your vehicle, " +
+                  ". I recently noticed your motorcycle, " +
                   appointment.vehicle.listing_name +
                   ", and am interested in a test drive. Are you available on " +
                   appointment.date.strftime("%A, %d %b") + ", at " + 
@@ -78,7 +78,7 @@ class ConversationsController < ApplicationController
           user:    current_user, 
           content: "Hi, " + 
                    @other.first_name + 
-                   ". I recently noticed your vehicle, " +
+                   ". I recently noticed your motorcycle, " +
                    appointment.vehicle.listing_name +
                    ", and am interested in a test drive. Are you available on " +
                    appointment.date.strftime("%A, %d %b") + ", at " + 

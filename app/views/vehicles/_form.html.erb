@@ -71,7 +71,7 @@
             <div class="form-element">
               
               <%= f.select :year, 
-                           1981..(Time.zone.now.year + 1),
+                           ( 1900..(Time.zone.now.year + 1) ).to_a.reverse,
                            { include_blank: true, prompt: "Select year" }, 
                            class: "form-control select-primary" %>
                   

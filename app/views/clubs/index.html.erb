@@ -1,4 +1,4 @@
-<% provide(:title, "Find Car Clubs In Your City") %>
+<% provide(:title, "Find Motorcycle Clubs In Your City") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -24,17 +24,17 @@
         
         <h2 class="clubs-hero-subtitle">
           <% if params[:city].present? %>
-            Find car clubs in <%= params[:city] %>
+            Find motorcycle clubs in <%= params[:city] %>
           <% else %>
-            Find your car club online
+            Find your motorcycle club online
           <% end %>
         </h2>
         
         <p class="clubs-hero-info">
           
           <% if params[:city].present? %>
-            Find out more about <%= params[:city] %>'s most active car clubs by 
-            selecting from the clubs below.
+            Find out more about <%= params[:city] %>'s most active motorcycle 
+            clubs by selecting from the clubs below.
             
           <% else %>
             Connect with members of your local club, and strengthen the 
@@ -53,7 +53,7 @@
         
       <%= text_field_tag :city, 
                          params[:city], 
-                         placeholder: "Search by city (Eg. Detroit, MI)", 
+                         placeholder: "Search by city (Eg. San Francisco, CA)", 
                          class: "form-control 
                                  clubs-form-control
                                  typeahead" %>
@@ -77,7 +77,7 @@
           <i class="fa fa-angle-right clubs-nav-separator"
              aria-hidden="true"></i>
              
-          Car Clubs
+          Motorcycle Clubs
         <% end %>
       
       <% else %>
@@ -85,7 +85,7 @@
         <i class="fa fa-angle-right clubs-nav-separator"
            aria-hidden="true"></i>
            
-        Car Clubs
+        Motorcycle Clubs
       <% end %>
     </li>
     
@@ -102,9 +102,9 @@
   
   <h2 class="clubs-list-title">
     <% if params[:city].present? %>
-      Most active car clubs in <%= params[:city] %>
+      Most active motorcycle clubs in <%= params[:city] %>
     <% else %>
-      Most active car clubs 
+      Most active motorcycle clubs 
     <% end %>
   </h2>
   

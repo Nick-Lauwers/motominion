@@ -74,6 +74,19 @@
             <ol class="feature-list-content">
             
               <li>Motorcycle Features</li>
+              
+              <% if !vehicle.is_cruise_control && 
+                    !vehicle.is_am_fm &&
+                    !vehicle.is_cb_radio && 
+                    !vehicle.is_navigation_system && 
+                    !vehicle.is_heated_seats &&
+                    !vehicle.is_heated_hand_grips && 
+                    !vehicle.is_alarm_system && 
+                    !vehicle.is_saddlebags &&
+                    !vehicle.is_trunk && 
+                    !vehicle.is_cycle_cover %>
+                <li>No Features Listed</li>      
+              <% end %>
             
               <% if vehicle.is_cruise_control %>
                 <li>Cruise Control</li>

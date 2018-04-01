@@ -57,7 +57,7 @@
               <%= f.label :listing_name, "Listing Name" %>
               
               <%= f.text_field :listing_name, 
-                               placeholder: "Eg. Jaguar F-Type", 
+                               placeholder: "Eg. Triumph Bonneville 900", 
                                class: "form-control form-control-primary",
                                required: true %>
             </div>
@@ -68,7 +68,7 @@
               
               <%= f.text_area :summary, 
                               rows: 3,
-                              placeholder: "Eg. Based on the XK convertible.", 
+                              placeholder: "Eg. Features a parallel-twin four-stroke engine.", 
                               class: "form-control form-control-primary",
                               required: true %>
             </div>
@@ -97,9 +97,9 @@
                 <div class="form-element">
                   
                   <%= f.select :body_style, 
-                               [ "Convertible", "Coupe", "Crossover", 
-                                 "Hatchback", "Minivan", "Off-Road", "Pickup", 
-                                 "Sedan", "SUV", "Van", "Wagon" ],
+                               [ "Classic / Vintage", "Cruiser", "Dual-Sport", 
+                                 "Mini / Pocket", "Moped", "Sportbike", 
+                                 "Standard", "Touring", "Trike" ],
                                { include_blank: true, 
                                  prompt: "Select body style" },
                                { required: true,
@@ -141,19 +141,21 @@
               
               <div class="col-md-6 form-group">
     
-                <%= f.label :seating_capacity, "Seating Capacity" %>
+                <%= f.label :engine_type, "Engine Type" %>
                 
                 <div class="form-element">
                   
-                  <%= f.select :seating_capacity, 
-                               [ ["2", 2], ["3", 3], ["4", 4], ["5", 5], ["6", 6], 
-                                 ["7", 7], ["8", 8], ["9+", 9] ],
+                  <%= f.select :engine_type, 
+                               [ "Single", "Parallel-Twin", "Inline-Three",
+                                 "Inline-Four", "V-Twin", "V4", 
+                                 "Flat-Twin / Boxer", "L-Twin", "Other",
+                                 "Unknown" ],
                                { include_blank: true, 
-                                 prompt: "Select seating capacity" },
+                                 prompt: "Select engine type" },
                                { required: true,
                                  class: "form-control select-primary" } %>
                       
-                  <i class="fa fa-users fa-lg form-icon" 
+                  <i class="fa fa-cogs fa-lg form-icon" 
                    aria-hidden="true"></i>
                    
                   <i class="fa fa-caret-down fa-lg form-caret" 
@@ -162,15 +164,30 @@
               </div>
               
               <div class="col-md-6 form-group">
+                
+                <%= f.label :engine_size, "Engine Size" %>
+                  
+                <div class= "input-group">
+                  
+                  <%= f.text_field :engine_size, 
+                                   placeholder: "Eg. 900", 
+                                   class: "form-control form-control-primary" %>
+                      
+                  <div class="input-group-addon">cc</div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="row">
+              
+              <div class="col-md-6 form-group">
     
                 <%= f.label :fuel_type, "Fuel Type" %>
                 
                 <div class="form-element">
                   
                   <%= f.select :fuel_type, 
-                               [ "Biodiesel", "Compressed Natural Gas", 
-                                 "Diesel", "Electric", "Flex Fuel", "Gasoline", 
-                                 "Hybrid", "Propane"],
+                               [ "Electric", "Gasoline" ],
                                { include_blank: true, 
                                  prompt: "Select fuel type" }, 
                                { required: true,
@@ -183,77 +200,9 @@
                      aria-hidden="true"></i>
                 </div>
               </div>
-            </div>
-    
-            <div class="row">
-              
-              <div class="col-md-6 form-group">
-    
-                <%= f.label :transmission %>
-                
-                <div class="form-element">
-                  
-                  <%= f.select :transmission, 
-                               [ "Automatic", "Manual" ],
-                               { include_blank: true,
-                                 prompt: "Select transmission" },
-                               { required: true,
-                                 class: "form-control select-primary" } %>
-                      
-                  <i class="fa fa-cogs fa-lg form-icon" 
-                     aria-hidden="true"></i>
-                     
-                  <i class="fa fa-caret-down fa-lg form-caret" 
-                     aria-hidden="true"></i>
-                </div>
-              </div>
     
               <div class="col-md-6 form-group">
-    
-                <%= f.label :drivetrain do %>
-                
-                  Drivetrain
-                  
-                  <div class="info">
-                
-                    <i class="fa fa-lg fa-info-circle info-icon"></i>
-                    
-                    <p class="info-text">
-                      
-                      Front-Wheel Drive: Engine power is diverted to front 
-                      wheels
-                      </br>
-                      
-                      Rear-Wheel Drive: Engine power is diverted to rear wheels
-                      </br>
-                      
-                      4X2:
-                      </br>
-                      
-                      Four-Wheel Drive:
-                      </br>
-                      
-                      All-Wheel Drive:
-                    </p>
-                  </div>
-                <% end %>
-                
-                <div class="form-element">
-                  
-                  <%= f.select :drivetrain, 
-                               [ "Front-Wheel Drive", "Rear-Wheel Drive", "4X2", 
-                                 "Four-Wheel Drive", "All-Wheel Drive" ],
-                               { include_blank: true, 
-                                 prompt: "Select drivetrain" }, 
-                               { required: true,
-                                 class: "form-control select-primary" } %>
-                    
-                  <i class="fa fa-wrench fa-lg form-icon" 
-                     aria-hidden="true"></i>
-                     
-                  <i class="fa fa-caret-down fa-lg form-caret" 
-                     aria-hidden="true"></i>
-                </div>
+                <!--intentionally left empty-->
               </div>
             </div>
             
@@ -264,44 +213,53 @@
               <ul class="installed-options-list">
                 
                 <li>
-                  <%= f.check_box :is_backup_camera %>
-                  <%= f.label :is_backup_camera, "Backup Camera" %> 
+                  <%= f.check_box :is_cruise_control %>
+                  <%= f.label :is_cruise_control, "Cruise Control" %> 
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_bluetooth %>
-                  <%= f.label :is_bluetooth, "Bluetooth" %> 
+                  <%= f.check_box :is_am_fm %>
+                  <%= f.label :is_am_fm, "AM / FM Radio" %> 
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_dvd_entertainment_system %>
-                  <%= f.label :is_dvd_entertainment_system, 
-                              "DVD Entertainment System" %> 
-                </li>
-                
-                <li>
-                  <%= f.check_box :is_leather_seats %>
-                  <%= f.label :is_leather_seats, "Leather Seats" %>
+                  <%= f.check_box :is_cb_radio %>
+                  <%= f.label :is_cb_radio, "CB Radio" %> 
                 </li>
                 
                 <li>
                   <%= f.check_box :is_navigation_system %>
-                  <%= f.label :is_navigation_system, "Navigation System" %> 
+                  <%= f.label :is_navigation_system, "Navigation System" %>
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_remote_start %>
-                  <%= f.label :is_remote_start, "Remote Start" %> 
+                  <%= f.check_box :is_heated_seats %>
+                  <%= f.label :is_heated_seats, "Heated Seats" %> 
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_sunroof %>
-                  <%= f.label :is_sunroof, "Sunroof" %>       
+                  <%= f.check_box :is_heated_hand_grips %>
+                  <%= f.label :is_heated_hand_grips, "Heated Hand Grips" %> 
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_tow_package %>
-                  <%= f.label :is_tow_package, "Tow Package" %>          
+                  <%= f.check_box :is_alarm_system %>
+                  <%= f.label :is_alarm_system, "Alarm System" %>       
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_saddlebags %>
+                  <%= f.label :is_saddlebags, "Saddlebags" %>
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_trunk %>
+                  <%= f.label :is_trunk, "Trunk" %>
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_cycle_cover %>
+                  <%= f.label :is_cycle_cover, "Cycle Cover" %>
                 </li>
               </ul>
             </div>

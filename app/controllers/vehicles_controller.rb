@@ -31,7 +31,7 @@ class VehiclesController < ApplicationController
       
       # @photos = @vehicle.photos
       flash[:success] = "Basics saved; Complete all remaining details, then 
-                         select 'Post Vehicle'."
+                         select 'Post Motorcycle'."
       redirect_to details_vehicle_path(@vehicle)
     
     else
@@ -41,7 +41,7 @@ class VehiclesController < ApplicationController
   
   # def destroy
   #   @vehicle.destroy
-  #   flash[:success] = "Vehicle deleted"
+  #   flash[:success] = "Motorcycle deleted"
   #   redirect_to vehicles_path
   # end
   

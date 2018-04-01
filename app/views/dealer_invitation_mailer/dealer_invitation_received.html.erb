@@ -1,4 +1,8 @@
-<%= @dealer_invitation.dealership.name %> just sent you an invitation to join 
-Mototrova! Click on the link below to join:
+<h1><%= @dealer_invitation.dealership.name %> Invitation | Motominion</h1>
+
+<p>
+  <%= @dealer_invitation.dealership.name %> just sent you an invitation to join 
+  Motominion! Click on the link below to join:
+</p>
 
 <%= new_user_url(dealership_id: @dealer_invitation.dealership.id) %>

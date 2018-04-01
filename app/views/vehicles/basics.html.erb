@@ -110,7 +110,7 @@
                 <div class="form-element">
                   
                   <%= f.select :year, 
-                               1981..(Time.zone.now.year + 1),
+                               ( 1900..(Time.zone.now.year + 1) ).to_a.reverse,
                                { include_blank: true, prompt: "Select year" }, 
                                { required: true,
                                  class: "form-control select-primary" } %>
@@ -129,16 +129,16 @@
                   
                   VIN
                   
-                  <div class="info">
+                  <!--<div class="info">-->
                 
-                    <i class="fa fa-lg fa-info-circle info-icon"></i>
+                  <!--  <i class="fa fa-lg fa-info-circle info-icon"></i>-->
                     
-                    <p class="info-text">
-                      The VIN can often be found on the lower-left corner of the 
-                      dashboard, in front of the steering wheel. You can read 
-                      the number by looking through the windshield.
-                    </p>
-                  </div>
+                  <!--  <p class="info-text">-->
+                  <!--    The VIN can often be found on the lower-left corner of the -->
+                  <!--    dashboard, in front of the steering wheel. You can read -->
+                  <!--    the number by looking through the windshield.-->
+                  <!--  </p>-->
+                  <!--</div>-->
                 <% end %>
                 
                 <%= f.text_field :vin, 

@@ -65,6 +65,19 @@
               
                 <li>Motorcycle Features</li>
               
+                <% if !feed_item.is_cruise_control && 
+                      !feed_item.is_am_fm &&
+                      !feed_item.is_cb_radio && 
+                      !feed_item.is_navigation_system && 
+                      !feed_item.is_heated_seats &&
+                      !feed_item.is_heated_hand_grips && 
+                      !feed_item.is_alarm_system && 
+                      !feed_item.is_saddlebags &&
+                      !feed_item.is_trunk && 
+                      !feed_item.is_cycle_cover %>
+                  <li>No Features Listed</li>      
+                <% end %>
+              
                 <% if feed_item.is_cruise_control %>
                   <li>Cruise Control</li>
                 <% end %>
