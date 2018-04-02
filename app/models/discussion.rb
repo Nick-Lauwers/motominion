@@ -2,7 +2,8 @@
 
 class Discussion < ActiveRecord::Base
   
-  searchkick word_start: [:title]
+  searchkick 
+  # word_start: [:title]
   
   belongs_to :user
   

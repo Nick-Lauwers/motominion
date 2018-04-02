@@ -1,6 +1,7 @@
 class Club < ActiveRecord::Base
   
-  searchkick word_start: [:city]
+  searchkick 
+  # word_start: [:city]
   
   has_many :memberships,   dependent: :destroy
   has_many :invitations,   dependent: :destroy
