@@ -39,6 +39,8 @@ gem 'acts_as_votable'
 gem 'rails_or'
 gem 'cocoon'
 gem 'trix'
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
 gem 'bonsai-elasticsearch-rails'
 
 group :development, :test do
