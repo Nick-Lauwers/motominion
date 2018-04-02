@@ -1,5 +1,7 @@
 # complete
 
+require 'elasticsearch/model'
+
 class Vehicle < ActiveRecord::Base
   
   searchkick word_start: [:listing_name, :city], locations: [:location]
@@ -104,3 +106,5 @@ class Vehicle < ActiveRecord::Base
     write_attribute :mileage, val.to_s.gsub(/[\s,]/, '').to_i
   end
 end
+
+Vehicle.import
