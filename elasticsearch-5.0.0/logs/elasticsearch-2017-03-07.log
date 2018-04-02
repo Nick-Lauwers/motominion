@@ -1,2 +1,0 @@
-[2017-03-07T07:38:20,614][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][664416] overhead, spent [367ms] collecting in the last [1s]
-[2017-03-07T19:20:14,818][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][706499] overhead, spent [348ms] collecting in the last [1.3s]

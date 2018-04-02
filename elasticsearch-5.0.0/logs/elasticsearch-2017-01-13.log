@@ -1,3 +1,0 @@
-[2017-01-13T03:15:11,443][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][140061] overhead, spent [476ms] collecting in the last [1.2s]
-[2017-01-13T07:11:09,624][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][154209][23] duration [5.6s], collections [1]/[6.5s], total [5.6s]/[40.1s], memory [784.6mb]->[252.2mb]/[1.9gb], all_pools {[young] [532.5mb]->[314kb]/[532.5mb]}{[survivor] [16.6mb]->[374.5kb]/[66.5mb]}{[old] [235.3mb]->[251.6mb]/[1.3gb]}
-[2017-01-13T07:11:09,628][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][154209] overhead, spent [5.6s] collecting in the last [6.5s]

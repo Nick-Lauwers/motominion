@@ -1,2 +1,0 @@
-[2017-04-06T11:30:34,913][INFO ][o.e.c.m.MetaDataCreateIndexService] [ht0EVsn] [posts_development_20170406113034845] creating index, cause [api], templates [], shards [5]/[1], mappings [_default_]
-[2017-04-06T11:30:35,276][INFO ][o.e.c.m.MetaDataMappingService] [ht0EVsn] [posts_development_20170406113034845/nOPYxCilRPKvkiwnGVQWUg] create_mapping [post]

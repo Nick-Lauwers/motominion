@@ -1,6 +1,0 @@
-[2018-03-13T00:40:19,077][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][256547] overhead, spent [313ms] collecting in the last [1.1s]
-[2018-03-13T12:28:35,568][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][299029] overhead, spent [511ms] collecting in the last [1s]
-[2018-03-13T16:24:30,075][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][313178][46] duration [777ms], collections [1]/[1.4s], total [777ms]/[16.8s], memory [627.4mb]->[100.2mb]/[1.9gb], all_pools {[young] [530.5mb]->[6.9mb]/[532.5mb]}{[survivor] [254.6kb]->[341.3kb]/[66.5mb]}{[old] [96.6mb]->[96.6mb]/[1.3gb]}
-[2018-03-13T16:24:30,080][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][313178] overhead, spent [777ms] collecting in the last [1.4s]
-[2018-03-13T18:22:30,562][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][320256] overhead, spent [391ms] collecting in the last [1s]
-[2018-03-13T20:20:22,374][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][327325] overhead, spent [471ms] collecting in the last [1s]

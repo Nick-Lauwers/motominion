@@ -1,5 +1,0 @@
-[2017-09-06T03:05:40,229][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][194621][37] duration [6.3s], collections [1]/[6.9s], total [6.3s]/[16.1s], memory [611.1mb]->[160mb]/[1.9gb], all_pools {[young] [532.5mb]->[339.9kb]/[532.5mb]}{[survivor] [578.1kb]->[65.8mb]/[66.5mb]}{[old] [77.9mb]->[93.9mb]/[1.3gb]}
-[2017-09-06T03:05:40,387][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][194621] overhead, spent [6.3s] collecting in the last [6.9s]
-[2017-09-06T04:34:58,614][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][young][199971][38] duration [6.1s], collections [1]/[7s], total [6.1s]/[22.3s], memory [692.3mb]->[160.7mb]/[1.9gb], all_pools {[young] [532.5mb]->[266.9kb]/[532.5mb]}{[survivor] [65.8mb]->[1.2mb]/[66.5mb]}{[old] [93.9mb]->[159.4mb]/[1.3gb]}
-[2017-09-06T04:34:58,623][WARN ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][199971] overhead, spent [6.1s] collecting in the last [7s]
-[2017-09-06T13:25:13,195][INFO ][o.e.m.j.JvmGcMonitorService] [ht0EVsn] [gc][231776] overhead, spent [284ms] collecting in the last [1s]

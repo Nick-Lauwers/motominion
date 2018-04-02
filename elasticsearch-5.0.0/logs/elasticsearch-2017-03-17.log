@@ -1,7 +1,0 @@
-[2017-03-17T00:20:28,689][INFO ][o.e.c.m.MetaDataCreateIndexService] [ht0EVsn] [vehicles_development_20170317002028464] creating index, cause [api], templates [], shards [5]/[1], mappings [_default_]
-[2017-03-17T00:22:01,184][INFO ][o.e.c.m.MetaDataCreateIndexService] [ht0EVsn] [vehicles_development_20170317002201115] creating index, cause [api], templates [], shards [5]/[1], mappings [_default_]
-[2017-03-17T00:22:08,508][INFO ][o.e.c.m.MetaDataCreateIndexService] [ht0EVsn] [vehicles_development_20170317002208439] creating index, cause [api], templates [], shards [5]/[1], mappings [_default_]
-[2017-03-17T00:22:35,209][INFO ][o.e.c.m.MetaDataCreateIndexService] [ht0EVsn] [vehicles_development_20170317002235111] creating index, cause [api], templates [], shards [5]/[1], mappings [_default_]
-[2017-03-17T00:22:50,672][INFO ][o.e.c.m.MetaDataCreateIndexService] [ht0EVsn] [vehicles_development_20170317002250550] creating index, cause [api], templates [], shards [5]/[1], mappings [_default_]
-[2017-03-17T00:23:21,141][INFO ][o.e.c.m.MetaDataCreateIndexService] [ht0EVsn] [vehicles_development_20170317002321108] creating index, cause [api], templates [], shards [5]/[1], mappings [_default_]
-[2017-03-17T00:23:21,546][INFO ][o.e.c.m.MetaDataMappingService] [ht0EVsn] [vehicles_development_20170317002321108/8GO8-057RH6xBPTk8SDQyw] create_mapping [vehicle]
