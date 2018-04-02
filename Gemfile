@@ -39,6 +39,7 @@ gem 'acts_as_votable'
 gem 'rails_or'
 gem 'cocoon'
 gem 'trix'
+gem 'bonsai-elasticsearch-rails'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
