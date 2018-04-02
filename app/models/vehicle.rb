@@ -1,6 +1,6 @@
 # complete
 
-require 'elasticsearch/model'
+# require 'elasticsearch/model'
 
 class Vehicle < ActiveRecord::Base
   
@@ -107,4 +107,4 @@ class Vehicle < ActiveRecord::Base
   end
 end
 
-Vehicle.import
+# Vehicle.import
