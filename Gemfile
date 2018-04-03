@@ -21,6 +21,7 @@ gem 'stripe',                          '~> 3.0.0'
 gem 'omniauth-stripe-connect',         '~> 2.10.0'
 gem 'sdoc',                            '0.4.0', group: :doc
 gem 'searchkick',                      '3.0.2'
+gem 'aws-sdk',                         '~> 2.3'
 gem 'paperclip'               
 gem 'geocoder'
 gem 'private_pub'
