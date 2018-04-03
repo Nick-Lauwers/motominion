@@ -60,6 +60,9 @@ GEM
     bcrypt (3.1.7)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
+    bonsai-elasticsearch-rails (0.2.0)
+      elasticsearch-model (~> 0)
+      elasticsearch-rails (~> 0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -110,6 +113,11 @@ GEM
       elasticsearch-transport (= 6.0.2)
     elasticsearch-api (6.0.2)
       multi_json
+    elasticsearch-model (0.1.9)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.9)
     elasticsearch-transport (6.0.2)
       faraday
       multi_json
@@ -467,6 +475,7 @@ DEPENDENCIES
   acts_as_votable
   aws-sdk (~> 2.3)
   bcrypt (= 3.1.7)
+  bonsai-elasticsearch-rails
   bootstrap-sass (= 3.3.7)
   bootstrap-slider-rails
   bootstrap-will_paginate (= 0.0.10)
