@@ -8410,6 +8410,10 @@ a.remove_fields {
   // padding: 0;
 }
 
+.discussion-header {
+  margin-bottom: 1em;
+}
+
 @media (max-width: 768px) {
   
   .feed-content,
@@ -9169,7 +9173,6 @@ a.remove_fields {
   
   .discussion-header {
     margin-top: 2em;
-    margin-bottom: 1em;
   }
   
   .discussion-avatar {

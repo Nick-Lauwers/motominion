@@ -5,4 +5,5 @@
   Motominion! Click on the link below to join:
 </p>
 
-<%= new_user_url(dealership_id: @dealer_invitation.dealership.id) %>
+<%= link_to "Join",
+            new_user_url(dealership_id: @dealer_invitation.dealership.id) %>

@@ -87,7 +87,7 @@ class DealershipsController < ApplicationController
                                          :street_address, :building, :city, 
                                          :state, :logo, :photo, 
                                          business_hours_attributes: [:id, :day, 
-                                         :open_time, :close_time, 
+                                         :open_time, :close_time, :is_closed,
                                          :dealership_id])
     end
     

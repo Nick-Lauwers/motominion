@@ -44,12 +44,16 @@ class UsersController < ApplicationController
       end
       
     else
+      
+      flash[:failure]  = "Please enter a valid email address and a password of at least six characters."
+      redirect_to :back
+      
       # if params[:dealership_admin].present?
       #   render 'new_dealer_admin'
       # elsif params[:dealership_id].present?
       #   render 'new_dealer'
       # else
-        render 'new'
+      #   render 'new'
       # end
     end
   end

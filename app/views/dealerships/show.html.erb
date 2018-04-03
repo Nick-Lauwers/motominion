@@ -182,20 +182,30 @@
                   <td class="specifications-table-column">Monday</td>
                   
                   <td><strong>
-                      
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Monday").
-                          first.
-                          open_time.
-                          strftime("%-l:%M%p") %> - 
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Monday").
-                          first.
-                          close_time.
-                          strftime("%-l:%M%p") %>
+                    <% if @dealership.
+                            business_hours.
+                            where(day: "Monday").
+                            first.
+                            is_closed == true %> 
+                      Closed
+                      
+                    <% else %>
+                    
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Monday").
+                            first.
+                            open_time.
+                            strftime("%-l:%M%p") %> - 
+                      
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Monday").
+                            first.
+                            close_time.
+                            strftime("%-l:%M%p") %>
+                    <% end %>
                   </strong></td>
                 </tr>
                 
@@ -205,19 +215,29 @@
                   
                   <td><strong>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Tuesday").
-                          first.
-                          open_time.
-                          strftime("%-l:%M%p") %> - 
+                    <% if @dealership.
+                            business_hours.
+                            where(day: "Tuesday").
+                            first.
+                            is_closed == true %> 
+                      Closed
+                      
+                    <% else %>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Tuesday").
-                          first.
-                          close_time.
-                          strftime("%-l:%M%p") %>
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Tuesday").
+                            first.
+                            open_time.
+                            strftime("%-l:%M%p") %> - 
+                      
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Tuesday").
+                            first.
+                            close_time.
+                            strftime("%-l:%M%p") %>
+                    <% end %>
                   </strong></td>
                 </tr>
                 
@@ -227,19 +247,29 @@
                   
                   <td><strong>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Wednesday").
-                          first.
-                          open_time.
-                          strftime("%-l:%M%p") %> - 
+                    <% if @dealership.
+                            business_hours.
+                            where(day: "Wednesday").
+                            first.
+                            is_closed == true %> 
+                      Closed
+                      
+                    <% else %>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Wednesday").
-                          first.
-                          close_time.
-                          strftime("%-l:%M%p") %>
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Wednesday").
+                            first.
+                            open_time.
+                            strftime("%-l:%M%p") %> - 
+                      
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Wednesday").
+                            first.
+                            close_time.
+                            strftime("%-l:%M%p") %>
+                    <% end %>
                   </strong></td>
                 </tr>
                 
@@ -249,19 +279,29 @@
                   
                   <td><strong>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Thursday").
-                          first.
-                          open_time.
-                          strftime("%-l:%M%p") %> - 
+                    <% if @dealership.
+                            business_hours.
+                            where(day: "Thursday").
+                            first.
+                            is_closed == true %> 
+                      Closed
+                      
+                    <% else %>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Thursday").
-                          first.
-                          close_time.
-                          strftime("%-l:%M%p") %>
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Thursday").
+                            first.
+                            open_time.
+                            strftime("%-l:%M%p") %> - 
+                      
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Thursday").
+                            first.
+                            close_time.
+                            strftime("%-l:%M%p") %>
+                    <% end %>
                   </strong></td>
                 </tr>
               </table>
@@ -276,19 +316,29 @@
                   
                   <td><strong>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Friday").
-                          first.
-                          open_time.
-                          strftime("%-l:%M%p") %> - 
+                    <% if @dealership.
+                            business_hours.
+                            where(day: "Friday").
+                            first.
+                            is_closed == true %> 
+                      Closed
+                      
+                    <% else %>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Friday").
-                          first.
-                          close_time.
-                          strftime("%-l:%M%p") %>
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Friday").
+                            first.
+                            open_time.
+                            strftime("%-l:%M%p") %> - 
+                      
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Friday").
+                            first.
+                            close_time.
+                            strftime("%-l:%M%p") %>
+                    <% end %>
                   </strong></td>
                 </tr>
                 
@@ -298,19 +348,29 @@
                   
                   <td><strong>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Saturday").
-                          first.
-                          open_time.
-                          strftime("%-l:%M%p") %> - 
+                    <% if @dealership.
+                            business_hours.
+                            where(day: "Saturday").
+                            first.
+                            is_closed == true %> 
+                      Closed
+                      
+                    <% else %>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Saturday").
-                          first.
-                          close_time.
-                          strftime("%-l:%M%p") %>
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Saturday").
+                            first.
+                            open_time.
+                            strftime("%-l:%M%p") %> - 
+                      
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Saturday").
+                            first.
+                            close_time.
+                            strftime("%-l:%M%p") %>
+                    <% end %>
                   </strong></td>
                 </tr>
                 
@@ -320,19 +380,29 @@
                   
                   <td><strong>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Sunday").
-                          first.
-                          open_time.
-                          strftime("%-l:%M%p") %> - 
+                    <% if @dealership.
+                            business_hours.
+                            where(day: "Sunday").
+                            first.
+                            is_closed == true %> 
+                      Closed
+                      
+                    <% else %>
                     
-                    <%= @dealership.
-                          business_hours.
-                          where(day: "Sunday").
-                          first.
-                          close_time.
-                          strftime("%-l:%M%p") %>
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Sunday").
+                            first.
+                            open_time.
+                            strftime("%-l:%M%p") %> - 
+                      
+                      <%= @dealership.
+                            business_hours.
+                            where(day: "Sunday").
+                            first.
+                            close_time.
+                            strftime("%-l:%M%p") %>
+                    <% end %>
                   </strong></td>
                 </tr>
               </table>
