@@ -481,8 +481,6 @@ DEPENDENCIES
   daemons
   delayed_job_active_record
   dotenv-rails
-  elasticsearch-model
-  elasticsearch-rails
   faker (= 1.4.2)
   fog (= 1.36.0)
   geocoder
