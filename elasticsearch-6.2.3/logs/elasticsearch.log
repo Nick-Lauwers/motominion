@@ -1,0 +1,37 @@
+[2018-04-03T04:38:04,056][INFO ][o.e.n.Node               ] [] initializing ...
+[2018-04-03T04:38:04,143][INFO ][o.e.e.NodeEnvironment    ] [modRrbD] using [1] data paths, mounts [[/ (none)]], net usable_space [5.8gb], net total_space [10.6gb], types [aufs]
+[2018-04-03T04:38:04,143][INFO ][o.e.e.NodeEnvironment    ] [modRrbD] heap size [989.8mb], compressed ordinary object pointers [true]
+[2018-04-03T04:38:04,145][INFO ][o.e.n.Node               ] node name [modRrbD] derived from node ID [modRrbDrTmqhzpKQ5fdDZw]; set [node.name] to override
+[2018-04-03T04:38:04,146][INFO ][o.e.n.Node               ] version[6.2.3], pid[29555], build[c59ff00/2018-03-13T10:06:29.741383Z], OS[Linux/4.9.80-c9/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_111/25.111-b14]
+[2018-04-03T04:38:04,146][INFO ][o.e.n.Node               ] JVM arguments [-Xms1g, -Xmx1g, -XX:+UseConcMarkSweepGC, -XX:CMSInitiatingOccupancyFraction=75, -XX:+UseCMSInitiatingOccupancyOnly, -XX:+AlwaysPreTouch, -Xss1m, -Djava.awt.headless=true, -Dfile.encoding=UTF-8, -Djna.nosys=true, -XX:-OmitStackTraceInFastThrow, -Dio.netty.noUnsafe=true, -Dio.netty.noKeySetOptimization=true, -Dio.netty.recycler.maxCapacityPerThread=0, -Dlog4j.shutdownHookEnabled=false, -Dlog4j2.disable.jmx=true, -Djava.io.tmpdir=/tmp/elasticsearch.u9WphIoe, -XX:+HeapDumpOnOutOfMemoryError, -XX:+PrintGCDetails, -XX:+PrintGCDateStamps, -XX:+PrintTenuringDistribution, -XX:+PrintGCApplicationStoppedTime, -Xloggc:logs/gc.log, -XX:+UseGCLogFileRotation, -XX:NumberOfGCLogFiles=32, -XX:GCLogFileSize=64m, -Des.path.home=/home/ubuntu/workspace/motominion/elasticsearch-6.2.3, -Des.path.conf=/home/ubuntu/workspace/motominion/elasticsearch-6.2.3/config]
+[2018-04-03T04:38:05,694][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [aggs-matrix-stats]
+[2018-04-03T04:38:05,694][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [analysis-common]
+[2018-04-03T04:38:05,694][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [ingest-common]
+[2018-04-03T04:38:05,695][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [lang-expression]
+[2018-04-03T04:38:05,695][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [lang-mustache]
+[2018-04-03T04:38:05,695][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [lang-painless]
+[2018-04-03T04:38:05,695][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [mapper-extras]
+[2018-04-03T04:38:05,695][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [parent-join]
+[2018-04-03T04:38:05,695][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [percolator]
+[2018-04-03T04:38:05,695][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [rank-eval]
+[2018-04-03T04:38:05,696][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [reindex]
+[2018-04-03T04:38:05,696][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [repository-url]
+[2018-04-03T04:38:05,696][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [transport-netty4]
+[2018-04-03T04:38:05,696][INFO ][o.e.p.PluginsService     ] [modRrbD] loaded module [tribe]
+[2018-04-03T04:38:05,696][INFO ][o.e.p.PluginsService     ] [modRrbD] no plugins loaded
+[2018-04-03T04:38:13,045][INFO ][o.e.d.DiscoveryModule    ] [modRrbD] using discovery type [zen]
+[2018-04-03T04:38:14,512][INFO ][o.e.n.Node               ] initialized
+[2018-04-03T04:38:14,512][INFO ][o.e.n.Node               ] [modRrbD] starting ...
+[2018-04-03T04:38:14,873][INFO ][o.e.t.TransportService   ] [modRrbD] publish_address {127.0.0.1:9300}, bound_addresses {[::1]:9300}, {127.0.0.1:9300}
+[2018-04-03T04:38:15,050][WARN ][o.e.b.BootstrapChecks    ] [modRrbD] max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+[2018-04-03T04:38:18,110][INFO ][o.e.c.s.MasterService    ] [modRrbD] zen-disco-elected-as-master ([0] nodes joined), reason: new_master {modRrbD}{modRrbDrTmqhzpKQ5fdDZw}{R9tH4FPPRnS8-t4zREkf3w}{127.0.0.1}{127.0.0.1:9300}
+[2018-04-03T04:38:18,116][INFO ][o.e.c.s.ClusterApplierService] [modRrbD] new_master {modRrbD}{modRrbDrTmqhzpKQ5fdDZw}{R9tH4FPPRnS8-t4zREkf3w}{127.0.0.1}{127.0.0.1:9300}, reason: apply cluster state (from master [master {modRrbD}{modRrbDrTmqhzpKQ5fdDZw}{R9tH4FPPRnS8-t4zREkf3w}{127.0.0.1}{127.0.0.1:9300} committed version [1] source [zen-disco-elected-as-master ([0] nodes joined)]])
+[2018-04-03T04:38:18,140][INFO ][o.e.h.n.Netty4HttpServerTransport] [modRrbD] publish_address {127.0.0.1:9200}, bound_addresses {[::1]:9200}, {127.0.0.1:9200}
+[2018-04-03T04:38:18,141][INFO ][o.e.n.Node               ] [modRrbD] started
+[2018-04-03T04:38:18,158][INFO ][o.e.g.GatewayService     ] [modRrbD] recovered [0] indices into cluster_state
+[2018-04-03T04:39:06,731][INFO ][o.e.c.m.MetaDataCreateIndexService] [modRrbD] [vehicles_development] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+[2018-04-03T04:39:07,299][INFO ][o.e.c.m.MetaDataMappingService] [modRrbD] [vehicles_development/rvoQnA3kTEG9UVSSKYFGAw] create_mapping [vehicle]
+[2018-04-03T04:40:11,491][INFO ][o.e.c.m.MetaDataCreateIndexService] [modRrbD] [discussions_development] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+[2018-04-03T04:40:11,649][INFO ][o.e.c.m.MetaDataMappingService] [modRrbD] [discussions_development/hPViJXYSRquAzz3kOWsaQA] create_mapping [discussion]
+[2018-04-03T04:40:12,560][INFO ][o.e.c.m.MetaDataCreateIndexService] [modRrbD] [clubs_development] creating index, cause [auto(bulk api)], templates [], shards [5]/[1], mappings []
+[2018-04-03T04:40:12,750][INFO ][o.e.c.m.MetaDataMappingService] [modRrbD] [clubs_development/MGuonUFVSkmvMJsXsaZMdg] create_mapping [club]

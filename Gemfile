@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails',                           '4.2.2'
+gem 'rails',                           '>= 5.0.0.rc2', '< 5.1'
 gem 'bcrypt',                          '3.1.7'
 gem 'faker',                           '1.4.2'
-gem 'carrierwave',                     '0.10.0'
+gem 'carrierwave'
 gem 'mini_magick',                     '3.8.0'
 gem 'fog',                             '1.36.0'
-gem 'will_paginate',                   '3.0.7'
+gem 'will_paginate',                   '3.1.5'
 gem 'bootstrap-will_paginate',         '0.0.10'
 gem 'bootstrap-sass',                  '3.3.7'
 gem 'sass-rails',                      '5.0.2'
@@ -20,7 +20,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'stripe',                          '~> 3.0.0'
 gem 'omniauth-stripe-connect',         '~> 2.10.0'
 gem 'sdoc',                            '0.4.0', group: :doc
-gem 'searchkick',                      '3.0.2'
+gem 'searchkick'
 gem 'aws-sdk-s3'
 gem 'paperclip'               
 gem 'geocoder'
@@ -45,7 +45,7 @@ gem 'bonsai-elasticsearch-rails'
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'
-  gem 'web-console', '2.0.0.beta3'
+  gem 'web-console'
   gem 'spring',      '1.1.3'
 end
 
