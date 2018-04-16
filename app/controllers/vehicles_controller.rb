@@ -100,9 +100,10 @@ class VehiclesController < ApplicationController
     @hasReview = @reviews.find_by(reviewer_id: current_user.id) if current_user
     
     @questions = @vehicle.questions
-    @question  = current_user.questions.build if logged_in?
+    # @question  = current_user.questions.build if logged_in?
+    @question = Question.new
     
-    @answer     = current_user.answers.build   if logged_in?
+    @answer = Answer.new
     
     @availabilities = @vehicle.availabilities
 

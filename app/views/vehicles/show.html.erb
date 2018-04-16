@@ -12,6 +12,10 @@
 
 <%= render 'modal_appointment' %>
 
+<%= render 'modal_dealer_select' %>
+
+<%= render 'modal_buy_online' %>
+
 <% if @vehicle.sold_at.present? %>
   <div class="ribbon-vehicle">SOLD</div>
 <% end %>
@@ -48,29 +52,39 @@
             <p class="navbar-price-visible">$<%= @vehicle.price %></p>
           </div>
           
-          <!--<(perc) if @vehicle.user.dealership_id.present? %>-->
+          <% if @vehicle.user.dealership_id.present? %>
           
-            <% if current_user && 
-                  @vehicle.purchases.where(email: current_user.email).exists? %>
-              <%= link_to basics_purchase_path(@vehicle.purchases.first), 
-                          class: "btn-navbar-contact-hidden" do %>
-                          
-                <i class="fa fa-shopping-cart listing-navbar-icon" 
-                   aria-hidden="true"></i>
-                
-                Make An Offer
-              <% end %>
+            <div class="btn-navbar-contact-hidden btn-buy-online">
+              
+              <i class="fa fa-shopping-cart listing-navbar-icon" 
+                 aria-hidden="true"></i>
+              
+              Buy Online
+            </div>
+          
+          <% else %>
+            <%= form_for @conversation, 
+                       url: conversations_path(@conversation), 
+                       method: :post do |f| %>
+                       
+              <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                             current_user %>
+              
+              <%= f.hidden_field :recipient_id,       value: @user.id %>
+              
+              <%= f.hidden_field :sender_archived,    value: false %>
+  
+              <%= f.hidden_field :recipient_archived, value: false %>
+              
+              <%= button_tag(class: "btn-navbar-contact-hidden") do %>
 
-            <% else %>
-              <%= link_to new_purchase_path(vehicle_id: @vehicle.id), 
-                          class: "btn-navbar-contact-hidden" do %>
-                          
                 <i class="fa fa-shopping-cart listing-navbar-icon" 
                    aria-hidden="true"></i>
                 
-                Make An Offer
+                Buy Online
               <% end %>
             <% end %>
+          <% end %>
           
           <!--<(perc) else %>-->
           <!--  <div class="btn-navbar-share-hidden">-->
@@ -508,55 +522,359 @@
             </div>
           </div>
           
+          <!--<(perc) if @vehicle.sellers_notes.present? %>-->
+          <!--  <div id="sellers-notes">-->
+          <!--    <h3 class="vehicle-details-title">Seller's Notes</h3>-->
+          <!--    <p class="vehicle-details-info"><%= @vehicle.sellers_notes %></p>-->
+          <!--  </div>-->
+          <!--<(perc) end %>-->
+          
           <div id="pricing">
             
             <h3 class="vehicle-details-title">Pricing</h3>
             
             <p class="vehicle-details-info">$<%= @vehicle.price %></p>
             
-            <div class="vehicle-overview-views">
-              <div class="row vertical-align">
+            <% if @vehicle.user.dealership_id.present? %>
+              <div class="negotiate btn-negotiate-dealer">
+                <div class="row vertical-align">
                 
-                <div class="col-md-2">
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal.png") %>
-                </div>
-                
-                <div class="col-md-10">
-                  <p class="vehicle-overview-views-info">
-                    
-                    <strong>
-                      Make <%= @vehicle.user.first_name %> an offer.
-                    </strong>
-                    
-                    <br>
-                    
-                    Your identity will remain anonymous until an offer is 
-                    accepted.
-                  </p>
+                  <div class="col-md-2">
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal.png") %>
+                  </div>
+                  
+                  <div class="col-md-10">
+                    <p class="negotiate-info">
+                      
+                      <strong>
+                        Make <%= @vehicle.user.first_name %> an offer.
+                      </strong>
+                      
+                      <br>
+                      
+                      Your identity will remain anonymous until an offer is 
+                      accepted.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            
+            <% else %>
+              <%= form_for @conversation, 
+                           url: conversations_path(@conversation), 
+                           method: :post do |f| %>
+                       
+                <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                               current_user %>
+                
+                <%= f.hidden_field :recipient_id,       value: @user.id %>
+                
+                <%= f.hidden_field :sender_archived,    value: false %>
+              
+                <%= f.hidden_field :recipient_archived, value: false %>
+                
+                <%= button_tag(class: "btn-negotiate-private") do %>
+                  <div class="negotiate">
+                    <div class="row vertical-align">
+                    
+                      <div class="col-md-2">
+                        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal.png") %>
+                      </div>
+                      
+                      <div class="col-md-10">
+                        <p class="negotiate-info">
+                          
+                          <strong>
+                            Make <%= @vehicle.user.first_name %> an offer.
+                          </strong>
+                          
+                          <br>
+                          
+                          Your identity will remain anonymous until an offer is 
+                          accepted.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
           </div>
           
-          <% if @vehicle.sellers_notes.present? %>
-            <div id="sellers-notes">
-              <h3 class="vehicle-details-title">Seller's Notes</h3>
-              <p class="vehicle-details-info"><%= @vehicle.sellers_notes %></p>
-            </div>
-          <% end %>
+          <div id="availability">
+            
+            <% if @vehicle.user.dealership_id.present? %>
+            
+              <h3 class="vehicle-details-title">Hours of Operation</h3>
+            
+              <div class="row">
+                    
+                <div class="col-md-6">
+                  <table class="vehicle-details-table">
+                    
+                    <tr>
+                      
+                      <td class="specifications-table-column">Monday</td>
+                      
+                      <td><strong>
+                        
+                        <% if Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Monday").
+                                first.
+                                is_closed == true %> 
+                          Closed
+                          
+                        <% else %>
+                        
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Monday").
+                                first.
+                                open_time.
+                                strftime("%-l:%M%p") %> - 
+                          
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Monday").
+                                first.
+                                close_time.
+                                strftime("%-l:%M%p") %>
+                        <% end %>
+                      </strong></td>
+                    </tr>
+                    
+                    <tr>
+                      
+                      <td>Tuesday</td>
+                      
+                      <td><strong>
+                        
+                        <% if Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Tuesday").
+                                first.
+                                is_closed == true %> 
+                          Closed
+                          
+                        <% else %>
+                        
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Tuesday").
+                                first.
+                                open_time.
+                                strftime("%-l:%M%p") %> - 
+                          
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Tuesday").
+                                first.
+                                close_time.
+                                strftime("%-l:%M%p") %>
+                        <% end %>
+                      </strong></td>
+                    </tr>
+                    
+                    <tr>
+                      
+                      <td>Wednesday</td>
+                      
+                      <td><strong>
+                        
+                        <% if Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Wednesday").
+                                first.
+                                is_closed == true %> 
+                          Closed
+                          
+                        <% else %>
+                        
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Wednesday").
+                                first.
+                                open_time.
+                                strftime("%-l:%M%p") %> - 
+                          
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Wednesday").
+                                first.
+                                close_time.
+                                strftime("%-l:%M%p") %>
+                        <% end %>
+                      </strong></td>
+                    </tr>
+                    
+                    <tr>
+                      
+                      <td>Thursday</td>
+                      
+                      <td><strong>
+                        
+                        <% if Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Thursday").
+                                first.
+                                is_closed == true %> 
+                          Closed
+                          
+                        <% else %>
+                        
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Thursday").
+                                first.
+                                open_time.
+                                strftime("%-l:%M%p") %> - 
+                          
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Thursday").
+                                first.
+                                close_time.
+                                strftime("%-l:%M%p") %>
+                        <% end %>
+                      </strong></td>
+                    </tr>
+                  </table>
+                </div>
+                
+                <div class="col-md-6">
+                  <table class="vehicle-details-table">
+                    
+                    <tr>
+                      
+                      <td class="specifications-table-column">Friday</td>
+                      
+                      <td><strong>
+                        
+                        <% if Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Friday").
+                                first.
+                                is_closed == true %> 
+                          Closed
+                          
+                        <% else %>
+                        
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Friday").
+                                first.
+                                open_time.
+                                strftime("%-l:%M%p") %> - 
+                          
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Friday").
+                                first.
+                                close_time.
+                                strftime("%-l:%M%p") %>
+                        <% end %>
+                      </strong></td>
+                    </tr>
+                    
+                    <tr>
+                      
+                      <td>Saturday</td>
+                      
+                      <td><strong>
+                        
+                        <% if Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Saturday").
+                                first.
+                                is_closed == true %> 
+                          Closed
+                          
+                        <% else %>
+                        
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Saturday").
+                                first.
+                                open_time.
+                                strftime("%-l:%M%p") %> - 
+                          
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Saturday").
+                                first.
+                                close_time.
+                                strftime("%-l:%M%p") %>
+                        <% end %>
+                      </strong></td>
+                    </tr>
+                    
+                    <tr>
+                      
+                      <td>Sunday</td>
+                      
+                      <td><strong>
+                        
+                        <% if Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Sunday").
+                                first.
+                                is_closed == true %> 
+                          Closed
+                          
+                        <% else %>
+                        
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Sunday").
+                                first.
+                                open_time.
+                                strftime("%-l:%M%p") %> - 
+                          
+                          <%= Dealership.
+                                find(@vehicle.user.dealership_id).
+                                business_hours.
+                                where(day: "Sunday").
+                                first.
+                                close_time.
+                                strftime("%-l:%M%p") %>
+                        <% end %>
+                      </strong></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
           
-          <% if @vehicle.availabilities.exists? %>
-            <div id="availability">
-              
+            <% elsif @vehicle.availabilities.exists? %>
+
               <h3 class="vehicle-details-title">General Availability</h3>
               
               <div class="row">
                 <%= render partial:    "availability", 
                            collection: @availabilities %>
               </div>
-            </div>
-          <% end %>
-        <!--</div>-->
+            <% end %>
+        </div>
       </div>
       
       <div class="col-md-1">
@@ -565,7 +883,7 @@
       
       <div id="vehicle-scrolled" class="col-md-4">
         
-        <% if logged_in? || @vehicle.questions.exists? %>
+        <!--<(perc) if logged_in? || @vehicle.questions.exists? %>-->
           <div class="vehicle-scrolled-content">
               
             <div class="questions-title">
@@ -575,9 +893,15 @@
             </div>
             
             <div class="questions">
-              <div class="questions-info">
+              <div class="questions-info-container">
                 
-                <%= render 'questions/form' if logged_in? %>
+                <span class="questions-info">
+                  Have a question for <%= @vehicle.user.first_name %> that 
+                  might help other buyers, too? Don't be shy!
+                </span>
+                
+                <%= render 'questions/form' %>
+                <!--if logged_in? (perc)>-->
                 
                 <% if @vehicle.questions.exists? %>
                   <ol class="questions-list">
@@ -587,7 +911,7 @@
               </div>
             </div>
           </div>
-        <% end %>
+        <!--<(perc) end %>-->
 
         <!--<div class="appointment-scrolled">-->
         <!--  <(perc)= link_to '#vehicle-overview', -->
@@ -799,25 +1123,32 @@
 <!--  <i class='fa fa-group fa-lg single-action-icon'></i>-->
 <!--< end %>-->
 
-<div class="single-action">
-  <%= form_for @conversation, 
-               url: conversations_path(@conversation), 
-               method: :post do |f| %>
-           
-    <%= f.hidden_field :sender_id,          value: current_user.id if 
-                                                   current_user %>
-    
-    <%= f.hidden_field :recipient_id,       value: @user.id %>
-    
-    <%= f.hidden_field :sender_archived,    value: false %>
+<% if @vehicle.user.dealership_id.present? %>
+  <div class="single-action btn-negotiate-dealer">
+    <i class='fa fa-lg fa-comments-o single-action-icon'></i>
+  </div>
   
-    <%= f.hidden_field :recipient_archived, value: false %>
+<% else %>
+  <div class="single-action">
+    <%= form_for @conversation, 
+                 url: conversations_path(@conversation), 
+                 method: :post do |f| %>
+             
+      <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                     current_user %>
+      
+      <%= f.hidden_field :recipient_id,       value: @user.id %>
+      
+      <%= f.hidden_field :sender_archived,    value: false %>
     
-    <%= button_tag(class: "single-action-button hidden-xs") do %>
-      <i class='fa fa-lg fa-comments-o single-action-icon'></i>
+      <%= f.hidden_field :recipient_archived, value: false %>
+      
+      <%= button_tag(class: "single-action-button hidden-xs") do %>
+        <i class='fa fa-lg fa-comments-o single-action-icon'></i>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <div class='multi-action visible-xs'>
   

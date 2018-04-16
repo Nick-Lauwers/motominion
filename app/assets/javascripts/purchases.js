@@ -1,5 +1,16 @@
 $(function() {
   
+  // new
+    
+    // purchase introduction
+      
+      var purchaseIntroductionClose = $('.purchase-introduction-close');
+      var purchaseIntroduction      = $('.purchase-introduction');
+      
+      purchaseIntroductionClose.click(function () {
+        purchaseIntroduction.css("display", "none");
+      });
+  
   // financial
   
     // datetimepicker

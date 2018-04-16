@@ -1,0 +1,15 @@
+<h1>Chat History With <%= @other.first_name %> | Motominion</h1>
+
+<p>Hi <%= @user.first_name %>,</p>
+
+<p>
+  Your chat history with <%= @other.first_name %> is below:
+</p>
+
+<% @messages.each do |message| %>
+    <p>
+        <%= message.created_at.strftime("%F, %-l:%M%p") %>:
+        <%= message.user.full_name %> - 
+        <%= sanitize @messages.first.content %>
+    </p>
+<% end %>

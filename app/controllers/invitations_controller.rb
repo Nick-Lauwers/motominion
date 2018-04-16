@@ -19,7 +19,7 @@ class InvitationsController < ApplicationController
       
       if @invitation.save  
         InvitationMailer.invitation_received(@invitation).deliver_now
-        flash[:success] = "Invitations sent!"
+        flash[:success] = "Update complete!"
         
       else
         flash[:failure] = "Invitations failed to send. Please try again."

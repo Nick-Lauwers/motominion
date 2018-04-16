@@ -8,19 +8,33 @@
         
         <td class="avatar-and-online">
           
-          <div class="new-question-avatar avatar-general", 
-               style="background-image: url('
-                       <%= question.user.avatar.url(:thumb) %>')">
-          </div>
-          
-          <% if question.user.online? %>
-            <div class="online online-md-primary hidden-xs"></div>
+          <% if question.is_anonymous == true %>
+            <div class="new-question-avatar avatar-general", 
+                 style="background-image: url(
+                   https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/avatar.jpg)">
+            </div>
+            
+          <% else %>
+            
+            <div class="new-question-avatar avatar-general", 
+                 style="background-image: url('
+                         <%= question.user.avatar.url(:thumb) %>')">
+            </div>
+            
+            <% if question.user.online? %>
+              <div class="online online-md-primary hidden-xs"></div>
+            <% end %>
           <% end %>
         </td>
         
         <td>
-          <p class="new-question-name"><%= question.user.full_name %></p>
           
+          <% if question.is_anonymous == true %>
+            <p class="new-question-name">Anonymous</p>
+          <% else %>
+            <p class="new-question-name"><%= question.user.full_name %></p>
+          <% end %>
+      
           <p class="conversation-date visible-xs-block">
             <%= time_ago_in_words(question.created_at).capitalize %> ago
           </p>

@@ -10,7 +10,7 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<%= render 'modal_special_offer' %>
+<%= render 'layouts/modal_special_offer' %>
 
 <div class="search-summary">
   <div class="search-summary-content">
@@ -70,7 +70,8 @@
                 <div class="row vertical-align">
                   
                   <div class="col-md-2">
-                    <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/search-introduction.png") %>
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/search-introduction.png",
+                                  class: "search-introduction-static-image") %>
                   </div>
                   
                   <div class="col-md-10">

@@ -1,0 +1,81 @@
+<div class="modal" id="modal-dealer-select" role="dialog">
+  
+  <div class="modal-dealer-select-header">
+    
+    <i class="fa fa-times fa-lg modal-dealer-select-close" 
+       aria-hidden="true"></i>
+    
+    <div class="row modal-dealer-select-header-content vertical-align">
+      
+      <div class="col-md-4">
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/dealer-select.png") %>
+      </div>
+      
+      <div class="col-md-8">
+        <h1 class="modal-special-offer-title">Select An Associate</h1>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal-dealer-select-body">
+    <div class="modal-dealer-select-body-content">
+      
+      <h2 class="modal-dealer-select-subtitle">
+        At Motominion, we believe in the power of the consumer.
+      </h2>
+      
+      <span class="modal-dealer-select-info">
+        Select the dealer that you would most like to work with.
+      </span>
+      
+      <ol class="modal-dealer-select-list">
+        <li class="modal-dealer-select-item">
+          
+          <%= form_for @conversation, 
+                        url: conversations_path(@conversation), 
+                        method: :post do |f| %>
+                     
+            <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                          current_user %>
+            
+            <%= f.hidden_field :recipient_id,       value: @user.id %>
+            
+            <%= f.hidden_field :sender_archived,    value: false %>
+          
+            <%= f.hidden_field :recipient_archived, value: false %>
+        
+            <%= button_tag(class: "dealer-select-button") do %>
+              <div class="row vertical-align">
+                
+                <div class="col-md-3 avatar-and-online">
+                  
+                  <div class="dealer-select-avatar avatar-general",
+                       style="background-image: url(
+                               '<%= @vehicle.user.avatar.url(:thumb) %>')">
+                  </div>
+                  
+                  <!--<(perc) if @vehicle.user.online? %>-->
+                  <!--  <div class="online online-lg-primary hidden-xs"></div>-->
+                  <!--<(perc) end %>-->
+                </div>
+                
+                <div class="col-md-9 dealer-select-info">
+    
+                  <span class="dealer-select-name hidden-xs">
+                    <%= @vehicle.user.full_name %>
+                  </span>
+                              
+                  <span class="average-rating"></span>
+                  
+                  <span class="dealer-select-reviews">
+                     · <%= pluralize(@vehicle.reviews.count, "review") %>
+                  </span>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

@@ -17,9 +17,18 @@
     <% end %>
     
     <% if feed_item.user.dealership_id.present? %>
-      <div class="special-offer">
+      <div class="special-offer" 
+           id="feed-item-special-offer-<%= feed_item.id %>">
+        
         <i class="fa fa-lg fa-tag special-offer-icon"></i>
-        Special Offer
+        
+        <div type="button" 
+             class="special-offer-button" 
+             data-id="<%= feed_item.id %>"
+             data-toggle="modal" 
+             data-target="#modal-special-offer">
+          Special Offer
+        </div>
       </div>
     <% end %>
   </div>

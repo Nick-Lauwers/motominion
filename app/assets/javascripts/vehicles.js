@@ -116,6 +116,34 @@ $(function() {
           }
         }
       });
+    
+    // dealer select modal
+      
+      var negotiateDealerButton  = $('.btn-negotiate-dealer')
+      var modalDealerSelect      = $('#modal-dealer-select')
+      var modalDealerSelectClose = $('.modal-dealer-select-close');
+      
+      negotiateDealerButton.click(function() {
+        modalDealerSelect.modal('show');
+      });
+      
+      modalDealerSelectClose.click(function() {
+        modalDealerSelect.modal('hide');
+      });  
+      
+    // buy online modal
+  
+      var buyOnlineButton     = $('.btn-buy-online')
+      var modalBuyOnline      = $('#modal-buy-online')
+      var modalBuyOnlineClose = $('.modal-buy-online-close');
+      
+      buyOnlineButton.click(function() {
+        modalBuyOnline.modal('show');
+      });
+      
+      modalBuyOnlineClose.click(function() {
+        modalBuyOnline.modal('hide');
+      }); 
   
     // image scaling
     

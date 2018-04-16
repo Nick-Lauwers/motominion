@@ -5,23 +5,37 @@
     
     <div class="avatar-and-name">
       
-      <%= link_to question.user do %>
+      <% if question.is_anonymous == true %>
         <div class="backend-question-avatar avatar-general", 
              style="background-image: url(
-                     '<%= question.user.avatar.url(:thumb) %>')">
+                     https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/avatar.jpg)">
         </div>
-      <% end %>
+        
+      <% else %>
       
-      <% if question.user.online? %>
-        <div class="online online-md-quinary hidden-xs"></div>
+        <%= link_to question.user do %>
+          <div class="backend-question-avatar avatar-general", 
+               style="background-image: url(
+                       '<%= question.user.avatar.url(:thumb) %>')">
+          </div>
+        <% end %>
+      
+        <% if question.user.online? %>
+          <div class="online online-md-quinary hidden-xs"></div>
+        <% end %>
       <% end %>
     </div>
     
     <div class="backend-question-detail">
-
-      <%= link_to question.user.full_name, 
-                  question.user,
-                  class: "backend-question-name" %>
+      
+      <% if question.is_anonymous == true %>
+        <span class="backend-question-name">Anonymous</span>
+        
+      <% else %>
+        <%= link_to question.user.full_name, 
+                    question.user,
+                    class: "backend-question-name" %>
+      <% end %>
   
       <span class="backend-question-date">
         <%= time_ago_in_words(question.created_at).capitalize %> ago

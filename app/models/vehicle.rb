@@ -29,6 +29,9 @@ class Vehicle < ActiveRecord::Base
   
   has_many :upgrades, dependent: :destroy
   accepts_nested_attributes_for :upgrades, allow_destroy: true
+  
+  has_many :special_offers, dependent: :destroy
+  accepts_nested_attributes_for :special_offers, allow_destroy: true
 
   # MINIMUM_PHOTOS = 2
 
@@ -52,6 +55,8 @@ class Vehicle < ActiveRecord::Base
   
   # VALID_VIN_REGEX = /[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{3}\d{5}/
   # validates :vin, presence: true, format: { with: VALID_VIN_REGEX }
+  
+  # validates :state, length: { is: 2 }
   
   geocoded_by      :address
   after_validation :geocode, if: :address_changed?

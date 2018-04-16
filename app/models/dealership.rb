@@ -26,13 +26,17 @@ class Dealership < ActiveRecord::Base
   phony_normalize :service_phone, :default_country_code => 'US'
   validates :service_phone, phony_plausible: true
   
+  # validates :state, length: { is: 2 }
+  
   geocoded_by      :address
   after_validation :geocode, if: :address_changed?
   
-  has_attached_file :logo, styles: { thumb: "200x200#"}
+  has_attached_file :logo, styles: { thumb: "200x200#"}, 
+    default_url: "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/photo.png"
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
   
-  has_attached_file :photo
+  has_attached_file :photo,
+    default_url: "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/photo.png"
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
   
   class << self

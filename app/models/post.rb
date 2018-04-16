@@ -11,7 +11,8 @@ class Post < ActiveRecord::Base
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 500 }
   
-  has_attached_file :photo
+  has_attached_file :photo,
+    default_url: "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/photo.png"
   validates_attachment_presence :photo
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\z/
 end

@@ -73,15 +73,15 @@
                               required: true %>
             </div>
         
-            <div class="form-group">
+            <!--<div class="form-group">-->
               
-              <%= f.label :sellers_notes, "Seller's Notes" %>
+            <!--  <(perc)= f.label :sellers_notes, "Seller's Notes" %>-->
               
-              <%= f.text_area :sellers_notes,
-                              rows: 3,
-                              placeholder: "Eg. Now selling at reduced cost.", 
-                              class: "form-control form-control-primary" %>
-            </div>
+            <!--  <(perc)= f.text_area :sellers_notes,-->
+            <!--                  rows: 3,-->
+            <!--                  placeholder: "Eg. Now selling at reduced cost.", -->
+            <!--                  class: "form-control form-control-primary" %>-->
+            <!--</div>-->
           </div>
         
           <div class="update-panel">
@@ -265,27 +265,48 @@
             </div>
           </div>
           
-          <% if current_user.dealership_id.present? %>
-            <div class="update-panel">
+          <!--<(perc) if current_user.dealership_id.present? %>-->
+          
+          <!--  <div class="update-panel">-->
               
-              <h2 class="panel-title">Upgrades</h2>
+          <!--    <h2 class="panel-title">Upgrades</h2>-->
               
-              <p class="panel-instructions">
-                Drive consumer satisfaction and increase revenue by offering
-                additional services to consumers.
-              </p>
+          <!--    <p class="panel-instructions">-->
+          <!--      Drive consumer satisfaction and increase revenue by offering-->
+          <!--      additional services to consumers.-->
+          <!--    </p>-->
               
-              <%= f.fields_for :upgrades do |upgrade| %>
-                <%= render 'upgrade_fields', f: upgrade %>
-              <% end %>
+          <!--    <(perc)= f.fields_for :upgrades do |upgrade| %>-->
+          <!--      <(perc)= render 'upgrade_fields', f: upgrade %>-->
+          <!--    <(perc) end %>-->
                 
-              <div class="links">
-                <%= link_to_add_association "+ Add Upgrade", 
-                                            f, 
-                                            :upgrades %>
-              </div>
-            </div>
-          <% end %>
+          <!--    <div class="links">-->
+          <!--      <(perc)= link_to_add_association "+ Add Upgrade", -->
+          <!--                                  f, -->
+          <!--                                  :upgrades %>-->
+          <!--    </div>-->
+          <!--  </div>-->
+            
+          <!--  <div class="update-panel">-->
+              
+          <!--    <h2 class="panel-title">Special Offers</h2>-->
+              
+          <!--    <p class="panel-instructions">-->
+          <!--      Attract consumers by offering discounts and other special -->
+          <!--      offers.-->
+          <!--    </p>-->
+              
+          <!--    <(perc)= f.fields_for :special_offers do |special_offer| %>-->
+          <!--      <(perc)= render 'special_offer_fields', f: special_offer %>-->
+          <!--    <(perc) end %>-->
+                
+          <!--    <div class="links">-->
+          <!--      <(perc)= link_to_add_association "+ Add Special Offer", -->
+          <!--                                  f, -->
+          <!--                                  :special_offers %>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--<(perc) end %>-->
           
           <%= f.hidden_field :bumped_at,  value: Time.now %>
             

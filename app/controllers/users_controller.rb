@@ -37,6 +37,9 @@ class UsersController < ApplicationController
       if @user.dealership_admin
         log_in @user
         redirect_to new_dealership_dealer_invitation_path(@user.dealership_id)
+      elsif @user.dealership_id.present?
+        log_in @user
+        redirect_to dealership_path(@user.dealership_id)
       else
         @user.send_activation_email
         flash[:info] = "Please check your email to activate your account."

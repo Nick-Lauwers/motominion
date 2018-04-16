@@ -19,7 +19,8 @@
     <% end %>
     
     <% if vehicle.user.dealership_id.present? %>
-      <div class="special-offer" id="<%= vehicle.id %>">
+      <div class="special-offer" 
+           id="search-item-special-offer-<%= vehicle.id %>">
         
         <i class="fa fa-lg fa-tag special-offer-icon"></i>
         

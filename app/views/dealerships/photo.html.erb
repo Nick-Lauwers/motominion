@@ -16,10 +16,10 @@
       
       <div class="dealer-form-detail">
         
-        <h1 class="dealer-form-title">Team Photo</h1>
+        <h1 class="dealer-form-title">Dealership Photo</h1>
         
         <h2 class="dealer-form-subtitle">
-          Upload a photo of your team.
+          Upload a photo of your dealership.
         </h2>
         
         <p class="dealer-form-info">
@@ -33,26 +33,22 @@
             <div class="col-md-8 col-md-offset-2">
               
               <div class="dealer-pic">
-                
-                <i class="fa fa-camera-retro dealer-pic-icon fa-5x" 
-                   aria-hidden="true"></i>
-                   
                 <%= image_tag @dealership.photo.url, class: "uploaded-photo" %>
-              </div>
-
-              <div class="upload-button-dealerships">
-                    
-                <div class="upload-button-content">
-                  Upload Photo
-                </div>
-                
-                <%= f.file_field :photo, class: "upload-hidden" %>
               </div>
             </div>
             
             <div class="col-md-2">
               <!--intentionally left empty-->
             </div>
+          </div>
+          
+          <div class="upload-button-dealerships">
+                    
+            <div class="upload-button-dealerships-content">
+              Upload Photo
+            </div>
+            
+            <%= f.file_field :photo, class: "upload-hidden" %>
           </div>
           
           <%= f.submit "Save", class: "btn btn-tertiary" %>

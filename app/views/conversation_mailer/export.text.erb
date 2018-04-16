@@ -1,0 +1,9 @@
+Hi <%= @user.first_name %>,
+
+Your chat history with <%= @other.first_name %> is below:
+
+<% @messages.each do |message| %>
+  <%= message.created_at.strftime("%F, %-l:%M%p") %>:
+  <%= message.user.full_name %> - 
+  <%= sanitize @messages.first.content %>
+<% end %>

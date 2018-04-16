@@ -1,0 +1,44 @@
+<div class="row nested-fields">
+
+  <div class="col-md-8">
+    
+    <div class="form-element">
+      
+      <%= f.select :title,
+                   [ "Extended Service Contract", "Wheel and Tire Care", 
+                     "Ding and Dent Care", "Key Replacement", 
+                     "ResistAll Protection" ],
+                   { include_blank: true, prompt: "Special Offer" },
+                   class: "form-control select-primary" %>
+      
+      <i class="fa fa-wrench fa-lg form-icon" 
+         aria-hidden="true"></i>
+               
+      <i class="fa fa-caret-down fa-lg form-caret" 
+         aria-hidden="true"></i>
+    </div>
+
+    <div class="row">
+      
+      <div class="col-md-6 form-element">       
+        <div class="input-group">
+          
+          <%= f.text_field :description,
+                           placeholder: "Eg. 5",
+                           class: "form-control form-control-primary",
+                           required: true %>
+          
+          <div class="input-group-addon">years</div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 form-element">
+        
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 availability-link">
+    <%= link_to_remove_association "- Remove Special Offer", f %>
+  </div>
+</div>

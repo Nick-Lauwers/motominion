@@ -74,15 +74,10 @@
             </div>
           </div>    
           
-          <%= hidden_field_tag "thing", params[:dealership_admin] %>
-          
+          <%= f.hidden_field :dealership_id,    value: params[:dealership_id] %>
           <%= f.hidden_field :dealership_admin, value: true %>
           <%= f.hidden_field :activated,        value: true %>
           <%= f.hidden_field :activated_at,     value: Time.now %>
-        
-          <% if params[:dealership_id] %>
-            <%= f.hidden_field :dealership_id, value: params[:dealership_id] %>
-          <% end %>
           
           <%= f.submit "Create Account", class: "btn btn-tertiary" %>
         <% end %>

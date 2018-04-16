@@ -59,24 +59,26 @@
     <% end %>
   </li>
   
-  <li class="<%= 'sidenav-active' if current_page?(about_you_vehicle_path) %>">
-    <%= link_to about_you_vehicle_path do %>
-      <table>
-        <tr>
-          
-          <td class="sidenav-check">
-            <% if !@vehicle.address.blank? %>
-              <i class="fa fa-check"></i>
-            <% end %>
-          </td>
-          
-          <td>
-            About You
-          </td>
-        </tr>
-      </table>
-    <% end %>
-  </li>
+  <% if current_user.dealership_id.blank? %>
+    <li class="<%= 'sidenav-active' if current_page?(about_you_vehicle_path) %>">
+      <%= link_to about_you_vehicle_path do %>
+        <table>
+          <tr>
+            
+            <td class="sidenav-check">
+              <% if !@vehicle.address.blank? %>
+                <i class="fa fa-check"></i>
+              <% end %>
+            </td>
+            
+            <td>
+              About You
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
 
 <% if @vehicle.posted_at.blank? && 

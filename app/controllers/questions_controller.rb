@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
     
     if @question.save
       QuestionMailer.question_received(@question).deliver_now
-      flash[:success] = "Question created!"
+      flash[:success] = "Question posted!"
       redirect_to @question.vehicle
     else
       flash[:failure] = "Please include all details."
@@ -35,6 +35,7 @@ class QuestionsController < ApplicationController
   private
 
     def question_params
-      params.require(:question).permit(:title, :content, :read_at, :vehicle_id)
+      params.require(:question).permit(:title, :content, :read_at, :vehicle_id,
+                                       :is_anonymous)
     end
 end

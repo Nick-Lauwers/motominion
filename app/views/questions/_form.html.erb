@@ -2,20 +2,28 @@
   <%= form_for @question do |f| %>
   
     <!--<(perc)= render 'shared/error_messages', object: f.object %>-->
-
-    <div class="avatar-and-online">
-      
-      <%= link_to user_path(@question.user) do %>
-        <div class="question-form-avatar avatar-general", 
-             style="background-image: url(
-                     '<%= @question.user.avatar.url(:thumb) %>')">
-        </div>
-      <% end %>
-      
-      <% if @question.user.online? %>
-        <div class="online online-sm-primary hidden-xs"></div>
-      <% end %>
-    </div>
+    
+    <% if logged_in? %>
+      <div class="avatar-and-online">
+        
+        <%= link_to current_user do %>
+          <div class="question-form-avatar avatar-general", 
+               style="background-image: url(
+                       '<%= current_user.avatar.url(:thumb) %>')">
+          </div>
+        <% end %>
+        
+        <% if current_user.online? %>
+          <div class="online online-sm-primary hidden-xs"></div>
+        <% end %>
+      </div>
+    
+    <% else %>
+      <div class="question-form-avatar avatar-general"
+           style="background-image: url(
+                   'https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/avatar.jpg')">
+      </div>
+    <% end %>
     
     <div class="question-form-container">
   
@@ -25,9 +33,21 @@
                        
       <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
       
-      <div class="question-submit-container">
-        <%= f.submit "Ask!", class: "question-submit" %>
-      </div>
+      <table class="question-controls-container">
+        <tr>
+          
+          <td>
+            <%= f.check_box :is_anonymous %>
+            <%= f.label :is_anonymous, 
+                        "Post Anonymously", 
+                        class: "checkbox-anonymous" %>
+          </td>
+          
+          <td class="question-submit-container">
+            <%= f.submit "Ask!", class: "question-submit" %>
+          </td>
+        </tr>
+      </table>
     </div>
   <% end %>
 </div>

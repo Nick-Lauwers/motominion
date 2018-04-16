@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228014601) do
+ActiveRecord::Schema.define(version: 20180415123816) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
     t.integer  "likes"
     t.integer  "user_id"
     t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "is_anonymous"
   end
 
   add_index "answers", ["question_id", "created_at"], name: "index_answers_on_question_id_and_created_at"
@@ -155,12 +156,13 @@ ActiveRecord::Schema.define(version: 20180228014601) do
     t.boolean  "latest_message_read"
     t.integer  "sender_id"
     t.integer  "recipient_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.boolean  "sender_archived"
     t.boolean  "recipient_archived"
     t.datetime "sender_last_viewed_at"
     t.datetime "recipient_last_viewed_at"
+    t.boolean  "is_sender_anonymous",      default: true
   end
 
   create_table "dealer_invitations", force: :cascade do |t|
@@ -457,8 +459,9 @@ ActiveRecord::Schema.define(version: 20180228014601) do
     t.datetime "read_at"
     t.integer  "user_id"
     t.integer  "vehicle_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.boolean  "is_anonymous"
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
@@ -483,6 +486,16 @@ ActiveRecord::Schema.define(version: 20180228014601) do
   add_index "reviews", ["reviewed_id", "created_at"], name: "index_reviews_on_reviewed_id_and_created_at"
   add_index "reviews", ["reviewer_id", "created_at"], name: "index_reviews_on_reviewer_id_and_created_at"
   add_index "reviews", ["vehicle_id", "created_at"], name: "index_reviews_on_vehicle_id_and_created_at"
+
+  create_table "special_offers", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "vehicle_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "special_offers", ["vehicle_id"], name: "index_special_offers_on_vehicle_id"
 
   create_table "upgrades", force: :cascade do |t|
     t.string   "title"

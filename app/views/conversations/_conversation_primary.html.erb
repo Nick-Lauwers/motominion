@@ -12,19 +12,33 @@
         
         <td class="avatar-and-online">
           
-          <div class="conversation-avatar avatar-general", 
-               style="background-image: url('<%= other.avatar.url(:thumb) %>')">
-          </div>
+          <% if other.id == conversation.sender_id && 
+               conversation.is_sender_anonymous == true %>
+            <div class="conversation-avatar avatar-general", 
+                 style="background-image: url(https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/avatar.jpg)">
+            </div>
+            
+          <% else %>
           
-          <% if other.online? %>
-            <div class="online online-md-primary hidden-xs"></div>
+            <div class="conversation-avatar avatar-general", 
+                 style="background-image: url('<%= other.avatar.url(:thumb) %>')">
+            </div>
+            
+            <% if other.online? %>
+              <div class="online online-md-primary hidden-xs"></div>
+            <% end %>
           <% end %>
         </td>
         
         <td>
           <div class="conversation-detail">
             
-            <p class="conversation-name"><%= other.full_name %></p>
+            <% if other.id == conversation.sender_id && 
+                    conversation.is_sender_anonymous == true %>
+              <p class="conversation-name">Anonymous</p>
+            <% else %>
+              <p class="conversation-name"><%= other.full_name %></p>
+            <% end %>
             
             <p class="conversation-date">
               <%= conversation.updated_at.strftime("%D") %>
@@ -35,7 +49,7 @@
         <td class="conversation-content-container hidden-xs">
           <p class="conversation-content">
             <!--<(perc) if conversation.messages.exists? %>-->
-              <%= conversation.messages.last.content %>
+              <%= sanitize conversation.messages.last.content %>
             <!--<(perc) else %>-->
             <!--  (No Messages)-->
             <!--<(perc) end %>-->

@@ -47,42 +47,67 @@
         
         <div class="messages-info-recipient">
           
-          <%= link_to user_path(@other) do %>
-            <div class="recipient-avatar avatar-general", 
-                 style="background-image: url(
-                         '<%= @other.avatar.url(:thumb) %>')">
-            </div>
-          <% end %>
-
-          <div class='recipient-username'>
-            
-            <%= link_to @other.full_name,
-                        user_path(@other) %>
-                        
-            <% if @other.online? %>
-              <div class="online-name online-name-lg hidden-xs"></div>
-            <% end %>
-          </div>
-
-          <% if @other.residence.present? %>
-            <span class="recipient-city">
-              <%= @other.residence %>
-            </span>
-          <% end %>
-        
-          <% if @other.phone_number.present? %>
-            <%= link_to @other.phone_number.phony_formatted(spaces: '-'), 
-                        '#', 
-                        class: "recipient-phone" %>
-          <% end %>
-  
-          <% if @other.description.present? %>
+          <% if @other.id == @conversation.sender_id && 
+                  @conversation.is_sender_anonymous == true %>
           
-            <p class="recipient-description">
-              <%= @other.description %>
-            </p>
+            <div class="recipient-avatar avatar-general",
+                 style="background-image: url(https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/avatar.jpg)">
+            </div>
             
-            <span class="recipient-expand">+ More</span>
+            <div class='recipient-username'>
+              
+              <% if @other.id == @conversation.sender_id && 
+                      @conversation.is_sender_anonymous == true %>
+                Anonymous
+              
+              <% else %>
+                <%= @other.first_name %>
+              <% end %>
+                          
+              <!--<(perc) if @other.online? %>-->
+              <!--  <div class="online-name online-name-lg hidden-xs"></div>-->
+              <!--<(perc) end %>-->
+            </div>
+          
+          <% else %>
+            
+            <%= link_to user_path(@other) do %>
+              <div class="recipient-avatar avatar-general", 
+                   style="background-image: url(
+                           '<%= @other.avatar.url(:thumb) %>')">
+              </div>
+            <% end %>
+  
+            <div class='recipient-username-link'>
+              
+              <%= link_to @other.full_name,
+                          user_path(@other) %>
+                          
+              <!--<(perc) if @other.online? %>-->
+              <!--  <div class="online-name online-name-lg hidden-xs"></div>-->
+              <!--<(perc) end %>-->
+            </div>
+  
+            <% if @other.residence.present? %>
+              <span class="recipient-city">
+                <%= @other.residence %>
+              </span>
+            <% end %>
+          
+            <% if @other.phone_number.present? %>
+              <%= link_to @other.phone_number.phony_formatted(spaces: '-'), 
+                          '#', 
+                          class: "recipient-phone" %>
+            <% end %>
+    
+            <% if @other.description.present? %>
+            
+              <p class="recipient-description">
+                <%= @other.description %>
+              </p>
+              
+              <span class="recipient-expand">+ More</span>
+            <% end %>
           <% end %>
         </div>
         
@@ -119,16 +144,9 @@
                         <tr>
                           
                           <td class="request-item-detail">
-                            
                             <%= link_to appointment.vehicle.listing_name,
                                         appointment.vehicle, 
                                         class: "request-item-vehicle" %>
-                            
-                            <span class="request-item-date">
-                              <%= appointment.date.strftime(
-                                    "%A, %d %b (%-l:%M%p)"
-                                  ) %>
-                            </span>
                           </td>
                           
                           <td class="request-item-status-container">
@@ -138,7 +156,13 @@
                             </span>
                           </td>
                         </tr>
-                      </table>  
+                      </table> 
+                      
+                      <span class="request-item-date">
+                        <%= appointment.date.strftime(
+                              "%A, %d %b (%-l:%M%p)"
+                            ) %>
+                      </span>
                     </li>
                   <% end %>
                 </ol>
@@ -171,20 +195,14 @@
                      
                     <li id="request-item-<%= appointment.id %>" 
                         class="request-item">
+                      
                       <table class="request-item-content">
                         <tr>
                           
                           <td class="request-item-detail">
-                            
                             <%= link_to appointment.vehicle.listing_name,
                                         appointment.vehicle, 
                                         class: "request-item-vehicle" %>
-                            
-                            <span class="request-item-date">
-                              <%= appointment.date.strftime(
-                                    "%A, %d %b (%-l:%M%p)"
-                                  ) %>
-                            </span>
                           </td>
                           
                           <td class="request-item-status-container">
@@ -194,7 +212,13 @@
                             </span>
                           </td>
                         </tr>
-                      </table>  
+                      </table>
+                      
+                      <span class="request-item-date">
+                        <%= appointment.date.strftime(
+                              "%A, %d %b (%-l:%M%p)"
+                            ) %>
+                      </span>
                     </li>
                   <% end %>
                 </ol>
@@ -205,99 +229,166 @@
       </div>
       
       <div class="col-md-8 col-md-offset-1">
+        
+        <% if current_user.id == @conversation.sender_id %>
+          <div class="conversation-introduction">
+  
+            <i class="fa fa-times conversation-introduction-close"></i>
+            
+            <div class="row vertical-align">
+            
+              <div class="col-md-2">
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/identity.png",
+                              class: "conversation-introduction-image") %>
+              </div>
+              
+              <div class="col-md-10">
+  
+                <span class="conversation-introduction-title">
+                  Your identity is currently:
+                </span>
+                
+                <% if @conversation.is_sender_anonymous == true %>
+                  <span class="conversation-introduction-hidden">Hidden</span>
+                  
+                <% else %>
+                  <span class="conversation-introduction-visible">Visible</span>
+                <% end %>
+            
+                <p class="conversation-introduction-info">
+                  When your identity is hidden, sellers are unable to view
+                  your personal information; usernames and profile photos remain
+                  hidden. As you close a deal, sellers may ask that you 
+                  reveal your identity in order to strengthen trust in you.
+                </p>
+              </div>
+            </div>
+            
+            <div class="row conversation-buttons">
+              <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                  
+                  <div class="col-md-6">
+                    
+                    <% if @conversation.is_sender_anonymous == true %>
+                      <%= link_to "Reveal Identity",
+                                  reveal_identity_conversation_path(@conversation),
+                                  method: :put,
+                                  class: "btn-anonymous" %>
+                                  
+                    <% else %> 
+                      <%= link_to "Hide Identity",
+                                  hide_identity_conversation_path(@conversation),
+                                  method: :put,
+                                  class: "btn-anonymous" %>
+                    <% end %>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <% if @conversation.messages.exists? %>
+                      <%= link_to "Export Conversation to Email", 
+                                  export_conversation_path(@conversation), 
+                                  class: "btn-export" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
 
         <% if @conversation.appointments.exists?(
                 status: 'pending', seller_id: current_user.id
               ) %>
-          <div class="test-drive-response">
+          <div class="test-drive-introduction">
+  
+            <i class="fa fa-times test-drive-introduction-close"></i>
             
-            <h1 class="test-drive-response-title">
-              Respond to <%= @other.first_name %>'s 
-              <%= pluralize_without_count(
-                    @conversation.appointments.where(
-                      status: 'pending', seller_id: current_user.id
-                    ).count, "request"
-                  ) %>
-            </h1>
+            <div class="row vertical-align">
             
-            <span class="test-drive-response-info">
-              <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
-              Respond within 24 hours to maintain your response rate
-            </span>
+              <div class="col-md-2">
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/hourglass.png",
+                              class: "test-drive-introduction-image") %>
+              </div>
+              
+              <div class="col-md-10">
+  
+                <span class="test-drive-introduction-title">
+                  Respond to <%= @other.first_name %>'s 
+                    <%= pluralize_without_count(
+                          @conversation.appointments.where(
+                            status: 'pending', seller_id: current_user.id
+                          ).count, "request"
+                        ) %>
+                </span>
             
-            <ol class="test-drive-response-list">
-              <% @conversation.appointments.where(
-                    status: 'pending', seller_id: current_user.id
-                 ).each do |appointment| %>
-                  
-                <li id="response-item-<%= appointment.id %>" 
-                    class="response-item">
-                  <div class="row response-item-content">
-                    
-                    <div class="col-md-6 response-detail">
+                <p class="test-drive-introduction-info">
+                  Respond within 24 hours to maintain your response rate.
+                </p>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-10 col-md-offset-2">
+                <ol class="test-drive-introduction-list">
+                  <% @conversation.appointments.where(
+                        status: 'pending', seller_id: current_user.id
+                     ).each do |appointment| %>
                       
-                      <%= link_to appointment.vehicle.listing_name,
-                                  appointment.vehicle, 
-                                  class: "response-vehicle" %>
-                      
-                      <span class="response-date">
-                        <%= appointment.date.strftime(
-                              "%A, %d %b (%-l:%M%p)"
-                            ) %>
-                      </span>
-                    </div>
-                    
-                    <div class="col-md-6">
-                      
-                      <%= link_to "Accept",
-                                  accept_vehicle_appointment_path(appointment.vehicle, appointment),
-                                  method: :put,
-                                  class: "btn btn-test-drive-accept" %>
-        
-                      <%= link_to "Decline",
-                                  decline_vehicle_appointment_path(appointment.vehicle, appointment),
-                                  method: :put,
-                                  class: "btn btn-test-drive-decline" %>
-                    </div>
+                    <li id="response-item-<%= appointment.id %>"
+                        class="response-item">
+                      <div class="row vertical-align">
+                        
+                        <div class="col-md-6">
+                          
+                          <%= link_to appointment.vehicle.listing_name,
+                                      appointment.vehicle, 
+                                      class: "response-vehicle" %>
+                          
+                          <span class="response-date">
+                            <%= appointment.date.strftime(
+                                  "%A, %d %b (%-l:%M%p)"
+                                ) %>
+                          </span>
+                        </div>
+                        
+                        <div class="col-md-3">
+                          <%= link_to "Accept",
+                                      accept_vehicle_appointment_path(appointment.vehicle, appointment),
+                                      method: :put,
+                                      class: "btn-test-drive-accept" %>
+                        </div>
+                        
+                        <div class="col-md-3">
+                          <%= link_to "Decline",
+                                      decline_vehicle_appointment_path(appointment.vehicle, appointment),
+                                      method: :put,
+                                      class: "btn-test-drive-decline" %>
+                        </div>
+                      </div>
+                    </li>
+                  <% end %>
+                </ol>
+              </div>
+            </div>
+
+            <div class="row test-drive-buttons">
+              <div class="col-md-10 col-md-offset-2">
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-6">
+                    <% if @conversation.messages.exists? %>
+                      <%= link_to "Export Conversation to Email", 
+                                  export_conversation_path(@conversation), 
+                                  class: "btn-export" %>
+                    <% end %>
                   </div>
-                  
-                  <!--<table class="response-item-content">-->
-                  <!--  <tr>-->
-                      
-                  <!--    <td class="response-detail">-->
-                        
-                  <!--      <(perc)= link_to appointment.vehicle.listing_name,-->
-                  <!--                  appointment.vehicle, -->
-                  <!--                  class: "response-vehicle" %>-->
-                        
-                  <!--      <span class="response-date">-->
-                  <!--        <(perc)= appointment.date.strftime(-->
-                  <!--              "%A, %d %b (%-l:%M%p)"-->
-                  <!--            ) %>-->
-                  <!--      </span>-->
-                  <!--    </td>-->
-                      
-                  <!--    <td class="response-buttons">-->
-                        
-                  <!--      <(perc)= link_to "Accept",-->
-                  <!--                  accept_vehicle_appointment_path(appointment.vehicle, appointment),-->
-                  <!--                  method: :put,-->
-                  <!--                  class: "btn btn-test-drive-accept" %>-->
-          
-                  <!--      <(perc)= link_to "Decline",-->
-                  <!--                  decline_vehicle_appointment_path(appointment.vehicle, appointment),-->
-                  <!--                  method: :put,-->
-                  <!--                  class: "btn btn-test-drive-decline" %>-->
-                  <!--    </td>-->
-                  <!--  </tr>-->
-                  <!--</table>-->
-                </li>
-              <% end %>
-            </ol>
+                </div>
+              </div>
+            </div>
           </div>
         <% end %>
-        
-        <span class="response-stats">
+
+        <span class="message-stats">
           <% if (current_user.id == @conversation.sender_id  && @conversation.recipient_last_viewed_at.present?) %>
             <% if @conversation.recipient_last_viewed_at.today? %>
               Last viewed by <%= @other.first_name %>: <strong>Today</strong> at <strong><%= @conversation.recipient_last_viewed_at.strftime("%-l:%M%p") %></strong>
@@ -306,9 +397,21 @@
             <% end %>
           <% elsif (current_user.id == @conversation.recipient_id)  %>
             <% if @conversation.sender_last_viewed_at.today? %>
-              Last viewed by <%= @other.first_name %>: <strong>Today</strong> at <strong><%= @conversation.sender_last_viewed_at.strftime("%-l:%M%p") %></strong>
+              Last viewed by 
+              <% if @conversation.is_sender_anonymous %>
+                Anonymous:
+              <% else %>
+                <%= @other.first_name %>: 
+              <% end %>
+              <strong>Today</strong> at <strong><%= @conversation.sender_last_viewed_at.strftime("%-l:%M%p") %></strong>
             <% else %>
-              Last viewed by <%= @other.first_name %> on: <strong><%= @conversation.sender_last_viewed_at.strftime("%d %B %Y") %></strong>
+              Last viewed by 
+              <% if @conversation.is_sender_anonymous %>
+                Anonymous
+              <% else %>
+                <%= @other.first_name %>
+              <% end %>
+              on: <strong><%= @conversation.sender_last_viewed_at.strftime("%d %B %Y") %></strong>
             <% end %>
           <% end %>
         </span>
@@ -336,11 +439,3 @@
 </div>
 
 <%= subscribe_to conversation_messages_path(@conversation) %>
-
-<!--must login iot access-->
-<!--change title-->
-<!--add average rating-->
-<!--switch var in javascript to new formatting-->
-<!--report user/message-->
-<!--link-to alignment/formatting-->
-<!--why 3.5em for top and bottom padding-->

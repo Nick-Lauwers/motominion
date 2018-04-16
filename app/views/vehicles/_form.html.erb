@@ -89,16 +89,16 @@
               
               VIN
               
-              <div class="info">
+              <!--<div class="info">-->
                 
-                <i class="fa fa-lg fa-info-circle info-icon"></i>
+              <!--  <i class="fa fa-lg fa-info-circle info-icon"></i>-->
                 
-                <p class="info-text">
-                  The VIN can often be found on the lower-left corner of the 
-                  dashboard, in front of the steering wheel. You can read the 
-                  number by looking through the windshield.
-                </p>
-              </div>
+              <!--  <p class="info-text">-->
+              <!--    The VIN can often be found on the lower-left corner of the -->
+              <!--    dashboard, in front of the steering wheel. You can read the -->
+              <!--    number by looking through the windshield.-->
+              <!--  </p>-->
+              <!--</div>-->
             <% end %>
             
             <%= f.text_field :vin, 
@@ -118,7 +118,7 @@
               <div class="input-group-addon">$</div>
               
               <%= f.text_field :price, 
-                               placeholder: "Eg. 100 000", 
+                               placeholder: "Eg. 10 000", 
                                class: "form-control form-control-primary" %>
             </div>
           </div>
@@ -130,7 +130,7 @@
             <div class= "input-group">
               
               <%= f.text_field :mileage, 
-                               placeholder: "Eg. 25 000", 
+                               placeholder: "Eg. 8 000", 
                                class: "form-control form-control-primary" %>
                   
               <div class="input-group-addon">mi</div>
@@ -141,8 +141,29 @@
         <%= f.hidden_field :bumped_at, value: Time.now %>
         
         <% if current_user.dealership_id.present? %>
+        
           <%= f.hidden_field :dealership_id, 
                              value: current_user.dealership_id %>
+                             
+          <%= f.hidden_field :street_address, 
+                             value: Dealership.
+                                      find(current_user.dealership_id).
+                                      address %>
+          
+          <%= f.hidden_field :building, 
+                             value: Dealership.
+                                      find(current_user.dealership_id).
+                                      building %>
+          
+          <%= f.hidden_field :city, 
+                             value: Dealership.
+                                      find(current_user.dealership_id).
+                                      city %>
+          
+          <%= f.hidden_field :state, 
+                             value: Dealership.
+                                      find(current_user.dealership_id).
+                                      state %>
         <% end %>
         
         <%= f.submit "Save", class: "btn btn-primary btn-basics" %>

@@ -17,7 +17,10 @@
 
   <%= f.fields_for :appointments, Appointment.new do |ff| %>
   
-    <a class="availability-link">Click for availability</a>
+    <% if @vehicle.user.dealership_id.present? || 
+            @vehicle.availabilities.exists? %>
+      <a class="availability-link">Click for availability</a>
+    <% end %>
   
     <div class="form-element form-element-availability">
         

@@ -129,14 +129,19 @@ Rails.application.routes.draw do
   end
 
   resources :conversations, only: [:index, :create] do
-    
+
     resources :appointments, only:   [:new, :create, :destroy]
     resources :messages,     except: [:new, :edit, :show, :update]
     
     member do
       put :archive
+      put :reveal_identity
+      put :hide_identity
+      get 'export'
     end
   end
+  
+  # get :export, to: 'messages#export', as: :export
   
   resources :discussions do
     

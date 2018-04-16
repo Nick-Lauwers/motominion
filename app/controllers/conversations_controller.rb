@@ -129,6 +129,28 @@ class ConversationsController < ApplicationController
     redirect_to :back
   end
   
+  def reveal_identity
+    @conversation = Conversation.find(params[:id])
+    @conversation.update_attribute(:is_sender_anonymous, false)
+    flash[:success] = "Your identity is no longer hidden."
+    redirect_to :back
+  end
+  
+  def hide_identity
+    @conversation = Conversation.find(params[:id])
+    @conversation.update_attribute(:is_sender_anonymous, true)
+    flash[:success] = "Your can now message anonymously."
+    redirect_to :back
+  end
+
+  def export
+    @conversation = Conversation.find(params[:id])
+    ConversationMailer.export(@conversation, current_user).deliver_now
+    flash[:success] = "Check your email for a transcript of this conversation."
+    redirect_to :back 
+    # (make sure that messages are present; include all information)
+  end
+  
   private
   
     def conversation_params

@@ -1,5 +1,43 @@
 <%= form_for @purchase do |f| %>
 
+  <div class="purchase-introduction">
+
+    <i class="fa fa-times purchase-introduction-close"></i>
+    
+    <div class="row vertical-align">
+    
+      <div class="col-md-2">
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/purchase.png") %>
+      </div>
+      
+      <div class="col-md-10">
+        <div class="purchase-introduction-detail">
+          
+          <span class="purchase-introduction-title">
+            Reserve your motorcycle and save!
+          </span>
+      
+          <span class="purchase-introduction-info">
+            Receive Motominion's <strong>$250</strong> discount.
+          </span>
+          
+          <div class="info">
+              
+            <i class="fa fa-lg fa-info-circle info-icon"></i>
+            
+            <p class="info-text">
+              <strong>
+                Motominion is able to provide discounts by helping dealers with 
+                the administrative aspects of a purchase; this reduces cycle time 
+                and drives consumer costs down.
+              </strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <%= render 'shared/error_messages', object: f.object %>
   
   <div class="row">
