@@ -14,7 +14,7 @@ $(function() {
   
     // search bar
     
-      var icon  = $('.header-icon-desktop');
+      var icon  = $('.header-icon-search-bar');
       var form  = $('.search-form-secondary');
       var close = $('.search-bar-secondary-close');
       
