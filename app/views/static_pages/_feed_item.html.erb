@@ -16,21 +16,27 @@
       <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
     <% end %>
     
-    <% if feed_item.user.dealership_id.present? %>
-      <div class="special-offer" 
+    <!--<(perc) if feed_item.dealership.present? %>-->
+      <div class="special-offer"
            id="feed-item-special-offer-<%= feed_item.id %>">
         
-        <i class="fa fa-lg fa-tag special-offer-icon"></i>
+        <span class="special-offer-score">
+          <%= feed_item.listing_score.overall_score %>
+        </span>
         
-        <div type="button" 
-             class="special-offer-button" 
-             data-id="<%= feed_item.id %>"
-             data-toggle="modal" 
-             data-target="#modal-special-offer">
-          Special Offer
-        </div>
+        <span class="special-offer-description">Listing Score</span>
+        
+        <!--<i class="fa fa-lg fa-tag special-offer-icon"></i>-->
+        
+        <!--<div type="button" -->
+        <!--     class="special-offer-button" -->
+        <!--     data-id="<(perc)= feed_item.id %>"-->
+        <!--     data-toggle="modal" -->
+        <!--     data-target="#modal-special-offer">-->
+        <!--  Special Offer-->
+        <!--</div>-->
       </div>
-    <% end %>
+    <!--<(perc) end %>-->
   </div>
 
   <%= link_to feed_item, target: "_blank" do %>
@@ -38,17 +44,26 @@
           
       <div class="col-xs-3 feed-item-user">
           <div class="feed-item-user-content">
-            <div class="avatar-and-online">
+            
+            <% if feed_item.user.present? %>
+              <div class="avatar-and-online">
+                
+                <div class="feed-item-avatar avatar-general",
+                     style="background-image: url(
+                       '<%= feed_item.user.avatar.url(:thumb) %>')">
+                </div>
               
+                <% if feed_item.user.online? %>
+                  <div class="online online-lg-primary hidden-xs"></div>
+                <% end %>
+              </div>
+              
+            <% else %>
               <div class="feed-item-avatar avatar-general",
                    style="background-image: url(
-                     '<%= feed_item.user.avatar.url(:thumb) %>')">
+                     '<%= feed_item.dealership.photo.url() %>')">
               </div>
-            
-              <% if feed_item.user.online? %>
-                <div class="online online-lg-primary hidden-xs"></div>
-              <% end %>
-            </div>
+            <% end %>
           </div>
         </div>
         
@@ -56,7 +71,7 @@
           <div class="feed-item-info">
             
             <span class="feed-item-title">
-              $<%= feed_item.price %> | <%= feed_item.listing_name %>
+              $<%= feed_item.actual_price %> | <%= feed_item.listing_name %>
             </span>
   
             <div id="average-rating-feed-item-<%= feed_item.id %>", 
@@ -74,60 +89,43 @@
               
                 <li>Motorcycle Features</li>
               
-                <% if !feed_item.is_cruise_control && 
-                      !feed_item.is_am_fm &&
-                      !feed_item.is_cb_radio && 
-                      !feed_item.is_navigation_system && 
-                      !feed_item.is_heated_seats &&
-                      !feed_item.is_heated_hand_grips && 
-                      !feed_item.is_alarm_system && 
-                      !feed_item.is_saddlebags &&
-                      !feed_item.is_trunk && 
-                      !feed_item.is_cycle_cover %>
-                  <li>No Features Listed</li>      
-                <% end %>
-              
-                <% if feed_item.is_cruise_control %>
+                <% if feed_item.cruise_control %>
                   <li>Cruise Control</li>
                 <% end %>
                 
-                <% if feed_item.is_am_fm %>
+                <% if feed_item.am_fm %>
                   <li>AM / FM Radio</li>
                 <% end %>
                 
-                <% if feed_item.is_cb_radio %>
-                  <li>CB Radio</li>
-                <% end %>
-                
-                <% if feed_item.is_navigation_system %>
+                <% if feed_item.navigation_system %>
                   <li>Navigation System</li>
                 <% end %>
                 
-                <% if feed_item.is_heated_seats %>
+                <% if feed_item.heated_seats %>
                   <li>Heated Seats</li>
                 <% end %>
                 
-                <% if feed_item.is_heated_hand_grips %>
+                <% if feed_item.heated_hand_grips %>
                   <li>Heated Hand Grips</li>
                 <% end %>
                 
-                <% if feed_item.is_alarm_system %>
+                <% if feed_item.alarm_system %>
                   <li>Alarm System</li>
                 <% end %>
                 
-                <% if feed_item.is_saddlebags %>
+                <% if feed_item.saddlebags %>
                   <li>Saddlebags</li>
                 <% end %>
                 
-                <% if feed_item.is_trunk %>
+                <% if feed_item.trunk %>
                   <li>Trunk</li>
                 <% end %>
                 
-                <% if feed_item.is_tow_hitch %>
+                <% if feed_item.tow_hitch %>
                   <li>Tow Hitch</li>
                 <% end %>
                 
-                <% if feed_item.is_cycle_cover %>
+                <% if feed_item.cycle_cover %>
                   <li>Cycle Cover</li>
                 <% end %>
               </ol>

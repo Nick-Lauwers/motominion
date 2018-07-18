@@ -8,6 +8,8 @@
 
 <%= render 'layouts/modal_menu' %>
 
+<%= render 'layouts/contact' %>
+
 <div class="dealer-form-background">
   
   <div class="dealer-form">
@@ -28,7 +30,7 @@
         
         <%= form_for @dealership do |f| %> 
         
-          <%= f.text_field :name, 
+          <%= f.text_field :dealership_name, 
                            placeholder: "E.g. Fontanet Chrysler",
                            class: 'form-control 
                                    form-control-primary

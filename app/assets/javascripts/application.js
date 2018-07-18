@@ -23,4 +23,5 @@
 //= require typeahead
 //= require cocoon
 //= require trix
+//= require filterrific/filterrific-jquery
 //= require_tree .

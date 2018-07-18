@@ -47,13 +47,14 @@
     </div>
     
     <div class="col-xs-2">
-      
+            
       <% if @other.id == @conversation.sender_id && 
               @conversation.is_sender_anonymous == true %>
+        
         <div class="message-avatar message-avatar-right avatar-general", 
              style="background-image: url(https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/avatar.jpg)">
         </div>
-
+        
       <% else %>
         <%= link_to user_path(@other) do %>
           <div class="message-avatar message-avatar-right avatar-general", 

@@ -1,0 +1,41 @@
+<%= CSV.generate_line([ 'vehicle_id', 'title', 'description', 'url', 'make', 
+                        'model', 'year', 'mileage.value', 'mileage.unit', 
+                        'image[0].url', 'image[0].tag[0]', 'fuel_type', 
+                        'body_style', 'drivetrain', 'vin', 'condition', 'price', 
+                        'address', 'exterior_color', 'sale_price', 
+                        'availability', 'state_of_vehicle', 'latitude',
+                        'longitude' ]).strip.html_safe %>
+                        
+<% Vehicle.all.each do |vehicle| %>
+
+  <% if vehicle.listing_name.present? %>
+    <% title = vehicle.listing_name %>
+  <% else %>
+    <% title = vehicle.vehicle_make.name %>
+  <% end %>
+  
+  <% if vehicle.description_clean.present? %>
+    <% description = vehicle.description_clean %>
+  <% else %>
+    <% description = "Schedule a test drive today!" %>
+  <% end %>
+  
+  <% if vehicle.photos[0].present? %>
+    <% image = URI.unescape(vehicle.photos[0].image) %>
+  <% else %>
+    <% image = "http://www.facebook.com/teapic.jpg" %>
+  <% end %>
+  
+  <%= CSV.generate_line([ vehicle.id, title, description, asset_url(url_for(vehicle)),
+                          vehicle.vehicle_make.name, "Fusion", vehicle.year,
+                          vehicle.mileage_numeric, "MI", image, 
+                          vehicle.listing_name, "Other", "OTHER", "Other", 
+                          vehicle.vin, nil, vehicle.actual_price,
+                          "{ addr1:       '550 Auto Center Dr', 
+                             city:        'Watsonville', 
+                             region:      'CA', 
+                             postal_code: '96075', 
+                             country:     'US' }",
+                          vehicle.exterior, vehicle.actual_price, "in stock", 
+                          "used", 52.35, 42.1 ]).strip.html_safe %>
+<% end %>

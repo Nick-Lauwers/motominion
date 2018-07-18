@@ -3,7 +3,7 @@
 class User < ActiveRecord::Base
   
   # Experiment
-  has_many :conversations,       dependent: :destroy
+  # has_many :conversations,       dependent: :destroy
   # has_many :appointments,      dependent: :destroy
   # has_many :inquiries,         dependent: :destroy
   
@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :favorite_vehicles,   dependent: :destroy
   has_many :favorite_autoparts,  dependent: :destroy
   has_many :memberships,         dependent: :destroy
+  
+  has_one :personalized_search,  dependent: :destroy
   
   has_many :authored_reviews, class_name: 'Review', dependent: :destroy,
     foreign_key: :reviewer_id

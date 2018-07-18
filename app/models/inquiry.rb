@@ -1,4 +1,4 @@
-class Inquiry < ActiveRecord::Base
+# class Inquiry < ActiveRecord::Base
   
 #   belongs_to :user
 #   belongs_to :vehicle
@@ -7,4 +7,4 @@ class Inquiry < ActiveRecord::Base
 #   default_scope -> { order(date: :asc) }
   
 #   validates :date, :user_id, :vehicle_id, :conversation_id, presence: true
-end
+# end

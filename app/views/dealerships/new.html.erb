@@ -8,6 +8,8 @@
 
 <%= render 'layouts/modal_menu' %>
 
+<%= render 'layouts/contact' %>
+
 <div class="dealer-signup-hero-desktop hidden-xs" 
      style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/dealer-signup.png')">
   <div class="dealer-signup-detail-desktop">
@@ -17,7 +19,7 @@
     </h1>
     
     <p class="dealer-signup-info-desktop">
-      Relax. We've got you covered. Motominion builds modern sales teams, 
+      Relax. We've got you covered. Mototrova builds modern sales teams, 
       bringing all aspects of a healthy outreach strategy together in one place. 
       From early social engagement to post-sales support, we're with you every 
       step of the way.
@@ -39,7 +41,7 @@
             </div>
               
             <div class="col-md-6 form-element-dealer">
-              <%= f.text_field :name, 
+              <%= f.text_field :dealership_name, 
                                placeholder: "Company name", 
                                class: 'form-control 
                                        form-control-dealer-desktop' %>
@@ -67,7 +69,7 @@
     </h2>
     
     <p class="dealer-signup-info-mobile">
-      Motominion builds modern sales teams, bringing all aspects of a healthy 
+      Mototrova builds modern sales teams, bringing all aspects of a healthy 
       outreach strategy together in one place. From early social engagement to 
       post-sales support, we're with you every step of the way.
     </p>
@@ -94,53 +96,36 @@
 <div class="dealer-signup-tour">
   <div class="dealer-signup-tour-content">
     
-    <!--<div class="row dealer-signup-tour-text">-->
+    <div class="row dealer-signup-tour-text">
       
-    <!--  <div class="col-md-6">-->
-    <!--    <iframe width="400" -->
-    <!--            height="250"-->
-    <!--            src="https://www.youtube.com/embed/2KwD1xET4Vk"-->
-    <!--            frameborder="0">-->
-    <!--    </iframe>-->
-    <!--  </div>-->
+      <div class="col-md-6">
+        <iframe width="400" 
+                height="250"
+                src="https://www.youtube.com/embed/2KwD1xET4Vk"
+                frameborder="0">
+        </iframe>
+      </div>
       
-    <!--  <div class="col-md-offset-1 col-md-5">-->
+      <div class="col-md-offset-1 col-md-5">
         
-    <!--    <p class="dealer-signup-tour-info">-->
-    <!--      Learn what Motominion can do for you:-->
-    <!--    </p>-->
+        <p class="dealer-signup-tour-info">
+          Learn what Mototrova can do for you:
+        </p>
         
-    <!--    <div class="dealer-signup-tour-title">-->
-    <!--      <(perc)= link_to tour_path, class: "dealer-signup-tour-title-content" do %>-->
+        <div class="dealer-signup-tour-title">
+          <%= link_to tour_path, class: "dealer-signup-tour-title-content" do %>
             
-    <!--        Take the tour-->
+            Take the tour
             
-    <!--        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>-->
-    <!--      <(perc) end %>-->
-    <!--    </div>-->
+            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+          <% end %>
+        </div>
     
-    <!--    <p class="dealer-signup-tour-info">-->
-    <!--      Screenshots, feature descriptions, and more...-->
-    <!--    </p>-->
-    <!--  </div>-->
-    <!--</div>-->
-    
-    <p class="dealer-signup-tour-info">
-      Learn what Motominion can do for you:
-    </p>
-    
-    <div class="dealer-signup-tour-title">
-      <%= link_to tour_path, class: "dealer-signup-tour-title-content" do %>
-        
-        Take the tour
-        
-        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-      <% end %>
+        <p class="dealer-signup-tour-info">
+          Screenshots, feature descriptions, and more...
+        </p>
+      </div>
     </div>
-
-    <p class="dealer-signup-tour-info">
-      Screenshots, feature descriptions, and more...
-    </p>
   </div>
 </div>
 
@@ -156,19 +141,19 @@
         </div>
         
         <span class="dealer-signup-testimonial-name visible-xs">
-          Tony Conrad, Paroli Motors
+          Tony Conrad, Paroli Toyota
         </span>
       </div>
       
       <div class="col-md-9">
         
         <p class="dealer-signup-testimonial-info">
-          "I am basically in love with Motominion. It has saved us considerable 
-          time and energy in so many of our sales." 
+          "I am basically in love with Mototrova. It took us less than 24 hours to 
+          on-board, and it is amazing." 
         </p>
           
         <span class="dealer-signup-testimonial-name hidden-xs">
-          Tony Conrad, Paroli Motors
+          Tony Conrad, Paroli Toyota
         </span>
       </div>
     </div>

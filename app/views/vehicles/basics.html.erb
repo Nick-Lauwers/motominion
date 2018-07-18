@@ -1,4 +1,4 @@
-<% provide(:title, "Garage") %>
+<% provide(:title, "Your Listings") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -8,16 +8,20 @@
 
 <!--<= render 'layouts/modal_menu' %>-->
 
+<%= render 'layouts/contact' %>
+
 <%= render 'layouts/hero_backend' %>
 
 <nav class="secondary-navbar hidden-xs">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Dashboard",   dashboard_path %></li>
-      <li><%= link_to "Inbox",       conversations_path %></li>
-      <li class="nav-active"><%= link_to "Your Garage", vehicles_path %></li>
-      <li><%= link_to "Showroom",    test_drives_path %></li>
-      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+      
+      <li><%= link_to "Dashboard", dashboard_path %></li>
+      <li><%= link_to "Inbox",     conversations_path %></li>
+      <li><%= link_to "Shortlist", shortlist_user_path(current_user) %></li>
+      <li><%= link_to "Matches", personalized_search_path(current_user) %></li>
+      <li class="nav-active"><%= link_to "Your Listings", vehicles_path %></li>
+      <li><%= link_to "Profile", edit_user_path(current_user) %></li>
     </ul>
   </div>
 </nav>
@@ -25,15 +29,19 @@
 <nav class="dropdown dropdown-backend visible-xs">
   
   <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-    Your Garage <b class="caret"></b>
+    Your Listings <b class="caret"></b>
   </a>
   
   <ul class="dropdown-menu">
+    
     <li><%= link_to "Dashboard",   dashboard_path %></li>
     <li><%= link_to "Inbox",       conversations_path %></li>
-    <li class="dropdown-active"><%= link_to "Your Garage", vehicles_path %></li>
-    <li><%= link_to "Showroom",    test_drives_path %></li>
-    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+    <li><%= link_to "Shortlist",   shortlist_user_path(current_user) %></li>
+    <li><%= link_to "Matches", personalized_search_path(current_user) %></li>
+    <li class="dropdown-active">
+      <%= link_to "Your Listings", vehicles_path %>
+    </li>
+    <li><%= link_to "Profile", edit_user_path(current_user) %></li>
   </ul>
 </nav>
 
@@ -46,6 +54,11 @@
       </div>
       
       <div class="col-md-8">
+        
+        <p class="listing-score">
+          Listing Score: <%= @vehicle.listing_score.overall_score %>
+        </p>
+        
         <%= form_for @vehicle, html: { multipart: true } do |f| %>
           
           <div class="update-panel">
@@ -110,7 +123,7 @@
                 <div class="form-element">
                   
                   <%= f.select :year, 
-                               ( 1900..(Time.zone.now.year + 1) ).to_a.reverse,
+                               1900..(Time.zone.now.year + 1),
                                { include_blank: true, prompt: "Select year" }, 
                                { required: true,
                                  class: "form-control select-primary" } %>
@@ -129,16 +142,16 @@
                   
                   VIN
                   
-                  <!--<div class="info">-->
+                  <div class="info">
                 
-                  <!--  <i class="fa fa-lg fa-info-circle info-icon"></i>-->
+                    <i class="fa fa-lg fa-info-circle info-icon"></i>
                     
-                  <!--  <p class="info-text">-->
-                  <!--    The VIN can often be found on the lower-left corner of the -->
-                  <!--    dashboard, in front of the steering wheel. You can read -->
-                  <!--    the number by looking through the windshield.-->
-                  <!--  </p>-->
-                  <!--</div>-->
+                    <p class="info-text">
+                      The VIN can often be found on the lower-left corner of the 
+                      dashboard, in front of the steering wheel. You can read 
+                      the number by looking through the windshield.
+                    </p>
+                  </div>
                 <% end %>
                 
                 <%= f.text_field :vin, 
@@ -151,14 +164,14 @@
               
               <div class="col-md-6 form-group">
     
-                <%= f.label :price %>
+                <%= f.label :actual_price %>
                 
                 <div class="input-group">
                   
                   <div class="input-group-addon">$</div>
                   
-                  <%= f.text_field :price, 
-                                   placeholder: "Eg. 10 000", 
+                  <%= f.text_field :actual_price, 
+                                   placeholder: "Eg. 100 000", 
                                    class: "form-control form-control-primary",
                                    required: true %>
                 </div>
@@ -166,12 +179,12 @@
                   
               <div class="col-md-6 form-group">
     
-                <%= f.label :mileage %>
+                <%= f.label :mileage_numeric, "Mileage" %>
                 
                 <div class= "input-group">
                   
-                  <%= f.text_field :mileage, 
-                                   placeholder: "Eg. 8 000", 
+                  <%= f.text_field :mileage_numeric, 
+                                   placeholder: "Eg. 25 000", 
                                    class: "form-control form-control-primary",
                                    required: true %>
                       

@@ -1,4 +1,4 @@
-<% provide(:title, "Garage") %>
+<% provide(:title, "Your Listings") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -8,16 +8,20 @@
 
 <%= render 'layouts/modal_menu' %>
 
+<%= render 'layouts/contact' %>
+
 <%= render 'layouts/hero_backend' %>
 
 <nav class="secondary-navbar hidden-xs">
   <div class="secondary-navbar-nav">
     <ul class="nav navbar-nav navbar-left">
-      <li><%= link_to "Dashboard",   dashboard_path %></li>
-      <li><%= link_to "Inbox",       conversations_path %></li>
-      <li class="nav-active"><%= link_to "Your Garage", vehicles_path %></li>
-      <li><%= link_to "Showroom",    test_drives_path %></li>
-      <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+      
+      <li><%= link_to "Dashboard", dashboard_path %></li>
+      <li><%= link_to "Inbox",     conversations_path %></li>
+      <li><%= link_to "Shortlist", shortlist_user_path(current_user) %></li>
+      <li><%= link_to "Matches", personalized_search_path(current_user) %></li>
+      <li class="nav-active"><%= link_to "Your Listings", vehicles_path %></li>
+      <li><%= link_to "Profile", edit_user_path(current_user) %></li>
     </ul>
   </div>
 </nav>
@@ -25,15 +29,19 @@
 <nav class="dropdown dropdown-backend visible-xs">
   
   <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-    Your Garage <b class="caret"></b>
+    Your Listings <b class="caret"></b>
   </a>
   
   <ul class="dropdown-menu">
+    
     <li><%= link_to "Dashboard",   dashboard_path %></li>
     <li><%= link_to "Inbox",       conversations_path %></li>
-    <li class="dropdown-active"><%= link_to "Your Garage", vehicles_path %></li>
-    <li><%= link_to "Showroom",    test_drives_path %></li>
-    <li><%= link_to "Profile",     edit_user_path(current_user) %></li>
+    <li><%= link_to "Shortlist",   shortlist_user_path(current_user) %></li>
+    <li><%= link_to "Matches", personalized_search_path(current_user) %></li>
+    <li class="dropdown-active">
+      <%= link_to "Your Listings", vehicles_path %>
+    </li>
+    <li><%= link_to "Profile", edit_user_path(current_user) %></li>
   </ul>
 </nav>
 
@@ -64,9 +72,9 @@
           
             <div class="form-group">
               
-              <%= f.label :summary %>
+              <%= f.label :description_clean %>
               
-              <%= f.text_area :summary, 
+              <%= f.text_area :description_clean, 
                               rows: 3,
                               placeholder: "Eg. Features a parallel-twin four-stroke engine.", 
                               class: "form-control form-control-primary",
@@ -105,7 +113,7 @@
                                { required: true,
                                  class: "form-control select-primary" } %>
                       
-                  <i class="fa fa-car fa-lg form-icon" 
+                  <i class="fa fa-motorcycle fa-lg form-icon" 
                      aria-hidden="true"></i>
                      
                   <i class="fa fa-caret-down fa-lg form-caret" 
@@ -141,6 +149,27 @@
               
               <div class="col-md-6 form-group">
     
+                <%= f.label :fuel_type, "Fuel Type" %>
+                
+                <div class="form-element">
+                  
+                  <%= f.select :fuel_type, 
+                               [ "Electric", "Gasoline" ],
+                               { include_blank: true, 
+                                 prompt: "Select fuel type" }, 
+                               { required: true,
+                                 class: "form-control select-primary" } %>
+                      
+                  <i class="fa fa-leaf fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                     
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+              
+              <div class="col-md-6 form-group">
+    
                 <%= f.label :engine_type, "Engine Type" %>
                 
                 <div class="form-element">
@@ -162,6 +191,9 @@
                      aria-hidden="true"></i>
                 </div>
               </div>
+            </div>
+    
+            <div class="row">
               
               <div class="col-md-6 form-group">
                 
@@ -174,30 +206,6 @@
                                    class: "form-control form-control-primary" %>
                       
                   <div class="input-group-addon">cc</div>
-                </div>
-              </div>
-            </div>
-    
-            <div class="row">
-              
-              <div class="col-md-6 form-group">
-    
-                <%= f.label :fuel_type, "Fuel Type" %>
-                
-                <div class="form-element">
-                  
-                  <%= f.select :fuel_type, 
-                               [ "Electric", "Gasoline" ],
-                               { include_blank: true, 
-                                 prompt: "Select fuel type" }, 
-                               { required: true,
-                                 class: "form-control select-primary" } %>
-                      
-                  <i class="fa fa-leaf fa-lg form-icon" 
-                     aria-hidden="true"></i>
-                     
-                  <i class="fa fa-caret-down fa-lg form-caret" 
-                     aria-hidden="true"></i>
                 </div>
               </div>
     
@@ -213,60 +221,59 @@
               <ul class="installed-options-list">
                 
                 <li>
-                  <%= f.check_box :is_cruise_control %>
-                  <%= f.label :is_cruise_control, "Cruise Control" %> 
+                  <%= f.check_box :cruise_control %>
+                  <%= f.label :cruise_control, "Cruise Control" %> 
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_am_fm %>
-                  <%= f.label :is_am_fm, "AM / FM Radio" %> 
+                  <%= f.check_box :am_fm %>
+                  <%= f.label :am_fm, "AM / FM Radio" %> 
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_cb_radio %>
-                  <%= f.label :is_cb_radio, "CB Radio" %> 
+                  <%= f.check_box :cb_radio %>
+                  <%= f.label :cb_radio, "CB Radio" %> 
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_navigation_system %>
-                  <%= f.label :is_navigation_system, "Navigation System" %>
+                  <%= f.check_box :navigation_system %>
+                  <%= f.label :navigation_system, "Navigation System" %>
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_heated_seats %>
-                  <%= f.label :is_heated_seats, "Heated Seats" %> 
+                  <%= f.check_box :heated_seats %>
+                  <%= f.label :heated_seats, "Heated Seats" %> 
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_heated_hand_grips %>
-                  <%= f.label :is_heated_hand_grips, "Heated Hand Grips" %> 
+                  <%= f.check_box :heated_hand_grips %>
+                  <%= f.label :heated_hand_grips, "Heated Hand Grips" %> 
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_alarm_system %>
-                  <%= f.label :is_alarm_system, "Alarm System" %>       
+                  <%= f.check_box :alarm_system %>
+                  <%= f.label :alarm_system, "Alarm System" %>       
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_saddlebags %>
-                  <%= f.label :is_saddlebags, "Saddlebags" %>
+                  <%= f.check_box :saddlebags %>
+                  <%= f.label :saddlebags, "Saddlebags" %>
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_trunk %>
-                  <%= f.label :is_trunk, "Trunk" %>
+                  <%= f.check_box :trunk %>
+                  <%= f.label :trunk, "Trunk" %>
                 </li>
                 
                 <li>
-                  <%= f.check_box :is_cycle_cover %>
-                  <%= f.label :is_cycle_cover, "Cycle Cover" %>
+                  <%= f.check_box :cycle_cover %>
+                  <%= f.label :cycle_cover, "Cycle Cover" %>
                 </li>
               </ul>
             </div>
           </div>
-          
+
           <!--<(perc) if current_user.dealership_id.present? %>-->
-          
           <!--  <div class="update-panel">-->
               
           <!--    <h2 class="panel-title">Upgrades</h2>-->
@@ -286,7 +293,7 @@
           <!--                                  :upgrades %>-->
           <!--    </div>-->
           <!--  </div>-->
-            
+          
           <!--  <div class="update-panel">-->
               
           <!--    <h2 class="panel-title">Special Offers</h2>-->
@@ -307,7 +314,7 @@
           <!--    </div>-->
           <!--  </div>-->
           <!--<(perc) end %>-->
-          
+
           <%= f.hidden_field :bumped_at,  value: Time.now %>
             
           <%= f.submit "Save", class: "btn btn-primary" %>

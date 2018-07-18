@@ -12,11 +12,19 @@
   <%= render 'layouts/header_secondary' %>
 </header>
 
+<div class="modal" id="modal-special-offer-desktop" role="dialog">
+  <%= render "layouts/modal_special_offer_desktop" %>
+</div>
+
+<div class="modal" id="modal-special-offer-mobile" role="dialog">
+  <%= render "layouts/modal_special_offer_mobile" %>
+</div>
+
 <%= render 'layouts/modal_search' %>
 
 <%= render 'layouts/modal_menu' %>
 
-<%= render 'layouts/modal_special_offer' %>
+<%= render 'layouts/contact' %>
 
 <div class="hidden-xs hero">
   
@@ -38,47 +46,48 @@
       Discover bikes in your own backyard
     </h2>
     
-    <%= form_tag search_vehicles_path, 
-                 method: :get, 
-                 class: "hidden-xs search-form-primary" do %>
-                 
+    <%= form_for_filterrific @filterrific, 
+          url: search_vehicles_path, 
+          html: { 
+            id:    "filterrific-no-ajax-auto-submit",
+            class: "hidden-xs search-form-primary" 
+          } do |f| %>
+          
       <div class="row search-form-primary-content">
         
         <div class="col-xs-3 search-bar-primary">
-          
-          <%= collection_select :vehicle, 
-                                :vehicle_make_id,
-                                VehicleMake.all,
-                                :id,
-                                :name,
-                                { include_blank: true,
-                                  prompt: "All makes" },
-                                id: "vehicle-make-search",
-                                class: "form-control
-                                        search-select-primary" %>
-          
+                       
+          <%= f.collection_select(:with_vehicle_make_id,
+                                  VehicleMake.all,
+                                  :id,
+                                  :name,
+                                  { include_blank: true,
+                                    prompt: "Select make" },
+                                  id: "vehicle-make-home",
+                                  class: "form-control 
+                                          search-select-primary") %>
+
           <i class="fa fa-search fa-lg search-bar-primary-icon" 
              aria-hidden="true"></i>
-             
+          
           <i class="fa fa-caret-down fa-lg form-caret" 
              aria-hidden="true"></i>
         </div>
         
         <div class="col-xs-3 search-bar-primary">
           
-          <%= grouped_collection_select :vehicle, 
-                                        :vehicle_model_id, 
-                                        VehicleMake.order(:name),
-                                        :vehicle_models,
-                                        :name,
-                                        :id,
-                                        :name,
-                                        { prompt: "All models",
-                                          include_blank: true },
-                                        id: "vehicle-model-search",
-                                        class: "form-control
-                                                search-select-secondary" %>
-                                                
+          <%= f.grouped_collection_select(:with_vehicle_model_id,
+                                          VehicleMake.order(:name),
+                                          :vehicle_models,
+                                          :name,
+                                          :id,
+                                          :name,
+                                          { include_blank: true,
+                                            prompt: "Select model" },
+                                          id: "vehicle-model-home",
+                                          class: "form-control 
+                                                  search-select-secondary") %>
+                       
           <i class="fa fa-caret-down fa-lg form-caret" 
              aria-hidden="true"></i>
         </div>
@@ -88,19 +97,71 @@
           <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
              aria-hidden="true"></i>
           
-          <%= text_field_tag :city, 
-                             params[:city], 
-                             placeholder: "City (Eg. San Francisco, CA)", 
-                             class: "form-control 
-                                     search-form-control 
-                                     typeahead" %>
+          <%= f.text_field :with_city, 
+                           placeholder: "City (Eg. San Francisco, CA)", 
+                           class: "form-control 
+                                   search-form-control 
+                                   typeahead" %>
         </div>
-        
+
         <div class="col-xs-2 search-button-primary">
-          <%= submit_tag "Search", class: "btn btn-search" %>
+          <%= f.submit "Search", class: "btn btn-search" %>
         </div>
       </div>
     <% end %>
+    
+    <!--<(perc)= form_tag search_vehicles_path, -->
+    <!--             method: :get, -->
+    <!--             class: "hidden-xs search-form-primary" do %>-->
+                 
+    <!--  <div class="row search-form-primary-content">-->
+        
+    <!--    <div class="col-xs-3 search-bar-primary">-->
+          
+    <!--      <i class="fa fa-search fa-lg search-bar-primary-icon" -->
+    <!--         aria-hidden="true"></i>-->
+             
+    <!--      <i class="fa fa-caret-down fa-lg form-caret" -->
+    <!--         aria-hidden="true"></i>-->
+    <!--    </div>-->
+        
+    <!--    <div class="col-xs-3 search-bar-primary">-->
+          
+    <!--      <(perc)= grouped_collection_select :vehicle, -->
+    <!--                                    :vehicle_model_id, -->
+    <!--                                    VehicleMake.order(:name),-->
+    <!--                                    :vehicle_models,-->
+    <!--                                    :name,-->
+    <!--                                    :id,-->
+    <!--                                    :name,-->
+    <!--                                    { prompt: "All models",-->
+    <!--                                      include_blank: true },-->
+    <!--                                    id: "vehicle-model-search",-->
+    <!--                                    class: "form-control-->
+    <!--                                            search-select-secondary" %>-->
+                                                
+    <!--      <i class="fa fa-caret-down fa-lg form-caret" -->
+    <!--         aria-hidden="true"></i>-->
+    <!--    </div>-->
+        
+    <!--    <div class="col-xs-4 search-bar-primary">-->
+          
+    <!--      <i class="fa fa-map-pin fa-lg search-bar-primary-icon" -->
+    <!--         aria-hidden="true"></i>-->
+          
+    <!--      <(perc)= text_field_tag :city, -->
+    <!--                         params[:city], -->
+    <!--                         placeholder: "City (Eg. San Francisco, CA)", -->
+    <!--                         class: "form-control -->
+    <!--                                 search-form-control -->
+    <!--                                 typeahead" %>-->
+    <!--    </div>-->
+        
+    <!--    <div class="col-xs-2 search-button-primary">-->
+    <!--      <(perc)= submit_tag "Search", class: "btn btn-search" %>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--<(perc) end %>-->
     
     <!--<(perc)= form_tag search_vehicles_path, -->
     <!--             method: :get, -->
@@ -161,6 +222,15 @@
 <!--      </div>-->
 <!--    </div>-->
   </div>
+  
+  <!--<(perc)= link_to '#feed', class: "personalized-search-link" do %>-->
+  
+  <!--  <span class="personalized-search-title hidden-xs">-->
+  <!--    Try our personalized search-->
+  <!--  </span>-->
+    
+  <!--  <i class="fa fa-lg fa-chevron-down personalized-search-icon"></i>-->
+  <!--<(perc) end %>-->
 </div>
 
 <!--<div class="hero-mobile visible-xs">-->
@@ -220,13 +290,66 @@
       <!--  <li><(perc)= link_to "Advice", posts_path %></li>-->
       <!--</ul>-->
       
+      <!--<h3 class="feed-title">What are you looking for?</h3>-->
+  
+      <!--<(perc)= form_for @personalized_search do |f| %>-->
+      <!--  <div class="personalized-search-list">-->
+          
+      <!--    <div class="row">-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "Convertible", class: "personalized-search-red" %>-->
+      <!--      </div>-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "Coupe", class: "personalized-search-yellow" %>-->
+      <!--      </div>-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "Crossover", class: "personalized-search-red" %>-->
+      <!--      </div>-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "Hatchback", class: "personalized-search-yellow" %>-->
+      <!--      </div>-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "Minivan", class: "personalized-search-red" %>-->
+      <!--      </div>-->
+      <!--    </div>-->
+          
+      <!--    <div class="row">-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "Pickup", class: "personalized-search-yellow" %>-->
+      <!--      </div>-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "Sedan", class: "personalized-search-red" %> -->
+      <!--      </div>-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "SUV", class: "personalized-search-yellow" %>-->
+      <!--      </div>-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "Van", class: "personalized-search-red" %>-->
+      <!--      </div>-->
+            
+      <!--      <div class="col-md-15">-->
+      <!--        <(perc)= button_tag "Wagon", class: "personalized-search-yellow" %> -->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      <!--<(perc) end %>-->
+      
       <h3 class="hidden-xs feed-title">Discover Top Content</h3>
       
       <ol class="feed-items">
         <%= render partial: "feed_item", 
                    collection: Vehicle.
                                  where(sold_at: nil).
-                                 where.not(posted_at: nil).
+                                # where.not(posted_at: nil).
                                  order(bumped_at: :desc).
                                  first(6) %>
       </ol>
@@ -246,7 +369,7 @@
               </h3>
               
               <p class="feed-forum-info">
-                Connect with vehicle enthusiasts, share stories, and ask for 
+                Connect with motorcycle enthusiasts, share stories, and ask for 
                 advice.
               </p>
               
@@ -267,7 +390,7 @@
         <%= render partial: "feed_item", 
                    collection: Vehicle.
                                  where(sold_at: nil).
-                                 where.not(posted_at: nil).
+                                # where.not(posted_at: nil).
                                  order(bumped_at: :desc).
                                  offset(6).
                                  first(6) %>
@@ -288,8 +411,8 @@
               </h3>
               
               <p class="feed-car-clubs-info">
-                Join friends of your own car club and discuss issues relevant to
-                your group.
+                Join friends of your own bike club and discuss issues relevant 
+                to your group.
               </p>
               
               <%= link_to clubs_path, 
@@ -309,7 +432,7 @@
         <%= render partial: "feed_item", 
                    collection: Vehicle.
                                  where(sold_at: nil).
-                                 where.not(posted_at: nil).
+                                # where.not(posted_at: nil).
                                  order(bumped_at: :desc).
                                  offset(12).
                                  first(6) %>
@@ -330,6 +453,8 @@
     </div>
   </div>
 <% end %>
+
+<%= render 'personalized_searches/form' %>
 
 <!--<div class="press">-->
   

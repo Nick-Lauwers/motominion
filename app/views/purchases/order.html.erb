@@ -1,0 +1,234 @@
+<% provide(:title, "Your Listings") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<nav class="secondary-navbar hidden-xs">
+  <div class="secondary-navbar-nav">
+    <ul class="nav navbar-nav navbar-left">
+      <li><%= link_to "Dashboard", dashboard_path %></li>
+      <li><%= link_to "Inbox", conversations_path %></li>
+      <li><%= link_to "Shortlist", shortlist_user_path %></li>
+      <li><%= link_to "Matches", personalized_search_path %></li>
+      <li class="nav-active">
+        <%= link_to "Your Listings", vehicles_path %>
+      </li>
+      <li><%= link_to "Profile", edit_user_path(current_user) %></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="dropdown dropdown-backend visible-xs-block">
+
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Your Listings <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    <li><%= link_to "Dashboard", dashboard_path %></li>
+    <li><%= link_to "Inbox", conversations_path %></li>
+    <li><%= link_to "Shortlist", shortlist_user_path %></li>
+    <li><%= link_to "Matches", personalized_search_path %></li>
+    <li class="dropdown-active">
+      <%= link_to "Your Listings", vehicles_path %>
+    </li>
+    <li><%= link_to "Profile", edit_user_path(current_user) %></li>
+  </ul>
+</nav>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+      
+      <div class="col-md-3 purchase-info">
+        <div class="purchase-info-content">
+          
+          <div class="purchase-info-avatar avatar-general",
+               style="background-image: url(
+                 '<%= @purchase.buyer.avatar.url() %>'">
+          </div>
+          
+          <div class="purchase-info-title">
+            <%= @purchase.buyer.full_name %>
+          </div>
+          
+          <span class="purchase-info-time">
+            Ordered <%= time_ago_in_words(@purchase.processed_at) %> ago
+          </span>
+        </div>
+      </div>
+      
+      <div class="col-md-8 col-md-offset-1">
+        
+        <!--<(perc)= @purchase.vehicle.listing_name %>-->
+        <!--$998/mo finance for 72 months-->
+        
+        <%= link_to consumer_activity_vehicle_path,
+                    class: "shortlist-link" do %>
+          <i class="fa fa-angle-left"></i>
+          Return to Consumer Activity
+        <% end %>
+
+        <table class="receipt-line-item">
+          <tr>
+            
+            <td class="receipt-detail">
+              
+              <span class="receipt-primary-info">
+                <%= @purchase.vehicle.year %>
+                <%= @purchase.vehicle.vehicle_make.name %>
+                <%= @purchase.vehicle.vehicle_model.name %>
+              </span>
+              
+              <span class="receipt-secondary-info">
+                Color: <%= @purchase.vehicle.color %>
+              </span>
+              
+              <span class="receipt-secondary-info">
+                Mileage: <%= @purchase.vehicle.mileage_numeric %> mi
+              </span>
+              
+              <span class="receipt-secondary-info">
+                VIN: <%= @purchase.vehicle.vin %>
+              <span class="receipt-secondary-info">
+              
+              <!--<span class="receipt-secondary-info">-->
+              <!--  Dealer: -->
+              <!--  <(perc)= Dealership.find(@purchase.seller.dealership_id).dealership_name %>-->
+              <!--</span>-->
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <!--intentionally left empty-->
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <span class="receipt-primary-info">$</span>
+            </td>
+            
+            <td class="receipt-price">
+              <span class="receipt-primary-info">
+                <%= @purchase.vehicle.actual_price %>.00
+              </span>
+            </td>
+          </tr>
+        </table>
+        
+        <table class="receipt-line-item-end"> 
+        
+          <tr>
+            
+            <td class="receipt-detail">
+              <span class="receipt-primary-info">Dealer Discount</span>
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <span class="receipt-primary-info">-</span>
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <span class="receipt-primary-info">$</span>
+            </td>
+            
+            <td class="receipt-price">
+              <span class="receipt-primary-info">0.00</span>
+            </td>
+          </tr>
+          
+          <tr>
+            
+            <td class="receipt-detail">
+              <span class="receipt-primary-info">Online Discount</span>
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <span class="receipt-primary-info">-</span>
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <span class="receipt-primary-info">$</span>
+            </td>
+            
+            <td class="receipt-price">
+              <span class="receipt-primary-info">0.00</span>
+            </td>
+          </tr>
+        </table>
+        
+        <table class="receipt-line-item-end">
+          <tr>
+            
+            <td class="receipt-detail">
+              <span class="receipt-primary-info">Subtotal</span>
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <!--intentionally left empty-->
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <span class="receipt-primary-info">$</span>
+            </td>
+            
+            <td class="receipt-price">
+              <span class="receipt-primary-info">
+                <%= @purchase.vehicle.actual_price - 0 - 0 %>.00
+              </span>
+            </td>
+          </tr>
+        </table>
+        
+        <table class="receipt-line-item-end">
+          <tr>
+            
+            <td class="receipt-detail">
+              <span class="receipt-primary-info">Down payment</span>
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <span class="receipt-primary-info">-</span>
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <span class="receipt-primary-info">$</span>
+            </td>
+            
+            <td class="receipt-price">
+              <span class="receipt-primary-info">0.00</span>
+            </td>
+          </tr>
+        </table>
+        
+        <table class="receipt-line-item">
+          <tr>
+            
+            <td class="receipt-detail">
+              <span class="receipt-primary-info">Total due at signing</span>
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <!--intentionally left empty-->
+            </td>
+            
+            <td class="receipt-price-symbol">
+              <span class="receipt-primary-info">$</span>
+            </td>
+            
+            <td class="receipt-price">
+              <span class="receipt-primary-info">0.00</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

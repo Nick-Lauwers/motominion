@@ -14,6 +14,8 @@
 
 <%= render 'layouts/modal_menu' %>
 
+<%= render 'layouts/contact' %>
+
 <div class="hero-profile" 
      data-parallax="scroll" 
      data-image-src="https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/user-profile.jpg"
@@ -147,21 +149,21 @@
             <% end %>
           </div>
           
-          <div class="profile-details-wish-lists">
+          <!--<div class="profile-details-wish-lists">-->
             
-            <h2 class="profile-details-title">
-              Wish Lists (<%= @user.favorites.count %>)
-            </h2>
+          <!--  <h2 class="profile-details-title">-->
+          <!--    Wish Lists (<(perc)= @user.favorites.count %>)-->
+          <!--  </h2>-->
             
-            <% if @user.favorite_vehicles.exists? %>
-              <ol class="wish-list-items">
-                <%= render 'wish_list' %>
-              </ol>
+          <!--  <(perc) if @user.favorite_vehicles.exists? %>-->
+          <!--    <ol class="wish-list-items">-->
+          <!--      <(perc)= render 'wish_list' %>-->
+          <!--    </ol>-->
             
-            <% else %>
-              <p class="empty-list-info">No wish lists created</p>
-            <% end %>
-          </div>
+          <!--  <(perc) else %>-->
+          <!--    <p class="empty-list-info">No wish lists created</p>-->
+          <!--  <(perc) end %>-->
+          <!--</div>-->
         <!--</div>-->
       </div>
 

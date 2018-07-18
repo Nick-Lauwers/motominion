@@ -8,6 +8,8 @@
 
 <%= render 'layouts/modal_menu' %>
 
+<%= render 'layouts/contact' %>
+
 <div class="dealer-form-background">
   
   <div class="dealer-form">
@@ -35,20 +37,20 @@
               <div class="dealer-pic">
                 <%= image_tag @dealership.photo.url, class: "uploaded-photo" %>
               </div>
+
+              <div class="upload-button-dealerships">
+                    
+                <div class="upload-button-dealerships-content">
+                  Upload Photo
+                </div>
+                
+                <%= f.file_field :photo, class: "upload-hidden" %>
+              </div>
             </div>
             
             <div class="col-md-2">
               <!--intentionally left empty-->
             </div>
-          </div>
-          
-          <div class="upload-button-dealerships">
-                    
-            <div class="upload-button-dealerships-content">
-              Upload Photo
-            </div>
-            
-            <%= f.file_field :photo, class: "upload-hidden" %>
           </div>
           
           <%= f.submit "Save", class: "btn btn-tertiary" %>

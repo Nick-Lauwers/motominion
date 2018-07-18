@@ -1,0 +1,84 @@
+<% provide(:title, "Personalized Search") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<div class="search-parameter">
+  
+  <h1 class="search-parameter-title">
+    How many miles are you willing to accept?
+  </h1>
+  
+  <div class="search-parameter-form">
+    <%= form_for @personalized_search do |f| %>
+      
+      <div class="form-group form-group-search-parameter">
+        
+        <%= f.label :mileage, "Max Mileage" %>
+    
+        <span id="personalized_mileage_slider_val" class="slider-label">
+          <% if @personalized_search.mileage.present? %>
+            <%= @personalized_search.mileage%> mi
+          <% else %>  
+            300000 mi
+          <% end %>
+        </span>
+        
+        <% if @personalized_search.mileage.present? %>
+          <%= f.text_field :mileage,
+                           id: 'personalized_mileage_slider', 
+                           type: 'text',
+                           data: { 'slider-min'   => '0',
+                                   'slider-max'   => '300000',
+                                   'slider-step'  => '1',
+                                   'slider-value' => 
+                                     @personalized_search.mileage } %>
+        
+        <% else %>
+          <%= f.text_field :mileage,
+                           id: 'personalized_mileage_slider', 
+                           type: 'text',
+                           data: { 'slider-min'   => '0',
+                                   'slider-max'   => '300000',
+                                   'slider-step'  => '1',
+                                   'slider-value' => '300000' } %>
+        <% end %>
+      </div>
+      
+      <%= hidden_field_tag :redirect_location, 
+            year_personalized_search_path(@personalized_search) %>
+    
+      <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+        
+        Next
+        
+        <i class="fa fa-arrow-right search-parameter-next"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+  // sliders
+    
+    var mileageSlider         = $('#personalized_mileage_slider');
+    var mileageSliderValue    = $('#personalized_mileage_slider_val');
+    
+    mileageSlider.slider();
+    
+    mileageSlider.on('slide', function(slideEvt) {
+    	mileageSliderValue.text(slideEvt.value + ' mi');
+    });
+    
+    mileageSlider.on('slideStop', function(slideEvt) {
+    	mileageSliderValue.text(slideEvt.value + ' mi');
+    });
+</script>

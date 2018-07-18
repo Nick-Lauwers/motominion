@@ -1,0 +1,86 @@
+<% provide(:title, "Personalized Search") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<div class="search-parameter">
+  
+  <h1 class="search-parameter-title">Which options would you like included?</h1>
+  
+  <div class="search-parameter-form">
+    <%= form_for @personalized_search do |f| %>
+      
+      <ul class="installed-options-list">
+  
+        <li>
+          <%= f.check_box :cruise_control %>
+          <%= f.label :cruise_control, "Cruise Control" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :am_fm %>
+          <%= f.label :am_fm, "AM / FM Radio" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :cb_radio %>
+          <%= f.label :cb_radio, "CB Radio" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :navigation_system %>
+          <%= f.label :navigation_system, "Navigation System" %>
+        </li>
+        
+        <li>
+          <%= f.check_box :heated_seats %>
+          <%= f.label :heated_seats, "Heated Seats" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :heated_hand_grips %>
+          <%= f.label :heated_hand_grips, "Heated Hand Grips" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :alarm_system %>
+          <%= f.label :alarm_system, "Alarm System" %>       
+        </li>
+        
+        <li>
+          <%= f.check_box :saddlebags %>
+          <%= f.label :saddlebags %>          
+        </li>
+        
+        <li>
+          <%= f.check_box :trunk %>
+          <%= f.label :trunk %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :tow_hitch %>
+          <%= f.label :tow_hitch, "Tow Hitch" %>
+        </li>
+        
+        <li>
+          <%= f.check_box :cycle_cover %>
+          <%= f.label :cycle_cover, "Cycle Cover" %> 
+        </li>
+      </ul>
+    
+      <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+        
+        Next
+        
+        <i class="fa fa-arrow-right search-parameter-next"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>

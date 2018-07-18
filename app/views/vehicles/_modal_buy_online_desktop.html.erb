@@ -1,0 +1,45 @@
+<div class="modal-buy-online-desktop-header">
+  
+  <i class="fa fa-times fa-lg modal-buy-online-desktop-close" 
+     aria-hidden="true"
+     data-dismiss="modal"></i>
+  
+  <div class="modal-buy-online-desktop-header-content">
+    <div class="row vertical-align">
+      
+      <div class="col-md-4">
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/dealer-select.png") %>
+      </div>
+      
+      <div class="col-md-8">
+        <h1 class="modal-buy-online-desktop-title">Select An Associate</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-buy-online-desktop-body">
+  <div class="modal-buy-online-desktop-body-content">
+    
+    <h2 class="modal-buy-online-desktop-subtitle">
+      At Motominion, we believe in the power of the consumer.
+    </h2>
+    
+    <span class="modal-buy-online-desktop-info">
+      Select the dealer that you would most like to work with.
+    </span>
+    
+    <div class="modal-buy-online-scroll">
+      
+      <i class="fa fa-lg fa-chevron-left modal-buy-online-left hidden-xs"></i>
+
+      <i class="fa fa-lg fa-chevron-right modal-buy-online-right hidden-xs"></i>
+      
+      <ol class="modal-buy-online-list">
+        <%= render partial:    'modal_buy_online_item',
+                   collection: @vehicle.dealership.users,
+                   as:         :dealer %>
+      </ol>
+    </div>
+  </div>
+</div>

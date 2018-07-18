@@ -1,0 +1,84 @@
+<% provide(:title, 'Dealer SignUp') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<div class="dealer-form-background">
+    
+  <div class="dealer-form">
+    
+    <div class="col-md-5 dealer-form-content">
+      
+      <div class="dealer-form-detail">
+        
+        <h1 class="dealer-form-title">Experience</h1>
+        
+        <h2 class="dealer-form-subtitle">
+          Strengthen consumer trust by including details about your industry
+          experience.
+        </h2>
+        
+        <p class="dealer-form-info">
+          The more detail, the better.
+        </p>
+        
+        <%= form_for @user do |f| %>
+          
+          <div class="form-element">
+                  
+            <%= f.select :dealer_position, 
+                         [ "Receptionist", "Technician", "Salesperson", 
+                           "Internet Sales Manager", "Sales Manager", 
+                           "Finance and Insurance Manager", "General Manager"],
+                         { include_blank: true, prompt: "Select position" }, 
+                         { required: true, 
+                           class: "form-control select-primary" } %>
+                
+            <i class="fa fa-id-card-o fa-lg form-icon" 
+               aria-hidden="true"></i>
+             
+            <i class="fa fa-caret-down fa-lg form-caret" 
+               aria-hidden="true"></i>
+          </div>
+          
+          <div class="form-element">  
+            <div class= "input-group">
+              <%= f.text_field :industry_experience, 
+                               placeholder: "Industry Experience", 
+                               class: "form-control form-control-primary",
+                               required: true %>
+                  
+              <div class="input-group-addon">year(s)</div>
+            </div>
+          </div>
+          
+          <div class="form-element">
+            <%= f.text_area :description, 
+                            rows: 2,
+                            placeholder: (@user.description.present? ? 
+                                          @user.description : "Let consumers get to know you; describe a bit about yourself."), 
+                            class: 'form-control form-control-primary' %>
+          </div>
+
+          <%= hidden_field_tag :redirect_location, 
+                profile_pic_dealer_user_path(@user) %>
+          
+          <%= f.submit "Save", class: "btn btn-tertiary" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="col-md-7">
+      <!--intentionally left empty-->
+    </div>
+  </div>
+  
+  <div class="dealer-form-photo"></div>
+</div>

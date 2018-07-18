@@ -111,13 +111,13 @@
           
           <div class="col-md-6 form-group">
 
-            <%= f.label :price %>
+            <%= f.label :actual_price, "Price" %>
             
             <div class= "input-group">
               
               <div class="input-group-addon">$</div>
               
-              <%= f.text_field :price, 
+              <%= f.text_field :actual_price, 
                                placeholder: "Eg. 10 000", 
                                class: "form-control form-control-primary" %>
             </div>
@@ -125,11 +125,11 @@
               
           <div class="col-md-6 form-group">
 
-            <%= f.label :mileage %>
+            <%= f.label :mileage_numeric, "Mileage" %>
             
             <div class= "input-group">
               
-              <%= f.text_field :mileage, 
+              <%= f.text_field :mileage_numeric, 
                                placeholder: "Eg. 8 000", 
                                class: "form-control form-control-primary" %>
                   

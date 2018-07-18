@@ -1,0 +1,37 @@
+<div class="modal-dealer-select-mobile-header">
+  <div class="modal-dealer-select-mobile-header-content">
+    
+    <span class="modal-dealer-select-mobile-header-title">
+      Select An Associate
+    </span>
+    
+    <i class="fa 
+              fa-times 
+              fa-lg 
+              modal-dealer-select-mobile-header-close 
+              pull-right" 
+       aria-hidden="true"
+       data-dismiss="modal"></i>
+  </div>
+</div>
+
+<div class="modal-dealer-select-mobile-body">
+  <div class="modal-dealer-select-mobile-body-content">
+    
+    <h2 class="modal-dealer-select-mobile-subtitle">
+      At Motominion, we believe in the power of the consumer.
+    </h2>
+    
+    <span class="modal-dealer-select-mobile-info">
+      Select the dealer that you would most like to work with.
+    </span>
+    
+    <ol class="modal-dealer-select-mobile-list">
+        <%= render partial:    'modal_dealer_select_item',
+                   collection: User.where(
+                                 dealership_id: @vehicle.dealership_id
+                               ),
+                   as:         :dealer %>
+      </ol>
+  </div>
+</div>

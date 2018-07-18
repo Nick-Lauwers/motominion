@@ -1,4 +1,4 @@
-<% provide(:title, @dealership.name) %>
+<% provide(:title, @dealership.dealership_name) %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -7,6 +7,8 @@
 <%= render 'layouts/modal_search' %>
 
 <%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
 
 <div class="dealer-profile-hero">
   <div class="dealer-profile-hero-content">
@@ -25,7 +27,7 @@
         <div class="dealer-profile-hero-detail">
           
           <h1 class="dealer-profile-hero-title">
-            <%= @dealership.name %>
+            <%= @dealership.dealership_name %>
           </h1>
           
           <!--<div class="row vertical-align visible-xs">-->
@@ -182,7 +184,7 @@
                   <td class="specifications-table-column">Monday</td>
                   
                   <td><strong>
-                    
+                      
                     <% if @dealership.
                             business_hours.
                             where(day: "Monday").

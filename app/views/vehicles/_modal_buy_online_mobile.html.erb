@@ -1,0 +1,37 @@
+<div class="modal-buy-online-mobile-header">
+  <div class="modal-buy-online-mobile-header-content">
+    
+    <span class="modal-buy-online-mobile-header-title">
+      Select An Associate
+    </span>
+    
+    <i class="fa 
+              fa-times 
+              fa-lg 
+              modal-buy-online-mobile-header-close 
+              pull-right" 
+       aria-hidden="true"
+       data-dismiss="modal"></i>
+  </div>
+</div>
+
+<div class="modal-buy-online-mobile-body">
+  <div class="modal-buy-online-mobile-body-content">
+    
+    <span class="modal-buy-online-mobile-subtitle">
+      At Motominion, we believe in the power of the consumer.
+    </span>
+    
+    <span class="modal-buy-online-mobile-info">
+      Select the dealer that you would most like to work with.
+    </span>
+    
+    <ol class="modal-buy-online-mobile-list">
+      <%= render partial:    'modal_buy_online_item',
+                 collection: User.where(
+                               dealership_id: @vehicle.dealership_id
+                             ),
+                 as:         :dealer %>
+    </ol>
+  </div>
+</div>

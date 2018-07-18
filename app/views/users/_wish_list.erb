@@ -2,75 +2,213 @@
 <!--replace favorite_vehicle.vehicle with favorites? -->
 <!--favorite_vehicle.vehicle needed for correct order-->
 
-<% @user.favorite_vehicles.each do |favorite_vehicle| %>
+<li id="wish-list-item-<%= vehicle.id %>" 
+    class="col-md-6 search-item shortlist-item-<%= current_user.
+                                                     favorite_vehicles.
+                                                     where(vehicle: vehicle).
+                                                     first.
+                                                     vehicle_id %>">
   
-  <li id="wish-list-item-<%= favorite_vehicle.id %>" 
-      class="col-md-6 wish-list-item">
-    <%= link_to favorite_vehicle.vehicle, target: "_blank" do %>
-      <div class="wish-list-item-content">
-        
-        <div class="wish-list-item-image", 
-             style="background-image: url(
-                     '<%= favorite_vehicle.vehicle.photos[0].image.url() if 
-                          favorite_vehicle.vehicle.photos.length > 0 %>')">
-        </div>
-        
-        <div class="row">
-            
-          <div class="col-xs-3 wish-list-item-user">
-            <div class="wish-list-item-user-content">
-              <div class="avatar-and-online">
-                
-                <div class="wish-list-item-avatar avatar-general", 
-                     style="background-image: url(
-                             '<%= favorite_vehicle.
-                                    vehicle.
-                                    user.
-                                    avatar.
-                                    url(:thumb) %>')">
-                </div>
-              
-                <% if favorite_vehicle.vehicle.user.online? %>
-                  <div class="online online-lg-primary hidden-xs"></div>
-                <% end %>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-xs-9">
-            <div class="wish-list-item-info">
-              
-              <span class="wish-list-item-title">
-                $<%= favorite_vehicle.vehicle.price %> | 
-                <%= favorite_vehicle.vehicle.listing_name %>
-              </span>
+  <div class="search-item-image">
     
-              <div id="average-rating-wish-list-item-<%= favorite_vehicle.id %>" 
-                   class="average-rating-wish-list-item"></div>
-              
-              <span class="wish-list-item-review-count">
-                <%= pluralize(favorite_vehicle.vehicle.reviews.count, 
-                              "review") %>
-              </span>
-            </div>
-          </div>
+    <%= link_to vehicle, target: "_blank" do %>
+      <div class="search-item-image-content", 
+           style="background-image: url('<%= vehicle.photos[0].image.url() if 
+                                             vehicle.photos.length > 0 %>')">
+        
+      </div>
+    <% end %>
+    
+    <!--<(perc)= link_to favorite_vehicle_path(vehicle), -->
+    <!--          method: :put do %>-->
+    <!--  <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>-->
+    <!--<(perc) end %>-->
+    
+    <% if vehicle.user.dealership_id.present? %>
+      <div class="special-offer" 
+           id="search-item-special-offer-<%= vehicle.id %>">
+        
+        <i class="fa fa-lg fa-tag special-offer-icon"></i>
+        
+        <div type="button" 
+             class="special-offer-button" 
+             data-id="<%= vehicle.id %>"
+             data-toggle="modal" 
+             data-target="#modal-special-offer">
+          Special Offer
         </div>
       </div>
     <% end %>
-  </li>
+  </div>
   
-  <script type="text/javascript">
-    $(document).ready(function() {
+  <%= link_to vehicle, target: "_blank" do %>
+    <div class="row">
       
-      // rating
-      
-        var averageRating = $('#average-rating-wish-list-item-<%= favorite_vehicle.id %>');
+      <div class="col-xs-3 search-item-user">
+        <div class="search-item-user-content">
+          <div class="avatar-and-online">
+          
+            <div class="search-item-avatar avatar-general", 
+                 style="background-image: url(
+                       '<%= vehicle.user.avatar.url(:thumb) %>')">
+            </div>
+        
+            <% if vehicle.user.online? %>
+              <div class="online online-lg-primary hidden-xs"></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
     
-        averageRating.raty({
-          path:     '/assets',
-          readOnly: true,
-          score:    <%= favorite_vehicle.vehicle.average_rating %>
-        });  
-    });
-  </script>
-<% end %>
+      <div class="col-xs-9">
+        <div class="search-item-info">
+        
+          <span class="search-item-title">
+            $<%= vehicle.price %> | <%= vehicle.listing_name %>
+          </span>
+
+          <div id="average-rating-search-item-<%= vehicle.id %>", 
+               class="average-rating-search-item"></div>
+          
+          <span class="search-item-review-count">
+            <%= pluralize(vehicle.reviews.count, "review") %>
+          </span>
+          
+          <div class="feature-list">
+            
+            <i class="fa fa-lg fa-info-circle feature-list-icon"></i>
+  
+            <ol class="feature-list-content">
+            
+              <li>Vehicle Features</li>
+            
+              <% if vehicle.is_leather_seats %>
+                <li>Leather Seats</li>
+              <% end %>
+              
+              <% if vehicle.is_sunroof %>
+                <li>Sunroof</li>
+              <% end %>
+              
+              <% if vehicle.is_navigation_system %>
+                <li>Navigation System</li>
+              <% end %>
+              
+              <% if vehicle.is_dvd_entertainment_system %>
+                <li>DVD Entertainment System</li>
+              <% end %>
+              
+              <% if vehicle.is_bluetooth %>
+                <li>Bluetooth</li>
+              <% end %>
+              
+              <% if vehicle.is_leather_seats %>
+                <li>Leather Seats</li>
+              <% end %>
+              
+              <% if vehicle.is_backup_camera %>
+                <li>Backup Camera</li>
+              <% end %>
+              
+              <% if vehicle.is_remote_start %>
+                <li>Remote Start</li>
+              <% end %>
+              
+              <% if vehicle.is_tow_package %>
+                <li>Tow Package</li>
+              <% end %>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</li>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // rating
+    
+      var averageRating = $('#average-rating-search-item-<%= vehicle.id %>');
+  
+      averageRating.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= vehicle.average_rating %>
+      });  
+  });
+</script>
+
+<!--<(perc) current_user.favorite_vehicles.each do |favorite_vehicle| %>-->
+  
+<!--  <li id="wish-list-item-<(perc)= favorite_vehicle.id %>" -->
+<!--      class="col-md-6 wish-list-item">-->
+<!--    <(perc)= link_to favorite_vehicle.vehicle, target: "_blank" do %>-->
+<!--      <div class="wish-list-item-content">-->
+        
+<!--        <div class="wish-list-item-image", -->
+<!--             style="background-image: url(-->
+<!--                     '<(perc)= favorite_vehicle.vehicle.photos[0].image.url() if -->
+<!--                          favorite_vehicle.vehicle.photos.length > 0 %>')">-->
+<!--        </div>-->
+        
+<!--        <div class="row">-->
+            
+<!--          <div class="col-xs-3 wish-list-item-user">-->
+<!--            <div class="wish-list-item-user-content">-->
+<!--              <div class="avatar-and-online">-->
+                
+<!--                <div class="wish-list-item-avatar avatar-general", -->
+<!--                     style="background-image: url(-->
+<!--                             '<(perc)= favorite_vehicle.-->
+<!--                                    vehicle.-->
+<!--                                    user.-->
+<!--                                    avatar.-->
+<!--                                    url(:thumb) %>')">-->
+<!--                </div>-->
+              
+<!--                <(perc) if favorite_vehicle.vehicle.user.online? %>-->
+<!--                  <div class="online online-lg-primary hidden-xs"></div>-->
+<!--                <(perc) end %>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+          
+<!--          <div class="col-xs-9">-->
+<!--            <div class="wish-list-item-info">-->
+              
+<!--              <span class="wish-list-item-title">-->
+<!--                $<(perc)= favorite_vehicle.vehicle.price %> | -->
+<!--                <(perc)= favorite_vehicle.vehicle.listing_name %>-->
+<!--              </span>-->
+    
+<!--              <div id="average-rating-wish-list-item-<(perc)= favorite_vehicle.id %>" -->
+<!--                   class="average-rating-wish-list-item"></div>-->
+              
+<!--              <span class="wish-list-item-review-count">-->
+<!--                <(perc)= pluralize(favorite_vehicle.vehicle.reviews.count, -->
+<!--                              "review") %>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    <(perc) end %>-->
+<!--  </li>-->
+  
+<!--  <script type="text/javascript">-->
+<!--    $(document).ready(function() {-->
+      
+      <!--// rating-->
+      
+<!--        var averageRating = $('#average-rating-wish-list-item-<(perc)= favorite_vehicle.id %>');-->
+    
+<!--        averageRating.raty({-->
+<!--          path:     '/assets',-->
+<!--          readOnly: true,-->
+<!--          score:    <(perc)= favorite_vehicle.vehicle.average_rating %>-->
+<!--        });  -->
+<!--    });-->
+<!--  </script>-->
+<!--<(perc) end %>-->

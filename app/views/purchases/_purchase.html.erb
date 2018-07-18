@@ -1,70 +1,136 @@
-<li id="test-drive-item-<%= purchase.id %>" 
-    class="col-md-6 test-drive-item">
+<li id="purchase-item-<%= purchase.id %>" 
+    class="col-md-6 purchase-item shortlist-item-<%= current_user.
+                                                       favorite_vehicles.
+                                                       where(
+                                                         vehicle: 
+                                                         purchase.vehicle).
+                                                       first.
+                                                       vehicle_id %>">
   
   <% if purchase.processed_at.present? %>
     <%= link_to purchase do %>
-      <div class="test-drive-item-content">
+      <div class="purchase-item-content">
+           <!--data-toggle="modal" -->
+           <!--data-target="#modal-purchase">-->
         
-        <div class="test-drive-item-image", 
+        <div class="purchase-item-image", 
              style="background-image: url('<%= 
                      purchase.vehicle.photos[0].image.url() if 
                      purchase.vehicle.photos.length > 0 %>')">
         </div>
         
-        <div class="test-drive-item-detail">
+        <div class="purchase-item-detail">
           
-          <span class="test-drive-item-countdown">
-            <%= purchase.vehicle.listing_name %>
+          <span class="purchase-item-vehicle">
+            <%= purchase.vehicle.year %>
+            <%= purchase.vehicle.vehicle_make.name %>
+            <%= purchase.vehicle.vehicle_model.name %>
           </span>
           
-          <span class="test-drive-item-date">
-            $ <%= purchase.vehicle.price %>
+          <span class="purchase-item-price">
+            $ <%= purchase.vehicle.actual_price %>
           </span>
           
-          <span class="test-drive-item-info">
-            <%= Dealership.find(purchase.seller.dealership_id).name %> · 
+          <span class="purchase-item-dealership">
+            <%= Dealership.find(purchase.seller.dealership_id).dealership_name %> · 
             <%= purchase.seller.full_name %>
           </span>
         </div>
         
-        <div class="test-drive-item-status">
-          <span class="test-drive-item-status-content">
-            Processing...
+        <div class="purchase-item-status">
+          <span class="purchase-item-status-content accepted">
+            Submitted
           </span>
         </div>
+        
+        <!--<div class="hidden">-->
+          
+        <!--  <span class="vehicle">-->
+        <!--    <(perc)= purchase.vehicle.year %>-->
+        <!--    <(perc)= purchase.vehicle.vehicle_make.name %>-->
+        <!--    <(perc)= purchase.vehicle.vehicle_model.name %>-->
+        <!--  </span>-->
+          
+        <!--  <span class="color">Color: <(perc)= purchase.vehicle.exterior %></span>-->
+          
+        <!--  <span class="mileage">-->
+        <!--    Mileage: <(perc)= purchase.vehicle.mileage_numeric %>-->
+        <!--  </span>-->
+          
+        <!--  <span class="vin">VIN: <(perc)= purchase.vehicle.vin %></span>-->
+          
+        <!--  <span class="dealer">-->
+        <!--    Dealer:-->
+        <!--    <(perc)= Dealership.find(purchase.seller.dealership_id).dealership_name %>-->
+        <!--  </span>-->
+          
+        <!--  <span class="total"><(perc)= purchase.vehicle.actual_price %>.00</span>-->
+          
+        <!--  <span class="subtotal">-->
+        <!--    <(perc)= purchase.vehicle.actual_price - 2005 - 250 %>.00-->
+        <!--  </span>-->
+        <!--</div>-->
       </div>
     <% end %>
 
   <% else %>
     <%= link_to basics_purchase_path(purchase) do %>
-      <div class="test-drive-item-content">
+      <div class="purchase-item-content">
         
-        <div class="test-drive-item-image", 
-             style="background-image: url('<%= purchase.buyer.avatar.url() %>')">
+        <div class="purchase-item-image", 
+             style="background-image: url('<%= 
+                     purchase.vehicle.photos[0].image.url() if 
+                     purchase.vehicle.photos.length > 0 %>')">
         </div>
         
-        <div class="test-drive-item-detail">
+        <div class="purchase-item-detail">
           
-          <span class="test-drive-item-countdown">
-            <%= purchase.vehicle.listing_name %>
+          <span class="purchase-item-vehicle">
+            <%= purchase.vehicle.year %>
+            <%= purchase.vehicle.vehicle_make.name %>
+            <%= purchase.vehicle.vehicle_model.name %>
           </span>
           
-          <span class="test-drive-item-date">
+          <span class="purchase-item-price">
             $ <%= purchase.vehicle.price %>
           </span>
           
-          <span class="test-drive-item-info">
+          <span class="purchase-item-dealership">
             <%= Dealership.find(purchase.seller.dealership_id).name %> · 
             <%= purchase.seller.full_name %>
           </span>
         </div>
         
-        <div class="test-drive-item-status">
-          <span class="test-drive-item-status-content">
-            Awaiting Submission
+        <div class="purchase-item-status">
+          <span class="purchase-item-status-content declined">
+            Order Is Incomplete
           </span>
         </div>
       </div>
     <% end %>
   <% end %>
 </li>
+
+<!--<script type="text/javascript">-->
+<!--  $(document).ready(function() {-->
+<!--    $('#modal-purchase').on('show.bs.modal', function (event) {-->
+      
+<!--      var element               = $(event.relatedTarget);-->
+<!--      var dynamic_text_vehicle  = element.find('.vehicle').text();-->
+<!--      var dynamic_text_color    = element.find('.color').text();-->
+<!--      var dynamic_text_mileage  = element.find('.mileage').text();-->
+<!--      var dynamic_text_vin      = element.find('.vin').text();-->
+<!--      var dynamic_text_dealer   = element.find('.dealer').text();-->
+<!--      var dynamic_text_total    = element.find('.total').text();-->
+<!--      var dynamic_text_subtotal = element.find('.subtotal').text();-->
+ 
+<!--      $('.receipt-vehicle').html(dynamic_text_vehicle);-->
+<!--      $('.receipt-color').html(dynamic_text_color);-->
+<!--      $('.receipt-mileage').html(dynamic_text_mileage);-->
+<!--      $('.receipt-vin').html(dynamic_text_vin);-->
+<!--      $('.receipt-dealer').html(dynamic_text_dealer);-->
+<!--      $('.receipt-total').html(dynamic_text_total);-->
+<!--      $('.receipt-subtotal').html(dynamic_text_subtotal);-->
+<!--    });-->
+<!--  });-->
+<!--</script>-->

@@ -1,0 +1,164 @@
+<li id="wish-list-item-<%= shortlist_item.vehicle_id %>" 
+    class="col-md-6 search-item shortlist-item-<%= shortlist_item.vehicle_id %>">
+  
+  <div class="search-item-image">
+    
+    <%= link_to shortlist_item.vehicle, target: "_blank" do %>
+      <div class="search-item-image-content", 
+           style="background-image: url('<%= shortlist_item.vehicle.photos[0].image.url() if 
+                                             shortlist_item.vehicle.photos.length > 0 %>')">
+        
+      </div>
+    <% end %>
+    
+    <!--<(perc)= link_to favorite_vehicle_path(vehicle), -->
+    <!--          method: :put do %>-->
+    <!--  <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>-->
+    <!--<(perc) end %>-->
+    
+    <!--<(perc) if shortlist_item.vehicle.dealership.present? %>-->
+      <div class="special-offer" 
+           id="search-item-special-offer-<%= shortlist_item.vehicle_id %>">
+        
+        <span class="special-offer-score">
+          <%= shortlist_item.vehicle.listing_score.overall_score %>
+        </span>
+        
+        <span class="special-offer-description">Listing Score</span>
+        <!--<div type="button" -->
+        <!--     class="special-offer-button" -->
+        <!--     data-id="<(perc)= vehicle.id %>"-->
+        <!--     data-toggle="modal" -->
+        <!--     data-target="#modal-special-offer-desktop">-->
+        <!--  Listing Score-->
+        <!--</div>-->
+      </div>
+    <!--<(perc) end %>-->
+  </div>
+  
+  <%= link_to shortlist_item.vehicle, target: "_blank" do %>
+    <div class="row">
+      
+      <div class="col-xs-3 search-item-user">
+        <div class="search-item-user-content">
+          
+          <% if shortlist_item.vehicle.user.present? %>
+            <div class="avatar-and-online">
+            
+              <div class="search-item-avatar avatar-general", 
+                   style="background-image: url(
+                         '<%= shortlist_item.
+                                vehicle.
+                                user.
+                                avatar.
+                                url(:thumb) %>')">
+              </div>
+          
+              <% if shortlist_item.vehicle.user.online? %>
+                <div class="online 
+                            online-lg-primary 
+                            hidden-xs"></div>
+              <% end %>
+            </div>
+          
+          <% else %>
+            <div class="search-item-avatar avatar-general", 
+                 style="background-image: url(
+                       '<%= shortlist_item.
+                              vehicle.
+                              dealership.
+                              photo.
+                              url() %>')">
+            </div>
+          <% end %>
+        </div>
+      </div>
+    
+      <div class="col-xs-9">
+        <div class="search-item-info">
+        
+          <span class="search-item-title">
+            $<%= shortlist_item.vehicle.actual_price %> | 
+            <%= shortlist_item.vehicle.listing_name %>
+          </span>
+
+          <div id="average-rating-search-item-<%= shortlist_item.vehicle.id %>", 
+               class="average-rating-search-item"></div>
+          
+          <span class="search-item-review-count">
+            <%= pluralize(shortlist_item.vehicle.reviews.count, "review") %>
+          </span>
+          
+          <div class="feature-list">
+            
+            <i class="fa fa-lg fa-info-circle feature-list-icon"></i>
+  
+            <ol class="feature-list-content">
+            
+              <li>Vehicle Features</li>
+            
+              <% if shortlist_item.vehicle.cruise_control %>
+                <li>Cruise Control</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.am_fm %>
+                <li>AM / FM Radio</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.cb_radio %>
+                <li>CB Radio</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.navigation_system %>
+                <li>Navigation System</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.heated_seats %>
+                <li>Heated Seats</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.heated_hand_grips %>
+                <li>Heated Hand Grips</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.alarm_system %>
+                <li>Alarm System</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.saddlebags %>
+                <li>Saddlebags</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.trunk %>
+                <li>Trunk</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.tow_hitch %>
+                <li>Tow Hitch</li>
+              <% end %>
+              
+              <% if shortlist_item.vehicle.cycle_cover %>
+                <li>Cycle Cover</li>
+              <% end %>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</li>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // rating
+    
+      var averageRating = $('#average-rating-search-item-<%= shortlist_item.vehicle.id %>');
+  
+      averageRating.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= shortlist_item.vehicle.average_rating %>
+      });  
+  });
+</script>

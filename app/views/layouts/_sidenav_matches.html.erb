@@ -1,0 +1,35 @@
+<h2 class="sidenav-title">
+  Matches
+</h2>
+
+<ul class="sidenav-list">
+  
+  <% if current_user.personalized_search.present? %>
+  
+    <li class="<%= 'sidenav-active' if 
+                     current_page?(current_user.personalized_search) %>">
+      <%= link_to "Results", current_user.personalized_search %>
+    </li>
+  
+    <li class="<%= 'sidenav-active' if 
+                     current_page?(edit_personalized_search_path(
+                                     current_user.personalized_search
+                                  )) %>">
+      <%= link_to "Preferences", 
+            edit_personalized_search_path(
+              current_user.personalized_search
+            ) %>
+    </li>
+    
+  <% else %>
+    <li class="<%= 'sidenav-active' if 
+                     current_page?(start_personalized_searches_path) %>">
+      <%= link_to "Results", start_personalized_searches_path %>
+    </li>
+  
+    <li class="<%= 'sidenav-active' if 
+                     current_page?(new_personalized_search_path) %>">
+      <%= link_to "Preferences", new_personalized_search_path %>
+    </li>
+  <% end %>
+</ul>

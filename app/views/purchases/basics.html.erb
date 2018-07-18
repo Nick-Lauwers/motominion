@@ -8,6 +8,8 @@
 
 <%= render 'layouts/modal_menu' %>
 
+<%= render 'layouts/contact' %>
+
 <div class="purchase">
   <div class="purchase-content">
     
@@ -18,7 +20,7 @@
       
       <div class="purchase-hero-price-container">
         <span class="purchase-hero-price">
-          $<%= @purchase.vehicle.price %>
+          $<%= @purchase.vehicle.actual_price %>
         </span>
       </div>
       
@@ -27,14 +29,17 @@
         
           <div class="col-md-2 avatar-and-online">
             
-            <%= link_to user_path(@purchase.vehicle.user) do %>
+            <%= link_to User.find(@purchase.seller_id) do %>
               <div class="purchase-hero-avatar avatar-general", 
                    style="background-image: url(
-                           '<%= @purchase.vehicle.user.avatar.url(:thumb) %>')">
+                           '<%= User.
+                                  find(@purchase.seller_id).
+                                  avatar.
+                                  url(:thumb) %>')">
               </div>
             <% end %>
 
-            <% if @purchase.vehicle.user.online? %>
+            <% if User.find(@purchase.seller_id).online? %>
               <div class="online online-lg-primary"></div>
             <% end %>
           </div>
@@ -45,8 +50,8 @@
                         @purchase.vehicle,
                         class: "purchase-hero-heading" %>
             
-            <%= link_to @purchase.vehicle.user.full_name, 
-                        @purchase.vehicle.user,
+            <%= link_to User.find(@purchase.seller_id).full_name, 
+                        User.find(@purchase.seller_id),
                         class: "purchase-hero-subheading" %>
             
             <span> · </span>

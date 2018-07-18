@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get    'test-drives'             => 'appointments#test_drives'
   get    'purchases_made'          => 'purchases#purchases_made'
   get    'orders_received'         => 'purchases#orders_received'
+  # get    'start_personalized_search' => 'personalized_searches#start'
   get    'payment_method'          => 'users#payment'
   get    'payout_method'           => 'users#payout'
   get    'signup'                  => 'users#new'
@@ -58,13 +59,26 @@ Rails.application.routes.draw do
       get :autocomplete
     end
   end
-
+  
   resources :users do
     
     resources :reviews, only: [:index, :destroy]
+    
+    # resource :personalized_search do
+    #   member do
+    #     get 'price'
+    #     get 'mileage'
+    #     get 'year'
+    #     get 'installed_options'
+    #     get 'summary'
+    #   end
+    # end
 
     member do
       get 'profile_pic'
+      get 'profile_pic_dealer'
+      get 'dealer_details'
+      get 'shortlist'
     end
   end
 
@@ -88,6 +102,7 @@ Rails.application.routes.draw do
       get 'details'
       get 'photos'
       get 'about_you'
+      get 'consumer_activity'
     end
     
     collection do
@@ -102,7 +117,7 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :photos,   only: [:create, :destroy] do
+    resources :photos, only: [:create, :destroy] do
       member do
         put :rotate
       end
@@ -129,7 +144,7 @@ Rails.application.routes.draw do
   end
 
   resources :conversations, only: [:index, :create] do
-
+    
     resources :appointments, only:   [:new, :create, :destroy]
     resources :messages,     except: [:new, :edit, :show, :update]
     
@@ -140,8 +155,6 @@ Rails.application.routes.draw do
       get 'export'
     end
   end
-  
-  # get :export, to: 'messages#export', as: :export
   
   resources :discussions do
     
@@ -182,12 +195,26 @@ Rails.application.routes.draw do
       
       put :submit
       
-      get 'order_received'
+      get 'order'
       get 'basics'
       get 'details'
       get 'billing'
       get 'employment'
       get 'financial'
+    end
+  end
+  
+  resources :personalized_searches do
+    
+    collection do
+      get 'start'
+    end
+    
+    member do
+      get 'price'
+      get 'mileage'
+      get 'year'
+      get 'installed_options'
     end
   end
   

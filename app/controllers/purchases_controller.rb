@@ -3,11 +3,12 @@ class PurchasesController < ApplicationController
   before_action :logged_in_user
   before_action :profile_pic_upload
   before_action :get_purchase, except: [:new, :create, :purchases_made, 
-                                        :orders_received]
+                                        :orders_received, :show_modal]
   
   def new
     
     @vehicle  = Vehicle.find(params[:vehicle_id])
+    @dealer  = User.find(params[:seller_id])
     
     if Purchase.where('vehicle_id = ? AND buyer_id = ?', @vehicle.id, current_user.id).exists?
       redirect_to basics_purchase_path(Purchase.where('vehicle_id = ? AND buyer_id = ?', @vehicle.id, current_user.id).first)
@@ -21,7 +22,19 @@ class PurchasesController < ApplicationController
     @purchase = current_user.purchases_made.create!(purchase_params)
     
     if @purchase.save
+      
+      if !current_user.favorite_vehicles.exists?(vehicle: @purchase.vehicle)
+        current_user.favorites << @purchase.vehicle
+      end
+      
+      current_user.
+        favorite_vehicles.
+        where(vehicle: @purchase.vehicle).
+        first.
+        update_attribute(:is_purchase, true)
+        
       flash[:success] = "Basics saved."
+      
       redirect_to details_purchase_path(@purchase)
     
     else
@@ -50,28 +63,7 @@ class PurchasesController < ApplicationController
                                      Time.now)
   end
   
-  # def index
-    
-  #   @purchases = Purchase.all
-    
-  #   @test_drives = Appointment.where("buyer_id = ? AND date >= ?", 
-  #                                   current_user.id, 
-  #                                   Time.now)
-  # end
-  
-  def purchases_made
-    
-    @purchases = Purchase.where(buyer_id: current_user.id)
-    
-    @test_drives = Appointment.where("buyer_id = ? AND date >= ?", 
-                                     current_user.id, 
-                                     Time.now)
-  end
-  
-  def orders_received
-    @orders = Purchase.
-                where(seller_id: current_user.id).
-                where.not(processed_at: nil)
+  def order
   end
 
   def basics
@@ -92,7 +84,16 @@ class PurchasesController < ApplicationController
   def submit
     @purchase.update_attribute(:processed_at, Time.now)
     flash[:success] = "Purchase currently processing."
-    redirect_to purchases_made_path
+    redirect_to shortlist_user_path(current_user)
+  end
+  
+  def show_modal
+    
+    @purchase = Purchase.find_by_id(params[:purchase_id])
+    
+    respond_to do |format|
+       format.js {render 'show_modal'}
+    end
   end
   
   private

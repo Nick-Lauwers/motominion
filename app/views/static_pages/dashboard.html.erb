@@ -8,6 +8,8 @@
 
 <%= render 'layouts/modal_menu' %>
 
+<%= render 'layouts/contact' %>
+
 <%= render 'layouts/hero_backend' %>
 
 <%= render 'layouts/secondary_navbar' %>
@@ -74,7 +76,9 @@
       
       <% if @customers.exists? %>
         <ol class="dashboard-list">
-          <%= render partial: "customer", collection: @customers %>
+          <%= render partial: "appointments/customer_dashboard", 
+                     collection: @customers,
+                     as: :customer %>
         </ol>
       
       <% else %>

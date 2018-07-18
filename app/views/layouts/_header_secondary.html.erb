@@ -69,15 +69,24 @@
             
             Inbox <b class="caret"></b> 
             
-            <% if Conversation.where(
-                    next_contributor_id: current_user.id,
-                    latest_message_read: false
-                  ).exists? or
-                                      
-                  Question.where(
-                    vehicle: current_user.vehicles, 
-                    read_at: nil
-                  ).exists? %>
+            <% if ( Conversation.where(
+                      next_contributor_id: current_user.id,
+                      latest_message_read: false).exists? or
+                                        
+                    ( (current_user.dealership_id.present? && 
+                         Question.where(
+                           vehicle: Dealership.
+                                      find(current_user.dealership_id).
+                                      vehicles, 
+                           read_at: nil).exists?
+                      ) or 
+                      
+                      (current_user.dealership_id.present? && 
+                         Question.where(
+                           vehicle: current_user.vehicles,
+                           read_at: nil).exists?)
+                    )
+                  ) %>
                                   
               <div class="notification"></div>
             <% end %>
@@ -105,10 +114,19 @@
                 
                 Questions
                 
-                <% if Question.where(
-                        vehicle: current_user.vehicles, 
-                        read_at: nil
-                      ).exists? %>
+                <% if ( (current_user.dealership_id.present? && 
+                           Question.where(
+                             vehicle: Dealership.
+                                        find(current_user.dealership_id).
+                                        vehicles, 
+                             read_at: nil).exists?
+                        ) or 
+                        
+                        (current_user.dealership_id.present? && 
+                           Question.where(
+                             vehicle: current_user.vehicles,
+                             read_at: nil).exists?)
+                      ) %>
                       
                   <div class="notification"></div>
                 <% end %>
@@ -245,25 +263,27 @@
       <% end %>
     </ul>
     
-    <%= form_tag search_vehicles_path, 
-             method: :get, 
-             class: "search-form-secondary" do %>
+    <%= form_for_filterrific @filterrific,
+                             url: search_vehicles_path,
+                             html: {
+                               id: "filterrific-no-ajax-auto-submit",
+                               class: "hidden-xs search-form-secondary"
+                             } do |f| %>
                  
       <div class="row search-form-secondary-content">
         
         <div class="col-xs-3 search-bar-secondary">
           
-          <%= collection_select :vehicle, 
-                                :vehicle_make_id,
-                                VehicleMake.all,
-                                :id,
-                                :name,
-                                { include_blank: true,
-                                  prompt: "Select make" },
-                                id: "vehicle-make-header",
-                                class: "form-control 
-                                        header-form-control 
-                                        header-select-primary" %>
+          <%= f.collection_select(:with_vehicle_make_id,
+                                  VehicleMake.all,
+                                  :id,
+                                  :name,
+                                  { include_blank: true,
+                                    prompt: "Select make" },
+                                  id: "vehicle-make-header",
+                                  class: "form-control
+                                          header-form-control
+                                          search-select-primary") %>
           
           <i class="fa fa-search fa-lg search-bar-secondary-icon" 
              aria-hidden="true"></i>
@@ -274,20 +294,19 @@
         
         <div class="col-xs-3 search-bar-secondary">
           
-          <%= grouped_collection_select :vehicle, 
-                                        :vehicle_model_id, 
-                                        VehicleMake.order(:name),
-                                        :vehicle_models,
-                                        :name,
-                                        :id,
-                                        :name,
-                                        { prompt: "Select model",
-                                          include_blank: true },
-                                        id: "vehicle-model-header",
-                                        class: "form-control
-                                                header-form-control
-                                                header-select-secondary" %>
-                                                
+          <%= f.grouped_collection_select(:with_vehicle_model_id,
+                                          VehicleMake.order(:name),
+                                          :vehicle_models,
+                                          :name,
+                                          :id,
+                                          :name,
+                                          { include_blank: true,
+                                            prompt: "Select model" },
+                                          id: "vehicle-model-header",
+                                          class: "form-control 
+                                                  header-form-control
+                                                  header-select-secondary") %>
+          
           <i class="fa fa-caret-down fa-lg form-caret" 
              aria-hidden="true"></i>
         </div>
@@ -300,12 +319,11 @@
           <i class="fa fa-times fa-lg search-bar-secondary-close" 
              aria-hidden="true"></i>
           
-          <%= text_field_tag :city, 
-                             params[:city], 
-                             placeholder: "City (Eg. Detroit, MI)", 
-                             class: "form-control 
-                                     header-form-control
-                                     typeahead" %>
+          <%= f.text_field :with_city, 
+                           placeholder: "City (Eg. San Francisco, CA)", 
+                           class: "form-control 
+                                   header-form-control 
+                                   typeahead" %>
         </div>
         
         <div class="col-xs-2 search-button-secondary">

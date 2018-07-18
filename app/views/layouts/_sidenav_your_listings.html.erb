@@ -1,0 +1,30 @@
+<h2 class="sidenav-title">
+  Your Listings
+</h2>
+
+<ul class="sidenav-list">
+  
+  <li class="sidenav-active">
+    <%= link_to vehicles_path do %>
+      Vehicles (<%= current_user.vehicles.count %>)
+    <% end %>
+  </li>
+  
+  <!--<li class="<(perc)= 'sidenav-active' if current_page?(customers_path) %>">-->
+  <!--  <(perc)= link_to customers_path do %>-->
+  <!--    Customers  -->
+  <!--    (<(perc)= Appointment.where("seller_id = ? AND date >= ?",-->
+  <!--                           current_user.id,-->
+  <!--                           Time.now).count %>)-->
+  <!--  <(perc) end %>-->
+  <!--</li>-->
+  
+  <!--<li class="<(perc)= 'sidenav-active' if current_page?(orders_received_path) %>">-->
+  <!--  <(perc)= link_to orders_received_path do %>-->
+  <!--    Orders (<(perc)= Purchase.-->
+  <!--                  where(seller_id: current_user.id).-->
+  <!--                  where.not(processed_at: nil).-->
+  <!--                  count %>)-->
+  <!--  <(perc) end %>-->
+  <!--</li>-->
+</ul>

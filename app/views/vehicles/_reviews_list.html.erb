@@ -72,3 +72,59 @@
     })
   </script>
 <% end %>
+
+<% @google_reviews.each do |r| %>
+
+  <li class="row review-item">
+    
+    <div class="col-md-4">
+      <div class="row">
+        
+        <div class="col-md-3">
+          <!--intentionally left empty-->
+        </div>
+        
+        <div class="col-md-9 vertical-align">
+          
+          <div class="google-author-avatar", 
+               style="background-image: url(
+                       '<%= r.profile_photo_url %>')">
+          </div>
+          
+          <span class="author-name"><%= r.author_name %></span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-8">
+      <div class="review-container">
+  
+        <div class="review-rating">
+          <div class="stars"></div>
+        </div>
+        
+        <span class="review-title">
+          Review from <%= r.author_name %>
+        </span>
+        
+        <span class="review-date"><%= r.time %></span>
+        <!--.strftime("%D")-->
+        <p class="review-comment"><%= r.text %></p>
+      </div>
+    </div>
+  </li>
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+      
+      // rating
+      var stars = $('.stars');
+  
+      stars.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= r.rating %>
+      });
+    })
+  </script>
+<% end %>

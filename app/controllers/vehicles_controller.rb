@@ -6,7 +6,8 @@ class VehiclesController < ApplicationController
   before_action :profile_pic_upload, only:   [:new]
   before_action :get_vehicle,        only:   [:destroy, :show, :update, :basics,
                                               :details, :upgrades, :photos, 
-                                              :about_you, :post, :favorite, 
+                                              :about_you, :consumer_activity,
+                                              :post, :favorite, 
                                               :sold, :undo_sold, :bump]
   
   def new
@@ -20,6 +21,7 @@ class VehiclesController < ApplicationController
   def create
     
     @vehicle = current_user.vehicles.build(vehicle_params)
+    update_score
     
     if @vehicle.save
       
@@ -41,7 +43,7 @@ class VehiclesController < ApplicationController
   
   # def destroy
   #   @vehicle.destroy
-  #   flash[:success] = "Motorcycle deleted"
+  #   flash[:success] = "Vehicle deleted"
   #   redirect_to vehicles_path
   # end
   
@@ -66,7 +68,7 @@ class VehiclesController < ApplicationController
       #     @vehicle.photos.create(image: image)
       #   end
       # end
-      
+      update_score
       flash[:success] = "Updates saved."
     
     else
@@ -79,10 +81,27 @@ class VehiclesController < ApplicationController
   end
   
   def index
+    
     @vehicles = current_user.vehicles
+    
+    respond_to do |format|
+      format.html
+      format.csv
+    end
   end
   
   def show
+    
+    if @vehicle.dealership.present?
+      @google_reviews = GooglePlaces::Client.
+                          new(ENV['GOOGLE_API_KEY']).
+                          spots(@vehicle.latitude, 
+                                @vehicle.longitude,
+                                # types: 'car_dealer',
+                                detail: true).
+                          first.
+                          reviews
+    end
     
     @conversation = Conversation.new
     
@@ -100,104 +119,57 @@ class VehiclesController < ApplicationController
     @hasReview = @reviews.find_by(reviewer_id: current_user.id) if current_user
     
     @questions = @vehicle.questions
-    # @question  = current_user.questions.build if logged_in?
+
     @question = Question.new
     
     @answer = Answer.new
     
     @availabilities = @vehicle.availabilities
-
-    # gon.vehicle = @vehicle
-
-    # @replies   = @question.replies
-    # @reply     = @question.replies.build   if logged_in?
   end
   
   def search
+
+    @filterrific = initialize_filterrific(
+      
+      Vehicle,
+      params[:filterrific],
+      
+      select_options: {
+        sorted_by:             Vehicle.options_for_sorted_by,
+        # with_vehicle_make_id:  VehicleMake.options_for_select,
+        # with_vehicle_model_id: VehicleModel.options_for_select
+      },
+      
+      persistence_id: false,
+      default_filter_params: {},
+      
+      available_filters: [
+        :with_vehicle_make_id, 
+        :with_vehicle_model_id,
+        :with_city,
+        :with_year_gte,
+        :with_actual_price_lte,
+        :with_mileage_numeric_lte,
+        :with_engine_size_gte,
+        :with_body_style,
+        :with_color,
+        :with_engine_type,
+        :with_fuel_type,
+        :with_cruise_control,
+        :with_am_fm,
+        :with_cb_radio,
+        :with_navigation_system,
+        :with_heated_seats,
+        :with_heated_hand_grips,
+        :with_alarm_system,
+        :with_saddlebags,
+        :with_trunk,
+        :with_tow_hitch,
+        :with_cycle_cover
+      ],
+    ) or return
     
-    if params[:vehicle][:vehicle_make_id].present? && 
-       params[:city].present?
-      
-      coordinates = Geocoder.coordinates(params[:city])
-       
-      if VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name != "All models"
-        @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                   where: { vehicle_make_id: 
-                                              params[:vehicle][:vehicle_model_id],
-                                            vehicle_model_id: 
-                                              params[:vehicle][:vehicle_model_id],
-                                            location: { near: {
-                                                              lat: coordinates[0], 
-                                                              lon: coordinates[1]
-                                                              }, 
-                                                              within: "20mi" },
-                                            sold_at: nil,
-                                            posted_at: { not: nil } },
-                                   page: params[:page], 
-                                   per_page: 10,
-                                   order: { bumped_at: :desc, 
-                                            created_at: :desc }
-
-      else 
-        @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                   where: { vehicle_make_id: 
-                                              params[:vehicle][:vehicle_make_id],
-                                            location: { near: {
-                                                              lat: coordinates[0], 
-                                                              lon: coordinates[1]
-                                                              }, 
-                                                              within: "20mi" },
-                                            sold_at: nil,
-                                            posted_at: { not: nil } },
-                                   page: params[:page], 
-                                   per_page: 10,
-                                   order: { bumped_at: :desc, 
-                                            created_at: :desc }
-      end
-
-    elsif params[:vehicle][:vehicle_make_id].present?
-      
-      if VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name != "All models"
-        @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                   where: { vehicle_make_id:
-                                              params[:vehicle][:vehicle_make_id],
-                                            vehicle_model_id: 
-                                              params[:vehicle][:vehicle_model_id],
-                                            sold_at: nil,
-                                            posted_at: { not: nil },
-                                            latitude: { not: nil } },
-                                   page: params[:page], 
-                                   per_page: 10,
-                                   order: { bumped_at: :desc, 
-                                            created_at: :desc }
-      
-      else
-        @vehicles = Vehicle.search params[:vehicle][:vehicle_make_id],
-                                   where: { vehicle_make_id:
-                                              params[:vehicle][:vehicle_make_id],
-                                            sold_at: nil,
-                                            posted_at: { not: nil },
-                                            latitude: { not: nil } },
-                                   page: params[:page], 
-                                   per_page: 10,
-                                   order: { bumped_at: :desc, 
-                                            created_at: :desc }
-      end
-    
-    elsif params[:city].present?
-      @vehicles = Vehicle.near(params[:city], 20).
-                          where(sold_at: nil).
-                          where.not(posted_at: nil).
-                          paginate(page: params[:page], per_page: 10).
-                          order(bumped_at: :desc, created_at: :desc)
-                          
-    else
-      @vehicles = Vehicle.all.where(sold_at: nil).
-                              where.not(posted_at: nil, latitude: nil).
-                              paginate(page: params[:page], per_page: 10).
-                              order(bumped_at: :desc, created_at: :desc)
-
-    end
+    @vehicles = @filterrific.find.paginate(page: params[:page], per_page: 10)
     
     @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
       
@@ -210,10 +182,25 @@ class VehiclesController < ApplicationController
         height: 32
       })
       
+      marker.infowindow render_to_string(partial: "map_item",
+                                         object:  vehicle,
+                                         as:      :vehicle)
+      
       marker.json({ :id => vehicle.id })
     end
     
     @vehicle = Vehicle.new
+    
+    if current_user && current_user.personalized_search.present?
+      @personalized_search = current_user.personalized_search
+    else
+      @personalized_search = PersonalizedSearch.new
+    end
+    
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
   end
   
   def basics
@@ -229,6 +216,18 @@ class VehiclesController < ApplicationController
   def about_you
   end
   
+  def consumer_activity
+    
+    @orders = Purchase.
+                where(seller_id: current_user.id).
+                where.not(processed_at: nil)
+    
+    @test_drives = Appointment.
+                     where("seller_id = ? AND date >= ?",
+                     current_user.id,
+                     Time.now)
+  end
+  
   def post
     @vehicle.update_attribute(:posted_at, Time.now)
     flash[:success] = "#{ @vehicle.listing_name } posted!"
@@ -237,16 +236,49 @@ class VehiclesController < ApplicationController
   
   def favorite
     
-    if current_user.favorite_vehicles.exists?(vehicle_id: @vehicle.id)
-      flash[:failure] = "#{ @vehicle.listing_name } has already been added to 
-                         your wishlist!"
-    
-    else
-      current_user.favorites << @vehicle
-      flash[:success] = "#{ @vehicle.listing_name } was added to your wishlist!"
+    if !current_user.favorite_vehicles.exists?(vehicle: @vehicle)
+      current_user.favorites << @vehicle 
     end
+      
+    if params[:is_loved] == "true"
+      
+      current_user.
+      favorite_vehicles.
+      where(vehicle: @vehicle).
+      first.
+      update_attributes(is_loved: true, is_liked: false, is_disliked: false)
     
-    redirect_to :back
+      flash[:success] = "#{ @vehicle.listing_name } has been added to your 
+                         shortlist!"
+      
+      redirect_to shortlist_user_path
+                         
+    elsif params[:is_liked] == "true"
+      
+      current_user.
+      favorite_vehicles.
+      where(vehicle: @vehicle).
+      first.
+      update_attributes(is_loved: false, is_liked: true, is_disliked: false)
+      
+      flash[:success] = "#{ @vehicle.listing_name } has been added to your 
+                         shortlist!"
+      
+      redirect_to shortlist_user_path
+                         
+    else
+      
+      current_user.
+      favorite_vehicles.
+      where(vehicle: @vehicle).
+      first.
+      update_attributes(is_loved: false, is_liked: false, is_disliked: true)
+      
+      flash[:failure] = "#{ @vehicle.listing_name } will be removed from your
+                         feed." 
+                         
+      redirect_to @vehicle
+    end
   end
   
   def sold
@@ -273,22 +305,48 @@ class VehiclesController < ApplicationController
       { listing_name: vehicle.listing_name, city: vehicle.address.city, value: vehicle.id }
     end
   end
-
-  private
   
+  private
+    
+    # Gets filterrific
+    def get_filterrific
+      
+      @filterrific = initialize_filterrific(
+      
+      Vehicle,
+      params[:filterrific],
+      
+      select_options: {
+        sorted_by:             Vehicle.options_for_sorted_by,
+        with_vehicle_make_id:  VehicleMake.options_for_select,
+        with_vehicle_model_id: VehicleModel.options_for_select
+      },
+      
+      persistence_id: false,
+      default_filter_params: {},
+      
+      available_filters: [
+        :with_vehicle_make_id, 
+        :with_vehicle_model_id,
+        :with_city
+      ],
+    ) or return
+    end
+    
     def vehicle_params
-      params.require(:vehicle).permit(:body_style, :color, :transmission, 
-                                      :fuel_type, :drivetrain, :vin, 
-                                      :listing_name, :street_address, 
-                                      :apartment, :city, :state, :year, :price, 
-                                      :mileage, :seating_capacity, :summary, 
-                                      :sellers_notes, :is_leather_seats, 
-                                      :is_sunroof, :is_navigation_system, 
-                                      :is_dvd_entertainment_system, 
-                                      :is_bluetooth, :is_backup_camera, 
-                                      :is_remote_start, :is_tow_package, 
+      params.require(:vehicle).permit(:user_id, :dealership_id, :listing_name,
                                       :vehicle_make_id, :vehicle_model_id, 
-                                      :bumped_at, :posted_at, :dealership_id,
+                                      :msrp, :actual_price, :year, :mileage, 
+                                      :mileage_numeric, :body_style, :color,
+                                      :engine_type, :fuel_type, :vin, 
+                                      :engine_size, :description,
+                                      :description_clean, :cruise_control, 
+                                      :am_fm, :cb_radio, :navigation_system,
+                                      :heated_seats, :heated_hand_grips, 
+                                      :alarm_system, :saddlebags, :trunk,
+                                      :tow_hitch, :cycle_cover, :street_address, 
+                                      :apartment, :city, :state, :bumped_at, 
+                                      :posted_at, 
                                       availabilities_attributes: [:id, :day, 
                                       :start_time, :end_time, :vehicle_id, 
                                       :_destroy], upgrades_attributes: [:id, 
@@ -296,6 +354,159 @@ class VehiclesController < ApplicationController
                                       :_destroy])
     end
     
+    # Updates score
+    def update_score
+      
+      # Listing location is included and is an exact address.
+      if @vehicle.latitude.present?
+        location_score = 3
+      else
+        location_score = 0
+      end
+      
+      # Features are properly noted.
+      if @vehicle.cruise_control || @vehicle.am_fm || @vehicle.cb_radio || 
+         @vehicle.navigation_system || @vehicle.heated_seats || 
+         @vehicle.heated_hand_grips || @vehicle.alarm_system || 
+         @vehicle.saddlebags || @vehicle.trunk || @vehicle.tow_hitch || 
+         @vehicle.cycle_cover
+        features_score = 3
+        
+      else
+        features_score = 0
+      end
+      
+      # Specifications are properly noted.
+      spec_score = 0
+      
+      spec_score += 1 if @vehicle.color.present?
+      spec_score += 1 if @vehicle.engine_type.present?
+      spec_score += 1 if @vehicle.fuel_type.present?
+      spec_score += 1 if @vehicle.engine_size.present?
+      
+      spec_score = (3/5)*spec_score
+      
+      # VIN has been properly noted.
+      if @vehicle.vin.present?
+        vin_score = 3
+      else
+        vin_score = 0
+      end
+      
+      # Vehicle is listed by a certified dealer and dealership sends a direct
+      # listing.
+      if @vehicle.dealership.present? && 
+         @vehicle.dealership.scraped_id.present?
+        certified_dealer_score = 3
+        direct_listing_score = 3
+        
+      elsif @vehicle.dealership.present?
+        certified_dealer_score = 0
+        direct_listing_score = 0
+        
+      else
+        certified_dealer_score = 3
+        direct_listing_score = 3
+      end 
+      
+      # Seller accepts test drives, on-demand.
+      test_drive_score = 3
+      
+      # Seller has many high-quality listings.
+      if @vehicle.dealership.present?
+        
+        combined_score = 0
+
+        @vehicle.dealership.vehicles.each do |vehicle|
+          if vehicle.listing_score.overall_score.present?
+            combined_score = vehicle.listing_score.overall_score + 
+                               combined_score
+          end
+        end
+        
+        if combined_score/(@vehicle.dealership.vehicles.count + 1) <= 59
+          many_listings_score = 1
+        elsif combined_score/(@vehicle.dealership.vehicles.count + 1)<=79
+          many_listings_score = 2
+        else 
+          many_listings_score = 3
+        end
+      
+      else
+        many_listings_score = 3
+      end
+
+      # Seller has several positive reviews.
+      
+      # Listing was recently posted or bumped.
+      if @vehicle.bumped_at <= 1.day.ago
+        recently_posted_score = 3
+      elsif @vehicle.bumped_at <= 3.days.ago
+        recently_posted_score = 2
+      else
+        recently_posted_score = 1
+      end
+      
+      # Listing has many photos.
+      if @vehicle.photos.count <= 3
+        photos_score = 1
+      elsif @vehicle.photos.count.between(4,7)
+        photos_score = 2
+      else
+        photos_score = 3
+      end
+      
+      # Calculate overall score.
+      overall_score = ( 100 / 30 ) * ( location_score + features_score + 
+                                       spec_score + vin_score + 
+                                       certified_dealer_score +
+                                       direct_listing_score +
+                                       test_drive_score + photos_score +
+                                       # score.reviews_score + 
+                                       recently_posted_score + 
+                                       many_listings_score )
+      
+      if @vehicle.listing_score.present?
+        @vehicle.listing_score.update_attributes(location_score:   
+                                                   location_score,
+                                                 features_score:   
+                                                   features_score,
+                                                 spec_score:    spec_score,
+                                                 vin_score:     vin_score,
+                                                 certified_dealer_score:
+                                                   certified_dealer_score,
+                                                 direct_listing_score:
+                                                   direct_listing_score,
+                                                 test_drive_score: 
+                                                   test_drive_score,
+                                                 photos_score:  photos_score,
+                                                 # reviews_score: reviews_score,
+                                                 recently_posted_score:
+                                                   recently_posted_score,
+                                                 many_listings_score:
+                                                   many_listings_score,
+                                                 overall_score: overall_score)
+      
+      else                             
+        @vehicle.build_listing_score(location_score:   location_score, 
+                                     features_score:   features_score,
+                                     spec_score:       spec_score, 
+                                     vin_score:        vin_score, 
+                                     certified_dealer_score: 
+                                       certified_dealer_score,
+                                     direct_listing_score: 
+                                       direct_listing_score,
+                                     test_drive_score: test_drive_score, 
+                                     photos_score:     photos_score,
+                                     # reviews_score:    reviews_score, 
+                                     recently_posted_score: 
+                                       recently_posted_score,
+                                     many_listings_score: 
+                                       many_listings_score, 
+                                     overall_score:    overall_score)
+      end
+    end
+  
     # Before filters
     
     # Identifies vehicle id.

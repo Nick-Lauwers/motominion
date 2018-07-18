@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery with: :exception
   include SessionsHelper
+  before_filter :get_filterrific
   after_filter :user_activity
 
   private
@@ -51,5 +52,35 @@ class ApplicationController < ActionController::Base
     # Updates user if online.
     def user_activity
       current_user.try :touch
+    end
+    
+    # Gets filterrific
+    def get_filterrific
+      
+      @filterrific = initialize_filterrific(
+      
+        Vehicle,
+        params[:filterrific],
+        
+        select_options: {
+          sorted_by:             Vehicle.options_for_sorted_by,
+          # with_vehicle_make_id:  VehicleMake.options_for_select,
+          # with_vehicle_model_id: VehicleModel.options_for_select
+        },
+        
+        persistence_id: false,
+        default_filter_params: {},
+        
+        available_filters: [
+          :with_vehicle_make_id, 
+          :with_vehicle_model_id,
+          :with_city,
+          :with_condition,
+          :with_year_gte,
+          :with_actual_price_lte,
+          :with_mileage_numeric_lte,
+          :with_body_style
+        ],
+      ) or return
     end
 end

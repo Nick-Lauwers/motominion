@@ -10,29 +10,46 @@
 
 <%= render 'layouts/modal_menu' %>
 
-<%= render 'layouts/modal_special_offer' %>
+<%= render 'layouts/contact' %>
 
-<div class="search-summary">
+<%= render 'modal_filters' %>
+
+<!--<div class="modal" id="modal-special-offer-desktop" role="dialog">-->
+<!--  <(perc)= render "layouts/modal_special_offer_desktop" %>-->
+<!--</div>-->
+
+<!--<div class="modal" id="modal-special-offer-mobile" role="dialog">-->
+<!--  <(perc)= render "layouts/modal_special_offer_mobile" %>-->
+<!--</div>-->
+
+<div class="search-summary hidden-xs">
   <div class="search-summary-content">
     
     <h1 class="search-summary-title">
-      
-      <% if params[:vehicle][:vehicle_make_id].present? %>
-      
-        <%= VehicleMake.find_by(id: params[:vehicle][:vehicle_make_id]).name %>
-        <%= VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name  if VehicleModel.find_by(id: params[:vehicle][:vehicle_model_id]).name != "All models" %>
+
+      <% if @filterrific.with_vehicle_make_id.present? %>
+
+        <%= VehicleMake.find(@filterrific.with_vehicle_make_id).name %>
         
+        <% if @filterrific.with_vehicle_model_id.present? && 
+                VehicleModel.
+                  find(@filterrific.with_vehicle_model_id).
+                  name != "All Models" %>
+
+          <%= VehicleModel.find(@filterrific.with_vehicle_model_id).name %>
+        <% end %>
+      
       <% else %>
-        All Makes and Models</h1>
+        All Makes and Models
       <% end %>
     </h1>
     
     <h2 class="search-summary-info">
       
-      <% if params[:city].present? %>
-      
+      <% if @filterrific.with_city.present? %>
+
         <%= pluralize(@vehicles.count, "vehicle") %> found near 
-        <%= params[:city] %>
+        <%= @filterrific.with_city %>
 
       <% else %>
         Enter a city to narrow your search
@@ -43,13 +60,13 @@
 
 <div class="search-results">
   
-  <div id="search-map" class="hidden-xs"></div>
+  <div id="search-map"></div>
   
   <div class="search-results-background">
     <div class="search-list-container">
       <div class="row">
         
-        <div class="col-md-4 hidden-xs">
+        <div class="col-md-4">
           <!--intentionally left empty-->
         </div>
         
@@ -61,7 +78,7 @@
           
           <div class="search-items-container">
             
-            <div class="search-introduction">
+            <div class="search-introduction hidden-xs">
             
               <div class="search-introduction-static">
                 
@@ -70,21 +87,21 @@
                 <div class="row vertical-align">
                   
                   <div class="col-md-2">
-                    <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/search-introduction.png",
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-introduction.png",
                                   class: "search-introduction-static-image") %>
                   </div>
                   
                   <div class="col-md-10">
                     
                     <span class="search-introduction-static-title">
-                      Motorcycles in Your Area
+                      Vehicles in Your Area
                     </span>
                 
                     <p class="search-introduction-static-info">
-                      Find and compare motorcycles in your area with 
-                      Motominion.com. We list over 30,000 vehicles from hundreds 
-                      of dealerships across the country. We will walk you 
-                      through every step of the purchasing experience!
+                      Find and compare vehicles in your area with Mototrova.com. 
+                      We list over 30,000 vehicles from hundreds of dealerships 
+                      across the country. We will walk you through every step of 
+                      the purchasing experience!
                     </p>
                   </div>
                 </div>
@@ -98,9 +115,9 @@
                       
                       Newest Listings 
                       
-                      <!--<(perc) if params[:city].present? %>-->
-                      <!--  - <(perc)= params[:city] %>-->
-                      <!--<(perc) end %>-->
+                      <% if @filterrific.with_city.present? %>
+                        - <%= @filterrific.with_city %>
+                      <% end %>
                     </span>
                   </div>
                   
@@ -110,33 +127,33 @@
                       <span>
                         
                         <strong><%= Vehicle.first.listing_name %>:</strong> 
-                        $<%= Vehicle.first.price %>  
+                        $<%= Vehicle.first.actual_price %>  
                         
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         
                         <strong><%= Vehicle.second.listing_name %>:</strong> 
-                        $<%= Vehicle.second.price %>
+                        $<%= Vehicle.second.actual_price %>
                         
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         
                         <strong><%= Vehicle.third.listing_name %>:</strong> 
-                        $<%= Vehicle.third.price %>
+                        $<%= Vehicle.third.actual_price %>
                       </span>
   
                       <span>
                         
                         <strong><%= Vehicle.first.listing_name %>:</strong>
-                        $<%= Vehicle.first.price %>
+                        $<%= Vehicle.first.actual_price %>
                         
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         
                         <strong><%= Vehicle.second.listing_name %>:</strong>
-                        $<%= Vehicle.second.price %>
+                        $<%= Vehicle.second.actual_price %>
                         
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         
                         <strong><%= Vehicle.third.listing_name %>:</strong>
-                        $<%= Vehicle.third.price %>
+                        $<%= Vehicle.third.actual_price %>
                       </span>
                     </div>
                   </div>
@@ -157,10 +174,21 @@
                 
                 <div class="form-element-primary">
                   
-                  <select class="form-control search-sort-form-control" id="sort">
-                    <option><%= link_to "Nearest", '#' %></option>
-                    <option><%= link_to "Most Popular", '#' %></option>
-                    <option><%= link_to "Lowest Price", :sort => "price" %></option>
+                  <select class="form-control search-sort-form-control" 
+                          id="sort">
+                    
+                    <option>
+                      -
+                      <!--<(perc)= link_to "Nearest", '#' %>-->
+                    </option>
+                    
+                    <!--<option>-->
+                      <!--<(perc)= link_to "Most Popular", '#' %>-->
+                    <!--</option>-->
+                    
+                    <!--<option>-->
+                      <!--<(perc)= link_to "Lowest Price", :sort => "price" %>-->
+                    <!--</option>-->
                   </select>
                   
                   <i class="fa fa-caret-down fa-lg form-caret" 
@@ -246,11 +274,45 @@
   </div>
 </div>
 
+<div class="hidden-xs">
+  <%= render 'personalized_searches/form' %>
+</div>
+
+<div class="search-nav-mobile visible-xs">
+
+  <div class="search-nav-grid search-nav-grid-active">
+    <i class="fa 
+              fa-lg
+              fa-th-large 
+              search-nav-grid-icon 
+              search-nav-grid-icon-active" 
+       aria-hidden="true"></i> 
+  </div>
+  
+  <div class="search-nav-map search-nav-map-inactive">
+    <i class="fa 
+              fa-lg
+              fa-map-marker 
+              search-nav-map-icon
+              search-nav-map-icon-inactive" 
+       aria-hidden="true"></i> 
+  </div>
+</div>
+
 <script type="text/javascript">
   $(document).ready(function() {
-  
-    // map
     
+    // search results height
+      
+      var searchResults           = $('.search-results');
+      var searchResultsBackground = $('.search-results-background');
+      
+      if ( $(window).width() <= 768 ) {    
+        searchResults.height(searchResultsBackground.outerHeight() + 50);
+      }
+      
+    // search map
+      
       var hoverMarkerIcon = {
         url:    "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png",
         width:  32,
@@ -267,122 +329,87 @@
           scrollwheel:       false,
           mapTypeControl:    false,
           streetViewControl: false,
-          
+          clickableIcons:    false,
+
           zoomControlOptions: {
             position: google.maps.ControlPosition.TOP_LEFT
           },
+          
           styles: [
-    {
-        "featureType": "landscape",
-        "stylers": [
             {
-                "hue": "#FFBB00"
+              "featureType": "landscape",
+              "stylers": [
+                { "hue": "#FFBB00" },
+                { "saturation": 43.400000000000006 },
+                { "lightness": 37.599999999999994 },
+                { "gamma": 1 }
+              ]
             },
+            
             {
-                "saturation": 43.400000000000006
+              "featureType": "road.highway",
+              "stylers": [
+                { "hue": "#FFC200" },
+                { "saturation": -61.8 },
+                { "lightness": 45.599999999999994 },
+                { "gamma": 1 }
+              ]
             },
+      
             {
-                "lightness": 37.599999999999994
+              "featureType": "road.arterial",
+              "stylers": [
+                { "hue": "#FF0300" },
+                { "saturation": -100 },
+                { "lightness": 51.19999999999999 },
+                { "gamma": 1 }
+              ]
             },
+          
             {
-                "gamma": 1
+              "featureType": "road.local",
+              "stylers": [
+                { "hue": "#FF0300" },
+                { "saturation": -100 },
+                { "lightness": 52 },
+                { "gamma": 1 }
+              ]
+            },
+          
+            {
+              "featureType": "water",
+              "stylers": [
+                { "hue": "#0078FF" },
+                { "saturation": -13.200000000000003 },
+                { "lightness": 2.4000000000000057 },
+                { "gamma": 1 }
+              ]
+            },
+          
+            {
+              "featureType": "poi",
+              "stylers": [
+                { "hue": "#00FF6A" },
+                { "saturation": -1.0989010989011234 },
+                { "lightness": 11.200000000000017 },
+                { "gamma": 1 }
+              ]
             }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "stylers": [
-            {
-                "hue": "#FFC200"
-            },
-            {
-                "saturation": -61.8
-            },
-            {
-                "lightness": 45.599999999999994
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "stylers": [
-            {
-                "hue": "#FF0300"
-            },
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 51.19999999999999
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "stylers": [
-            {
-                "hue": "#FF0300"
-            },
-            {
-                "saturation": -100
-            },
-            {
-                "lightness": 52
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "stylers": [
-            {
-                "hue": "#0078FF"
-            },
-            {
-                "saturation": -13.200000000000003
-            },
-            {
-                "lightness": 2.4000000000000057
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    },
-    {
-        "featureType": "poi",
-        "stylers": [
-            {
-                "hue": "#00FF6A"
-            },
-            {
-                "saturation": -1.0989010989011234
-            },
-            {
-                "lightness": 11.200000000000017
-            },
-            {
-                "gamma": 1
-            }
-        ]
-    }
-]
+          ]
         },
-        
+            
         internal: {
           id: 'search-map'
         }
       }, function() {
         
-        markers = handler.addMarkers(<%=raw @hash.to_json %>);
+        if ( $(window).width() > 768 ) {    
+          markers = handler.addMarkers(<%= raw @hash.to_json %>, 
+                                       { clickable: false }) } 
+        
+        else {
+          markers = handler.addMarkers(<%= raw @hash.to_json %>, 
+                                       { clickable: true }) }
         
         _.each(<%=raw @hash.to_json %>, function(json, index) {
           var hoverMarker = {};
@@ -405,43 +432,70 @@
             json.marker = handler.addMarker(json);
           });
         });
-        
+            
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
       });
-    
+      
     // filters
     
-      var filtersButton        = $('.btn-filters');
-      var cancelButton         = $('.btn-cancel-filters');
-      var searchFilters        = $('.search-filters');
-      var searchItemsContainer = $('.search-items-container')
+      var filtersButton           = $('.btn-filters');
+      var modalFilters            = $('#modal-filters');
+      var cancelButton            = $('.btn-cancel-filters');
+      var searchFilters           = $('.search-filters');
+      var searchItemsContainer    = $('.search-items-container');
+      var modalFiltersHeaderClose = $('.modal-filters-header-close');
   
       filtersButton.click(function() {
-        searchFilters.slideToggle();
-        searchItemsContainer.slideToggle();
-      });
-      
-      cancelButton.click(function() {
-        searchFilters.slideToggle();
-        searchItemsContainer.slideToggle();
+        
+        if ( $(window).width() > 768 ) { 
+          
+          searchFilters.slideToggle();
+          searchItemsContainer.slideToggle();
+          
+          cancelButton.click(function() {
+            searchFilters.slideToggle();
+            searchItemsContainer.slideToggle();
+          });
+        } 
+        
+        else {
+          
+          modalFilters.modal('show');
+          
+          modalFiltersHeaderClose.click(function() {
+            modalFilters.modal('hide');
+          }); 
+        }
       });
     
     // sliders
     
-      var priceSlider           = $('#price_slider');
-      var mileageSlider         = $('#mileage_slider');
-      var yearSlider            = $('#year_slider');
-      var engineSizeSlider      = $('#engine_size_slider');
-      var priceSliderValue      = $('#price_slider_val');
-      var mileageSliderValue    = $('#mileage_slider_val');
-      var yearSliderValue       = $('#year_slider_val');
-      var engineSizeSliderValue = $('#engine_size_slider_val')
+      var priceSlider                = $('#price_slider');
+      var mileageSlider              = $('#mileage_slider');
+      var yearSlider                 = $('#year_slider');
+      var engineSizeSlider           = $('#engine_size_slider');
+      var priceSliderModal           = $('#price_slider_modal');
+      var mileageSliderModal         = $('#mileage_slider_modal');
+      var yearSliderModal            = $('#year_slider_modal');
+      var engineSizeSliderModal      = $('#engine_size_slider_modal');
+      var priceSliderValue           = $('#price_slider_val');
+      var mileageSliderValue         = $('#mileage_slider_val');
+      var yearSliderValue            = $('#year_slider_val');
+      var engineSizeSliderValue      = $('#engine_size_slider_val')
+      var priceSliderValueModal      = $('#price_slider_val_modal');
+      var mileageSliderValueModal    = $('#mileage_slider_val_modal');
+      var yearSliderValueModal       = $('#year_slider_val_modal');
+      var engineSizeSliderValueModal = $('#engine_size_slider_val_modal');
       
       priceSlider.slider();
       mileageSlider.slider();
       yearSlider.slider();
       engineSizeSlider.slider();
+      priceSliderModal.slider();
+      mileageSliderModal.slider();
+      yearSliderModal.slider();
+      engineSizeSliderModal.slider();
       
       priceSlider.on('slide', function(slideEvt) {
       	priceSliderValue.text('$' + slideEvt.value);
@@ -455,6 +509,18 @@
       engineSizeSlider.on('slide', function(slideEvt) {
       	engineSizeSliderValue.text(slideEvt.value + ' cc');
       });
+      priceSliderModal.on('slide', function(slideEvt) {
+      	priceSliderValueModal.text('$' + slideEvt.value);
+      });
+      mileageSliderModal.on('slide', function(slideEvt) {
+      	mileageSliderValueModal.text(slideEvt.value + ' km');
+      });
+      yearSliderModal.on('slide', function(slideEvt) {
+      	yearSliderValueModal.text(slideEvt.value);
+      });
+      engineSizeSliderModal.on('slide', function(slideEvt) {
+      	engineSizeSliderModalValue.text(slideEvt.value + ' cc');
+      });
       
       priceSlider.on('slideStop', function(slideEvt) {
       	priceSliderValue.text('$' + slideEvt.value);
@@ -467,6 +533,18 @@
       });
       engineSizeSlider.on('slideStop', function(slideEvt) {
       	engineSizeSliderValue.text(slideEvt.value + ' cc');
+      });
+      priceSliderModal.on('slideStop', function(slideEvt) {
+      	priceSliderValueModal.text('$' + slideEvt.value);
+      });
+      mileageSliderModal.on('slideStop', function(slideEvt) {
+      	mileageSliderValueModal.text(slideEvt.value + ' km');
+      });
+      yearSliderModal.on('slideStop', function(slideEvt) {
+      	yearSliderValueModal.text(slideEvt.value);
+      });
+      engineSizeSliderModal.on('slideStop', function(slideEvt) {
+      	engineSizeSliderValueModal.text(slideEvt.value + ' cc');
       });
   });
 </script>

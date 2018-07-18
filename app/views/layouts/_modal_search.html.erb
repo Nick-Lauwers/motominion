@@ -7,57 +7,57 @@
   </header>
 
   <div class="modal-search-body">
-    <%= form_tag search_vehicles_path, 
-                 method: :get, 
-                 class: "modal-search-form" do %>
+    <%= form_for_filterrific @filterrific,
+                             url: search_vehicles_path,
+                             html: {
+                               id: "filterrific-no-ajax-auto-submit",
+                               class: "modal-search-form"
+                             } do |f| %>
       
       <div class="form-element">
                    
-        <%= collection_select :vehicle, 
-                              :vehicle_make_id,
-                              VehicleMake.all,
-                              :id,
-                              :name,
-                              { include_blank: true,
-                                prompt: "All makes" },
-                              id: "vehicle-make-modal",
-                              class: "form-control
-                                      select-secondary" %>
+        <%= f.collection_select(:with_vehicle_make_id, 
+                                VehicleMake.all,
+                                :id,
+                                :name,
+                                { include_blank: true,
+                                  prompt: "Select make" },
+                                id: "vehicle-make-modal",
+                                class: "form-control
+                                        select-secondary") %>
            
         <i class="fa fa-caret-down fa-lg form-caret" 
            aria-hidden="true"></i>
       </div>
       
       <div class="form-element">
-        
-        <%= grouped_collection_select :vehicle, 
-                                      :vehicle_model_id, 
-                                      VehicleMake.order(:name),
-                                      :vehicle_models,
-                                      :name,
-                                      :id,
-                                      :name,
-                                      { prompt: "All models",
-                                        include_blank: true },
-                                      id: "vehicle-model-modal",
-                                      class: "form-control
-                                              select-secondary" %>
-                                              
+                   
+        <%= f.grouped_collection_select(:with_vehicle_model_id, 
+                                        VehicleMake.order(:name),
+                                        :vehicle_models,
+                                        :name,
+                                        :id,
+                                        :name,
+                                        { include_blank: true,
+                                          prompt: "Select model" },
+                                        id: "vehicle-model-modal",
+                                        class: "form-control
+                                                select-secondary") %>
+           
         <i class="fa fa-caret-down fa-lg form-caret" 
-           aria-hidden="true"></i>
+          aria-hidden="true"></i>
       </div>
       
       <div class="form-element">
       
         <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
-           aria-hidden="true"></i>
+          aria-hidden="true"></i>
         
-        <%= text_field_tag :city, 
-                           params[:city], 
-                           placeholder: "City (Eg. Windsor, ON)", 
-                           class: "form-control 
-                                   form-control-primary 
-                                   typeahead" %>
+        <%= f.text_field :with_city, 
+                         placeholder: "City (Eg. San Francisco, CA)", 
+                         class: "form-control 
+                                 form-control-primary 
+                                 typeahead" %>
       </div>
       
       <div>

@@ -1,0 +1,364 @@
+<!--complete-->
+
+<div class="modal" id="modal-filters" role="dialog">
+  
+  <div class="modal-filters-header">
+    <div class="modal-filters-header-content">
+      
+      <span class="modal-filters-header-title">Filters</span>
+      
+      <i class="fa fa-lg fa-times modal-filters-header-close pull-right" 
+         aria-hidden="true"></i>
+    </div>
+  </div>
+
+  <div class="modal-filters-body">
+    
+    <%= form_for_filterrific @filterrific, 
+                             html: 
+                             { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
+  
+      <div class="vehicle-make-and-model-filters">
+        <div class="row">
+          
+          <div class="col-md-4">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_vehicle_make_id, "Vehicle" %>
+              
+              <div class="form-element"> 
+              
+                <%= f.collection_select(:with_vehicle_make_id,
+                                        VehicleMake.all,
+                                        :id,
+                                        :name,
+                                        { include_blank: true,
+                                          prompt: "All makes" },
+                                        id: "vehicle-make-search",
+                                        class: "form-control select-secondary") %>
+                                                
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_vehicle_model_id, 
+                          "&nbsp;".html_safe, 
+                          class: "hidden-xs" %>
+              
+              <div class="form-element">
+                <%= f.grouped_collection_select(:with_vehicle_model_id,
+                                                VehicleMake.order(:name),
+                                                :vehicle_models,
+                                                :name,
+                                                :id,
+                                                :name,
+                                                { include_blank: 'All models' },
+                                                id: "vehicle-model-search",
+                                                class: "form-control 
+                                                        select-secondary") %>
+                                                        
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_city, "City" %>
+              
+              <div class="form-element">
+                
+                <i class="fa fa-map-pin fa-lg form-pin" 
+                   aria-hidden="true"></i>
+                
+                <%= f.text_field :with_city, 
+                                 placeholder: "E.g. San Francisco, CA", 
+                                 class: "form-control 
+                                         form-control-secondary
+                                         typeahead" %>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="dropdown-filters">
+        
+        <div class="row">
+          
+          <div class="col-md-4 body-style">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_body_style, "Style and Engine" %>
+              
+              <div class="form-element">
+                
+                <%= f.select :with_body_style, 
+                             [ "Classic / Vintage", "Cruiser", "Dual-Sport", 
+                               "Mini / Pocket", "Moped", "Sportbike", 
+                               "Standard", "Touring", "Trike" ],
+                             { include_blank: true,
+                               prompt: "Body style" },
+                             class: "form-control select-primary" %>
+                    
+                <i class="fa fa-motorcycle fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 color">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_color, 
+                          "&nbsp;".html_safe,
+                          class: "hidden-xs" %>
+              
+              <div class="form-element">
+                
+                <%= f.select :with_color, 
+                             [ "Black", "Blue", "Brown", "Gold", 
+                               "Gray", "Green", "Orange", "Pink", "Purple", 
+                               "Red", "Silver", "Teal", "Unknown", "White", 
+                               "Yellow" ],
+                             { include_blank: true,
+                               prompt: "Color" },
+                             class: "form-control select-primary" %>
+    
+                <i class="fa fa-paint-brush fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                 
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 engine-type">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_engine_type, 
+                          "&nbsp;".html_safe,
+                          class: "hidden-xs" %>
+              
+              <div class="form-element">
+                
+                <%= f.select :with_engine_type, 
+                             [ "Single", "Parallel-Twin", "Inline-Three", 
+                               "Inline-Four", "V-Twin", "V4", 
+                               "Flat-Twin / Boxer", "L-Twin", "Other" ],
+                             { include_blank: true,
+                               prompt: "Engine type" },
+                             class: "form-control select-primary" %>
+    
+                <i class="fa fa-cogs fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                 
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-md-4 fuel-type">
+            <div class="form-group form-group-primary">
+              <div class="form-element">
+                
+                <%= f.select :with_fuel_type, 
+                             [ "Electric", "Gasoline" ],
+                             { include_blank: true,
+                               prompt: "Fuel type" },
+                             class: "form-control select-primary" %>
+    
+                <i class="fa fa-leaf fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <!--intentionally left empty-->
+          </div>
+          
+          <div class="col-md-4">
+            <!--intentionally left empty-->
+          </div>
+        </div>
+      </div>
+      
+      <div class="slider-filters">
+        
+        <div class="row">
+          
+          <div class="col-md-4 year">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_year_gte, "Earliest Year" %>
+              
+              <span id="year_slider_val_modal" class="slider-label">1900</span>
+              
+              <%= f.text_field :with_year_gte, 
+                               id: 'year_slider_modal', 
+                               type: 'text',
+                               data: { 'slider-min'   => '1900',
+                                       'slider-max'   => '2016',
+                                       'slider-step'  => '1',
+                                       'slider-value' => '1900' } %>
+            </div>
+          </div>
+          
+          <div class="col-md-4 price">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_actual_price_lte, "Max Price" %>
+              
+              <span id="price_slider_val_modal" class="slider-label">
+                $200000
+              </span>
+              
+              <%= f.text_field :with_actual_price_lte, 
+                               id: 'price_slider_modal', 
+                               type: 'text',
+                               data: { 'slider-min'   => '0',
+                                       'slider-max'   => '200000',
+                                       'slider-step'  => '1',
+                                       'slider-value' => '200000' } %>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mileage">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_mileage_numeric_lte, "Max Mileage" %>
+              
+              <span id="mileage_slider_val_modal" class="slider-label">
+                300000 km
+              </span>
+              
+              <%= f.text_field :with_mileage_numeric_lte,
+                               id: 'mileage_slider_modal', 
+                               type: 'text',
+                               data: { 'slider-min'   => '0',
+                                       'slider-max'   => '300000',
+                                       'slider-step'  => '1',
+                                       'slider-value' => '300000' } %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-md-4 engine-size">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_engine_size_gte, "Min Engine Size" %>
+              
+              <span id="engine_size_slider_val_modal" class="slider-label">
+                50 cc
+              </span>
+              
+              <%= f.text_field :with_engine_size_gte,
+                               id: 'engine_size_slider_modal', 
+                               type: 'text',
+                               data: { 'slider-min'   => '50',
+                                       'slider-max'   => '2294',
+                                       'slider-step'  => '1',
+                                       'slider-value' => '50' } %>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <!--intentionally left empty-->
+          </div>
+          
+          <div class="col-md-4">
+            <!--intentionally left empty-->
+          </div>
+        </div>
+      </div>
+      
+      <div class="installed-options checkbox-filters">
+        
+        <h4 class="installed-options-title">Installed Options</h4>
+        
+        <ul class="installed-options-list">
+          
+          <li>
+            <%= f.check_box :with_cruise_control %>
+            <%= f.label :with_cruise_control, "Cruise Control" %> 
+          </li>
+          
+          <li>
+            <%= f.check_box :with_am_fm %>
+            <%= f.label :with_am_fm, "AM / FM Radio" %> 
+          </li>
+          
+          <li>
+            <%= f.check_box :with_cb_radio %>
+            <%= f.label :with_cb_radio, "CB Radio" %> 
+          </li>
+          
+          <li>
+            <%= f.check_box :with_navigation_system %>
+            <%= f.label :with_navigation_system, "Navigation System" %>
+          </li>
+          
+          <li>
+            <%= f.check_box :with_heated_seats %>
+            <%= f.label :with_heated_seats, "Heated Seats" %> 
+          </li>
+          
+          <li>
+            <%= f.check_box :with_heated_hand_grips %>
+            <%= f.label :with_heated_hand_grips, "Heated Hand Grips" %> 
+          </li>
+          
+          <li>
+            <%= f.check_box :with_alarm_system %>
+            <%= f.label :with_alarm_system, "Alarm System" %>       
+          </li>
+          
+          <li>
+            <%= f.check_box :with_saddlebags %>
+            <%= f.label :with_saddlebags, "Saddlebags" %>          
+          </li>
+          
+          <li>
+            <%= f.check_box :with_trunk %>
+            <%= f.label :with_trunk, "Trunk" %> 
+          </li>
+          
+          <li>
+            <%= f.check_box :with_tow_hitch %>
+            <%= f.label :with_tow_hitch, "Tow Hitch" %>
+          </li>
+          
+          <li>
+            <%= f.check_box :with_cycle_cover %>
+            <%= f.label :with_cycle_cover, "Cycle Cover" %> 
+          </li>
+        </ul>
+      </div>
+      
+      <div class="modal-filters-button-container">
+        <%= f.submit "Apply", class: "btn btn-modal-filters" %>
+      </div>
+    <% end %>
+  </div>
+</div>

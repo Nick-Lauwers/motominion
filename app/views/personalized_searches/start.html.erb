@@ -1,0 +1,120 @@
+<% provide(:title, "Matches") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<%= render 'layouts/secondary_navbar' %>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-md-4 sidenav">
+        <%= render 'layouts/sidenav_matches' %>
+      </div>
+      
+      <div class="col-md-8">
+        
+        <div class="matches-introduction">
+            
+          <i class="fa fa-times matches-introduction-close"></i>
+            
+          <div class="row vertical-align">
+              
+            <div class="col-md-2">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches.png",
+                            class: "matches-introduction-image") %>
+            </div>
+              
+            <div class="col-md-10">
+              <div class="matches-introduction-detail">
+                
+                <span class="matches-introduction-title">
+                  Personalize Your Search
+                </span>
+            
+                <span class="matches-introduction-info">
+                  Let us get to know you! We mix and match your 
+                  preferences, making it easier to discover cars with the 
+                  perfect combination of price, age, and features.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12">
+            
+            <%= form_for @personalized_search do |f| %>
+      
+              <ul class="installed-options-list">
+          
+                <li>
+                  <%= f.check_box :is_classic_vintage %>
+                  <%= f.label :is_classic_vintage, "Classic / Vintage" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_cruiser %>
+                  <%= f.label :is_cruiser, "Cruiser" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_dual_sport %>
+                  <%= f.label :is_dual_sport, "Dual-Sport" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_mini_pocket %>
+                  <%= f.label :is_mini_pocket, "Mini / Pocket" %>
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_moped %>
+                  <%= f.label :is_moped, "Moped" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_sportbike %>
+                  <%= f.label :is_sportbike, "Sportbike" %> 
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_standard %>
+                  <%= f.label :is_standard, "Standard" %>       
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_touring %>
+                  <%= f.label :is_touring, "Touring" %>          
+                </li>
+                
+                <li>
+                  <%= f.check_box :is_trike %>
+                  <%= f.label :is_trike, "Trike" %>          
+                </li>
+              </ul>
+            
+              <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+                
+                Next
+                
+                <i class="fa fa-arrow-right search-parameter-next"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

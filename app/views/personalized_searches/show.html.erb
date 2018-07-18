@@ -1,0 +1,393 @@
+<% provide(:title, "Matches") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<%= render 'layouts/secondary_navbar' %>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-md-4 sidenav">
+        <%= render 'layouts/sidenav_matches' %>
+      </div>
+      
+      <div class="col-md-8">
+        
+        <div class="matches-introduction">
+            
+          <i class="fa fa-times matches-introduction-close"></i>
+            
+          <div class="row vertical-align">
+              
+            <div class="col-md-2 hidden-xs">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches.png",
+                            class: "matches-introduction-image") %>
+            </div>
+              
+            <div class="col-md-10">
+              <div class="matches-introduction-detail">
+                
+                <span class="matches-introduction-title">
+                  Personalize Your Search
+                </span>
+            
+                <span class="matches-introduction-info">
+                  <%= current_user.first_name %>, we’ve grouped vehicles near 
+                  your location based on how well they match your preferences.
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12">
+            
+            <%= form_for_filterrific @filterrific,
+                  url: search_vehicles_path,
+                  html: {
+                    id: "filterrific-no-ajax-auto-submit"
+                  } do |f| %>
+                  
+              <!--<(perc)= f.hidden_field :with_city, value: "San Francisco" %>-->
+
+              <%= f.hidden_field :with_actual_price_lte, 
+                                 value: @personalized_search.price %>
+              
+              <%= f.hidden_field :with_mileage_numeric_lte, 
+                                 value: @personalized_search.mileage %>
+                                 
+              <button type="submit"
+                      class="match-item">
+                
+                <div class="match-item-photo"
+                     style="background-image: url(
+                       '<%= Vehicle.find(1).photos[0].image.url() if 
+                            Vehicle.find(1).photos.length > 0 %>')">
+                </div>
+                
+                <div class="match-item-detail">
+                  
+                  <span class="match-item-title">
+                    Your Best Bets
+                  </span>
+                  
+                  <span class="match-item-info">
+                    We've mixed and matched to find the best combo of price, 
+                    location, and features.
+                  </span>
+                  
+                  <!--<span class="match-item-results">-->
+                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
+                  <!--</span>-->
+                </div>
+                
+                <!--<div class="match-item-price">-->
+                <!--  <span class="match-item-price-content">-->
+                <!--    $5,000 - $15,000-->
+                <!--  </span>-->
+                <!--</div>-->
+              </button>
+            <% end %>
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-md-6">
+            <%= form_for_filterrific @filterrific,
+                  url: search_vehicles_path,
+                  html: {
+                    id: "filterrific-no-ajax-auto-submit"
+                  } do |f| %>
+            
+              <%= f.hidden_field :with_year_gte, 
+                                 value: @personalized_search.year %>
+              
+              <%= f.hidden_field :with_actual_price_lte, 
+                                 value: @personalized_search.price %>
+              
+              <%= f.hidden_field :with_mileage_numeric_lte, 
+                                 value: @personalized_search.mileage %>
+                                 
+              <%= f.hidden_field :with_cruise_control,
+                                 value: @personalized_search.cruise_control %>
+                                 
+              <%= f.hidden_field :with_am_fm,
+                                 value: @personalized_search.am_fm %>
+              
+              <%= f.hidden_field :with_cb_radio,
+                                 value: @personalized_search.cb_radio %>
+              
+              <%= f.hidden_field :with_navigation_system,
+                                 value: @personalized_search.
+                                   navigation_system %>
+                                 
+              <%= f.hidden_field :with_heated_seats,
+                                 value: @personalized_search.heated_seats %>
+              
+              <%= f.hidden_field :with_heated_hand_grips,
+                                 value: @personalized_search.
+                                   heated_hand_grips %>
+                                   
+              <%= f.hidden_field :with_alarm_system,
+                                 value: @personalized_search.alarm_system %>
+              
+              <%= f.hidden_field :with_saddlebags,
+                                 value: @personalized_search.saddlebags %>
+                                          
+              <%= f.hidden_field :with_trunk,
+                                 value: @personalized_search.trunk %>
+                                 
+              <%= f.hidden_field :with_tow_hitch,
+                                 value: @personalized_search.tow_hitch %>
+                                 
+              <%= f.hidden_field :with_cycle_cover,
+                                 value: @personalized_search.cycle_cover %>
+              
+              <button type="submit"
+                      class="match-item">
+              
+                <div class="match-item-photo"
+                     style="background-image: url(
+                       '<%= Vehicle.find(2).photos[0].image.url() if 
+                            Vehicle.find(2).photos.length > 0 %>'">
+                </div>
+                
+                <div class="match-item-detail">
+                  
+                  <span class="match-item-title">
+                    Matches Everything
+                  </span>
+                  
+                  <span class="match-item-info">
+                    <!--And best fits your budget-->
+                  </span>
+                  
+                  <!--<span class="match-item-results">-->
+                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
+                  <!--</span>-->
+                </div>
+                
+                <!--<div class="match-item-price">-->
+                <!--  <span class="match-item-price-content">-->
+                <!--    $5,000 - $15,000-->
+                <!--  </span>-->
+                <!--</div>-->
+              </button>
+            <% end %>
+          </div>
+          
+          <div class="col-md-6">
+            <%= form_for_filterrific @filterrific,
+                  url: search_vehicles_path,
+                  html: {
+                    id: "filterrific-no-ajax-auto-submit"
+                  } do |f| %>
+            
+              <%= f.hidden_field :with_actual_price_lte, 
+                                 value: @personalized_search.price %>
+              
+              <button type="submit"
+                      class="match-item">
+              
+                <div class="match-item-photo"
+                     style="background-image: url(
+                       '<%= Vehicle.find(3).photos[0].image.url() if 
+                            Vehicle.find(3).photos.length > 0 %>'">
+                </div>
+                
+                <div class="match-item-detail">
+                  
+                  <span class="match-item-title">
+                    Stay On Budget
+                  </span>
+                  
+                  <span class="match-item-info">
+                    But flex mileage and features
+                  </span>
+                  
+                  <!--<span class="match-item-results">-->
+                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
+                  <!--</span>-->
+                </div>
+                
+                <!--<div class="match-item-price">-->
+                <!--  <span class="match-item-price-content">-->
+                <!--    $5,000 - $15,000-->
+                <!--  </span>-->
+                <!--</div>-->
+              </button>
+            <% end %>
+          </div>
+        </div>
+        
+        <div class="row">
+          
+          <div class="col-md-6">
+            <%= form_for_filterrific @filterrific,
+                  url: search_vehicles_path,
+                  html: {
+                    id: "filterrific-no-ajax-auto-submit"
+                  } do |f| %>
+            
+              <%= f.hidden_field :with_cruise_control,
+                                 value: @personalized_search.cruise_control %>
+                                 
+              <%= f.hidden_field :with_am_fm,
+                                 value: @personalized_search.am_fm %>
+              
+              <%= f.hidden_field :with_cb_radio,
+                                 value: @personalized_search.cb_radio %>
+              
+              <%= f.hidden_field :with_navigation_system,
+                                 value: @personalized_search.
+                                   navigation_system %>
+                                 
+              <%= f.hidden_field :with_heated_seats,
+                                 value: @personalized_search.heated_seats %>
+              
+              <%= f.hidden_field :with_heated_hand_grips,
+                                 value: @personalized_search.
+                                   heated_hand_grips %>
+                                   
+              <%= f.hidden_field :with_alarm_system,
+                                 value: @personalized_search.alarm_system %>
+              
+              <%= f.hidden_field :with_saddlebags,
+                                 value: @personalized_search.saddlebags %>
+                                          
+              <%= f.hidden_field :with_trunk,
+                                 value: @personalized_search.trunk %>
+                                 
+              <%= f.hidden_field :with_tow_hitch,
+                                 value: @personalized_search.tow_hitch %>
+                                 
+              <%= f.hidden_field :with_cycle_cover,
+                                 value: @personalized_search.cycle_cover %>
+              
+              <button type="submit"
+                      class="match-item">
+              
+                <div class="match-item-photo"
+                     style="background-image: url(
+                       '<%= Vehicle.find(4).photos[0].image.url() if 
+                            Vehicle.find(4).photos.length > 0 %>'">
+                </div>
+                
+                <div class="match-item-detail">
+                  
+                  <span class="match-item-title">
+                    Get All Features
+                  </span>
+                  
+                  <span class="match-item-info">
+                    But flex price and mileage
+                  </span>
+                  
+                  <!--<span class="match-item-results">-->
+                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
+                  <!--</span>-->
+                </div>
+                
+                <!--<div class="match-item-price">-->
+                <!--  <span class="match-item-price-content">-->
+                <!--    $5,000 - $15,000-->
+                <!--  </span>-->
+                <!--</div>-->
+              </button>
+            <% end %>
+          </div>
+          
+          <div class="col-md-6">
+            <%= form_for_filterrific @filterrific,
+                  url: search_vehicles_path,
+                  html: {
+                    id: "filterrific-no-ajax-auto-submit"
+                  } do |f| %>
+            
+              <%= f.hidden_field :with_year_gte, 
+                                 value: @personalized_search.year %>
+              
+              <%= f.hidden_field :with_mileage_numeric_lte, 
+                                 value: @personalized_search.mileage %>
+                                 
+              <%= f.hidden_field :with_cruise_control,
+                                 value: @personalized_search.cruise_control %>
+                                 
+              <%= f.hidden_field :with_am_fm,
+                                 value: @personalized_search.am_fm %>
+              
+              <%= f.hidden_field :with_cb_radio,
+                                 value: @personalized_search.cb_radio %>
+              
+              <%= f.hidden_field :with_navigation_system,
+                                 value: @personalized_search.
+                                   navigation_system %>
+                                 
+              <%= f.hidden_field :with_heated_seats,
+                                 value: @personalized_search.heated_seats %>
+              
+              <%= f.hidden_field :with_heated_hand_grips,
+                                 value: @personalized_search.
+                                   heated_hand_grips %>
+                                   
+              <%= f.hidden_field :with_alarm_system,
+                                 value: @personalized_search.alarm_system %>
+              
+              <%= f.hidden_field :with_saddlebags,
+                                 value: @personalized_search.saddlebags %>
+                                          
+              <%= f.hidden_field :with_trunk,
+                                 value: @personalized_search.trunk %>
+                                 
+              <%= f.hidden_field :with_tow_hitch,
+                                 value: @personalized_search.tow_hitch %>
+                                 
+              <%= f.hidden_field :with_cycle_cover,
+                                 value: @personalized_search.cycle_cover %>
+              
+              <button type="submit"
+                      class="match-item">
+              
+                <div class="match-item-photo"
+                     style="background-image: url(
+                       '<%= Vehicle.find(5).photos[0].image.url() if 
+                            Vehicle.find(5).photos.length > 0 %>'">
+                </div>
+                
+                <div class="match-item-detail">
+                  
+                  <span class="match-item-title">
+                    Pay A Bit More
+                  </span>
+                  
+                  <!--<span class="match-item-results">-->
+                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
+                  <!--</span>-->
+                </div>
+                
+                <!--<div class="match-item-price">-->
+                <!--  <span class="match-item-price-content">-->
+                <!--    $5,000 - $15,000-->
+                <!--  </span>-->
+                <!--</div>-->
+              </button>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

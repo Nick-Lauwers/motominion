@@ -4,31 +4,32 @@ $(function() {
   
     // dependent dropdown
     
-      var vehicleModelSearch   = $('#vehicle-model-search');
-      var vehicleMakeSearch    = $('#vehicle-make-search');
-      var vehicle_model_search = vehicleModelSearch.html();
+      var vehicleModelHome   = $('#vehicle-model-home');
+      var vehicleMakeHome    = $('#vehicle-make-home');
+      var vehicle_model_home = vehicleModelHome.html();
         
-      vehicleModelSearch.prop("disabled", true);
+      vehicleModelHome.prop("disabled", true);
       
-      vehicleMakeSearch.change(function() {
+      vehicleMakeHome.change(function() {
         
-        var vehicle_make_search = $('#vehicle-make-search :selected').text();
-        var escaped_vehicle_make_search = 
-          vehicle_make_search.
+        var vehicle_make_home = $('#vehicle-make-home :selected').text();
+        var escaped_vehicle_make_home = 
+          vehicle_make_home.
             replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-        var options_search = 
-          $(vehicle_model_search).
-            filter("optgroup[label=" + escaped_vehicle_make_search + "]").
+        var options_home = 
+          $(vehicle_model_home).
+            filter("optgroup[label=" + escaped_vehicle_make_home + "]").
             html();
         
-        if (options_search) {
-          vehicleModelSearch.html(options_search);
-          vehicleModelSearch.prop("disabled", false);
+        if (options_home) {
+          vehicleModelHome.html("<option value=''>All models</option>" + 
+                                  options_home);
+          vehicleModelHome.prop("disabled", false);
         } 
         
         else {
-          vehicleModelSearch.empty();
-          vehicleModelSearch.prop("disabled", true);
+          vehicleModelHome.empty();
+          vehicleModelHome.prop("disabled", true);
         }
       });
       
@@ -61,10 +62,10 @@ $(function() {
       
     // smooth scroll
       
-      // var popularSearchesLink = $(".popular-searches a")
+      var personalizedSearchLink = $("a.personalized-search-link")
       
-      // popularSearchesLink.click(function(evn){
-      //   evn.preventDefault();
-      //   $('html, body').scrollTo(this.hash, this.hash, { offset: -50 }); 
-      // });
+      personalizedSearchLink.click(function(evn){
+        evn.preventDefault();
+        $('html, body').scrollTo(this.hash, this.hash, { offset: -50 }); 
+      });
 });

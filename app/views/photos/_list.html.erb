@@ -8,7 +8,9 @@
       <div class="col-md-4 new-vehicle-photo-container">
         
         <div class="new-vehicle-photo">
-          <%= image_tag photo.image.url() %>
+          <img src="<%= photo.image.url() %>"
+               class="rotatable-image"
+               data-rotate="<%= photo.rotation %>" />
         </div>
         
         <!--<(perc)= link_to rotate_vehicle_photo_path(photo.vehicle_id, photo),-->
@@ -17,6 +19,11 @@
         <!--            fa-repeat -->
         <!--            fa-2x -->
         <!--            rotate-photo-icon" aria-hidden="true"></i>-->
+        <!--<(perc) end %>-->
+        
+        <!--<(perc)= link_to rotate_vehicle_photo_path(photo.vehicle_id, photo),-->
+        <!--            method: :put do %>-->
+        <!--  <i class="fa fa-repeat fa-2x rotate-photo-icon"></i>-->
         <!--<(perc) end %>-->
         
         <%= link_to vehicle_photo_path(photo.vehicle_id, photo), 

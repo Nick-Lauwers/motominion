@@ -1,7 +1,14 @@
 <!--completed-->
 <!--are these ordered based on most recent?-->
+
 <li id="test-drive-item-<%= test_drive.id %>" 
-    class="col-md-6 test-drive-item">
+    class="col-md-6 test-drive-item shortlist-item-<%= current_user.
+                                                       favorite_vehicles.
+                                                       where(
+                                                         vehicle: 
+                                                         test_drive.vehicle).
+                                                       first.
+                                                       vehicle_id %>">
   <%= link_to conversation_messages_path(test_drive.conversation) do %>
 
     <div class="test-drive-item-content">
@@ -26,7 +33,9 @@
         </span>
         
         <span class="test-drive-item-info">
-          <%= test_drive.vehicle.listing_name %> · 
+          <%= test_drive.vehicle.year %>
+          <%= test_drive.vehicle.vehicle_make.name %>
+          <%= test_drive.vehicle.vehicle_model.name %> · 
           <%= test_drive.vehicle.user.full_name %>
         </span>
         
@@ -47,183 +56,3 @@
     </div>
   <% end %>
 </li>
-
-<!--<li id="test-drive-item-<(perc)= test_drive.id %>" class="vehicle-item">-->
-<!--  <div class="row vehicle-item-summary">-->
-
-<!--    <div class="col-xs-4 summary-carousel-container">-->
-<!--      <(perc)= link_to test_drive.vehicle, target: "_blank" do %>-->
-      
-<!--        <div id="summary-carousel-<(perc)= test_drive.vehicle.id %>" -->
-<!--             class="carousel summary-carousel" -->
-<!--             data-interval="false">-->
-          
-<!--          <div class="carousel-inner">-->
-            
-<!--            <div class="item active">-->
-<!--              <img src="<(perc)= test_drive.vehicle.photos[0].image.url() if -->
-<!--                            test_drive.vehicle.photos.length > 0 %>">-->
-<!--            </div>-->
-            
-<!--            <div class="item">-->
-<!--              <img src="<(perc)= test_drive.vehicle.photos[1].image.url() if -->
-<!--                            test_drive.vehicle.photos.length > 1 %>">-->
-<!--            </div>-->
-        
-<!--            <div class="item">-->
-<!--              <img src="<(perc)= test_drive.vehicle.photos[2].image.url() if -->
-<!--                            test_drive.vehicle.photos.length > 2 %>">-->
-<!--            </div>-->
-        
-<!--            <div class="item">-->
-<!--              <img src="<(perc)= test_drive.vehicle.photos[3].image.url() if -->
-<!--                            test_drive.vehicle.photos.length > 3 %>">-->
-<!--            </div>-->
-            
-<!--            <div class="item">-->
-<!--              <img src="<(perc)= test_drive.vehicle.photos[4].image.url() if -->
-<!--                            test_drive.vehicle.photos.length > 4 %>">-->
-<!--            </div>-->
-            
-<!--            <div class="item">-->
-<!--              <img src="<(perc)= test_drive.vehicle.photos[5].image.url() if -->
-<!--                            test_drive.vehicle.photos.length > 5 %>">-->
-<!--            </div>-->
-            
-<!--            <div class="item">-->
-<!--              <img src="<(perc)= test_drive.vehicle.photos[6].image.url() if -->
-<!--                            test_drive.vehicle.photos.length > 6 %>">-->
-<!--            </div>-->
-            
-<!--            <div class="item">-->
-<!--              <img src="<(perc)= test_drive.vehicle.photos[7].image.url() if -->
-<!--                            test_drive.vehicle.photos.length > 7 %>">-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      <(perc) end %>-->
-      
-<!--      <a href="#summary-carousel-<(perc)= test_drive.vehicle.id %>" -->
-<!--         data-slide="prev">-->
-<!--        <i class="fa fa-chevron-left fa-2x btn-summary-carousel-left" -->
-<!--           aria-hidden="true"></i>-->
-<!--      </a>-->
-      
-<!--      <a href="#summary-carousel-<(perc)= test_drive.vehicle.id %>" -->
-<!--         data-slide="next">-->
-<!--        <i class="fa fa-chevron-right fa-2x btn-summary-carousel-right" -->
-<!--           aria-hidden="true"></i>-->
-<!--      </a>-->
-<!--    </div>-->
-  
-<!--    <div class="col-xs-6 summary-detail">-->
-      
-<!--      <(perc)= link_to test_drive.vehicle, -->
-<!--                  class: "summary-detail-content", -->
-<!--                  target: "_blank" do %>-->
-          
-<!--        <p class="summary-detail-title">-->
-<!--          <(perc)= test_drive.vehicle.listing_name %>-->
-<!--        </p>-->
-        
-<!--        <p class="summary-detail-seller">-->
-<!--          <(perc)= test_drive.vehicle.user.name %> · -->
-<!--          <span class="average-rating"></span>-->
-<!--        </p>-->
-        
-<!--        <p class="summary-detail-info">-->
-          
-          <!--<(perc)= test_drive.vehicle.summary %>-->
-          
-<!--          <(perc) if test_drive.status == "accepted" %>-->
-<!--            <(perc)= test_drive.vehicle.address %>-->
-            
-<!--          <(perc) else %>-->
-<!--            Address will be revealed when test drive request is accepted.-->
-<!--          <(perc) end %>-->
-<!--        </p>-->
-<!--      <(perc) end %>-->
-      
-      <!--<(perc) if logged_in? && -->
-      <!--      !current_user.favorite_vehicles.exists?(vehicle_id:-->
-      <!--                                             test_drive.vehicle_id) %>-->
-
-      <!--  <(perc)= link_to favorite_vehicle_path(test_drive.vehicle), -->
-      <!--              method: :put do %>-->
-      <!--    <span class="summary-detail-link">-->
-            
-      <!--      <i class="fa fa-heart summary-detail-link-icon" -->
-      <!--         aria-hidden="true"></i>-->
-               
-      <!--      Add to Wish List-->
-      <!--    </span>-->
-      <!--  <(perc) end %>-->
-      <!--<(perc) end %>-->
-<!--    </div>-->
-    
-<!--    <div class="col-xs-2 summary-price">-->
-<!--      <(perc)= link_to test_drive.vehicle, -->
-<!--                  class: "summary-price-content", -->
-<!--                  target: "_blank" do %>-->
-          
-<!--        <p class="summary-price-title">$<(perc)= test_drive.vehicle.price %></p>-->
-        
-        <!--<(perc)= link_to "View", -->
-        <!--            test_drive.vehicle, -->
-        <!--            class: "btn btn-secondary" %>-->
-<!--      <(perc) end %>-->
-<!--    </div>-->
-<!--  </div>-->
-  
-  <!--<div class="vehicle-item-deal">-->
-  <!--  <(perc)= link_to test_drive.vehicle, -->
-  <!--      class: "vehicle-item-deal-content", -->
-  <!--      target: "_blank" do %>-->
-        
-  <!--    <i class="fa fa-shopping-basket deal-detail-icon" -->
-  <!--       aria-hidden="true"></i>-->
-         
-  <!--    <span class="deal-detail-title">1 Additional Product</span> -->
-      
-  <!--    <span class="deal-detail-info">Spoiler at reduced cost</span> -->
-  <!--  <(perc) end %>-->
-  <!--</div>-->
-  
-<!--  <div class="vehicle-item-test-drive">-->
-<!--    <(perc)= link_to conversation_messages_path(test_drive.conversation), -->
-<!--                class: "vehicle-item-test-drive-content" do %>-->
-    
-<!--      <i class="fa fa-calendar-check-o test-drive-detail-icon" -->
-<!--         aria-hidden="true"></i>-->
-         
-<!--      <span class="test-drive-detail-title">-->
-<!--        Status: <(perc)= test_drive.status.capitalize %>-->
-<!--      </span>-->
-      
-<!--      <div class="test-drive-detail-info">-->
-        
-        <!--<span class="appointment-detail-primary-info">-->
-        <!--  <= time_ago_in_words(test_drive.date).capitalize %> away-->
-        <!--</span>-->
-            
-<!--        <span class="appointment-detail-primary-info">-->
-<!--          <(perc)= test_drive.date.strftime("%A, %d %b (%-l:%M%p)") %>-->
-<!--        </span>-->
-<!--      </span>-->
-<!--    <(perc) end %>-->
-<!--  </div>-->
-<!--</li>-->
-
-<!--<script type="text/javascript">-->
-<!--  $(document).ready(function() {-->
-    
-    <!--// rating-->
-<!--    var averageRating = $('.average-rating');-->
-    
-<!--    averageRating.raty({-->
-<!--      path: '/assets',-->
-<!--      readOnly: true,-->
-<!--      score: <(perc)= test_drive.vehicle.average_rating %>-->
-<!--    });-->
-<!--  });-->
-<!--</script>-->

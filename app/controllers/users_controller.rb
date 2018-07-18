@@ -4,7 +4,8 @@
 class UsersController < ApplicationController
   
   before_action :logged_in_user, only: [:edit, :update, :add_card]
-  before_action :correct_user,   only: [:edit, :update, :profile_pic]
+  before_action :correct_user,   only: [:edit, :update, :profile_pic, 
+                                        :profile_pic_dealer, :dealer_details]
   
   def new
     
@@ -34,12 +35,17 @@ class UsersController < ApplicationController
         @user.clubs.push(org)
       end
       
-      if @user.dealership_admin
+      if @user.dealership_id.present?
         log_in @user
-        redirect_to new_dealership_dealer_invitation_path(@user.dealership_id)
-      elsif @user.dealership_id.present?
-        log_in @user
-        redirect_to dealership_path(@user.dealership_id)
+        redirect_to dealer_details_user_path(@user)
+        
+      # if @user.dealership_admin
+      #   log_in @user
+      #   redirect_to new_dealership_dealer_invitation_path(@user.dealership_id)
+      # elsif @user.dealership_id.present?
+      #   log_in @user
+      #   redirect_to dealership_path(@user.dealership_id)
+      
       else
         @user.send_activation_email
         flash[:info] = "Please check your email to activate your account."
@@ -47,16 +53,12 @@ class UsersController < ApplicationController
       end
       
     else
-      
-      flash[:failure]  = "Please enter a valid email address and a password of at least six characters."
-      redirect_to :back
-      
       # if params[:dealership_admin].present?
       #   render 'new_dealer_admin'
       # elsif params[:dealership_id].present?
       #   render 'new_dealer'
       # else
-      #   render 'new'
+        render 'new'
       # end
     end
   end
@@ -67,8 +69,14 @@ class UsersController < ApplicationController
   def update
     
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_back_or edit_user_path(@user)
+      
+      if params[:redirect_location].present?
+        redirect_to params[:redirect_location]
+      
+      else
+        flash[:success] = "Profile updated"
+        redirect_back_or edit_user_path(@user)
+      end
       
     else
       render 'edit'
@@ -83,6 +91,45 @@ class UsersController < ApplicationController
   end
   
   def profile_pic
+  end
+  
+  def profile_pic_dealer
+  end
+  
+  def dealer_details
+  end
+
+  def shortlist
+    
+    @purchases = Purchase.where(buyer_id: current_user.id)
+    
+    @test_drives = Appointment.where("buyer_id = ? AND date >= ?", 
+                                     current_user.id, 
+                                     Time.now)
+    
+    @loved_items = current_user.favorite_vehicles.where(is_loved: true)
+    
+    @liked_items = current_user.favorite_vehicles.where(is_liked: true)
+    
+    @vehicles = current_user.favorites
+
+    @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
+      
+      marker.lat vehicle.latitude
+      marker.lng vehicle.longitude
+      
+      marker.picture({
+        url: "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png",
+        width:  32,
+        height: 32
+      })
+      
+      marker.infowindow render_to_string(partial: "vehicles/map_item",
+                                         object:  vehicle,
+                                         as:      :vehicle)
+      
+      marker.json({ :id => vehicle.id })
+    end
   end
   
   def payment

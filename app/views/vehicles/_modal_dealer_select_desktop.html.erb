@@ -1,0 +1,53 @@
+<div class="modal-dealer-select-desktop-header">
+  
+  <i class="fa fa-times fa-lg modal-dealer-select-desktop-close" 
+     aria-hidden="true"
+     data-dismiss="modal"></i>
+  
+  <div class="modal-dealer-select-desktop-header-content">
+    <div class="row vertical-align">
+    
+      <div class="col-md-4">
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/dealer-select.png") %>
+      </div>
+      
+      <div class="col-md-8">
+        <h1 class="modal-dealer-select-desktop-title">Select An Associate</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-dealer-select-desktop-body">
+  <div class="modal-dealer-select-desktop-body-content">
+    
+    <h2 class="modal-dealer-select-desktop-subtitle">
+      At Motominion, we believe in the power of the consumer.
+    </h2>
+    
+    <span class="modal-dealer-select-desktop-info">
+      Select the dealer that you would most like to work with.
+    </span>
+    
+    <div class="modal-dealer-select-scroll">
+      
+      <i class="fa 
+                fa-lg 
+                fa-chevron-left 
+                modal-dealer-select-left"></i>
+
+      <i class="fa 
+                fa-lg 
+                fa-chevron-right 
+                modal-dealer-select-right"></i>
+
+      <ol class="modal-dealer-select-list">
+        <%= render partial:    'modal_dealer_select_item',
+                   collection: User.where(
+                                 dealership_id: @vehicle.dealership_id
+                               ),
+                   as:         :dealer %>
+      </ol>
+    </div>
+  </div>
+</div>

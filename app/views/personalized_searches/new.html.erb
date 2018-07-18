@@ -1,0 +1,236 @@
+<% provide(:title, "Matches") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<%= render 'layouts/secondary_navbar' %>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+    
+      <div class="col-md-4 sidenav">
+        <%= render 'layouts/sidenav_matches' %>
+      </div>
+      
+      <div class="col-md-8">
+        
+        <%= form_for @personalized_search do |f| %>
+
+          <%= render 'shared/error_messages', object: f.object %>
+        
+          <div class="update-panel">
+      
+            <h2 class="panel-title">Buyer's Profile</h2>
+            
+            <ul class="installed-options-list">
+            
+              <li>
+                <%= f.check_box :is_classic_vintage %>
+                <%= f.label :is_classic_vintage, "Classic / Vintage" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :is_cruiser %>
+                <%= f.label :is_cruiser, "Cruiser" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :is_dual_sport %>
+                <%= f.label :is_dual_sport, "Dual-Sport" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :is_mini_pocket %>
+                <%= f.label :is_mini_pocket, "Mini / Pocket" %>
+              </li>
+              
+              <li>
+                <%= f.check_box :is_moped %>
+                <%= f.label :is_moped, "Moped" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :is_sportbike %>
+                <%= f.label :is_sportbike, "Sportbike" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :is_standard %>
+                <%= f.label :is_standard, "Standard" %>       
+              </li>
+              
+              <li>
+                <%= f.check_box :is_touring %>
+                <%= f.label :is_touring, "Touring" %>          
+              </li>
+              
+              <li>
+                <%= f.check_box :is_trike %>
+                <%= f.label :is_trike, "Trike" %>          
+              </li>
+            </ul>
+            
+            <div class="form-group form-group-search-parameter">
+        
+              <%= f.label :price, "Max Price" %>
+        
+              <span id="new_price_slider_val" class="slider-label">
+                $200000
+              </span>
+        
+              <%= f.text_field :price, 
+                               id: 'new_price_slider', 
+                               type: 'text',
+                               data: { 'slider-min'   => '0',
+                                       'slider-max'   => '200000',
+                                       'slider-step'  => '1',
+                                       'slider-value' => '200000' } %>
+            </div>
+            
+            <div class="form-group form-group-search-parameter">
+        
+              <%= f.label :mileage, "Max Mileage" %>
+          
+              <span id="new_mileage_slider_val" class="slider-label">
+                300000 mi
+              </span>
+              
+              <%= f.text_field :mileage,
+                               id: 'new_mileage_slider', 
+                               type: 'text',
+                               data: { 'slider-min'   => '0',
+                                       'slider-max'   => '300000',
+                                       'slider-step'  => '1',
+                                       'slider-value' => '300000' } %>
+            </div>
+            
+            <div class="form-group form-group-search-parameter">
+        
+              <%= f.label :year, "Earliest Year" %>
+              
+              <span id="new_year_slider_val" class="slider-label">
+                1900
+              </span>
+              
+              <%= f.text_field :year, 
+                               id: 'new_year_slider', 
+                               type: 'text',
+                               data: { 'slider-min'   => '1900',
+                                       'slider-max'   => '2016',
+                                       'slider-step'  => '1',
+                                       'slider-value' => '1900' } %>
+            </div>
+            
+            <ul class="installed-options-list">
+  
+              <li>
+                <%= f.check_box :cruise_control %>
+                <%= f.label :cruise_control, "Cruise Control" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :am_fm %>
+                <%= f.label :am_fm, "AM / FM Radio" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :cb_radio %>
+                <%= f.label :cb_radio, "CB Radio" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :navigation_system %>
+                <%= f.label :navigation_system, "Navigation System" %>
+              </li>
+              
+              <li>
+                <%= f.check_box :heated_seats %>
+                <%= f.label :heated_seats, "Heated Seats" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :heated_hand_grips %>
+                <%= f.label :heated_hand_grips, "Heated Hand Grips" %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :alarm_system %>
+                <%= f.label :alarm_system, "Alarm System" %>       
+              </li>
+              
+              <li>
+                <%= f.check_box :saddlebags %>
+                <%= f.label :saddlebags %>          
+              </li>
+              
+              <li>
+                <%= f.check_box :trunk %>
+                <%= f.label :trunk %> 
+              </li>
+              
+              <li>
+                <%= f.check_box :tow_hitch %>
+                <%= f.label :tow_hitch, "Tow Hitch" %>
+              </li>
+              
+              <li>
+                <%= f.check_box :cycle_cover %>
+                <%= f.label :cycle_cover, "Cycle Cover" %> 
+              </li>
+            </ul>
+            
+            <%= f.submit "Save", class: "btn btn-primary btn-basics" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // sliders
+      
+      var newPriceSlider        = $('#new_price_slider');
+      var newPriceSliderValue   = $('#new_price_slider_val');
+      var newMileageSlider      = $('#new_mileage_slider');
+      var newMileageSliderValue = $('#new_mileage_slider_val');
+      var newYearSlider         = $('#new_year_slider');
+      var newYearSliderValue    = $('#new_year_slider_val');
+      
+      newPriceSlider.slider();
+      newMileageSlider.slider();
+      newYearSlider.slider();
+      
+      newPriceSlider.on('slide', function(slideEvt) {
+      	newPriceSliderValue.text('$' + slideEvt.value);
+      });
+      newMileageSlider.on('slide', function(slideEvt) {
+      	newMileageSliderValue.text('$' + slideEvt.value);
+      });
+      newYearSlider.on('slide', function(slideEvt) {
+      	newYearSliderValue.text('$' + slideEvt.value);
+      });
+      
+      newPriceSlider.on('slideStop', function(slideEvt) {
+      	newPriceSliderValue.text('$' + slideEvt.value);
+      }); 
+      newMileageSlider.on('slideStop', function(slideEvt) {
+      	newMileageSliderValue.text('$' + slideEvt.value);
+      });
+      newYearSlider.on('slideStop', function(slideEvt) {
+      	newYearSliderValue.text('$' + slideEvt.value);
+      });
+  });
+</script>

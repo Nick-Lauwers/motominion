@@ -47,6 +47,99 @@ $(function() {
         evn.preventDefault();
         $('html, body').scrollTo(this.hash, this.hash); 
       });
+  
+  // shortlist
+  
+    // fixed map
+      
+      var fixedShortlistMap = $('#shortlist-map');
+     
+      fixedShortlistMap.stick_in_parent();
+      
+    // mobile shortlist nav
+      
+      var shortlistNavGrid           = $('.shortlist-nav-grid');
+      var shortlistNavMap            = $('.shortlist-nav-map');
+      var shortlistNavGridIcon       = $('.shortlist-nav-grid-icon');
+      var shortlistNavMapIcon        = $('.shortlist-nav-map-icon');
+      var shortlistResults           = $('.shortlist-results');
+      var shortlistResultsBackground = $('.shortlist-results-background');
+      var shortlistMap               = $('#shortlist-map');
+      
+      shortlistNavGrid.click(function() {
+        
+        if (shortlistNavGrid.hasClass('shortlist-nav-grid-inactive')) {
+        	
+        	shortlistNavGrid.
+        	  removeClass('shortlist-nav-grid-inactive').
+        	  addClass('shortlist-nav-grid-active');
+        	  
+        	shortlistNavMap.
+        	  removeClass('shortlist-nav-map-active').
+        	  addClass('shortlist-nav-map-inactive');
+        	  
+        	shortlistNavGridIcon.
+        	  removeClass('shortlist-nav-grid-icon-inactive').
+        	  addClass('shortlist-nav-grid-icon-active');
+        	
+        	shortlistNavMapIcon.
+        	  removeClass('shortlist-nav-map-icon-active').
+        	  addClass('shortlist-nav-map-icon-inactive');
+        	 
+        	shortlistMap.css({"z-index": -1000});
+        	shortlistResultsBackground.css({"display": "block"});
+        	shortlistResults.height(shortlistResultsBackground.outerHeight() + 50);
+        }
+      });
+    
+      shortlistNavMap.click(function() {
+        
+        if (shortlistNavMap.hasClass('shortlist-nav-map-inactive')) {
+        	
+        	shortlistNavMap.
+        	  removeClass('shortlist-nav-map-inactive').
+        	  addClass('shortlist-nav-map-active');
+        	  
+        	shortlistNavGrid.
+        	  removeClass('shortlist-nav-grid-active').
+        	  addClass('shortlist-nav-grid-inactive');
+        	  
+        	shortlistNavMapIcon.
+        	  removeClass('shortlist-nav-map-icon-inactive').
+        	  addClass('shortlist-nav-map-icon-active');
+        	
+        	shortlistNavGridIcon.
+        	  removeClass('shortlist-nav-grid-icon-active').
+        	  addClass('shortlist-nav-grid-icon-inactive');
+        	  
+        	shortlistMap.css({"z-index": 1000});
+        	shortlistResultsBackground.css({"display": "none"});
+        	shortlistResults.height(shortlistMap.outerHeight() + 50);
+        }
+          
+        else {
+          
+          shortlistNavMap.
+        	  removeClass('shortlist-nav-map-active').
+        	  addClass('shortlist-nav-map-inactive');
+        	  
+        	 shortlistNavGrid.
+        	  removeClass('shortlist-nav-grid-inactive').
+        	  addClass('shortlist-nav-grid-active');
+        	  
+        	shortlistNavMapIcon.
+        	  removeClass('shortlist-nav-map-icon-active').
+        	  addClass('shortlist-nav-map-icon-inactive');
+        	 
+        	shortlistNavGridIcon.
+        	  removeClass('shortlist-nav-grid-icon-inactive').
+        	  addClass('shortlist-nav-grid-icon-active');
+        	  
+          shortlistMap.css({"z-index": -1000});
+        	shortlistResultsBackground.css({"display": "block"});
+        	shortlistResults.height(shortlistResultsBackground.outerHeight() + 50);
+        }
+      });
 });
 
 // var ready = function () {

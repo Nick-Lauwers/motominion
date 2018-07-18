@@ -1,0 +1,75 @@
+<% provide(:title, 'Dealer SignUp') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<div class="dealer-form-background">
+    
+  <div class="dealer-form">
+    
+    <div class="col-md-5 dealer-form-content">
+      
+      <div class="dealer-form-detail">
+        
+        <h1 class="dealer-form-title">Profile Photo</h1>
+        
+        <h2 class="dealer-form-subtitle">
+          Photos are used to maintain trust.
+        </h2>
+        
+        <p class="dealer-form-info">
+          Ensure that it is a clear frontal face photo.
+        </p>
+        
+        <%= form_for @user, html: { multipart: true } do |f| %>
+          
+          <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+              
+              <div class="dealer-pic">
+                <%= image_tag @user.avatar.url, class: "uploaded-photo" %>
+              </div>
+              
+              <div class="upload-button-dealerships">
+                    
+                <div class="upload-button-dealerships-content">
+                  Upload Photo
+                </div>
+                
+                <%= f.file_field :avatar, class: "upload-hidden" %>
+              </div>
+            </div>
+            
+            <div class="col-md-2">
+              <!--intentionally left empty-->
+            </div>
+          </div>
+          
+          <% if @user.dealership_admin %>
+            <%= hidden_field_tag :redirect_location, 
+                  new_dealership_dealer_invitation_path(@user.dealership_id) %>
+          <% else %>
+            <%= hidden_field_tag :redirect_location, 
+                  dealership_path(@user.dealership_id) %>
+          <% end %>
+          
+          <%= f.submit "Save", class: "btn btn-tertiary" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="col-md-7">
+      <!--intentionally left empty-->
+    </div>
+  </div>
+  
+  <div class="dealer-form-photo"></div>
+</div>

@@ -1,0 +1,88 @@
+<div class="search-personalization">
+  
+  <i class="fa fa-times search-personalization-close"></i>
+  
+  <span class="search-personalization-title">
+    Personalize Your Search
+  </span>
+  
+  <p class="search-personalization-info">
+    Not sure of a make or model? We provide a list of vehicles that is right 
+    for your needs.
+  </p>
+  
+  <%= form_for @personalized_search do |f| %>
+  
+    <div class="search-personalization-parameters">
+
+      <div class="search-personalization-left">
+        <i class="fa fa-chevron-left"></i>
+      </div>
+      
+      <div class="search-personalization-right">
+        <i class="fa fa-chevron-right"></i>
+      </div> 
+
+      <ul class="parameters-list">
+          
+        <li>
+          <%= f.check_box :is_classic_vintage %>
+          <%= f.label :is_classic_vintage, "Classic / Vintage" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :is_cruiser %>
+          <%= f.label :is_cruiser, "Cruiser" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :is_dual_sport %>
+          <%= f.label :is_dual_sport, "Dual-Sport" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :is_mini_pocket %>
+          <%= f.label :is_mini_pocket, "Mini / Pocket" %>
+        </li>
+        
+        <li>
+          <%= f.check_box :is_moped %>
+          <%= f.label :is_moped, "Moped" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :is_sportbike %>
+          <%= f.label :is_sportbike, "Sportbike" %> 
+        </li>
+        
+        <li>
+          <%= f.check_box :is_standard %>
+          <%= f.label :is_standard, "Standard" %>       
+        </li>
+        
+        <li>
+          <%= f.check_box :is_touring %>
+          <%= f.label :is_touring, "Touring" %>          
+        </li>
+        
+        <li>
+          <%= f.check_box :is_trike %>
+          <%= f.label :is_trike, "Trike" %>          
+        </li>
+      </ul>
+    </div>
+    
+    <%= hidden_field_tag :redirect_location,
+                         price_personalized_search_path(@personalized_search) if 
+                           (current_user && 
+                            current_user.personalized_search.present?) %>
+    
+    <%= button_tag(type: 'submit', class: "btn-parameters") do %>
+      
+      <i class="fa fa-search fa-lg filters-icon" 
+         aria-hidden="true"></i>
+      
+      Search
+    <% end %>
+  <% end %>
+</div>

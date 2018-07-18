@@ -1,0 +1,191 @@
+<!--completed-->
+
+<!--completed-->
+
+<% provide(:title, "Your Listings") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<nav class="secondary-navbar hidden-xs">
+  <div class="secondary-navbar-nav">
+    <ul class="nav navbar-nav navbar-left">
+      
+      <li><%= link_to "Dashboard", dashboard_path %></li>
+      <li><%= link_to "Inbox",     conversations_path %></li>
+      <li><%= link_to "Shortlist", shortlist_user_path %></li>
+      
+      <li>
+        <%= link_to "Matches", 
+                    personalized_search_path(current_user.personalized_search) %>
+      </li>
+      
+      <li class="nav-active"><%= link_to "Your Listings", vehicles_path %></li>
+      <li><%= link_to "Profile", edit_user_path(current_user) %></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="dropdown dropdown-backend visible-xs">
+  
+  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+    Your Listings <b class="caret"></b>
+  </a>
+  
+  <ul class="dropdown-menu">
+    
+    <li><%= link_to "Dashboard",   dashboard_path %></li>
+    <li><%= link_to "Inbox",       conversations_path %></li>
+    <li><%= link_to "Shortlist",   shortlist_user_path %></li>
+    
+    <li>
+      <%= link_to "Matches",     
+                  personalized_search_path(current_user.personalized_search) %>
+    </li>
+    
+    <li class="dropdown-active">
+      <%= link_to "Your Listings", vehicles_path %>
+    </li>
+    
+    <li><%= link_to "Profile", edit_user_path(current_user) %></li>
+  </ul>
+</nav>
+
+<div class="backend">
+  <div class="backend-content">
+    <div class="row">
+        
+      <div class="col-md-3 purchase-info">
+        <div class="purchase-info-content">
+          
+          <div class="purchase-info-avatar avatar-general",
+               style="background-image: url(
+                 '<%= @vehicle.photos[0].image.url() if 
+                      @vehicle.photos.length > 0 %>'">
+          </div>
+          
+          <div class="purchase-info-title">
+            <%= @vehicle.year %>
+            <%= @vehicle.vehicle_make.name %> 
+            <%= @vehicle.vehicle_model.name %>
+          </div>
+          
+          <span class="purchase-info-price">
+            $ <%= @vehicle.actual_price %>
+          </span>
+          
+          <span class="purchase-info-time">
+            Posted <%= time_ago_in_words(@vehicle.posted_at) %> ago
+          </span>
+        </div>
+      </div>
+      
+      <div class="col-md-8 col-md-offset-1">
+        
+        <%= link_to vehicles_path, class: "vehicles-return" do %>
+          <i class="fa fa-angle-left"></i>
+          Return to Your Listings
+        <% end %>
+        
+        <% if current_user.dealership_id.present? %>
+        
+          <div class="shortlist-purchases">
+            
+            <div class="search-introduction">
+            
+              <div class="search-introduction-static">
+                
+                <div class="row vertical-align">
+                  
+                  <div class="col-md-2">
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/purchase.png",
+                                  class: "search-introduction-static-image
+                                          hidden-xs") %>
+                  </div>
+                  
+                  <div class="col-md-10">
+                    
+                    <span class="search-introduction-static-title">
+                      Orders (<%= @orders.count %>)
+                    </span>
+                
+                    <p class="search-introduction-static-info">
+                      If any customers have ordered the vehicle online, you can
+                      view the details here.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <% if @orders.exists? %>
+              <ol class="row backend-list">
+                <%= render partial:    "purchases/order", 
+                           collection: @orders %>
+              </ol>
+              
+            <% else %>
+              <p class="empty-list-info">
+                No orders received
+              </p>
+            <% end %>
+          </div>
+        <% end %>
+        
+        <div class="shortlist-test-drives">
+        
+          <div class="search-introduction">
+          
+            <div class="search-introduction-static">
+              
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/test-drives-large.png",
+                                class: "search-introduction-static-image
+                                        hidden-xs") %>
+                </div>
+                
+                <div class="col-md-10">
+                  
+                  <span class="search-introduction-static-title">
+                    Test Drives (<%= @test_drives.count %>)
+                  </span>
+              
+                  <p class="search-introduction-static-info">
+                    When a customer asks to test drive your vehicle, we make 
+                    sure to track the details below. Respond to each customer by
+                    clicking on the request. Reply promptly; the sooner you get
+                    back to the customer, the better your overall rating.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <% if @test_drives.exists? %>
+            <ol class="row test-drives">
+              <%= render partial:    "appointments/customer_consumer_activity", 
+                         collection: @test_drives,
+                         as:         :customer %>
+            </ol>
+            
+          <% else %>
+            <p class="empty-list-info">
+              No test drive requests received
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

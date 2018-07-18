@@ -10,18 +10,22 @@
 
       <%= f.label :name %>
       
-      <%= f.text_field :name, 
-                       placeholder: "Name", 
-                       class: "form-control form-control-primary" %>
+      <div class="form-element">
+        <%= f.text_field :name, 
+                         placeholder: "Name", 
+                         class: "form-control form-control-primary" %>
+      </div>
     </div>
     
     <div class="col-md-6 form-group">
 
       <%= f.label :email, "Email Address" %>
       
-      <%= f.text_field :email, 
-                       placeholder: "Email address", 
-                       class: "form-control form-control-primary" %>
+      <div class="form-element">
+        <%= f.text_field :email, 
+                         placeholder: "Email address", 
+                         class: "form-control form-control-primary" %>
+      </div>
     </div>
   </div>
   
@@ -29,11 +33,13 @@
     
     <div class="col-md-6 form-group">
 
-        <%= f.label :phone_number, "Phone Number" %>
-        
+      <%= f.label :phone_number, "Phone Number" %>
+      
+      <div class="form-element">
         <%= f.text_field :phone_number, 
                          placeholder: "Phone number (optional)", 
                          class: "form-control form-control-primary" %>
+      </div>
     </div>
     
     <div class="col-md-6 form-group">
@@ -61,10 +67,12 @@
   
     <%= f.label :content, "Question or Message" %>
     
-    <%= f.text_area :content, 
-                    rows: 2,
-                    placeholder: "Question or message", 
-                    class: "form-control form-control-primary" %>
+    <div class="form-element">
+      <%= f.text_area :content, 
+                      rows: 2,
+                      placeholder: "Question or message", 
+                      class: "form-control form-control-primary" %>
+    </div>
   </div>
   
   <%= f.submit "Send Message", class: "submit btn btn-primary" %>

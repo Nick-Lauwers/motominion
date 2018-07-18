@@ -84,8 +84,7 @@
 
   <%= f.hidden_field :vehicle_id, value: params[:vehicle_id] %>
   
-  <%= f.hidden_field :seller_id, 
-                     value: Vehicle.find(params[:vehicle_id]).user.id %>
+  <%= f.hidden_field :seller_id, value: @dealer.id %>
   
   <%= f.submit "Save", class: "btn btn-primary btn-basics" %>
 <% end %>

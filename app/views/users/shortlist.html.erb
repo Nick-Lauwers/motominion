@@ -1,0 +1,363 @@
+<!--completed-->
+
+<!--completed-->
+
+<% provide(:title, "Shortlist") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'purchases/modal_purchase' %>
+
+<%= render 'layouts/contact' %>
+
+<%= render 'layouts/hero_backend' %>
+
+<%= render 'layouts/secondary_navbar' %>
+
+<div class="shortlist-results">
+  
+  <div id="shortlist-map"></div>
+  
+  <div class="shortlist-results-background">
+    <div class="shortlist-list-container">
+      <div class="row">
+        
+        <div class="col-md-4 hidden-xs">
+          <!--intentionally left empty-->
+        </div>
+        
+        <div class="col-md-8 shortlist-list-content">
+          
+          <% if @purchases.exists? %>
+            <div class="shortlist-purchases">
+              
+              <div class="search-introduction">
+              
+                <div class="search-introduction-static">
+                  
+                  <div class="row vertical-align">
+                    
+                    <div class="col-md-2 hidden-xs">
+                      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/purchase.png",
+                                    class: "search-introduction-static-image") %>
+                    </div>
+                    
+                    <div class="col-md-10">
+                      
+                      <span class="search-introduction-static-title">
+                        Purchases (<%= @purchases.count %>)
+                      </span>
+                  
+                      <p class="search-introduction-static-info">
+                        If you have purchased any vehicles online, the details can 
+                        be viewed here. Make changes when necessary, but keep in 
+                        mind that modifications may slow processing time.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <ol class="row backend-list">
+                <%= render partial:    "purchases/purchase", 
+                           collection: @purchases %>
+              </ol>
+            </div>
+          <% end %>
+          
+          <div class="shortlist-test-drives">
+          
+            <div class="search-introduction">
+            
+              <div class="search-introduction-static">
+                
+                <div class="row vertical-align">
+                  
+                  <div class="col-md-2 hidden-xs">
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/test-drives-large.png",
+                                  class: "search-introduction-static-image") %>
+                  </div>
+                  
+                  <div class="col-md-10">
+                    
+                    <span class="search-introduction-static-title">
+                      Test Drives (<%= @test_drives.count %>)
+                    </span>
+                
+                    <p class="search-introduction-static-info">
+                      We keep track of all your test drives. When a seller 
+                      approves your test drive request, its status will change 
+                      from "Pending" to "Accepted" and the vehicle's address 
+                      will be displayed.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <% if @test_drives.exists? %>
+              <ol class="row test-drives">
+                <%= render partial:    "appointments/test_drive", 
+                           collection: @test_drives %>
+              </ol>
+              
+            <% else %>
+              <p class="empty-list-info">
+                No test drives scheduled
+              </p>
+            <% end %>
+          </div>
+          
+          <div class="shortlist-loves">
+
+            <div class="search-introduction">
+            
+              <div class="search-introduction-static">
+                
+                <div class="row vertical-align">
+                  
+                  <div class="col-md-2 hidden-xs">
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/shortlist.png",
+                                  class: "search-introduction-static-image") %>
+                  </div>
+                  
+                  <div class="col-md-10">
+                    
+                    <span class="search-introduction-static-title">
+                      Love It! (<%= @loved_items.count %>)
+                    </span>
+                
+                    <p class="search-introduction-static-info">
+                      These are motorcycles that you can't do without!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <% if @loved_items.exists? %>
+              <ol class="row search-items">
+                <%= render partial: "shortlist_item",
+                           collection: @loved_items %>
+              </ol>
+            
+            <% else %>
+              <p class="empty-list-info">
+                No motorcycles added
+              </p>
+            <% end %>
+          </div>
+          
+          <div class="shortlist-loves">
+
+            <div class="search-introduction">
+            
+              <div class="search-introduction-static">
+                
+                <div class="row vertical-align">
+                  
+                  <div class="col-md-2 hidden-xs">
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/liked.png",
+                                  class: "search-introduction-static-image") %>
+                  </div>
+                  
+                  <div class="col-md-10">
+                    
+                    <span class="search-introduction-static-title">
+                      Maybe (<%= @liked_items.count %>)
+                    </span>
+                
+                    <p class="search-introduction-static-info">
+                      These are bikes that you are still considering and so you 
+                      have added them to your shortlist.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <% if @liked_items.exists? %>
+              <ol class="row search-items">
+                <%= render partial: "shortlist_item",
+                           collection: @liked_items %>
+              </ol>
+            
+            <% else %>
+              <p class="empty-list-info">
+                No motorcycles added
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="shortlist-nav-mobile visible-xs">
+
+  <div class="shortlist-nav-grid shortlist-nav-grid-active">
+    <i class="fa 
+              fa-lg
+              fa-th-large 
+              shortlist-nav-grid-icon 
+              shortlist-nav-grid-icon-active" 
+       aria-hidden="true"></i> 
+  </div>
+  
+  <div class="shortlist-nav-map shortlist-nav-map-inactive">
+    <i class="fa 
+              fa-lg
+              fa-map-marker 
+              shortlist-nav-map-icon
+              shortlist-nav-map-icon-inactive" 
+       aria-hidden="true"></i> 
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // shortlist results height
+      
+      var shortlistResults           = $('.shortlist-results');
+      var shortlistResultsBackground = $('.shortlist-results-background');
+      
+      if ( $(window).width() <= 768 ) {    
+        shortlistResults.height(shortlistResultsBackground.outerHeight());
+      }
+    
+    // map
+    
+      var hoverMarkerIcon = {
+        url:    "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png",
+        width:  32,
+        height: 32
+      };
+      
+      handler = Gmaps.build('Google');
+      
+      handler.buildMap({
+        
+        provider: {
+          
+          maxZoom:           14,
+          scrollwheel:       false,
+          mapTypeControl:    false,
+          streetViewControl: false,
+          clickableIcons:    false,
+          
+          zoomControlOptions: {
+            position: google.maps.ControlPosition.TOP_LEFT
+          },
+          
+          styles: [
+            {
+              "featureType": "landscape",
+              "stylers": [
+                { "hue": "#FFBB00" },
+                { "saturation": 43.400000000000006 },
+                { "lightness": 37.599999999999994 },
+                { "gamma": 1 }
+              ]
+            },
+            
+            {
+              "featureType": "road.highway",
+              "stylers": [
+                { "hue": "#FFC200" },
+                { "saturation": -61.8 },
+                { "lightness": 45.599999999999994 },
+                { "gamma": 1 }
+              ]
+            },
+      
+            {
+              "featureType": "road.arterial",
+              "stylers": [
+                { "hue": "#FF0300" },
+                { "saturation": -100 },
+                { "lightness": 51.19999999999999 },
+                { "gamma": 1 }
+              ]
+            },
+          
+            {
+              "featureType": "road.local",
+              "stylers": [
+                { "hue": "#FF0300" },
+                { "saturation": -100 },
+                { "lightness": 52 },
+                { "gamma": 1 }
+              ]
+            },
+          
+            {
+              "featureType": "water",
+              "stylers": [
+                { "hue": "#0078FF" },
+                { "saturation": -13.200000000000003 },
+                { "lightness": 2.4000000000000057 },
+                { "gamma": 1 }
+              ]
+            },
+          
+            {
+              "featureType": "poi",
+              "stylers": [
+                { "hue": "#00FF6A" },
+                { "saturation": -1.0989010989011234 },
+                { "lightness": 11.200000000000017 },
+                { "gamma": 1 }
+              ]
+            }
+          ]
+        },
+            
+        internal: {
+          id: 'shortlist-map'
+        }
+      }, function() {
+        
+        if ( $(window).width() > 768 ) { 
+          markers = handler.addMarkers(<%= raw @hash.to_json %>,
+                                       { clickable: false }) }
+        
+        else {
+          markers = handler.addMarkers(<%= raw @hash.to_json %>,
+                                       { clickable: true }) }
+                                       
+        _.each(<%= raw @hash.to_json %>, function(json, index) {
+          
+          var hoverMarker = {};
+          
+          hoverMarker.marker = void 0;
+          json.marker = markers[index];
+          
+          $(".shortlist-item-" + json.id).on("mouseover", function() {
+            
+            hoverMarker = {
+              lat: json.lat,
+              lng: json.lng,
+              picture: hoverMarkerIcon
+            };
+            
+            handler.removeMarker(json.marker);
+            hoverMarker.marker = handler.addMarker(hoverMarker);
+          }).on("mouseout", function() {
+            handler.removeMarker(hoverMarker.marker);
+            json.marker = handler.addMarker(json);
+          });
+        });
+
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+  });
+</script>

@@ -1,0 +1,25 @@
+default: &default  
+  encoding: utf8
+  adapter: mysql2
+  port: 3306
+
+development:  
+  <<: *default
+  database: mototrova
+  host: office.ekiwi.net
+  username: mototrova
+  password: 7%2BrXBMxn^V5Yv9
+
+test:  
+  <<: *default
+  host: localhost
+  username: change
+  password: change
+  database: external_db_test
+
+production:
+  <<: *default
+  database: mototrova
+  host: office.ekiwi.net
+  username: mototrova
+  password: 7%2BrXBMxn^V5Yv9

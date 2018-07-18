@@ -43,6 +43,25 @@ class ConversationsController < ApplicationController
                         conversation_params[:appointments_attributes].values.first
                       )
         
+        if current_user.favorite_vehicles.exists?(vehicle: appointment.vehicle)
+
+          current_user.
+            favorite_vehicles.
+            where(vehicle: appointment.vehicle).
+            first.
+            update_attribute(:is_test_drive, true)
+        
+        else
+          
+          current_user.favorites << appointment.vehicle
+          
+          current_user.
+            favorite_vehicles.
+            where(vehicle: appointment.vehicle).
+            first.
+            update_attribute(:is_test_drive, true)
+        end
+        
         @conversation.messages.create!(
           user:    current_user, 
           content: "Hi, " + 
@@ -69,6 +88,25 @@ class ConversationsController < ApplicationController
         @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
         
         appointment = @conversation.appointments.first
+        
+        if current_user.favorite_vehicles.exists?(vehicle: appointment.vehicle)
+
+          current_user.
+            favorite_vehicles.
+            where(vehicle: appointment.vehicle).
+            first.
+            update_attribute(:is_test_drive, true)
+        
+        else
+          
+          current_user.favorites << appointment.vehicle
+          
+          current_user.
+            favorite_vehicles.
+            where(vehicle: appointment.vehicle).
+            first.
+            update_attribute(:is_test_drive, true)
+        end
         
         # appointment = @conversation.appointments.create!(
         #                 conversation_params[:appointments_attributes].values.first
@@ -148,7 +186,6 @@ class ConversationsController < ApplicationController
     ConversationMailer.export(@conversation, current_user).deliver_now
     flash[:success] = "Check your email for a transcript of this conversation."
     redirect_to :back 
-    # (make sure that messages are present; include all information)
   end
   
   private

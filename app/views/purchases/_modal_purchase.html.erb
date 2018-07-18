@@ -1,0 +1,176 @@
+<div class="modal" id="modal-purchase" role="dialog">
+  
+  <div class="modal-dealer-select-header">
+    
+    <i class="fa fa-times fa-lg btn-modal-special-offer" 
+       aria-hidden="true" 
+       data-dismiss="modal"></i>
+    
+    <div class="row modal-special-offer-header-content vertical-align">
+      
+      <div class="col-md-4">
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/handshake.png") %>
+      </div>
+      
+      <div class="col-md-8">
+        <h1 class="modal-special-offer-title">Online Purchase</h1>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal-special-offer-body">
+    <div class="modal-special-offer-body-content">
+      
+      <table class="receipt-line-item">
+        <tr>
+          
+          <td class="receipt-detail">
+            
+            <span class="receipt-primary-info receipt-vehicle">
+              <!--<(perc)= @purchase.vehicle.year %>-->
+              <!--<(perc)= @purchase.vehicle.vehicle_make.name %>-->
+              <!--<(perc)= @purchase.vehicle.vehicle_model.name %>-->
+            </span>
+            
+            <span class="receipt-secondary-info receipt-color">
+              <!--Color: <(perc)= @purchase.vehicle.color %>-->
+            </span>
+            
+            <span class="receipt-secondary-info receipt-mileage">
+              <!--Mileage: <(perc)= @purchase.vehicle.mileage %>-->
+            </span>
+            
+            <span class="receipt-secondary-info receipt-vin">
+              <!--VIN: <(perc)= @purchase.vehicle.vin %>-->
+            </span>
+            
+            <span class="receipt-secondary-info receipt-dealer">
+              <!--Dealer: -->
+              <!--<(perc)= Dealership.find(@purchase.seller.dealership_id).name %>-->
+            </span>
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <!--intentionally left empty-->
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <span class="receipt-primary-info">$</span>
+          </td>
+          
+          <td class="receipt-price">
+            <span class="receipt-primary-info receipt-total">
+              <!--<(perc)= @purchase.vehicle.price %>.00-->
+            </span>
+          </td>
+        </tr>
+      </table>
+      
+      <table class="receipt-line-item-end"> 
+      
+        <tr>
+          
+          <td class="receipt-detail">
+            <span class="receipt-primary-info">Dealer Discount</span>
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <span class="receipt-primary-info">-</span>
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <span class="receipt-primary-info">$</span>
+          </td>
+          
+          <td class="receipt-price">
+            <span class="receipt-primary-info">2005.00</span>
+          </td>
+        </tr>
+        
+        <tr>
+          
+          <td class="receipt-detail">
+            <span class="receipt-primary-info">Online Discount</span>
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <span class="receipt-primary-info">-</span>
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <span class="receipt-primary-info">$</span>
+          </td>
+          
+          <td class="receipt-price">
+            <span class="receipt-primary-info">250.00</span>
+          </td>
+        </tr>
+      </table>
+      
+      <table class="receipt-line-item-end">
+        <tr>
+          
+          <td class="receipt-detail">
+            <span class="receipt-primary-info">Subtotal</span>
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <!--intentionally left empty-->
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <span class="receipt-primary-info">$</span>
+          </td>
+          
+          <td class="receipt-price">
+            <span class="receipt-primary-info receipt-subtotal">
+              <!--<(perc)= @purchase.vehicle.price - 2005 - 250 %>.00-->
+            </span>
+          </td>
+        </tr>
+      </table>
+      
+      <table class="receipt-line-item-end">
+        <tr>
+          
+          <td class="receipt-detail">
+            <span class="receipt-primary-info">Down payment</span>
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <span class="receipt-primary-info">-</span>
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <span class="receipt-primary-info">$</span>
+          </td>
+          
+          <td class="receipt-price">
+            <span class="receipt-primary-info">5000.00</span>
+          </td>
+        </tr>
+      </table>
+      
+      <table class="receipt-line-item">
+        <tr>
+          
+          <td class="receipt-detail">
+            <span class="receipt-primary-info">Total due at signing</span>
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <!--intentionally left empty-->
+          </td>
+          
+          <td class="receipt-price-symbol">
+            <span class="receipt-primary-info">$</span>
+          </td>
+          
+          <td class="receipt-price">
+            <span class="receipt-primary-info">0.00</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

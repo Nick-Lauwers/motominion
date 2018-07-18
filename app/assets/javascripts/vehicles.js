@@ -116,35 +116,158 @@ $(function() {
           }
         }
       });
-    
-    // dealer select modal
       
-      var negotiateDealerButton  = $('.btn-negotiate-dealer')
-      var modalDealerSelect      = $('#modal-dealer-select')
-      var modalDealerSelectClose = $('.modal-dealer-select-close');
+    // test drive modal  
       
-      negotiateDealerButton.click(function() {
-        modalDealerSelect.modal('show');
+      var appointmentButton          = $('.btn-appointment');
+      var vehicleDetailsTestDrive    = $('.vehicle-details-test-drive');
+      var modalTestDriveDesktop      = $('#modal-test-drive-desktop');
+      var modalTestDriveMobile       = $('#modal-test-drive-mobile');
+      var modalTestDriveDesktopClose = $('.modal-test-drive-desktop-close');
+      var modalTestDriveMobileClose  = $('.modal-test-drive-mobile-close');
+      
+      appointmentButton.click(function() {
+        modalTestDriveDesktop.modal('show');
       });
       
-      modalDealerSelectClose.click(function() {
-        modalDealerSelect.modal('hide');
+      vehicleDetailsTestDrive.click(function() {
+        modalTestDriveMobile.modal('show');
+      });
+      
+      modalTestDriveDesktopClose.click(function() {
+        modalTestDriveDesktop.modal('hide');
       });  
+      
+      var appointmentTimeModal = $('#appointment-time-modal');
+      
+      $(function () {
+        appointmentTimeModal.datetimepicker({
+          format:            'YYYY-MM-DD LT',
+          minDate:           Date(),
+          widgetPositioning: { horizontal: 'auto', vertical: 'bottom' }
+        });
+      });
+
+      var modalTestDriveLeft   = $('.modal-test-drive-left');
+      var modalTestDriveRight  = $('.modal-test-drive-right');
+      var modalTestDriveScroll = $('.modal-test-drive-scroll');
+      
+      modalTestDriveLeft.click(function() {
+        
+        event.preventDefault();
+        
+        modalTestDriveScroll.animate({
+          scrollLeft: "-=300px"
+        }, "slow");
+      });
+      
+      modalTestDriveRight.click(function() {
+        
+        event.preventDefault();
+        
+        modalTestDriveScroll.animate({
+          scrollLeft: "+=300px"
+        }, "slow");
+      });
+      
+    // dealer select modal
+      
+      var negotiateDealerButton    = $('.btn-negotiate-dealer');
+      var modalDealerSelectDesktop = $('#modal-dealer-select-desktop');
+      var modalDealerSelectMobile  = $('#modal-dealer-select-mobile');
+      var modalDealerSelectClose   = $('.modal-dealer-select-close');
+      var modalDealerSelectLeft    = $('.modal-dealer-select-left');
+      var modalDealerSelectRight   = $('.modal-dealer-select-right');
+      var modalDealerSelectScroll  = $('.modal-dealer-select-scroll');
+      
+      if ( $(window).width() > 768 ) {
+        
+        negotiateDealerButton.click(function() {
+          modalDealerSelectDesktop.modal('show');
+        });
+        
+        modalDealerSelectClose.click(function() {
+          modalDealerSelectDesktop.modal('hide');
+        });
+        
+        modalDealerSelectLeft.click(function() {
+        
+          event.preventDefault();
+          
+          modalDealerSelectScroll.animate({
+            scrollLeft: "-=300px"
+          }, "slow");
+        });
+        
+        modalDealerSelectRight.click(function() {
+          
+          event.preventDefault();
+          
+          modalDealerSelectScroll.animate({
+            scrollLeft: "+=300px"
+          }, "slow");
+        });
+      }
+      
+      else {
+        
+        negotiateDealerButton.click(function() {
+          modalDealerSelectMobile.modal('show');
+        });
+        
+        modalDealerSelectClose.click(function() {
+          modalDealerSelectMobile.modal('hide');
+        });
+      } 
       
     // buy online modal
   
-      var buyOnlineButton     = $('.btn-buy-online')
-      var modalBuyOnline      = $('#modal-buy-online')
-      var modalBuyOnlineClose = $('.modal-buy-online-close');
+      var buyOnlineButton        = $('.btn-buy-online');
+      var vehicleDetailsPurchase = $('.vehicle-details-purchase');
+      var modalBuyOnlineDesktop  = $('#modal-buy-online-desktop');
+      var modalBuyOnlineMobile   = $('#modal-buy-online-mobile');
+      var modalBuyOnlineClose    = $('.modal-buy-online-close');
+      var modalBuyOnlineLeft     = $('.modal-buy-online-left');
+      var modalBuyOnlineRight    = $('.modal-buy-online-right');
+      var modalBuyOnlineScroll   = $('.modal-buy-online-scroll');
       
       buyOnlineButton.click(function() {
-        modalBuyOnline.modal('show');
+        modalBuyOnlineDesktop.modal('show');
+      });
+      
+      vehicleDetailsPurchase.click(function() {
+        modalBuyOnlineMobile.modal('show');
       });
       
       modalBuyOnlineClose.click(function() {
-        modalBuyOnline.modal('hide');
-      }); 
-  
+        
+        if ( $(window).width() > 768 ) {
+          modalBuyOnlineDesktop.modal('hide');
+        }
+        
+        else {
+          modalBuyOnlineMobile.modal('hide');
+        }
+      });
+      
+      modalBuyOnlineLeft.click(function() {
+      
+        event.preventDefault();
+        
+        modalBuyOnlineScroll.animate({
+          scrollLeft: "-=300px"
+        }, "slow");
+      });
+      
+      modalBuyOnlineRight.click(function() {
+        
+        event.preventDefault();
+        
+        modalBuyOnlineScroll.animate({
+          scrollLeft: "+=300px"
+        }, "slow");
+      });
+
     // image scaling
     
       var galleryPhotoContainer = $('.gallery-photo-container');
@@ -156,30 +279,6 @@ $(function() {
       var linksScrolled = $('#vehicle-scrolled');
       
       linksScrolled.stick_in_parent({ offset_top: 50 });
-      
-    // appointment modal
-    
-      var modalAppointment            = $('#modal-appointment')
-      var mobileAppointmentButton     = $('.btn-appointment-mobile')
-      var modalAppointmentHeaderClose = $('.modal-appointment-header-close');
-      
-      mobileAppointmentButton.click(function() {
-        modalAppointment.modal('show');
-      });
-      
-      modalAppointmentHeaderClose.click(function() {
-        modalAppointment.modal('hide');
-      });
-      
-      var appointmentTimeModal = $('#appointment-time-modal');
-      
-      $(function () {
-        appointmentTimeModal.datetimepicker({
-          format:            'YYYY-MM-DD LT',
-          minDate:           Date(),
-          widgetPositioning: { horizontal: 'auto', vertical: 'bottom' }
-        });
-      });
   
   // modal
   
@@ -274,9 +373,9 @@ $(function() {
     // fixed map
       
       var fixedMap = $('#search-map');
-     
-      fixedMap.stick_in_parent({ offset_top: 50 });
       
+      fixedMap.stick_in_parent({ offset_top: 50 });
+
     // search introduction
       
       var searchIntroductionStaticClose = $('.search-introduction-static-close');
@@ -286,24 +385,122 @@ $(function() {
         searchIntroduction.css("display", "none");
       });
       
-    // special offer modal
-      
-      var specialOffer           = $('.special-offer');
-      var specialOfferButton     = $('.special-offer-button');
-      var modalSpecialOffer      = $('#modal-special-offer');
-      var modalSpecialOfferClose = $('.modal-special-offer-close');
-      
-      specialOffer.click(function() {
-        var myVehicleId = $('.special-offer-button').data('id');
-        $("#vehicleId").val(myVehicleId);
+    // dependent dropdown
+    
+      var vehicleModelSearch   = $('#vehicle-model-search');
+      var vehicleMakeSearch    = $('#vehicle-make-search');
+      var vehicle_model_search = vehicleModelSearch.html();
         
-        // modalSpecialOffer.modal('show');
+      vehicleModelSearch.prop("disabled", true);
+      
+      vehicleMakeSearch.change(function() {
+        
+        var vehicle_make_search = $('#vehicle-make-search :selected').text();
+        var escaped_vehicle_make_search = 
+          vehicle_make_search.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_search = 
+          $(vehicle_model_search).
+            filter("optgroup[label=" + escaped_vehicle_make_search + "]").
+            html();
+        
+        if (options_search) {
+          vehicleModelSearch.html("<option value=''>All models</option>" +
+                                    options_search);
+          vehicleModelSearch.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelSearch.empty();
+          vehicleModelSearch.prop("disabled", true);
+        }
       });
       
-      modalSpecialOfferClose.click(function() {
-        modalSpecialOffer.modal('hide');
+    // mobile search nav
+      
+      var searchNavGrid           = $('.search-nav-grid');
+      var searchNavMap            = $('.search-nav-map');
+      var searchNavGridIcon       = $('.search-nav-grid-icon');
+      var searchNavMapIcon        = $('.search-nav-map-icon');
+      var searchResults           = $('.search-results');
+      var searchResultsBackground = $('.search-results-background');
+      var searchMap               = $('#search-map');
+      
+      searchNavGrid.click(function() {
+        
+        if (searchNavGrid.hasClass('search-nav-grid-inactive')) {
+        	
+        	searchNavGrid.
+        	  removeClass('search-nav-grid-inactive').
+        	  addClass('search-nav-grid-active');
+        	  
+        	searchNavMap.
+        	  removeClass('search-nav-map-active').
+        	  addClass('search-nav-map-inactive');
+        	  
+        	searchNavGridIcon.
+        	  removeClass('search-nav-grid-icon-inactive').
+        	  addClass('search-nav-grid-icon-active');
+        	
+        	searchNavMapIcon.
+        	  removeClass('search-nav-map-icon-active').
+        	  addClass('search-nav-map-icon-inactive');
+        	 
+        	searchMap.css({"z-index": -1000});
+        	searchResultsBackground.css({"display": "block"});
+        	searchResults.height(searchResultsBackground.outerHeight() + 50);
+        }
       });
-
+    
+      searchNavMap.click(function() {
+        
+        if (searchNavMap.hasClass('search-nav-map-inactive')) {
+        	
+        	searchNavMap.
+        	  removeClass('search-nav-map-inactive').
+        	  addClass('search-nav-map-active');
+        	  
+        	searchNavGrid.
+        	  removeClass('search-nav-grid-active').
+        	  addClass('search-nav-grid-inactive');
+        	  
+        	searchNavMapIcon.
+        	  removeClass('search-nav-map-icon-inactive').
+        	  addClass('search-nav-map-icon-active');
+        	
+        	searchNavGridIcon.
+        	  removeClass('search-nav-grid-icon-active').
+        	  addClass('search-nav-grid-icon-inactive');
+        	  
+        	searchMap.css({"z-index": 1000});
+        	searchResultsBackground.css({"display": "none"});
+        	searchResults.height(searchMap.outerHeight() + 50);
+        }
+          
+        else {
+          
+          searchNavMap.
+        	  removeClass('search-nav-map-active').
+        	  addClass('search-nav-map-inactive');
+        	  
+        	 searchNavGrid.
+        	  removeClass('search-nav-grid-inactive').
+        	  addClass('search-nav-grid-active');
+        	  
+        	searchNavMapIcon.
+        	  removeClass('search-nav-map-icon-active').
+        	  addClass('search-nav-map-icon-inactive');
+        	 
+        	searchNavGridIcon.
+        	  removeClass('search-nav-grid-icon-inactive').
+        	  addClass('search-nav-grid-icon-active');
+        	  
+          searchMap.css({"z-index": -1000});
+        	searchResultsBackground.css({"display": "block"});
+        	searchResults.height(searchResultsBackground.outerHeight() + 50);
+        }
+      });
+    
   // basics
   
     // dependent dropdown

@@ -29,12 +29,20 @@ class PhotosController < ApplicationController
     respond_to :js
   end
   
-  def rotate
+  # def rotate
+    
+  #   if @photo.rotation == nil || @photo.rotation == 0
+  #     @photo.update_attribute(:rotation, 90)
+  #   elsif @photo.rotation == 90
+  #     @photo.update_attribute(:rotation, 180)
+  #   elsif @photo.rotation == 180
+  #     @photo.update_attribute(:rotation, 270)
+  #   else
+  #     @photo.update_attribute(:rotation, 0)
+  #   end
 
-    @photo.update_attribute(:rotation, -90)
-    flash[:notice] = "The image has been rotated"
-    redirect_to :back
-  end
+  #   redirect_to :back
+  # end
 
   private
       
