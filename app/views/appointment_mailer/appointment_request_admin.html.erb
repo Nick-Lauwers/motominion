@@ -1,0 +1,15 @@
+<h1>Test Drive Request | Motominion</h1>
+
+<p>A test drive request was recently sent:</p>
+
+<p>Hi <%= @seller.first_name %>,</p>
+
+<p>
+  You just received a test drive request from 
+  <strong><%= @buyer.first_name %></strong> for your listing,
+  <strong><%= @vehicle.listing_name %></strong>! Click on the link below to 
+  either accept or to decline the request, or to send <%= @buyer.first_name %> 
+  a private message:
+</p>
+
+<%= link_to "Test Drive Request", conversation_messages_url(@conversation) %>

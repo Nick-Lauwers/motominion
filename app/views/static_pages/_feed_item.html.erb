@@ -12,7 +12,8 @@
     <% end %>
     
     <%= link_to favorite_vehicle_path(feed_item), 
-                method: :put do %>
+                method: :put,
+                class: "add-to-wish-list" do %>
       <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
     <% end %>
     
@@ -46,22 +47,30 @@
           <div class="feed-item-user-content">
             
             <% if feed_item.user.present? %>
-              <div class="avatar-and-online">
+              <!--<div class="avatar-and-online">-->
                 
                 <div class="feed-item-avatar avatar-general",
                      style="background-image: url(
                        '<%= feed_item.user.avatar.url(:thumb) %>')">
                 </div>
               
-                <% if feed_item.user.online? %>
-                  <div class="online online-lg-primary hidden-xs"></div>
-                <% end %>
-              </div>
+                <!--<(perc) if feed_item.user.online? %>-->
+                <!--  <div class="online online-lg-primary hidden-xs"></div>-->
+                <!--<(perc) end %>-->
+              <!--</div>-->
               
             <% else %>
-              <div class="feed-item-avatar avatar-general",
-                   style="background-image: url(
-                     '<%= feed_item.dealership.photo.url() %>')">
+              <div class="avatar-verified">
+              
+                <div class="search-item-avatar avatar-general", 
+                     style="background-image: url(
+                           '<%= feed_item.dealership.users.sample(1).first.avatar.url(:thumb) %>')">
+                </div>
+                
+                <div class="verified-check">
+                  <i class="fa fa-check verified-check-icon" 
+                     aria-hidden="true"></i>
+                </div>
               </div>
             <% end %>
           </div>

@@ -13,6 +13,7 @@ module ExternalDb
           description_clean ad_url].each do |f|
             v.send("#{f}=", send(f))
           end
+          v.listing_name = "#{year} #{make} #{model}"
           v.actual_price = price
           v.engine_type = engine
           v.created_at = created

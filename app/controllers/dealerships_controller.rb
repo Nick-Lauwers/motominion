@@ -86,6 +86,7 @@ class DealershipsController < ApplicationController
                                          :sales_phone, :service_phone, 
                                          :street_address, :building, :city, 
                                          :state, :logo, :photo, 
+                                         :google_place_id,
                                          business_hours_attributes: [:id, :day, 
                                          :open_time, :close_time, :is_closed,
                                          :dealership_id])

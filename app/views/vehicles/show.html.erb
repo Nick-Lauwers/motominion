@@ -214,14 +214,7 @@
             <div class="vehicle-overview-title">
               
               <h1 class="vehicle-overview-heading visible-xs">
-                
-                <% if @vehicle.listing_name.present? %>
-                  <%= @vehicle.listing_name %>
-                  
-                <% else %>
-                  <%= @vehicle.year %> <%= @vehicle.vehicle_make.name %> 
-                  <%= @vehicle.vehicle_model.name %>
-                <% end %>
+                <%= @vehicle.listing_name %>
               </h1>
               
               <div class="row vertical-align">
@@ -249,14 +242,7 @@
                 <div class="col-md-10 col-xs-10">
   
                   <h1 class="vehicle-overview-heading hidden-xs">
-                    
-                    <% if @vehicle.listing_name.present? %>
-                      <%= @vehicle.listing_name %>
-                      
-                    <% else %>
-                      <%= @vehicle.year %> <%= @vehicle.vehicle_make.name %> 
-                      <%= @vehicle.vehicle_model.name %>
-                    <% end %>
+                    <%= @vehicle.listing_name %>
                   </h1>
                   
                   <div class="vehicle-overview-subheading">
@@ -449,7 +435,8 @@
                     <td>
                       <strong>
                         
-                        <% if @vehicle.vehicle_make.present? %>
+                        <% if @vehicle.vehicle_make.present? && 
+                              @vehicle.vehicle_model.present? %>
                           <%= @vehicle.vehicle_make.name %>
                           <%= @vehicle.vehicle_model.name %>
                           
@@ -1247,7 +1234,7 @@
                 
                 <td class="shortlist-button">
                   <%= link_to favorite_vehicle_path(@vehicle, is_loved: true),
-                              class: "btn-shortlist",
+                              class: "btn-shortlist add-to-wish-list",
                               method: :put do %>
                     <i class="fa fa-heart-o" aria-hidden="true"></i>
                     Love It!
@@ -1256,7 +1243,7 @@
                 
                 <td class="shortlist-button">
                   <%= link_to favorite_vehicle_path(@vehicle, is_liked: true),
-                              class: "btn-shortlist",
+                              class: "btn-shortlist add-to-wish-list",
                               method: :put do %>
                     <i class="fa fa-check" aria-hidden="true"></i>
                     Maybe
@@ -1497,7 +1484,16 @@
         <div class="brochure-detail">
           
           <h2 class="brochure-detail-title">
-            <%= @vehicle.vehicle_make.name %>
+            
+            <% if @vehicle.vehicle_make.present? && 
+                  @vehicle.vehicle_model.present? %>
+              <%= @vehicle.vehicle_make.name %>
+              <%= @vehicle.vehicle_model.name %>
+              
+            <% else %>
+              <%= @vehicle.vehicle_make_name %>
+              <%= @vehicle.vehicle_model_name %>
+            <% end %>
           </h1>
           
           <h3 class="brochure-detail-info">Community Forums</h5>
@@ -1541,14 +1537,17 @@
   <div class="row">
     
     <%= link_to favorite_vehicle_path(@vehicle, is_loved: true),
-                class: "col-xs-4 btn-shortlist-nav",
+                class: "col-xs-4 btn-shortlist-nav add-to-wish-list",
                 method: :put do %>
       <i class="fa fa-heart-o btn-shortlist-nav-icon" aria-hidden="true"></i>
       Love It!
     <% end %>
 
     <%= link_to favorite_vehicle_path(@vehicle, is_liked: true),
-                class: "col-xs-4 btn-shortlist-nav btn-shortlist-nav-middle",
+                class: "col-xs-4 
+                        btn-shortlist-nav 
+                        btn-shortlist-nav-middle
+                        add-to-wish-list",
                 method: :put do %>
       <i class="fa fa-check btn-shortlist-nav-icon" aria-hidden="true"></i>
       Maybe
@@ -1636,6 +1635,7 @@
 <!--</div>-->
 
 <script type="text/javascript">
+
   $(document).ready(function() {
     
     // rating

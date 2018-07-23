@@ -35,6 +35,7 @@ class MessagesController < ApplicationController
     
     if @message.save
       MessageMailer.message_received(@message).deliver_now
+      MessageMailer.message_received_admin(@message).deliver_now
       @conversation.update_attributes(next_contributor_id: @other.id,
                                       latest_message_read: false)
       @conversation.save

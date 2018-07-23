@@ -13,8 +13,9 @@
       </div>
     <% end %>
     
-    <%= link_to favorite_vehicle_path(vehicle), 
-              method: :put do %>
+    <%= link_to favorite_vehicle_path(vehicle),
+                method: :put,
+                class: "add-to-wish-list" do %>
       <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
     <% end %>
     
@@ -58,22 +59,30 @@
         <div class="search-item-user-content">
           
           <% if vehicle.user.present? %>
-            <div class="avatar-and-online">
+            <!--<div class="avatar-and-online">-->
             
               <div class="search-item-avatar avatar-general", 
                    style="background-image: url(
                          '<%= vehicle.user.avatar.url(:thumb) %>')">
               </div>
           
-              <% if vehicle.user.online? %>
-                <div class="online online-lg-primary hidden-xs"></div>
-              <% end %>
+              <!--<(perc) if vehicle.user.online? %>-->
+              <!--  <div class="online online-lg-primary hidden-xs"></div>-->
+              <!--<(perc) end %>-->
             </div>
           
           <% else %>
-            <div class="search-item-avatar avatar-general", 
-                 style="background-image: url(
-                       '<%= vehicle.dealership.photo.url() %>')">
+            <div class="avatar-verified">
+              
+              <div class="search-item-avatar avatar-general", 
+                   style="background-image: url(
+                         '<%= vehicle.dealership.users.sample(1).first.avatar.url(:thumb) %>')">
+              </div>
+              
+              <div class="verified-check">
+                <i class="fa fa-check verified-check-icon" 
+                   aria-hidden="true"></i>
+              </div>
             </div>
           <% end %>
         </div>
@@ -83,16 +92,7 @@
         <div class="search-item-info">
         
           <span class="search-item-title">
-            
-            $<%= vehicle.actual_price %> |
-            
-            <% if vehicle.listing_name.present? %>
-              <%= vehicle.listing_name %>
-              
-            <% else %>
-              <%= vehicle.year %> <% vehicle.vehicle_make.name %>
-              <%= vehicle.vehicle_model.name %>
-            <% end %>
+            $<%= vehicle.actual_price %> | <%= vehicle.listing_name %>
           </span>
 
           <div id="average-rating-search-item-<%= vehicle.id %>", 

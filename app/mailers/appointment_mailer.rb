@@ -10,6 +10,16 @@ class AppointmentMailer < ApplicationMailer
     mail to: appointment.vehicle.user.email, subject: "Test Drive Request"
   end
   
+  def appointment_request_admin(appointment)
+    
+    @vehicle      = appointment.vehicle
+    @seller       = appointment.vehicle.user
+    @buyer        = appointment.buyer
+    @conversation = Conversation.between(@seller, @buyer).first
+
+    mail to: "nlauwers@motominion.com", subject: "Test Drive Request"
+  end
+  
   def appointment_accepted(appointment)
     
     @vehicle      = appointment.vehicle

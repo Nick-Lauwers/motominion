@@ -95,11 +95,7 @@ class VehiclesController < ApplicationController
     if @vehicle.dealership.present?
       @google_reviews = GooglePlaces::Client.
                           new(ENV['GOOGLE_API_KEY']).
-                          spots(@vehicle.latitude, 
-                                @vehicle.longitude,
-                                # types: 'car_dealer',
-                                detail: true).
-                          first.
+                          spot(@vehicle.dealership.google_place_id).
                           reviews
     end
     
@@ -169,7 +165,11 @@ class VehiclesController < ApplicationController
       ],
     ) or return
     
-    @vehicles = @filterrific.find.paginate(page: params[:page], per_page: 10)
+    @vehicles = @filterrific.
+                  find.
+                  includes(:listing_score).
+                  order("listing_scores.overall_score DESC").
+                  paginate(page: params[:page], per_page: 10)
     
     @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
       

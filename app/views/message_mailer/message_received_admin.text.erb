@@ -1,0 +1,8 @@
+The following message was recently sent:
+
+Hi <%= @recipient.first_name %>,
+
+You just received a message from <%= @sender.first_name %>. Click on the link 
+below to view the details:
+
+<%= conversation_messages_url(@conversation) %>

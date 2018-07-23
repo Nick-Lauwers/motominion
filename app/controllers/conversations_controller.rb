@@ -77,6 +77,7 @@ class ConversationsController < ApplicationController
                                         latest_message_read: false)
                                         
         AppointmentMailer.appointment_request(appointment).deliver_now
+        AppointmentMailer.appointment_request_admin(appointment).deliver_now
       end
       
     else
@@ -127,6 +128,7 @@ class ConversationsController < ApplicationController
                                         latest_message_read: false)
                                         
         AppointmentMailer.appointment_request(appointment).deliver_now
+        AppointmentMailer.appointment_request_admin(appointment).deliver_now
       end
     end
     

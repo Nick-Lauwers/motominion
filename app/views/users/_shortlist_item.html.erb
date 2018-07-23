@@ -43,7 +43,7 @@
         <div class="search-item-user-content">
           
           <% if shortlist_item.vehicle.user.present? %>
-            <div class="avatar-and-online">
+            <!--<div class="avatar-and-online">-->
             
               <div class="search-item-avatar avatar-general", 
                    style="background-image: url(
@@ -54,21 +54,25 @@
                                 url(:thumb) %>')">
               </div>
           
-              <% if shortlist_item.vehicle.user.online? %>
-                <div class="online 
-                            online-lg-primary 
-                            hidden-xs"></div>
-              <% end %>
-            </div>
+              <!--<(perc) if shortlist_item.vehicle.user.online? %>-->
+              <!--  <div class="online -->
+              <!--              online-lg-primary -->
+              <!--              hidden-xs"></div>-->
+              <!--<(perc) end %>-->
+            <!--</div>-->
           
           <% else %>
-            <div class="search-item-avatar avatar-general", 
-                 style="background-image: url(
-                       '<%= shortlist_item.
-                              vehicle.
-                              dealership.
-                              photo.
-                              url() %>')">
+            <div class="avatar-verified">
+              
+              <div class="search-item-avatar avatar-general", 
+                   style="background-image: url(
+                         '<%= vehicle.dealership.users.sample(1).first.avatar.url(:thumb) %>')">
+              </div>
+              
+              <div class="verified-check">
+                <i class="fa fa-check verified-check-icon" 
+                   aria-hidden="true"></i>
+              </div>
             </div>
           <% end %>
         </div>
