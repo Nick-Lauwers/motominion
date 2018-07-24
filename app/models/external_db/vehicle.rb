@@ -7,7 +7,8 @@ module ExternalDb
       if vehicle_type_id == 3
         ::Vehicle.where(scraped_id: id).first_or_initialize.tap do |v|
           v.vehicle_make_name = make
-          v.dealership = source.sync_to_dealership
+          v.dealership = ::Dealership.where(scraped_id: source_id).first
+          # v.dealership = source.sync_to_dealership
           v.vehicle_model_name = model
           %i[msrp year mileage mileage_numeric body_style vin description 
           description_clean ad_url].each do |f|
