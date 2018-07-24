@@ -4,7 +4,8 @@ module ExternalDb
     belongs_to :vehicle
 
     def sync_to_photo
-      if vehicle.vehicle_type_id == 3 || vehicle.vehicle_type_id == 4
+      if ( vehicle.vehicle_type_id == 1 || vehicle.vehicle_type_id.nil? ) &&
+         ( ::Photo.where(scraped_id: id).empty? )
         ::Photo.where(scraped_id: id).first_or_initialize.tap do |p|
           p.vehicle = ::Vehicle.where(scraped_id: vehicle_id).first
           # p.vehicle = vehicle.sync_to_vehicle if vehicle
