@@ -4,7 +4,7 @@ module ExternalDb
     belongs_to :source
 
     def sync_to_vehicle
-      if vehicle_type_id == 3
+      if ( vehicle_type_id == 3 || vehicle_type_id == 4 )
         ::Vehicle.where(scraped_id: id).first_or_initialize.tap do |v|
           v.vehicle_make_name = make
           v.dealership = ::Dealership.where(scraped_id: source_id).first
