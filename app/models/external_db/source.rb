@@ -1,9 +1,10 @@
 module ExternalDb
   class Source < Record
     self.table_name = 'source'
+    has_many :vehicles
 
-    def sync_to_dealership
-      if ( id == 2 || id == 3 )
+    def sync_to_dealership 
+      if vehicles.where(vehicle_type_id: [2, 3]).exists?
         ::Dealership.where(scraped_id: id).first_or_initialize.tap do |d|
           d.scrape_name = scrape_name
           d.last_run_start_at = last_run_start

@@ -320,3 +320,6 @@ end
 #                                                     date:       Faker::Date.forward(10)) }
 # vehicle1s.each { |vehicle1| user2.appointments.create!(vehicle_id: vehicle1.id,
 #                                                     date:       Faker::Date.forward(10)) }
+
+# User.create(first_name: "Matt", last_name: "Graves", email: "matt@munroemotors.com", password: "98391004", password_confirmation: "98391004", avatar: open("https://randomuser.me/api/portraits/men/31.jpg"), dealership_id: 3)
+# User.create(first_name: "Neal", last_name: "Reyes", email: "neal@scuderia.com", password: "98391006", password_confirmation: "98391006", avatar: open("https://randomuser.me/api/portraits/men/94.jpg"), dealership_id: 4)
