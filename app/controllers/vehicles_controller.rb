@@ -2,6 +2,8 @@
 
 class VehiclesController < ApplicationController
   
+  require 'will_paginate/array'
+  
   before_action :logged_in_user,     except: [:show, :search, :autocomplete]
   before_action :profile_pic_upload, only:   [:new]
   before_action :get_vehicle,        only:   [:destroy, :show, :update, :basics,
@@ -168,7 +170,9 @@ class VehiclesController < ApplicationController
     @vehicles = @filterrific.
                   find.
                   includes(:listing_score).
-                  order("listing_scores.overall_score DESC").
+                  order("listing_scores.overall_score DESC",
+                        "year DESC",
+                        "listing_name ASC").
                   paginate(page: params[:page], per_page: 10)
     
     @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|

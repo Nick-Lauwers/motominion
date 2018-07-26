@@ -1070,7 +1070,7 @@
               <div class="row vertical-align">
               
                 <div class="col-md-2">
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal.png") %>
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal-large.png") %>
                 </div>
                   
                 <div class="col-md-10">
@@ -1392,7 +1392,11 @@
             
             <div class="col-xs-3">
               <div class="average-rating-number">
-                <%= @vehicle.average_rating %>
+                <%= GooglePlaces::Client.
+                      new(ENV['GOOGLE_API_KEY']).
+                      spot(@vehicle.dealership.google_place_id).
+                      rating %>
+                <!--<(perc)= @vehicle.average_rating %>-->
               </div>
             </div>
             
@@ -1401,8 +1405,9 @@
               <div class="average-rating"></div>
               
               <span class="number-of-reviews">
-                (based on <%= pluralize(@reviews.count + @google_reviews.count, 
-                                "review") %>)
+                (based on <%= pluralize(@google_reviews.count, "review") %>)
+                <!--(based on <= pluralize(@reviews.count + @google_reviews.count, -->
+                <!--                "review") %>)-->
               </span> 
             </div>
           </div>
@@ -1414,9 +1419,10 @@
             <h3 class="reviews-subheading">Pros</h3>
             
             <ul class="pros-cons-list-content">
-              <li>Security & safety (51)</li>
-              <li>Location (45)</li>
-              <li>Management / staff (40)</li>
+              <!--<li>Security & safety (51)</li>-->
+              <!--<li>Location (45)</li>-->
+              <!--<li>Management / staff (40)</li>-->
+              <li>None Listed Yet</li>
             </ul>
           </div>
         </div>
@@ -1427,7 +1433,7 @@
             <h3 class="reviews-subheading">Cons</h3>
             
             <ul class="pros-cons-list-content">
-              <li>None Listed</li>
+              <li>None Listed Yet</li>
             </ul>
           </div>
         </div>
@@ -1645,7 +1651,11 @@
       averageRating.raty({
         path:     '/assets',
         readOnly: true,
-        score:    <%= @vehicle.average_rating %>
+        score:    <%= GooglePlaces::Client.
+                        new(ENV['GOOGLE_API_KEY']).
+                        spot(@vehicle.dealership.google_place_id).
+                        rating %>
+        // score:    <(perc)= @vehicle.average_rating %>
       });
     
     // map

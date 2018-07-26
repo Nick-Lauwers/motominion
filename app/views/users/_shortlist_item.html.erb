@@ -66,7 +66,7 @@
               
               <div class="search-item-avatar avatar-general", 
                    style="background-image: url(
-                         '<%= vehicle.dealership.users.sample(1).first.avatar.url(:thumb) %>')">
+                         '<%= shortlist_item.vehicle.dealership.users.sample(1).first.avatar.url(:thumb) %>')">
               </div>
               
               <div class="verified-check">
@@ -158,11 +158,21 @@
     // rating
     
       var averageRating = $('#average-rating-search-item-<%= shortlist_item.vehicle.id %>');
-  
-      averageRating.raty({
-        path:     '/assets',
-        readOnly: true,
-        score:    <%= shortlist_item.vehicle.average_rating %>
+      
+      if shortlist_item.vehicle.dealership.present?
+        averageRating.raty({
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= GooglePlaces::Client.
+                          new(ENV['GOOGLE_API_KEY']).
+                          spot(shortlist_item.vehicle.dealership.google_place_id).
+                          rating %>
+      
+      else
+        averageRating.raty({
+            path:     '/assets',
+            readOnly: true,
+            score:    <%= shortlist_item.vehicle.average_rating %>
       });  
   });
 </script>

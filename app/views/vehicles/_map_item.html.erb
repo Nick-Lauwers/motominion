@@ -149,11 +149,21 @@
     // rating
     
       var averageRating = $('#average-rating-search-item-<%= vehicle.id %>');
-  
-      averageRating.raty({
-        path:     '/assets',
-        readOnly: true,
-        score:    <%= vehicle.average_rating %>
+      
+      if vehicle.dealership.present?
+        averageRating.raty({
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= GooglePlaces::Client.
+                          new(ENV['GOOGLE_API_KEY']).
+                          spot(vehicle.dealership.google_place_id).
+                          rating %>
+      
+      else
+        averageRating.raty({
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= vehicle.average_rating %>
       });  
   });
 </script>
