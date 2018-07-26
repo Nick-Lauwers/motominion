@@ -90,7 +90,18 @@
                class="average-rating-search-item"></div>
           
           <span class="search-item-review-count">
-            <%= pluralize(shortlist_item.vehicle.reviews.count, "review") %>
+            
+            <% if shortlist_item.vehicle.dealership.present? && 
+                  shortlist_item.vehicle.dealership_id != 1 && 
+                  shortlist_item.vehicle.dealership_id != 2 %>
+              <%= pluralize(GooglePlaces::Client.
+                              new(ENV['GOOGLE_API_KEY']).
+                              spot(shortlist_item.vehicle.dealership.google_place_id).
+                              reviews.count, "review") %>
+              
+            <% else %>
+              <%= pluralize(shortlist_item.vehicle.reviews.count, "review") %>
+            <% end %>
           </span>
           
           <div class="feature-list">
@@ -159,7 +170,9 @@
     
       var averageRating = $('#average-rating-search-item-<%= shortlist_item.vehicle.id %>');
       
-      if shortlist_item.vehicle.dealership.present?
+      <% if shortlist_item.vehicle.dealership.present? && 
+            shortlist_item.vehicle.dealership_id != 1 && 
+            shortlist_item.vehicle.dealership_id != 2 %>
         averageRating.raty({
           path:     '/assets',
           readOnly: true,
@@ -167,12 +180,14 @@
                           new(ENV['GOOGLE_API_KEY']).
                           spot(shortlist_item.vehicle.dealership.google_place_id).
                           rating %>
-      
-      else
+        }
+
+      <% else %>
         averageRating.raty({
-            path:     '/assets',
-            readOnly: true,
-            score:    <%= shortlist_item.vehicle.average_rating %>
-      });  
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= shortlist_item.vehicle.average_rating %>
+        });
+      <% end %>
   });
 </script>

@@ -1,8 +1,8 @@
 task :synchronize => :environment do
   
-  ExternalDb::Source.all.each(&:sync_to_dealership)
-  ExternalDb::Vehicle.all.each(&:sync_to_vehicle)
-  ExternalDb::Picture.all.each(&:sync_to_photo)
+  # ExternalDb::Source.all.each(&:sync_to_dealership)
+  # ExternalDb::Vehicle.all.each(&:sync_to_vehicle)
+  # ExternalDb::Picture.all.each(&:sync_to_photo)
   
   Vehicle.all.each do |v|
     
@@ -86,7 +86,7 @@ task :synchronize => :environment do
       combined_score = 0
 
       v.dealership.vehicles.each do |vehicle|
-        if vehicle.listing_score.overall_score.present?
+        if vehicle.listing_score.present?
           combined_score = vehicle.listing_score.overall_score + 
                              combined_score
         end
@@ -152,6 +152,8 @@ task :synchronize => :environment do
                             many_listings_score: 
                               many_listings_score, 
                             overall_score:    overall_score)
+      
+      v.save
     end
   end
 end

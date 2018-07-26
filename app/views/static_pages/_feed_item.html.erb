@@ -87,7 +87,18 @@
                  class="average-rating-feed-item"></div>
             
             <span class="feed-item-review-count">
-              <%= pluralize(feed_item.reviews.count, "review") %>
+            
+              <% if feed_item.dealership.present? && 
+                    feed_item.dealership_id != 1 && 
+                    feed_item.dealership_id != 2 %>
+                <%= pluralize(GooglePlaces::Client.
+                                new(ENV['GOOGLE_API_KEY']).
+                                spot(feed_item.dealership.google_place_id).
+                                reviews.count, "review") %>
+                
+              <% else %>
+                <%= pluralize(feed_item.reviews.count, "review") %>
+              <% end %>
             </span>
             
             <div class="feature-list">
@@ -152,11 +163,25 @@
     
       var averageRating = $('#average-rating-feed-item-<%= feed_item.id %>');
   
-      averageRating.raty({
-        path:     '/assets',
-        readOnly: true,
-        score:    <%= feed_item.average_rating %>
-      });  
+      <% if feed_item.dealership.present? && 
+            feed_item.dealership_id != 1 && 
+            feed_item.dealership_id != 2 %>
+        averageRating.raty({
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= GooglePlaces::Client.
+                          new(ENV['GOOGLE_API_KEY']).
+                          spot(feed_item.dealership.google_place_id).
+                          rating %>
+        });
+      
+      <% else %>
+        averageRating.raty({
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= feed_item.average_rating %>
+        });  
+      <% end %>
   });
 </script>
 
