@@ -23,11 +23,11 @@ module ExternalDb
             p.vehicle do |v|
               
               if v.photos.count.between?(1,3)
-                v.listing_score.update_attribute(photos_score: 33)
+                v.listing_score.update_attribute(:photos_score, 33)
               elsif p.vehicle.photos.count.between?(4,7)
-                v.listing_score.update_attribute(photos_score: 67)
+                v.listing_score.update_attribute(:photos_score, 67)
               else
-                v.listing_score.update_attribute(photos_score: 100)
+                v.listing_score.update_attribute(:photos_score, 100)
               end
               
               v.listing_score.update_attribute(overall_score: 
