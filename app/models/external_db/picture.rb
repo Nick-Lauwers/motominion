@@ -22,7 +22,7 @@ module ExternalDb
             p.save or nil
           end
           
-          ::Vehicle.where(scraped_id: vehicle_id).first do |v|
+          ::Photo.where(scraped_id: id).first.vehicle do |v|
               
             if v.photos.count.between?(1,3)
               v.listing_score.update_attribute(:photos_score, 33)
