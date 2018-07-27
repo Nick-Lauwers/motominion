@@ -363,7 +363,7 @@ class VehiclesController < ApplicationController
       
       # Listing location is included and is an exact address.
       if @vehicle.latitude.present?
-        location_score = 3
+        location_score = 100
       else
         location_score = 0
       end
@@ -374,7 +374,7 @@ class VehiclesController < ApplicationController
          @vehicle.heated_hand_grips || @vehicle.alarm_system || 
          @vehicle.saddlebags || @vehicle.trunk || @vehicle.tow_hitch || 
          @vehicle.cycle_cover
-        features_score = 3
+        features_score = 100
         
       else
         features_score = 0
@@ -388,126 +388,121 @@ class VehiclesController < ApplicationController
       spec_score += 1 if @vehicle.fuel_type.present?
       spec_score += 1 if @vehicle.engine_size.present?
       
-      spec_score = (3/5)*spec_score
+      spec_score = 25 * spec_score
       
       # VIN has been properly noted.
       if @vehicle.vin.present?
-        vin_score = 3
+        vin_score = 100
       else
         vin_score = 0
       end
       
       # Vehicle is listed by a certified dealer and dealership sends a direct
-      # listing.
+      # feed.
       if @vehicle.dealership.present? && 
          @vehicle.dealership.scraped_id.present?
-        certified_dealer_score = 3
-        direct_listing_score = 3
+        certified_dealer_score = 100
+        direct_listing_score = 100
         
       elsif @vehicle.dealership.present?
         certified_dealer_score = 0
         direct_listing_score = 0
         
       else
-        certified_dealer_score = 3
-        direct_listing_score = 3
+        certified_dealer_score = 100
+        direct_listing_score = 100
       end 
       
       # Seller accepts test drives, on-demand.
-      test_drive_score = 3
+      test_drive_score = 100
       
-      # Seller has many high-quality listings.
-      if @vehicle.dealership.present?
-        
-        combined_score = 0
-
-        @vehicle.dealership.vehicles.each do |vehicle|
-          if vehicle.listing_score.overall_score.present?
-            combined_score = vehicle.listing_score.overall_score + 
-                               combined_score
-          end
-        end
-        
-        if combined_score/(@vehicle.dealership.vehicles.count + 1) <= 59
-          many_listings_score = 1
-        elsif combined_score/(@vehicle.dealership.vehicles.count + 1)<=79
-          many_listings_score = 2
-        else 
-          many_listings_score = 3
-        end
-      
+      # Listing has many photos.
+      if @vehicle.photos.count == 0
+        photos_score = 0
+      elsif @vehicle.photos.count.between?(1,3)
+        photos_score = 33
+      elsif @vehicle.photos.count.between?(4,7)
+        photos_score = 67
       else
-        many_listings_score = 3
+        photos_score = 100
       end
-
+      
       # Seller has several positive reviews.
       
       # Listing was recently posted or bumped.
-      if @vehicle.bumped_at <= 1.day.ago
-        recently_posted_score = 3
-      elsif @vehicle.bumped_at <= 3.days.ago
-        recently_posted_score = 2
+      if @vehicle.bumped_at >= 1.day.ago
+        recently_posted_score = 100
+      elsif @vehicle.bumped_at >= 3.days.ago
+        recently_posted_score = 67
       else
-        recently_posted_score = 1
+        recently_posted_score = 33
       end
       
-      # Listing has many photos.
-      if @vehicle.photos.count <= 3
-        photos_score = 1
-      elsif @vehicle.photos.count.between(4,7)
-        photos_score = 2
-      else
-        photos_score = 3
-      end
+      # Seller has many high-quality listings.
+      # if @vehicle.dealership.present?
+        
+      #   combined_score = 0
+
+      #   @vehicle.dealership.vehicles.each do |vehicle|
+      #     if vehicle.listing_score.overall_score.present?
+      #       combined_score = vehicle.listing_score.overall_score + 
+      #                         combined_score
+      #     end
+      #   end
+        
+      #   if combined_score/(@vehicle.dealership.vehicles.count + 1) <= 59
+      #     many_listings_score = 1
+      #   elsif combined_score/(@vehicle.dealership.vehicles.count + 1)<=79
+      #     many_listings_score = 2
+      #   else 
+      #     many_listings_score = 3
+      #   end
+      
+      # else
+      #   many_listings_score = 3
+      # end
+      many_listings_score = 100
       
       # Calculate overall score.
-      overall_score = ( 100 / 30 ) * ( location_score + features_score + 
-                                       spec_score + vin_score + 
-                                       certified_dealer_score +
-                                       direct_listing_score +
-                                       test_drive_score + photos_score +
-                                       # score.reviews_score + 
-                                       recently_posted_score + 
-                                       many_listings_score )
+      overall_score = ( location_score + features_score + spec_score + 
+                        vin_score + certified_dealer_score +
+                        direct_listing_score + test_drive_score + 
+                        ( 3 * photos_score ) +
+                        # score.reviews_score + 
+                        ( 2 * recently_posted_score ) + 
+                        many_listings_score ) / 13
       
       if @vehicle.listing_score.present?
-        @vehicle.listing_score.update_attributes(location_score:   
-                                                   location_score,
-                                                 features_score:   
-                                                   features_score,
-                                                 spec_score:    spec_score,
-                                                 vin_score:     vin_score,
-                                                 certified_dealer_score:
-                                                   certified_dealer_score,
-                                                 direct_listing_score:
-                                                   direct_listing_score,
-                                                 test_drive_score: 
-                                                   test_drive_score,
-                                                 photos_score:  photos_score,
-                                                 # reviews_score: reviews_score,
-                                                 recently_posted_score:
-                                                   recently_posted_score,
-                                                 many_listings_score:
-                                                   many_listings_score,
-                                                 overall_score: overall_score)
+        @vehicle.listing_score.update_attributes(
+          location_score:         location_score,
+          features_score:         features_score,
+          spec_score:             spec_score,
+          vin_score:              vin_score,
+          certified_dealer_score: certified_dealer_score,
+          direct_listing_score:   direct_listing_score,
+          test_drive_score:       test_drive_score,
+          photos_score:           photos_score,
+          # reviews_score:        reviews_score,
+          recently_posted_score:  recently_posted_score,
+          many_listings_score:    many_listings_score,
+          overall_score:          overall_score
+        )
       
       else                             
-        @vehicle.build_listing_score(location_score:   location_score, 
-                                     features_score:   features_score,
-                                     spec_score:       spec_score, 
-                                     vin_score:        vin_score, 
-                                     certified_dealer_score: 
-                                       certified_dealer_score,
-                                     direct_listing_score: 
-                                       direct_listing_score,
-                                     test_drive_score: test_drive_score, 
-                                     photos_score:     photos_score,
-                                     # reviews_score:    reviews_score, 
-                                     recently_posted_score: 
-                                       recently_posted_score,
-                                     many_listings_score: 
-                                       many_listings_score, 
-                                     overall_score:    overall_score)
+        @vehicle.build_listing_score(
+          location_score:         location_score, 
+          features_score:         features_score,
+          spec_score:             spec_score, 
+          vin_score:              vin_score, 
+          certified_dealer_score: certified_dealer_score,
+          direct_listing_score:   direct_listing_score,
+          test_drive_score:       test_drive_score, 
+          photos_score:           photos_score,
+          # reviews_score:        reviews_score, 
+          recently_posted_score:  recently_posted_score,
+          many_listings_score:    many_listings_score, 
+          overall_score:          overall_score
+        )
       end
     end
   
