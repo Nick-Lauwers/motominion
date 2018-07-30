@@ -348,9 +348,13 @@
       <ol class="feed-items">
         <%= render partial: "feed_item", 
                    collection: Vehicle.
-                                 where(sold_at: nil).
+                                # where(sold_at: nil).
                                 # where.not(posted_at: nil).
                                 # order(bumped_at: :desc).
+                                 includes(:listing_score).
+                                 order("listing_scores.overall_score DESC",
+                                       "year DESC",
+                                       "listing_name ASC").
                                  first(6) %>
       </ol>
 
@@ -389,9 +393,13 @@
       <ol class="feed-items">
         <%= render partial: "feed_item", 
                    collection: Vehicle.
-                                 where(sold_at: nil).
+                                # where(sold_at: nil).
                                 # where.not(posted_at: nil).
                                 # order(bumped_at: :desc).
+                                 includes(:listing_score).
+                                 order("listing_scores.overall_score DESC",
+                                       "year DESC",
+                                       "listing_name ASC").
                                  offset(6).
                                  first(6) %>
       </ol>
@@ -431,9 +439,13 @@
       <ol class="feed-items">
         <%= render partial: "feed_item", 
                    collection: Vehicle.
-                                 where(sold_at: nil).
+                                # where(sold_at: nil).
                                 # where.not(posted_at: nil).
                                 # order(bumped_at: :desc).
+                                 includes(:listing_score).
+                                 order("listing_scores.overall_score DESC",
+                                       "year DESC",
+                                       "listing_name ASC").
                                  offset(12).
                                  first(6) %>
       </ol>

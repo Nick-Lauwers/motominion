@@ -59,10 +59,10 @@ module ExternalDb
       end
     end
     
-    
+    # Update listing score
     def update_score(vehicle)
       
-      # Listing location is an exact address
+      # Listing location is an exact address.
       location_score = 100
       
       # Features are properly noted.
