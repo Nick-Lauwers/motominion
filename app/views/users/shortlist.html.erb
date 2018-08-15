@@ -137,6 +137,10 @@
           
           <div class="shortlist-loves">
             
+            <span class="shortlist-title">
+              Maybe (<%= @liked_items.count %>)
+            </span>
+            
             <% if @liked_items.exists? %>
               <ol class="row search-items">
                 <%= render partial: "shortlist_item",
@@ -290,7 +294,7 @@
                 { "gamma": 1 }
               ]
             },
-          
+            
             {
               "featureType": "poi",
               "stylers": [
@@ -298,6 +302,14 @@
                 { "saturation": -1.0989010989011234 },
                 { "lightness": 11.200000000000017 },
                 { "gamma": 1 }
+              ]
+            },
+          
+            {
+              "featureType": "poi",
+              "elementType": "labels",
+              "stylers": [
+                { "visibility": "off" }
               ]
             }
           ]
