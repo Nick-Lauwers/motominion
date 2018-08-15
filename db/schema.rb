@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180719204120) do
+ActiveRecord::Schema.define(version: 20180815132605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -215,6 +215,7 @@ ActiveRecord::Schema.define(version: 20180719204120) do
     t.datetime "photo_updated_at"
     t.integer  "scraped_id"
     t.string   "google_place_id"
+    t.float    "google_place_rating"
   end
 
   add_index "dealerships", ["user_id"], name: "index_dealerships_on_user_id", using: :btree
@@ -303,6 +304,19 @@ ActiveRecord::Schema.define(version: 20180719204120) do
 
   add_index "favorite_vehicles", ["user_id", "created_at"], name: "index_favorite_vehicles_on_user_id_and_created_at", using: :btree
   add_index "favorite_vehicles", ["user_id", "vehicle_id"], name: "index_favorite_vehicles_on_user_id_and_vehicle_id", unique: true, using: :btree
+
+  create_table "google_reviews", force: :cascade do |t|
+    t.string   "author_name"
+    t.string   "profile_photo_url"
+    t.text     "text"
+    t.integer  "time"
+    t.integer  "dealership_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.float    "rating"
+  end
+
+  add_index "google_reviews", ["dealership_id"], name: "index_google_reviews_on_dealership_id", using: :btree
 
   create_table "inquiries", force: :cascade do |t|
     t.datetime "date"
@@ -727,6 +741,7 @@ ActiveRecord::Schema.define(version: 20180719204120) do
   add_foreign_key "favorite_autoparts", "users"
   add_foreign_key "favorite_vehicles", "users"
   add_foreign_key "favorite_vehicles", "vehicles"
+  add_foreign_key "google_reviews", "dealerships"
   add_foreign_key "inquiries", "conversations"
   add_foreign_key "inquiries", "users"
   add_foreign_key "inquiries", "vehicles"
