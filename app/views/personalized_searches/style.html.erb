@@ -12,7 +12,7 @@
 
 <div class="search-parameter">
   
-  <div class="search-parameter-progress-bar">
+  <div class="search-parameter-progress-bar hidden-xs">
     
     <div class="search-parameter-incomplete">
       
@@ -22,19 +22,18 @@
       
         <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/style.png" %>
                               
-        <span class="search-parameter-link-text">Style</span>
+        <span class="search-parameter-link-text-active">Style</span>
       <% end %>   
       
       <%= link_to '#', 
                   class: "search-parameter-link search-parameter-link-end" do %>
 
         <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/price.png" %>
-
-        <span class="search-parameter-link-text">Price</span>
+        
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Price</span>
       <% end %>
-      
-      <!--<div class="search-parameter-icon-filter -->
-      <!--            search-parameter-icon-end"></div>-->
     </div>
     
     <div class="search-parameter-incomplete">
@@ -43,7 +42,9 @@
       
         <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %>  
         
-        <span class="search-parameter-link-text">Mileage</span>
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Mileage</span>
       <% end %>
     </div>
     
@@ -53,7 +54,9 @@
         
         <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/year.png" %>  
         
-        <span class="search-parameter-link-text">Year</span>
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Year</span>
       <% end %>
     </div>
     
@@ -63,7 +66,9 @@
         
         <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png" %>
         
-        <span class="search-parameter-link-text">Features</span>
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Features</span>
       <% end %>
     </div>
   </div>
@@ -324,7 +329,7 @@
               </span>
               
               <span class="personalized-search-button-subtitle">
-                Continue to Mileage
+                Continue to Price
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </span>
             </div>

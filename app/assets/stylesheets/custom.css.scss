@@ -116,19 +116,13 @@ html {
   float: left;
 }
 
-.col-xs-15,
-.col-sm-15,
+
 .col-md-15,
-.col-lg-15 {
+.personalized-search-checkbox-column {
   position: relative;
   min-height: 1px;
   padding-right: 10px;
   padding-left: 10px;
-}
-
-.col-xs-15 {
-  width: 20%;
-  float: left;
 }
 
 /* typography */
@@ -279,22 +273,30 @@ p {
 }
 
 .btn-filters,
+.btn-profile-preview,
 .btn-save-listing,
-.btn-post-listing,
-.btn-profile-preview {
-  font-size: 0.85em;
+.btn-post-listing {
   font-weight: bold;
-  line-height: 2.1;
   color: $gray-text;
   background-color: white;
   border: 1px solid $gray-border;
   border-radius: 2px;
 }
 
-.btn-save-listing {
+.btn-filters,
+.btn-profile-preview {
+  font-size: 0.85em;
+  line-height: 2.1;
+}
+
+.btn-save-listing,
+.btn-post-listing {
   font-size: 0.95em;
   width: 100%;
   height: 50px;
+}
+
+.btn-save-listing {
   padding: 0;
   &:focus {
     outline: none;
@@ -302,10 +304,8 @@ p {
 }
 
 .btn-post-listing {
+  line-height: 50px;
   text-align: center;
-  width: auto;
-  padding: 0.7em 0;
-  margin-top: 2.5em;
   display: block;
   &:hover,
   &:focus {
@@ -313,6 +313,19 @@ p {
     color: $gray-text;
   }
 }
+
+// .btn-post-listing {
+//   text-align: center;
+//   width: auto;
+//   padding: 0.7em 0;
+//   // margin-top: 2.5em;
+//   display: block;
+//   &:hover,
+//   &:focus {
+//     text-decoration: none;
+//     color: $gray-text;
+//   }
+// }
 
 .btn-filters {
   padding: 0.3em 0.7em;
@@ -1119,6 +1132,11 @@ label {
   padding: 0.8em 1em;
 }
 
+.header-icon-mobile {
+  color: white !important;
+  text-shadow: 0 0 5px $transparent;
+}
+
 .header-icon-inactive {
   color: $gray-light;
 }
@@ -1421,7 +1439,7 @@ footer {
 #modal-buy-online-mobile,
 #modal-test-drive-mobile {
   background-color: white;
-  z-index: 10000;
+  z-index: 100000;
 }
 
 #modal-special-offer-desktop,
@@ -1894,13 +1912,13 @@ footer {
 
 /* home */
 
-.hero {
+.hero-desktop {
   height: 500px;
   overflow: hidden;
   position: relative;
 }
 
-.hero-video-container {
+.hero-desktop-video-container {
   text-align: center;
   width: 100%;
   position: absolute;
@@ -1908,11 +1926,11 @@ footer {
   transform: translateY(-50%);
 } 
 
-.hero-video {
+.hero-desktop-video {
   width: 100%;
 }
 
-.hero-detail {
+.hero-desktop-detail {
   text-align: center;
   width: 55%;
   position: absolute;
@@ -1921,7 +1939,7 @@ footer {
   transform: translate(-50%, -50%);
 }
 
-.hero-title {
+.hero-desktop-title {
   font-size: 3.5em;
   font-weight: bold;
   letter-spacing: 0.01em;
@@ -1930,13 +1948,66 @@ footer {
   margin: 0;
 }
 
-.hero-info {
+.hero-desktop-info {
   font-size: 1.5em;
   font-weight: bold;
   letter-spacing: 0.01em;
   text-shadow: 0 0 16px $transparent;
   color: white;
   margin: 0.4em 0 1.4em;
+}
+
+.hero-mobile {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/land-rover.jpg');
+  height: 350px;
+  position: relative;
+}
+
+.hero-mobile-gradient {
+  width: 100%;
+  height: 50px;
+  // background: -webkit-gradient(linear, left top, left bottom, from($gray-darker), to(transparent), color-stop(1.0, transparent));
+  background: linear-gradient(rgba(249, 249, 249, 0), #f9f9f9);
+  // background-color: transparent;
+  position: absolute;
+  bottom: 0;
+}
+
+// .hero-mobile-title {
+//   font-size: 2.2em;
+//   font-weight: bold;
+//   text-align: center;
+//   color: white;
+//   width: 100%;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+// .hero-mobile-search {
+//   background-color: white;
+//   width: 80%;
+//   height: 50px;
+//   padding: 0 1.25em;
+//   position: absolute;
+//   left: 50%;
+//   bottom: -25px;
+//   transform: translateX(-50%);
+// }
+
+.hero-mobile-search-text {
+  font-size: 1.15em;
+  max-height: 1.4em;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .search-form-primary-content {
@@ -2035,8 +2106,8 @@ footer {
 
 .personalized-search-list {
   width: 100%;
-  margin: 2.5em 0 4em;
-  display: inline-block;
+  margin-top: 30px;
+  overflow: visible;
 }
 
 .personalized-search-row {
@@ -2117,49 +2188,6 @@ footer {
   // }
 }
 
-.hero-mobile {
-  background-color: $gray-darkest;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 200px;
-  position: relative;
-  background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/hero-mobile.jpg')
-}
-
-.hero-mobile-title {
-  font-size: 2.2em;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.hero-mobile-search {
-  background-color: white;
-  width: 80%;
-  height: 50px;
-  padding: 0 1.25em;
-  position: absolute;
-  left: 50%;
-  bottom: -25px;
-  transform: translateX(-50%);
-}
-
-.hero-mobile-search-text {
-  font-size: 1.15em;
-  max-height: 1.4em;
-  display: block;
-  overflow: hidden;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 // .search-experiment-c {
 //   display: none;
 //   background-color: white;
@@ -2201,10 +2229,6 @@ footer {
   margin: 0;
 }
 
-.tertiary-navbar {
-  background-color: $gray-lightest !important;
-}
-
 #feed-container {
   background-color: $gray-lightest;
   border-bottom: 1px solid $gray-border;
@@ -2214,6 +2238,10 @@ footer {
   max-width: 1008px;
   padding: 5em 0;
   margin: 0 auto;
+}
+
+.feed-content {
+  margin-bottom: 2.5em;
 }
 
 .site-map {
@@ -2268,11 +2296,30 @@ footer {
 //   color: $gray-darker;
 // }
 
-.feed-items {
+.feed-community {
+  margin-top: 30px;
+}
+
+.feed-items,
+.feed-items-mobile {
   list-style: none;
   overflow: auto;
   padding: 0;
+}
+
+.feed-items {
   margin: 0 -15px 30px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.feed-items-mobile {
+  margin: 30px -15px 15px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.feed-items-mobile-content {
+  width: 70em;
 }
 
 #feed-items {
@@ -2299,6 +2346,11 @@ footer {
   }
 }
 
+.matches-submit-button,
+.feed-link {
+  text-align: right;
+}
+
 .feed-link {
   overflow: auto;
 }
@@ -2317,6 +2369,10 @@ footer {
   }
 }
 
+.feed-community {
+  overflow: visible;
+}
+
 .feed-forum-items {
   margin-top: 3em;
 }
@@ -2324,6 +2380,18 @@ footer {
 .feed-forum-item:hover,
 .feed-forum-item:focus {
   text-decoration: none;
+}
+
+.feed-forum-item-container,
+.feed-forum-item-container {
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    .feed-forum-image {
+      box-shadow: 0 3px 32px 0 $gray-light;
+    }
+  }
 }
 
 .feed-forum-image {
@@ -2458,9 +2526,9 @@ footer {
   height: 210px;
 }
 
-.feed-item-image {
-  height: 210px;
-}
+// .feed-item-image {
+//   height: 210px;
+// }
 
 .mobile-listing-item-image,
 .wish-list-item-image {
@@ -3094,6 +3162,7 @@ body {
 .wish-list-items {
   list-style: none;
   padding: 0;
+  margin-bottom: 0;
 }
 
 .search-introduction,
@@ -3329,7 +3398,7 @@ ul.pagination {
   position: fixed;
   right: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 20000;
 }
 
 .search-nav-grid,
@@ -5526,6 +5595,7 @@ ul.pagination {
 .purchase-item,
 .order-item {
   margin-bottom: 30px;
+  transition: 0.3s;
   a {
     text-decoration: none;
   }
@@ -5535,10 +5605,13 @@ ul.pagination {
 .purchase-item-content,
 .order-item-content {
   border: 1px solid $gray-border;
-  // transition: 0.3s;
-  // &:hover {
-  //   opacity: 0.4;
-  // }
+  box-shadow: 0 2px 16px 0 $gray-light;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    box-shadow: 0 3px 24px 0 $gray-light;
+    transform: scale(1.05);
+  }
 }
 
 .purchase-item-content {
@@ -6393,7 +6466,12 @@ ul.pagination {
   margin: 0;
 }
 
+.panel-instructions-container {
+  margin: 0 0 2em;
+}
+
 .panel-instructions {
+  font-size: 1.1em;
   line-height: 2.2;
   color: $gray-darkest;
   margin: 0 0 2em;
@@ -6848,6 +6926,7 @@ a.remove_fields {
 .info-text,
 .score-info-text {
   font-size: 0.85em;
+  font-weight: bold;
   text-align: left;
   color: white;
   background-color: $gray-darker;
@@ -9266,6 +9345,10 @@ a.remove_fields {
   }
 }
 
+.empty-shortlist {
+  margin-bottom: 3em;
+}
+
 .match-item {
   margin-bottom: 30px;
 }
@@ -9296,7 +9379,8 @@ a.remove_fields {
   position: absolute;
   top: 50%;
   left: 1em;
-  transform: translateY(-50%); 
+  transform: translateY(-50%);
+  z-index: 100;
 }
 
 .match-item-title,
@@ -10008,18 +10092,19 @@ a.remove_fields {
 }
 
 @media (min-width: 992px) {
-  .col-md-15 {
+  .col-md-15,
+  .personalized-search-checkbox-column {
     width: 20%;
     float: left;
   }
 }
 
-@media (min-width: 1200px) {
-  .col-lg-15 {
-    width: 20%;
-    float: left;
-  }
-}
+// @media (min-width: 1200px) {
+//   .col-lg-15 {
+//     width: 20%;
+//     float: left;
+//   }
+// }
 
 /* autopart */
 
@@ -10077,8 +10162,8 @@ a.remove_fields {
 }
 
 .search-parameter-progress-bar {
-  width: 65%;
-  margin: 1em auto 6em;
+  width: 668px;
+  margin: 1em auto 9em;
 }
 
 .search-parameter-complete,
@@ -10113,7 +10198,8 @@ a.remove_fields {
   transform: translateX(-50%);
 }
 
-.search-parameter-link-text {
+.search-parameter-link-text-active,
+.search-parameter-link-text-inactive {
   font-size: 0.9em;
   font-weight: bold;
   font-style: italic;
@@ -10121,24 +10207,8 @@ a.remove_fields {
   display: block;
 }
 
-.search-parameter-link-end {
-  right: 0;
-  transform: translateX(50%);
-}
-
-.search-parameter-icon {
-  position: absolute;
-  top: -15px;
-  z-index: 100;
-}
-
-.search-parameter-icon-start {
-  left: 0;
-  transform: translateX(-50%);
-}
-
-.search-parameter-text {
-  display: block;
+.search-parameter-link-text-inactive {
+  opacity: 0.4;
 }
 
 .search-parameter-icon-end {
@@ -10152,7 +10222,9 @@ a.remove_fields {
   width: 32px;
   height: 32px;
   position: absolute;
-  top: -15px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 200;
 }
 
@@ -10217,11 +10289,14 @@ a.remove_fields {
   .contact,
   .vehicle-makes,
   .blog-header-content,
-  .blog-body-content {
+  .blog-body-content,
+  .search-parameter-form-small,
+  .search-parameter-form-large {
     margin: 0 5%;
     overflow: hidden;
   }
   
+  .search-parameter-title,
   .profile-pic-button {
     margin-left: 5%;
     margin-right: 5%;
@@ -10258,6 +10333,53 @@ a.remove_fields {
   
   .feed {
     padding-top: 1.3em;
+  }
+  
+  .feed-title {
+    font-size: 1.3em;
+  }
+  
+  .personalized-search-list {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .personalized-search-list-content {
+    width: 143em;
+  }
+  
+  .personalized-search-row {
+    margin-right: 10px;
+    display: inline-block;
+  }
+  
+  .col-md-15,
+  .personalized-search-checkbox-column {
+    width: 14em;
+    display: inline-block;
+  }
+  
+  .matches-submit {
+    font-size: 1.05em;
+    margin-top: 0;
+  }
+  
+  .feed-link-content {
+    font-size: 1.05em;
+  }
+  
+  .feed-item {
+    width: 22em;
+    margin-top: 0;
+  }
+  
+  .feed-community {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .feed-community-content {
+    width: 45em;
   }
   
   .hero-listing {
@@ -10935,11 +11057,6 @@ a.remove_fields {
   
 }  
   
-
-  
-  
-  
-  
   .clubs-overview-cover-photo,
   .clubs-search-cover-photo {
     margin-bottom: 2em;
@@ -10991,6 +11108,10 @@ a.remove_fields {
   .discussion-name {
     font-size: 1.2em;
     margin-bottom: 0;
+  }
+  
+  .form-element {
+    margin-bottom: 1.4em;
   }
   
   .form-element-availability {
@@ -11125,6 +11246,22 @@ a.remove_fields {
   
   .login-alternative-text {
     background-color: white;
+  }
+  
+  .empty-shortlist-detail {
+    max-width: 100%;
+  }
+  
+  .feed-item-image-content {
+    height: 190px;
+  }
+  
+  .feed-forum-image {
+    height: 190px;
+  }
+  
+  .feed-forum-image-text {
+    font-size: 2em;
   }
 }
 

@@ -11,7 +11,7 @@
       </div>
     <% end %>
     
-    <%= link_to unfavorite_vehicle_path(shortlist_item),
+    <%= link_to unfavorite_vehicle_path(shortlist_item.vehicle),
                 method: :put,
                 class: "add-to-wish-list" do %>
       <i class="fa fa-2x fa-trash wish-list-icon" aria-hidden="true"></i>

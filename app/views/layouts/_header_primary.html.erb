@@ -9,6 +9,26 @@
       
       <% if logged_in? %>
       
+        <li class="visible-xs">
+          <i class="fa 
+                    fa-search 
+                    fa-lg 
+                    header-icon
+                    header-icon-mobile
+                    header-icon-search" 
+             aria-hidden="true"></i>
+        </li>
+        
+        <li class="visible-xs">
+          <i class="fa 
+                    fa-bars 
+                    fa-lg 
+                    header-icon
+                    header-icon-mobile
+                    header-icon-menu" 
+             aria-hidden="true"></i>
+        </li>        
+      
         <!--<li class="hidden-xs"><(perc)= link_to "Clubs", clubs_overview_path %></li>-->
       
         <!--<li class="dropdown dropdown-frontend hidden-xs">-->
@@ -129,7 +149,7 @@
         <!--  </ul>-->
         <!--</li>-->
         
-        <li class="dropdown dropdown-frontend">
+        <li class="dropdown dropdown-frontend hidden-xs">
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
             
@@ -199,6 +219,26 @@
         </li>
         
       <% else %>
+      
+        <li class="visible-xs">
+          <i class="fa 
+                    fa-search 
+                    fa-lg 
+                    header-icon
+                    header-icon-mobile 
+                    header-icon-search" 
+             aria-hidden="true"></i>
+        </li>
+        
+        <li class="visible-xs">
+          <i class="fa 
+                    fa-bars 
+                    fa-lg 
+                    header-icon
+                    header-icon-mobile
+                    header-icon-menu" 
+             aria-hidden="true"></i>
+        </li>        
       
         <!--<li class="hidden-xs"><(perc)= link_to "Clubs", clubs_overview_path %></li>-->
       

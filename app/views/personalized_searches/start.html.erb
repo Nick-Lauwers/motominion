@@ -272,32 +272,24 @@
               <% end %>
             </div>
             
-            <div class="col-md-3">
-              <!--intentionally left empty-->
-            </div>
-
-            <div class="col-md-3">
-              <!--intentionally left empty-->
-            </div>
-            
-            <div class="col-md-3">
-              <%= button_tag(type:  "submit",
-                             class: "personalized-search-button
-                                     personalized-search-button-k") do %>
+            <div class="col-md-9">
+              <%= button_tag(type: "submit",
+                             class: "next-button
+                                     personalized-search-button-a") do %>
 
                 <div class="personalized-search-button-text">
                   
                   <span class="personalized-search-button-title">
-                    Next
+                    Save
                   </span>
                   
                   <span class="personalized-search-button-subtitle">
-                    View All 
+                    Continue to Price
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                   </span>
                 </div>
 
-                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-k.png",
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches-next.png",
                               class: "personalized-search-button-icon") %>
               <% end %>
             </div>

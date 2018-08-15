@@ -12,49 +12,63 @@
 
 <div class="search-parameter">
 
-  <div class="search-parameter-progress-bar">
+  <div class="search-parameter-progress-bar hidden-xs">
     
     <div class="search-parameter-complete">
       
-      <%= link_to style_personalized_search_path do %>
-        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/style.png",
-                      class: "search-parameter-icon
-                              search-parameter-icon-start") %>
+      <%= link_to style_personalized_search_path,
+                  class: "search-parameter-link
+                          search-parameter-link-start" do %>
+                          
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/style.png" %>
+        
+        <span class="search-parameter-link-text-active">Style</span>
       <% end %>   
       
-      <%= link_to price_personalized_search_path do %>
-        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/price.png",
-                      class: "search-parameter-icon
-                              search-parameter-icon-end") %>
+      <%= link_to price_personalized_search_path,
+                  class: "search-parameter-link 
+                          search-parameter-link-end" do %>
+                          
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/price.png" %>
+      
+        <span class="search-parameter-link-text-active">Price</span>
       <% end %>
     </div>
     
     <div class="search-parameter-complete">
-      <%= link_to mileage_personalized_search_path do %>
-        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png",
-                      class: "search-parameter-icon
-                              search-parameter-icon-end") %> 
+      <%= link_to mileage_personalized_search_path,
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %> 
+      
+        <span class="search-parameter-link-text-active">Mileage</span>
       <% end %>
     </div>
     
     <div class="search-parameter-incomplete">
       
-      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/year.png",
-                    class: "search-parameter-icon
-                            search-parameter-icon-end") %>  
-      
-      <div class="search-parameter-icon-filter 
-                  search-parameter-icon-end"></div>
+      <%= link_to '#',
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/year.png" %>  
+        
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Year</span>
+      <% end %>
     </div>
     
     <div class="search-parameter-incomplete">
       
-      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png",
-                    class: "search-parameter-icon
-                            search-parameter-icon-end") %>
-      
-      <div class="search-parameter-icon-filter 
-                  search-parameter-icon-end"></div>
+      <%= link_to '#',
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png" %>
+        
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Features</span>
+      <% end %>
     </div>
   </div>
   

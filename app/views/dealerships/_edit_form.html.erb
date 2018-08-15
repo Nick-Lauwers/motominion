@@ -157,7 +157,14 @@
   
   <%= hidden_field_tag :redirect_location, edit_dealership_path %>
 
-  <%= f.submit "Save Changes", class: "btn btn-primary btn-update" %>      
+  <button type="submit"
+          class="btn-save-listing">
+    
+      <i class="fa fa-floppy-o fa-lg profile-preview-icon" 
+         aria-hidden="true"></i>
+                
+      Save
+  </button>      
 <% end %>
 
 <script type="text/javascript">

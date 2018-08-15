@@ -12,44 +12,56 @@
 
 <div class="search-parameter">
   
-  <div class="search-parameter-progress-bar">
+  <div class="search-parameter-progress-bar hidden-xs">
     
     <div class="search-parameter-complete">
       
-      <%= link_to style_personalized_search_path do %>
-        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/style.png",
-                      class: "search-parameter-icon
-                              search-parameter-icon-start") %>
+      <%= link_to style_personalized_search_path,
+                  class: "search-parameter-link
+                          search-parameter-link-start" do %>
+                          
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/style.png" %>
+        
+        <span class="search-parameter-link-text-active">Style</span>
       <% end %>   
       
-      <%= link_to price_personalized_search_path do %>
-        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/price.png",
-                      class: "search-parameter-icon
-                              search-parameter-icon-end") %>
+      <%= link_to price_personalized_search_path,
+                  class: "search-parameter-link 
+                          search-parameter-link-end" do %>
+                          
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/price.png" %>
+      
+        <span class="search-parameter-link-text-active">Price</span>
       <% end %>
     </div>
     
     <div class="search-parameter-complete">
-      <%= link_to mileage_personalized_search_path do %>
-        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png",
-                      class: "search-parameter-icon
-                              search-parameter-icon-end") %> 
+      <%= link_to mileage_personalized_search_path,
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %> 
+      
+        <span class="search-parameter-link-text-active">Mileage</span>
       <% end %>
     </div>
     
     <div class="search-parameter-complete">
-      <%= link_to year_personalized_search_path do %>
-        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/year.png",
-                      class: "search-parameter-icon
-                              search-parameter-icon-end") %>  
+      <%= link_to year_personalized_search_path,
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/year.png" %>  
+        
+        <span class="search-parameter-link-text-active">Year</span>
       <% end %>
     </div>
     
     <div class="search-parameter-complete">
-      <%= link_to installed_options_personalized_search_path do %>
-        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png",
-                      class: "search-parameter-icon
-                              search-parameter-icon-end") %>
+      <%= link_to installed_options_personalized_search_path,
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png" %>
+        
+        <span class="search-parameter-link-text-active">Features</span>
       <% end %>
     </div>
   </div>
@@ -62,67 +74,67 @@
       <div class="row">
                     
         <div class="col-md-4 installed-option">
-          <%= f.check_box :with_cruise_control %>
-          <%= f.label :with_cruise_control, "Cruise Control" %> 
+          <%= f.check_box :cruise_control %>
+          <%= f.label :cruise_control, "Cruise Control" %> 
         </div>
         
         <div class="col-md-4 installed-option">
-          <%= f.check_box :with_am_fm %>
-          <%= f.label :with_am_fm, "AM / FM Radio" %> 
+          <%= f.check_box :am_fm %>
+          <%= f.label :am_fm, "AM / FM Radio" %> 
         </div>
         
         <div class="col-md-4 installed-option">
-          <%= f.check_box :with_cb_radio %>
-          <%= f.label :with_cb_radio, "CB Raido" %> 
-        </div>
-      </div>
-      
-      <div class="row">
-        
-        <div class="col-md-4 installed-option">
-          <%= f.check_box :with_navigation_system %>
-          <%= f.label :with_navigation_system, "Navigation System" %>
-        </div>
-        
-        <div class="col-md-4 installed-option">
-          <%= f.check_box :with_heated_seats %>
-          <%= f.label :with_heated_seats, "Heated Seats" %> 
-        </div>
-        
-        <div class="col-md-4 installed-option">
-          <%= f.check_box :with_heated_hand_grips %>
-          <%= f.label :with_heated_hand_grips, "Heated Hand Grips" %>
+          <%= f.check_box :cb_radio %>
+          <%= f.label :cb_radio, "CB Raido" %> 
         </div>
       </div>
       
       <div class="row">
         
         <div class="col-md-4 installed-option">
-          <%= f.check_box :with_alarm_system %>
-          <%= f.label :with_alarm_system, "Alarm System" %> 
+          <%= f.check_box :navigation_system %>
+          <%= f.label :navigation_system, "Navigation System" %>
         </div>
         
         <div class="col-md-4 installed-option">
-          <%= f.check_box :with_saddlebags %>
-          <%= f.label :with_saddlebags, "Saddlebags" %>  
+          <%= f.check_box :heated_seats %>
+          <%= f.label :heated_seats, "Heated Seats" %> 
         </div>
         
         <div class="col-md-4 installed-option">
-          <%= f.check_box :with_trunk %>
-          <%= f.label :with_trunk, "Trunk" %> 
+          <%= f.check_box :heated_hand_grips %>
+          <%= f.label :heated_hand_grips, "Heated Hand Grips" %>
         </div>
       </div>
       
       <div class="row">
         
         <div class="col-md-4 installed-option">
-          <%= f.check_box :with_tow_hitch %>
-          <%= f.label :with_tow_hitch, "Tow Hitch" %>
+          <%= f.check_box :alarm_system %>
+          <%= f.label :alarm_system, "Alarm System" %> 
         </div>
         
         <div class="col-md-4 installed-option">
-          <%= f.check_box :with_cycle_cover %>
-          <%= f.label :with_cycle_cover, "Cycle Cover" %>  
+          <%= f.check_box :saddlebags %>
+          <%= f.label :saddlebags %>  
+        </div>
+        
+        <div class="col-md-4 installed-option">
+          <%= f.check_box :trunk %>
+          <%= f.label :trunk %> 
+        </div>
+      </div>
+      
+      <div class="row">
+        
+        <div class="col-md-4 installed-option">
+          <%= f.check_box :tow_hitch %>
+          <%= f.label :tow_hitch, "Tow Hitch" %>
+        </div>
+        
+        <div class="col-md-4 installed-option">
+          <%= f.check_box :cycle_cover %>
+          <%= f.label :cycle_cover, "Cycle Cover" %>  
         </div>
         
         <div class="col-md-4">

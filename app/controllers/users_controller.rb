@@ -111,7 +111,13 @@ class UsersController < ApplicationController
     
     @liked_items = current_user.favorite_vehicles.where(is_liked: true)
     
-    @vehicles = current_user.favorites
+    @vehicles = current_user.
+                  favorites.
+                  joins(:favorite_vehicles).
+                  where(favorite_vehicles: {is_loved: true}).
+                  or(favorite_vehicles: {is_liked: true}).
+                  or(favorite_vehicles: {is_test_drive: true}).
+                  or(favorite_vehicles: {is_purchase: true})
 
     @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
       
