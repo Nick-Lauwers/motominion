@@ -190,3 +190,7 @@ class UsersController < ApplicationController
 end
 
 # add delete and associated tests
+
+
+# User.create(first_name: 'Matt', last_name: 'Graves', email: 'matt@munroemotors.com', password: '98391004', password_confirmation: '98391004', avatar_url: 'https://randomuser.me/api/portraits/men/31.jpg', dealership_id: 3)
+# User.create(first_name: 'Neal', last_name: 'Reyes', email: 'neal@scuderiawest.com', password: '98391006', password_confirmation: '98391006', avatar_url: 'https://randomuser.me/api/portraits/men/94.jpg', dealership_id: 4)
