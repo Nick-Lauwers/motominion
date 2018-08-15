@@ -11,10 +11,11 @@
       </div>
     <% end %>
     
-    <!--<(perc)= link_to favorite_vehicle_path(vehicle), -->
-    <!--          method: :put do %>-->
-    <!--  <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>-->
-    <!--<(perc) end %>-->
+    <%= link_to unfavorite_vehicle_path(shortlist_item),
+                method: :put,
+                class: "add-to-wish-list" do %>
+      <i class="fa fa-2x fa-trash wish-list-icon" aria-hidden="true"></i>
+    <% end %>
     
     <!--<(perc) if shortlist_item.vehicle.dealership.present? %>-->
       <div class="special-offer" 
@@ -94,10 +95,9 @@
             <% if shortlist_item.vehicle.dealership.present? && 
                   shortlist_item.vehicle.dealership_id != 1 && 
                   shortlist_item.vehicle.dealership_id != 2 %>
-              <%= pluralize(GooglePlaces::Client.
-                              new(ENV['GOOGLE_API_KEY']).
-                              spot(shortlist_item.vehicle.dealership.google_place_id).
-                              reviews.count, "review") %>
+              <%= pluralize(
+                    shortlist_item.vehicle.dealership.google_reviews.count, 
+                    "review") %>
               
             <% else %>
               <%= pluralize(shortlist_item.vehicle.reviews.count, "review") %>
@@ -176,10 +176,7 @@
         averageRating.raty({
           path:     '/assets',
           readOnly: true,
-          score:    <%= GooglePlaces::Client.
-                          new(ENV['GOOGLE_API_KEY']).
-                          spot(shortlist_item.vehicle.dealership.google_place_id).
-                          rating %>
+          score:    <%= shortlist_item.vehicle.dealership.google_place_rating %>
         }
 
       <% else %>

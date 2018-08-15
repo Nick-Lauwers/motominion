@@ -279,6 +279,7 @@ p {
 }
 
 .btn-filters,
+.btn-save-listing,
 .btn-post-listing,
 .btn-profile-preview {
   font-size: 0.85em;
@@ -288,6 +289,29 @@ p {
   background-color: white;
   border: 1px solid $gray-border;
   border-radius: 2px;
+}
+
+.btn-save-listing {
+  font-size: 0.95em;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-post-listing {
+  text-align: center;
+  width: auto;
+  padding: 0.7em 0;
+  margin-top: 2.5em;
+  display: block;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $gray-text;
+  }
 }
 
 .btn-filters {
@@ -302,19 +326,6 @@ p {
   padding: 0.7em;
   width: 100%;
   // padding: 0.7em;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    color: $gray-text;
-  }
-}
-
-.btn-post-listing {
-  text-align: center;
-  width: auto;
-  padding: 0.7em 0;
-  margin-top: 2.5em;
-  display: block;
   &:hover,
   &:focus {
     text-decoration: none;
@@ -481,10 +492,6 @@ p {
   visibility: hidden;
 }
 
-.btn-basics {
-  margin-top: 1.4em;
-}
-
 .btn-all-clubs,
 .btn-club-conversation {
   color: $gray-text;
@@ -506,10 +513,6 @@ p {
 
 .btn-business-hours {
   margin-top: 2.5em;
-}
-
-.btn-feed-forum {
-  width: 70%;
 }
 
 .btn-negotiate-dealer,
@@ -906,7 +909,7 @@ label {
 }
 
 .form-element {
-  margin-bottom: 1.4em;
+  // margin-bottom: 1.4em;
   position: relative;
 }
 
@@ -1295,6 +1298,8 @@ label {
 
 footer {
   background-color: $gray-lightest;
+  z-index: 10000;
+  position: relative;
 }
 
 .footer-call-us {
@@ -2029,28 +2034,87 @@ footer {
 }
 
 .personalized-search-list {
-  margin: 3.5em 0 3em;
+  width: 100%;
+  margin: 2.5em 0 4em;
+  display: inline-block;
 }
 
-.personalized-search-red,
-.personalized-search-yellow {
+.personalized-search-row {
+  margin: 0 -10px;
+}
+ 
+.next-button {
+  background-color: #fcbb29;
+  border: 1px solid #ffd043;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px 0 $gray-light;
+  width: 100%;
+  height: 75px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    box-shadow: 0 3px 24px 0 $gray-light;
+    outline: none;
+    transform: scale(1.05);
+  }
+}
+
+.personalized-search-button-text {
+  text-align: left;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.personalized-search-button-title {
+  font-size: 1.1em;
   font-weight: bold;
   color: white;
-  box-shadow: 0 2px 16px 0 $gray-light !important;
-  border-radius: 2px;
-  width: 100%;
-  height: 50px;
-  margin-bottom: 1.5em;
+  display: block;
 }
 
-.personalized-search-red {
-  background-color: $red;
-  border: 1px solid $red;
+.personalized-search-button-subtitle {
+  font-size: 1em;
+  font-style: italic;
+  color: white;
+  display: block;
 }
 
-.personalized-search-yellow {
-  background-color: $yellow-dark;
-  border: 1px solid $yellow-dark;
+.personalized-search-button-icon,
+.personalized-search-checkbox-icon {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  opacity: 0.7;
+}
+
+.matches-submit {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: $green;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 1.2em 0 0;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.4;
+  }
+  &:focus {
+    outline: none;
+  }
+  // line-height: 2;
+  // text-decoration: underline;
+  // color: $gray-dark;
+  // background-color: white;
+  // border: none;
+  // padding: 0;  
+  // &:hover,
+  // &:focus {
+  //   outline: none;
+  // }
 }
 
 .hero-mobile {
@@ -2141,14 +2205,14 @@ footer {
   background-color: $gray-lightest !important;
 }
 
-#feed {
+#feed-container {
   background-color: $gray-lightest;
   border-bottom: 1px solid $gray-border;
 }
 
-.feed-content {
+.feed {
   max-width: 1008px;
-  padding: 4em 0;
+  padding: 5em 0;
   margin: 0 auto;
 }
 
@@ -2182,17 +2246,33 @@ footer {
 .feed-title {
   font-size: 1.65em;
   font-weight: bold;
-  line-height: 1.65;
-  text-align: center;
-  color: $green;
+  text-align: left;
+  color: $gray-text;
   margin: 0;
 }
+
+// .feed-image-container {
+//   text-align: center;
+// }
+
+// .feed-subtitle {
+//   font-size: 1.65em;
+//   font-weight: bold;
+//   display: block;
+//   color: $gray-darker;
+// }
+
+// .feed-info {
+//   font-size: 1.1em;
+//   line-height: 1.5;
+//   color: $gray-darker;
+// }
 
 .feed-items {
   list-style: none;
   overflow: auto;
   padding: 0;
-  margin: 0 -15px;
+  margin: 0 -15px 30px;
 }
 
 #feed-items {
@@ -2200,46 +2280,6 @@ footer {
   overflow: auto;
   padding: 0;
   margin: 0 -15px;
-}
-
-.feed-forum-container,
-.feed-car-clubs-container {
-  border-top: 1px solid $gray-border;
-  border-bottom: 1px solid $gray-border;
-  margin-top: 3.5em;
-}
-
-.feed-forum,
-.feed-car-clubs {
-  max-width: 725px;
-  padding: 3.5em 0;
-  margin: 0 auto;
-}
-
-.feed-forum-image,
-.feed-car-clubs-image {
-  background-color: $gray-darkest;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 210px;
-}
-
-.feed-forum-title,
-.feed-car-clubs-title {
-  font-size: 1.65em;
-  font-weight: bold;
-  color: $gray-darker;
-  margin: 0;
-}
-
-.feed-forum-info,
-.feed-car-clubs-info {
-  font-size: 1.1em;
-  text-align: left;
-  line-height: 1.5;
-  color: $gray-darker;
-  margin: 0.75em 0 2em;
 }
 
 // .feed-item,
@@ -2252,7 +2292,69 @@ footer {
 }
 
 .feed-item {
-  margin-top: 3.5em;
+  margin-top: 3em;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.feed-link {
+  overflow: auto;
+}
+
+.feed-link-content {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: $green;
+  margin-bottom: 4em;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: $green;
+    opacity: 0.4;
+  }
+}
+
+.feed-forum-items {
+  margin-top: 3em;
+}
+
+.feed-forum-item:hover,
+.feed-forum-item:focus {
+  text-decoration: none;
+}
+
+.feed-forum-image {
+  border-radius: 2px;
+  box-shadow: 0 2px 16px 0 $gray-light;
+  height: 250px;
+  margin-bottom: 0.7em;
+  position: relative;
+}
+
+.feed-forum-image-text {
+  font-size: 3em;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 16px $transparent;
+  color: white;
+  margin: 0;
+  left: 0.7em;
+  bottom: 0.7em;
+  position: absolute;
+}
+
+.feed-forum-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.05em;
+  display: block;
+}
+
+.feed-forum-info {
+  font-size: 1em;
 }
 
 .feed-blog {
@@ -2281,6 +2383,10 @@ footer {
 .search-item {
   z-index: 20000;
   margin-bottom: 3em;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .map-item {
@@ -2908,8 +3014,7 @@ body {
   left: 0;
 }
 
-#search-map,
-#shortlist-map {
+#search-map {
   height: calc(100vh - 50px);
 }
 
@@ -2932,17 +3037,25 @@ body {
 .shortlist-list-container {
   max-width: 1008px;
   margin: 0 auto;
+  min-height: calc(100vh);
 }
 
 .search-list-content,
 .shortlist-list-content {
   background-color: $gray-lightest;
   border-left: 1px solid $gray-border;
-  min-height: calc(100vh - 50px);
   padding-top: 1.7em;
   padding-bottom: 1.7em;
   position: relative;
   z-index: 100;
+}
+
+.search-list-content {
+  min-height: calc(100vh - 50px);
+}
+
+.shortlist-list-content {
+  min-height: calc(100vh)
 }
 
 .search-filters {
@@ -2983,15 +3096,21 @@ body {
   padding: 0;
 }
 
-.search-introduction {
+.search-introduction,
+.listing-introduction {
   background-color: white;
   box-shadow: 0 2px 16px 0 $gray-form-control;
   margin-bottom: 1.7em;
 }
 
-.search-introduction-static {
+.search-introduction-static,
+.listing-introduction-content {
   padding: 1.1em;
   position: relative;
+}
+
+.search-introduction-static-again {
+  padding: 2.3em;
 }
 
 .search-introduction-static-close {
@@ -3004,7 +3123,7 @@ body {
 
 .search-introduction-static-image,
 .conversation-introduction-image,
-.matches-introduction-image {
+.listing-introduction-image {
   margin-left: 1em;
 }
 
@@ -3012,7 +3131,10 @@ body {
 .conversation-introduction-title, 
 .conversation-introduction-hidden,
 .conversation-introduction-visible,
-.test-drive-introduction-title {
+.test-drive-introduction-title,
+.listing-introduction-title,
+.listing-introduction-score-zero,
+.listing-introduction-score-nonzero {
   font-size: 1em;
   font-weight: bold;
   line-height: 2;
@@ -3026,9 +3148,18 @@ body {
   color: $red;
 }
 
+.listing-introduction-score-zero {
+  color: $red;
+}
+
+.listing-introduction-score-nonzero {
+  color: $green;
+}
+
 .test-drive-introduction-info,
 .search-introduction-static-info,
-.conversation-introduction-info {
+.conversation-introduction-info,
+.listing-introduction-static-info {
   font-size: 0.9em;
   line-height: 20px;
   text-align: left;
@@ -3263,7 +3394,7 @@ ul.pagination {
   position: fixed;
   bottom: 15px;
   right: 15px;
-  z-index: 1000;
+  z-index: 20000;
 }
 
 .search-personalization-close {
@@ -4096,12 +4227,13 @@ ul.pagination {
   margin: 1em 0 2.5em;
 }
 
+.dashboard-title,
 .panel-title {
-  margin: 0 0 2em;
+  margin: 0 0 1.5em;
 }
 
-.dashboard-title {
-  margin: 0 0 1.5em;
+.panel-section {
+  margin-bottom: 2em;
 }
 
 // .dashboard-title {
@@ -5446,8 +5578,7 @@ ul.pagination {
 
 .test-drive-item-countdown,
 .purchase-item-vehicle,
-.order-item-name,
-.match-item-title {
+.order-item-name {
   font-size: 1.7em;
   font-weight: bold;
   color: $gray-darker;
@@ -5455,8 +5586,7 @@ ul.pagination {
 
 .test-drive-item-date,
 .purchase-item-price,
-.order-item-date,
-.match-item-info {
+.order-item-date {
   font-size: 1em;
   color: $gray-dark;
   margin: 0.2em 0 1em;
@@ -5909,13 +6039,8 @@ ul.pagination {
   width: 25%;
   margin: 1em auto 0;}
 
-// .post-listing-button,
 .profile-preview-button {
   text-align: right;
-  margin-bottom: 1.7em;
-}
-
-.post-listing-button {
   margin-bottom: 1.7em;
 }
 
@@ -6254,9 +6379,13 @@ ul.pagination {
 }
 
 .update-panel {
-  border: 1px solid $gray-border;
+  background-color: white;
+  box-shadow: 0 2px 16px 0 $gray-lighter;
   padding: 1.6em;
-  margin-bottom: 1.7em;
+  margin-bottom: 2em;
+  // border: 1px solid $gray-border;
+  // padding: 1.6em;
+  // margin-bottom: 1.7em;
 }
 
 .panel-body {
@@ -6437,9 +6566,9 @@ ul.pagination {
   color: $yellow-dark;
 }
 
-.basics-detail {
-  margin-bottom: 2.5em;
-}
+// .basics-detail {
+//   margin-bottom: 2.5em;
+// }
 
 .instructions-title,
 .basics-title,
@@ -6464,17 +6593,9 @@ ul.pagination {
   margin: 0;
 }
 
-.listing-score {
-  font-size: 1.2em;
-  font-weight: bold;
-  line-height: 1.4;
-  text-align: right;
-  color: $green;
-}
-
-.installed-options {
-  margin-bottom: 1.8em;
-}
+// .installed-options {
+//   margin-bottom: 1.8em;
+// }
 
 .form-element-label,
 .installed-options-title,
@@ -6495,36 +6616,52 @@ ul.pagination {
   list-style: none;
   padding: 0;
   margin: 0;
-  li {
-    display: inline-block;
-    margin: 0 0.3em 0.6em 0;
-    input {
-      display: none;
+}
+
+.installed-options-list li,
+.installed-option {
+  margin-bottom: 0.6em;
+  input {
+    display: none;
+  }
+  input + label {
+    font-size: 0.85em;
+    line-height: 2.1;
+    color: $gray-dark;
+    background-color: $gray-lightest;
+    border: 1px solid $gray-light;
+    border-radius: 2px;
+    cursor: pointer;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin: 0;
+    transition: border-color 0.3s, color 0.3s, background-color 0.3s;
+    &:hover {
+      border-color: $green;
     }
-    input + label {
-      font-size: 0.85em;
-      line-height: 2.1;
-      color: $gray-dark;
-      background-color: $gray-lightest;
-      border: 1px solid $gray-light;
-      border-radius: 2px;
-      cursor:pointer;
-      padding: 3px 8px;
-      margin: 0;
-      transition: border-color 0.3s, color 0.3s, background-color 0.3s;
-      &:hover {
-        border-color: $green;
-      }
-      &:focus {
-        color: white;
-        background-color: $green;
-      }
+    &:focus {
+      color: white;
+      background-color: $green;
     }
-    input:checked + label {
-        border-color: $green;
-        color: white;
-        background-color: $green;
-    }
+  }
+  input:checked + label {
+      border-color: $green;
+      color: white;
+      background-color: $green;
+  }
+}
+
+.installed-options-list li { 
+  display: inline-block;
+  padding-right: 8px;
+  padding-left: 8px;
+  margin-right: 0.3em;
+}
+
+.installed-option {
+  text-align: center;
+  input + label {
+    width: 100%;
   }
 }
 
@@ -6680,25 +6817,36 @@ a.remove_fields {
   text-align: right;
 }
 
-.info {
+.info,
+.score-info {
   position: relative;
   display: inline-block;
   &:hover {
-    .info-text {
+    .info-text,
+    .score-info-text {
       display: block;
     }
   }
 }
 
-.info-icon {
-  color: $green;
+.info-icon,
+.score-info-icon {
   margin-left: 0.5em;
   cursor: pointer;
   position: absolute;
   top: -10px;
 }
 
-.info-text {
+.info-icon {
+  color: $green;
+}
+
+.score-info-icon {
+  color: $red;
+}
+
+.info-text,
+.score-info-text {
   font-size: 0.85em;
   text-align: left;
   color: white;
@@ -6722,10 +6870,22 @@ a.remove_fields {
   }
 }
 
-.shortlist-purchases,
-.shortlist-test-drives,
-.shortlist-loves {
-  margin-bottom: 4em;
+// .shortlist-purchases,
+// .shortlist-test-drives,
+// .shortlist-loves {
+//   margin-bottom: 3em;
+// }
+
+.empty-shortlist-a {
+  background-color: #ffbc00;
+}
+
+.empty-shortlist-b {
+  background-color: #00afdc;
+}
+
+.empty-shortlist-c {
+  background-color: #e95caa;
 }
 
 /* forum */
@@ -8172,8 +8332,7 @@ a.remove_fields {
 
 .purchase-introduction,
 .conversation-introduction,
-.test-drive-introduction,
-.matches-introduction {
+.test-drive-introduction {
   background-color: white;
   box-shadow: 0 2px 16px 0 $gray-lighter;
   padding: 1.1em;
@@ -8183,8 +8342,7 @@ a.remove_fields {
 
 .purchase-introduction-close,
 .conversation-introduction-close,
-.test-drive-introduction-close,
-.matches-introduction-close {
+.test-drive-introduction-close {
   color: $gray-dark;
   position: absolute;
   right: 1.1em;
@@ -8192,31 +8350,24 @@ a.remove_fields {
   cursor: pointer;
 }
 
-.purchase-introduction-detail,
-.matches-introduction-detail {
+.purchase-introduction-detail {
   margin-left: 1em;
 }
 
-.purchase-introduction-title,
-.matches-introduction-title {
+.purchase-introduction-title {
   font-size: 1em;
   font-weight: bold;
   line-height: 2;
   display: block;
 }
 
-.purchase-introduction-info,
-.matches-introduction-info {
+.purchase-introduction-info {
   font-size: 0.9em;
   color: $gray-dark;
 }
 
 .purchase-introduction-info {
   line-height: 2;
-}
-
-.matches-introduction-info {
-  line-height: 20px;
 }
 
 .shortlist-link {
@@ -8953,32 +9104,248 @@ a.remove_fields {
 
 /* personalized searches */
 
-.match-item {
-  text-align: left;
-  border: 1px solid $gray-border;
-  width: 100%;
-  padding: 0;
-  margin-bottom: 30px;
-  transition: 0.3s;
-  &:hover,
-  &:focus {
-    outline: none;
-    opacity: 0.4;
+.matches-introduction {
+  margin-bottom: 2.3em;
+}
+
+.matches-introduction-title,
+.shortlist-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: $gray-darker;
+  display: block;
+}
+
+.shortlist-title {
+  margin: 0 0 1em;
+}
+
+.matches-introduction-subtitle {
+  font-size: 1em;
+  color: $gray-dark;
+  margin-top: 0.2em;
+  display: block;
+}
+
+.personalized-search-checkbox {
+  input {
+    display: none;
+  }
+  input + label {
+    border-radius: 2px;
+    box-shadow: 0 3px 24px 0 $gray-light;
+    width: 100%;
+    height: 75px;
+    position: relative;
+    cursor:pointer;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+    &:hover {
+      box-shadow: 0 3px 24px 0 $gray-light;
+      transform: scale(1.1);
+    }
+    &:focus {
+      box-shadow: 0 1px 8px 0 $gray-light;
+      transform: scale(0.85);
+    }
+  }
+  input:checked + label {
+    box-shadow: 0 1px 8px 0 $gray-light;
+    transform: scale(0.85);
   }
 }
 
-.match-item-photo {
-  background-color: $gray-darkest;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 200px;
+.personalized-search-checkbox-a {
+  input + label {
+    background-color: #a06bdd;
+    border: 1px solid #a06bdd;
+  }
 }
 
-.match-item-detail {
-  background-color: white;
-  padding: 1em;
+.personalized-search-checkbox-b {
+  input + label {
+    background-color: #00c29d;
+    border: 1px solid #00c29d;
+  }
 }
+
+.personalized-search-checkbox-c {
+  input + label {
+    background-color: #e85caa;
+    border: 1px solid #e85caa;
+  }
+}
+
+.personalized-search-checkbox-d {
+  input + label {
+    background-color: #4181de;
+    border: 1px solid #4181de;
+  }
+}
+
+.personalized-search-checkbox-e {
+  input + label {
+    background-color: #72c851;
+    border: 1px solid #72c851;
+  }
+}
+
+.personalized-search-checkbox-f {
+  input + label {
+    background-color: #00afdc;
+    border: 1px solid #00afdc;
+  }
+}
+
+.personalized-search-checkbox-g {
+  input + label {
+    background-color: #a06bdd;
+    border: 1px solid #a06bdd;
+  }
+}
+
+.personalized-search-checkbox-h {
+  input + label {
+    background-color: #72c851;
+    border: 1px solid #72c851;
+  }
+}
+
+.personalized-search-checkbox-i {
+  input + label {
+    background-color: #00c29d;
+    border: 1px solid #00c29d;
+  }
+}
+
+.personalized-search-checkbox-j {
+  input + label {
+    background-color: #00afdc;
+    border: 1px solid #00afdc;
+  }
+}
+
+.personalized-search-checkbox-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.personalized-search-checkbox-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: white;
+  display: block;
+}
+
+.personalized-search-checkbox-subtitle {
+  font-size: 1em;
+  font-weight: normal;
+  font-style: italic;
+  color: white;
+  display: block;
+}
+
+.match-item,
+.empty-shortlist {
+  text-align: left;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px 0 $gray-light;
+  width: 100%;
+  height: 125px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    box-shadow: 0 3px 24px 0 $gray-light;
+    outline: none;
+    transform: scale(1.02);
+  }
+}
+
+.match-item {
+  margin-bottom: 30px;
+}
+
+.match-item-a {
+  background-color: #72c851;  
+}
+
+.match-item-b {
+  background-color: #fcbb29;
+}
+
+.match-item-c {
+  background-color: #e95caa;
+}
+
+.match-item-d {
+  background-color: #fc4025;
+}
+
+.match-item-e {
+  background-color: #00c29d;
+}
+
+.match-item-detail,
+.empty-shortlist-detail {
+  max-width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 1em;
+  transform: translateY(-50%); 
+}
+
+.match-item-title,
+.empty-shortlist-title {
+  font-size: 1.7em;
+  font-weight: bold;
+  text-shadow: 0 0 5px $transparent;
+  color: white;
+  margin: 0;
+}
+
+.match-item-subtitle,
+.empty-shortlist-subtitle {
+  font-size: 1em;
+  text-shadow: 0 0 5px $transparent;
+  color: white;
+  margin: 0;
+  display: block;
+}
+
+.match-item-info,
+.empty-shortlist-info {
+  font-size: 1em;
+  font-style: italic;
+  text-shadow: 0 0 5px $transparent;
+  color: white;
+  margin: 0.7em 0 0;
+  display: block;
+}
+
+.match-item-image,
+.empty-shortlist-image {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+}
+
+// .match-item-photo {
+//   background-color: $gray-darkest;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   height: 200px;
+// }
+
+// .match-item-detail {
+//   background-color: white;
+//   padding: 1em;
+// }
 
 // list-style: none;
 // overflow: auto;
@@ -9594,9 +9961,7 @@ a.remove_fields {
   .dealer-signup-testimonial-detail,
   .feature-testimonial,
   .tour-feature-content,
-  .dealer-signup-tour-text,
-  .feed-forum-content,
-  .feed-car-clubs-content {
+  .dealer-signup-tour-text {
     display: flex;
     align-items: center;
   }
@@ -9707,9 +10072,88 @@ a.remove_fields {
 /* personalized searches */
 
 .search-parameter {
-  max-width: 1008px;
+  background-color: $gray-lightest;
   padding: 4em 0;
-  margin: 0 auto;
+}
+
+.search-parameter-progress-bar {
+  width: 65%;
+  margin: 1em auto 6em;
+}
+
+.search-parameter-complete,
+.search-parameter-incomplete {
+  width: 25%;
+  height: 2px;
+  position: relative;
+  float: left;
+}
+
+.search-parameter-complete {
+  background-color: $gray-dark;
+}
+
+.search-parameter-incomplete {
+  background-color: $gray-border;
+}
+
+.search-parameter-link {
+  text-align: center;
+  position: absolute;
+  top: -15px;
+  z-index: 100;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+.search-parameter-link-start {
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.search-parameter-link-text {
+  font-size: 0.9em;
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 0.3em;
+  display: block;
+}
+
+.search-parameter-link-end {
+  right: 0;
+  transform: translateX(50%);
+}
+
+.search-parameter-icon {
+  position: absolute;
+  top: -15px;
+  z-index: 100;
+}
+
+.search-parameter-icon-start {
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.search-parameter-text {
+  display: block;
+}
+
+.search-parameter-icon-end {
+  right: 0;
+  transform: translateX(50%);
+}
+
+.search-parameter-icon-filter {
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: -15px;
+  z-index: 200;
 }
 
 .search-parameter-title {
@@ -9722,20 +10166,26 @@ a.remove_fields {
   margin: 0 0 1.5em;
 }
 
-.search-parameter-form {
-  background-color: $gray-lightest;
-  max-width: 425px;
+.search-parameter-form-large,
+.search-parameter-form-small {
+  background-color: white;
+  box-shadow: 0 2px 16px 0 $gray-form-control;
   padding: 4em;
   margin: 0 auto;
+  position: relative;
 }
 
-.search-parameter-next {
-  margin-left: 0.5em;
+.search-parameter-form-large {
+  max-width: 700px;
+}
+
+.search-parameter-form-small {
+  max-width: 425px;
 }
 
 @media (max-width: 768px) {
   
-  .feed-content,
+  .feed,
   .search-summary-content,
   .search-list-container,
   .shortlist-list-container,
@@ -9806,7 +10256,7 @@ a.remove_fields {
     padding-left: 0.7em;
   }
   
-  .feed-content {
+  .feed {
     padding-top: 1.3em;
   }
   
@@ -10079,9 +10529,9 @@ a.remove_fields {
     margin-bottom: 2.5em;
   }
   
-  .btn-post-listing {
-    margin-top: 0;
-  }
+  // .btn-post-listing {
+  //   margin-top: 0;
+  // }
   
   // .sidenav-list {
   //   margin-bottom: 1.1em;
@@ -10477,16 +10927,6 @@ a.remove_fields {
     margin: 1em 0;
   }
   
-  .feed-forum-title,
-  .feed-car-clubs-title {
-    margin-top: 1em;
-  }
-  
-  .btn-feed-forum,
-  .btn-feed-car-clubs {
-    width: 100%;
-  }
-  
   .brochure-image {
     height: 150px;
   }
@@ -10584,8 +11024,7 @@ a.remove_fields {
     top: 50px;
   }
   
-  .purchase-introduction-detail,
-  .matches-introduction-detail {
+  .purchase-introduction-detail {
     margin-left: 0;
   }
   
@@ -10682,6 +11121,10 @@ a.remove_fields {
   .dealer-select-reviews {
     font-size: 1em;
     font-weight: normal;
+  }
+  
+  .login-alternative-text {
+    background-color: white;
   }
 }
 

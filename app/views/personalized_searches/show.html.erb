@@ -25,30 +25,15 @@
       <div class="col-md-8">
         
         <div class="matches-introduction">
-            
-          <i class="fa fa-times matches-introduction-close"></i>
-            
-          <div class="row vertical-align">
-              
-            <div class="col-md-2 hidden-xs">
-              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches.png",
-                            class: "matches-introduction-image") %>
-            </div>
-              
-            <div class="col-md-10">
-              <div class="matches-introduction-detail">
-                
-                <span class="matches-introduction-title">
-                  Personalize Your Search
-                </span>
-            
-                <span class="matches-introduction-info">
-                  <%= current_user.first_name %>, we’ve grouped vehicles near 
-                  your location based on how well they match your preferences.
-                </span>
-              </div>
-            </div>
-          </div>
+          
+          <span class="matches-introduction-title">
+            Personalize Your Search
+          </span>
+      
+          <span class="matches-introduction-subtitle">
+            <%= current_user.first_name %>, we’ve grouped vehicles near 
+            your location based on how well they match your preferences.
+          </span>
         </div>
         
         <div class="row">
@@ -69,13 +54,7 @@
                                  value: @personalized_search.mileage %>
                                  
               <button type="submit"
-                      class="match-item">
-                
-                <div class="match-item-photo"
-                     style="background-image: url(
-                       '<%= Vehicle.find(1).photos[0].image.url() if 
-                            Vehicle.find(1).photos.length > 0 %>')">
-                </div>
+                      class="match-item match-item-a">
                 
                 <div class="match-item-detail">
                   
@@ -83,21 +62,19 @@
                     Your Best Bets
                   </span>
                   
-                  <span class="match-item-info">
+                  <span class="match-item-subtitle">
                     We've mixed and matched to find the best combo of price, 
                     location, and features.
                   </span>
                   
-                  <!--<span class="match-item-results">-->
-                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
-                  <!--</span>-->
+                  <span class="match-item-info">
+                    View All
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
                 </div>
                 
-                <!--<div class="match-item-price">-->
-                <!--  <span class="match-item-price-content">-->
-                <!--    $5,000 - $15,000-->
-                <!--  </span>-->
-                <!--</div>-->
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/match-item-a.png",
+                              class: "match-item-image") %>
               </button>
             <% end %>
           </div>
@@ -157,13 +134,7 @@
                                  value: @personalized_search.cycle_cover %>
               
               <button type="submit"
-                      class="match-item">
-              
-                <div class="match-item-photo"
-                     style="background-image: url(
-                       '<%= Vehicle.find(2).photos[0].image.url() if 
-                            Vehicle.find(2).photos.length > 0 %>'">
-                </div>
+                      class="match-item match-item-b">
                 
                 <div class="match-item-detail">
                   
@@ -172,19 +143,13 @@
                   </span>
                   
                   <span class="match-item-info">
-                    <!--And best fits your budget-->
+                    View All
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
                   </span>
-                  
-                  <!--<span class="match-item-results">-->
-                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
-                  <!--</span>-->
                 </div>
                 
-                <!--<div class="match-item-price">-->
-                <!--  <span class="match-item-price-content">-->
-                <!--    $5,000 - $15,000-->
-                <!--  </span>-->
-                <!--</div>-->
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/match-item-b.png",
+                              class: "match-item-image") %>
               </button>
             <% end %>
           </div>
@@ -200,13 +165,7 @@
                                  value: @personalized_search.price %>
               
               <button type="submit"
-                      class="match-item">
-              
-                <div class="match-item-photo"
-                     style="background-image: url(
-                       '<%= Vehicle.find(3).photos[0].image.url() if 
-                            Vehicle.find(3).photos.length > 0 %>'">
-                </div>
+                      class="match-item match-item-c">
                 
                 <div class="match-item-detail">
                   
@@ -214,20 +173,18 @@
                     Stay On Budget
                   </span>
                   
-                  <span class="match-item-info">
+                  <span class="match-item-subtitle">
                     But flex mileage and features
                   </span>
                   
-                  <!--<span class="match-item-results">-->
-                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
-                  <!--</span>-->
+                  <span class="match-item-info">
+                    View All
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
                 </div>
                 
-                <!--<div class="match-item-price">-->
-                <!--  <span class="match-item-price-content">-->
-                <!--    $5,000 - $15,000-->
-                <!--  </span>-->
-                <!--</div>-->
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/match-item-c.png",
+                              class: "match-item-image") %
               </button>
             <% end %>
           </div>
@@ -278,13 +235,7 @@
                                  value: @personalized_search.cycle_cover %>
               
               <button type="submit"
-                      class="match-item">
-              
-                <div class="match-item-photo"
-                     style="background-image: url(
-                       '<%= Vehicle.find(4).photos[0].image.url() if 
-                            Vehicle.find(4).photos.length > 0 %>'">
-                </div>
+                      class="match-item match-item-d">
                 
                 <div class="match-item-detail">
                   
@@ -292,20 +243,18 @@
                     Get All Features
                   </span>
                   
-                  <span class="match-item-info">
+                  <span class="match-item-subtitle">
                     But flex price and mileage
                   </span>
                   
-                  <!--<span class="match-item-results">-->
-                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
-                  <!--</span>-->
+                  <span class="match-item-info">
+                    View All
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
                 </div>
                 
-                <!--<div class="match-item-price">-->
-                <!--  <span class="match-item-price-content">-->
-                <!--    $5,000 - $15,000-->
-                <!--  </span>-->
-                <!--</div>-->
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/match-item-d.png",
+                              class: "match-item-image") %>
               </button>
             <% end %>
           </div>
@@ -359,13 +308,7 @@
                                  value: @personalized_search.cycle_cover %>
               
               <button type="submit"
-                      class="match-item">
-              
-                <div class="match-item-photo"
-                     style="background-image: url(
-                       '<%= Vehicle.find(5).photos[0].image.url() if 
-                            Vehicle.find(5).photos.length > 0 %>'">
-                </div>
+                      class="match-item match-item-e">
                 
                 <div class="match-item-detail">
                   
@@ -373,16 +316,14 @@
                     Pay A Bit More
                   </span>
                   
-                  <!--<span class="match-item-results">-->
-                  <!--  <(perc)= pluralize(Vehicle.all.count, "result") %>-->
-                  <!--</span>-->
+                  <span class="match-item-info">
+                    View All
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
                 </div>
                 
-                <!--<div class="match-item-price">-->
-                <!--  <span class="match-item-price-content">-->
-                <!--    $5,000 - $15,000-->
-                <!--  </span>-->
-                <!--</div>-->
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/match-item-e.png",
+                              class: "match-item-image") %>
               </button>
             <% end %>
           </div>

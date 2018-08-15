@@ -45,14 +45,10 @@ class PersonalizedSearchesController < ApplicationController
     @personalized_search = PersonalizedSearch.new
   end
   
+  def style
+  end
+  
   def price
-    
-
-    # if @personalized_search.save
-    #   redirect_to mileage_user_personalized_search_path
-    # else
-    #   # render 'new'
-    # end
   end
   
   def mileage

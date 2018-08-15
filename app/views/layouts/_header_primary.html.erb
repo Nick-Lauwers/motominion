@@ -30,94 +30,104 @@
           <% end %>
         </li>
         
-        <li class="hidden-xs"><%= link_to "List",   new_vehicle_path %></li>
+        <li class="hidden-xs">
+          <%= link_to "List A Motorcycle", new_vehicle_path %>
+        </li>
         
-        <li class="hidden-xs"><%= link_to "Advice", discussions_path %></li>
+        <li class="hidden-xs">
+          <%= link_to "Shortlist", shortlist_user_path(current_user) %>
+        </li>
+        
+        <li class="hidden-xs">
+          <%= link_to "Matches", personalized_search_path(current_user) %>
+        </li>
+        
+        <!--<li class="hidden-xs"><(perc)= link_to "Advice", discussions_path %></li>-->
       
-        <li class="dropdown dropdown-frontend">
+        <!--<li class="dropdown dropdown-frontend">-->
           
-          <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+        <!--  <a href='#' class="dropdown-toggle" data-toggle="dropdown">-->
              
-            Inbox <b class="caret"></b>
+        <!--    Inbox <b class="caret"></b>-->
              
-            <% if ( Conversation.where(
-                      next_contributor_id: current_user.id,
-                      latest_message_read: false).exists? or
+        <!--    <(perc) if ( Conversation.where(-->
+        <!--              next_contributor_id: current_user.id,-->
+        <!--              latest_message_read: false).exists? or-->
                                         
-                    ( (current_user.dealership_id.present? && 
-                         Question.where(
-                           vehicle: Dealership.
-                                      find(current_user.dealership_id).
-                                      vehicles, 
-                           read_at: nil).exists?
-                      ) or 
+        <!--            ( (current_user.dealership_id.present? && -->
+        <!--                 Question.where(-->
+        <!--                   vehicle: Dealership.-->
+        <!--                              find(current_user.dealership_id).-->
+        <!--                              vehicles, -->
+        <!--                   read_at: nil).exists?-->
+        <!--              ) or -->
                       
-                      (current_user.dealership_id.present? && 
-                         Question.where(
-                           vehicle: current_user.vehicles,
-                           read_at: nil).exists?)
-                    )
-                  ) %>
+        <!--              (current_user.dealership_id.present? && -->
+        <!--                 Question.where(-->
+        <!--                   vehicle: current_user.vehicles,-->
+        <!--                   read_at: nil).exists?)-->
+        <!--            )-->
+        <!--          ) %>-->
                                   
-              <div class="notification"></div>
-            <% end %>
-          </a>
+        <!--      <div class="notification"></div>-->
+        <!--    <(perc) end %>-->
+        <!--  </a>-->
           
-          <ul class="dropdown-menu">
+        <!--  <ul class="dropdown-menu">-->
             
-            <li>
-              <%= link_to conversations_path do %>
+        <!--    <li>-->
+        <!--      <(perc)= link_to conversations_path do %>-->
                 
-                Messages
+        <!--        Messages-->
                 
-                <% if Conversation.where(
-                        next_contributor_id: current_user.id,
-                        latest_message_read: false
-                      ).exists? %>
+        <!--        <(perc) if Conversation.where(-->
+        <!--                next_contributor_id: current_user.id,-->
+        <!--                latest_message_read: false-->
+        <!--              ).exists? %>-->
                       
-                  <div class="notification"></div>
-                <% end %>
-              <% end %>
-            </li>
+        <!--          <div class="notification"></div>-->
+        <!--        <(perc) end %>-->
+        <!--      <(perc) end %>-->
+        <!--    </li>-->
             
-            <li>
-              <%= link_to questions_path do %>
+        <!--    <li>-->
+        <!--      <(perc)= link_to questions_path do %>-->
                 
-                Questions
+        <!--        Questions-->
                 
-                <% if ( (current_user.dealership_id.present? && 
-                           Question.where(
-                             vehicle: Dealership.
-                                        find(current_user.dealership_id).
-                                        vehicles, 
-                             read_at: nil).exists?
-                        ) or 
+        <!--        <(perc) if ( (current_user.dealership_id.present? && -->
+        <!--                   Question.where(-->
+        <!--                     vehicle: Dealership.-->
+        <!--                                find(current_user.dealership_id).-->
+        <!--                                vehicles, -->
+        <!--                     read_at: nil).exists?-->
+        <!--                ) or -->
                         
-                        (current_user.dealership_id.present? && 
-                           Question.where(
-                             vehicle: current_user.vehicles,
-                             read_at: nil).exists?)
-                      ) %>
+        <!--                (current_user.dealership_id.present? && -->
+        <!--                   Question.where(-->
+        <!--                     vehicle: current_user.vehicles,-->
+        <!--                     read_at: nil).exists?)-->
+        <!--              ) %>-->
                       
-                  <div class="notification"></div>
-                <% end %>
-              <% end %>
-            </li>
-          </ul>
-        </li>
+        <!--          <div class="notification"></div>-->
+        <!--        <(perc) end %>-->
+        <!--      <(perc) end %>-->
+        <!--    </li>-->
+        <!--  </ul>-->
+        <!--</li>-->
         
-        <li class="dropdown dropdown-frontend">
+        <!--<li class="dropdown dropdown-frontend">-->
           
-          <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-             Help <b class="caret"></b>
-          </a>
+        <!--  <a href='#' class="dropdown-toggle" data-toggle="dropdown">-->
+        <!--     Help <b class="caret"></b>-->
+        <!--  </a>-->
           
-          <ul class="dropdown-menu">
-            <li><%= link_to "How It Works", how_it_works_path %></li>
+        <!--  <ul class="dropdown-menu">-->
+        <!--    <li><(perc)= link_to "How It Works", how_it_works_path %></li>-->
             <!--<li><(perc)= link_to "Help Center",  help_path %></li>-->
-            <li><%= link_to "Contact Us",   new_enquiry_path %></li>
-          </ul>
-        </li>
+        <!--    <li><(perc)= link_to "Contact Us",   new_enquiry_path %></li>-->
+        <!--  </ul>-->
+        <!--</li>-->
         
         <li class="dropdown dropdown-frontend">
           
@@ -125,35 +135,64 @@
             
             <%= current_user.first_name %> <b class="caret"></b>
             
-            <% if Review.where(
-                    reviewed_id: current_user.id, 
-                    read_at: nil
-                  ).exists? %>
+            <!--<(perc) if Review.where(-->
+            <!--        reviewed_id: current_user.id, -->
+            <!--        read_at: nil-->
+            <!--      ).exists? %>-->
                   
-              <div class="notification"></div>
-            <% end %>
+            <!--  <div class="notification"></div>-->
+            <!--<(perc) end %>-->
           </a>
           
           <ul class="dropdown-menu">
             
             <li><%= link_to "Dashboard",    dashboard_path %></li>
             
-            <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+            <!--<li><(perc)= link_to "Edit Profile", edit_user_path(current_user) %></li>-->
             
             <li>
-              <%= link_to user_reviews_path(current_user) do %>
-                
-                Reviews
-                
-                <% if Review.where(
-                        reviewed_id: current_user.id, 
-                        read_at: nil
-                      ).exists? %>
+              <%= link_to conversations_path do %>
+                 
+                Inbox
+                 
+                <% if ( Conversation.where(
+                          next_contributor_id: current_user.id,
+                          latest_message_read: false).exists? or
+                                            
+                        ( (current_user.dealership_id.present? && 
+                             Question.where(
+                               vehicle: Dealership.
+                                          find(current_user.dealership_id).
+                                          vehicles, 
+                               read_at: nil).exists?
+                          ) or 
+                          
+                          (current_user.dealership_id.present? && 
+                             Question.where(
+                               vehicle: current_user.vehicles,
+                               read_at: nil).exists?)
+                        )
+                      ) %>
                       
                   <div class="notification"></div>
                 <% end %>
               <% end %>
             </li>
+
+            <!--<li>-->
+            <!--  <(perc)= link_to user_reviews_path(current_user) do %>-->
+                
+            <!--    Reviews-->
+                
+            <!--    <(perc) if Review.where(-->
+            <!--            reviewed_id: current_user.id, -->
+            <!--            read_at: nil-->
+            <!--          ).exists? %>-->
+                      
+            <!--      <div class="notification"></div>-->
+            <!--    <(perc) end %>-->
+            <!--  <(perc) end %>-->
+            <!--</li>-->
             
             <li><%= link_to "Log Out",     logout_path, method: "delete" %></li>
           </ul>
@@ -182,22 +221,24 @@
           <% end %>
         </li>
         
-        <li class="hidden-xs"><%= link_to "List",   new_vehicle_path %></li>
-        
-        <li class="hidden-xs"><%= link_to "Advice", discussions_path %></li>
-      
-        <li class="dropdown dropdown-frontend">
-          
-          <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-             Help <b class="caret"></b>
-          </a>
-          
-          <ul class="dropdown-menu">
-            <li><%= link_to "How It Works", how_it_works_path %></li>
-            <!--<li><(perc)= link_to "Help Center",  help_path %></li>-->
-            <li><%= link_to "Contact Us",   new_enquiry_path %></li>
-          </ul>
+        <li class="hidden-xs">
+          <%= link_to "List A Motorcycle", new_vehicle_path %>
         </li>
+        
+        <!--<li class="hidden-xs"><(perc)= link_to "Advice", discussions_path %></li>-->
+      
+        <!--<li class="dropdown dropdown-frontend">-->
+          
+        <!--  <a href='#' class="dropdown-toggle" data-toggle="dropdown">-->
+        <!--     Help <b class="caret"></b>-->
+        <!--  </a>-->
+          
+        <!--  <ul class="dropdown-menu">-->
+        <!--    <li><(perc)= link_to "How It Works", how_it_works_path %></li>-->
+            <!--<li><(perc)= link_to "Help Center",  help_path %></li>-->
+        <!--    <li><(perc)= link_to "Contact Us",   new_enquiry_path %></li>-->
+        <!--  </ul>-->
+        <!--</li>-->
         
         <li class="hidden-xs"><%= link_to "Sign Up", signup_path %></li>
         

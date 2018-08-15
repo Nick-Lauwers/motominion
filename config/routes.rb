@@ -94,6 +94,7 @@ Rails.application.routes.draw do
       
       put :post
       put :favorite
+      put :unfavorite
       put :sold
       put :undo_sold
       put :bump
@@ -211,6 +212,7 @@ Rails.application.routes.draw do
     end
     
     member do
+      get 'style'
       get 'price'
       get 'mileage'
       get 'year'

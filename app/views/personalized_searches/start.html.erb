@@ -25,95 +25,284 @@
       <div class="col-md-8">
         
         <div class="matches-introduction">
-            
-          <i class="fa fa-times matches-introduction-close"></i>
-            
-          <div class="row vertical-align">
-              
-            <div class="col-md-2">
-              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches.png",
-                            class: "matches-introduction-image") %>
-            </div>
-              
-            <div class="col-md-10">
-              <div class="matches-introduction-detail">
-                
-                <span class="matches-introduction-title">
-                  Personalize Your Search
-                </span>
-            
-                <span class="matches-introduction-info">
-                  Let us get to know you! We mix and match your 
-                  preferences, making it easier to discover cars with the 
-                  perfect combination of price, age, and features.
-                </span>
-              </div>
-            </div>
-          </div>
+          
+          <span class="matches-introduction-title">
+            Personalize Your Search
+          </span>
+      
+          <span class="matches-introduction-subtitle">
+            Let us get to know you! We mix and match your preferences, making it 
+            easier to discover motorcycles with the perfect combination of 
+            price, mileage, and features.
+          </span>
         </div>
         
-        <div class="row">
-          <div class="col-md-12">
+        <%= form_for @personalized_search do |f| %>
+        
+          <div class="row">
             
-            <%= form_for @personalized_search do |f| %>
-      
-              <ul class="installed-options-list">
-          
-                <li>
-                  <%= f.check_box :is_classic_vintage %>
-                  <%= f.label :is_classic_vintage, "Classic / Vintage" %> 
-                </li>
+            <div class="col-md-3 
+                        personalized-search-checkbox
+                        personalized-search-checkbox-a">
+              
+              <%= f.check_box :is_classic_vintage %>
+              
+              <%= f.label :is_classic_vintage do %>   
+              
+                <div class="personalized-search-checkbox-text">
+                  
+                  <span class="personalized-search-checkbox-title">
+                    Classic / Vintage
+                  </span>
+                  
+                  <span class="personalized-search-checkbox-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div> 
                 
-                <li>
-                  <%= f.check_box :is_cruiser %>
-                  <%= f.label :is_cruiser, "Cruiser" %> 
-                </li>
-                
-                <li>
-                  <%= f.check_box :is_dual_sport %>
-                  <%= f.label :is_dual_sport, "Dual-Sport" %> 
-                </li>
-                
-                <li>
-                  <%= f.check_box :is_mini_pocket %>
-                  <%= f.label :is_mini_pocket, "Mini / Pocket" %>
-                </li>
-                
-                <li>
-                  <%= f.check_box :is_moped %>
-                  <%= f.label :is_moped, "Moped" %> 
-                </li>
-                
-                <li>
-                  <%= f.check_box :is_sportbike %>
-                  <%= f.label :is_sportbike, "Sportbike" %> 
-                </li>
-                
-                <li>
-                  <%= f.check_box :is_standard %>
-                  <%= f.label :is_standard, "Standard" %>       
-                </li>
-                
-                <li>
-                  <%= f.check_box :is_touring %>
-                  <%= f.label :is_touring, "Touring" %>          
-                </li>
-                
-                <li>
-                  <%= f.check_box :is_trike %>
-                  <%= f.label :is_trike, "Trike" %>          
-                </li>
-              </ul>
-            
-              <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-                
-                Next
-                
-                <i class="fa fa-arrow-right search-parameter-next"></i>
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-a.png",
+                              class: "personalized-search-button-icon") %>
               <% end %>
-            <% end %>
+            </div>
+            
+            <div class="col-md-3 
+                        personalized-search-checkbox
+                        personalized-search-checkbox-b">
+              
+              <%= f.check_box :is_cruiser %>
+              
+              <%= f.label :is_cruiser do %> 
+              
+                <div class="personalized-search-checkbox-text">
+                  
+                  <span class="personalized-search-checkbox-title">
+                    Cruiser
+                  </span>
+                  
+                  <span class="personalized-search-checkbox-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div> 
+                
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-b.png",
+                              class: "personalized-search-button-icon") %>
+              <% end %>
+            </div>
+            
+            <div class="col-md-3 
+                        personalized-search-checkbox
+                        personalized-search-checkbox-c">
+              
+              <%= f.check_box :is_dual_sport %>
+
+              <%= f.label :is_dual_sport do %>   
+              
+                <div class="personalized-search-checkbox-text">
+                  
+                  <span class="personalized-search-checkbox-title">
+                    Dual-Sport
+                  </span>
+                  
+                  <span class="personalized-search-checkbox-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-c.png",
+                              class: "personalized-search-button-icon") %>
+              <% end %>
+            </div>
+            
+            <div class="col-md-3 
+                        personalized-search-checkbox
+                        personalized-search-checkbox-d">
+              
+              <%= f.check_box :is_mini_pocket %>
+              
+              <%= f.label :is_mini_pocket do %>   
+              
+                <div class="personalized-search-checkbox-text">
+                  
+                  <span class="personalized-search-checkbox-title">
+                    Mini / Pocket
+                  </span>
+                  
+                  <span class="personalized-search-checkbox-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div> 
+                
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-d.png",
+                              class: "personalized-search-button-icon") %>
+              <% end %>
+            </div>
           </div>
-        </div>
+          
+          <div class="row">
+            
+            <div class="col-md-3 
+                        personalized-search-checkbox
+                        personalized-search-checkbox-e">
+              
+              <%= f.check_box :is_moped %>
+              
+              <%= f.label :is_moped do %>   
+              
+                <div class="personalized-search-checkbox-text">
+                  
+                  <span class="personalized-search-checkbox-title">
+                    Moped
+                  </span>
+                  
+                  <span class="personalized-search-checkbox-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div> 
+
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-e.png",
+                              class: "personalized-search-button-icon") %>
+              <% end %>
+            </div>
+
+            <div class="col-md-3 
+                        personalized-search-checkbox
+                        personalized-search-checkbox-f">
+              
+              <%= f.check_box :is_sportbike %>
+              
+              <%= f.label :is_sportbike do %>   
+              
+                <div class="personalized-search-checkbox-text">
+                  
+                  <span class="personalized-search-checkbox-title">
+                    Sportbike
+                  </span>
+                  
+                  <span class="personalized-search-checkbox-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-f.png",
+                              class: "personalized-search-button-icon") %>
+              <% end %>
+            </div>
+
+            <div class="col-md-3 
+                        personalized-search-checkbox
+                        personalized-search-checkbox-g">
+              
+              <%= f.check_box :is_standard %>
+              
+              <%= f.label :is_standard do %>   
+              
+                <div class="personalized-search-checkbox-text">
+                  
+                  <span class="personalized-search-checkbox-title">
+                    Standard
+                  </span>
+                  
+                  <span class="personalized-search-checkbox-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div> 
+                
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-g.png",
+                              class: "personalized-search-button-icon") %>
+              <% end %>
+            </div>
+            
+            <div class="col-md-3 
+                        personalized-search-checkbox
+                        personalized-search-checkbox-h">
+              
+              <%= f.check_box :is_touring %>
+              
+              <%= f.label :is_touring do %>   
+              
+                <div class="personalized-search-checkbox-text">
+                  
+                  <span class="personalized-search-checkbox-title">
+                    Touring
+                  </span>
+                  
+                  <span class="personalized-search-checkbox-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-h.png",
+                              class: "personalized-search-button-icon") %>
+              <% end %>
+            </div>
+          </div>
+          
+          <div class="row">
+            
+            <div class="col-md-3 
+                        personalized-search-checkbox
+                        personalized-search-checkbox-i">
+              
+              <%= f.check_box :is_trike %>
+              
+              <%= f.label :is_trike do %>   
+              
+                <div class="personalized-search-checkbox-text">
+                  
+                  <span class="personalized-search-checkbox-title">
+                    Trike
+                  </span>
+                  
+                  <span class="personalized-search-checkbox-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-i.png",
+                              class: "personalized-search-button-icon") %>
+              <% end %>
+            </div>
+            
+            <div class="col-md-3">
+              <!--intentionally left empty-->
+            </div>
+
+            <div class="col-md-3">
+              <!--intentionally left empty-->
+            </div>
+            
+            <div class="col-md-3">
+              <%= button_tag(type:  "submit",
+                             class: "personalized-search-button
+                                     personalized-search-button-k") do %>
+
+                <div class="personalized-search-button-text">
+                  
+                  <span class="personalized-search-button-title">
+                    Next
+                  </span>
+                  
+                  <span class="personalized-search-button-subtitle">
+                    View All 
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-k.png",
+                              class: "personalized-search-button-icon") %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

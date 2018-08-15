@@ -1,172 +1,225 @@
 <div class="basics">
   <div class="row">
     
-    <div class="col-md-3 basics-detail">
+    <div class="col-md-3">
       
-      <h2 class="basics-title">The Basics</h2>
+      <h2 class="sidenav-title">New Listing</h2>
       
-      <p class="basics-info">
-        Our guide will make sure that you attract the most promising customers 
-        as quickly as possible. Let's get started with the basics.
-      </p>
+      <ul class="sidenav-list">
+        
+        <li class="sidenav-active">
+          <%= link_to "Basics", new_vehicle_path %>
+        </li>
+        
+        <li><%= link_to "Details", '#' %></li>
+        
+        <li><%= link_to "Photos", '#' %></li>
+        
+        <% if current_user.dealership_id.blank? %>
+          <li><%= link_to "About You", '#' %></li>
+        <% end %>
+      </ul>
     </div>
     
     <div class="col-md-8 col-md-offset-1">
+      
+      <div class="listing-introduction">
+        <div class="listing-introduction-content">
+          <div class="row vertical-align">
+            
+            <div class="col-md-2 hidden-xs">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/listing-score.png",
+                            class: "listing-introduction-image") %>
+            </div>
+            
+            <div class="col-md-10">
+              <span class="listing-introduction-title">
+                Listing Score: 
+              </span>
+              
+              <span class="listing-introduction-score-zero">
+                0
+              </span>
+          
+              <p class="listing-introduction-static-info">
+                The quality of your listing determines its placement in any 
+                search results. Fill out all fields with a star 
+                ( <i class="fa fa-star" aria-hidden="true"></i> ) in order to 
+                improve the listing's score.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <%= form_for @vehicle, html: { multipart: true } do |f| %>
+      
+        <div class="update-panel">
 
-        <%= render 'shared/error_messages', object: f.object %>
+          <%= render 'shared/error_messages', object: f.object %>
         
-        <div class="row">
-        
-          <div class="col-md-6 form-group">
-
-            <%= f.label :vehicle_make_id, "Make" %>
-            
-            <div class="form-element">
-              
-              <%= f.collection_select :vehicle_make_id,
-                                      VehicleMake.order(:name),
-                                      :id,
-                                      :name,
-                                      { include_blank: true, 
-                                        prompt: "Select make" },
-                                      id: "vehicle-make-basics",
-                                      class: "form-control select-secondary" %>
-                 
-              <i class="fa fa-caret-down fa-lg form-caret" 
-                 aria-hidden="true"></i>
-            </div>
-          </div>
-
-          <div class="col-md-6 form-group">
+          <div class="row">
+          
+            <div class="col-md-6 form-group">
   
-            <%= f.label :vehicle_model_id, "Model" %>
-            
-            <div class="form-element">
+              <%= f.label :vehicle_make_id, "Make" %>
               
-              <%= f.grouped_collection_select :vehicle_model_id, 
-                                              VehicleMake.order(:name),
-                                              :vehicle_models,
-                                              :name,
-                                              :id,
-                                              :name,
-                                              { prompt: "Select model", 
-                                                include_blank: true }, 
-                                              id: "vehicle-model-basics",
-                                              class: "form-control 
-                                                      select-secondary" %>
-                 
-              <i class="fa fa-caret-down fa-lg form-caret" 
-                 aria-hidden="true"></i>
+              <div class="form-element">
+                
+                <%= f.collection_select :vehicle_make_id,
+                                        VehicleMake.order(:name),
+                                        :id,
+                                        :name,
+                                        { include_blank: true, 
+                                          prompt: "Select make" },
+                                        id: "vehicle-make-basics",
+                                        class: "form-control select-secondary" %>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+
+            <div class="col-md-6 form-group">
+    
+              <%= f.label :vehicle_model_id, "Model" %>
+              
+              <div class="form-element">
+                
+                <%= f.grouped_collection_select :vehicle_model_id, 
+                                                VehicleMake.order(:name),
+                                                :vehicle_models,
+                                                :name,
+                                                :id,
+                                                :name,
+                                                { prompt: "Select model", 
+                                                  include_blank: true }, 
+                                                id: "vehicle-model-basics",
+                                                class: "form-control 
+                                                        select-secondary" %>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="row">
-          
-          <div class="col-md-6 form-group">
-
-            <%= f.label :year %>
+          <div class="row">
             
-            <div class="form-element">
+            <div class="col-md-6 form-group">
+  
+              <%= f.label :year %>
               
-              <%= f.select :year, 
-                           ( 1900..(Time.zone.now.year + 1) ).to_a.reverse,
-                           { include_blank: true, prompt: "Select year" }, 
-                           class: "form-control select-primary" %>
+              <div class="form-element">
+                
+                <%= f.select :year, 
+                             ( 1900..(Time.zone.now.year + 1) ).to_a.reverse,
+                             { include_blank: true, prompt: "Select year" }, 
+                             class: "form-control select-primary" %>
+                    
+                <i class="fa fa-calendar-o fa-lg form-icon" 
+                   aria-hidden="true"></i>
+                   
+                <i class="fa fa-caret-down fa-lg form-caret" 
+                   aria-hidden="true"></i>
+              </div>
+            </div>
+          
+            <div class="col-md-6 form-group">
+  
+              <%= f.label :vin do %>
+                
+                VIN
+                
+                <div class="score-info">
                   
-              <i class="fa fa-calendar-o fa-lg form-icon" 
-                 aria-hidden="true"></i>
-                 
-              <i class="fa fa-caret-down fa-lg form-caret" 
-                 aria-hidden="true"></i>
-            </div>
-          </div>
-          
-          <div class="col-md-6 form-group">
-
-            <%= f.label :vin do %>
+                  <i class="fa fa-lg fa-star score-info-icon"></i>
+                  
+                  <p class="score-info-text">
+                    Include the VIN to improve listing score.
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--The VIN can often be found on the lower-left corner of the -->
+                    <!--dashboard, in front of the steering wheel. You can read the -->
+                    <!--number by looking through the windshield.-->
+                  </p>
+                </div>
+              <% end %>
               
-              VIN
-              
-              <!--<div class="info">-->
-                
-              <!--  <i class="fa fa-lg fa-info-circle info-icon"></i>-->
-                
-              <!--  <p class="info-text">-->
-              <!--    The VIN can often be found on the lower-left corner of the -->
-              <!--    dashboard, in front of the steering wheel. You can read the -->
-              <!--    number by looking through the windshield.-->
-              <!--  </p>-->
-              <!--</div>-->
-            <% end %>
-            
-            <%= f.text_field :vin, 
-                             placeholder: "Eg. VA4T58201DB390436", 
-                             class: "form-control form-control-primary" %>
-          </div>
-        </div>
-        
-        <div class="row">
-          
-          <div class="col-md-6 form-group">
-
-            <%= f.label :actual_price, "Price" %>
-            
-            <div class= "input-group">
-              
-              <div class="input-group-addon">$</div>
-              
-              <%= f.text_field :actual_price, 
-                               placeholder: "Eg. 10 000", 
+              <%= f.text_field :vin, 
+                               placeholder: "Eg. VA4T58201DB390436", 
                                class: "form-control form-control-primary" %>
             </div>
           </div>
-              
-          <div class="col-md-6 form-group">
-
-            <%= f.label :mileage_numeric, "Mileage" %>
+        
+          <div class="row">
             
-            <div class= "input-group">
+            <div class="col-md-6 form-group">
+  
+              <%= f.label :actual_price, "Price" %>
               
-              <%= f.text_field :mileage_numeric, 
-                               placeholder: "Eg. 8 000", 
-                               class: "form-control form-control-primary" %>
-                  
-              <div class="input-group-addon">mi</div>
+              <div class= "input-group">
+                
+                <div class="input-group-addon">$</div>
+                
+                <%= f.text_field :actual_price, 
+                                 placeholder: "Eg. 10 000", 
+                                 class: "form-control form-control-primary" %>
+              </div>
+            </div>
+                
+            <div class="col-md-6 form-group">
+  
+              <%= f.label :mileage_numeric, "Mileage" %>
+              
+              <div class= "input-group">
+                
+                <%= f.text_field :mileage_numeric, 
+                                 placeholder: "Eg. 8 000", 
+                                 class: "form-control form-control-primary" %>
+                    
+                <div class="input-group-addon">mi</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <%= f.hidden_field :bumped_at, value: Time.now %>
+          <%= f.hidden_field :bumped_at, value: Time.now %>
         
-        <% if current_user.dealership_id.present? %>
+          <% if current_user.dealership_id.present? %>
+          
+            <%= f.hidden_field :dealership_id, 
+                               value: current_user.dealership_id %>
+                               
+            <%= f.hidden_field :street_address, 
+                               value: Dealership.
+                                        find(current_user.dealership_id).
+                                        address %>
+            
+            <!--<(perc)= f.hidden_field :building, -->
+            <!--                  value: Dealership.-->
+            <!--                            find(current_user.dealership_id).-->
+            <!--                            building %>-->
+            
+            <%= f.hidden_field :city, 
+                               value: Dealership.
+                                        find(current_user.dealership_id).
+                                        city %>
+            
+            <%= f.hidden_field :state, 
+                               value: Dealership.
+                                        find(current_user.dealership_id).
+                                        state %>
+          <% end %>
+        </div>
         
-          <%= f.hidden_field :dealership_id, 
-                             value: current_user.dealership_id %>
-                             
-          <%= f.hidden_field :street_address, 
-                             value: Dealership.
-                                      find(current_user.dealership_id).
-                                      address %>
+        <button type="submit"
+                class="btn-save-listing">
           
-          <%= f.hidden_field :building, 
-                             value: Dealership.
-                                      find(current_user.dealership_id).
-                                      building %>
-          
-          <%= f.hidden_field :city, 
-                             value: Dealership.
-                                      find(current_user.dealership_id).
-                                      city %>
-          
-          <%= f.hidden_field :state, 
-                             value: Dealership.
-                                      find(current_user.dealership_id).
-                                      state %>
-        <% end %>
-        
-        <%= f.submit "Save", class: "btn btn-primary btn-basics" %>
+            <i class="fa fa-floppy-o fa-lg profile-preview-icon" 
+               aria-hidden="true"></i>
+                      
+            Save
+        </button>
       <% end %>
     </div>
   </div>

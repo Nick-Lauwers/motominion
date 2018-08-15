@@ -49,11 +49,42 @@
   <div class="backend-content">
     <div class="row">
     
-      <div class="col-md-4"> 
+      <div class="col-md-3"> 
         <%= render 'sidenav' %>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-md-8 col-md-offset-1">
+        
+        <div class="listing-introduction">
+          <div class="listing-introduction-content">
+            <div class="row vertical-align">
+              
+              <div class="col-md-2 hidden-xs">
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/listing-score.png",
+                              class: "listing-introduction-image") %>
+              </div>
+              
+              <div class="col-md-10">
+                
+                <span class="listing-introduction-title">
+                  Listing Score: 
+                </span>
+                
+                <span class="listing-introduction-score-nonzero">
+                  <%= @vehicle.listing_score.overall_score %>
+                </span>
+            
+                <p class="listing-introduction-static-info">
+                  The quality of your listing determines its placement in any 
+                  search results. Fill out all fields with a star 
+                  ( <i class="fa fa-star" aria-hidden="true"></i> ) in order to 
+                  improve the listing's score.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <%= form_for @vehicle do |f| %>
         
           <div class="update-panel">
@@ -72,7 +103,20 @@
           
             <div class="form-group">
               
-              <%= f.label :description_clean %>
+              <%= f.label :description_clean do %>
+              
+                Description
+                
+                <div class="score-info">
+                  
+                  <i class="fa fa-lg fa-star score-info-icon"></i>
+                  
+                  <p class="score-info-text">
+                    Descriptions having higher word counts produce better 
+                    listing scores.
+                  </p>
+                </div>
+              <% end %>
               
               <%= f.text_area :description_clean, 
                               rows: 3,
@@ -100,7 +144,19 @@
             
               <div class="col-md-6 form-group">
     
-                <%= f.label :body_style, "Body Style" %>
+                <%= f.label :body_style do %>
+                
+                  Body Style
+                  
+                  <div class="score-info">
+                    
+                    <i class="fa fa-lg fa-star score-info-icon"></i>
+                    
+                    <p class="score-info-text">
+                      Include the body style to improve listing score.
+                    </p>
+                  </div>
+                <% end %>
                 
                 <div class="form-element">
                   
@@ -123,7 +179,19 @@
               
               <div class="col-md-6 form-group">
     
-                <%= f.label :color %>
+                <%= f.label :color do %>
+                
+                  Color
+                  
+                  <div class="score-info">
+                    
+                    <i class="fa fa-lg fa-star score-info-icon"></i>
+                    
+                    <p class="score-info-text">
+                      Include the color to improve listing score.
+                    </p>
+                  </div>
+                <% end %>
                 
                 <div class="form-element">
                   
@@ -149,7 +217,19 @@
               
               <div class="col-md-6 form-group">
     
-                <%= f.label :fuel_type, "Fuel Type" %>
+                <%= f.label :fuel_type do %>
+                
+                  Fuel type
+                  
+                  <div class="score-info">
+                    
+                    <i class="fa fa-lg fa-star score-info-icon"></i>
+                    
+                    <p class="score-info-text">
+                      Include the fuel type to improve listing score.
+                    </p>
+                  </div>
+                <% end %>
                 
                 <div class="form-element">
                   
@@ -170,7 +250,19 @@
               
               <div class="col-md-6 form-group">
     
-                <%= f.label :engine_type, "Engine Type" %>
+                <%= f.label :engine_type do %>
+                
+                  Engine Type
+                  
+                  <div class="score-info">
+                    
+                    <i class="fa fa-lg fa-star score-info-icon"></i>
+                    
+                    <p class="score-info-text">
+                      Include the engine type to improve listing score.
+                    </p>
+                  </div>
+                <% end %>
                 
                 <div class="form-element">
                   
@@ -197,7 +289,19 @@
               
               <div class="col-md-6 form-group">
                 
-                <%= f.label :engine_size, "Engine Size" %>
+                <%= f.label :engine_size do %>
+                
+                  Engine Size
+                  
+                  <div class="score-info">
+                    
+                    <i class="fa fa-lg fa-star score-info-icon"></i>
+                    
+                    <p class="score-info-text">
+                      Include the engine size to improve listing score.
+                    </p>
+                  </div>
+                <% end %>
                   
                 <div class= "input-group">
                   
@@ -218,58 +322,84 @@
               
               <span class="installed-options-title">Installed Options</span>
               
-              <ul class="installed-options-list">
+              <div class="score-info">
                 
-                <li>
+                <i class="fa fa-lg fa-star score-info-icon"></i>
+                
+                <p class="score-info-text">
+                  Include at least one feature to improve listing score.
+                </p>
+              </div>
+              
+              <div class="row">
+                
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :cruise_control %>
                   <%= f.label :cruise_control, "Cruise Control" %> 
-                </li>
+                </div>
                 
-                <li>
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :am_fm %>
                   <%= f.label :am_fm, "AM / FM Radio" %> 
-                </li>
+                </div>
                 
-                <li>
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :cb_radio %>
                   <%= f.label :cb_radio, "CB Radio" %> 
-                </li>
-                
-                <li>
+                </div>
+              </div>
+              
+              <div class="row">
+               
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :navigation_system %>
                   <%= f.label :navigation_system, "Navigation System" %>
-                </li>
+                </div>
                 
-                <li>
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :heated_seats %>
                   <%= f.label :heated_seats, "Heated Seats" %> 
-                </li>
+                </div>
                 
-                <li>
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :heated_hand_grips %>
                   <%= f.label :heated_hand_grips, "Heated Hand Grips" %> 
-                </li>
+                </div>
+              </div>
+              
+              <div class="row">
                 
-                <li>
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :alarm_system %>
                   <%= f.label :alarm_system, "Alarm System" %>       
-                </li>
+                </div>
                 
-                <li>
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :saddlebags %>
                   <%= f.label :saddlebags, "Saddlebags" %>
-                </li>
+                </div>
                 
-                <li>
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :trunk %>
                   <%= f.label :trunk, "Trunk" %>
-                </li>
-                
-                <li>
+                </div>
+              </div>
+              
+              <div class="row"> 
+              
+                <div class="col-md-4 installed-option">
                   <%= f.check_box :cycle_cover %>
                   <%= f.label :cycle_cover, "Cycle Cover" %>
-                </li>
-              </ul>
+                </div>
+                
+                <div class="col-md-4">
+                  <!--intentionally left empty-->
+                </div>
+                
+                <div class="col-md-4">
+                  <!--intentionally left empty-->
+                </div>
+              </div> 
             </div>
           </div>
 
@@ -317,7 +447,49 @@
 
           <%= f.hidden_field :bumped_at,  value: Time.now %>
             
-          <%= f.submit "Save", class: "btn btn-primary" %>
+          <% if @vehicle.posted_at.blank? && 
+                !@vehicle.body_style.blank? && 
+                !@vehicle.photos.blank? &&
+                !@vehicle.listing_name.blank? && 
+                !@vehicle.address.blank? %>
+            
+            <div class="row">
+              
+              <div class="col-md-6">
+                <%= link_to post_vehicle_path(@vehicle), 
+                            method: :put, 
+                            class: "btn-post-listing" do %>
+                                      
+                  <i class="fa fa-thumb-tack fa-lg profile-preview-icon" 
+                     aria-hidden="true"></i>
+                            
+                  Post Motorcycle
+                
+                <% end %>
+              </div>
+              
+              <div class="col-md-6">
+                <button type="submit"
+                        class="btn-save-listing">
+                  
+                  <i class="fa fa-floppy-o fa-lg profile-preview-icon" 
+                     aria-hidden="true"></i>
+                            
+                  Save
+                </button>
+              </div>
+            </div>
+            
+          <% else %>
+            <button type="submit"
+                  class="btn-save-listing">
+            
+              <i class="fa fa-floppy-o fa-lg profile-preview-icon" 
+                 aria-hidden="true"></i>
+                        
+              Save
+            </button>
+          <% end %>
         <% end %>
       </div>
     </div>

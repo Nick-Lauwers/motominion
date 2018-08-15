@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author_name: MyString
+  profile_photo_url: MyString
+  text: MyText
+  time: 1
+  dealership_id: 
+
+two:
+  author_name: MyString
+  profile_photo_url: MyString
+  text: MyText
+  time: 1
+  dealership_id: 

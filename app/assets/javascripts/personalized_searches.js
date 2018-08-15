@@ -31,13 +31,4 @@ $(function() {
         scrollLeft: "+=200px"
       }, "slow");
     });
-
-  // show
-    
-    var matchesIntroductionClose = $('.matches-introduction-close');
-    var matchesIntroduction      = $('.matches-introduction');
-    
-    matchesIntroductionClose.click(function () {
-      matchesIntroduction.css("display", "none");
-    });
 });

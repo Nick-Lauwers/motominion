@@ -375,40 +375,45 @@
             <% end %>
           </div>
           
-          <div class="vehicle-reviews hidden-xs">
+          <div class="shortlist-scrolled hidden-xs">
             
-            <span class="vehicle-reviews-title">Need Some Advice?</span>
+            <span class="shortlist-scrolled-info">
+              Add bikes to your shortlist by tapping "Love It" or "Maybe"
+              to compare later.
+            </span>
             
-            <% if @vehicle.dealership.present? %>
+            <table  class="shortlist-buttons">
+              <tr>
               
-              <p class="vehicle-reviews-info">
-                Read reviews of <%= @vehicle.dealership.dealership_name %>!
-              </p>
+                <td class="shortlist-button">
+                  <%= link_to favorite_vehicle_path(@vehicle, is_loved: true),
+                              class: "btn-shortlist add-to-wish-list",
+                              method: :put do %>
+                    <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    Love It!
+                  <% end %>
+                </td>
                 
-              <%= link_to @vehicle.dealership, 
-                          class: "btn btn-secondary" do %>
-          
-                Reviews
+                <td class="shortlist-button">
+                  <%= link_to favorite_vehicle_path(@vehicle, is_liked: true),
+                              class: "btn-shortlist add-to-wishlist",
+                              method: :put do %>
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    Maybe
+                  <% end %>
+                </td>
                 
-                <i class="fa fa-arrow-right next-button-icon" 
-                   aria-hidden="true"></i> 
-              <% end %>
-              
-            <% else %>
-              
-              <p class="vehicle-reviews-info">
-                Read <%= @vehicle.user.first_name %>'s reviews!
-              </p>
-              
-              <%= link_to user_path(@vehicle.user, anchor: "profile-reviews"), 
-                      class: "btn btn-secondary" do %>
-          
-                Reviews
-                
-                <i class="fa fa-arrow-right next-button-icon" 
-                   aria-hidden="true"></i> 
-              <% end %>
-            <% end %>
+                <td class="shortlist-button">
+                  <%= link_to favorite_vehicle_path(@vehicle, 
+                                                    is_disliked: true),
+                              class: "btn-shortlist",
+                              method: :put do %>
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    Nope
+                  <% end %>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>
@@ -1398,11 +1403,7 @@
               <div class="average-rating-number">
                 
                 <% if @vehicle.dealership.present? %> 
-                  <%= GooglePlaces::Client.
-                        new(ENV['GOOGLE_API_KEY']).
-                        spot(@vehicle.dealership.google_place_id).
-                        rating %>
-                        
+                  <%= @vehicle.dealership.google_place_rating %>
                 <% else %>
                   <%= @vehicle.average_rating %>
                 <% end %>
@@ -1663,10 +1664,7 @@
         averageRating.raty({
           path:     '/assets',
           readOnly: true,
-          score:    <%= GooglePlaces::Client.
-                          new(ENV['GOOGLE_API_KEY']).
-                          spot(@vehicle.dealership.google_place_id).
-                          rating %>
+          score:    <% @google_reviews.rating %>
         });
       
       <% else %> 

@@ -11,7 +11,7 @@
       
       <%= link_to new_vehicle_path, class: "btn btn-primary" do %>
         
-        List
+        List A Motorcycle
         
         <i class="fa fa-arrow-right list-button-icon" 
            aria-hidden="true"></i> 
@@ -21,11 +21,15 @@
         
         <% if logged_in? %>
           <li><%= link_to "Dashboard", dashboard_path %></li>
-          <li><%= link_to "Advice",    discussions_path %></li>
+          <li><%= link_to "Shortlist", shortlist_user_path(current_user) %></li>
+          <li>
+            <%= link_to "Matches", personalized_search_path(current_user) %>
+          </li>
+          <!--<li><(perc)= link_to "Advice",    discussions_path %></li>-->
           <li><%= link_to "Log Out",   logout_path, method: "delete" %></li>
         
         <% else %>
-          <li><%= link_to "Advice",    discussions_path %></li>
+          <!--<li><(perc)= link_to "Advice",    discussions_path %></li>-->
           <li><%= link_to "Sign Up",   signup_path %></li>
           <li><%= link_to "Log In",    login_path %></li>
         <% end %>

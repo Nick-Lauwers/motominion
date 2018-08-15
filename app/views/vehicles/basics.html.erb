@@ -49,15 +49,41 @@
   <div class="backend-content">
     <div class="row">
     
-      <div class="col-md-4"> 
+      <div class="col-md-3"> 
         <%= render 'sidenav' %>
       </div>
       
-      <div class="col-md-8">
+      <div class="col-md-8 col-md-offset-1">
         
-        <p class="listing-score">
-          Listing Score: <%= @vehicle.listing_score.overall_score %>
-        </p>
+        <div class="listing-introduction">
+          <div class="listing-introduction-content">
+            <div class="row vertical-align">
+              
+              <div class="col-md-2 hidden-xs">
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/listing-score.png",
+                              class: "listing-introduction-image") %>
+              </div>
+              
+              <div class="col-md-10">
+                
+                <span class="listing-introduction-title">
+                  Listing Score: 
+                </span>
+                
+                <span class="listing-introduction-score-nonzero">
+                  <%= @vehicle.listing_score.overall_score %>
+                </span>
+            
+                <p class="listing-introduction-static-info">
+                  The quality of your listing determines its placement in any 
+                  search results. Fill out all fields with a star 
+                  ( <i class="fa fa-star" aria-hidden="true"></i> ) in order to 
+                  improve the listing's score.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <%= form_for @vehicle, html: { multipart: true } do |f| %>
           
@@ -142,14 +168,17 @@
                   
                   VIN
                   
-                  <div class="info">
-                
-                    <i class="fa fa-lg fa-info-circle info-icon"></i>
+                  <div class="score-info">
                     
-                    <p class="info-text">
-                      The VIN can often be found on the lower-left corner of the 
-                      dashboard, in front of the steering wheel. You can read 
-                      the number by looking through the windshield.
+                    <i class="fa fa-lg fa-star score-info-icon"></i>
+                    
+                    <p class="score-info-text">
+                      Include the VIN to improve listing score.
+                      <!--<br>-->
+                      <!--<br>-->
+                      <!--The VIN can often be found on the lower-left corner of the -->
+                      <!--dashboard, in front of the steering wheel. You can read -->
+                      <!--the number by looking through the windshield.-->
                     </p>
                   </div>
                 <% end %>
@@ -196,7 +225,49 @@
           
           <%= f.hidden_field :bumped_at, value: Time.now %>
           
-          <%= f.submit "Save", class: "btn btn-primary" %>
+          <% if @vehicle.posted_at.blank? && 
+                !@vehicle.body_style.blank? && 
+                !@vehicle.photos.blank? &&
+                !@vehicle.listing_name.blank? && 
+                !@vehicle.address.blank? %>
+            
+            <div class="row">
+              
+              <div class="col-md-6">
+                <%= link_to post_vehicle_path(@vehicle), 
+                            method: :put, 
+                            class: "btn-post-listing" do %>
+                                      
+                  <i class="fa fa-thumb-tack fa-lg profile-preview-icon" 
+                     aria-hidden="true"></i>
+                            
+                  Post Motorcycle
+                
+                <% end %>
+              </div>
+              
+              <div class="col-md-6">
+                <button type="submit"
+                        class="btn-save-listing">
+                  
+                  <i class="fa fa-floppy-o fa-lg profile-preview-icon" 
+                     aria-hidden="true"></i>
+                            
+                  Save
+                </button>
+              </div>
+            </div>
+            
+          <% else %>
+            <button type="submit"
+                  class="btn-save-listing">
+            
+              <i class="fa fa-floppy-o fa-lg profile-preview-icon" 
+                 aria-hidden="true"></i>
+                        
+              Save
+            </button>
+          <% end %>
         <% end %>
       </div>
     </div>

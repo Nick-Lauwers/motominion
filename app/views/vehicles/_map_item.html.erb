@@ -89,10 +89,8 @@
             <% if vehicle.dealership.present? && 
                   vehicle.dealership_id != 1 && 
                   vehicle.dealership_id != 2 %>
-              <%= pluralize(GooglePlaces::Client.
-                              new(ENV['GOOGLE_API_KEY']).
-                              spot(vehicle.dealership.google_place_id).
-                              reviews.count, "review") %>
+              <%= pluralize(vehicle.dealership.google_reviews.count, 
+                            "review") %>
               
             <% else %>
               <%= pluralize(vehicle.reviews.count, "review") %>
@@ -167,10 +165,7 @@
         averageRating.raty({
           path:     '/assets',
           readOnly: true,
-          score:    <%= GooglePlaces::Client.
-                          new(ENV['GOOGLE_API_KEY']).
-                          spot(vehicle.dealership.google_place_id).
-                          rating %>
+          score:    <%= vehicle.dealership.google_place_rating
         }
 
       <% else %>

@@ -1,4 +1,4 @@
-<% provide(:title, "Personalized Search") %>
+<% provide(:title, "Matches") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -12,9 +12,58 @@
 
 <div class="search-parameter">
   
+  <div class="search-parameter-progress-bar">
+    
+    <div class="search-parameter-complete">
+      
+      <%= link_to style_personalized_search_path do %>
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/style.png",
+                      class: "search-parameter-icon
+                              search-parameter-icon-start") %>
+      <% end %>   
+      
+      <%= link_to price_personalized_search_path do %>
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/price.png",
+                      class: "search-parameter-icon
+                              search-parameter-icon-end") %>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-incomplete">
+      
+      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png",
+                    class: "search-parameter-icon
+                            search-parameter-icon-end") %>  
+      
+      <div class="search-parameter-icon-filter 
+                  search-parameter-icon-end"></div>
+    </div>
+    
+    <div class="search-parameter-incomplete">
+      
+      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/year.png",
+                    class: "search-parameter-icon
+                            search-parameter-icon-end") %>  
+      
+      <div class="search-parameter-icon-filter 
+                  search-parameter-icon-end"></div>
+    </div>
+    
+    <div class="search-parameter-incomplete">
+      
+      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png",
+                    class: "search-parameter-icon
+                            search-parameter-icon-end") %>
+      
+      <div class="search-parameter-icon-filter 
+                  search-parameter-icon-end"></div>
+    </div>
+  </div>
+  
   <h1 class="search-parameter-title">What are you looking to pay?</h1>
   
-  <div class="search-parameter-form">
+  <div class="search-parameter-form-small">
+    
     <%= form_for @personalized_search do |f| %>
                  <!--url: user_personalized_search_path(current_user) do |f| %>-->
 
@@ -60,11 +109,24 @@
       <%= hidden_field_tag :redirect_location, 
             mileage_personalized_search_path(@personalized_search) %>
     
-      <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+      <%= button_tag(type: "submit",
+                     class: "next-button
+                             personalized-search-button-a") do %>
+                             
+        <div class="personalized-search-button-text">
+          
+          <span class="personalized-search-button-title">
+            Save
+          </span>
+          
+          <span class="personalized-search-button-subtitle">
+            Continue to Mileage
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </span>
+        </div>
         
-        Next
-        
-        <i class="fa fa-arrow-right search-parameter-next"></i>
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches-next.png",
+                      class: "personalized-search-button-icon") %>
       <% end %>
     <% end %>
   </div>

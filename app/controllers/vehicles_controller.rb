@@ -9,7 +9,7 @@ class VehiclesController < ApplicationController
   before_action :get_vehicle,        only:   [:destroy, :show, :update, :basics,
                                               :details, :upgrades, :photos, 
                                               :about_you, :consumer_activity,
-                                              :post, :favorite, 
+                                              :post, :favorite, :unfavorite,
                                               :sold, :undo_sold, :bump]
   
   def new
@@ -95,10 +95,7 @@ class VehiclesController < ApplicationController
   def show
     
     if @vehicle.dealership.present?
-      @google_reviews = GooglePlaces::Client.
-                          new(ENV['GOOGLE_API_KEY']).
-                          spot(@vehicle.dealership.google_place_id).
-                          reviews
+      @google_reviews = @vehicle.dealership.google_reviews
     end
     
     @conversation = Conversation.new
@@ -283,6 +280,19 @@ class VehiclesController < ApplicationController
                          
       redirect_to @vehicle
     end
+  end
+    
+  def unfavorite
+    
+    FavoriteVehicle.
+      where(vehicle: @vehicle).
+      first.
+      update_attributes(is_loved: 'false', is_liked: 'false')
+    
+    flash[:failure] = "#{ @vehicle.listing_name } will be removed from your
+                       shortlist." 
+      
+    redirect_to :back
   end
   
   def sold

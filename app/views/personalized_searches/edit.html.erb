@@ -32,166 +32,393 @@
       
             <h2 class="panel-title">Buyer's Profile</h2>
             
-            <ul class="installed-options-list">
-            
-              <li>
-                <%= f.check_box :is_classic_vintage %>
-                <%= f.label :is_classic_vintage, "Classic / Vintage" %> 
-              </li>
+            <div class="panel-section">
               
-              <li>
-                <%= f.check_box :is_cruiser %>
-                <%= f.label :is_cruiser, "Cruiser" %> 
-              </li>
+              <h4 class="installed-options-title">Vehicle Type</h4>
               
-              <li>
-                <%= f.check_box :is_dual_sport %>
-                <%= f.label :is_dual_sport, "Dual-Sport" %> 
-              </li>
+              <div class="row">
+                
+                <div class="col-md-4 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-a">
+                  
+                  <%= f.check_box :is_classic_vintage %>
+                  
+                  <%= f.label :is_classic_vintage do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Classic / Vintage
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        View All 
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-a.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-b">
+                  
+                  <%= f.check_box :is_cruiser %>
+                  
+                  <%= f.label :is_cruiser do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Cruiser
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        View All 
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-b.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-c">
+                  
+                  <%= f.check_box :is_dual_sport %>
+                  
+                  <%= f.label :is_dual_sport do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Dual Sport
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        View All 
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-c.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="row">
+                
+                <div class="col-md-4
+                            personalized-search-checkbox
+                            personalized-search-checkbox-d">
+                  
+                  <%= f.check_box :is_mini_pocket %>
+                  
+                  <%= f.label :is_mini_pocket do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Mini / Pocket
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        View All 
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-d.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-e">
+                  
+                  <%= f.check_box :is_moped %>
+                  
+                  <%= f.label :is_moped do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Moped
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        View All 
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-e.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-f">
+                  
+                  <%= f.check_box :is_sportbike %>
+                  
+                  <%= f.label :is_sportbike do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Sportbike
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        View All 
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-f.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+              </div>
               
-              <li>
-                <%= f.check_box :is_mini_pocket %>
-                <%= f.label :is_mini_pocket, "Mini / Pocket" %>
-              </li>
-              
-              <li>
-                <%= f.check_box :is_moped %>
-                <%= f.label :is_moped, "Moped" %> 
-              </li>
-              
-              <li>
-                <%= f.check_box :is_sportbike %>
-                <%= f.label :is_sportbike, "Sportbike" %> 
-              </li>
-              
-              <li>
-                <%= f.check_box :is_standard %>
-                <%= f.label :is_standard, "Standard" %>       
-              </li>
-              
-              <li>
-                <%= f.check_box :is_touring %>
-                <%= f.label :is_touring, "Touring" %>          
-              </li>
-              
-              <li>
-                <%= f.check_box :is_trike %>
-                <%= f.label :is_trike, "Trike" %>          
-              </li>
-            </ul>
-            
-            <div class="form-group form-group-search-parameter">
-        
-              <%= f.label :price, "Max Price" %>
-        
-              <span id="edit_price_slider_val" class="slider-label">
-                $200000
-              </span>
-        
-              <%= f.text_field :price, 
-                               id: 'edit_price_slider', 
-                               type: 'text',
-                               data: { 'slider-min'   => '0',
-                                       'slider-max'   => '200000',
-                                       'slider-step'  => '1',
-                                       'slider-value' => 
-                                         @personalized_search.price } %>
+              <div class="row">
+                
+                <div class="col-md-4 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-g">
+                  
+                  <%= f.check_box :is_standard %>
+                  
+                  <%= f.label :is_standard do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Standard
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        View All 
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-g.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            personalized-search-checkbox
+                            personalized-search-checkbox-h">
+                  
+                  <%= f.check_box :is_touring %>
+                  
+                  <%= f.label :is_touring do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Touring
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        View All 
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-h.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-i">
+                  
+                  <%= f.check_box :is_trike %>
+                  
+                  <%= f.label :is_trike do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Trike
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        View All 
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-i.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+              </div>
             </div>
             
-            <div class="form-group form-group-search-parameter">
-        
-              <%= f.label :mileage, "Max Mileage" %>
-          
-              <span id="edit_mileage_slider_val" class="slider-label">
-                300000 mi
-              </span>
-              
-              <%= f.text_field :mileage,
-                               id: 'edit_mileage_slider', 
-                               type: 'text',
-                               data: { 'slider-min'   => '0',
-                                       'slider-max'   => '300000',
-                                       'slider-step'  => '1',
-                                       'slider-value' => 
-                                         @personalized_search.mileage } %>
+            <div class="panel-section">
+              <div class="row">
+                
+                <div class="col-md-4">
+                  <div class="form-group form-group-search-parameter">
+
+                    <%= f.label :price, "Max Price" %>
+                    
+                    <span id="edit_price_slider_val" class="slider-label">
+                      $200000
+                    </span>     
+                    
+                    <%= f.text_field :price, 
+                                     id: 'edit_price_slider', 
+                                     type: 'text',
+                                     data: { 'slider-min'   => '0',
+                                             'slider-max'   => '200000',
+                                             'slider-step'  => '1',
+                                             'slider-value' => 
+                                               @personalized_search.price } %>
+                  </div>
+                </div>
+                
+                <div class="col-md-4">
+                  <div class="form-group form-group-search-parameter">
+                    
+                    <%= f.label :mileage, "Max Mileage" %>
+                
+                    <span id="edit_mileage_slider_val" class="slider-label">
+                      300000 mi
+                    </span>
+                    
+                    <%= f.text_field :mileage,
+                                     id: 'edit_mileage_slider', 
+                                     type: 'text',
+                                     data: { 'slider-min'   => '0',
+                                             'slider-max'   => '300000',
+                                             'slider-step'  => '1',
+                                             'slider-value' => 
+                                               @personalized_search.mileage } %>
+                  </div>
+                </div>
+                
+                <div class="col-md-4">
+                  <div class="form-group form-group-search-parameter">
+                    
+                    <%= f.label :year, "Earliest Year" %>
+                    
+                    <span id="edit_year_slider_val" class="slider-label">1900</span>
+                    
+                    <%= f.text_field :year, 
+                                     id: 'edit_year_slider', 
+                                     type: 'text',
+                                     data: { 'slider-min'   => '1900',
+                                             'slider-max'   => '2016',
+                                             'slider-step'  => '1',
+                                             'slider-value' => 
+                                               @personalized_search.year } %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-section">
+                  
+                <h4 class="installed-options-title">Installed Options</h4>
+                
+                <div class="row">
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_cruise_control %>
+                    <%= f.label :with_cruise_control, "Cruise Control" %> 
+                  </div>
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_am_fm %>
+                    <%= f.label :with_am_fm, "AM / FM Radio" %> 
+                  </div>
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_cb_radio %>
+                    <%= f.label :with_cb_radio, "CB Radio" %> 
+                  </div>
+                </div>
+                
+                <div class="row">
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_navigation_system %>
+                    <%= f.label :with_navigation_system, "Navigation System" %>
+                  </div>
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_heated_seats %>
+                    <%= f.label :with_heated_seats, "Heated Seats" %> 
+                  </div>
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_heated_hand_grips %>
+                    <%= f.label :with_heated_hand_grips, "Heated Hand Grips" %>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_alarm_system %>
+                    <%= f.label :with_alarm_system, "Alarm System" %> 
+                  </div>
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_saddlebags %>
+                    <%= f.label :with_saddlebags, "Saddlebags" %>  
+                  </div>
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_trunk %>
+                    <%= f.label :with_trunk, "Trunk" %> 
+                  </div>
+                </div>
+                
+                <div class="row">
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_tow_hitch %>
+                    <%= f.label :with_tow_hitch, "Tow Hitch" %>
+                  </div>
+                  
+                  <div class="col-md-4 installed-option">
+                    <%= f.check_box :with_cycle_cover %>
+                    <%= f.label :with_cycle_cover, "Cycle Cover" %>
+                  </div>
+                  
+                  <div class="col-md-4 installed-option">
+                    <!--intentionally left empty-->
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <div class="form-group form-group-search-parameter">
-        
-              <%= f.label :year, "Earliest Year" %>
-              
-              <span id="edit_year_slider_val" class="slider-label">1900</span>
-              
-              <%= f.text_field :year, 
-                               id: 'edit_year_slider', 
-                               type: 'text',
-                               data: { 'slider-min'   => '1900',
-                                       'slider-max'   => '2016',
-                                       'slider-step'  => '1',
-                                       'slider-value' => 
-                                         @personalized_search.year } %>
-            </div>
-            
-            <ul class="installed-options-list">
-  
-              <li>
-                <%= f.check_box :cruise_control %>
-                <%= f.label :cruise_control, "Cruise Control" %> 
-              </li>
-              
-              <li>
-                <%= f.check_box :am_fm %>
-                <%= f.label :am_fm, "AM / FM Radio" %> 
-              </li>
-              
-              <li>
-                <%= f.check_box :cb_radio %>
-                <%= f.label :cb_radio, "CB Radio" %> 
-              </li>
-              
-              <li>
-                <%= f.check_box :navigation_system %>
-                <%= f.label :navigation_system, "Navigation System" %>
-              </li>
-              
-              <li>
-                <%= f.check_box :heated_seats %>
-                <%= f.label :heated_seats, "Heated Seats" %> 
-              </li>
-              
-              <li>
-                <%= f.check_box :heated_hand_grips %>
-                <%= f.label :heated_hand_grips, "Heated Hand Grips" %> 
-              </li>
-              
-              <li>
-                <%= f.check_box :alarm_system %>
-                <%= f.label :alarm_system, "Alarm System" %>       
-              </li>
-              
-              <li>
-                <%= f.check_box :saddlebags %>
-                <%= f.label :saddlebags %>          
-              </li>
-              
-              <li>
-                <%= f.check_box :trunk %>
-                <%= f.label :trunk %> 
-              </li>
-              
-              <li>
-                <%= f.check_box :tow_hitch %>
-                <%= f.label :tow_hitch, "Tow Hitch" %>
-              </li>
-              
-              <li>
-                <%= f.check_box :cycle_cover %>
-                <%= f.label :cycle_cover, "Cycle Cover" %> 
-              </li>
-            </ul>
-            
-            <%= f.submit "Save", class: "btn btn-primary btn-basics" %>
           </div>
+          
+          <button type="submit"
+                  class="btn-save-listing">
+            
+            <i class="fa fa-floppy-o fa-lg profile-preview-icon" 
+               aria-hidden="true"></i>
+                      
+            Save
+          </button>
         <% end %>
       </div>
     </div>

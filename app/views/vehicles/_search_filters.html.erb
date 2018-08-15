@@ -252,63 +252,76 @@
     
     <h4 class="installed-options-title">Installed Options</h4>
     
-    <ul class="installed-options-list">
+    <div class="row">
       
-      <li>
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_cruise_control %>
         <%= f.label :with_cruise_control, "Cruise Control" %> 
-      </li>
+      </div>
       
-      <li>
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_am_fm %>
         <%= f.label :with_am_fm, "AM / FM Radio" %> 
-      </li>
+      </div>
       
-      <li>
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_cb_radio %>
         <%= f.label :with_cb_radio, "CB Radio" %> 
-      </li>
-      
-      <li>
+      </div>
+    </div>
+    
+    <div class="row"> 
+    
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_navigation_system %>
         <%= f.label :with_navigation_system, "Navigation System" %>
-      </li>
+      </div>
       
-      <li>
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_heated_seats %>
         <%= f.label :with_heated_seats, "Heated Seats" %> 
-      </li>
+      </div>
       
-      <li>
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_heated_hand_grips %>
         <%= f.label :with_heated_hand_grips, "Heated Hand Grips" %> 
-      </li>
-      
-      <li>
+      </div>
+    </div> 
+    
+    <div class="row">
+        
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_alarm_system %>
         <%= f.label :with_alarm_system, "Alarm System" %>       
-      </li>
+      </div>
       
-      <li>
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_saddlebags %>
         <%= f.label :with_saddlebags, "Saddlebags" %>          
-      </li>
+      </div>
       
-      <li>
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_trunk %>
         <%= f.label :with_trunk, "Trunk" %> 
-      </li>
+      </div>
+    </div>
+    
+    <div class="row">
       
-      <li>
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_tow_hitch %>
         <%= f.label :with_tow_hitch, "Tow Hitch" %>
-      </li>
+      </div>
       
-      <li>
+      <div class="col-md-4 installed-option">
         <%= f.check_box :with_cycle_cover %>
         <%= f.label :with_cycle_cover, "Cycle Cover" %> 
-      </li>
-    </ul>
+      </div>
+      
+      <div class="col-md-4">
+        <!--intentionally left empty-->
+      </div>
+    </div> 
   </div>
   
   <div class="row">

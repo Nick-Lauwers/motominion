@@ -36,34 +36,6 @@
           
           <% if @purchases.exists? %>
             <div class="shortlist-purchases">
-              
-              <div class="search-introduction">
-              
-                <div class="search-introduction-static">
-                  
-                  <div class="row vertical-align">
-                    
-                    <div class="col-md-2 hidden-xs">
-                      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/purchase.png",
-                                    class: "search-introduction-static-image") %>
-                    </div>
-                    
-                    <div class="col-md-10">
-                      
-                      <span class="search-introduction-static-title">
-                        Purchases (<%= @purchases.count %>)
-                      </span>
-                  
-                      <p class="search-introduction-static-info">
-                        If you have purchased any vehicles online, the details can 
-                        be viewed here. Make changes when necessary, but keep in 
-                        mind that modifications may slow processing time.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
               <ol class="row backend-list">
                 <%= render partial:    "purchases/purchase", 
                            collection: @purchases %>
@@ -72,34 +44,10 @@
           <% end %>
           
           <div class="shortlist-test-drives">
-          
-            <div class="search-introduction">
             
-              <div class="search-introduction-static">
-                
-                <div class="row vertical-align">
-                  
-                  <div class="col-md-2 hidden-xs">
-                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/test-drives-large.png",
-                                  class: "search-introduction-static-image") %>
-                  </div>
-                  
-                  <div class="col-md-10">
-                    
-                    <span class="search-introduction-static-title">
-                      Test Drives (<%= @test_drives.count %>)
-                    </span>
-                
-                    <p class="search-introduction-static-info">
-                      We keep track of all your test drives. When a seller 
-                      approves your test drive request, its status will change 
-                      from "Pending" to "Accepted" and the vehicle's address 
-                      will be displayed.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <span class="shortlist-title">
+              Test Drives (<%= @test_drives.count %>)
+            </span>              
             
             <% if @test_drives.exists? %>
               <ol class="row test-drives">
@@ -108,38 +56,44 @@
               </ol>
               
             <% else %>
-              <p class="empty-list-info">
-                No test drives scheduled
-              </p>
+              <%= form_for_filterrific @filterrific,
+                  url: search_vehicles_path,
+                  html: {
+                    id: "filterrific-no-ajax-auto-submit"
+                  } do |f| %>
+                
+                <button type="submit"
+                        class="empty-shortlist empty-shortlist-a">
+
+                  <div class="empty-shortlist-detail">
+                    
+                    <span class="empty-shortlist-title">
+                      Schedule A Test Drive
+                    </span>
+                    
+                    <span class="empty-shortlist-subtitle">
+                      Keep track of your test drives; we'll forward any new requests to 
+                      dealers.
+                    </span>
+                    
+                    <span class="empty-shortlist-info">
+                      Begin Your Search
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span> 
+                  </div>
+
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/shortlist-a.png",
+                                class: "empty-shortlist-image") %>
+                </button>
+              <% end %>
             <% end %>
           </div>
           
           <div class="shortlist-loves">
 
-            <div class="search-introduction">
-            
-              <div class="search-introduction-static">
-                
-                <div class="row vertical-align">
-                  
-                  <div class="col-md-2 hidden-xs">
-                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/shortlist.png",
-                                  class: "search-introduction-static-image") %>
-                  </div>
-                  
-                  <div class="col-md-10">
-                    
-                    <span class="search-introduction-static-title">
-                      Love It! (<%= @loved_items.count %>)
-                    </span>
-                
-                    <p class="search-introduction-static-info">
-                      These are motorcycles that you can't do without!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <span class="shortlist-title">
+              Love It! (<%= @loved_items.count %>)
+            </span>
             
             <% if @loved_items.exists? %>
               <ol class="row search-items">
@@ -148,39 +102,40 @@
               </ol>
             
             <% else %>
-              <p class="empty-list-info">
-                No motorcycles added
-              </p>
+              <%= form_for_filterrific @filterrific,
+                  url: search_vehicles_path,
+                  html: {
+                    id: "filterrific-no-ajax-auto-submit"
+                  } do |f| %>
+                  
+                <button type="submit"
+                        class="empty-shortlist empty-shortlist-b">
+                  
+                  <div class="empty-shortlist-detail">
+                    
+                    <span class="empty-shortlist-title">
+                      Make Space In The Garage
+                    </span>
+                    
+                    <span class="empty-shortlist-subtitle">
+                      Add bikes that you can't do without. You'll be needing
+                      more room...
+                    </span>
+                    
+                    <span class="empty-shortlist-info">
+                      Begin Your Search
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                  
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/shortlist-b.png",
+                                class: "empty-shortlist-image") %>
+                </button>
+              <% end %>
             <% end %>
           </div>
           
           <div class="shortlist-loves">
-
-            <div class="search-introduction">
-            
-              <div class="search-introduction-static">
-                
-                <div class="row vertical-align">
-                  
-                  <div class="col-md-2 hidden-xs">
-                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/liked.png",
-                                  class: "search-introduction-static-image") %>
-                  </div>
-                  
-                  <div class="col-md-10">
-                    
-                    <span class="search-introduction-static-title">
-                      Maybe (<%= @liked_items.count %>)
-                    </span>
-                
-                    <p class="search-introduction-static-info">
-                      These are bikes that you are still considering and so you 
-                      have added them to your shortlist.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
             
             <% if @liked_items.exists? %>
               <ol class="row search-items">
@@ -189,9 +144,35 @@
               </ol>
             
             <% else %>
-              <p class="empty-list-info">
-                No motorcycles added
-              </p>
+              <%= form_for_filterrific @filterrific,
+                  url: search_vehicles_path,
+                  html: {
+                    id: "filterrific-no-ajax-auto-submit"
+                  } do |f| %>
+                  
+                <button type="submit"
+                        class="empty-shortlist empty-shortlist-c">
+                  
+                  <div class="empty-shortlist-detail">
+                    
+                    <span class="empty-shortlist-title">
+                      You've Caught My Eye
+                    </span>
+                    
+                    <span class="empty-shortlist-subtitle">
+                      Add vehicles that you'd like to have another look at.
+                    </span>
+                    
+                    <span class="empty-shortlist-info">
+                      Start Your Search
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                  
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/shortlist-c.png",
+                                class: "empty-shortlist-image") %>
+                </button>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -246,7 +227,9 @@
       handler.buildMap({
         
         provider: {
-          
+
+          center:            new google.maps.LatLng(37.7749, -122.4194),
+          zoom:              13,          
           maxZoom:           14,
           scrollwheel:       false,
           mapTypeControl:    false,

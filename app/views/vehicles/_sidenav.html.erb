@@ -81,25 +81,6 @@
   <% end %>
 </ul>
 
-<% if @vehicle.posted_at.blank? && 
-      !@vehicle.body_style.blank? && 
-      !@vehicle.photos.blank? &&
-      !@vehicle.listing_name.blank? && 
-      !@vehicle.address.blank? %>
-  <div class="post-listing-button">
-    <%= link_to post_vehicle_path(@vehicle), 
-                method: :put, 
-                class: "btn-post-listing" do %>
-                          
-      <i class="fa fa-thumb-tack fa-lg profile-preview-icon" 
-         aria-hidden="true"></i>
-                
-      Post Motorcycle
-    
-    <% end %>
-  </div>
-<% end %>
-
 <!--<= form_for @vehicle do |f| %>-->
 
 <!--  <= f.hidden_field :posted_at, value: Time.now %>-->

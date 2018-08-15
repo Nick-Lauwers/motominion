@@ -11,10 +11,24 @@
       </div>
     <% end %>
     
-    <%= link_to favorite_vehicle_path(feed_item), 
-                method: :put,
-                class: "add-to-wish-list" do %>
-      <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
+    <% if FavoriteVehicle.
+            where("vehicle_id = ? AND ( is_loved = ? OR is_liked = ? )", 
+                  feed_item.id, true, true).
+            exists? %>
+            
+      <%= link_to unfavorite_vehicle_path(feed_item),
+                  method: :put,
+                  class: "add-to-wish-list" do %>
+        <i class="fa fa-2x fa-trash wish-list-icon" aria-hidden="true"></i>
+      <% end %>
+     
+    <% else %>
+    
+      <%= link_to favorite_vehicle_path(feed_item, is_loved: true), 
+                  method: :put,
+                  class: "add-to-wish-list" do %>
+        <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
+      <% end %>
     <% end %>
     
     <!--<(perc) if feed_item.dealership.present? %>-->
@@ -91,10 +105,8 @@
               <% if feed_item.dealership.present? && 
                     feed_item.dealership_id != 1 && 
                     feed_item.dealership_id != 2 %>
-                <%= pluralize(GooglePlaces::Client.
-                                new(ENV['GOOGLE_API_KEY']).
-                                spot(feed_item.dealership.google_place_id).
-                                reviews.count, "review") %>
+                <%= pluralize(feed_item.dealership.google_reviews.count, 
+                              "review") %>
                 
               <% else %>
                 <%= pluralize(feed_item.reviews.count, "review") %>
@@ -169,10 +181,7 @@
         averageRating.raty({
           path:     '/assets',
           readOnly: true,
-          score:    <%= GooglePlaces::Client.
-                          new(ENV['GOOGLE_API_KEY']).
-                          spot(feed_item.dealership.google_place_id).
-                          rating %>
+          score:    <%= feed_item.dealership.google_place_rating %>
         });
       
       <% else %>

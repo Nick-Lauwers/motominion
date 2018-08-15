@@ -3,6 +3,7 @@ class Dealership < ActiveRecord::Base
   has_many :users,                dependent: :destroy
   has_many :vehicles,             dependent: :destroy
   has_many :reviews,              dependent: :destroy
+  has_many :google_reviews,       dependent: :destroy
   has_many :dealer_invitations,   dependent: :destroy
   
   has_many :business_hours,       dependent: :destroy
