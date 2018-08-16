@@ -89,7 +89,7 @@
               <i class="fa fa-shopping-cart listing-navbar-icon" 
                  aria-hidden="true"></i>
               
-              Buy Online
+              Reserve Online
             </div>
           
           <% else %>
@@ -111,7 +111,7 @@
                 <i class="fa fa-shopping-cart listing-navbar-icon" 
                    aria-hidden="true"></i>
                 
-                Buy Online
+                Reserve Online
               <% end %>
             <% end %>
           <% end %>
@@ -378,9 +378,12 @@
             
               <%= f.hidden_field :recipient_archived,  value: false %>
               
-              <%= f.fields_for :appointments, @appointment do |ff| %>
+              <%= f.fields_for :appointments, Appointment.new do |ff| %>
             
-                <a class="availability-link">Click for availability</a>
+                <p class="test-drive-sidenav-info">
+                  To book a drive, select a time and your preferred associate; 
+                  <a class="hello">click for availability</a>.
+                </p>
 
                 <div class="form-element form-element-availability">
                     
@@ -405,11 +408,32 @@
                                     value: current_user.id if current_user %>
               
                 <%= ff.hidden_field :vehicle_id, value: @vehicle.id %>
+                
+                <div class="test-drive-sidenav-scroll-container">
+                  <div class="test-drive-sidenav-scroll">
+        
+                    <i class="fa 
+                              fa-chevron-left 
+                              test-drive-sidenav-left"></i>
+              
+                    <i class="fa 
+                              fa-chevron-right 
+                              test-drive-sidenav-right"></i>
+              
+                    <ol class="test-drive-sidenav-list">
+                      <%= render partial:    'test_drive_sidenav_item',
+                                 collection: User.where(
+                                               dealership_id: @vehicle.dealership_id
+                                             ),
+                                 as:         :dealer %>
+                    </ol>
+                  </div>
+                </div>
               <% end %>
             
-              <div class="btn btn-tertiary btn-appointment">
-                Book!
-              </div>
+              <!--<div class="btn btn-tertiary btn-appointment">-->
+              <!--  Book!-->
+              <!--</div>-->
             <% end %>
           </div>
           

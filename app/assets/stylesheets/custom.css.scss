@@ -2359,6 +2359,7 @@ footer {
 .matches-submit-button,
 .feed-link {
   text-align: right;
+  clear: both;
 }
 
 .feed-link {
@@ -4490,6 +4491,10 @@ ul.pagination {
   }
 }
 
+.test-drive-sidenav-info {
+  text-align: left;
+}
+
 .availability-link {
   font-size: 1em;
   text-decoration: underline;
@@ -4499,6 +4504,106 @@ ul.pagination {
   &:focus {
     color: $gray-dark;
   }
+}
+
+.test-drive-sidenav-info {
+  font-size: 0.95em;
+  text-align: center;
+  color: $gray-dark;
+  margin: 0;
+  a {
+    color: $gray-dark;
+    cursor: pointer;
+    border-bottom: 1px solid $gray-dark;
+    &:link,
+    &:hover,
+    &:focus {
+      color: $gray-dark;
+    }
+  }
+}
+
+.hello {
+  text-decoration: none !important;
+}
+
+.test-drive-sidenav-scroll-container {
+  padding: 0 2.5em;
+  margin-top: 1em;
+  position: relative;
+}
+
+.test-drive-sidenav-scroll {
+  width: 100%;
+  overflow: hidden;
+  &::-webkit-scrollbar { 
+    width: 0;
+  }
+}
+
+.test-drive-sidenav-left,
+.test-drive-sidenav-right {
+  color: $gray-dark;
+  cursor: pointer;
+  position: absolute;
+  top: 25px;
+  transform: translateY(-50%);
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.4;
+  }
+}
+
+.test-drive-sidenav-left {
+  left: 10px;
+}
+
+.test-drive-sidenav-right {
+  right: 10px;
+}
+
+.test-drive-sidenav-list {
+  text-align: left;
+  list-style: none;
+  height: 50px;
+  width: 750em;
+  padding-left: 0;
+}
+
+.test-drive-sidenav-button {
+  background-color: transparent;
+  border: none;
+  width: 12em;
+  padding: 0;
+  outline: none;
+  transition: 0.3s;
+  position: relative;
+  z-index: 100000000;
+  &:hover, 
+  &:focus {
+    opacity: 0.4;
+  }
+}
+
+.test-drive-sidenav-avatar {
+  border-radius: 50%;
+  height: 45px;
+  width: 45px;
+}
+
+.test-drive-sidenav-name {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+  color: $gray-text;
+  display: block;
+}
+
+.test-drive-sidenav-reviews {
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 24px;
+  color: $gray-dark;
 }
 
 .question-form {
@@ -8827,7 +8932,7 @@ a.remove_fields {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/dealer-form.jpg');
+  background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/dealer-basics.jpg');
   width: 75%;
   height: 100%;
   position: absolute;
@@ -10083,6 +10188,7 @@ a.remove_fields {
     margin-left: 4em;
   }
   
+  .test-drive-sidenav-item,
   .modal-dealer-select-item,
   .modal-buy-online-item,
   .modal-test-drive-item {
@@ -10221,7 +10327,7 @@ a.remove_fields {
   opacity: 0.4;
 }
 
-.search-parameter-icon-end {
+.search-parameter-link-end {
   right: 0;
   transform: translateX(50%);
 }
