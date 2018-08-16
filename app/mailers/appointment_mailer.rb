@@ -3,17 +3,29 @@ class AppointmentMailer < ApplicationMailer
   def appointment_request(appointment)
     
     @vehicle      = appointment.vehicle
-    @seller       = appointment.vehicle.user
+    
+    if appointment.vehicle.user.present?
+      @seller     = appointment.vehicle.user
+    else
+      @seller     = appointment.vehicle.dealership.users.first
+    end
+    
     @buyer        = appointment.buyer
     @conversation = Conversation.between(@seller, @buyer).first
 
-    mail to: appointment.vehicle.user.email, subject: "Test Drive Request"
+    mail to: @seller.email, subject: "Test Drive Request"
   end
   
   def appointment_request_admin(appointment)
     
     @vehicle      = appointment.vehicle
-    @seller       = appointment.vehicle.user
+    
+    if appointment.vehicle.user.present?
+      @seller     = appointment.vehicle.user
+    else
+      @seller     = appointment.vehicle.dealership.users.first
+    end
+    
     @buyer        = appointment.buyer
     @conversation = Conversation.between(@seller, @buyer).first
 
@@ -23,7 +35,13 @@ class AppointmentMailer < ApplicationMailer
   def appointment_accepted(appointment)
     
     @vehicle      = appointment.vehicle
-    @seller       = appointment.vehicle.user
+    
+    if appointment.vehicle.user.present?
+      @seller     = appointment.vehicle.user
+    else
+      @seller     = appointment.vehicle.dealership.users.first
+    end
+    
     @buyer        = appointment.buyer
     @conversation = Conversation.between(@seller, @buyer).first
     
@@ -34,7 +52,13 @@ class AppointmentMailer < ApplicationMailer
   def appointment_declined(appointment)
     
     @vehicle      = appointment.vehicle
-    @seller       = appointment.vehicle.user
+    
+    if appointment.vehicle.user.present?
+      @seller     = appointment.vehicle.user
+    else
+      @seller     = appointment.vehicle.dealership.users.first
+    end
+    
     @buyer        = appointment.buyer
     @conversation = Conversation.between(@seller, @buyer).first
     

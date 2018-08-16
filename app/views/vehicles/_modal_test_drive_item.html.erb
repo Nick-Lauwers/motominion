@@ -1,17 +1,8 @@
 <li class="modal-dealer-select-item">
   
-  <%= f.hidden_field :sender_id,           value: current_user.id if 
-                                                                current_user %>
-
   <%= f.hidden_field :recipient_id,        value: dealer.id %>
-  
-  <%= f.hidden_field :next_contributor_id, value: dealer.id %>
-  
-  <%= f.hidden_field :latest_message_read, value: false %>
-  
-  <%= f.hidden_field :sender_archived,     value: false %>
-  
-  <%= f.hidden_field :recipient_archived,  value: false %>
+                                 
+    <%= f.hidden_field :next_contributor_id, value: dealer.id %>
   
   <%= button_tag(class: "dealer-select-button") do %>
     <div class="row vertical-align">

@@ -312,66 +312,104 @@
     
           <div class="appointment hidden-xs">
             
-            <%= f.hidden_field :sender_id,           value: current_user.id if 
-                                                            current_user %>
-            
             <% if @vehicle.user.present? %>
             
-              <%= f.hidden_field :recipient_id,      
-                                 value: @vehicle.user.id %>
+              <%= f.hidden_field :sender_id,           
+                                  value: current_user.id if current_user %>
+            
+              <%= f.hidden_field :recipient_id, 
+                                  value: @vehicle.user.id %>
                                  
               <%= f.hidden_field :next_contributor_id, 
-                                 value: @vehicle.user.id %>
-            <% end %>
+                                  value: @vehicle.user.id %>
+
+              <%= f.hidden_field :is_sender_anonymous, value: false %>
             
-            <%= f.hidden_field :is_sender_anonymous, value: false %>
+              <%= f.hidden_field :latest_message_read, value: false %>
             
-            <%= f.hidden_field :latest_message_read, value: false %>
+              <%= f.hidden_field :sender_archived,     value: false %>
             
-            <%= f.hidden_field :sender_archived,     value: false %>
-            
-            <%= f.hidden_field :recipient_archived,  value: false %>
+              <%= f.hidden_field :recipient_archived,  value: false %>
           
-            <%= f.fields_for :appointments, Appointment.new do |ff| %>
+              <%= f.fields_for :appointments, Appointment.new do |ff| %>
             
-              <% if @vehicle.dealership.present? || 
-                      @vehicle.availabilities.exists? %>
-                <a class="availability-link">Click for availability</a>
-              <% end %>
+                <% if @vehicle.availabilities.exists? %>
+                  <a class="availability-link">Click for availability</a>
+                <% end %>
+                
+                <!--@vehicle.dealership.present?-->
             
-              <div class="form-element form-element-availability">
-                  
-                <%= ff.text_field :date, 
-                                  placeholder: "Test Drive", 
-                                  id: "appointment-time",
-                                  class: "form-control form-control-secondary" %>
+                <div class="form-element form-element-availability">
                     
-                <i class="fa fa-calendar-o fa-lg form-icon" 
-                   aria-hidden="true"></i>
-                   
-                <i class="fa fa-caret-down fa-lg form-caret" 
-                   aria-hidden="true"></i>
-              </div>
+                  <%= ff.text_field :date, 
+                                    placeholder: "Test Drive", 
+                                    id: "appointment-time",
+                                    class: "form-control form-control-secondary" %>
+                      
+                  <i class="fa fa-calendar-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                     
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
               
-              <%= ff.hidden_field :status,              value: "pending" %>
+                <%= ff.hidden_field :status, value: "pending" %>
               
-              <% if @vehicle.user.present? %>
-                <%= ff.hidden_field :seller_id,         value: @vehicle.user.id %>
+                <%= ff.hidden_field :seller_id, value: @vehicle.user.id %>
+
+                <%= ff.hidden_field :buyer_id, 
+                                    value: current_user.id if current_user %>
+              
+                <%= ff.hidden_field :vehicle_id, value: @vehicle.id %>
               <% end %>
-              
-              <%= ff.hidden_field :buyer_id, value: current_user.id if current_user %>
-              
-              <%= ff.hidden_field :vehicle_id,          value: @vehicle.id %>
-            <% end %>
             
-            <% if @vehicle.dealership.present? %>
+              <%= f.submit "Book!", class: "btn btn-tertiary btn-appointment" %>
+            
+            <% else %>
+            
+              <%= f.hidden_field :sender_id,           
+                                  value: current_user.id if current_user %>
+
+              <%= f.hidden_field :is_sender_anonymous, value: false %>
+            
+              <%= f.hidden_field :latest_message_read, value: false %>
+            
+              <%= f.hidden_field :sender_archived,     value: false %>
+            
+              <%= f.hidden_field :recipient_archived,  value: false %>
+              
+              <%= f.fields_for :appointments, @appointment do |ff| %>
+            
+                <a class="availability-link">Click for availability</a>
+
+                <div class="form-element form-element-availability">
+                    
+                  <%= ff.text_field :date, 
+                                    placeholder: "Test Drive", 
+                                    id: "appointment-time",
+                                    class: "form-control form-control-secondary" %>
+                      
+                  <i class="fa fa-calendar-o fa-lg form-icon" 
+                     aria-hidden="true"></i>
+                     
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              
+                <%= ff.hidden_field :status, value: "pending" %>
+              
+                <%= ff.hidden_field :seller_id, 
+                                    value: @vehicle.dealership.users.first %>
+
+                <%= ff.hidden_field :buyer_id, 
+                                    value: current_user.id if current_user %>
+              
+                <%= ff.hidden_field :vehicle_id, value: @vehicle.id %>
+              <% end %>
+            
               <div class="btn btn-tertiary btn-appointment">
                 Book!
               </div>
-              
-            <% else %>
-              <%= f.submit "Book!", 
-                           class: "btn btn-tertiary btn-appointment" %>
             <% end %>
           </div>
           
