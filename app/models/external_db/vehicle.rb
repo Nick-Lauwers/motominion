@@ -11,12 +11,19 @@ module ExternalDb
          ( last_found >= 1.day.ago )
         ::Vehicle.where(scraped_id: id).first_or_initialize.tap do |v|
           
-          v.dealership         = ::Dealership.where(scraped_id: source_id).first
+          dealership = ::Dealership.where(scraped_id: source_id).first
+          
+          v.dealership         = dealership
           v.vehicle_make_name  = make
           v.vehicle_model_name = model
           v.listing_name       = "#{year} #{make} #{model}"
           v.actual_price       = price
           v.engine_type        = engine
+          v.street_address     = dealership.street_address
+          v.city               = dealership.city
+          v.state              = dealership.state
+          v.latitude           = dealership.latitude
+          v.longitude          = dealership.longitude
           v.created_at         = created
           v.posted_at          = created
           v.bumped_at          = created
