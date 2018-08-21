@@ -3629,10 +3629,14 @@ ul.pagination {
   list-style: none;
   background-color: white;
   border: 1px solid $gray-border;
+  box-shadow: 0 2px 16px 0 $gray-light;
   margin-bottom: 1.7em;
   position: relative;
   overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
   &:hover {
+    box-shadow: 0 3px 24px 0 $gray-light;
+    transform: scale(1.05);
     .btn-summary-carousel-left,
     .btn-summary-carousel-right {
       opacity: 1;
@@ -4491,10 +4495,6 @@ ul.pagination {
   }
 }
 
-.test-drive-sidenav-info {
-  text-align: left;
-}
-
 .availability-link {
   font-size: 1em;
   text-decoration: underline;
@@ -4515,16 +4515,11 @@ ul.pagination {
     color: $gray-dark;
     cursor: pointer;
     border-bottom: 1px solid $gray-dark;
-    &:link,
     &:hover,
     &:focus {
       color: $gray-dark;
     }
   }
-}
-
-.hello {
-  text-decoration: none !important;
 }
 
 .test-drive-sidenav-scroll-container {

@@ -32,7 +32,7 @@ class Vehicle < ActiveRecord::Base
   has_many :special_offers, dependent: :destroy
   accepts_nested_attributes_for :special_offers, allow_destroy: true
   
-  has_one :listing_score
+  has_one :listing_score, dependent: :destroy
 
   # MINIMUM_PHOTOS = 2
 
