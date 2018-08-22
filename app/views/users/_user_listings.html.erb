@@ -87,14 +87,14 @@
             <span id="average-rating-<%= vehicle.id %>"></span>
           </p>
           
-          <p class="summary-detail-info"><%= vehicle.summary %></p>
+          <p class="summary-detail-info"><%= vehicle.description_clean %></p>
         <% end %>
         
         <% if logged_in? && 
               !current_user.favorite_vehicles.exists?(vehicle_id:
                                                       vehicle.id) %>
                   
-          <%= link_to favorite_vehicle_path(vehicle), 
+          <%= link_to favorite_vehicle_path(vehicle, is_loved: true), 
                       method: :put do %>
             <span class="summary-detail-link">
               
@@ -112,7 +112,7 @@
                     class: "summary-price-content", 
                     target: "_blank" do %>
             
-          <p class="summary-price-title">$<%= vehicle.price %></p>
+          <p class="summary-price-title">$<%= vehicle.actual_price %></p>
           
           <!--<(perc)= button_to "View", -->
           <!--              vehicle, -->
@@ -171,7 +171,7 @@
             <div class="mobile-listing-item-info">
               
               <span class="mobile-listing-item-title">
-                $<%= vehicle.price %> | <%= vehicle.listing_name %>
+                $<%= vehicle.actual_price %> | <%= vehicle.listing_name %>
               </span>
     
               <div id="average-rating-mobile-listing-item-<%= vehicle.id %>", 
@@ -186,7 +186,7 @@
       </div>
     <% end %>
     
-    <%= link_to favorite_vehicle_path(vehicle), 
+    <%= link_to favorite_vehicle_path(vehicle, is_loved: true), 
                 method: :put do %>
       <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
     <% end %>
