@@ -110,7 +110,11 @@ module ExternalDb
       test_drive_score = 100
       
       # Listing has many photos.
-      photos_score = 0
+      if vehicle.listing_score.present?
+        photos_score = vehicle.listing_score.photos_score
+      else
+        photos_score = 0
+      end
       
       # Seller has several positive reviews.
       
