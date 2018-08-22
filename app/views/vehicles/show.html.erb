@@ -1726,7 +1726,7 @@
         averageRating.raty({
           path:     '/assets',
           readOnly: true,
-          score:    <% @vehicle.dealership.google_place_rating %>
+          score:    <%= @vehicle.dealership.google_place_rating %>
         });
       
       <% else %> 

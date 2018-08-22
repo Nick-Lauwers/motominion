@@ -29,11 +29,11 @@ module ExternalDb
             ::Vehicle.where(scraped_id: vehicle_id).first.tap do |v|
               
               if v.photos.count.between?(1,3)
-                v.listing_score.update_attribute(:photos_score, 33)
+                v.listing_score.update_attributes(photos_score: 33)
               elsif v.photos.count.between?(4,7)
-                v.listing_score.update_attribute(:photos_score, 67)
+                v.listing_score.update_attributes(photos_score: 67)
               elsif v.photos.count >= 8
-                v.listing_score.update_attribute(:photos_score, 100)
+                v.listing_score.update_attributes(photos_score: 100)
               end
                 
               overall_score = ( v.listing_score.location_score + 
@@ -48,7 +48,7 @@ module ExternalDb
                                 ( 2 * v.listing_score.recently_posted_score ) + 
                                 v.listing_score.many_listings_score ) / 13
               
-              v.listing_score.update_attribute(:overall_score, overall_score)
+              v.listing_score.update_attributes(overall_score: overall_score)
             end
           end
         end 
