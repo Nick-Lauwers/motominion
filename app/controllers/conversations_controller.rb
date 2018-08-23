@@ -3,7 +3,7 @@
 class ConversationsController < ApplicationController
 
   before_action :logged_in_user,     only: [:create]
-  before_action :profile_pic_upload, only: [:create]
+  before_action :profile_pic_upload, only: [:reveal_identity]
 
   def index
     
