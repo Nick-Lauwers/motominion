@@ -1930,15 +1930,15 @@ footer {
   width: 100%;
 }
 
-.hero-desktop-image {
-  background-color: $gray-darkest;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/harley-davidson.jpg');
-  height: 100%;
-  position: relative;
-}
+// .hero-desktop-image {
+//   background-color: $gray-darkest;
+//   background-size: cover;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/harley-davidson.jpg');
+//   height: 100%;
+//   position: relative;
+// }
 
 .hero-desktop-detail {
   text-align: center;
@@ -3472,8 +3472,8 @@ ul.pagination {
   width: 20em;
   padding: 1.1em;
   position: fixed;
-  bottom: 15px;
   right: 15px;
+  bottom: 15px;
   z-index: 20000;
 }
 
@@ -3576,6 +3576,10 @@ ul.pagination {
         background-color: $green;
     }
   }
+}
+
+.mototrova {
+  margin-top: 1em;
 }
 
 .form-element-label,

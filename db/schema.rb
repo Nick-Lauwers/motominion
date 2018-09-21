@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180815132605) do
+ActiveRecord::Schema.define(version: 20180911021704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -644,6 +644,45 @@ ActiveRecord::Schema.define(version: 20180815132605) do
 
   add_index "vehicle_models", ["vehicle_make_id"], name: "index_vehicle_models_on_vehicle_make_id", using: :btree
 
+  create_table "vehicle_series", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "vehicle_model_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "vehicle_series", ["vehicle_model_id"], name: "index_vehicle_series_on_vehicle_model_id", using: :btree
+
+  create_table "vehicle_specification_values", force: :cascade do |t|
+    t.string   "value"
+    t.string   "unit"
+    t.integer  "vehicle_trim_id"
+    t.integer  "vehicle_specification_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "vehicle_specification_values", ["vehicle_specification_id"], name: "index_vehicle_specification_values_on_vehicle_specification_id", using: :btree
+  add_index "vehicle_specification_values", ["vehicle_trim_id"], name: "index_vehicle_specification_values_on_vehicle_trim_id", using: :btree
+
+  create_table "vehicle_specifications", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "class_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vehicle_trims", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "first_production_year"
+    t.integer  "last_production_year"
+    t.integer  "vehicle_series_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "vehicle_trims", ["vehicle_series_id"], name: "index_vehicle_trims_on_vehicle_series_id", using: :btree
+
   create_table "vehicles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "listing_name"
@@ -775,6 +814,10 @@ ActiveRecord::Schema.define(version: 20180815132605) do
   add_foreign_key "special_offers", "vehicles"
   add_foreign_key "upgrades", "vehicles"
   add_foreign_key "vehicle_models", "vehicle_makes"
+  add_foreign_key "vehicle_series", "vehicle_models"
+  add_foreign_key "vehicle_specification_values", "vehicle_specifications"
+  add_foreign_key "vehicle_specification_values", "vehicle_trims"
+  add_foreign_key "vehicle_trims", "vehicle_series"
   add_foreign_key "vehicles", "dealerships"
   add_foreign_key "vehicles", "users"
   add_foreign_key "vehicles", "vehicle_makes"

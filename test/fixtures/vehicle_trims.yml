@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  first_production_year: 1
+  last_production_year: 1
+  vehicle_series_id: 
+
+two:
+  name: MyString
+  first_production_year: 1
+  last_production_year: 1
+  vehicle_series_id: 

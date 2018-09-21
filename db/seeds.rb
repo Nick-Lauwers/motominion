@@ -18,6 +18,46 @@ CSV.foreach(Rails.root.join("vehicle_models.csv"), headers: true) do |row|
   end
 end
 
+# Series
+CSV.foreach(Rails.root.join("vehicle_series.csv"), headers: true) do |row|
+  VehicleSeries.create! do |vehicle_series|
+    vehicle_series.id               = row[0]
+    vehicle_series.name             = row[1]
+    vehicle_series.vehicle_model_id = row[2]
+  end
+end
+
+# Trims
+CSV.foreach(Rails.root.join("vehicle_trims.csv"), headers: true) do |row|
+  VehicleTrim.create! do |vehicle_trim|
+    vehicle_trim.id                    = row[0]
+    vehicle_trim.vehicle_series_id     = row[1]
+    vehicle_trim.name                  = row[2]
+    vehicle_trim.first_production_year = row[3]
+    vehicle_trim.last_production_year  = row[4]
+  end
+end
+
+# Specifications
+CSV.foreach(Rails.root.join("vehicle_specifications.csv"), headers: true) do |row|
+  VehicleSpecification.create! do |vehicle_specification|
+    vehicle_specification.id       = row[0]
+    vehicle_specification.name     = row[1]
+    vehicle_specification.class_id = row[2]
+  end
+end
+
+# Specification Values
+CSV.foreach(Rails.root.join("vehicle_specification_values.csv"), headers: true) do |row|
+  VehicleSpecificationValue.create! do |vehicle_specification_value|
+    vehicle_specification_value.id                       = row[0]
+    vehicle_specification_value.vehicle_trim_id          = row[1]
+    vehicle_specification_value.vehicle_specification_id = row[2]
+    vehicle_specification_value.value                    = row[3]
+    vehicle_specification_value.unit                     = row[4]
+  end
+end
+
 # Dealerships
 CSV.foreach(Rails.root.join("dealerships.csv"), headers: true) do |row|
   Dealership.create! do |dealership|

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: MyString
+  unit: MyString
+  vehicle_trim_id: 
+  vehicle_specification_id: 
+
+two:
+  value: MyString
+  unit: MyString
+  vehicle_trim_id: 
+  vehicle_specification_id: 
