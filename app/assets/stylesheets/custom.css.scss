@@ -2356,29 +2356,48 @@ footer {
   }
 }
 
-.matches-submit-button,
-.feed-link {
+.matches-submit-button {
   text-align: right;
   clear: both;
 }
 
 .feed-link {
+  font-weight: bold;
+  text-align: right;
+  clear: both;
   overflow: auto;
+  border: none;
+  // width: 100%;
+  // height: 125px;
+  // padding: 0;
+  // position: relative;
+  // overflow: hidden;
+  // transition: 0.3s;
+  // &:hover,
+  // &:focus {
+  //   box-shadow: 0 3px 24px 0 $gray-light;
+  //   outline: none;
+  //   transform: scale(1.02);
+  // }
 }
 
-.feed-link-content {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: $green;
-  margin-bottom: 4em;
-  transition: 0.3s;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    color: $green;
-    opacity: 0.4;
-  }
-}
+// .feed-link {
+//   overflow: auto;
+// }
+
+// .feed-link-content {
+//   font-weight: bold;
+//   font-size: 1.2em;
+//   color: $green;
+//   margin-bottom: 4em;
+//   transition: 0.3s;
+//   &:hover,
+//   &:focus {
+//     text-decoration: none;
+//     color: $green;
+//     opacity: 0.4;
+//   }
+// }
 
 .feed-community {
   overflow: visible;
@@ -10479,9 +10498,9 @@ a.remove_fields {
     margin-top: 0;
   }
   
-  .feed-link-content {
-    font-size: 1.05em;
-  }
+  // .feed-link-content {
+  //   font-size: 1.05em;
+  // }
   
   .feed-item {
     width: 22em;

@@ -447,13 +447,26 @@
           </div>
         </ol>
         
-        <div class="feed-link">
-          <%= link_to search_vehicles_path, 
-                      class: "feed-link-content" do %>
+        <%= form_for_filterrific @filterrific, 
+              url: search_vehicles_path, 
+              html: { 
+                id:    "filterrific-no-ajax-auto-submit",
+                # class: "hidden-xs search-form-primary" 
+              } do |f| %>
+          <button type="submit"
+                  class="feed-link">
             View All Listings (<%= Vehicle.count %>)
-            <i class="fa fa-angle-right" aria-hidden="true"></i> 
-          <% end %>
-        </div>
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </button>
+        <% end %>
+        
+        <!--<div class="feed-link">-->
+        <!--  <(perc)= link_to search_vehicles_path, -->
+        <!--              class: "feed-link-content" do %>-->
+        <!--    View All Listings (<(perc)= Vehicle.count %>)-->
+        <!--    <i class="fa fa-angle-right" aria-hidden="true"></i> -->
+        <!--  <(perc) end %>-->
+        <!--</div>-->
       </div>
     <% end %>
     
