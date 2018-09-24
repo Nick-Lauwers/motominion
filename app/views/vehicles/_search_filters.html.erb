@@ -1,4 +1,5 @@
 <%= form_for_filterrific @filterrific, 
+                         url: search_vehicles_path,
                          html: 
                            { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
   
@@ -53,11 +54,11 @@
       <div class="col-md-4">
         <div class="form-group form-group-primary">
           
-          <%= f.label :with_city, "City" %>
+          <%= f.label :with_zip_code, "Zip Code" %>
           
           <div class="form-element">
-            <%= f.text_field :with_city, 
-                             placeholder: "E.g. San Francisco, CA", 
+            <%= f.text_field :with_zip_code, 
+                             placeholder: "E.g. 94103", 
                              class: "form-control 
                                      form-control-secondary
                                      typeahead" %>
@@ -227,24 +228,24 @@
         </div>
       </div>
 
-      <div class="col-md-6 engine-size">
-        <div class="form-group form-group-primary">
+      <!--<div class="col-md-6 engine-size">-->
+      <!--  <div class="form-group form-group-primary">-->
           
-          <%= f.label :with_engine_size_gte, "Min Engine Size" %>
+      <!--    <(perc)= f.label :with_engine_size_gte, "Min Engine Size" %>-->
           
-          <span id="engine_size_slider_val" class="slider-label">
-            50 cc
-          </span>
+      <!--    <span id="engine_size_slider_val" class="slider-label">-->
+      <!--      50 cc-->
+      <!--    </span>-->
           
-          <%= f.text_field :with_engine_size_gte,
-                           id: 'engine_size_slider', 
-                           type: 'text',
-                           data: { 'slider-min'   => '50',
-                                   'slider-max'   => '2294',
-                                   'slider-step'  => '1',
-                                   'slider-value' => '50' } %>
-        </div>
-      </div>
+      <!--    <(perc)= f.text_field :with_engine_size_gte,-->
+      <!--                     id: 'engine_size_slider', -->
+      <!--                     type: 'text',-->
+      <!--                     data: { 'slider-min'   => '50',-->
+      <!--                             'slider-max'   => '2294',-->
+      <!--                             'slider-step'  => '1',-->
+      <!--                             'slider-value' => '50' } %>-->
+      <!--  </div>-->
+      <!--</div>-->
     </div>
   </div>
   

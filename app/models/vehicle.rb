@@ -62,12 +62,12 @@ class Vehicle < ActiveRecord::Base
   after_validation :geocode, if: :address_changed?
   
   filterrific(
-    default_filter_params: { sorted_by: 'created_at_desc' },
+    # default_filter_params: { sorted_by: 'created_at_desc' },
     available_filters: [
       :sorted_by,
       :with_vehicle_make_id, 
       :with_vehicle_model_id,
-      :with_city,
+      :with_zip_code,
       :with_year_gte,
       :with_actual_price_lte,
       :with_mileage_numeric_lte,
@@ -112,8 +112,8 @@ class Vehicle < ActiveRecord::Base
     where(vehicle_model_id: vehicle_model_id)
   }
   
-  scope :with_city, lambda { |city|
-    Vehicle.near(city)
+  scope :with_zip_code, lambda { |ref_zip_code|
+    Vehicle.near(ref_zip_code.to_s.to_region, 50, order: nil)
   }
   
   scope :with_year_gte, lambda { |ref_year|
