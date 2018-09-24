@@ -46,10 +46,10 @@
     
     <h2 class="search-summary-info">
       
-      <% if @filterrific.with_city.present? %>
+      <% if @filterrific.with_zip_code.present? %>
 
         <%= pluralize(@vehicles.count, "motorcycle") %> found near 
-        <%= @filterrific.with_city %>
+        <%= @filterrific.with_zip_code.to_s.to_region %>
 
       <% else %>
         Enter a city to narrow your search
