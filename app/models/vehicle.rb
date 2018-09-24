@@ -113,7 +113,7 @@ class Vehicle < ActiveRecord::Base
   }
   
   scope :with_zip_code, lambda { |ref_zip_code|
-    Vehicle.near(ref_zip_code.to_s.to_region, 50, order: nil)
+    Vehicle.near(ref_zip_code.to_s.to_region, 20, order: nil)
   }
   
   scope :with_year_gte, lambda { |ref_year|

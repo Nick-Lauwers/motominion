@@ -1,5 +1,4 @@
 <%= form_for_filterrific @filterrific, 
-                         url: search_vehicles_path,
                          html: 
                            { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
   
@@ -54,7 +53,7 @@
       <div class="col-md-4">
         <div class="form-group form-group-primary">
           
-          <%= f.label :with_zip_code, "Zip Code" %>
+          <%= f.label :with_zip_code, "ZIP Code" %>
           
           <div class="form-element">
             <%= f.text_field :with_zip_code, 
