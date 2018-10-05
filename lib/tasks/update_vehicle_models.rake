@@ -1,4 +1,4 @@
-task :update_scores => :environment do
+task :update_vehicle_models => :environment do
   VehicleModel.find(2).update_attributes(vehicle_type: "Moped", is_one_seat: FALSE, is_two_seats: TRUE)
   VehicleModel.find(3).update_attributes(vehicle_type: "Moped", is_one_seat: FALSE, is_two_seats: TRUE)
   VehicleModel.find(4).update_attributes(vehicle_type: "Sportbike", is_one_seat: TRUE, is_two_seats: TRUE)
