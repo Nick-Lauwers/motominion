@@ -68,6 +68,17 @@ class Vehicle < ActiveRecord::Base
       :with_vehicle_make_id, 
       :with_vehicle_model_id,
       :with_zip_code,
+      :with_distance,
+      :with_cafe_racer,
+      :with_cruiser,
+      :with_dirt_bike_dual_sport,
+      :with_moped_mini,
+      :with_sportbike,
+      :with_standard,
+      :with_touring,
+      :with_trike,
+      :with_condition,
+      :with_dealer,
       :with_year_gte,
       :with_actual_price_lte,
       :with_mileage_numeric_lte,
@@ -113,7 +124,67 @@ class Vehicle < ActiveRecord::Base
   }
   
   scope :with_zip_code, lambda { |ref_zip_code|
-    Vehicle.near(ref_zip_code.to_s.to_region, 20, order: nil)
+    Vehicle.near(ref_zip_code.to_s.to_region, 50, order: nil)
+  }
+  
+  scope :with_distance, lambda { |distance_attrs|
+    if distance_attrs.zip_code.present? && distance_attrs.max_distance.present?
+      Vehicle.near(distance_attrs.zip_code.to_s.to_region, distance_attrs.max_distance, order: nil)
+    elsif distance_attrs.zip_code.present?
+      Vehicle.all
+    end
+  }
+  
+  scope :with_cafe_racer, lambda { |flag|
+    return nil if 0 == flag
+    where(body_style: "Cafe Racer")
+  }
+  
+  scope :with_cruiser, lambda { |flag|
+    return nil if 0 == flag
+    where(body_style: "Cruiser")
+  }
+  
+  scope :with_dirt_bike_dual_sport, lambda { |flag|
+    return nil if 0 == flag
+    where(body_style: "Dirt Bike / Dual-Sport")
+  }
+  
+  scope :with_moped_mini, lambda { |flag|
+    return nil if 0 == flag
+    where(body_style: "Moped / Mini")
+  }
+  
+  scope :with_sportbike, lambda { |flag|
+    return nil if 0 == flag
+    where(body_style: "Sportbike")
+  }
+  
+  scope :with_standard, lambda { |flag|
+    return nil if 0 == flag
+    where(body_style: "Standard")
+  }
+  
+  scope :with_touring, lambda { |flag|
+    return nil if 0 == flag
+    where(body_style: "Touring")
+  }
+  
+  scope :with_trike, lambda { |flag|
+    return nil if 0 == flag
+    where(body_style: "Trike")
+  }
+  
+  scope :with_condition, lambda { |ref_condition|
+    where('vehicles.condition = ?', ref_condition)
+  }
+  
+  scope :with_dealer, lambda { |ref_dealer|
+    if ref_dealer == "Dealer"
+      Vehicle.where.not(dealership_id: nil)
+    elsif ref_dealer == "Private"
+      Vehicle.where(dealership_id: nil)
+    end
   }
   
   scope :with_year_gte, lambda { |ref_year|

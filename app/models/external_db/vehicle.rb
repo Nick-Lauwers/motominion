@@ -34,6 +34,12 @@ module ExternalDb
             v.send("#{f}=", send(f))
           end
           
+          if ( condition == "Pre-Owned" )
+            v.condition = "Pre-Owned"
+          elsif ( condition == "New" )
+            v.condition = "New"
+          end
+          
           update_make_model_id(v)
           update_score(v)
           v.save
@@ -49,8 +55,8 @@ module ExternalDb
     # Update make and model ids
     def update_make_model_id(vehicle)
       
-      normalized_make  = make.downcase.gsub(/[^0-9a-z]/, '')
-      normalized_model = model.downcase.gsub(/[^0-9a-z]/, '')
+      normalized_make  = make.to_s.downcase.gsub(/[^0-9a-z]/, '')
+      normalized_model = model.to_s.downcase.gsub(/[^0-9a-z]/, '')
           
       VehicleMake.all.each do |vehicle_make|
         if vehicle_make.name.downcase.gsub(/[^0-9a-z]/, '').in?(normalized_make)

@@ -12,7 +12,11 @@ class PersonalizedSearchesController < ApplicationController
     @personalized_search = current_user.build_personalized_search personalized_search_params
     
     if @personalized_search.save
-      redirect_to price_personalized_search_path(@personalized_search)
+      if params[:redirect_to_show].present?
+        redirect_to @personalized_search
+      else
+        redirect_to location_personalized_search_path(@personalized_search)
+      end
     else
       # render 'new'
     end
@@ -64,10 +68,12 @@ class PersonalizedSearchesController < ApplicationController
     
     def personalized_search_params
       params.require(:personalized_search).permit(:is_classic_vintage, 
-        :is_cruiser, :is_dual_sport, :is_mini_pocket, :is_moped, 
+        :is_cafe_racer, :is_cruiser, :is_dual_sport, :is_mini_pocket, :is_moped, 
         :is_sportbike, :is_standard, :is_touring, :is_trike, :cruise_control,
         :am_fm, :cb_radio, :navigation_system, :heated_seats, :alarm_system,
-        :saddlebags, :trunk, :tow_hitchm, :cycle_cover, :price, :mileage, :year)
+        :saddlebags, :trunk, :tow_hitch, :cycle_cover, :price, :mileage, :year,
+        :is_one_seat, :is_two_seats, :is_beginner, :is_intermediate, 
+        :is_advanced, :zip_code, :max_distance)
     end
     
     # Before filters

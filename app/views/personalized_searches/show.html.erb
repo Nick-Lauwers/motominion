@@ -328,6 +328,53 @@
             <% end %>
           </div>
         </div>
+        
+        <div class="row">
+          
+          <div class="col-md-12">
+            
+            <%= form_for_filterrific @filterrific,
+                  url: search_vehicles_path,
+                  html: {
+                    id: "filterrific-no-ajax-auto-submit"
+                  } do |f| %>
+                  
+              <!--<(perc)= f.hidden_field :with_city, value: "San Francisco" %>-->
+              
+              <%= f.hidden_field :with_dealer, value: "Dealer" %>
+              
+              <%= f.hidden_field :with_actual_price_lte, 
+                                 value: @personalized_search.price %>
+              
+              <%= f.hidden_field :with_mileage_numeric_lte, 
+                                 value: @personalized_search.mileage %>
+                                 
+              <button type="submit"
+                      class="match-item match-item-f">
+                
+                <div class="match-item-detail">
+                  
+                  <span class="match-item-title">
+                    Certified Dealers Only
+                  </span>
+                  
+                  <span class="match-item-subtitle">
+                    View the dealer inventory that best matches your
+                    preferences
+                  </span>
+                  
+                  <span class="match-item-info">
+                    View All
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/match-item-f.png",
+                              class: "match-item-image") %>
+              </button>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -41,23 +41,22 @@
         
           <div class="row">
             
-            <div class="col-md-3 
+            <div class="col-md-4 
                         personalized-search-checkbox
                         personalized-search-checkbox-a">
               
-              <%= f.check_box :is_classic_vintage %>
+              <%= f.check_box :is_cafe_racer %>
               
-              <%= f.label :is_classic_vintage do %>   
+              <%= f.label :is_cafe_racer do %>   
               
                 <div class="personalized-search-checkbox-text">
                   
                   <span class="personalized-search-checkbox-title">
-                    Classic / Vintage
+                    Cafe Racer
                   </span>
                   
                   <span class="personalized-search-checkbox-subtitle">
-                    View All 
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Click to Select
                   </span>
                 </div> 
                 
@@ -66,7 +65,7 @@
               <% end %>
             </div>
             
-            <div class="col-md-3 
+            <div class="col-md-4 
                         personalized-search-checkbox
                         personalized-search-checkbox-b">
               
@@ -81,8 +80,7 @@
                   </span>
                   
                   <span class="personalized-search-checkbox-subtitle">
-                    View All 
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Click to Select
                   </span>
                 </div> 
                 
@@ -91,7 +89,7 @@
               <% end %>
             </div>
             
-            <div class="col-md-3 
+            <div class="col-md-4 
                         personalized-search-checkbox
                         personalized-search-checkbox-c">
               
@@ -102,12 +100,11 @@
                 <div class="personalized-search-checkbox-text">
                   
                   <span class="personalized-search-checkbox-title">
-                    Dual-Sport
+                    Dual-Sport / Dirt Bike
                   </span>
                   
                   <span class="personalized-search-checkbox-subtitle">
-                    View All 
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Click to Select
                   </span>
                 </div>
                 
@@ -115,8 +112,11 @@
                               class: "personalized-search-button-icon") %>
               <% end %>
             </div>
+          </div>
+          
+          <div class="row">
             
-            <div class="col-md-3 
+            <div class="col-md-4 
                         personalized-search-checkbox
                         personalized-search-checkbox-d">
               
@@ -131,8 +131,7 @@
                   </span>
                   
                   <span class="personalized-search-checkbox-subtitle">
-                    View All 
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Click to Select
                   </span>
                 </div> 
                 
@@ -140,11 +139,8 @@
                               class: "personalized-search-button-icon") %>
               <% end %>
             </div>
-          </div>
-          
-          <div class="row">
             
-            <div class="col-md-3 
+            <div class="col-md-4 
                         personalized-search-checkbox
                         personalized-search-checkbox-e">
               
@@ -159,8 +155,7 @@
                   </span>
                   
                   <span class="personalized-search-checkbox-subtitle">
-                    View All 
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Click to Select
                   </span>
                 </div> 
 
@@ -169,7 +164,7 @@
               <% end %>
             </div>
 
-            <div class="col-md-3 
+            <div class="col-md-4 
                         personalized-search-checkbox
                         personalized-search-checkbox-f">
               
@@ -184,8 +179,7 @@
                   </span>
                   
                   <span class="personalized-search-checkbox-subtitle">
-                    View All 
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Click to Select
                   </span>
                 </div>
                 
@@ -193,8 +187,11 @@
                               class: "personalized-search-button-icon") %>
               <% end %>
             </div>
-
-            <div class="col-md-3 
+          </div>
+          
+          <div class="row">
+            
+            <div class="col-md-4 
                         personalized-search-checkbox
                         personalized-search-checkbox-g">
               
@@ -209,8 +206,7 @@
                   </span>
                   
                   <span class="personalized-search-checkbox-subtitle">
-                    View All 
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Click to Select
                   </span>
                 </div> 
                 
@@ -219,7 +215,7 @@
               <% end %>
             </div>
             
-            <div class="col-md-3 
+            <div class="col-md-4 
                         personalized-search-checkbox
                         personalized-search-checkbox-h">
               
@@ -234,8 +230,7 @@
                   </span>
                   
                   <span class="personalized-search-checkbox-subtitle">
-                    View All 
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Click to Select
                   </span>
                 </div>
                 
@@ -243,11 +238,8 @@
                               class: "personalized-search-button-icon") %>
               <% end %>
             </div>
-          </div>
-          
-          <div class="row">
             
-            <div class="col-md-3 
+            <div class="col-md-4 
                         personalized-search-checkbox
                         personalized-search-checkbox-i">
               
@@ -262,8 +254,7 @@
                   </span>
                   
                   <span class="personalized-search-checkbox-subtitle">
-                    View All 
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    Click to Select
                   </span>
                 </div>
                 
@@ -271,29 +262,26 @@
                               class: "personalized-search-button-icon") %>
               <% end %>
             </div>
-            
-            <div class="col-md-9">
-              <%= button_tag(type: "submit",
-                             class: "next-button
-                                     personalized-search-button-a") do %>
-
-                <div class="personalized-search-button-text">
-                  
-                  <span class="personalized-search-button-title">
-                    Save
-                  </span>
-                  
-                  <span class="personalized-search-button-subtitle">
-                    Continue to Price
-                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                  </span>
-                </div>
-
-                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches-next.png",
-                              class: "personalized-search-button-icon") %>
-              <% end %>
-            </div>
           </div>
+          
+          <%= button_tag(type: "submit",
+                         class: "next-button") do %>
+
+            <div class="personalized-search-button-text">
+              
+              <span class="personalized-search-button-title">
+                Save
+              </span>
+              
+              <span class="personalized-search-button-subtitle">
+                Continue to Location
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </span>
+            </div>
+
+            <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches-next.png",
+                          class: "personalized-search-button-icon") %>
+          <% end %>
         <% end %>
       </div>
     </div>

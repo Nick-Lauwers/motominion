@@ -26,8 +26,8 @@
       <ul class="parameters-list">
           
         <li>
-          <%= f.check_box :is_classic_vintage %>
-          <%= f.label :is_classic_vintage, "Classic / Vintage" %> 
+          <%= f.check_box :is_cafe_racer %>
+          <%= f.label :is_cafe_racer, "Cafe Racer" %> 
         </li>
         
         <li>
@@ -37,7 +37,7 @@
         
         <li>
           <%= f.check_box :is_dual_sport %>
-          <%= f.label :is_dual_sport, "Dual-Sport" %> 
+          <%= f.label :is_dual_sport, "Dirt Bike / Dual-Sport" %> 
         </li>
         
         <li>
@@ -73,7 +73,7 @@
     </div>
     
     <%= hidden_field_tag :redirect_location,
-                         price_personalized_search_path(@personalized_search) if 
+                         location_personalized_search_path(@personalized_search) if 
                            (current_user && 
                             current_user.personalized_search.present?) %>
     

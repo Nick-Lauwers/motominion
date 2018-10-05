@@ -217,6 +217,10 @@ Rails.application.routes.draw do
       get 'mileage'
       get 'year'
       get 'installed_options'
+      get 'location'
+      get 'experience'
+      get 'seats'
+      get 'stats'
     end
   end
   

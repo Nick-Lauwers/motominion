@@ -182,7 +182,9 @@
               </div>
             </div>
           </div>
-
+          
+          <%= f.hidden_field :condition, value: "Pre-Owned" %>
+          
           <%= f.hidden_field :bumped_at, value: Time.now %>
         
           <% if current_user.dealership_id.present? %>

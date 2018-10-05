@@ -647,7 +647,8 @@ label {
 }
 
 .form-control-primary,
-.form-control-secondary {
+.form-control-secondary,
+.form-control-tertiary {
   font-size: 1.1em;
   line-height: 2;
   color: $gray-darker;
@@ -663,11 +664,16 @@ label {
   color: $gray-light !important;
 }
 
-.form-control-secondary {
+.form-control-secondary,
+.form-control-tertiary {
   background-color: white !important;
   &::-webkit-input-placeholder {
     color: $gray-darker;
   }
+}
+
+.form-control-tertiary {
+  padding-left: 3em;
 }
 
 .form-control-dealer-desktop {
@@ -1943,6 +1949,7 @@ footer {
 .hero-desktop-detail {
   text-align: center;
   width: 55%;
+  max-width: 1008px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2131,6 +2138,7 @@ footer {
   box-shadow: 0 2px 16px 0 $gray-light;
   width: 100%;
   height: 75px;
+  margin-top: 2.5em;
   position: relative;
   overflow: hidden;
   transition: 0.3s;
@@ -3542,7 +3550,7 @@ ul.pagination {
 
 .parameters-list {
   list-style: none;
-  width: 54em;
+  width: 56em;
   padding: 0 0 0 1.8em;
   margin: 0;
   li {
@@ -3584,14 +3592,17 @@ ul.pagination {
 
 .form-element-label,
 .installed-options-title,
+.condition-title,
+.seller-type-title,
 .business-hours-day,
 .dealer-edit-title {
   display: inline-block !important;
 }
 
 .slider-filters,
+.checkbox-filters,
 .dropdown-filters,
-.checkbox-filters {
+.installed-options-filters {
   margin-bottom: 1em;
 }
 
@@ -6791,6 +6802,8 @@ ul.pagination {
 
 .form-element-label,
 .installed-options-title,
+.condition-title,
+.seller-type-title,
 .photos-title,
 .availabilities-title,
 .autopart-photos-title,
@@ -6811,7 +6824,9 @@ ul.pagination {
 }
 
 .installed-options-list li,
-.installed-option {
+.installed-option,
+.condition,
+.seller-type {
   margin-bottom: 0.6em;
   input {
     display: none;
@@ -6850,7 +6865,9 @@ ul.pagination {
   margin-right: 0.3em;
 }
 
-.installed-option {
+.installed-option,
+.condition,
+.seller-type {
   text-align: center;
   input + label {
     width: 100%;
@@ -9348,6 +9365,77 @@ a.remove_fields {
   }
 }
 
+.personalized-search-button {
+  border-radius: 2px;
+  box-shadow: 0 3px 24px 0 $gray-light;
+  width: 100%;
+  height: 75px;
+  margin-bottom: 1.4em;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s, transform 0.3s;
+  &:hover,
+  &:focus {
+    box-shadow: 0 3px 24px 0 $gray-light;
+    transform: scale(1.1);
+  }
+  &:focus {
+    // box-shadow: 0 1px 8px 0 $gray-light;
+    // transform: scale(0.85);
+    outline: 0;
+  }
+}
+
+.personalized-search-button-a {
+  background-color: #a06bdd;
+  border: 1px solid #a06bdd;
+}
+
+.personalized-search-button-b {
+  background-color: #00c29d;
+  border: 1px solid #00c29d;
+}
+
+.personalized-search-button-c {
+  background-color: #e85caa;
+  border: 1px solid #e85caa;
+}
+
+.personalized-search-button-d {
+  background-color: #4181de;
+  border: 1px solid #4181de;
+}
+
+.personalized-search-button-e {
+  background-color: #72c851;
+  border: 1px solid #72c851;
+}
+
+.personalized-search-button-f {
+  background-color: #00afdc;
+  border: 1px solid #00afdc;
+}
+
+.personalized-search-button-g {
+  background-color: #a06bdd;
+  border: 1px solid #a06bdd;
+}
+
+.personalized-search-button-h {
+  background-color: #72c851;
+  border: 1px solid #72c851;
+}
+
+.personalized-search-button-i {
+  background-color: #00c29d;
+  border: 1px solid #00c29d;
+}
+
+.personalized-search-button-j {
+  background-color: #00afdc;
+  border: 1px solid #00afdc;
+}
+
 .personalized-search-checkbox-a {
   input + label {
     background-color: #a06bdd;
@@ -9485,6 +9573,10 @@ a.remove_fields {
 
 .match-item-e {
   background-color: #00c29d;
+}
+
+.match-item-f {
+  background-color: #947adb;
 }
 
 .match-item-detail,
@@ -11166,6 +11258,10 @@ a.remove_fields {
   
   .brochure-image {
     height: 150px;
+  }
+  
+  .personalized-search-button {
+    margin-bottom: 0;
   }
   
 .begin-here {

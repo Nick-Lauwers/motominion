@@ -1,0 +1,144 @@
+<% provide(:title, "Matches") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<div class="search-parameter">
+  
+  <div class="search-parameter-progress-bar hidden-xs">
+    
+    <div class="search-parameter-complete">
+      
+      <%= link_to style_personalized_search_path,
+                  class: "search-parameter-link
+                          search-parameter-link-start" do %>
+                          
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/style.png" %>
+        
+        <span class="search-parameter-link-text-active">Style</span>
+      <% end %>   
+      
+      <%= link_to location_personalized_search_path,
+                  class: "search-parameter-link 
+                          search-parameter-link-end" do %>
+                          
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/location.png" %>
+      
+        <span class="search-parameter-link-text-active">Location</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-incomplete">
+      <%= link_to '#',
+                  class: "search-parameter-link search-parameter-link-end" do %>      
+      
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/experience.png" %>  
+        
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Experience</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-incomplete">
+      <%= link_to '#',
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %>  
+        
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Stats</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-incomplete">
+      <%= link_to '#',
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png" %>
+        
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Features</span>
+      <% end %>
+    </div>
+  </div>
+  
+  <h1 class="search-parameter-title">Where are you located?</h1>
+  
+  <div class="search-parameter-form-small">
+    
+    <%= form_for @personalized_search do |f| %>
+      
+      <div class="form-group form-group-primary">
+        <div class="form-element">
+          
+          <%= f.text_field :zip_code,
+                           placeholder: "Zip Code",
+                           class: "form-control
+                                   form-control-tertiary" %>
+                                                      
+          <i class="fa fa-map-pin fa-lg form-icon" 
+             aria-hidden="true"></i>
+        </div>
+      </div>
+      
+      <div class="form-group form-group-primary">
+        <div class="form-element">
+          
+          <%= f.select :max_distance,
+                       [ ["10 mi", 10], ["25 mi", 25], 
+                         ["50 mi", 50], ["75 mi", 75],
+                         ["100 mi", 100], ["150 mi", 150],
+                         ["250 mi", 250], ["400 mi", 400] ],
+                       { include_blank: true,
+                         prompt: "Nationwide" },
+                       class: "form-control select-primary" %>
+          
+          <i class="fa fa-bullseye fa-lg form-icon" 
+           aria-hidden="true"></i>
+           
+          <i class="fa fa-caret-down fa-lg form-caret" 
+             aria-hidden="true"></i>
+        </div>
+      </div>
+
+      <%= hidden_field_tag :redirect_location, 
+            experience_personalized_search_path(@personalized_search) %>
+    
+      <%= button_tag(type: "submit",
+                     class: "next-button") do %>
+                             
+        <div class="personalized-search-button-text">
+          
+          <span class="personalized-search-button-title">
+            Save
+          </span>
+          
+          <span class="personalized-search-button-subtitle">
+            Continue to Experience
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </span>
+        </div>
+        
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches-next.png",
+                      class: "personalized-search-button-icon") %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+  // Facebook  
+  
+    fbq('track', 'ViewContent');
+</script>

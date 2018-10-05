@@ -387,32 +387,32 @@ $(function() {
       
     // dependent dropdown
     
-      var vehicleModelSearch   = $('#vehicle-model-search');
-      var vehicleMakeSearch    = $('#vehicle-make-search');
-      var vehicle_model_search = vehicleModelSearch.html();
+      var vehicleModelSearchFilters   = $('#vehicle-model-search-filters');
+      var vehicleMakeSearchFilters    = $('#vehicle-make-search-filters');
+      var vehicle_model_search_filters = vehicleModelSearchFilters.html();
         
-      vehicleModelSearch.prop("disabled", true);
+      vehicleModelSearchFilters.prop("disabled", true);
       
-      vehicleMakeSearch.change(function() {
+      vehicleMakeSearchFilters.change(function() {
         
-        var vehicle_make_search = $('#vehicle-make-search :selected').text();
-        var escaped_vehicle_make_search = 
-          vehicle_make_search.
+        var vehicle_make_search_filters = $('#vehicle-make-search-filters :selected').text();
+        var escaped_vehicle_make_search_filters = 
+          vehicle_make_search_filters.
             replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
         var options_search = 
-          $(vehicle_model_search).
-            filter("optgroup[label=" + escaped_vehicle_make_search + "]").
+          $(vehicle_model_search_filters).
+            filter("optgroup[label=" + escaped_vehicle_make_search_filters + "]").
             html();
         
         if (options_search) {
-          vehicleModelSearch.html("<option value=''>All models</option>" +
+          vehicleModelSearchFilters.html("<option value=''>All models</option>" +
                                     options_search);
-          vehicleModelSearch.prop("disabled", false);
+          vehicleModelSearchFilters.prop("disabled", false);
         } 
         
         else {
-          vehicleModelSearch.empty();
-          vehicleModelSearch.prop("disabled", true);
+          vehicleModelSearchFilters.empty();
+          vehicleModelSearchFilters.prop("disabled", true);
         }
       });
       

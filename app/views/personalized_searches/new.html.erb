@@ -42,19 +42,18 @@
                             personalized-search-checkbox
                             personalized-search-checkbox-a">
                   
-                  <%= f.check_box :is_classic_vintage %>
+                  <%= f.check_box :is_cafe_racer %>
                   
-                  <%= f.label :is_classic_vintage do %>   
+                  <%= f.label :is_cafe_racer do %>   
                   
                     <div class="personalized-search-checkbox-text">
                       
                       <span class="personalized-search-checkbox-title">
-                        Classic / Vintage
+                        Cafe Racer
                       </span>
                       
                       <span class="personalized-search-checkbox-subtitle">
-                        View All 
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        Click to Select
                       </span>
                     </div> 
                     
@@ -78,8 +77,7 @@
                       </span>
                       
                       <span class="personalized-search-checkbox-subtitle">
-                        View All 
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        Click to Select
                       </span>
                     </div> 
                     
@@ -99,12 +97,11 @@
                     <div class="personalized-search-checkbox-text">
                       
                       <span class="personalized-search-checkbox-title">
-                        Dual-Sport
+                        Dirt Bike / Dual-Sport
                       </span>
                       
                       <span class="personalized-search-checkbox-subtitle">
-                        View All 
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        Click to Select
                       </span>
                     </div> 
                     
@@ -131,8 +128,7 @@
                       </span>
                       
                       <span class="personalized-search-checkbox-subtitle">
-                        View All 
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        Click to Select
                       </span>
                     </div> 
                     
@@ -156,8 +152,7 @@
                       </span>
                       
                       <span class="personalized-search-checkbox-subtitle">
-                        View All 
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        Click to Select
                       </span>
                     </div> 
                     
@@ -181,8 +176,7 @@
                       </span>
                       
                       <span class="personalized-search-checkbox-subtitle">
-                        View All 
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        Click to Select
                       </span>
                     </div> 
                     
@@ -209,8 +203,7 @@
                       </span>
                       
                       <span class="personalized-search-checkbox-subtitle">
-                        View All 
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        Click to Select
                       </span>
                     </div> 
                     
@@ -234,8 +227,7 @@
                       </span>
                       
                       <span class="personalized-search-checkbox-subtitle">
-                        View All 
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        Click to Select
                       </span>
                     </div> 
                     
@@ -259,8 +251,7 @@
                       </span>
                       
                       <span class="personalized-search-checkbox-subtitle">
-                        View All 
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        Click to Select
                       </span>
                     </div> 
                     
@@ -274,7 +265,135 @@
             <div class="panel-section">
               <div class="row">
                 
-                <div class="col-md-4">
+                <div class="col-md-6">
+                  <div class="form-group form-group-primary">
+                    
+                    <%= f.label :zip_code, "Location" %>
+                    
+                    <div class="form-element">
+                      
+                      <%= f.text_field :zip_code,
+                                       placeholder: "Zip Code",
+                                       class: "form-control
+                                               form-control-tertiary" %>
+                                                                  
+                      <i class="fa fa-map-pin fa-lg form-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="form-group form-group-primary">
+                   
+                    <%= f.label :max_distance, "&nbsp;".html_safe %>
+                    
+                    <div class="form-element">
+                      
+                    <%= f.select :max_distance,
+                                 [ ["10 mi", 10], ["25 mi", 25], 
+                                   ["50 mi", 50], ["75 mi", 75],
+                                   ["100 mi", 100], ["150 mi", 150],
+                                   ["250 mi", 250], ["400 mi", 400] ],
+                                 { include_blank: true,
+                                   prompt: "Nationwide" },
+                                 class: "form-control select-primary" %>
+                      
+                      <i class="fa fa-bullseye fa-lg form-icon" 
+                       aria-hidden="true"></i>
+                       
+                      <i class="fa fa-caret-down fa-lg form-caret" 
+                         aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="panel-section">
+                
+              <h4 class="installed-options-title">Experience</h4>
+              
+              <div class="row">
+                
+                <div class="col-md-4
+                            personalized-search-checkbox 
+                            personalized-search-checkbox-a">
+        
+                  <%= f.check_box :is_beginner %>
+                  
+                  <%= f.label :is_beginner do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Beginner
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        Click to Select
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-a.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            personalized-search-checkbox 
+                            personalized-search-checkbox-b">
+        
+                  <%= f.check_box :is_intermediate %>
+                  
+                  <%= f.label :is_intermediate do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Intermediate
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        Click to Select
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-b.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            personalized-search-checkbox 
+                            personalized-search-checkbox-c">
+        
+                  <%= f.check_box :is_advanced %>
+                  
+                  <%= f.label :is_advanced do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      
+                      <span class="personalized-search-checkbox-title">
+                        Advanced
+                      </span>
+                      
+                      <span class="personalized-search-checkbox-subtitle">
+                        Click to Select
+                      </span>
+                    </div> 
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-c.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel-section">
+              <div class="row">
+                
+                <div class="col-md-6">
                   <div class="form-group form-group-search-parameter">
                     
                     <%= f.label :price, "Max Price" %>
@@ -293,7 +412,7 @@
                   </div>
                 </div>
                 
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <div class="form-group form-group-search-parameter">
           
                     <%= f.label :mileage, "Max Mileage" %>
@@ -312,22 +431,78 @@
                   </div>
                 </div>
                 
-                <div class="col-md-4">
-                  <div class="form-group form-group-search-parameter">
+                <!--<div class="col-md-4">-->
+                <!--  <div class="form-group form-group-search-parameter">-->
           
-                    <%= f.label :year, "Earliest Year" %>
+                <!--    <(perc)= f.label :year, "Earliest Year" %>-->
                     
-                    <span id="new_year_slider_val" class="slider-label">
-                      1900
-                    </span>
+                <!--    <span id="new_year_slider_val" class="slider-label">-->
+                <!--      1900-->
+                <!--    </span>-->
                     
-                    <%= f.text_field :year, 
-                                     id: 'new_year_slider', 
-                                     type: 'text',
-                                     data: { 'slider-min'   => '1900',
-                                             'slider-max'   => '2016',
-                                             'slider-step'  => '1',
-                                             'slider-value' => '1900' } %>
+                <!--    <(perc)= f.text_field :year, -->
+                <!--                     id: 'new_year_slider', -->
+                <!--                     type: 'text',-->
+                <!--                     data: { 'slider-min'   => '1900',-->
+                <!--                             'slider-max'   => '2016',-->
+                <!--                             'slider-step'  => '1',-->
+                <!--                             'slider-value' => '1900' } %>-->
+                <!--  </div>-->
+                <!--</div>-->
+              </div>
+              
+              <div class="panel-section">
+                
+                <h4 class="installed-options-title">Seats</h4>
+                
+                <div class="row">
+                  
+                  <div class="col-md-6
+                              personalized-search-checkbox 
+                              personalized-search-checkbox-a">
+          
+                    <%= f.check_box :is_one_seat %>
+                    
+                    <%= f.label :is_one_seat do %>   
+                    
+                      <div class="personalized-search-checkbox-text">
+                        
+                        <span class="personalized-search-checkbox-title">
+                          One Seat
+                        </span>
+                        
+                        <span class="personalized-search-checkbox-subtitle">
+                          Click to Select
+                        </span>
+                      </div> 
+                      
+                      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-a.png",
+                                    class: "personalized-search-button-icon") %>
+                    <% end %>
+                  </div>
+                  
+                  <div class="col-md-6
+                              personalized-search-checkbox 
+                              personalized-search-checkbox-b">
+          
+                    <%= f.check_box :is_two_seats %>
+                    
+                    <%= f.label :is_two_seats do %>   
+                    
+                      <div class="personalized-search-checkbox-text">
+                        
+                        <span class="personalized-search-checkbox-title">
+                          Two Seats
+                        </span>
+                        
+                        <span class="personalized-search-checkbox-subtitle">
+                          Click to Select
+                        </span>
+                      </div> 
+                      
+                      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-b.png",
+                                    class: "personalized-search-button-icon") %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -397,17 +572,19 @@
                     <%= f.label :tow_hitch, "Tow Hitch" %>
                   </div>
                   
+                  <div class="col-md-4 installed-option installed-option-l">
+                    <!--intentionally left empty-->
+                  </div>
+                  
                   <div class="col-md-4 installed-option installed-option-k">
                     <%= f.check_box :cycle_cover %>
                     <%= f.label :cycle_cover, "Cycle Cover" %>  
                   </div>
-                  
-                  <div class="col-md-4 installed-option installed-option-l">
-                    <!--intentionally left empty-->
-                  </div>
                 </div>
               </div>
             </div>
+            
+            <%= hidden_field_tag :redirect_to_show, true %>
 
             <%= f.submit "Save", class: "btn btn-primary btn-basics" %>
           </div>

@@ -41,8 +41,10 @@ module ExternalDb
             d.last_run_error_records = last_run_error_records
             
             if id == 2
+              # Munroe Motors
               d.google_place_id = 'ChIJ0Tj1JiJ-j4AR7INR_HiJchM'
             elsif id == 3
+              # Scuderia West
               d.google_place_id = 'ChIJ-dnDWyB-j4ARjDdZu1J74J0'
             end
             

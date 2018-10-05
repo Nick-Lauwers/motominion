@@ -160,254 +160,335 @@
     <div class="feed-content">
       
       <h3 class="feed-title">Begin Your Search</h3>
-      
-      <%= form_for @personalized_search do |f| %>
-      
-        <div class="personalized-search-list">
-          <div class="personalized-search-list-content">
-  
-            <div class="personalized-search-row">
-            
-              <div class="col-md-15 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-a">
-                    
-                <%= f.check_box :is_classic_vintage %>
+          
+      <div class="personalized-search-list">
+        <div class="personalized-search-list-content">
+
+          <div class="personalized-search-row">
+          
+            <div class="col-md-15">
+              
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Cafe Racer" %>
                 
-                <%= f.label :is_classic_vintage do %>   
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-a") do %>
+                  <div class="personalized-search-button-text">
                 
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Classic / Vintage
+                    <span class="personalized-search-button-title">
+                      Cafe Racer
                     </span>
                     
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                   </div> 
                   
                   <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-a.png",
-                                class: "personalized-search-button-icon") %>
+                                class: "personalized-search-button-icon") %> 
                 <% end %>
-              </div>
+              <% end %>
+            </div>
+            
+            <div class="col-md-15">
               
-              <div class="col-md-15 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-b">
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Cruiser" %>
                 
-                <%= f.check_box :is_cruiser %>
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-b") do %>
+                  <div class="personalized-search-button-text">
                 
-                <%= f.label :is_cruiser do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
+                    <span class="personalized-search-button-title">
                       Cruiser
                     </span>
                     
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                   </div> 
                   
                   <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-b.png",
-                                class: "personalized-search-button-icon") %>
+                                class: "personalized-search-button-icon") %> 
                 <% end %>
-              </div>
+              <% end %>
+            </div>
+            
+            <div class="col-md-15">
               
-              <div class="col-md-15 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-c">
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Dirt Bike / Dual-Sport" %>
                 
-                <%= f.check_box :is_dual_sport %>
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-c") do %>
+                  <div class="personalized-search-button-text">
                 
-                <%= f.label :is_dual_sport do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Dual-Sport
+                    <span class="personalized-search-button-title">
+                      Dirt Bike
                     </span>
                     
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                   </div> 
                   
                   <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-c.png",
-                                class: "personalized-search-button-icon") %>
+                                class: "personalized-search-button-icon") %> 
                 <% end %>
-              </div>
+              <% end %>
+            </div>
+            
+            <div class="col-md-15">
               
-              <div class="col-md-15
-                          personalized-search-checkbox
-                          personalized-search-checkbox-d">
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Dirt Bike / Dual-Sport" %>
                 
-                <%= f.check_box :is_mini_pocket %>
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-d") do %>
+                  <div class="personalized-search-button-text">
                 
-                <%= f.label :is_mini_pocket do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Mini / Pocket
+                    <span class="personalized-search-button-title">
+                      Dual-Sport
                     </span>
                     
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                   </div> 
                   
                   <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-d.png",
-                                class: "personalized-search-button-icon") %>
+                                class: "personalized-search-button-icon") %> 
                 <% end %>
-              </div>
+              <% end %>
+            </div>
+            
+            <div class="col-md-15">
               
-              <div class="col-md-15 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-e">
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Mini / Pocket" %>
                 
-                <%= f.check_box :is_moped %>
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-e") do %>
+                  <div class="personalized-search-button-text">
                 
-                <%= f.label :is_moped do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Moped
+                    <span class="personalized-search-button-title">
+                      Mini / Pocket
                     </span>
                     
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                   </div> 
                   
                   <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-e.png",
-                                class: "personalized-search-button-icon") %>
+                                class: "personalized-search-button-icon") %> 
                 <% end %>
-              </div>
+              <% end %>
             </div>
+          </div>
           
-            <div class="personalized-search-row">
+          <div class="personalized-search-row">
+            
+            <div class="col-md-15">
               
-              <div class="col-md-15 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-f">
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Moped" %>
                 
-                <%= f.check_box :is_sportbike %>
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-f") do %>
+                  <div class="personalized-search-button-text">
                 
-                <%= f.label :is_sportbike do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Sportbike
+                    <span class="personalized-search-button-title">
+                      Moped
                     </span>
                     
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                   </div> 
                   
                   <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-f.png",
-                                class: "personalized-search-button-icon") %>
+                                class: "personalized-search-button-icon") %> 
                 <% end %>
-              </div>
+              <% end %>
+            </div>
+            
+            <div class="col-md-15">
               
-              <div class="col-md-15 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-g">
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Sportbike" %>
                 
-                <%= f.check_box :is_standard %>
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-g") do %>
+                  <div class="personalized-search-button-text">
                 
-                <%= f.label :is_standard do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Standard
+                    <span class="personalized-search-button-title">
+                      Sportbike
                     </span>
                     
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                   </div> 
                   
                   <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-g.png",
-                                class: "personalized-search-button-icon") %>
+                                class: "personalized-search-button-icon") %> 
                 <% end %>
-              </div>
+              <% end %>
+            </div>
+            
+            <div class="col-md-15">
               
-              <div class="col-md-15
-                          personalized-search-checkbox
-                          personalized-search-checkbox-h">
-  
-                <%= f.check_box :is_touring %>
-  
-                <%= f.label :is_touring do %> 
-  
-                  <div class="personalized-search-checkbox-text">
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Standard" %>
+                
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-h") do %>
+                  <div class="personalized-search-button-text">
+                
+                    <span class="personalized-search-button-title">
+                      Standard
+                    </span>
                     
-                    <span class="personalized-search-checkbox-title">
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                  </div> 
+                  
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-h.png",
+                                class: "personalized-search-button-icon") %> 
+                <% end %>
+              <% end %>
+            </div>
+            
+            <div class="col-md-15">
+              
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Touring" %>
+                
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-i") do %>
+                  <div class="personalized-search-button-text">
+                
+                    <span class="personalized-search-button-title">
                       Touring
                     </span>
                     
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
-  
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-h.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-              
-              <div class="col-md-15 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-i">
-                
-                <%= f.check_box :is_trike %>
-                
-                <%= f.label :is_trike do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Trike
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </span>
                   </div> 
                   
                   <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-i.png",
-                                class: "personalized-search-button-icon") %>
+                                class: "personalized-search-button-icon") %> 
                 <% end %>
-              </div>
-               
-              <div class="col-md-15">
-                <!--intentionally left empty-->
-              </div>
+              <% end %>
             </div>
-           
-            <%= hidden_field_tag :redirect_location,
-                                 price_personalized_search_path(@personalized_search) if 
-                                   (current_user && 
-                                    current_user.personalized_search.present?) %>
-          
-          </div>
+            
+            <div class="col-md-15">
+              
+              <%= form_for_filterrific @filterrific, 
+                                       url: search_vehicles_path, 
+                                       html: { 
+                                         id: "filterrific-no-ajax-auto-submit",
+                                       } do |f| %>
+                                       
+                <%= f.hidden_field :with_body_style, value: "Trike" %>
+                
+                <%= button_tag(type:  "submit", 
+                               class: "personalized-search-button
+                                       personalized-search-button-j") do %>
+                  <div class="personalized-search-button-text">
+                
+                    <span class="personalized-search-button-title">
+                      Trike
+                    </span>
+                    
+                    <span class="personalized-search-button-subtitle">
+                      View All 
+                      <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </span>
+                  </div> 
+                  
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-j.png",
+                                class: "personalized-search-button-icon") %> 
+                <% end %>
+              <% end %>
+            </div>
+          </div>  
         </div>
         
-        <div class="matches-submit-button">
-          <%= button_tag(type: "submit", 
-                         class: "matches-submit") do %>
-            Continue Search
-            <i class="fa fa-angle-right" aria-hidden="true"></i> 
-          <% end %>
+        <div class="feed-link">
+          <!--<(perc)= link_to search_vehicles_path, -->
+          <!--            class: "feed-link-content" do %>-->
+          <!--  View All Listings (<= Vehicle.count %>)-->
+          <!--  <i class="fa fa-angle-right" aria-hidden="true"></i> -->
+          <!--<(perc) end %>-->
         </div>
-      <% end %>
+      </div>
     </div>
     
     <% if @feed_items.exists? %>

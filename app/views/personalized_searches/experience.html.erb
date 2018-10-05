@@ -1,0 +1,170 @@
+<% provide(:title, "Matches") %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<div class="search-parameter">
+  
+  <div class="search-parameter-progress-bar hidden-xs">
+    
+    <div class="search-parameter-complete">
+      
+      <%= link_to style_personalized_search_path,
+                  class: "search-parameter-link
+                          search-parameter-link-start" do %>
+                          
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/style.png" %>
+        
+        <span class="search-parameter-link-text-active">Style</span>
+      <% end %>   
+      
+      <%= link_to location_personalized_search_path,
+                  class: "search-parameter-link 
+                          search-parameter-link-end" do %>
+                          
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/location.png" %>
+      
+        <span class="search-parameter-link-text-active">Location</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-complete">
+      <%= link_to experience_personalized_search_path,
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/experience.png" %> 
+      
+        <span class="search-parameter-link-text-active">Experience</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-incomplete">
+      
+      <%= link_to '#',
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %>  
+        
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Stats</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-incomplete">
+      
+      <%= link_to '#',
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png" %>
+        
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Features</span>
+      <% end %>
+    </div>
+  </div>
+    
+  <h1 class="search-parameter-title">What is your experience level?</h1>
+
+  <div class="search-parameter-form-small">
+    
+    <%= form_for @personalized_search do |f| %>
+                 <!--url: user_personalized_search_path(current_user) do |f| %>-->
+      
+      <div class="personalized-search-checkbox personalized-search-checkbox-a">
+        
+        <%= f.check_box :is_beginner %>
+        
+        <%= f.label :is_beginner do %>   
+        
+          <div class="personalized-search-checkbox-text">
+            
+            <span class="personalized-search-checkbox-title">
+              Beginner
+            </span>
+            
+            <span class="personalized-search-checkbox-subtitle">
+              Click to Select
+            </span>
+          </div> 
+          
+          <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-a.png",
+                        class: "personalized-search-button-icon") %>
+        <% end %>
+      </div>
+      
+      <div class="personalized-search-checkbox personalized-search-checkbox-b">
+        
+        <%= f.check_box :is_intermediate %>
+        
+        <%= f.label :is_intermediate do %>   
+        
+          <div class="personalized-search-checkbox-text">
+            
+            <span class="personalized-search-checkbox-title">
+              Intermediate
+            </span>
+            
+            <span class="personalized-search-checkbox-subtitle">
+              Click to Select
+            </span>
+          </div> 
+          
+          <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-b.png",
+                        class: "personalized-search-button-icon") %>
+        <% end %>
+      </div>
+      
+      <div class="personalized-search-checkbox personalized-search-checkbox-c">
+        
+        <%= f.check_box :is_advanced %>
+        
+        <%= f.label :is_advanced do %>   
+        
+          <div class="personalized-search-checkbox-text">
+            
+            <span class="personalized-search-checkbox-title">
+              Advanced
+            </span>
+            
+            <span class="personalized-search-checkbox-subtitle">
+              Click to Select
+            </span>
+          </div> 
+          
+          <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-c.png",
+                        class: "personalized-search-button-icon") %>
+        <% end %>
+      </div>
+
+      <%= hidden_field_tag :redirect_location, 
+          stats_personalized_search_path(@personalized_search) %>
+
+      <%= button_tag(type: "submit", class: "next-button") do %>
+    
+        <div class="personalized-search-button-text">
+          
+          <span class="personalized-search-button-title">
+            Save
+          </span>
+          
+          <span class="personalized-search-button-subtitle">
+            Continue to Stats
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+          </span>
+        </div>
+        
+        <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/matches-next.png",
+                      class: "personalized-search-button-icon") %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
