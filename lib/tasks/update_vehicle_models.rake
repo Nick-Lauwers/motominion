@@ -15,7 +15,7 @@ VehicleModel.find(16).update_attributes(vehicle_type: "Sportbike", is_one_seat: 
 VehicleModel.find(17).update_attributes(vehicle_type: "Sportbike", is_one_seat: TRUE, is_two_seats: TRUE)
 VehicleModel.find(18).update_attributes(vehicle_type: "Sportbike", is_one_seat: TRUE, is_two_seats: FALSE)
 VehicleModel.find(19).update_attributes(vehicle_type: "Sportbike", is_one_seat: TRUE, is_two_seats: TRUE)
-VehicleModel.find(2O).update_attributes(vehicle_type: "Sportbike", is_one_seat: TRUE, is_two_seats: TRUE)
+VehicleModel.find(20).update_attributes(vehicle_type: "Sportbike", is_one_seat: TRUE, is_two_seats: TRUE)
 VehicleModel.find(21).update_attributes(vehicle_type: "Sportbike", is_one_seat: TRUE, is_two_seats: TRUE)
 VehicleModel.find(22).update_attributes(vehicle_type: "Standard", is_one_seat: TRUE, is_two_seats: TRUE)
 VehicleModel.find(23).update_attributes(vehicle_type: "Standard", is_one_seat: TRUE, is_two_seats: TRUE)
