@@ -17,10 +17,10 @@ module ExternalDb
           end
 
         else
-          
+          "https://cdn.dealerspike.com/imglib/v1/300x200/imglib/trimsdb/9956091-0-60871561.jpg".gsub 
           ::Photo.new(scraped_id: id).tap do |p|
             p.vehicle = ::Vehicle.where(scraped_id: vehicle_id).first
-            p.image = open(image_url.gsub! '300x225', '800x600') rescue nil
+            p.image = open( image_url.gsub(/\d{2,4}x\d{2,4}/, '800x600') ) rescue nil
             p.last_found_at = last_found
             p.save or nil
           end
