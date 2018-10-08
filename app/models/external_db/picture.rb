@@ -7,7 +7,8 @@ module ExternalDb
     def sync_to_photo
       
       if ( vehicle.vehicle_type_id == 3 || vehicle.vehicle_type_id == 4 ) &&
-         ( last_found >= 1.day.ago )
+         ( ::Vehicle.where(scraped_id: vehicle_id).exists? ) &&
+         ( last_found >= 2.days.ago )
         
         if ::Photo.where(scraped_id: id).exists?
           ::Photo.where(scraped_id: id).first.tap do |p|

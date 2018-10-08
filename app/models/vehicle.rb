@@ -46,7 +46,14 @@ class Vehicle < ActiveRecord::Base
   # default_scope -> { order(created_at: :desc) }
   
   # validates :vehicle_make_id, :vehicle_model_id, 
-  validates :year, :actual_price, :mileage_numeric, presence: true
+  
+  validates :year, presence: true, 
+    unless: Proc.new { |vehicle| vehicle.user_id.blank? }
+  validates :actual_price, presence: true, 
+    unless: Proc.new { |vehicle| vehicle.user_id.blank? }
+  validates :mileage_numeric, presence: true, 
+    unless: Proc.new { |vehicle| vehicle.user_id.blank? }
+  
             # :user_id, :body_style, :color, :transmission, :fuel_type, 
             # :drivetrain, :street_address, :city, :state, :seating_capacity, 
             # presence: true
