@@ -131,7 +131,7 @@ class Vehicle < ActiveRecord::Base
   }
   
   scope :with_zip_code, lambda { |ref_zip_code|
-    Vehicle.near(ref_zip_code.to_s.to_region, 50, order: nil)
+    Vehicle.near(ref_zip_code.to_s.to_region, 20, order: nil)
   }
   
   scope :with_distance, lambda { |distance_attrs|
@@ -220,7 +220,8 @@ class Vehicle < ActiveRecord::Base
   # }
   
   scope :with_body_style, lambda { |body_style|
-    where(body_style: body_style)
+    joins(:vehicle_model).where('vehicle_models.vehicle_type = ?', body_style)
+    # where(body_style: body_style)
   }
   
   scope :with_color, lambda { |color|

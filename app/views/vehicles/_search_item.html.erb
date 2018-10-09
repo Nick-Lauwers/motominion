@@ -106,7 +106,14 @@
         <div class="search-item-info">
         
           <span class="search-item-title">
-            $<%= vehicle.actual_price %> | <%= vehicle.listing_name %>
+            
+            <% if vehicle.actual_price.present? %>
+              $<%= vehicle.actual_price %> | 
+            <% elsif vehicle.msrp.present? %>
+              $<%= vehicle.msrp %> | 
+            <% end %>
+            
+            <%= vehicle.listing_name %>
           </span>
 
           <div id="average-rating-search-item-<%= vehicle.id %>", 

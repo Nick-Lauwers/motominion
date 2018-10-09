@@ -18,7 +18,7 @@ module ExternalDb
           v.vehicle_model_name = model
           v.listing_name       = "#{year} #{make} #{model}"
           v.actual_price       = price
-          v.engine_type        = engine
+          v.color              = exterior
           v.street_address     = dealership.street_address
           v.city               = dealership.city
           v.state              = dealership.state
@@ -30,7 +30,14 @@ module ExternalDb
           v.last_found_at      = last_found
 
           %i[ msrp year mileage mileage_numeric body_style vin description 
-              description_clean ad_url ].each do |f|
+              description_clean ad_url trim_details engine engine_type 
+              displacement compression_ratio bore_stroke bore stroke 
+              transmission primary_drive final_drive fuel_type fuel_system 
+              fuel_capacity brakes front_brakes rear_brakes suspension 
+              front_suspension rear_suspension tires front_tire rear_tire 
+              dry_weight curb_weight rake_trail rake trail wheelbase 
+              ground_clearance seat_height seat_height_unladen
+              seat_height_laden ].each do |f|
             v.send("#{f}=", send(f))
           end
           

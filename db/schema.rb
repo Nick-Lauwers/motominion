@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181005034341) do
+ActiveRecord::Schema.define(version: 20181009001314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -695,8 +695,8 @@ ActiveRecord::Schema.define(version: 20181005034341) do
     t.string   "state"
     t.string   "ad_url"
     t.datetime "last_found_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "sold_at"
@@ -705,6 +705,37 @@ ActiveRecord::Schema.define(version: 20181005034341) do
     t.integer  "dealership_id"
     t.integer  "scraped_id"
     t.string   "condition"
+    t.string   "displacement"
+    t.string   "dry_weight"
+    t.string   "engine"
+    t.string   "fuel_capacity"
+    t.string   "transmission"
+    t.string   "trim_details"
+    t.string   "primary_drive"
+    t.string   "final_drive"
+    t.string   "bore_stroke"
+    t.string   "bore"
+    t.string   "stroke"
+    t.string   "compression_ratio"
+    t.string   "fuel_system"
+    t.string   "suspension"
+    t.string   "front_suspension"
+    t.string   "rear_suspension"
+    t.string   "brakes"
+    t.string   "front_brakes"
+    t.string   "rear_brakes"
+    t.string   "tires"
+    t.string   "front_tire"
+    t.string   "rear_tire"
+    t.string   "curb_weight"
+    t.string   "wheelbase"
+    t.string   "ground_clearance"
+    t.string   "seat_height"
+    t.string   "seat_height_laden"
+    t.string   "seat_height_unladen"
+    t.string   "rake_trail"
+    t.string   "rake"
+    t.string   "trail"
   end
 
   add_index "vehicles", ["dealership_id", "created_at"], name: "index_vehicles_on_dealership_id_and_created_at", using: :btree

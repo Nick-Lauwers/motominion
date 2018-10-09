@@ -83,7 +83,13 @@
         <div class="search-item-info">
         
           <span class="search-item-title">
-            $<%= shortlist_item.vehicle.actual_price %> | 
+            
+            <% if shortlist_item.vehicle.actual_price.present? %>
+              $<%= shortlist_item.vehicle.actual_price %> | 
+            <% elsif shortlist_item.vehicle.msrp.present? %>
+              $<%= shortlist_item.vehicle.msrp %> | 
+            <% end %>
+            
             <%= shortlist_item.vehicle.listing_name %>
           </span>
 

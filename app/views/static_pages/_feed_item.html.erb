@@ -94,7 +94,14 @@
           <div class="feed-item-info">
             
             <span class="feed-item-title">
-              $<%= feed_item.actual_price %> | <%= feed_item.listing_name %>
+              
+              <% if feed_item.actual_price.present? %>
+                $<%= feed_item.actual_price %> | 
+              <% elsif feed_item.msrp.present? %>
+                $<%= feed_item.msrp %> | 
+              <% end %>
+              
+              <%= feed_item.listing_name %>
             </span>
   
             <div id="average-rating-feed-item-<%= feed_item.id %>", 

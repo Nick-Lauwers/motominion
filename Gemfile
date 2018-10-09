@@ -45,6 +45,8 @@ gem 'cocoon'
 gem 'trix'
 gem 'google_places'
 gem 'area'
+gem 'sidekiq'
+gem 'clockwork'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'

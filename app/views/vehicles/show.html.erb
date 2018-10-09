@@ -594,136 +594,346 @@
                 </table>
               </div>
             </div>
+            
+            msrp, trim_details, engine, engine_type
+            
+            <table>
+              
+              <% if @vehicle.displacement.present? %>
+                <tr>
+                  <td>Displacement</td>
+                  <td><strong><%= @vehicle.displacement%></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.compression_ratio.present? %>
+                <tr>
+                  <td>Compression Ratio</td>
+                  <td><strong><%= @vehicle.compression_ratio %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.bore_stroke.present? %>
+                <tr>
+                  <td>Bore X Stroke</td>
+                  <td><strong><%= @vehicle.bore_stroke %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.bore.present? %>
+                <tr>
+                  <td>Bore</td>
+                  <td><strong><%= @vehicle.bore %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.stroke.present? %>
+                <tr>
+                  <td>Stroke</td>
+                  <td><strong><%= @vehicle.stroke %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.transmission.present? %>
+                <tr>
+                  <td>Transmission</td>
+                  <td><strong><%= @vehicle.transmission %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.primary_drive.present? %>
+                <tr>
+                  <td>Primary Drive</td>
+                  <td><strong><%= @vehicle.primary_drive %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.final_drive.present? %>
+                <tr>
+                  <td>Final Drive</td>
+                  <td><strong><%= @vehicle.final_drive %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.fuel_system.present? %>
+                <tr>
+                  <td>Fuel System</td>
+                  <td><strong><%= @vehicle.fuel_system %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.fuel_capacity.present? %>
+                <tr>
+                  <td>Fuel Capacity</td>
+                  <td><strong><%= @vehicle.fuel_capacity %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.brakes.present? %>
+                <tr>
+                  <td>Brakes</td>
+                  <td><strong><%= @vehicle.brakes %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.front_brakes.present? %>
+                <tr>
+                  <td>Front Brakes</td>
+                  <td><strong><%= @vehicle.front_brakes %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rear_brakes.present? %>
+                <tr>
+                  <td>Rear Brakes</td>
+                  <td><strong><%= @vehicle.rear_brakes %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.suspension.present? %>
+                <tr>
+                  <td>Suspension</td>
+                  <td><strong><%= @vehicle.suspension %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.front_suspension.present? %>
+                <tr>
+                  <td>Front Suspension</td>
+                  <td><strong><%= @vehicle.front_suspension %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rear_suspension.present? %>
+                <tr>
+                  <td>Rear Suspension</td>
+                  <td><strong><%= @vehicle.rear_suspension %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.tires.present? %>
+                <tr>
+                  <td>Tires</td>
+                  <td><strong><%= @vehicle.tires %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.front_tire.present? %>
+                <tr>
+                  <td>Front Tire</td>
+                  <td><strong><%= @vehicle.front_tire %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rear_tire.present? %>
+                <tr>
+                  <td>Rear Tire</td>
+                  <td><strong><%= @vehicle.rear_tire %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.dry_weight.present? %>
+                <tr>
+                  <td>Dry Weight</td>
+                  <td><strong><%= @vehicle.dry_weight %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.curb_weight.present? %>
+                <tr>
+                  <td>Curb Weight</td>
+                  <td><strong><%= @vehicle.curb_weight %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rake_trail.present? %>
+                <tr>
+                  <td>Rake X Trail</td>
+                  <td><strong><%= @vehicle.rake_trail %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rake.present? %>
+                <tr>
+                  <td>Rake</td>
+                  <td><strong><%= @vehicle.rake %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.trail.present? %>
+                <tr>
+                  <td>Trail</td>
+                  <td><strong><%= @vehicle.trail %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.wheelbase.present? %>
+                <tr>
+                  <td>Wheelbase</td>
+                  <td><strong><%= @vehicle.wheelbase %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.ground_clearance.present? %>
+                <tr>
+                  <td>Ground Clearance</td>
+                  <td><strong><%= @vehicle.ground_clearance %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.seat_height.present? %>
+                <tr>
+                  <td>Seat Height</td>
+                  <td><strong><%= @vehicle.seat_height %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.seat_height_unladen.present? %>
+                <tr>
+                  <td>Seat Height, Unladen</td>
+                  <td><strong><%= @vehicle.seat_height_unladen %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.seat_height_laden.present? %>
+                <tr>
+                  <td>Seat Height, laden</td>
+                  <td><strong><%= @vehicle.seat_height_laden %></strong></td>
+                </tr>
+              <% end %>
+            </table>
           </div>
           
-          <div id="features">
-            
-            <h3 class="vehicle-details-title">Features</h3>
-            
-            <div class="row">
+          <% if @vehicle.dealership.blank? %>
+            <div id="features">
               
-              <div class="col-md-6">
-                <table class="vehicle-details-table">
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.cruise_control %>">
-                    
-                    <td class="features-table-column">
-                      <i class="fa fa-tachometer" aria-hidden="true"></i>
-                    </td>
-                    
-                    <td>Cruise Control</td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.am_fm %>">
-                    
-                    <td class="features-table-column">
-                      <i class="fa fa-signal" aria-hidden="true"></i>
-                    </td>
-                    
-                    <td>AM / FM Radio</td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.cb_radio %>">
-                    
-                    <td class="features-table-column">
-                      <i class="fa fa-microphone" aria-hidden="true"></i>
-                    </td>
-                    
-                    <td>CB Radio</td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.navigation_system %>">
-                    
-                    <td class="features-table-column">
-                      <i class="fa fa-map-signs" aria-hidden="true"></i>
-                    </td>
-                    
-                    <td>Navigation System</td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.heated_seats %>">
-                    
-                    <td class="features-table-column">
-                      <i class="fa fa-thermometer-three-quarters" 
-                         aria-hidden="true"></i>
-                    </td>
-                    
-                    <td>Heated Seats</td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.heated_hand_grips %>">
-                    
-                    <td class="features-table-column">
-                      <i class="fa fa-fire" aria-hidden="true"></i>
-                    </td>
-                    
-                    <td>Heated Hand Grips</td>
-                  </tr>
-                </table>
-              </div>
+              <h3 class="vehicle-details-title">Features</h3>
               
-              <div class="col-md-6">
-                <table class="vehicle-details-table">
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.alarm_system %>">
+              <div class="row">
+                
+                <div class="col-md-6">
+                  <table class="vehicle-details-table">
                     
-                    <td class="features-table-column">
-                      <i class="fa fa-bullhorn" aria-hidden="true"></i>
-                    </td>
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.cruise_control %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-tachometer" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>Cruise Control</td>
+                    </tr>
                     
-                    <td>Alarm System</td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.saddlebags %>">
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.am_fm %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-signal" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>AM / FM Radio</td>
+                    </tr>
                     
-                    <td class="features-table-column">
-                      <i class="fa fa-suitcase" aria-hidden="true"></i>
-                    </td>
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.cb_radio %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-microphone" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>CB Radio</td>
+                    </tr>
                     
-                    <td>Saddlebags</td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.trunk %>">
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.navigation_system %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-map-signs" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>Navigation System</td>
+                    </tr>
                     
-                    <td class="features-table-column">
-                      <i class="fa fa-briefcase" aria-hidden="true"></i>
-                    </td>
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.heated_seats %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-thermometer-three-quarters" 
+                           aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>Heated Seats</td>
+                    </tr>
                     
-                    <td>Trunk</td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.tow_hitch %>">
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.heated_hand_grips %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-fire" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>Heated Hand Grips</td>
+                    </tr>
+                  </table>
+                </div>
+                
+                <div class="col-md-6">
+                  <table class="vehicle-details-table">
                     
-                    <td class="features-table-column">
-                      <i class="fa fa-plug" aria-hidden="true"></i>
-                    </td>
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.alarm_system %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>Alarm System</td>
+                    </tr>
                     
-                    <td>Tow Hitch</td>
-                  </tr>
-                  
-                  <tr class="<%= 'unavailable-feature' if 
-                                 !@vehicle.cycle_cover %>">
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.saddlebags %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-suitcase" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>Saddlebags</td>
+                    </tr>
                     
-                    <td class="features-table-column">
-                      <i class="fa fa-umbrella" aria-hidden="true"></i>
-                    </td>
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.trunk %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-briefcase" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>Trunk</td>
+                    </tr>
                     
-                    <td>Cycle Cover</td>
-                  </tr>
-                </table>
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.tow_hitch %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-plug" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>Tow Hitch</td>
+                    </tr>
+                    
+                    <tr class="<%= 'unavailable-feature' if 
+                                   !@vehicle.cycle_cover %>">
+                      
+                      <td class="features-table-column">
+                        <i class="fa fa-umbrella" aria-hidden="true"></i>
+                      </td>
+                      
+                      <td>Cycle Cover</td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
           
           <div id="listing-score">
           
@@ -733,8 +943,7 @@
               
               <tr>
                 
-                <% if @vehicle.listing_score.location_score == 3 ||
-                      @vehicle.listing_score.location_score == 2 %>
+                <% if @vehicle.listing_score.location_score == 100 %>
                       
                   <td>
                     <i class="fa fa-check" aria-hidden="true"></i>
@@ -748,8 +957,7 @@
               
               <tr>
                 
-                <% if @vehicle.listing_score.features_score == 3 ||
-                      @vehicle.listing_score.features_score == 2 %>
+                <% if @vehicle.listing_score.features_score == 100 %>
                       
                   <td>
                     <i class="fa fa-check" aria-hidden="true"></i>
@@ -761,8 +969,7 @@
               
               <tr>
                 
-                <% if @vehicle.listing_score.spec_score == 3 ||
-                      @vehicle.listing_score.spec_score == 2 %>
+                <% if @vehicle.listing_score.spec_score >= 67 %>
                       
                   <td>
                     <i class="fa fa-check" aria-hidden="true"></i>
@@ -774,8 +981,7 @@
               
               <tr>
                 
-                <% if @vehicle.listing_score.vin_score == 3 ||
-                      @vehicle.listing_score.vin_score == 2 %>
+                <% if @vehicle.listing_score.vin_score == 100 %>
                       
                   <td>
                     <i class="fa fa-check" aria-hidden="true"></i>
@@ -787,8 +993,8 @@
               
               <tr>
                 
-                <% if @vehicle.listing_score.certified_dealer_score == 3 ||
-                      @vehicle.listing_score.certified_dealer_score == 2 %>
+                <% if @vehicle.dealership.present? &&
+                      @vehicle.listing_score.certified_dealer_score == 100 %>
                       
                   <td>
                     <i class="fa fa-check" aria-hidden="true"></i>
@@ -802,8 +1008,8 @@
               
               <tr>
                 
-                <% if @vehicle.listing_score.direct_listing_score == 3 ||
-                      @vehicle.listing_score.direct_listing_score == 2 %>
+                <% if @vehicle.dealership.present? &&
+                      @vehicle.listing_score.direct_listing_score == 100 %>
                       
                   <td>
                     <i class="fa fa-check" aria-hidden="true"></i>
@@ -817,8 +1023,7 @@
               
               <tr>
                 
-                <% if @vehicle.listing_score.test_drive_score == 3 ||
-                      @vehicle.listing_score.test_drive_score == 2 %>
+                <% if @vehicle.listing_score.test_drive_score == 100 %>
                       
                   <td>
                     <i class="fa fa-check" aria-hidden="true"></i>
@@ -832,8 +1037,7 @@
               
               <tr>
                 
-                <% if @vehicle.listing_score.photos_score == 3 ||
-                      @vehicle.listing_score.photos_score == 2 %>
+                <% if @vehicle.listing_score.photos_score >= 67 %>
                       
                   <td>
                     <i class="fa fa-check" aria-hidden="true"></i>
@@ -847,8 +1051,7 @@
               
               <tr>
                 
-                <% if @vehicle.listing_score.recently_posted_score == 3 ||
-                      @vehicle.listing_score.recently_posted_score == 2 %>
+                <% if @vehicle.listing_score.recently_posted_score >= 67 %>
                       
                   <td>
                     <i class="fa fa-check" aria-hidden="true"></i>

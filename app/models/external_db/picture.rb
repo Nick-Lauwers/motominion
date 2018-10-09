@@ -6,9 +6,11 @@ module ExternalDb
 
     def sync_to_photo
       
-      if ( vehicle.vehicle_type_id == 3 || vehicle.vehicle_type_id == 4 ) &&
-         ( ::Vehicle.where(scraped_id: vehicle_id).exists? ) &&
-         ( last_found >= 2.days.ago )
+      # find the last integer, then start at that integer
+      
+      if ( last_found >= 2.days.ago ) &&
+         ( ::Vehicle.where(scraped_id: vehicle_id).exists? )
+         
         
         if ::Photo.where(scraped_id: id).exists?
           ::Photo.where(scraped_id: id).first.tap do |p|
@@ -19,6 +21,9 @@ module ExternalDb
         else
 
           ::Photo.new(scraped_id: id).tap do |p|
+            
+            puts "#{id}"
+            
             p.vehicle = ::Vehicle.where(scraped_id: vehicle_id).first
             p.image = open( image_url.to_s.gsub(/\d{2,4}x\d{2,4}/, '800x600') ) rescue nil
             p.last_found_at = last_found
@@ -54,7 +59,7 @@ module ExternalDb
           end
         end 
         
-      elsif ( vehicle.vehicle_type_id == 3 || vehicle.vehicle_type_id == 4 )
+      elsif ( ::Vehicle.where(scraped_id: vehicle_id).exists? )
         if ::Photo.where(scraped_id: id).exists?
           ::Photo.where(scraped_id: id).first.destroy
         end
