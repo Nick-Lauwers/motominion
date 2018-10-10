@@ -50,6 +50,8 @@ module ExternalDb
           update_make_model_id(v)
           update_score(v)
           v.save
+          
+          puts "Vehicle #{id} added / modified."
         end
 
       elsif ( vehicle_type_id == 3 || vehicle_type_id == 4 )

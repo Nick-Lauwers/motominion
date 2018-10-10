@@ -27,11 +27,13 @@ module ExternalDb
             end
             
             d.save
+            
+            puts "Dealership #{id} modified."
           end
         
         else
           ::Dealership.where(scraped_id: id).first_or_initialize.tap do |d|
-          
+            
             d.scrape_name = scrape_name
             d.last_run_start_at = last_run_start
             d.last_run_end_at = last_run_end
@@ -49,6 +51,8 @@ module ExternalDb
             end
             
             d.save
+            
+            puts "Dealership #{id} added."
             
             if d.google_place_id.present?
               

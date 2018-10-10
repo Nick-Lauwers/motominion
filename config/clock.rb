@@ -9,6 +9,7 @@ module Clockwork
   end
 
   every(1.day, 'synchronize', at: '10:00', tz: 'UTC') { 
-    `rake synchronize`
+    # `rake synchronize`
+    SynchronizationWorker.perform_async
   }
 end

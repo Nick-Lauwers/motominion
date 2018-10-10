@@ -1,4 +1,5 @@
 task :synchronize => :environment do
+  
   SynchronizationWorker.perform_async
   
   # Vehicle.all.each do |v|

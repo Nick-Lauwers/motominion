@@ -16,18 +16,17 @@ module ExternalDb
           ::Photo.where(scraped_id: id).first.tap do |p|
             p.last_found_at = last_found
             p.save or nil
+            puts "Photo #{id} modified."
           end
 
         else
 
           ::Photo.new(scraped_id: id).tap do |p|
-            
-            puts "#{id}"
-            
             p.vehicle = ::Vehicle.where(scraped_id: vehicle_id).first
             p.image = open( image_url.to_s.gsub(/\d{2,4}x\d{2,4}/, '800x600') ) rescue nil
             p.last_found_at = last_found
             p.save or nil
+            puts "Photo #{id} added."
           end
           
           # Confirm that photo was saved, then update score.
