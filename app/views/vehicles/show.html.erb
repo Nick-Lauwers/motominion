@@ -79,7 +79,13 @@
         <div class="listing-navbar-button">
         
           <div class="navbar-price-container">
-            <p class="navbar-price-visible">$<%= @vehicle.actual_price %></p>
+            <p class="navbar-price-visible">
+              <% if @vehicle.actual_price.present? %>
+                $<%= @vehicle.actual_price %>
+              <% elsif @vehicle.msrp.present? %>
+                $<%= @vehicle.msrp %>
+              <% end %>
+            </p>
           </div>
           
           <% if @vehicle.dealership.present? %>

@@ -1,4 +1,4 @@
-<% provide(:title, @dealership.name) %>
+<% provide(:title, @dealership.dealership_name) %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -118,20 +118,22 @@
   </ul>
 </nav>
 
-<div class="dealership-profile-overview">
+<div class="dealership-profile-overview-primary">
   <div class="dealership-profile-overview-content">
+    
+    
     
     <% if @dealership.
             vehicles.
-            where(sold_at: nil).
-            where.not(posted_at: nil).
+            # where(sold_at: nil).
+            # where.not(posted_at: nil).
             exists? %>
       <ol class="dealer-profile-list">
         <%= render partial:    'vehicle',
                    collection: @dealership.
-                                 vehicles.
-                                 where(sold_at: nil).
-                                 where.not(posted_at: nil),
+                                 vehicles,
+                                # where(sold_at: nil).
+                                # where.not(posted_at: nil),
                    as:         :vehicle %>
       </ol>
       

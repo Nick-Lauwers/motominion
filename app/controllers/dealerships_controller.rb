@@ -76,7 +76,7 @@ class DealershipsController < ApplicationController
   end
   
   def reviews
-    @reviews = @dealership.reviews
+    @google_reviews = @dealership.google_reviews
   end
   
   private

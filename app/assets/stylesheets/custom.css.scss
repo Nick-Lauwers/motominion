@@ -2350,8 +2350,7 @@ footer {
 // .feed-item,
 // .search-item,
 .mobile-listing-item,
-.wish-list-item,
-.dealer-vehicle-item {
+.wish-list-item {
   position: relative;
   overflow: hidden;
 }
@@ -2502,9 +2501,8 @@ footer {
 }
 
 .mobile-listing-item,
-.wish-list-item, 
-.dealer-vehicle-item {
-  margin-bottom: 2.5em;
+.wish-list-item {
+  margin-bottom: 3em;
 }
 
 .feed-item-content,
@@ -3958,11 +3956,19 @@ ul.pagination {
 }
 
 #vehicle-overview,
-.dealership-profile-overview {
-  background-color: white;
-  border-bottom: 1px solid $gray-border;
+.dealership-profile-overview-primary,
+.daelership-profile-overview-secondary {
   position: relative;
   z-index: 900;
+}
+
+.dealership-profile-overview-primary {
+  background-color: white;
+  border-bottom: 1px solid $gray-border;
+}
+
+.dealership-profile-overview-secondary {
+  background-color: $gray-lightest;
 }
 
 .vehicle-overview-content {
