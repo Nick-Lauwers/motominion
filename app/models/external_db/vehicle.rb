@@ -29,9 +29,9 @@ module ExternalDb
           v.bumped_at          = created
           v.last_found_at      = last_found
 
-          %i[ msrp year mileage mileage_numeric body_style vin description 
-              description_clean ad_url trim_details engine engine_type 
-              displacement compression_ratio bore_stroke bore stroke 
+          %i[ msrp year mileage mileage_numeric body_style vin stock_number 
+              description description_clean ad_url trim_details engine 
+              engine_type displacement compression_ratio bore_stroke bore stroke 
               transmission primary_drive final_drive fuel_type fuel_system 
               fuel_capacity brakes front_brakes rear_brakes suspension 
               front_suspension rear_suspension tires front_tire rear_tire 

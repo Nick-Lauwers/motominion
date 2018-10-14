@@ -117,6 +117,44 @@ $(function() {
         }
       });
       
+    // expand description
+    
+      var vehicleOverviewDescription     = $('.vehicle-overview-description');
+      var vehicleOverviewExpand          = $('.vehicle-overview-expand');
+
+      function em(input) {
+        var emSize = parseFloat($("body").css("font-size"));
+        return (emSize * input);
+      }
+      
+      if (vehicleOverviewDescription.height() >= em(10)) {
+        
+        vehicleOverviewDescription.each(function() {
+          $.data(this, "realHeight", $(this).height());
+        }).css({ overflow: "hidden", height: '10em' });
+        
+        vehicleOverviewExpand.css({display: "block"});
+        
+        vehicleOverviewExpand.click(function(e) {
+          
+          e.preventDefault();
+          
+          if (vehicleOverviewDescription.hasClass("toggled")) {
+            vehicleOverviewDescription.animate({ 
+              height: '10em'
+            }, 600).removeClass("toggled");
+            vehicleOverviewExpand.html("+ More");
+          } 
+          
+          else {
+            vehicleOverviewDescription.animate({ 
+              height: vehicleOverviewDescription.data("realHeight") 
+            }, 600).addClass("toggled");
+            vehicleOverviewExpand.html("- Less");
+          }
+        });
+      }
+
     // test drive modal  
       
       var appointmentButton          = $('.btn-appointment');

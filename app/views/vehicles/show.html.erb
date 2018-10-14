@@ -280,6 +280,8 @@
               <%= @vehicle.description_clean %>
             </p>
             
+            <span class="vehicle-overview-expand">+ More</span>
+            
             <div class="vehicle-overview-views">
               <div class="row vertical-align">
                 
@@ -494,969 +496,968 @@
     <div class="row">
 
       <div class="col-md-7">
-        <!--<div class="vehicle-details-text">-->
-        
-          <div id="specifications">
+
+        <div id="specifications">
+          
+          <h3 class="vehicle-details-title">Specifications</h3>
+
+          <table class="vehicle-details-table">
+                
+            <% if @vehicle.vehicle_make.present? || 
+                  @vehicle.vehicle_make_name.present? %>
+              <tr>
+                
+                <td class="specifications-table-column">Type</td>
+                
+                <td>
+                  <strong>
+                    <% if @vehicle.vehicle_make.present? %>
+                      <%= @vehicle.vehicle_make.name %>
+                      <%= @vehicle.vehicle_model.name %>
+                      <%= @vehicle.trim_details %>
+                    <% else %>
+                      <%= @vehicle.vehicle_make_name %>
+                      <%= @vehicle.vehicle_model_name %>
+                      <%= @vehicle.trim_details %>
+                    <% end %>
+                  </strong>
+                </td>
+              </tr>
+            <% end %>
+                
+            <% if @vehicle.vehicle_model.present? ||
+                  @vehicle.body_style.present? %>
+              <tr>
+                
+                <td>Body Style</td>
+                
+                <td>
+                  <strong>
+                    <% if @vehicle.vehicle_model.present? %>
+                      <%= @vehicle.vehicle_model.vehicle_type %>
+                    <% elsif @vehicle.body_style.present? %>
+                      <%= @vehicle.body_style %>
+                    <% end %>
+                  </strong>
+                </td>
+              </tr>
+            <% end %>
             
-            <h3 class="vehicle-details-title">Specifications</h3>
+            <% if @vehicle.color.present? %>    
+              <tr>
+                <td>Color</td>
+                <td><strong><%= @vehicle.color %></strong></td>
+              </tr>  
+            <% end %>
+            
+            <% if @vehicle.year.present? %>    
+              <tr>
+                <td>Year</td>
+                <td><strong><%= @vehicle.year %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.mileage_numeric.present? %>    
+              <tr>
+                <td>Mileage</td>
+                <td><strong><%= @vehicle.mileage_numeric %> mi</strong></td>
+              </tr>
+            <% end %>
+                
+            <% if @vehicle.vin.present? %>
+              <tr>
+                <td>VIN</td>
+                <td><strong><%= @vehicle.vin %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.stock_number.present? %>    
+              <tr>
+                <td>Stock No.</td>
+                <td><strong><%= @vehicle.stock_number %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.engine.present? %>
+              <tr>
+                <td>Engine</td>
+                <td><strong><%= @vehicle.engine %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.engine_type.present? %>
+              <tr>
+                <td>Engine Type</td>
+                <td><strong><%= @vehicle.engine_type %></strong></td>
+              </tr>
+            <% end %>
+                
+            <% if @vehicle.engine_size.present? %>    
+              <tr>
+                <td>Engine Size</td>
+                <td><strong><%= @vehicle.engine_size %> cc</strong></td>
+              </tr>
+            <% end %>
+                
+            <% if @vehicle.displacement.present? %>
+              <tr>
+                <td>Displacement</td>
+                <td><strong><%= @vehicle.displacement%></strong></td>
+              </tr>
+            <% end %>
+                
+            <% if @vehicle.compression_ratio.present? %>
+              <tr>
+                <td>Compression Ratio</td>
+                <td><strong><%= @vehicle.compression_ratio %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.bore_stroke.present? %>
+              <tr>
+                <td>Bore X Stroke</td>
+                <td><strong><%= @vehicle.bore_stroke %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.bore.present? %>
+              <tr>
+                <td>Bore</td>
+                <td><strong><%= @vehicle.bore %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.stroke.present? %>
+              <tr>
+                <td>Stroke</td>
+                <td><strong><%= @vehicle.stroke %></strong></td>
+              </tr>
+            <% end %>
+              
+            <% if @vehicle.transmission.present? %>
+              <tr>
+                <td>Transmission</td>
+                <td><strong><%= @vehicle.transmission %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.primary_drive.present? %>
+              <tr>
+                <td>Primary Drive</td>
+                <td><strong><%= @vehicle.primary_drive %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.final_drive.present? %>
+              <tr>
+                <td>Final Drive</td>
+                <td><strong><%= @vehicle.final_drive %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.fuel_type.present? %>
+              <tr>
+                <td>Fuel Type</td>
+                <td><strong><%= @vehicle.fuel_type %></strong></td>
+              </tr>
+            <% end %>
+
+            <% if @vehicle.fuel_system.present? %>
+              <tr>
+                <td>Fuel System</td>
+                <td><strong><%= @vehicle.fuel_system %></strong></td>
+              </tr>
+            <% end %>
+                
+            <% if @vehicle.fuel_capacity.present? %>
+              <tr>
+                <td>Fuel Capacity</td>
+                <td><strong><%= @vehicle.fuel_capacity %></strong></td>
+              </tr>
+            <% end %>  
+          
+            <% if @vehicle.brakes.present? %>
+              <tr>
+                <td>Brakes</td>
+                <td><%= @vehicle.brakes %></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.front_brakes.present? %>
+              <tr>
+                <td>Front Brakes</td>
+                <td><%= @vehicle.front_brakes %></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.rear_brakes.present? %>
+              <tr>
+                <td>Rear Brakes</td>
+                <td><%= @vehicle.rear_brakes %></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.suspension.present? %>
+              <tr>
+                <td>Suspension</td>
+                <td><(perc)= @vehicle.suspension %></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.front_suspension.present? %>
+              <tr>
+                <td>Front Suspension</td>
+                <td><strong><%= @vehicle.front_suspension %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.rear_suspension.present? %>
+              <tr>
+                <td>Rear Suspension</td>
+                <td><strong><%= @vehicle.rear_suspension %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.tires.present? %>
+              <tr>
+                <td>Tires</td>
+                <td><strong><%= @vehicle.tires %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.front_tire.present? %>
+              <tr>
+                <td>Front Tire</td>
+                <td><strong><%= @vehicle.front_tire %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.rear_tire.present? %>
+              <tr>
+                <td>Rear Tire</td>
+                <td><strong><%= @vehicle.rear_tire %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.dry_weight.present? %>
+              <tr>
+                <td>Dry Weight</td>
+                <td><strong><%= @vehicle.dry_weight %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.curb_weight.present? %>
+              <tr>
+                <td>Curb Weight</td>
+                <td><strong><%= @vehicle.curb_weight %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.rake_trail.present? %>
+              <tr>
+                <td>Rake X Trail</td>
+                <td><strong><%= @vehicle.rake_trail %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.rake.present? %>
+              <tr>
+                <td>Rake</td>
+                <td><strong><%= @vehicle.rake %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.trail.present? %>
+              <tr>
+                <td>Trail</td>
+                <td><strong><%= @vehicle.trail %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.wheelbase.present? %>
+              <tr>
+                <td>Wheelbase</td>
+                <td><strong><%= @vehicle.wheelbase %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.ground_clearance.present? %>
+              <tr>
+                <td>Ground Clearance</td>
+                <td><strong><%= @vehicle.ground_clearance %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.seat_height.present? %>
+              <tr>
+                <td>Seat Height</td>
+                <td><strong><%= @vehicle.seat_height %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.seat_height_unladen.present? %>
+              <tr>
+                <td>Seat Height, Unladen</td>
+                <td><strong><%= @vehicle.seat_height_unladen %></strong></td>
+              </tr>
+            <% end %>
+            
+            <% if @vehicle.seat_height_laden.present? %>
+              <tr>
+                <td>Seat Height, Laden</td>
+                <td><strong><%= @vehicle.seat_height_laden %></strong></td>
+              </tr>
+            <% end %>  
+          </table>
+        </div>
+        
+        
+        <% if @vehicle.dealership.blank? %>      
+          <div id="features">
+            
+            <h3 class="vehicle-details-title">Features</h3>
             
             <div class="row">
               
               <div class="col-md-6">
                 <table class="vehicle-details-table">
                   
-                  <tr>
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.cruise_control %>">
                     
-                    <td class="specifications-table-column">Type</td>
-                    
-                    <td>
-                      <strong>
-                        
-                        <% if @vehicle.vehicle_make.present? && 
-                              @vehicle.vehicle_model.present? %>
-                          <%= @vehicle.vehicle_make.name %>
-                          <%= @vehicle.vehicle_model.name %>
-                          
-                        <% else %>
-                          <%= @vehicle.vehicle_make_name %>
-                          <%= @vehicle.vehicle_model_name %>
-                        <% end %>
-                      </strong>
+                    <td class="features-table-column">
+                      <i class="fa fa-tachometer" aria-hidden="true"></i>
                     </td>
+                    
+                    <td>Cruise Control</td>
                   </tr>
                   
-                  <tr>
-                    <td>Body Style</td>
-                    <td><strong><%= @vehicle.body_style %></strong></td>
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.am_fm %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-signal" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>AM / FM Radio</td>
                   </tr>
                   
-                  <tr>
-                    <td>Color</td>
-                    <td><strong><%= @vehicle.color %></strong></td>
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.cb_radio %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-microphone" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>CB Radio</td>
                   </tr>
                   
-                  <tr>
-                    <td>Year</td>
-                    <td><strong><%= @vehicle.year %></strong></td>
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.navigation_system %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-map-signs" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>Navigation System</td>
                   </tr>
                   
-                  <tr>
-                    <td>Mileage</td>
-                    <td><strong><%= @vehicle.mileage_numeric %> mi</strong></td>
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.heated_seats %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-thermometer-three-quarters" 
+                         aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>Heated Seats</td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.heated_hand_grips %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-fire" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>Heated Hand Grips</td>
                   </tr>
                 </table>
               </div>
               
               <div class="col-md-6">
                 <table class="vehicle-details-table">
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.alarm_system %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>Alarm System</td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.saddlebags %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-suitcase" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>Saddlebags</td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.trunk %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-briefcase" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>Trunk</td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.tow_hitch %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-plug" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>Tow Hitch</td>
+                  </tr>
+                  
+                  <tr class="<%= 'unavailable-feature' if 
+                                 !@vehicle.cycle_cover %>">
+                    
+                    <td class="features-table-column">
+                      <i class="fa fa-umbrella" aria-hidden="true"></i>
+                    </td>
+                    
+                    <td>Cycle Cover</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        <% end %>
 
+        <div id="listing-score">
+        
+          <h3 class="vehicle-details-title">Listing Score Breakdown</h3>
+          
+          <table class="vehicle-details-table">
+            
+            <tr>
+              
+              <% if @vehicle.listing_score.location_score == 100 %>
+                    
+                <td>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </td>
+                
+                <td>
+                  Listing location is an exact address.
+                </td>
+              <% end %>
+            </tr>
+            
+            <tr>
+              
+              <% if @vehicle.listing_score.features_score == 100 %>
+                    
+                <td>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </td>
+                
+                <td>Features are properly noted.</td>
+              <% end %>
+            </tr>
+            
+            <tr>
+              
+              <% if @vehicle.listing_score.spec_score >= 67 %>
+                    
+                <td>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </td>
+              
+                <td>Specifications are properly noted.</td>
+              <% end %>
+            </tr>
+            
+            <tr>
+              
+              <% if @vehicle.listing_score.vin_score == 100 %>
+                    
+                <td>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </td>
+              
+                <td>VIN is properly noted.</td>
+              <% end %>
+            </tr>
+            
+            <tr>
+              
+              <% if @vehicle.dealership.present? &&
+                    @vehicle.listing_score.certified_dealer_score == 100 %>
+                    
+                <td>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </td>
+              
+                <td>
+                  Vehicle is being sold by a certified dealer.
+                </td>
+              <% end %>
+            </tr>
+            
+            <tr>
+              
+              <% if @vehicle.dealership.present? &&
+                    @vehicle.listing_score.direct_listing_score == 100 %>
+                    
+                <td>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </td>
+              
+                <td>
+                  Dealer sends a direct listing feed.  
+                </td>
+              <% end %>
+            </tr>
+            
+            <tr>
+              
+              <% if @vehicle.listing_score.test_drive_score == 100 %>
+                    
+                <td>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </td>
+              
+                <td>
+                  Seller accepts test drive requests on demand.
+                </td>
+              <% end %>
+            </tr>
+            
+            <tr>
+              
+              <% if @vehicle.listing_score.photos_score >= 67 %>
+                    
+                <td>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </td>
+              
+                <td>
+                  Listing has plenty of photos of the bike.
+                </td>
+              <% end %>
+            </tr>
+            
+            <tr>
+              
+              <% if @vehicle.listing_score.recently_posted_score >= 67 %>
+                    
+                <td>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </td>
+              
+                <td>
+                  Listing was recently posted or "bumped".
+                </td>
+              <% end %>
+            </tr>
+          </table>
+        </div>
+
+        <div id="availability">
+          
+          <% if @vehicle.dealership.present? %>
+        
+            <h3 class="vehicle-details-title">Hours of Operation</h3>
+        
+            <div class="row">
+              
+              <div class="col-md-6">
+                <table class="vehicle-details-table">
                   <tr>
-                    <td class="specifications-table-column">VIN</td>
-                    <td>
-                      <strong>
-                        <% if @vehicle.vin.present? %>
-                          <%= @vehicle.vin %>
-                        <% else %>
-                          Unavailable
-                        <% end %>
-                      </strong>
-                    </td>
+                  
+                    <td class="specifications-table-column">Monday</td>
+                    
+                    <td><strong>
+                      
+                      <% if @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Monday").
+                              first.
+                              is_closed == true %> 
+                        Closed
+                        
+                      <% else %>
+                      
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Monday").
+                              first.
+                              open_time.
+                              strftime("%-l:%M%p") %> - 
+                        
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Monday").
+                              first.
+                              close_time.
+                              strftime("%-l:%M%p") %>
+                      <% end %>
+                    </strong></td>
                   </tr>
                   
                   <tr>
                     
-                    <td>Engine</td>
+                    <td>Tuesday</td>
                     
-                    <td>
-                      <strong>
-                        <% if @vehicle.engine_type == "Unknown" %>
-                          Unavailable
-                        <% else %>
-                          <%= @vehicle.engine_type %>
-                        <% end %>
-                      </strong>
-                    </td>
+                    <td><strong>
+                      
+                      <% if @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Tuesday").
+                              first.
+                              is_closed == true %> 
+                        Closed
+                        
+                      <% else %>
+                      
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Tuesday").
+                              first.
+                              open_time.
+                              strftime("%-l:%M%p") %> - 
+                        
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Tuesday").
+                              first.
+                              close_time.
+                              strftime("%-l:%M%p") %>
+                      <% end %>
+                    </strong></td>
                   </tr>
                   
                   <tr>
                     
-                    <td>Size</td>
+                    <td>Wednesday</td>
                     
-                    <td>
-                      <strong>
-                        <% if @vehicle.engine_size.present? %>
-                          <%= @vehicle.engine_size %> cc
-                        <% else %>
-                          Unavailable
-                        <% end %>
-                      </strong>
-                    </td>
+                    <td><strong>
+                      
+                      <% if @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Wednesday").
+                              first.
+                              is_closed == true %> 
+                        Closed
+                        
+                      <% else %>
+                      
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Wednesday").
+                              first.
+                              open_time.
+                              strftime("%-l:%M%p") %> - 
+                        
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Wednesday").
+                              first.
+                              close_time.
+                              strftime("%-l:%M%p") %>
+                      <% end %>
+                    </strong></td>
                   </tr>
                   
                   <tr>
-                    <td>Fuel Type</td>
-                    <td><strong><%= @vehicle.fuel_type %></strong></td>
+                    
+                    <td>Thursday</td>
+                    
+                    <td><strong>
+                      
+                      <% if @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Thursday").
+                              first.
+                              is_closed == true %> 
+                        Closed
+                        
+                      <% else %>
+                      
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Thursday").
+                              first.
+                              open_time.
+                              strftime("%-l:%M%p") %> - 
+                        
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Thursday").
+                              first.
+                              close_time.
+                              strftime("%-l:%M%p") %>
+                      <% end %>
+                    </strong></td>
+                  </tr>
+                </table>
+              </div>
+              
+              <div class="col-md-6">
+                <table class="vehicle-details-table">
+                  
+                  <tr>
+                    
+                    <td class="specifications-table-column">Friday</td>
+                    
+                    <td><strong>
+                      
+                      <% if @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Friday").
+                              first.
+                              is_closed == true %> 
+                        Closed
+                        
+                      <% else %>
+                      
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Friday").
+                              first.
+                              open_time.
+                              strftime("%-l:%M%p") %> - 
+                        
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Friday").
+                              first.
+                              close_time.
+                              strftime("%-l:%M%p") %>
+                      <% end %>
+                    </strong></td>
+                  </tr>
+                  
+                  <tr>
+                    
+                    <td>Saturday</td>
+                    
+                    <td><strong>
+                      
+                      <% if @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Saturday").
+                              first.
+                              is_closed == true %> 
+                        Closed
+                        
+                      <% else %>
+                      
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Saturday").
+                              first.
+                              open_time.
+                              strftime("%-l:%M%p") %> - 
+                        
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Saturday").
+                              first.
+                              close_time.
+                              strftime("%-l:%M%p") %>
+                      <% end %>
+                    </strong></td>
+                  </tr>
+                  
+                  <tr>
+                    
+                    <td>Sunday</td>
+                    
+                    <td><strong>
+                      
+                      <% if @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Sunday").
+                              first.
+                              is_closed == true %> 
+                        Closed
+                        
+                      <% else %>
+                      
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Sunday").
+                              first.
+                              open_time.
+                              strftime("%-l:%M%p") %> - 
+                        
+                        <%= @vehicle.
+                              dealership.
+                              business_hours.
+                              where(day: "Sunday").
+                              first.
+                              close_time.
+                              strftime("%-l:%M%p") %>
+                      <% end %>
+                    </strong></td>
                   </tr>
                 </table>
               </div>
             </div>
             
-            msrp, trim_details, engine, engine_type
-            
-            <table>
-              
-              <% if @vehicle.displacement.present? %>
-                <tr>
-                  <td>Displacement</td>
-                  <td><strong><%= @vehicle.displacement%></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.compression_ratio.present? %>
-                <tr>
-                  <td>Compression Ratio</td>
-                  <td><strong><%= @vehicle.compression_ratio %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.bore_stroke.present? %>
-                <tr>
-                  <td>Bore X Stroke</td>
-                  <td><strong><%= @vehicle.bore_stroke %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.bore.present? %>
-                <tr>
-                  <td>Bore</td>
-                  <td><strong><%= @vehicle.bore %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.stroke.present? %>
-                <tr>
-                  <td>Stroke</td>
-                  <td><strong><%= @vehicle.stroke %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.transmission.present? %>
-                <tr>
-                  <td>Transmission</td>
-                  <td><strong><%= @vehicle.transmission %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.primary_drive.present? %>
-                <tr>
-                  <td>Primary Drive</td>
-                  <td><strong><%= @vehicle.primary_drive %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.final_drive.present? %>
-                <tr>
-                  <td>Final Drive</td>
-                  <td><strong><%= @vehicle.final_drive %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.fuel_system.present? %>
-                <tr>
-                  <td>Fuel System</td>
-                  <td><strong><%= @vehicle.fuel_system %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.fuel_capacity.present? %>
-                <tr>
-                  <td>Fuel Capacity</td>
-                  <td><strong><%= @vehicle.fuel_capacity %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.brakes.present? %>
-                <tr>
-                  <td>Brakes</td>
-                  <td><strong><%= @vehicle.brakes %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.front_brakes.present? %>
-                <tr>
-                  <td>Front Brakes</td>
-                  <td><strong><%= @vehicle.front_brakes %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.rear_brakes.present? %>
-                <tr>
-                  <td>Rear Brakes</td>
-                  <td><strong><%= @vehicle.rear_brakes %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.suspension.present? %>
-                <tr>
-                  <td>Suspension</td>
-                  <td><strong><%= @vehicle.suspension %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.front_suspension.present? %>
-                <tr>
-                  <td>Front Suspension</td>
-                  <td><strong><%= @vehicle.front_suspension %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.rear_suspension.present? %>
-                <tr>
-                  <td>Rear Suspension</td>
-                  <td><strong><%= @vehicle.rear_suspension %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.tires.present? %>
-                <tr>
-                  <td>Tires</td>
-                  <td><strong><%= @vehicle.tires %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.front_tire.present? %>
-                <tr>
-                  <td>Front Tire</td>
-                  <td><strong><%= @vehicle.front_tire %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.rear_tire.present? %>
-                <tr>
-                  <td>Rear Tire</td>
-                  <td><strong><%= @vehicle.rear_tire %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.dry_weight.present? %>
-                <tr>
-                  <td>Dry Weight</td>
-                  <td><strong><%= @vehicle.dry_weight %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.curb_weight.present? %>
-                <tr>
-                  <td>Curb Weight</td>
-                  <td><strong><%= @vehicle.curb_weight %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.rake_trail.present? %>
-                <tr>
-                  <td>Rake X Trail</td>
-                  <td><strong><%= @vehicle.rake_trail %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.rake.present? %>
-                <tr>
-                  <td>Rake</td>
-                  <td><strong><%= @vehicle.rake %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.trail.present? %>
-                <tr>
-                  <td>Trail</td>
-                  <td><strong><%= @vehicle.trail %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.wheelbase.present? %>
-                <tr>
-                  <td>Wheelbase</td>
-                  <td><strong><%= @vehicle.wheelbase %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.ground_clearance.present? %>
-                <tr>
-                  <td>Ground Clearance</td>
-                  <td><strong><%= @vehicle.ground_clearance %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.seat_height.present? %>
-                <tr>
-                  <td>Seat Height</td>
-                  <td><strong><%= @vehicle.seat_height %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.seat_height_unladen.present? %>
-                <tr>
-                  <td>Seat Height, Unladen</td>
-                  <td><strong><%= @vehicle.seat_height_unladen %></strong></td>
-                </tr>
-              <% end %>
-              
-              <% if @vehicle.seat_height_laden.present? %>
-                <tr>
-                  <td>Seat Height, laden</td>
-                  <td><strong><%= @vehicle.seat_height_laden %></strong></td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
+          <% elsif @vehicle.availabilities.exists? %>
           
-          <% if @vehicle.dealership.blank? %>
-            <div id="features">
-              
-              <h3 class="vehicle-details-title">Features</h3>
-              
-              <div class="row">
-                
-                <div class="col-md-6">
-                  <table class="vehicle-details-table">
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.cruise_control %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-tachometer" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>Cruise Control</td>
-                    </tr>
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.am_fm %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-signal" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>AM / FM Radio</td>
-                    </tr>
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.cb_radio %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-microphone" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>CB Radio</td>
-                    </tr>
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.navigation_system %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-map-signs" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>Navigation System</td>
-                    </tr>
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.heated_seats %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-thermometer-three-quarters" 
-                           aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>Heated Seats</td>
-                    </tr>
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.heated_hand_grips %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-fire" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>Heated Hand Grips</td>
-                    </tr>
-                  </table>
-                </div>
-                
-                <div class="col-md-6">
-                  <table class="vehicle-details-table">
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.alarm_system %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-bullhorn" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>Alarm System</td>
-                    </tr>
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.saddlebags %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-suitcase" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>Saddlebags</td>
-                    </tr>
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.trunk %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-briefcase" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>Trunk</td>
-                    </tr>
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.tow_hitch %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-plug" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>Tow Hitch</td>
-                    </tr>
-                    
-                    <tr class="<%= 'unavailable-feature' if 
-                                   !@vehicle.cycle_cover %>">
-                      
-                      <td class="features-table-column">
-                        <i class="fa fa-umbrella" aria-hidden="true"></i>
-                      </td>
-                      
-                      <td>Cycle Cover</td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
+            <h3 class="vehicle-details-title">General Availability</h3>
+            
+            <div class="row">
+              <%= render partial:    "availability", 
+                         collection: @availabilities %>
             </div>
           <% end %>
-          
-          <div id="listing-score">
-          
-            <h3 class="vehicle-details-title">Listing Score Breakdown</h3>
-            
-            <table class="vehicle-details-table">
-              
-              <tr>
-                
-                <% if @vehicle.listing_score.location_score == 100 %>
-                      
-                  <td>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </td>
-                  
-                  <td>
-                    Listing location is an exact address.
-                  </td>
-                <% end %>
-              </tr>
-              
-              <tr>
-                
-                <% if @vehicle.listing_score.features_score == 100 %>
-                      
-                  <td>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </td>
-                  
-                  <td>Features are properly noted.</td>
-                <% end %>
-              </tr>
-              
-              <tr>
-                
-                <% if @vehicle.listing_score.spec_score >= 67 %>
-                      
-                  <td>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </td>
-                
-                  <td>Specifications are properly noted.</td>
-                <% end %>
-              </tr>
-              
-              <tr>
-                
-                <% if @vehicle.listing_score.vin_score == 100 %>
-                      
-                  <td>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </td>
-                
-                  <td>VIN is properly noted.</td>
-                <% end %>
-              </tr>
-              
-              <tr>
-                
-                <% if @vehicle.dealership.present? &&
-                      @vehicle.listing_score.certified_dealer_score == 100 %>
-                      
-                  <td>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </td>
-                
-                  <td>
-                    Vehicle is being sold by a certified dealer.
-                  </td>
-                <% end %>
-              </tr>
-              
-              <tr>
-                
-                <% if @vehicle.dealership.present? &&
-                      @vehicle.listing_score.direct_listing_score == 100 %>
-                      
-                  <td>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </td>
-                
-                  <td>
-                    Dealer sends a direct listing feed.  
-                  </td>
-                <% end %>
-              </tr>
-              
-              <tr>
-                
-                <% if @vehicle.listing_score.test_drive_score == 100 %>
-                      
-                  <td>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </td>
-                
-                  <td>
-                    Seller accepts test drive requests on demand.
-                  </td>
-                <% end %>
-              </tr>
-              
-              <tr>
-                
-                <% if @vehicle.listing_score.photos_score >= 67 %>
-                      
-                  <td>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </td>
-                
-                  <td>
-                    Listing has plenty of photos of the bike.
-                  </td>
-                <% end %>
-              </tr>
-              
-              <tr>
-                
-                <% if @vehicle.listing_score.recently_posted_score >= 67 %>
-                      
-                  <td>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </td>
-                
-                  <td>
-                    Listing was recently posted or "bumped".
-                  </td>
-                <% end %>
-              </tr>
-            </table>
-          </div>
-          
-          <div id="availability">
-            
-            <% if @vehicle.dealership.present? %>
-          
-              <h3 class="vehicle-details-title">Hours of Operation</h3>
-          
-              <div class="row">
-                
-                <div class="col-md-6">
-                  <table class="vehicle-details-table">
-                    <tr>
-                    
-                      <td class="specifications-table-column">Monday</td>
-                      
-                      <td><strong>
-                        
-                        <% if @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Monday").
-                                first.
-                                is_closed == true %> 
-                          Closed
-                          
-                        <% else %>
-                        
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Monday").
-                                first.
-                                open_time.
-                                strftime("%-l:%M%p") %> - 
-                          
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Monday").
-                                first.
-                                close_time.
-                                strftime("%-l:%M%p") %>
-                        <% end %>
-                      </strong></td>
-                    </tr>
-                    
-                    <tr>
-                      
-                      <td>Tuesday</td>
-                      
-                      <td><strong>
-                        
-                        <% if @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Tuesday").
-                                first.
-                                is_closed == true %> 
-                          Closed
-                          
-                        <% else %>
-                        
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Tuesday").
-                                first.
-                                open_time.
-                                strftime("%-l:%M%p") %> - 
-                          
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Tuesday").
-                                first.
-                                close_time.
-                                strftime("%-l:%M%p") %>
-                        <% end %>
-                      </strong></td>
-                    </tr>
-                    
-                    <tr>
-                      
-                      <td>Wednesday</td>
-                      
-                      <td><strong>
-                        
-                        <% if @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Wednesday").
-                                first.
-                                is_closed == true %> 
-                          Closed
-                          
-                        <% else %>
-                        
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Wednesday").
-                                first.
-                                open_time.
-                                strftime("%-l:%M%p") %> - 
-                          
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Wednesday").
-                                first.
-                                close_time.
-                                strftime("%-l:%M%p") %>
-                        <% end %>
-                      </strong></td>
-                    </tr>
-                    
-                    <tr>
-                      
-                      <td>Thursday</td>
-                      
-                      <td><strong>
-                        
-                        <% if @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Thursday").
-                                first.
-                                is_closed == true %> 
-                          Closed
-                          
-                        <% else %>
-                        
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Thursday").
-                                first.
-                                open_time.
-                                strftime("%-l:%M%p") %> - 
-                          
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Thursday").
-                                first.
-                                close_time.
-                                strftime("%-l:%M%p") %>
-                        <% end %>
-                      </strong></td>
-                    </tr>
-                  </table>
-                </div>
-                
-                <div class="col-md-6">
-                  <table class="vehicle-details-table">
-                    
-                    <tr>
-                      
-                      <td class="specifications-table-column">Friday</td>
-                      
-                      <td><strong>
-                        
-                        <% if @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Friday").
-                                first.
-                                is_closed == true %> 
-                          Closed
-                          
-                        <% else %>
-                        
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Friday").
-                                first.
-                                open_time.
-                                strftime("%-l:%M%p") %> - 
-                          
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Friday").
-                                first.
-                                close_time.
-                                strftime("%-l:%M%p") %>
-                        <% end %>
-                      </strong></td>
-                    </tr>
-                    
-                    <tr>
-                      
-                      <td>Saturday</td>
-                      
-                      <td><strong>
-                        
-                        <% if @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Saturday").
-                                first.
-                                is_closed == true %> 
-                          Closed
-                          
-                        <% else %>
-                        
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Saturday").
-                                first.
-                                open_time.
-                                strftime("%-l:%M%p") %> - 
-                          
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Saturday").
-                                first.
-                                close_time.
-                                strftime("%-l:%M%p") %>
-                        <% end %>
-                      </strong></td>
-                    </tr>
-                    
-                    <tr>
-                      
-                      <td>Sunday</td>
-                      
-                      <td><strong>
-                        
-                        <% if @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Sunday").
-                                first.
-                                is_closed == true %> 
-                          Closed
-                          
-                        <% else %>
-                        
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Sunday").
-                                first.
-                                open_time.
-                                strftime("%-l:%M%p") %> - 
-                          
-                          <%= @vehicle.
-                                dealership.
-                                business_hours.
-                                where(day: "Sunday").
-                                first.
-                                close_time.
-                                strftime("%-l:%M%p") %>
-                        <% end %>
-                      </strong></td>
-                    </tr>
-                  </table>
-                </div>
-              </div>
-              
-            <% elsif @vehicle.availabilities.exists? %>
-            
-              <h3 class="vehicle-details-title">General Availability</h3>
-              
-              <div class="row">
-                <%= render partial:    "availability", 
-                           collection: @availabilities %>
-              </div>
-            <% end %>
-          </div>
+        </div>
 
-          <% if @vehicle.dealership.present? %>
-            <div class="negotiate btn-negotiate-dealer hidden-xs">
-              <div class="row vertical-align">
-              
-                <div class="col-md-2">
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal-large.png") %>
-                </div>
-                  
-                <div class="col-md-10">
-                  <p class="negotiate-info">
-                    
-                    <strong>
-                      
-                      Make 
-                      
-                      <% if @vehicle.user.present? %>
-                        <%= @vehicle.user.first_name %>
-                        
-                      <% else %>
-                        <%= @vehicle.dealership.dealership_name %>
-                      <% end %>
-                      
-                      an offer.
-                    </strong>
-                    
-                    <br>
-                    
-                    Your identity will remain anonymous until an offer is 
-                    accepted.
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-          <% else %>
-            <%= form_for @conversation, 
-                         url: conversations_path(@conversation), 
-                         method: :post do |f| %>
-                     
-              <%= f.hidden_field :sender_id,          value: current_user.id if 
-                                                             current_user %>
-              
-              <%= f.hidden_field :recipient_id,       value: @user.id %>
-              
-              <%= f.hidden_field :sender_archived,    value: false %>
-            
-              <%= f.hidden_field :recipient_archived, value: false %>
-              
-              <%= button_tag(class: "btn-negotiate-private hidden-xs") do %>
-                <div class="negotiate">
-                  <div class="row vertical-align">
-                    
-                    <div class="col-md-2">
-                      <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal-large.png") %>
-                    </div>
-                    
-                    <div class="col-md-10">
-                      <p class="negotiate-info">
-                        
-                        <strong>
-                          Make <%= @vehicle.user.first_name %> an offer.
-                        </strong>
-                        
-                        <br>
-                        
-                        Your identity will remain anonymous until an offer is 
-                        accepted.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>  
-
-          <div class="vehicle-details-test-drive visible-xs">
+        <% if @vehicle.dealership.present? %>
+          <div class="negotiate btn-negotiate-dealer hidden-xs">
             <div class="row vertical-align">
-              
-              <div class="col-xs-1">
-                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/test-drives-small.png" ) %>
+            
+              <div class="col-md-2">
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal-large.png") %>
               </div>
-              
-              <div class="col-xs-11">
-                <p class="vehicle-details-test-drive-info">
-                  <strong>Book A Test Drive</strong>
+                
+              <div class="col-md-10">
+                <p class="negotiate-info">
+                  
+                  <strong>
+                    
+                    Make 
+                    
+                    <% if @vehicle.user.present? %>
+                      <%= @vehicle.user.first_name %>
+                      
+                    <% else %>
+                      <%= @vehicle.dealership.dealership_name %>
+                    <% end %>
+                    
+                    an offer.
+                  </strong>
+                  
                   <br>
-                  Interested in this vehicle? Book a test drive, instantly!
+                  
+                  Your identity will remain anonymous until an offer is 
+                  accepted.
                 </p>
               </div>
             </div>
           </div>
           
-          <% if @vehicle.dealership.present? %>  
-            <div class="vehicle-details-purchase visible-xs">
-              <div class="row vertical-align">
-                
-                <div class="col-xs-1">
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal-small.png" ) %>
-                </div>
-                
-                <div class="col-xs-11">
-                  <p class="vehicle-details-purchase-info">
-                    <strong>Make A Purchase</strong>
-                    <br>
-                    Complete our online paperwork and reserve this vehicle for
-                    purchase for 72 hours.
-                  </p>
+        <% else %>
+          <%= form_for @conversation, 
+                       url: conversations_path(@conversation), 
+                       method: :post do |f| %>
+                   
+            <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                           current_user %>
+            
+            <%= f.hidden_field :recipient_id,       value: @user.id %>
+            
+            <%= f.hidden_field :sender_archived,    value: false %>
+          
+            <%= f.hidden_field :recipient_archived, value: false %>
+            
+            <%= button_tag(class: "btn-negotiate-private hidden-xs") do %>
+              <div class="negotiate">
+                <div class="row vertical-align">
+                  
+                  <div class="col-md-2">
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal-large.png") %>
+                  </div>
+                  
+                  <div class="col-md-10">
+                    <p class="negotiate-info">
+                      
+                      <strong>
+                        Make <%= @vehicle.user.first_name %> an offer.
+                      </strong>
+                      
+                      <br>
+                      
+                      Your identity will remain anonymous until an offer is 
+                      accepted.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
-        <!--</div>-->
+        <% end %>  
+
+        <div class="vehicle-details-test-drive visible-xs">
+          <div class="row vertical-align">
+            
+            <div class="col-xs-1">
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/test-drives-small.png" ) %>
+            </div>
+            
+            <div class="col-xs-11">
+              <p class="vehicle-details-test-drive-info">
+                <strong>Book A Test Drive</strong>
+                <br>
+                Interested in this vehicle? Book a test drive, instantly!
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <% if @vehicle.dealership.present? %>  
+          <div class="vehicle-details-purchase visible-xs">
+            <div class="row vertical-align">
+              
+              <div class="col-xs-1">
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/deal-small.png" ) %>
+              </div>
+              
+              <div class="col-xs-11">
+                <p class="vehicle-details-purchase-info">
+                  <strong>Make A Purchase</strong>
+                  <br>
+                  Complete our online paperwork and reserve this vehicle for
+                  purchase for 72 hours.
+                </p>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
       
       <div class="col-md-1">

@@ -52,7 +52,7 @@
               </tr>
             </table>
             
-            <%= link_to @dealership.website, 
+            <%= link_to "http://#{@dealership.website}",
                         class: "dealer-profile-hero-website" do %>
               <%= @dealership.website %>
             <% end %>
@@ -118,24 +118,23 @@
   </ul>
 </nav>
 
-<div class="dealership-profile-overview-primary">
+<div class="dealership-profile-overview-secondary">
   <div class="dealership-profile-overview-content">
-    
-    
-    
-    <% if @dealership.
-            vehicles.
-            # where(sold_at: nil).
-            # where.not(posted_at: nil).
-            exists? %>
+
+    <% if @vehicles.any? %>
+            
       <ol class="dealer-profile-list">
         <%= render partial:    'vehicle',
-                   collection: @dealership.
-                                 vehicles,
-                                # where(sold_at: nil).
-                                # where.not(posted_at: nil),
-                   as:         :vehicle %>
+                   collection: @vehicles %>
       </ol>
+      
+      <%= will_paginate @vehicles,
+                        previous_label: 
+                          '<i class="fa fa-arrow-left" aria-hidden="true"></i>', 
+                        next_label: 
+                          '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
+                        inner_window: 1, 
+                        outer_window: 0 %>
       
     <% else %>
       <p class="empty-list-info">

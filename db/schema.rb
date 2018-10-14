@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181009001314) do
+ActiveRecord::Schema.define(version: 20181013031540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -736,6 +736,7 @@ ActiveRecord::Schema.define(version: 20181009001314) do
     t.string   "rake_trail"
     t.string   "rake"
     t.string   "trail"
+    t.string   "stock_number"
   end
 
   add_index "vehicles", ["dealership_id", "created_at"], name: "index_vehicles_on_dealership_id_and_created_at", using: :btree
