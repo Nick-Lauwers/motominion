@@ -77,7 +77,7 @@ class DealershipsController < ApplicationController
                   vehicles.
                   # where(sold_at: nil).
                   # where.not(posted_at: nil).
-                  paginate(page: params[:page], per_page: 3)
+                  paginate(page: params[:page], per_page: 15)
   end
   
   def reviews

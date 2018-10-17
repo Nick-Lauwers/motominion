@@ -343,6 +343,9 @@ end
 # User.create(first_name: "Shayla", last_name: "Stanley", email: "shayla@hondaofglendale.com", password: "98391022", password_confirmation: "98391022", avatar: open("https://randomuser.me/api/portraits/women/63.jpg"), dealership_id: 22)
 # User.create(first_name: "Jade", last_name: "Hogarth", email: "jade@indianmotorcycleoc.com", password: "98391023", password_confirmation: "98391023", avatar: open("https://randomuser.me/api/portraits/men/18.jpg"), dealership_id: 23)
 # User.create(first_name: "Danette", last_name: "Peak", email: "danette@quickshift.com", password: "98391024", password_confirmation: "98391024", avatar: open("https://randomuser.me/api/portraits/women/43.jpg"), dealership_id: 24)
+# User.create(first_name: "Courtney", last_name: "Brown", email: "courtney@vannuyssuzuki.com", password: "98391025", password_confirmation: "98391025", avatar: open("https://randomuser.me/api/portraits/women/79.jpg"), dealership_id: 25)
+# User.create(first_name: "Conor", last_name: "Harlan", email: "conor@oaklandhd.com", password: "98391026", password_confirmation: "98391026", avatar: open("https://randomuser.me/api/portraits/men/64.jpg"), dealership_id: 26)
+
 
 # VehicleModel.find(2).update_attributes(vehicle_type: "Moped", is_one_seat: FALSE, is_two_seats: TRUE)
 # VehicleModel.find(3).update_attributes(vehicle_type: "Moped", is_one_seat: FALSE, is_two_seats: TRUE)
