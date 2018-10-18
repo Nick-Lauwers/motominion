@@ -84,6 +84,8 @@
                 $<%= @vehicle.actual_price %>
               <% elsif @vehicle.msrp.present? %>
                 $<%= @vehicle.msrp %>
+              <% else %>
+                Price Unavailable
               <% end %>
             </p>
           </div>
@@ -1765,30 +1767,44 @@
     <div class="col-md-6" id="vehicle-map">
     </div>
     
-    <%= link_to posts_vehicle_make_path(@vehicle.vehicle_make),
-                class: "brochure",
-                target: "_blank" do %>
-      <div class="col-md-6 brochure-image",
-           style="background-image: url(
-                '<%= @vehicle.vehicle_make.cover_photo_url %>')">
-        <div class="brochure-detail">
-          
-          <h2 class="brochure-detail-title">
+    <% if @vehicle.vehicle_make.present? %>
+      <%= link_to posts_vehicle_make_path(@vehicle.vehicle_make),
+                  class: "brochure",
+                  target: "_blank" do %>
+        <div class="col-md-6 brochure-image",
+             style="background-image: url(
+                  '<%= @vehicle.vehicle_make.cover_photo_url %>')">
+          <div class="brochure-detail">
             
-            <% if @vehicle.vehicle_make.present? && 
-                  @vehicle.vehicle_model.present? %>
+            <h2 class="brochure-detail-title">
               <%= @vehicle.vehicle_make.name %>
-              <%= @vehicle.vehicle_model.name %>
-              
-            <% else %>
-              <%= @vehicle.vehicle_make_name %>
-              <%= @vehicle.vehicle_model_name %>
-            <% end %>
-          </h1>
-          
-          <h3 class="brochure-detail-info">Community Forums</h5>
+            </h2>
+            
+            <h3 class="brochure-detail-info">Community Forums</h3>
+          </div>
         </div>
-      </div>
+      <% end %>
+    
+    <% else %>
+      <%= link_to discussions_path,
+                  class: "brochure",
+                  target: "_blank" do %>
+        <div class="col-md-6 brochure-image",
+             style="background-image: url(
+                  'https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/dealer-basics.jpg')">
+          <div class="brochure-detail">
+            
+            <h2 class="brochure-detail-title">
+              Forums
+            </h2>
+            
+            <h3 class="brochure-detail-info">
+              Connect With Motorcycle Enthusiasts
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </h3>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

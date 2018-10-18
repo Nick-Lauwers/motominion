@@ -147,10 +147,10 @@ class Vehicle < ActiveRecord::Base
     where(body_style: "Cafe Racer")
   }
   
-  scope :with_cruiser, lambda { |flag|
-    return nil if 0 == flag
-    where(body_style: "Cruiser")
-  }
+  # scope :with_cruiser, lambda { |flag|
+  #   return nil if 0 == flag
+  #   where(body_style: "Cruiser")
+  # }
   
   scope :with_dirt_bike_dual_sport, lambda { |flag|
     return nil if 0 == flag
@@ -195,33 +195,45 @@ class Vehicle < ActiveRecord::Base
   }
   
   scope :with_year_gte, lambda { |ref_year|
-    where('vehicles.year >= ?', ref_year)
+    Vehicle.where.not(:year.lt(ref_year))
   }
+  
+  # scope :with_year_gte, lambda { |ref_year|
+  #   where('vehicles.year >= ?', ref_year)
+  # }
   
   scope :with_actual_price_lte, lambda { |ref_price|
-    where('vehicles.actual_price <= ?', ref_price)
+    Vehicle.
+      where.not(:actual_price.gt(ref_price)).
+      where.not(:msrp.gt(ref_price))
   }
+  
+  # scope :with_actual_price_lte, lambda { |ref_price|
+  #   where('vehicles.actual_price <= ? OR vehicles.msrp <= ?', ref_price, ref_price)
+  # }
   
   scope :with_mileage_numeric_lte, lambda { |ref_mileage|
-    where('vehicles.mileage_numeric <= ?', ref_mileage)
+    Vehicle.where.not(:mileage_numeric.gt(ref_mileage))
   }
   
+  # scope :with_mileage_numeric_lte, lambda { |ref_mileage|
+  #   where('vehicles.mileage_numeric <= ?', ref_mileage)
+  # }
+  
   scope :with_engine_size_gte, lambda { |ref_engine_size|
-    where('vehicles.engine_size >= ?', ref_engine_size)
+    Vehicle.where.not(engine_size.lt(ref_engine_size))
   }
+  
+  # scope :with_engine_size_gte, lambda { |ref_engine_size|
+  #   where('vehicles.engine_size >= ?', ref_engine_size)
+  # }
   
   # scope :with_seating_capacity_gte, lambda { |ref_capacity|
   #   where('vehicles.seating_capacity >= ?', ref_capacity)
   # }
   
-  # scope :is_van, lambda { |flag|
-  #   return nil if 0 == flag
-  #   where(body_style: "Van")
-  # }
-  
   scope :with_body_style, lambda { |body_style|
     joins(:vehicle_model).where('vehicle_models.vehicle_type = ?', body_style)
-    # where(body_style: body_style)
   }
   
   scope :with_color, lambda { |color|

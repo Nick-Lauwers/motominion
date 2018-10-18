@@ -143,127 +143,87 @@
     </div>
   </div>
   
-  <!--<div class="checkbox-filters">-->
-  <!--  <div class="row">-->
-        
-  <!--    <div class="col-md-6">-->
-        
-  <!--      <h4 class="condition-title">Condition</h4>-->
-
-  <!--      <div class="row">-->
-          
-  <!--        <div class="col-md-6 condition">-->
-  <!--          <(perc)= f.check_box :with_new %>-->
-  <!--          <(perc)= f.label :with_new, "New" %> -->
-  <!--        </div>-->
-          
-  <!--        <div class="col-md-6 condition">-->
-  <!--          <(perc)= f.check_box :with_pre_owned %>-->
-  <!--          <(perc)= f.label :with_pre_owned, "Pre-Owned" %> -->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--    </div>-->
-      
-  <!--    <div class="col-md-6">-->
-
-  <!--      <h4 class="seller-type-title">Seller Type</h4>-->
-          
-  <!--      <div class="row">-->
-          
-  <!--        <div class="col-md-6 seller-type">-->
-  <!--          <(perc)= f.check_box :with_cruise_control %>-->
-  <!--          <(perc)= f.label :with_cruise_control, "Dealer" %> -->
-  <!--        </div>-->
-          
-  <!--        <div class="col-md-6 seller-type">-->
-  <!--          <(perc)= f.check_box :with_cruise_control %>-->
-  <!--          <(perc)= f.label :with_cruise_control, "Private" %> -->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--</div>-->
-  
   <div class="slider-filters">
     <div class="row">
       
-      <!--<div class="col-md-6 mileage">-->
-      <!--  <div class="form-group form-group-primary">-->
+      <div class="col-md-6 mileage">
+        <div class="form-group form-group-primary">
           
-      <!--    <(perc)= f.label :with_mileage_numeric_lte, "Max Mileage" %>-->
+          <%= f.label :with_mileage_numeric_lte, "Max Mileage" %>
           
-      <!--    <span id="mileage_slider_val" class="slider-label">-->
-      <!--      300000 km-->
-      <!--    </span>-->
+          <span id="mileage_slider_val" class="slider-label">
+            200000 mi
+          </span>
           
-      <!--    <(perc)= f.text_field :with_mileage_numeric_lte,-->
-      <!--                     id: 'mileage_slider', -->
-      <!--                     type: 'text',-->
-      <!--                     data: { 'slider-min'   => '0',-->
-      <!--                             'slider-max'   => '300000',-->
-      <!--                             'slider-step'  => '1',-->
-      <!--                             'slider-value' => '300000' } %>-->
-      <!--  </div>-->
-      <!--</div>-->
+          <%= f.text_field :with_mileage_numeric_lte,
+                           id: 'mileage_slider', 
+                           type: 'text',
+                           data: { 'slider-min'   => '0',
+                                   'slider-max'   => '200000',
+                                   'slider-step'  => '1',
+                                   'slider-value' => '200000' } %>
+        </div>
+      </div>
       
-      <!--<div class="col-md-6 price">-->
-      <!--  <div class="form-group form-group-primary">-->
+      <div class="col-md-6 price">
+        <div class="form-group form-group-primary">
           
-      <!--    <(perc)= f.label :with_actual_price_lte, "Max Price" %>-->
+          <%= f.label :with_actual_price_lte, "Max Price" %>
           
-      <!--    <span id="price_slider_val" class="slider-label">-->
-      <!--      $200000-->
-      <!--    </span>-->
+          <span id="price_slider_val" class="slider-label">
+            $50000
+          </span>
           
-      <!--    <(perc)= f.text_field :with_actual_price_lte, -->
-      <!--                     id: 'price_slider', -->
-      <!--                     type: 'text',-->
-      <!--                     data: { 'slider-min'   => '0',-->
-      <!--                             'slider-max'   => '200000',-->
-      <!--                             'slider-step'  => '1',-->
-      <!--                             'slider-value' => '200000' } %>-->
-      <!--  </div>-->
-      <!--</div>-->
+          <%= f.text_field :with_actual_price_lte, 
+                           id: 'price_slider', 
+                           type: 'text',
+                           data: { 'slider-min'   => '0',
+                                   'slider-max'   => '50000',
+                                   'slider-step'  => '1',
+                                   'slider-value' => '50000' } %>
+        </div>
+      </div>
     </div>
     
-    <!--<div class="row">-->
+    <div class="row">
       
-    <!--  <div class="col-md-6 year">-->
-    <!--    <div class="form-group form-group-primary">-->
+      <div class="col-md-6 year">
+        <div class="form-group form-group-primary">
           
-    <!--      <(perc)= f.label :with_year_gte, "Earliest Year" %>-->
+          <%= f.label :with_year_gte, "Earliest Year" %>
           
-    <!--      <span id="year_slider_val" class="slider-label">1900</span>-->
+          <span id="year_slider_val" class="slider-label">1900</span>
           
-    <!--      <(perc)= f.text_field :with_year_gte, -->
-    <!--                       id: 'year_slider', -->
-    <!--                       type: 'text',-->
-    <!--                       data: { 'slider-min'   => '1900',-->
-    <!--                               'slider-max'   => '2016',-->
-    <!--                               'slider-step'  => '1',-->
-    <!--                               'slider-value' => '1900' } %>-->
-    <!--    </div>-->
-    <!--  </div>-->
+          <%= f.text_field :with_year_gte, 
+                           id: 'year_slider', 
+                           type: 'text',
+                           data: { 'slider-min'   => '1900',
+                                   'slider-max'   => '2016',
+                                   'slider-step'  => '1',
+                                   'slider-value' => '1900' } %>
+        </div>
+      </div>
       
 
-      <!--<div class="col-md-6 engine-size">-->
-      <!--  <div class="form-group form-group-primary">-->
+      <div class="col-md-6 engine-size">
+        <div class="form-group form-group-primary">
           
-      <!--    <(perc)= f.label :with_engine_size_gte, "Min Engine Size" %>-->
+          <%= f.label :with_engine_size_gte, "Min Engine Size" %>
           
-      <!--    <span id="engine_size_slider_val" class="slider-label">-->
-      <!--      50 cc-->
-      <!--    </span>-->
+          <span id="engine_size_slider_val" class="slider-label">
+            50 cc
+          </span>
           
-      <!--    <(perc)= f.text_field :with_engine_size_gte,-->
-      <!--                     id: 'engine_size_slider', -->
-      <!--                     type: 'text',-->
-      <!--                     data: { 'slider-min'   => '50',-->
-      <!--                             'slider-max'   => '2294',-->
-      <!--                             'slider-step'  => '1',-->
-      <!--                             'slider-value' => '50' } %>-->
-      <!--  </div>-->
-      <!--</div>-->
+          <%= f.text_field :with_engine_size_gte,
+                           id: 'engine_size_slider', 
+                           type: 'text',
+                           data: { 'slider-min'   => '50',
+                                   'slider-max'   => '2294',
+                                   'slider-step'  => '1',
+                                   'slider-value' => '50' } %>
+        </div>
+      </div>
+    </div>
   </div>
   
   <div class="dropdown-filters">
@@ -278,7 +238,7 @@
           <div class="form-element">
             
             <%= f.select :with_body_style, 
-                         [ "Classic / Vintage", "Cruiser", "Dual-Sport", 
+                         [ "Cafe Racer", "Cruiser", "Dirt Bike / Dual-Sport", 
                            "Mini / Pocket", "Moped", "Sportbike", "Standard", 
                            "Touring", "Trike" ],
                          { include_blank: true,
