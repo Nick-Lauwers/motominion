@@ -199,7 +199,7 @@ class Vehicle < ActiveRecord::Base
   # }
   
   scope :with_year_gte, lambda { |ref_year|
-    where('vehicles.year !< ?', ref_year)
+    where('vehicles.year >= ? OR vehicles.year ==', ref_year, nil)
   }
   
   # scope :with_actual_price_lte, lambda { |ref_price|
@@ -209,7 +209,7 @@ class Vehicle < ActiveRecord::Base
   # }
   
   scope :with_actual_price_lte, lambda { |ref_price|
-    where('vehicles.actual_price !> ? AND vehicles.msrp !> ?', ref_price, ref_price)
+    where('vehicles.actual_price <= ? OR vehicles.actual_price == ?', ref_price, nil)
   }
   
   # scope :with_mileage_numeric_lte, lambda { |ref_mileage|
@@ -217,15 +217,15 @@ class Vehicle < ActiveRecord::Base
   # }
   
   scope :with_mileage_numeric_lte, lambda { |ref_mileage|
-    where('vehicles.mileage_numeric !> ?', ref_mileage)
+    where('vehicles.mileage_numeric <= ? OR vehicles.engine_size == ?', ref_mileage, nil)
   }
   
   # scope :with_engine_size_gte, lambda { |ref_engine_size|
-  #   Vehicle.where.not(engine_size.lt(ref_engine_size))
+  #   Vehicle.where.not(engine_size.lt(ref_engine_size)
   # }
   
   scope :with_engine_size_gte, lambda { |ref_engine_size|
-    where('vehicles.engine_size !< ?', ref_engine_size)
+    where('vehicles.engine_size >= ? OR vehicles.engine_size == ?', ref_engine_size, nil)
   }
   
   # scope :with_seating_capacity_gte, lambda { |ref_capacity|

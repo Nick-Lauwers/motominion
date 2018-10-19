@@ -17,7 +17,6 @@ module ExternalDb
           v.vehicle_make_name  = make
           v.vehicle_model_name = model
           v.listing_name       = "#{year} #{make} #{model}"
-          v.actual_price       = price
           v.color              = exterior
           v.street_address     = dealership.street_address
           v.city               = dealership.city
@@ -39,6 +38,12 @@ module ExternalDb
               ground_clearance seat_height seat_height_unladen
               seat_height_laden ].each do |f|
             v.send("#{f}=", send(f))
+          end
+          
+          if price != nil
+            v.actual_price = price
+          elsif msrp != nil
+            v.actual_price = msrp
           end
           
           if ( condition == "Pre-Owned" )
