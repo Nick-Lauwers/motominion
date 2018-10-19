@@ -199,7 +199,7 @@ class Vehicle < ActiveRecord::Base
   # }
   
   scope :with_year_gte, lambda { |ref_year|
-    where('vehicles.year >= ? OR vehicles.year ==', ref_year, nil)
+    where('vehicles.year >= ? OR vehicles.year == ?', ref_year, nil)
   }
   
   # scope :with_actual_price_lte, lambda { |ref_price|
