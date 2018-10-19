@@ -538,6 +538,37 @@ $(function() {
         	searchResults.height(searchResultsBackground.outerHeight() + 50);
         }
       });
+      
+      // modal dependent dropdown
+    
+      var vehicleModelModalFilters   = $('#vehicle-model-modal-filters');
+      var vehicleMakeModalFilters    = $('#vehicle-make-modal-filters');
+      var vehicle_model_modal_filters = vehicleModelModalFilters.html();
+        
+      vehicleModelModalFilters.prop("disabled", true);
+      
+      vehicleMakeModalFilters.change(function() {
+        
+        var vehicle_make_modal_filters = $('#vehicle-make-modal-filters :selected').text();
+        var escaped_vehicle_make_modal_filters = 
+          vehicle_make_modal_filters.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_search = 
+          $(vehicle_model_modal_filters).
+            filter("optgroup[label=" + escaped_vehicle_make_modal_filters + "]").
+            html();
+        
+        if (options_search) {
+          vehicleModelModalFilters.html("<option value=''>All models</option>" +
+                                    options_search);
+          vehicleModelModalFilters.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelModalFilters.empty();
+          vehicleModelModalFilters.prop("disabled", true);
+        }
+      });
     
   // basics
   
