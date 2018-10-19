@@ -515,12 +515,12 @@
                   <strong>
                     <% if @vehicle.vehicle_make.present? %>
                       <%= @vehicle.vehicle_make.name %>
-                      <%= @vehicle.vehicle_model.name %>
-                      <%= @vehicle.trim_details %>
+                      <%= @vehicle.vehicle_model.name if @vehicle.vehicle_model.present? %>
+                      <%= @vehicle.trim_details if @vehicle.trim_details.present? %>
                     <% else %>
                       <%= @vehicle.vehicle_make_name %>
-                      <%= @vehicle.vehicle_model_name %>
-                      <%= @vehicle.trim_details %>
+                      <%= @vehicle.vehicle_model_name if @vehicle.vehicle_make_name.present? %>
+                      <%= @vehicle.trim_details if @vehicle.trim_details.present? %>
                     <% end %>
                   </strong>
                 </td>
