@@ -119,6 +119,39 @@
 </div>
 
 <div class="hero-mobile visible-xs">
+  
+  <div class="hero-mobile-search">
+    <%= form_for_filterrific @filterrific, 
+        url: search_vehicles_path, 
+        html: { 
+          id:    "filterrific-no-ajax-auto-submit",
+          class: "search-form-primary" 
+        } do |f| %>
+          
+      <div class="row search-form-primary-content">
+        
+        <div class="col-xs-10 search-bar-primary">
+          
+          <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
+             aria-hidden="true"></i>
+          
+          <%= f.text_field :with_zip_code, 
+                           placeholder: "Search by ZIP Code", 
+                           class: "form-control 
+                                   search-form-control 
+                                   typeahead" %>
+        </div>
+
+        <div class="col-xs-2 search-button-primary">
+          <%= button_tag(type:  "submit", 
+                         class: "btn btn-search") do %>
+            <i class="fa fa-lg fa-search"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
   <div class="hero-mobile-gradient"></div>
 </div>
 
@@ -592,7 +625,9 @@
   </div>
 </div>
 
-<%= render 'personalized_searches/form' %>
+<div class="hidden-xs">
+  <%= render 'personalized_searches/form' %>
+</div>
 
 <!--<div class="press">-->
   
