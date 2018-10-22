@@ -42,7 +42,7 @@
   <% end %>
   
   <% if vehicle.photos.length > 0 %>
-    <% image_url = URI.unescape( vehicle.photos[0].image.url() ) %>
+    <% image_url = "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s %>
   <% else %>
     <% image_url = "http://www.facebook.com/teapic.jpg" %>
   <% end %>
