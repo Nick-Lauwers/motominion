@@ -6,7 +6,7 @@
         'availability', 'state_of_vehicle', 'latitude', 'longitude' ]
     ).strip.html_safe %>
 
-<% Vehicle.find(1..10).each do |vehicle| %>
+<% Vehicle.where(id: 1..10).each do |vehicle| %>
 
   <% vehicle_id    = vehicle.id %>
   <% title         = vehicle.listing_name %>
