@@ -88,10 +88,10 @@ class VehiclesController < ApplicationController
     
     respond_to do |format|
       format.html
-      format.csv do
-        headers['Content-Type'] ||= 'text/plain'
-        # { render text, content_type: 'text/plain' }
-      end
+      format.csv 
+      # do
+      #   headers['Content-Type'] ||= 'text/csv'
+      # end
     end
   end
   
