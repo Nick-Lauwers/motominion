@@ -143,6 +143,7 @@ class VehiclesController < ApplicationController
         :with_vehicle_model_id,
         :with_zip_code,
         :with_distance,
+        :near_city,
         :with_cafe_racer,
         :with_cruiser,
         :with_dirt_bike_dual_sport,

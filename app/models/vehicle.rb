@@ -76,6 +76,7 @@ class Vehicle < ActiveRecord::Base
       :with_vehicle_model_id,
       :with_zip_code,
       :with_distance,
+      :near_city,
       :with_cafe_racer,
       :with_cruiser,
       :with_dirt_bike_dual_sport,
@@ -140,6 +141,10 @@ class Vehicle < ActiveRecord::Base
     elsif distance_attrs.zip_code.present?
       Vehicle.all
     end
+  }
+  
+  scope :near_city, lambda { |city|
+    Vehicle.near(city, 20, order: nil)
   }
   
   scope :with_cafe_racer, lambda { |flag|

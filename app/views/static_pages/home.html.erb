@@ -48,7 +48,7 @@
     
     <h1 class="hero-desktop-title">Motorcycles Made Easy</h1>
     
-    <h2 class="hero-desktop-info hidden-xs">
+    <h2 class="hero-desktop-info">
       Discover bikes in your own backyard
     </h2>
     
@@ -120,36 +120,45 @@
 
 <div class="hero-mobile visible-xs">
   
-  <div class="hero-mobile-search">
-    <%= form_for_filterrific @filterrific, 
-        url: search_vehicles_path, 
-        html: { 
-          id:    "filterrific-no-ajax-auto-submit",
-          class: "search-form-primary" 
-        } do |f| %>
+  <div class="hero-mobile-detail">
+    
+    <h1 class="hero-mobile-title">Motorcycles Made Easy</h1>
+    
+    <h2 class="hero-mobile-info">
+      Discover bikes in your own backyard
+    </h2>
+    
+    <div class="hero-mobile-search">
+      <%= form_for_filterrific @filterrific, 
+          url: search_vehicles_path, 
+          html: { 
+            id:    "filterrific-no-ajax-auto-submit",
+            class: "search-form-primary" 
+          } do |f| %>
+            
+        <div class="row search-form-primary-content">
           
-      <div class="row search-form-primary-content">
-        
-        <div class="col-xs-10 search-bar-primary">
-          
-          <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
-             aria-hidden="true"></i>
-          
-          <%= f.text_field :with_zip_code, 
-                           placeholder: "Search by ZIP Code", 
-                           class: "form-control 
-                                   search-form-control 
-                                   typeahead" %>
+          <div class="col-xs-10 search-bar-primary">
+            
+            <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
+               aria-hidden="true"></i>
+            
+            <%= f.text_field :with_zip_code, 
+                             placeholder: "Search by ZIP Code", 
+                             class: "form-control 
+                                     search-form-control 
+                                     typeahead" %>
+          </div>
+  
+          <div class="col-xs-2 search-button-primary">
+            <%= button_tag(type:  "submit", 
+                           class: "btn btn-search") do %>
+              <i class="fa fa-lg fa-search"></i>
+            <% end %>
+          </div>
         </div>
-
-        <div class="col-xs-2 search-button-primary">
-          <%= button_tag(type:  "submit", 
-                         class: "btn btn-search") do %>
-            <i class="fa fa-lg fa-search"></i>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
   <div class="hero-mobile-gradient"></div>
@@ -189,10 +198,17 @@
 
 <div id="feed-container">
   <div class="feed">
-
+    
     <div class="feed-content">
       
-      <h3 class="feed-title">Begin Your Search</h3>
+      <h3 class="feed-title">What are you looking for?</h3>
+      
+      <span class="feed-info">
+        Personalize your results by 
+        <%= link_to "choosing your own preferences",
+                    '#',
+                    class: "preferences-link" %>.
+      </span>
           
       <div class="personalized-search-list">
         <div class="personalized-search-list-content">
@@ -513,65 +529,295 @@
             </div>
           </div>  
         </div>
-        
-        <div class="feed-link">
-          <!--<(perc)= link_to search_vehicles_path, -->
-          <!--            class: "feed-link-content" do %>-->
-          <!--  View All Listings (<= Vehicle.count %>)-->
-          <!--  <i class="fa fa-angle-right" aria-hidden="true"></i> -->
-          <!--<(perc) end %>-->
+      </div>
+    </div>
+
+    <div class="feed-content">
+      
+      <h3 class="feed-title">Find motorcycles in...</h3>
+    
+      <div class="cities">
+        <div class="cities-content">
+          <div class="col-md-4 col-xs-4">
+            <%= form_for_filterrific @filterrific, 
+                                     url: search_vehicles_path, 
+                                     html: { 
+                                       id: "filterrific-no-ajax-auto-submit",
+                                     } do |f| %>
+                                     
+              <%= f.hidden_field :near_city, value: "Los Angeles, CA" %>
+              
+              <%= button_tag(type:  "submit", 
+                             class: "city",
+                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/los-angeles.jpg')") do %>
+                
+                <div class="city-text">
+              
+                  <span class="city-title">Los Angeles</span>
+                  
+                  <span class="city-subtitle">
+                    
+                    <%= pluralize(Vehicle.near('Los Angeles, CA').count(:all), 
+                                  "Motorcycle") %> for Sale
+                                  
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                
+                <div class="city-gradient"></div>
+              <% end %>
+            <% end %>
+          </div>
+          
+          <div class="col-md-4 col-xs-4">
+            <%= form_for_filterrific @filterrific, 
+                                     url: search_vehicles_path, 
+                                     html: { 
+                                       id: "filterrific-no-ajax-auto-submit",
+                                     } do |f| %>
+                                     
+              <%= f.hidden_field :near_city, value: "San Francisco, CA" %>
+              
+              <%= button_tag(type:  "submit", 
+                             class: "city",
+                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-francisco.jpg')") do %>
+                
+                <div class="city-text">
+              
+                  <span class="city-title">San Francisco</span>
+                  
+                  <span class="city-subtitle">
+                    
+                    <%= pluralize(Vehicle.near('San Francisco, CA').count(:all), 
+                                  "Motorcycle") %> for Sale
+                    
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                
+                <div class="city-gradient"></div>
+              <% end %>
+            <% end %>
+          </div>
+          
+          <div class="col-md-4 col-xs-4">
+            <%= form_for_filterrific @filterrific, 
+                                     url: search_vehicles_path, 
+                                     html: { 
+                                       id: "filterrific-no-ajax-auto-submit",
+                                     } do |f| %>
+                                     
+              <%= f.hidden_field :near_city, value: "San Diego, CA" %>
+              
+              <%= button_tag(type:  "submit", 
+                             class: "city",
+                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-diego.jpg')") do %>
+                
+                <div class="city-text">
+              
+                  <span class="city-title">San Diego</span>
+                  
+                  <span class="city-subtitle">
+                    
+                    <%= pluralize(Vehicle.near('San Diego, CA').count(:all), 
+                                  "Motorcycle") %> for Sale
+                                  
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  </span>
+                </div> 
+  
+                <div class="city-gradient"></div>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
     
-    <% if @feed_items.exists? %>
-      <div class="feed-content">
+    <div class="feed-content">
         
-        <h3 class="feed-title">Top-Rated Listings</h3>
+      <h3 class="feed-title">Browse Ducati motorcycles</h3>
       
-        <ol class="feed-items hidden-xs">
-          <%= render partial: "feed_item", 
+      <span class="feed-info">Like what you see?</span>
+      
+      <%= form_for_filterrific @filterrific, 
+                               url: search_vehicles_path, 
+                               html: { 
+                                 id:    "filterrific-no-ajax-auto-submit",
+                                 class: "vehicle-make-link"
+                               } do |f| %>
+                               
+        <%= f.hidden_field :with_vehicle_make_id, value: 4 %>
+        
+        <%= f.submit "Browse all of our Ducati's.", 
+                     class: "vehicle-make-link-content" %>
+      <% end %>
+      
+      <ol class="feed-items hidden-xs">
+        <%= render partial: "feed_item", 
+                   collection: Vehicle.
+                                 where(vehicle_make_id: 4).
+                                 includes(:listing_score).
+                                 order("listing_scores.overall_score DESC",
+                                      "year DESC",
+                                      "listing_name ASC").
+                                 first(3) %>
+      </ol>
+      
+      <div class="feed-items-mobile visible-xs"> 
+        <ol class="feed-items-mobile-content">
+          <%= render partial: "feed_item_mobile",
                      collection: Vehicle.
-                                  # find.
-                                  # where(sold_at: nil).
-                                  # where.not(posted_at: nil).
-                                  # order(bumped_at: :desc).
-                                  # where(dealership_id: nil).
+                                   where(vehicle_make_id: 4).
                                    includes(:listing_score).
                                    order("listing_scores.overall_score DESC",
-                                        "year DESC",
-                                        "listing_name ASC").
-                                   first(6) %>
+                                         "year DESC",
+                                         "listing_name ASC").
+                                   first(4) %>
         </ol>
-        
-        <ol class="feed-items-mobile visible-xs">
-          <div class="feed-items-mobile-content">
-            <%= render partial: "feed_item", 
-                       collection: Vehicle.
-                                    # find.
-                                    # where(sold_at: nil).
-                                    # where.not(posted_at: nil).
-                                    # order(bumped_at: :desc).
-                                    # where(dealership_id: nil).
-                                     includes(:listing_score).
-                                     order("listing_scores.overall_score DESC",
-                                          "year DESC",
-                                          "listing_name ASC").
-                                     first(3) %>
+      </div>
+    </div> 
+    
+    <div class="feed-content hidden-xs">
+      <div class="feed-listing">
+        <div class="feed-listing-content">
+          <div class="row vertical-align">
+            
+            <div class="col-md-5">
+              <div class="feed-listing-image"></div>
+            </div>
+            
+            <div class="col-md-7">
+              
+              <div class="feed-listing-text">
+                
+                <span class="feed-title">
+                  Out with the old; In with the new!
+                </span>
+                
+                <span class="feed-info">
+                  List your motorcycle for free using Motominion.
+                </span>
+                
+                <div class="feed-listing-button">
+                  <%= link_to new_vehicle_path,
+                              class: "btn btn-green" do %>
+                    Find Out More
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                  <% end %>
+                </div>
+              </div>
+            </div>
           </div>
-        </ol>
-        
-
-        
-        <div class="feed-link">
-          <%= link_to search_vehicles_path, 
-                      class: "feed-link-content" do %>
-            View All Listings (<%= Vehicle.count %>)
-            <i class="fa fa-angle-right" aria-hidden="true"></i> 
-          <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
+    
+    <div class="feed-content visible-xs">
+      <%= link_to new_vehicle_path do %>
+        <div class="feed-listing-mobile">
+          
+          <div class="city-text">
+  
+            <span class="city-title">Out with the old!</span>
+            
+            <span class="city-subtitle">
+              List your motorcycle for free using Motominion.
+            </span>
+          </div>
+          
+          <div class="city-gradient"></div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="feed-content">
+        
+      <h3 class="feed-title">Browse Harley Davidson motorcycles</h3>
+      
+      <span class="feed-info">Like what you see?</span>
+      
+      <%= form_for_filterrific @filterrific, 
+                               url: search_vehicles_path, 
+                               html: { 
+                                 id:    "filterrific-no-ajax-auto-submit",
+                                 class: "vehicle-make-link"
+                               } do |f| %>
+                               
+        <%= f.hidden_field :with_vehicle_make_id, value: 5 %>
+        
+        <%= f.submit "Browse all of our Harley Davidson's.", 
+                     class: "vehicle-make-link-content" %>
+      <% end %>
+      
+      <ol class="feed-items hidden-xs">
+        <%= render partial: "feed_item", 
+                   collection: Vehicle.
+                                 where(vehicle_make_id: 5).
+                                 includes(:listing_score).
+                                 order("listing_scores.overall_score DESC",
+                                      "year DESC",
+                                      "listing_name ASC").
+                                 first(3) %>
+      </ol>
+      
+      <div class="feed-items-mobile visible-xs"> 
+        <ol class="feed-items-mobile-content">
+          <%= render partial: "feed_item_mobile",
+                     collection: Vehicle.
+                                   where(vehicle_make_id: 5).
+                                   includes(:listing_score).
+                                   order("listing_scores.overall_score DESC",
+                                         "year DESC",
+                                         "listing_name ASC").
+                                   first(4) %>
+        </ol>
+      </div>
+    </div> 
+
+    <div class="feed-content">
+        
+      <h3 class="feed-title">Browse Triumph motorcycles</h3>
+      
+      <span class="feed-info">Like what you see?</span>
+      
+      <%= form_for_filterrific @filterrific, 
+                               url: search_vehicles_path, 
+                               html: { 
+                                 id:    "filterrific-no-ajax-auto-submit",
+                                 class: "vehicle-make-link"
+                               } do |f| %>
+                               
+        <%= f.hidden_field :with_vehicle_make_id, value: 12 %>
+        
+        <%= f.submit "Browse all of our Triumph's.", 
+                     class: "vehicle-make-link-content" %>
+      <% end %>
+      
+      <ol class="feed-items hidden-xs">
+        <%= render partial: "feed_item", 
+                   collection: Vehicle.
+                                 where(vehicle_make_id: 12).
+                                 includes(:listing_score).
+                                 order("listing_scores.overall_score DESC",
+                                      "year DESC",
+                                      "listing_name ASC").
+                                 first(3) %>
+      </ol>
+      
+      <div class="feed-items-mobile visible-xs"> 
+        <ol class="feed-items-mobile-content">
+          <%= render partial: "feed_item_mobile",
+                     collection: Vehicle.
+                                   where(vehicle_make_id: 12).
+                                   includes(:listing_score).
+                                   order("listing_scores.overall_score DESC",
+                                         "year DESC",
+                                         "listing_name ASC").
+                                   first(4) %>
+        </ol>
+      </div>
+    </div> 
     
     <div class="feed-content">
       

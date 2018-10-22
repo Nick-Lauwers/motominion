@@ -1,0 +1,37 @@
+<li id="feed-item-mobile-<%= feed_item_mobile.id %>" 
+    class="col-xs-3 feed-item-mobile">
+  
+  <%= link_to feed_item_mobile, target: "_blank" do %>
+  
+    <div class="feed-item-mobile-image", 
+         style="background-image: url(
+                 '<%= feed_item_mobile.photos[0].image.url() if 
+                      feed_item_mobile.photos.length > 0 %>'
+                )">
+    </div>
+    
+    <% if feed_item_mobile.dealership.present? %>
+      <span class="certified">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+        Certified
+      </span>
+    <% else %>
+      <span class="private">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+        Private
+      </span>
+    <% end %>
+    
+    <span class="feed-item-mobile-price">
+      <% if feed_item_mobile.actual_price.present? %>
+        | $<%= feed_item_mobile.actual_price %> 
+      <% elsif feed_item_mobile.msrp.present? %>
+        | $<%= feed_item_mobile.msrp %>
+      <% end %>
+    </span>
+    
+    <span class="feed-item-mobile-name">
+      <%= feed_item_mobile.listing_name %>
+    </span>
+  <% end %>
+</li>

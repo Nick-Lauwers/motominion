@@ -1931,7 +1931,7 @@ footer {
 /* home */
 
 .hero-desktop {
-  height: 500px;
+  height: 550px;
   overflow: hidden;
   position: relative;
 }
@@ -1968,8 +1968,8 @@ footer {
   transform: translate(-50%, -50%);
 }
 
-.hero-desktop-title {
-  font-size: 3.5em;
+.hero-desktop-title,
+.hero-mobile-title {
   font-weight: bold;
   letter-spacing: 0.01em;
   text-shadow: 0 0 16px $transparent;
@@ -1977,8 +1977,16 @@ footer {
   margin: 0;
 }
 
-.hero-desktop-info {
-  font-size: 1.5em;
+.hero-desktop-title {
+  font-size: 3.5em;
+}
+
+.hero-mobile-title {
+  font-size: 1.7em;
+}
+
+.hero-desktop-info,
+.hero-mobile-info {
   font-weight: bold;
   letter-spacing: 0.01em;
   text-shadow: 0 0 16px $transparent;
@@ -1986,27 +1994,38 @@ footer {
   margin: 0.4em 0 1.4em;
 }
 
+.hero-desktop-info {
+  font-size: 1.5em;
+}
+
+.hero-mobile-info {
+  font-size: 1.15em;
+  font-style: italic;
+}
+
 .hero-mobile {
   background-color: $gray-darkest;
   background-size: cover;
-  background-position: 75% 50%;
+  background-position: right;
   background-repeat: no-repeat;
-  background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/bmw.jpg');
-  height: 400px;
+  background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/harley-davidson.jpg');
+  height: 500px;
   position: relative;
 }
 
-.hero-mobile-search {
-  width: 75%;
+.hero-mobile-detail {
+  text-align: center;
+  width: 85%;
   position: absolute;
+  top: 45%;
   left: 50%;
-  bottom: 20%;
   transform: translateX(-50%);
+  z-index: 100;
 }
 
 .hero-mobile-gradient {
   width: 100%;
-  height: 50px;
+  height: 200px;
   background: linear-gradient(rgba(249, 249, 249, 0), #f9f9f9);
   position: absolute;
   bottom: 0;
@@ -2142,7 +2161,7 @@ footer {
 .personalized-search-list {
   width: 100%;
   margin-top: 30px;
-  overflow: visible;
+  overflow: auto;
 }
 
 .personalized-search-row {
@@ -2277,7 +2296,7 @@ footer {
 }
 
 .feed-content {
-  margin-bottom: 2.5em;
+  margin-bottom: 3.5em;
 }
 
 .site-map {
@@ -2313,34 +2332,142 @@ footer {
   text-align: left;
   color: $gray-text;
   margin: 0;
+  display: block;
 }
 
-// .feed-image-container {
-//   text-align: center;
-// }
+.feed-info {
+  font-size: 1.05em;
+  line-height: 1.3;
+  margin-top: 0.5em;
+  display: inline-block;
+}
 
-// .feed-subtitle {
-//   font-size: 1.65em;
-//   font-weight: bold;
-//   display: block;
-//   color: $gray-darker;
-// }
+.preferences-link {
+  color: #00adf2;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: #00adf2;
+  }
+}
 
-// .feed-info {
-//   font-size: 1.1em;
-//   line-height: 1.5;
-//   color: $gray-darker;
-// }
+.city {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 225px;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px 0 $gray-light;
+  position: relative;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    box-shadow: 0 3px 32px 0 $gray-light;
+    outline: none;
+    transform: scale(1.05);
+  }
+}
+
+.city-text {
+  text-align: left;
+  text-shadow: 0 0 16px $transparent;
+  position: absolute;
+  left: 0.7em;
+  bottom: 2em;
+  z-index: 100;
+}
+
+.city-title {
+  font-size: 2.3em;
+  font-weight: bold;
+  line-height: 1.2;
+  color: white;
+  display: block;
+}
+
+.city-subtitle {
+  font-size: 1.05em;
+  font-style: italic;
+  color: white;
+}
+
+.city-gradient {
+  background: linear-gradient(rgba(0, 0, 0, 0), #000000);
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+}
+
+.vehicle-make-link {
+  color: #00adf2;
+  display: inline-block;
+}
+
+.vehicle-make-link-content {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+.feed-listing {
+  border-top: 1px solid $gray-border;
+  border-bottom: 1px solid $gray-border;
+  padding: 3em 0;
+}
+
+.feed-listing-content {
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.feed-listing-image,
+.feed-listing-mobile {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/home-list.jpg");
+  height: 225px;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px 0 $gray-light;
+}
+
+.feed-listing-mobile {
+  position: relative;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    box-shadow: 0 3px 24px 0 $gray-light;
+    transform: scale(1.05);
+  }
+}
+
+.feed-listing-text {
+  margin-left: 1em;
+}
+
+.feed-listing-button {
+  width: 12em;
+  margin-top: 2em;
+}
 
 .feed-community {
   margin-top: 30px;
 }
 
 .feed-items,
-.feed-items-mobile {
+.feed-items-mobile-content {
   list-style: none;
   overflow: auto;
-  padding: 0;
+  padding-left: 0;
 }
 
 .feed-items {
@@ -2349,13 +2476,23 @@ footer {
   overflow-x: hidden;
 }
 
+.cities,
 .feed-items-mobile {
-  margin: 30px -15px 15px;
+  margin: 30px -10px 15px;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
 
 .feed-items-mobile-content {
-  width: 70em;
+  width: 46em;
+}
+
+.dealerships {
+  list-style: none;
+  padding-left: 0;
+  margin: 30px -15px 15px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 #feed-items {
@@ -2374,35 +2511,80 @@ footer {
 }
 
 .feed-item {
-  margin-top: 3em;
+  margin-top: 30px;
   transition: 0.3s;
   &:hover {
     transform: scale(1.05);
   }
 }
 
-.feed-link,
-.matches-submit-button {
-  text-align: right;
-  clear: both;
+.feed-item-mobile {
+  padding: 0 10px;
 }
 
-.feed-link {
-  overflow: auto;
-}
-
-.feed-link-content {
-  font-weight: bold;
-  font-size: 1.2em;
-  color: $green;
-  margin-bottom: 4em;
-  transition: 0.3s;
+.feed-item-mobile a {
   &:hover,
   &:focus {
     text-decoration: none;
-    color: $green;
-    opacity: 0.4;
   }
+}
+
+.feed-item-mobile-image {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100px;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px 0 $gray-light;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    box-shadow: 0 3px 24px 0 $gray-light;
+    transform: scale(1.05);
+  }
+}
+
+.certified,
+.private,
+.feed-item-mobile-price {
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 1;
+  display: inline-block;
+}
+
+.certified {
+  color: $red;
+}
+
+.private {
+  color: $green;
+}
+
+.feed-item-mobile-name {
+  font-size: 0.9em;
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1;
+  height: 1em;
+  display: block;
+  overflow: hidden;
+}
+
+.average-rating-feed-item-mobile {
+  cursor: pointer !important;
+  display: inline-block;
+}
+
+.feed-item-mobile-reviews {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.matches-submit-button {
+  text-align: right;
+  clear: both;
 }
 
 .feed-community {
@@ -10573,7 +10755,7 @@ a.remove_fields {
   }
   
   .feed {
-    padding-top: 1.3em;
+    padding-top: 2em;
   }
   
   .feed-title {
@@ -10604,10 +10786,6 @@ a.remove_fields {
     font-size: 1.05em;
     margin-top: 0;
   }
-  
-  // .feed-link-content {
-  //   font-size: 1.05em;
-  // }
   
   .feed-item {
     width: 22em;
@@ -11296,6 +11474,25 @@ a.remove_fields {
   
   .personalized-search-button {
     margin-bottom: 0;
+  }
+  
+  .feed-info {
+    font-size: 1em;
+    margin-top: 0.25em;
+  }
+  
+  .personalized-search-list,
+  .cities {
+    margin-top: 1.1em;
+  }
+  
+  .cities-content,
+  .dealerships-content {
+    width: 70em;
+  }
+  
+  .feed-content {
+    margin-bottom: 2.5em;
   }
   
 .begin-here {
