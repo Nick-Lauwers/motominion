@@ -94,3 +94,181 @@
           longitude ]
       ).strip.html_safe %>
 <% end %>
+
+<% Vehicle.
+    includes(:vehicle_model).
+    where(vehicle_models: {vehicle_type: "Sportbike"}).
+    # where(last_found_at: 1.day.ago..Time.current).
+    near('San Jose, CA').
+    order("RANDOM()").
+    limit(10).
+    each do |vehicle| %>
+
+  <% vehicle_id    = vehicle.id %>
+  <% title         = vehicle.listing_name %>
+  <% description   = vehicle.description_clean %>
+  <% url           = asset_url( url_for(vehicle) ) %>
+  <% year          = vehicle.year %>
+  <% mileage_value = vehicle.mileage_numeric %>
+  <% mileage_unit  = 'MI' %>
+  <% image_tag     = nil %>
+  <% transmission  = "AUTOMATIC" %>
+  <% body_style    = "OTHER" %>
+  <% drivetrain    = "Other" %>
+  <% condition     = "Other" %>
+  <% availability  = "AVAILABLE" %>
+  <% addr1         = vehicle.street_address %>
+  <% city          = vehicle.city %>
+  <% region        = vehicle.state %>
+  <% address       = "{addr1: '#{addr1}', city: '#{city}', region: '#{region}', country: 'US' }" %>
+  <% sale_price    = nil %>
+  <% latitude      = vehicle.latitude %>
+  <% longitude     = vehicle.longitude %>
+  
+  <% if vehicle.vehicle_make.present? %>
+    <% make = vehicle.vehicle_make.name %>
+  <% elsif vehicle.vehicle_make_name.present? %>
+    <% make = vehicle.vehicle_make_name %>
+  <% end %>
+  
+  <% if vehicle.vehicle_model.present? %>
+    <% model = vehicle.vehicle_model.name %>
+  <% elsif vehicle.vehicle_model_name.present? %>
+    <% model = vehicle.vehicle_model_name %>
+  <% end %>
+  
+  <% if vehicle.photos.length > 0 %>
+    <% image_url = "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s %>
+  <% else %>
+    <% image_url = "http://www.facebook.com/teapic.jpg" %>
+  <% end %>
+  
+  <% if vehicle.fuel_type == "Electric" %>
+    <% fuel_type = "ELECTRIC" %>
+  <% else %>
+    <% fuel_type = "GASOLINE" %>
+  <% end %>
+  
+  <% if vehicle.vin.present? %>
+    <% vin = vehicle.vin %>
+  <% else %>
+    <% vin = "UNKNOWN" %>
+  <% end %>
+  
+  <% if vehicle.msrp.present? %>
+    <% price = vehicle.msrp.to_s + " USD" %>
+  <% elsif vehicle.actual_price.present? %>
+    <% price = vehicle.actual_price.to_s + " USD" %>
+  <% else %>
+    <% price = "0 USD" %>
+  <% end %>
+  
+  <% if vehicle.color.present? %>
+    <% exterior_color = vehicle.color %>
+  <% else %>
+    <% exterior_color = "Other" %>
+  <% end %>
+  
+  <% if vehicle.condition == "New" %>
+    <% state_of_vehicle = "NEW" %>
+  <% else %>
+    <% state_of_vehicle = "USED" %>
+  <% end %>
+
+  <%= CSV.generate_line(
+        [ vehicle_id, title, description, url, make, model, year, mileage_value, 
+          mileage_unit, image_url, image_tag, transmission, fuel_type, 
+          body_style, drivetrain, vin, condition, price, address, 
+          exterior_color, sale_price, availability, state_of_vehicle, latitude,
+          longitude ]
+      ).strip.html_safe %>
+<% end %>
+
+<% Vehicle.
+    includes(:vehicle_model).
+    where(vehicle_models: {vehicle_type: "Sportbike"}).
+    # where(last_found_at: 1.day.ago..Time.current).
+    near('Los Angeles, CA').
+    order("RANDOM()").
+    limit(10).
+    each do |vehicle| %>
+
+  <% vehicle_id    = vehicle.id %>
+  <% title         = vehicle.listing_name %>
+  <% description   = vehicle.description_clean %>
+  <% url           = asset_url( url_for(vehicle) ) %>
+  <% year          = vehicle.year %>
+  <% mileage_value = vehicle.mileage_numeric %>
+  <% mileage_unit  = 'MI' %>
+  <% image_tag     = nil %>
+  <% transmission  = "AUTOMATIC" %>
+  <% body_style    = "OTHER" %>
+  <% drivetrain    = "Other" %>
+  <% condition     = "Other" %>
+  <% availability  = "AVAILABLE" %>
+  <% addr1         = vehicle.street_address %>
+  <% city          = vehicle.city %>
+  <% region        = vehicle.state %>
+  <% address       = "{addr1: '#{addr1}', city: '#{city}', region: '#{region}', country: 'US' }" %>
+  <% sale_price    = nil %>
+  <% latitude      = vehicle.latitude %>
+  <% longitude     = vehicle.longitude %>
+  
+  <% if vehicle.vehicle_make.present? %>
+    <% make = vehicle.vehicle_make.name %>
+  <% elsif vehicle.vehicle_make_name.present? %>
+    <% make = vehicle.vehicle_make_name %>
+  <% end %>
+  
+  <% if vehicle.vehicle_model.present? %>
+    <% model = vehicle.vehicle_model.name %>
+  <% elsif vehicle.vehicle_model_name.present? %>
+    <% model = vehicle.vehicle_model_name %>
+  <% end %>
+  
+  <% if vehicle.photos.length > 0 %>
+    <% image_url = "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s %>
+  <% else %>
+    <% image_url = "http://www.facebook.com/teapic.jpg" %>
+  <% end %>
+  
+  <% if vehicle.fuel_type == "Electric" %>
+    <% fuel_type = "ELECTRIC" %>
+  <% else %>
+    <% fuel_type = "GASOLINE" %>
+  <% end %>
+  
+  <% if vehicle.vin.present? %>
+    <% vin = vehicle.vin %>
+  <% else %>
+    <% vin = "UNKNOWN" %>
+  <% end %>
+  
+  <% if vehicle.msrp.present? %>
+    <% price = vehicle.msrp.to_s + " USD" %>
+  <% elsif vehicle.actual_price.present? %>
+    <% price = vehicle.actual_price.to_s + " USD" %>
+  <% else %>
+    <% price = "0 USD" %>
+  <% end %>
+  
+  <% if vehicle.color.present? %>
+    <% exterior_color = vehicle.color %>
+  <% else %>
+    <% exterior_color = "Other" %>
+  <% end %>
+  
+  <% if vehicle.condition == "New" %>
+    <% state_of_vehicle = "NEW" %>
+  <% else %>
+    <% state_of_vehicle = "USED" %>
+  <% end %>
+
+  <%= CSV.generate_line(
+        [ vehicle_id, title, description, url, make, model, year, mileage_value, 
+          mileage_unit, image_url, image_tag, transmission, fuel_type, 
+          body_style, drivetrain, vin, condition, price, address, 
+          exterior_color, sale_price, availability, state_of_vehicle, latitude,
+          longitude ]
+      ).strip.html_safe %>
+<% end %>
