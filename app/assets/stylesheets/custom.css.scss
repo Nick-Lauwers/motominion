@@ -2161,7 +2161,7 @@ footer {
 .personalized-search-list {
   width: 100%;
   margin-top: 30px;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
 .personalized-search-row {
