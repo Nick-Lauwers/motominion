@@ -657,6 +657,7 @@
         <%= render partial: "feed_item", 
                    collection: Vehicle.
                                  where(vehicle_make_id: 4).
+                                 where(dealership_id: 1..30).
                                  includes(:listing_score).
                                  order("listing_scores.overall_score DESC",
                                       "year DESC",
@@ -669,6 +670,7 @@
           <%= render partial: "feed_item_mobile",
                      collection: Vehicle.
                                    where(vehicle_make_id: 4).
+                                   where(dealership_id: 1..30).
                                    includes(:listing_score).
                                    order("listing_scores.overall_score DESC",
                                          "year DESC",
@@ -754,6 +756,7 @@
         <%= render partial: "feed_item", 
                    collection: Vehicle.
                                  where(vehicle_make_id: 5).
+                                 where(dealership_id: 1..30).
                                  includes(:listing_score).
                                  order("listing_scores.overall_score DESC",
                                       "year DESC",
@@ -766,6 +769,7 @@
           <%= render partial: "feed_item_mobile",
                      collection: Vehicle.
                                    where(vehicle_make_id: 5).
+                                   where(dealership_id: 1..30).
                                    includes(:listing_score).
                                    order("listing_scores.overall_score DESC",
                                          "year DESC",
@@ -798,6 +802,7 @@
         <%= render partial: "feed_item", 
                    collection: Vehicle.
                                  where(vehicle_make_id: 12).
+                                 where(dealership_id: 1..30).
                                  includes(:listing_score).
                                  order("listing_scores.overall_score DESC",
                                       "year DESC",
@@ -810,6 +815,7 @@
           <%= render partial: "feed_item_mobile",
                      collection: Vehicle.
                                    where(vehicle_make_id: 12).
+                                   where(dealership_id: 1..30).
                                    includes(:listing_score).
                                    order("listing_scores.overall_score DESC",
                                          "year DESC",
