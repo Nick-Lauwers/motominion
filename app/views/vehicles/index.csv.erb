@@ -12,7 +12,8 @@
     where(last_found_at: 1.day.ago..Time.current).
     near('San Francisco, CA').
     order("RANDOM()").
-    limit(10).each do |vehicle| %>
+    limit(10).
+    each do |vehicle| %>
 
   <% vehicle_id    = vehicle.id %>
   <% title         = vehicle.listing_name %>
