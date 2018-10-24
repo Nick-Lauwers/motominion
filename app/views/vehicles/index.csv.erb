@@ -14,8 +14,11 @@
        # where(vehicle_models: {vehicle_type: "Sportbike"}).
        # where(last_found_at: 1.day.ago..Time.current).
        # near('San Francisco, CA').
+       joins(:photos).
+       group('vehicles.id').
+       having('count(photos) > 2').
        order("RANDOM()").
-       limit(20).
+       limit(10).
        each do |vehicle| %>
   
     <% vehicle_id     = vehicle.id %>
@@ -114,11 +117,11 @@
       <% state_of_vehicle = "USED" %>
     <% end %>
     
-    <% if (vehicle.photos.count > 2) %>
-      <% images = "Has Actual Images" %>
-    <% else %>
-      <% images = "Does Not Have Actual Images" %>
-    <% end %>
+    <!--<(perc) if (vehicle.photos.count > 2) %>-->
+    <!--  <(perc) images = "Has Actual Images" %>-->
+    <!--<(perc) else %>-->
+    <!--  <(perc) images = "Does Not Have Actual Images" %>-->
+    <!--<(perc) end %>-->
     
     <% if vehicle.vehicle_model.present? &&  %>
       <% vehicle_type = vehicle.vehicle_model.vehicle_type %>
@@ -128,7 +131,7 @@
       <% vehicle_type = "Other" %>
     <% end %>
 
-    <% custom_label_0 = images + ", " + vehicle_type %>
+    <% custom_label_0 = vehicle_type %>
   
     <%= CSV.generate_line(
           [ vehicle_id, title, description, url, make, model, year, mileage_value, 
