@@ -114,6 +114,12 @@
       <% state_of_vehicle = "USED" %>
     <% end %>
     
+    <% if (vehicle.photos.count > 2) %>
+      <% images = "Has Actual Images" %>
+    <% else %>
+      <% images = "Does Not Have Actual Images" %>
+    <% end %>
+    
     <% if vehicle.vehicle_model.present? &&  %>
       <% vehicle_type = vehicle.vehicle_model.vehicle_type %>
     <% elsif vehicle.body_style.present? %>
@@ -121,14 +127,8 @@
     <% else %>
       <% vehicle_type = "Other" %>
     <% end %>
-    
-    <% if ('vehicle.photos.count > ?', 2) %>
-      <% images = "Has Actual Images" %>
-    <% else %>
-      <% images = "Does Not Have Actual Images" %>
-    <% end %>
-    
-    <% custom_label_0 = vehicle_type + ", " + images %>
+
+    <% custom_label_0 = images + ", " + vehicle_type %>
   
     <%= CSV.generate_line(
           [ vehicle_id, title, description, url, make, model, year, mileage_value, 
