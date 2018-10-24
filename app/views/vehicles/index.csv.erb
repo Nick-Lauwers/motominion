@@ -117,12 +117,6 @@
       <% state_of_vehicle = "USED" %>
     <% end %>
     
-    <!--<(perc) if (vehicle.photos.count > 2) %>-->
-    <!--  <(perc) images = "Has Actual Images" %>-->
-    <!--<(perc) else %>-->
-    <!--  <(perc) images = "Does Not Have Actual Images" %>-->
-    <!--<(perc) end %>-->
-    
     <% if vehicle.vehicle_model.present? &&  %>
       <% vehicle_type = vehicle.vehicle_model.vehicle_type %>
     <% elsif vehicle.body_style.present? %>
