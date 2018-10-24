@@ -33,7 +33,6 @@
     <% address        = "{addr1: '#{addr1}', city: '#{city}', region: '#{region}', country: 'US' }" %>
     <% sale_price     = nil %>
     <% dealer_id      = vehicle.dealership.id %>
-    <% custom_label_0 = vehicle.vehicle_model.vehicle_type %>
     <% latitude       = vehicle.latitude %>
     <% longitude      = vehicle.longitude %>
     
@@ -113,6 +112,12 @@
       <% state_of_vehicle = "NEW" %>
     <% else %>
       <% state_of_vehicle = "USED" %>
+    <% end %>
+    
+    <% if vehicle.vehicle_model.present? %>
+      <% custom_label_0 = vehicle.vehicle_model.vehicle_type %>
+    <% elsif vehicle.body_style.present? %>
+      <% custom_label_0 = vehicle.body_style %>
     <% end %>
   
     <%= CSV.generate_line(
