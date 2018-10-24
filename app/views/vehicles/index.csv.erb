@@ -15,7 +15,7 @@
        # where(last_found_at: 1.day.ago..Time.current).
        # near('San Francisco, CA').
        order("RANDOM()").
-       limit(10).
+       limit(20).
        each do |vehicle| %>
   
     <% vehicle_id     = vehicle.id %>
@@ -114,11 +114,21 @@
       <% state_of_vehicle = "USED" %>
     <% end %>
     
-    <% if vehicle.vehicle_model.present? %>
-      <% custom_label_0 = vehicle.vehicle_model.vehicle_type %>
+    <% if vehicle.vehicle_model.present? &&  %>
+      <% vehicle_type = vehicle.vehicle_model.vehicle_type %>
     <% elsif vehicle.body_style.present? %>
-      <% custom_label_0 = vehicle.body_style %>
+      <% vehicle_type = vehicle.body_style %>
+    <% else %>
+      <% vehicle_type = "Other" %>
     <% end %>
+    
+    <% if ('vehicle.photos.count > ?', 2) %>
+      <% images = "Has Actual Images" %>
+    <% else %>
+      <% images = "Does Not Have Actual Images" %>
+    <% end %>
+    
+    <% custom_label_0 = vehicle_type + ", " + images %>
   
     <%= CSV.generate_line(
           [ vehicle_id, title, description, url, make, model, year, mileage_value, 
