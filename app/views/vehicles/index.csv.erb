@@ -79,7 +79,7 @@
     <% if vehicle.mileage_numeric.present? %>
       <% mileage_value = vehicle.mileage_numeric %>
     <% else %>
-      <% mileage_value = "Zero" %>
+      <% mileage_value = 0 %>
     <% end %>
     
     <% if vehicle.fuel_type == "Electric" %>
