@@ -1812,10 +1812,41 @@
 <!--<= link_to new_club_path, class: "single-action hidden-xs" do %>-->
 <!--  <i class='fa fa-group fa-lg single-action-icon'></i>-->
 <!--< end %>-->
+
+<!--<(perc) if @vehicle.dealership.present? %>-->
+<!--  <div class="single-action btn-negotiate-dealer">-->
+<!--    <i class='fa fa-lg fa-comments-o single-action-icon'></i>-->
+<!--  </div>-->
+
+<!--<(perc) else %>-->
+<!--  <div class="single-action">-->
+<!--    <(perc)= form_for @conversation, -->
+<!--                 url: conversations_path(@conversation), -->
+<!--                 method: :post do |f| %>-->
+             
+<!--      <(perc)= f.hidden_field :sender_id,          value: current_user.id if -->
+<!--                                                     current_user %>-->
+      
+<!--      <(perc)= f.hidden_field :recipient_id,       value: @user.id %>-->
+      
+<!--      <(perc)= f.hidden_field :sender_archived,    value: false %>-->
+
+<!--      <(perc)= f.hidden_field :recipient_archived, value: false %>-->
+    
+<!--      <(perc)= button_tag(class: "single-action-button") do %>-->
+<!--        <i class='fa fa-lg fa-comments-o single-action-icon'></i>-->
+<!--      <(perc) end %>-->
+<!--    <(perc) end %>-->
+<!--  </div>-->
+<!--<(perc) end %>-->
+
 <% if @vehicle.dealership.present? %>
-  <div class="single-action btn-negotiate-dealer">
-    <i class='fa fa-lg fa-comments-o single-action-icon'></i>
+  <div class="request-details btn-negotiate-dealer visible-xs">
+    Request Details
   </div>
+  <!--<div class="single-action btn-negotiate-dealer">-->
+  <!--  <i class='fa fa-lg fa-comments-o single-action-icon'></i>-->
+  <!--</div>-->
 
 <% else %>
   <div class="single-action">

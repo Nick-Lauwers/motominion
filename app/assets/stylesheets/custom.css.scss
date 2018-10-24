@@ -1457,7 +1457,7 @@ footer {
 #modal-buy-online-mobile,
 #modal-test-drive-mobile {
   background-color: white;
-  z-index: 100000;
+  z-index: 200000;
 }
 
 #modal-special-offer-desktop,
@@ -8455,6 +8455,23 @@ a.remove_fields {
   transform: translate(-50%, -50%);
 }
 
+.request-details {
+  font-weight: bold;
+  background-color: $yellow-dark;
+  border-radius: 2px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  padding: 0.7em 1.5em;
+  position: fixed;
+  left: 50%;
+  bottom: 60px;
+  transform: translateX(-50%);
+  z-index: 100000;
+}
+
+.request-details-icon {
+  margin-right: 0.6em;
+}
+
 .shortlist-nav {
   font-size: 1em;
   font-weight: bold;
@@ -8462,7 +8479,7 @@ a.remove_fields {
   width: 100%;
   position: fixed;
   bottom: 0;
-  z-index: 1000;
+  z-index: 100000;
 }
 
 .btn-shortlist-nav {
