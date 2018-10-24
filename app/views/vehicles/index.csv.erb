@@ -3,7 +3,8 @@
         'mileage.value', 'mileage.unit', 'image[0].url', 'image[0].tag[0]', 
         'transmission', 'fuel_type', 'body_style', 'drivetrain', 'vin', 
         'condition', 'price', 'address', 'exterior_color', 'sale_price', 
-        'availability', 'dealer_id', 'state_of_vehicle', 'latitude', 'longitude' ]
+        'availability', 'dealer_id', 'custom_label_0', 'state_of_vehicle', 
+        'latitude', 'longitude']
     ).strip.html_safe %>
 
 <% Dealership.all.each do |dealership| %>
@@ -14,47 +15,72 @@
        # where(last_found_at: 1.day.ago..Time.current).
        # near('San Francisco, CA').
        order("RANDOM()").
-       limit(5).
+       limit(10).
        each do |vehicle| %>
   
-    <% vehicle_id    = vehicle.id %>
-    <% title         = vehicle.listing_name %>
-    <% description   = vehicle.description_clean %>
-    <% url           = asset_url( url_for(vehicle) ) %>
-    <% year          = vehicle.year %>
-    <% mileage_value = vehicle.mileage_numeric %>
-    <% mileage_unit  = 'MI' %>
-    <% image_tag     = nil %>
-    <% transmission  = "AUTOMATIC" %>
-    <% body_style    = "OTHER" %>
-    <% drivetrain    = "Other" %>
-    <% condition     = "Other" %>
-    <% availability  = "AVAILABLE" %>
-    <% addr1         = vehicle.street_address %>
-    <% city          = vehicle.city %>
-    <% region        = vehicle.state %>
-    <% address       = "{addr1: '#{addr1}', city: '#{city}', region: '#{region}', country: 'US' }" %>
-    <% sale_price    = nil %>
-    <% dealer_id     = vehicle.dealership.id %>
-    <% latitude      = vehicle.latitude %>
-    <% longitude     = vehicle.longitude %>
+    <% vehicle_id     = vehicle.id %>
+    <% url            = asset_url( url_for(vehicle) ) %>
+    <% mileage_unit   = 'MI' %>
+    <% image_tag      = nil %>
+    <% transmission   = "AUTOMATIC" %>
+    <% body_style     = "OTHER" %>
+    <% drivetrain     = "Other" %>
+    <% condition      = "Other" %>
+    <% availability   = "AVAILABLE" %>
+    <% addr1          = vehicle.street_address %>
+    <% city           = vehicle.city %>
+    <% region         = vehicle.state %>
+    <% address        = "{addr1: '#{addr1}', city: '#{city}', region: '#{region}', country: 'US' }" %>
+    <% sale_price     = nil %>
+    <% dealer_id      = vehicle.dealership.id %>
+    <% custom_label_0 = vehicle.vehicle_model.vehicle_type %>
+    <% latitude       = vehicle.latitude %>
+    <% longitude      = vehicle.longitude %>
+    
+    <% if vehicle.listing_name.present? %>
+      <% title = vehicle.listing_name %>
+    <% else %>
+      <% title = "Title is unavailable." %>
+    <% end %>
+    
+    <% if vehicle.description_clean.present? %>
+      <% description = vehicle.description_clean %>
+    <% else %>
+      <% description = "Description is unavailable." %>
+    <% end %>
     
     <% if vehicle.vehicle_make.present? %>
       <% make = vehicle.vehicle_make.name %>
     <% elsif vehicle.vehicle_make_name.present? %>
       <% make = vehicle.vehicle_make_name %>
+    <% else %>
+      <% make = "UNKNOWN" %>
     <% end %>
     
     <% if vehicle.vehicle_model.present? %>
       <% model = vehicle.vehicle_model.name %>
     <% elsif vehicle.vehicle_model_name.present? %>
       <% model = vehicle.vehicle_model_name %>
+    <% else %>
+      <% model = "UNKOWN" %>
+    <% end %>
+    
+    <% if vehicle.year.present? %>
+      <% year = vehicle.year %>
+    <% else %>
+      <% year = 1990 %>
     <% end %>
     
     <% if vehicle.photos.length > 0 %>
       <% image_url = "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s %>
     <% else %>
       <% image_url = "http://www.facebook.com/teapic.jpg" %>
+    <% end %>
+    
+    <% if vehicle.mileage_numeric.present? %>
+      <% mileage_value = vehicle.mileage_numeric %>
+    <% else %>
+      <% mileage_value = "Zero" %>
     <% end %>
     
     <% if vehicle.fuel_type == "Electric" %>
@@ -66,7 +92,7 @@
     <% if vehicle.vin.present? %>
       <% vin = vehicle.vin %>
     <% else %>
-      <% vin = "UNKNOWN" %>
+      <% vin = "aaaaaUNKOWNaaaaaa" %>
     <% end %>
     
     <% if vehicle.msrp.present? %>
@@ -80,7 +106,7 @@
     <% if vehicle.color.present? %>
       <% exterior_color = vehicle.color %>
     <% else %>
-      <% exterior_color = "Other" %>
+      <% exterior_color = "Unknown" %>
     <% end %>
     
     <% if vehicle.condition == "New" %>
@@ -93,7 +119,7 @@
           [ vehicle_id, title, description, url, make, model, year, mileage_value, 
             mileage_unit, image_url, image_tag, transmission, fuel_type, 
             body_style, drivetrain, vin, condition, price, address, 
-            exterior_color, sale_price, availability, dealer_id, 
+            exterior_color, sale_price, availability, dealer_id, custom_label_0, 
             state_of_vehicle, latitude, longitude ]
         ).strip.html_safe %>
   <% end %>
