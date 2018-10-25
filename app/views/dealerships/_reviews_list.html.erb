@@ -100,7 +100,7 @@
       <div class="review-container">
   
         <div class="review-rating">
-          <div class="stars"></div>
+          <div id="stars-<%= r.id %>"></div>
         </div>
         
         <span class="review-title">
@@ -117,7 +117,7 @@
       $(document).ready(function() {
         
         // rating
-        var stars = $('.stars');
+        var stars = $('#stars-<%= r.id %>');
     
         stars.raty({
           path:     '/assets',
