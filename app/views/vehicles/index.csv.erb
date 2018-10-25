@@ -18,7 +18,7 @@
        group('vehicles.id').
        having('count(photos) > 2').
        order("RANDOM()").
-       limit(10).
+       limit(50).
        each do |vehicle| %>
   
     <% vehicle_id     = vehicle.id %>
