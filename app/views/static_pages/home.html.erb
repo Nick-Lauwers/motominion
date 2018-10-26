@@ -153,7 +153,7 @@
           <div class="col-xs-2 search-button-primary">
             <%= button_tag(type:  "submit", 
                            class: "btn btn-search") do %>
-              <i class="fa fa-lg fa-search"></i>
+              <i class="fa fa-lg fa-search search-button-icon-mobile"></i>
             <% end %>
           </div>
         </div>
@@ -549,7 +549,7 @@
               
               <%= button_tag(type:  "submit", 
                              class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/los-angeles.jpg')") do %>
+                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/los-angeles-small.jpeg')") do %>
                 
                 <div class="city-text">
               
@@ -580,7 +580,7 @@
               
               <%= button_tag(type:  "submit", 
                              class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-francisco.jpg')") do %>
+                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-francisco-small.jpeg')") do %>
                 
                 <div class="city-text">
               
@@ -611,7 +611,7 @@
               
               <%= button_tag(type:  "submit", 
                              class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-diego.jpg')") do %>
+                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-diego-small.jpeg')") do %>
                 
                 <div class="city-text">
               
@@ -716,19 +716,25 @@
     </div>
     
     <div class="feed-content visible-xs">
-      <%= link_to new_vehicle_path do %>
-        <div class="feed-listing-mobile">
+      
+      <h3 class="feed-title">Sell Your Motorcycle</h3>
+      
+      <%= link_to new_vehicle_path, class: "feed-listing-mobile" do %>
+        <div class="feed-listing-mobile-image">
           
-          <div class="city-text">
-  
-            <span class="city-title">Out with the old!</span>
+          <div class="feed-listing-mobile-text">
             
-            <span class="city-subtitle">
-              List your motorcycle for free using Motominion.
+            <span class="feed-listing-mobile-title">List For Free</span>
+                  
+            <span class="feed-listing-mobile-subtitle">
+              
+              Join thousands of private listers
+                            
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
             </span>
           </div>
-          
-          <div class="city-gradient"></div>
+
+          <div class="feed-listing-mobile-gradient"></div>
         </div>
       <% end %>
     </div>

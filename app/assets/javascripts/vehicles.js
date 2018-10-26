@@ -55,6 +55,7 @@ $(function() {
     
       var listingNavbar       = $('.listing-navbar');
       var price               = $('.navbar-price-visible');
+      var quote               = $('.navbar-quote-visible');
       var contactSellerButton = $('.btn-navbar-contact-hidden');
     
       $(window).scroll(function() {
@@ -64,12 +65,14 @@ $(function() {
         if(scrolltop >= 480) {
           listingNavbar.addClass('listing-navbar-scrolled');
           price.addClass('navbar-price-hidden');
+          quote.addClass('navbar-quote-hidden');
           contactSellerButton.addClass('btn-navbar-contact-visible');
         }
         
         else {
           listingNavbar.removeClass('listing-navbar-scrolled');
           price.removeClass('navbar-price-hidden');
+          quote.removeClass('navbar-quote-hidden');
           contactSellerButton.removeClass('btn-navbar-contact-visible');
         }
       });
