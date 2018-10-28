@@ -2229,16 +2229,16 @@
 
   // Facebook tracking
   
-  var content_ids_array = [];
+  // var content_ids_array = [];
 
-  for (var i = 1; i <= <% Vehicle.count %>; i++) {
-    content_ids_array.push(i.toString());
-  }
+  // for (var i = 1; i <= <(perc) Vehicle.count %>; i++) {
+  //   content_ids_array.push(i.toString());
+  // }
   
   fbq('track', 'ViewContent',
     {
       content_type: 'product',
-      content_ids: content_ids_array
+      content_ids: [ '<%= @vehicle.id.to_s %>' ]
     }
   );
   
