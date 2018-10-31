@@ -273,3 +273,71 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    
+    // dependent dropdown
+      
+      var vehicleModelBasics   = $('#vehicle-model-basics');
+      var vehicleMakeBasics    = $('#vehicle-make-basics');
+      var vehicle_model_basics = vehicleModelBasics.html();
+  
+      if ( vehicleMakeBasics.val() == '' ) {
+        vehicleModelBasics.prop("disabled", true);
+      }
+      
+      else {
+        
+        vehicleMakeBasics.prepend("<option value=''>Select make</option>");
+                                      
+        var vehicle_make_basics = $('#vehicle-make-basics :selected').text();
+        var escaped_vehicle_make_basics = 
+          vehicle_make_basics.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_basics = 
+          $(vehicle_model_basics).
+            filter("optgroup[label=" + escaped_vehicle_make_basics + "]").
+            html();
+        
+        if (options_basics) {
+          vehicleModelBasics.html("<option value=''>Select model</option>" +
+                                  "<option value=''></option>" +
+                                  options_basics);
+          vehicleModelBasics.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelBasics.empty();
+          vehicleModelBasics.html("<option value=''>Select model</option>");
+          vehicleModelBasics.prop("disabled", true);
+        }
+      }
+      
+      vehicleMakeBasics.change(function() {
+        
+        var vehicle_make_basics = $('#vehicle-make-basics :selected').text();
+        var escaped_vehicle_make_basics = 
+          vehicle_make_basics.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_basics = 
+          $(vehicle_model_basics).
+            filter("optgroup[label=" + escaped_vehicle_make_basics + "]").
+            html();
+        
+        if (options_basics) {
+          vehicleModelBasics.html("<option value=''>Select model</option>" +
+                                  "<option value=''></option>" +
+                                  options_basics);
+          vehicleModelBasics.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelBasics.empty();
+          vehicleModelBasics.html("<option value=''>Select model</option>");
+          vehicleModelBasics.prop("disabled", true);
+        }
+      });
+  });
+</script>

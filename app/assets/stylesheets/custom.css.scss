@@ -2428,6 +2428,25 @@ footer {
   }
 }
 
+.empty-search-link {
+  color: #00adf2;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+.empty-search-reset {
+  color: #00adf2;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: #00adf2;
+  }
+}
+
 .feed-listing {
   border-top: 1px solid $gray-border;
   border-bottom: 1px solid $gray-border;
@@ -3400,6 +3419,22 @@ body {
   list-style: none;
   padding: 0;
   margin-bottom: 0;
+}
+
+.empty-search {
+  margin: 2em 0 4em;
+}
+
+.empty-search-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  font-style: italic;
+  color: $gray-text;
+  margin: 0;
+}
+
+.empty-search-info {
+  text-align: left;
 }
 
 .search-introduction,

@@ -940,21 +940,67 @@
           fixedHeader.fadeOut(250);
         }
     });
+    
+    // dependent dropdown
+    
+      var vehicleModelHome    = $('#vehicle-model-home');
+      var vehicleMakeHome     = $('#vehicle-make-home');
+      var vehicle_model_home  = vehicleModelHome.html();
   
-    // disabled search button
+      if ( vehicleMakeHome.val() == '' ) {
+        vehicleModelHome.prop("disabled", true);
+      }
       
-      // var cityField    = $('#city');
-      // var submitButton = $('input[type="submit"]')
-      
-      // submitButton.attr('disabled', true);
-      
-      // cityField.keyup(function(){
+      else {
         
-      //   if (cityField.val() !=  "") 
-      //     submitButton.attr('disabled', false);    
-          
-      //   else
-      //     submitButton.attr('disabled', true);   
-      // });
+        vehicleMakeHome.prepend("<option value=''>All makes</option>");
+                                      
+        var vehicle_make_home = $('#vehicle-make-home :selected').text();
+        var escaped_vehicle_make_home = 
+          vehicle_make_home.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_home = 
+          $(vehicle_model_home).
+            filter("optgroup[label=" + escaped_vehicle_make_home + "]").
+            html();
+        
+        if (options_home) {
+          vehicleModelHome.html("<option value=''>All models</option>" +
+                                "<option value=''></option>" +
+                                options_home);
+          vehicleModelHome.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelHome.empty();
+          vehicleModelHome.html("<option value=''>All models</option>");
+          vehicleModelHome.prop("disabled", true);
+        }
+      }
+      
+      vehicleMakeHome.change(function() {
+        
+        var vehicle_make_home = $('#vehicle-make-home :selected').text();
+        var escaped_vehicle_make_home = 
+          vehicle_make_home.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_home = 
+          $(vehicle_model_home).
+            filter("optgroup[label=" + escaped_vehicle_make_home + "]").
+            html();
+        
+        if (options_home) {
+          vehicleModelHome.html("<option value=''>All models</option>" +
+                                         "<option value=''></option>" +
+                                         options_home);
+          vehicleModelHome.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelHome.empty();
+          vehicleModelHome.html("<option value=''>All models</option>");
+          vehicleModelHome.prop("disabled", true);
+        }
+      });
   });
 </script>

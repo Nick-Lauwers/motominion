@@ -72,7 +72,7 @@
                                         :name,
                                         { include_blank: true, 
                                           prompt: "Select make" },
-                                        id: "vehicle-make-basics",
+                                        id: "vehicle-make-new",
                                         class: "form-control select-secondary" %>
                    
                 <i class="fa fa-caret-down fa-lg form-caret" 
@@ -94,7 +94,7 @@
                                                 :name,
                                                 { prompt: "Select model", 
                                                   include_blank: true }, 
-                                                id: "vehicle-model-basics",
+                                                id: "vehicle-model-new",
                                                 class: "form-control 
                                                         select-secondary" %>
                    
@@ -226,3 +226,71 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+  
+    // dependent dropdown
+      
+      var vehicleModelNew   = $('#vehicle-model-new');
+      var vehicleMakeNew    = $('#vehicle-make-new');
+      var vehicle_model_new = vehicleModelNew.html();
+  
+      if ( vehicleMakeNew.val() == '' ) {
+        vehicleModelNew.prop("disabled", true);
+      }
+      
+      else {
+        
+        vehicleMakeNew.prepend("<option value=''>Select make</option>");
+                                      
+        var vehicle_make_new = $('#vehicle-make-new :selected').text();
+        var escaped_vehicle_make_new = 
+          vehicle_make_new.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_basics = 
+          $(vehicle_model_new).
+            filter("optgroup[label=" + escaped_vehicle_make_new + "]").
+            html();
+        
+        if (options_new) {
+          vehicleModelNew.html("<option value=''>Select model</option>" +
+                               "<option value=''></option>" +
+                               options_new);
+          vehicleModelNew.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelNew.empty();
+          vehicleModelNew.html("<option value=''>Select model</option>");
+          vehicleModelNew.prop("disabled", true);
+        }
+      }
+      
+      vehicleMakeNew.change(function() {
+        
+        var vehicle_make_new = $('#vehicle-make-new :selected').text();
+        var escaped_vehicle_make_new = 
+          vehicle_make_new.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_new = 
+          $(vehicle_model_new).
+            filter("optgroup[label=" + escaped_vehicle_make_new + "]").
+            html();
+        
+        if (options_new) {
+          vehicleModelNew.html("<option value=''>Select model</option>" +
+                               "<option value=''></option>" +
+                               options_new);
+          vehicleModelNew.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelNew.empty();
+          vehicleModelNew.html("<option value=''>Select model</option>");
+          vehicleModelNew.prop("disabled", true);
+        }
+      });
+  });
+</script>

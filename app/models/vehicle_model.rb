@@ -6,6 +6,8 @@ class VehicleModel < ActiveRecord::Base
   
   validates :vehicle_make_id, presence: true
   
+  default_scope -> { order(name: :asc) }
+  
   # Provides select options for the with_vehicle_model_id input
   def self.options_for_select
     order('LOWER(name)').map { |e| [e.name, e.id] }

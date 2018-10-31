@@ -57,34 +57,34 @@ $(function() {
         }
       });
       
-      var vehicleModelModal   = $('#vehicle-model-modal');
-      var vehicleMakeModal    = $('#vehicle-make-modal');
-      var vehicle_model_modal = vehicleModelModal.html();
+      // var vehicleModelModal   = $('#vehicle-model-modal');
+      // var vehicleMakeModal    = $('#vehicle-make-modal');
+      // var vehicle_model_modal = vehicleModelModal.html();
         
-      vehicleModelModal.prop("disabled", true);
+      // vehicleModelModal.prop("disabled", true);
       
-      vehicleMakeModal.change(function() {
+      // vehicleMakeModal.change(function() {
         
-        var vehicle_make_modal = $('#vehicle-make-modal :selected').text();
-        var escaped_vehicle_make_modal = 
-          vehicle_make_modal.
-            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-        var options_header = 
-          $(vehicle_model_modal).
-            filter("optgroup[label=" + escaped_vehicle_make_modal + "]").
-            html();
+      //   var vehicle_make_modal = $('#vehicle-make-modal :selected').text();
+      //   var escaped_vehicle_make_modal = 
+      //     vehicle_make_modal.
+      //       replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      //   var options_modal = 
+      //     $(vehicle_model_modal).
+      //       filter("optgroup[label=" + escaped_vehicle_make_modal + "]").
+      //       html();
         
-        if (options_header) {
-          vehicleModelModal.html("<option value=''>All models</option>" + 
-                                    options_header);
-          vehicleModelModal.prop("disabled", false);
-        } 
+      //   if (options_modal) {
+      //     vehicleModelModal.html("<option value=''>All models</option>" + 
+      //                               options_modal);
+      //     vehicleModelModal.prop("disabled", false);
+      //   } 
         
-        else {
-          vehicleModelModal.empty();
-          vehicleModelModal.prop("disabled", true);
-        }
-      });
+      //   else {
+      //     vehicleModelModal.empty();
+      //     vehicleModelModal.prop("disabled", true);
+      //   }
+      // });
       
     // modal
     

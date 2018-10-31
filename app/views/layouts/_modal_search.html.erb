@@ -14,50 +14,56 @@
                                class: "modal-search-form"
                              } do |f| %>
       
-      <div class="form-element">
-                   
-        <%= f.collection_select(:with_vehicle_make_id, 
-                                VehicleMake.all,
-                                :id,
-                                :name,
-                                { include_blank: true,
-                                  prompt: "Select make" },
-                                id: "vehicle-make-modal",
-                                class: "form-control
-                                        select-secondary") %>
-           
-        <i class="fa fa-caret-down fa-lg form-caret" 
-           aria-hidden="true"></i>
+      <div class="form-group">
+        <div class="form-element">
+                     
+          <%= f.collection_select(:with_vehicle_make_id, 
+                                  VehicleMake.all,
+                                  :id,
+                                  :name,
+                                  { include_blank: true,
+                                    prompt: "All makes" },
+                                  id: "vehicle-make-search-modal",
+                                  class: "form-control
+                                          select-secondary") %>
+             
+          <i class="fa fa-caret-down fa-lg form-caret" 
+             aria-hidden="true"></i>
+        </div>
       </div>
       
-      <div class="form-element">
-                   
-        <%= f.grouped_collection_select(:with_vehicle_model_id, 
-                                        VehicleMake.order(:name),
-                                        :vehicle_models,
-                                        :name,
-                                        :id,
-                                        :name,
-                                        { include_blank: true,
-                                          prompt: "Select model" },
-                                        id: "vehicle-model-modal",
-                                        class: "form-control
-                                                select-secondary") %>
-           
-        <i class="fa fa-caret-down fa-lg form-caret" 
-          aria-hidden="true"></i>
+      <div class="form-group">
+        <div class="form-element">
+                     
+          <%= f.grouped_collection_select(:with_vehicle_model_id, 
+                                          VehicleMake.order(:name),
+                                          :vehicle_models,
+                                          :name,
+                                          :id,
+                                          :name,
+                                          { include_blank: true,
+                                            prompt: "All models" },
+                                          id: "vehicle-model-search-modal",
+                                          class: "form-control
+                                                  select-secondary") %>
+             
+          <i class="fa fa-caret-down fa-lg form-caret" 
+            aria-hidden="true"></i>
+        </div>
       </div>
       
-      <div class="form-element">
-      
-        <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
-          aria-hidden="true"></i>
+      <div class="form-group">
+        <div class="form-element">
         
-        <%= f.text_field :with_zip_code, 
-                         placeholder: "ZIP Code", 
-                         class: "form-control 
-                                 form-control-primary 
-                                 typeahead" %>
+          <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
+            aria-hidden="true"></i>
+          
+          <%= f.text_field :with_zip_code, 
+                           placeholder: "ZIP Code", 
+                           class: "form-control 
+                                   form-control-primary 
+                                   typeahead" %>
+        </div>
       </div>
       
       <div>
@@ -66,3 +72,68 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  
+  // dependent dropdown
+    
+    var vehicleModelSearchModal    = $('#vehicle-model-search-modal');
+    var vehicleMakeSearchModal     = $('#vehicle-make-search-modal');
+    var vehicle_model_search_modal = vehicleModelSearchModal.html();
+
+    if ( vehicleMakeSearchModal.val() == '' ) {
+      vehicleModelSearchModal.prop("disabled", true);
+    }
+    
+    else {
+      
+      vehicleMakeSearchModal.prepend("<option value=''>All makes</option>");
+                                    
+      var vehicle_make_search_modal = $('#vehicle-make-search-modal :selected').text();
+      var escaped_vehicle_make_search_modal = 
+        vehicle_make_search_modal.
+          replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      var options_search_modal = 
+        $(vehicle_model_search_modal).
+          filter("optgroup[label=" + escaped_vehicle_make_search_modal + "]").
+          html();
+      
+      if (options_search_modal) {
+        vehicleModelSearchModal.html("<option value=''>All models</option>" +
+                                     "<option value=''></option>" +
+                                     options_search_modal);
+        vehicleModelSearchModal.prop("disabled", false);
+      } 
+      
+      else {
+        vehicleModelSearchModal.empty();
+        vehicleModelSearchModal.html("<option value=''>All models</option>");
+        vehicleModelSearchModal.prop("disabled", true);
+      }
+    }
+    
+    vehicleMakeSearchModal.change(function() {
+      
+      var vehicle_make_search_modal = $('#vehicle-make-search-modal :selected').text();
+      var escaped_vehicle_make_search_modal = 
+        vehicle_make_search_modal.
+          replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+      var options_search_modal = 
+        $(vehicle_model_search_modal).
+          filter("optgroup[label=" + escaped_vehicle_make_search_modal + "]").
+          html();
+      
+      if (options_search_modal) {
+        vehicleModelSearchModal.html("<option value=''>All models</option>" +
+                                     "<option value=''></option>" +
+                                     options_search_modal);
+        vehicleModelSearchModal.prop("disabled", false);
+      } 
+      
+      else {
+        vehicleModelSearchModal.empty();
+        vehicleModelSearchModal.html("<option value=''>All models</option>");
+        vehicleModelSearchModal.prop("disabled", true);
+      }
+    });
+</script>

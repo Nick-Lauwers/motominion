@@ -167,41 +167,73 @@
         
         <div class="row">
 
-          <div class="col-md-6 price">
-            <div class="form-group form-group-primary">
-              
-              <%= f.label :with_actual_price_lte, "Max Price" %>
-              
-              <span id="price_slider_val_modal" class="slider-label">
-                $50000
-              </span>
-              
-              <%= f.text_field :with_actual_price_lte, 
-                               id: 'price_slider_modal', 
-                               type: 'text',
-                               data: { 'slider-min'   => '0',
-                                       'slider-max'   => '50000',
-                                       'slider-step'  => '1',
-                                       'slider-value' => '50000' } %>
-            </div>
-          </div>
-          
           <div class="col-md-6 mileage">
             <div class="form-group form-group-primary">
               
               <%= f.label :with_mileage_numeric_lte, "Max Mileage" %>
               
               <span id="mileage_slider_val_modal" class="slider-label">
-                200000 mi
+                <% if @filterrific.with_mileage_numeric_lte.present? %>
+                  <%= @filterrific.with_mileage_numeric_lte %> mi
+                <% else %>
+                  200000 mi
+                <% end %>
               </span>
               
-              <%= f.text_field :with_mileage_numeric_lte,
-                               id: 'mileage_slider_modal', 
-                               type: 'text',
-                               data: { 'slider-min'   => '0',
-                                       'slider-max'   => '200000',
-                                       'slider-step'  => '1',
-                                       'slider-value' => '200000' } %>
+              <% if @filterrific.with_mileage_numeric_lte.present? %> 
+                <%= f.text_field :with_mileage_numeric_lte,
+                                 id: 'mileage_slider_modal', 
+                                 type: 'text',
+                                 data: { 'slider-min'   => '0',
+                                         'slider-max'   => '200000',
+                                         'slider-step'  => '1',
+                                         'slider-value' => @filterrific.
+                                                   with_mileage_numeric_lte } %>
+              
+              <% else %>
+                <%= f.text_field :with_mileage_numeric_lte,
+                                 id: 'mileage_slider_modal', 
+                                 type: 'text',
+                                 data: { 'slider-min'   => '0',
+                                         'slider-max'   => '200000',
+                                         'slider-step'  => '1',
+                                         'slider-value' => '200000' } %>
+              <% end %>
+            </div>
+          </div>
+          
+          <div class="col-md-6 price">
+            <div class="form-group form-group-primary">
+              
+              <%= f.label :with_actual_price_lte, "Max Price" %>
+              
+              <span id="price_slider_val_modal" class="slider-label">
+                <% if @filterrific.with_actual_price_lte.present? %>
+                  $<%= @filterrific.with_actual_price_lte %>
+                <% else %>
+                  $50000
+                <% end %>
+              </span>
+              
+              <% if @filterrific.with_actual_price_lte.present? %> 
+                <%= f.text_field :with_actual_price_lte, 
+                                 id: 'price_slider_modal', 
+                                 type: 'text',
+                                 data: { 'slider-min'   => '0',
+                                         'slider-max'   => '50000',
+                                         'slider-step'  => '1',
+                                         'slider-value' => @filterrific.
+                                                      with_actual_price_lte } %>
+              
+              <% else %>
+                <%= f.text_field :with_actual_price_lte, 
+                                 id: 'price_slider_modal', 
+                                 type: 'text',
+                                 data: { 'slider-min'   => '0',
+                                         'slider-max'   => '50000',
+                                         'slider-step'  => '1',
+                                         'slider-value' => '50000' } %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -213,35 +245,68 @@
               
               <%= f.label :with_year_gte, "Earliest Year" %>
               
-              <span id="year_slider_val_modal" class="slider-label">1900</span>
+              <span id="year_slider_val_modal" class="slider-label">
+                <% if @filterrific.with_year_gte.present? %>
+                  <%= @filterrific.with_year_gte %>
+                <% else %>
+                  1990
+                <% end %>
+              </span>
               
-              <%= f.text_field :with_year_gte, 
-                               id: 'year_slider_modal', 
-                               type: 'text',
-                               data: { 'slider-min'   => '1900',
-                                       'slider-max'   => '2016',
-                                       'slider-step'  => '1',
-                                       'slider-value' => '1900' } %>
+              <% if @filterrific.with_year_gte.present? %> 
+                <%= f.text_field :with_year_gte, 
+                                 id: 'year_slider_modal', 
+                                 type: 'text',
+                                 data: { 'slider-min'   => '1900',
+                                         'slider-max'   => '2016',
+                                         'slider-step'  => '1',
+                                         'slider-value' => @filterrific.
+                                                           with_year_gte } %>
+              
+              <% else %>
+                <%= f.text_field :with_year_gte, 
+                                 id: 'year_slider_modal', 
+                                 type: 'text',
+                                 data: { 'slider-min'   => '1900',
+                                         'slider-max'   => '2016',
+                                         'slider-step'  => '1',
+                                         'slider-value' => '1990' } %>
+              <% end %>
             </div>
           </div>
           
-    
           <div class="col-md-6 engine-size">
             <div class="form-group form-group-primary">
               
               <%= f.label :with_engine_size_gte, "Min Engine Size" %>
               
               <span id="engine_size_slider_val_modal" class="slider-label">
-                50 cc
+                <% if @filterrific.with_engine_size_gte.present? %>
+                  <%= @filterrific.with_engine_size_gte %> cc
+                <% else %>
+                  50 cc
+                <% end %>
               </span>
               
-              <%= f.text_field :with_engine_size_gte,
-                               id: 'engine_size_slider_modal', 
-                               type: 'text',
-                               data: { 'slider-min'   => '50',
-                                       'slider-max'   => '2294',
-                                       'slider-step'  => '1',
-                                       'slider-value' => '50' } %>
+              <% if @filterrific.with_engine_size_gte.present? %>
+                <%= f.text_field :with_engine_size_gte,
+                                 id: 'engine_size_slider_modal', 
+                                 type: 'text',
+                                 data: { 'slider-min'   => '50',
+                                         'slider-max'   => '2294',
+                                         'slider-step'  => '1',
+                                         'slider-value' => @filterrific.
+                                                       with_engine_size_gte } %>
+              
+              <% else %>
+                <%= f.text_field :with_engine_size_gte,
+                                 id: 'engine_size_slider_modal', 
+                                 type: 'text',
+                                 data: { 'slider-min'   => '50',
+                                         'slider-max'   => '2294',
+                                         'slider-step'  => '1',
+                                         'slider-value' => '50' } %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -430,3 +495,71 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+  
+    // dependent dropdown
+      
+      var vehicleModelModalFilters    = $('#vehicle-model-modal-filters');
+      var vehicleMakeModalFilters     = $('#vehicle-make-modal-filters');
+      var vehicle_model_modal_filters = vehicleModelModalFilters.html();
+  
+      if ( vehicleMakeModalFilters.val() == '' ) {
+        vehicleModelModalFilters.prop("disabled", true);
+      }
+      
+      else {
+        
+        vehicleMakeModalFilters.prepend("<option value=''>All makes</option>");
+                                      
+        var vehicle_make_modal_filters = $('#vehicle-make-modal-filters :selected').text();
+        var escaped_vehicle_make_modal_filters = 
+          vehicle_make_modal_filters.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_modal_filters = 
+          $(vehicle_model_modal_filters).
+            filter("optgroup[label=" + escaped_vehicle_make_modal_filters + "]").
+            html();
+        
+        if (options_modal_filters) {
+          vehicleModelModalFilters.html("<option value=''>All models</option>" +
+                                        "<option value=''></option>" +
+                                        options_modal_filters);
+          vehicleModelModalFilters.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelModalFilters.empty();
+          vehicleModelModalFilters.html("<option value=''>All models</option>");
+          vehicleModelModalFilters.prop("disabled", true);
+        }
+      }
+      
+      vehicleMakeModalFilters.change(function() {
+        
+        var vehicle_make_modal_filters = $('#vehicle-make-modal-filters :selected').text();
+        var escaped_vehicle_make_modal_filters = 
+          vehicle_make_modal_filters.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_modal_filters = 
+          $(vehicle_model_modal_filters).
+            filter("optgroup[label=" + escaped_vehicle_make_modal_filters + "]").
+            html();
+        
+        if (options_modal_filters) {
+          vehicleModelModalFilters.html("<option value=''>All models</option>" +
+                                         "<option value=''></option>" +
+                                         options_modal_filters);
+          vehicleModelModalFilters.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelModalFilters.empty();
+          vehicleModelModalFilters.html("<option value=''>All models</option>");
+          vehicleModelModalFilters.prop("disabled", true);
+        }
+      });
+  });
+</script>
