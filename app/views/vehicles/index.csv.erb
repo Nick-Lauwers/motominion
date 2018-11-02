@@ -1,10 +1,12 @@
 <%= CSV.generate_line(
       [ 'vehicle_id', 'title', 'description', 'url', 'make', 'model', 'year', 
-        'mileage.value', 'mileage.unit', 'image[0].url', 'image[0].tag[0]', 
+        'mileage.value', 'mileage.unit', 'image[0].url', 'image[1].url', 
+        'image[2].url', 'image[0].tag[0]', 'image[1].tag[0]', 'image[2].tag[0]', 
         'transmission', 'fuel_type', 'body_style', 'drivetrain', 'vin', 
         'condition', 'price', 'address', 'exterior_color', 'sale_price', 
         'availability', 'dealer_id', 'custom_label_0', 'state_of_vehicle', 
-        'latitude', 'longitude']
+        'latitude', 'longitude', 'date_first_on_lot', 'dealer_name', 
+        'dealer_phone' ]
     ).strip.html_safe %>
 
 <% Dealership.all.each do |dealership| %>
@@ -21,23 +23,28 @@
        limit(30).
        each do |vehicle| %>
   
-    <% vehicle_id     = vehicle.id %>
-    <% url            = asset_url( url_for(vehicle) ) %>
-    <% mileage_unit   = 'MI' %>
-    <% image_tag      = nil %>
-    <% transmission   = "AUTOMATIC" %>
-    <% body_style     = "OTHER" %>
-    <% drivetrain     = "Other" %>
-    <% condition      = "Other" %>
-    <% availability   = "AVAILABLE" %>
-    <% addr1          = vehicle.street_address %>
-    <% city           = vehicle.city %>
-    <% region         = vehicle.state %>
-    <% address        = "{addr1: '#{addr1}', city: '#{city}', region: '#{region}', country: 'US' }" %>
-    <% sale_price     = nil %>
-    <% dealer_id      = vehicle.dealership.id %>
-    <% latitude       = vehicle.latitude %>
-    <% longitude      = vehicle.longitude %>
+    <% vehicle_id        = vehicle.id %>
+    <% url               = asset_url( url_for(vehicle) ) %>
+    <% mileage_unit      = 'MI' %>
+    <% image_tag_0       = nil %>
+    <% image_tag_1       = nil %>
+    <% image_tag_2       = nil %>
+    <% transmission      = "AUTOMATIC" %>
+    <% body_style        = "OTHER" %>
+    <% drivetrain        = "Other" %>
+    <% condition         = "Other" %>
+    <% availability      = "AVAILABLE" %>
+    <% addr1             = vehicle.street_address %>
+    <% city              = vehicle.city %>
+    <% region            = vehicle.state %>
+    <% address           = "{addr1: '#{addr1}', city: '#{city}', region: '#{region}', country: 'US' }" %>
+    <% sale_price        = nil %>
+    <% dealer_id         = vehicle.dealership.id %>
+    <% latitude          = vehicle.latitude %>
+    <% longitude         = vehicle.longitude %>
+    <% date_first_on_lot = "2018-11-01" %>
+    <% dealer_name       = vehicle.dealership.dealership_name %>
+    <% dealer_phone      = vehicle.dealership.sales_phone %>
     
     <% if vehicle.listing_name.present? %>
       <% title = vehicle.listing_name %>
@@ -73,11 +80,15 @@
       <% year = 1990 %>
     <% end %>
     
-    <% if vehicle.photos.length > 0 %>
-      <% image_url = "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s %>
-    <% else %>
-      <% image_url = "http://www.facebook.com/teapic.jpg" %>
-    <% end %>
+    <!--<(perc) if vehicle.photos.length > 0 %>-->
+    <!--  <(perc) image_url_0 = "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s %>-->
+    <!--<(perc) else %>-->
+    <!--  <(perc) image_url_0 = "http://www.facebook.com/teapic.jpg" %>-->
+    <!--<(perc) end %>-->
+    
+    <% image_url_0 = "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s %>
+    <% image_url_1 = "https:" + URI.unescape( vehicle.photos[1].image.url() ).to_s %>
+    <% image_url_2 = "https:" + URI.unescape( vehicle.photos[2].image.url() ).to_s %>
     
     <% if vehicle.mileage_numeric.present? %>
       <% mileage_value = vehicle.mileage_numeric %>
@@ -97,10 +108,10 @@
       <% vin = "aaaaaUNKOWNaaaaaa" %>
     <% end %>
     
-    <% if vehicle.msrp.present? %>
-      <% price = vehicle.msrp.to_s + " USD" %>
-    <% elsif vehicle.actual_price.present? %>
+    <% if vehicle.actual_price.present? %>
       <% price = vehicle.actual_price.to_s + " USD" %>
+    <% elsif vehicle.msrp.present? %>
+      <% price = vehicle.msrp.to_s + " USD" %>
     <% else %>
       <% price = "0 USD" %>
     <% end %>
@@ -129,10 +140,12 @@
   
     <%= CSV.generate_line(
           [ vehicle_id, title, description, url, make, model, year, mileage_value, 
-            mileage_unit, image_url, image_tag, transmission, fuel_type, 
-            body_style, drivetrain, vin, condition, price, address, 
-            exterior_color, sale_price, availability, dealer_id, custom_label_0, 
-            state_of_vehicle, latitude, longitude ]
+            mileage_unit, image_url_0, image_url_1, image_url_2, image_tag_0, 
+            image_tag_1, image_tag_2, transmission, fuel_type, body_style, 
+            drivetrain, vin, condition, price, address, exterior_color, 
+            sale_price, availability, dealer_id, custom_label_0, 
+            state_of_vehicle, latitude, longitude, date_first_on_lot, 
+            dealer_name, dealer_phone ]
         ).strip.html_safe %>
   <% end %>
 <% end %>
