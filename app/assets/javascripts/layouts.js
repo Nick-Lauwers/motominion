@@ -25,66 +25,6 @@ $(function() {
       close.click(function() {
         form.fadeOut(300);
       });
-    
-    // dependent dropdown
-    
-      var vehicleModelHeader   = $('#vehicle-model-header');
-      var vehicleMakeHeader    = $('#vehicle-make-header');
-      var vehicle_model_header = vehicleModelHeader.html();
-        
-      vehicleModelHeader.prop("disabled", true);
-      
-      vehicleMakeHeader.change(function() {
-        
-        var vehicle_make_header = $('#vehicle-make-header :selected').text();
-        var escaped_vehicle_make_header = 
-          vehicle_make_header.
-            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-        var options_header = 
-          $(vehicle_model_header).
-            filter("optgroup[label=" + escaped_vehicle_make_header + "]").
-            html();
-        
-        if (options_header) {
-          vehicleModelHeader.html("<option value=''>All models</option>" + 
-                                    options_header);
-          vehicleModelHeader.prop("disabled", false);
-        } 
-        
-        else {
-          vehicleModelHeader.empty();
-          vehicleModelHeader.prop("disabled", true);
-        }
-      });
-      
-      // var vehicleModelModal   = $('#vehicle-model-modal');
-      // var vehicleMakeModal    = $('#vehicle-make-modal');
-      // var vehicle_model_modal = vehicleModelModal.html();
-        
-      // vehicleModelModal.prop("disabled", true);
-      
-      // vehicleMakeModal.change(function() {
-        
-      //   var vehicle_make_modal = $('#vehicle-make-modal :selected').text();
-      //   var escaped_vehicle_make_modal = 
-      //     vehicle_make_modal.
-      //       replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-      //   var options_modal = 
-      //     $(vehicle_model_modal).
-      //       filter("optgroup[label=" + escaped_vehicle_make_modal + "]").
-      //       html();
-        
-      //   if (options_modal) {
-      //     vehicleModelModal.html("<option value=''>All models</option>" + 
-      //                               options_modal);
-      //     vehicleModelModal.prop("disabled", false);
-      //   } 
-        
-      //   else {
-      //     vehicleModelModal.empty();
-      //     vehicleModelModal.prop("disabled", true);
-      //   }
-      // });
       
     // modal
     
@@ -122,35 +62,7 @@ $(function() {
         	modalMenu.modal('hide');
         }
       });
-      
-      var vehicleModelModal   = $('#vehicle-model-modal');
-      var vehicleMakeModal    = $('#vehicle-make-modal');
-      var vehicle_model_modal = vehicleModelModal.html();
-        
-      vehicleModelModal.prop("disabled", true);
-      
-      vehicleMakeModal.change(function() {
-        
-        var vehicle_make_modal = $('#vehicle-make-modal :selected').text();
-        var escaped_vehicle_make_modal = 
-          vehicle_make_modal.
-            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-        var options_modal = 
-          $(vehicle_model_modal).
-            filter("optgroup[label=" + escaped_vehicle_make_modal + "]").
-            html();
-        
-        if (options_modal) {
-          vehicleModelModal.html(options_modal);
-          vehicleModelModal.prop("disabled", false);
-        } 
-        
-        else {
-          vehicleModelModal.empty();
-          vehicleModelModal.prop("disabled", true);
-        }
-      });
-      
+
   // contact widget
     
     var contactWidgetPhone       = $('.contact-widget-phone');

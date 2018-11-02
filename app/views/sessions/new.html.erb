@@ -13,32 +13,48 @@
 <%= render 'layouts/contact' %>
 
 <div class="credentials">
-  
-  <h1 class="credentials-title">Log in to your Mototrova account</h1>
-  
-  <div class="credentials-form">
-    <div class="row">
-      
-      <div class="col-md-7">
-        <%= render 'form' %>
-      </div>
+  <div class="credentials-content">
     
-      <div class="col-md-5 hidden-xs">
-
-        <span class="reassurance-copy-title">Why you'll love it...</span>
+    <div class="credentials-header">
+      
+      <h1 class="credentials-title">Add or confirm your account details</h1>
+      
+      <h2 class="credentials-subtitle">
+        We need your contact information so we know how to reach you
+      </h2>
+    </div>
+    
+    <div class="credentials-form">
+      <div class="row">
         
-        <ul class="reassurance-copy-info">
-          
-          <li>
-            Browse profile pics, reviews, and more to learn about buyers and 
-            sellers before meeting them.
-          </li>
-          
-          <li>
-            In-app messaging allows contact information to be kept private 
-            until you decide to share it.
-          </li>
-        </ul>
+        <div class="col-md-7">
+          <%= render 'form' %>
+        </div>
+      
+        <div class="col-md-5 hidden-xs">
+          <div class="reassurance-copy">
+  
+            <span class="reassurance-copy-title">Why you'll love it...</span>
+            
+            <ul class="reassurance-copy-info">
+              
+              <li>
+                Enter your preferences; we'll mix and match to find the best
+                combination of price, mileage, and features.
+              </li>
+              
+              <li>
+                Save bikes to your shortlist; receive updates on price 
+                reductions and special offers.
+              </li>
+              
+              <li>
+                Browse profile pics, reviews, and more to learn about buyers and 
+                sellers before meeting them.
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,24 +1,22 @@
 <!--completed-->
 
-<div class="reset-password-form">
-  <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+<%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+    
+  <%= hidden_field_tag :email, @user.email %>
   
-    <%= render 'shared/error_messages', object: f.object %>
-      
-    <%= hidden_field_tag :email, @user.email %>
-    
-    <%= f.password_field :password, 
-                         placeholder: "Password",  
-                         class: 'form-control
-                                 form-control-primary
-                                 reset-password-form-control' %>
-    
-    <%= f.password_field :password_confirmation, 
-                         placeholder: "Confirmation",  
-                         class: 'form-control
-                                 form-control-primary
-                                 reset-password-form-control' %>
-    
-    <%= f.submit "Update Password", class: "btn btn-primary" %>
-  <% end %>
-</div>
+  <%= f.password_field :password, 
+                       placeholder: "Password",  
+                       class: 'form-control
+                               form-control-primary
+                               reset-password-form-control' %>
+  
+  <%= f.password_field :password_confirmation, 
+                       placeholder: "Confirmation",  
+                       class: 'form-control
+                               form-control-primary
+                               reset-password-form-control' %>
+  
+  <%= f.submit "Update Password", class: "btn btn-primary" %>
+<% end %>

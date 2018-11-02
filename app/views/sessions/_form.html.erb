@@ -17,18 +17,30 @@
     <div class="login-alternative-line"></div>
   </div>
   
-  <%= f.email_field :email, 
-                    placeholder: "Email address", 
-                    class: 'form-control 
-                            form-control-primary 
-                            login-form-control' %>
-  
-  <%= f.password_field :password, 
-                       placeholder: "Password", 
-                       class: 'form-control 
-                               form-control-primary 
-                               login-form-control' %>
-  
+  <div class="form-element">
+    
+    <%= f.email_field :email, 
+                      placeholder: "Email address", 
+                      class: 'form-control 
+                              form-control-secondary 
+                              login-form-control' %>
+    
+    <i class="fa fa-envelope-open-o fa-lg form-icon" 
+       aria-hidden="true"></i>
+  </div>
+
+  <div class="form-element">
+    
+    <%= f.password_field :password, 
+                         placeholder: "Password", 
+                         class: 'form-control 
+                                 form-control-secondary 
+                                 login-form-control' %>
+                                 
+    <i class="fa fa-unlock fa-lg form-icon" 
+       aria-hidden="true"></i>
+  </div>
+
   <div class="checkbox-container">
     <div class="checkbox-inline">
       
@@ -43,11 +55,21 @@
   <%= f.submit "Log In", class: "btn btn-primary" %>
 <% end %>
 
-<p>
-  <%= link_to "Forgot your password? Click here", new_password_reset_path %>
-</p>
+<div class="login-links-container">
+  
+  <%= link_to "Forgot your password? Click here", 
+              new_password_reset_path,
+              class: "login-link" %>
 
-<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  <p class="login-link-text">
+    
+    New user? 
+    
+    <%= link_to "Sign up now!", 
+                signup_path, 
+                class: "login-link" %>
+  </p>
+</div>
 
 <!--<script>-->
 <!--  window.fbAsyncInit = function() {-->

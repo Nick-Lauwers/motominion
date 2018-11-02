@@ -101,28 +101,26 @@ class VehiclesController < ApplicationController
       @google_reviews = @vehicle.dealership.google_reviews
     end
     
-    @conversation = Conversation.new
-    
-    @user      = @vehicle.user
     @tested    = Appointment.where("vehicle_id = ? AND buyer_id = ? AND 
                                     status = ? AND date <= ?", 
                                    @vehicle.id, 
                                    current_user.id,
                                    "accepted",
                                    Time.now).present? if current_user
-                                   
-    @photos    = @vehicle.photos
-
-    @reviews   = @vehicle.reviews
-    @hasReview = @reviews.find_by(reviewer_id: current_user.id) if current_user
     
-    @questions = @vehicle.questions
-
-    @question = Question.new
-    
-    @answer = Answer.new
-    
-    @availabilities = @vehicle.availabilities
+    @conversation     = Conversation.new
+    @user             = @vehicle.user                               
+    @photos           = @vehicle.photos
+    @reviews          = @vehicle.reviews
+    @hasReview        = @reviews.find_by(reviewer_id: current_user.id) if current_user
+    @questions        = @vehicle.questions
+    @question         = Question.new
+    @answer           = Answer.new
+    @availabilities   = @vehicle.availabilities
+    @related_vehicles = Vehicle.
+                          where(vehicle_make: @vehicle.vehicle_make).
+                          near("#{@vehicle.city}, #{@vehicle.state}", 150).
+                          first(3)
   end
   
   def search

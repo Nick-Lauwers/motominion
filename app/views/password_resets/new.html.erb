@@ -13,13 +13,20 @@
 <%= render 'layouts/contact' %>
 
 <div class="credentials">
+  <div class="credentials-content">
+    
+    <div class="credentials-header">
+      
+      <h1 class="credentials-title">Forgot your password?</h1>
+      
+      <h2 class="credentials-subtitle">
+        Enter your email address below, and if you've already registered with
+        Motominion we'll send you a link to create a new password.
+      </h2>
+    </div>
   
-  <h1 class="credentials-title">Forgot your password?</h1>
-  
-  <p>
-    Enter your email address below, and if you've already registered with
-    Mototrova we'll send you a link to create a new password.
-  </p>
-  
-  <%= render 'new_form' %>
+    <div class="credentials-form">
+      <%= render 'new_form' %>
+    </div>
+  </div>
 </div>

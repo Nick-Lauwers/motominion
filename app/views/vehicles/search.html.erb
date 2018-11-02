@@ -181,7 +181,6 @@
                           id="sort">
                     
                     <option>
-                      -
                       <!--<(perc)= link_to "Nearest", '#' %>-->
                     </option>
                     
@@ -210,11 +209,14 @@
             <% else %>
               <div class="empty-search">
                 
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/empty-search.png") %>
+                
                 <h3 class="empty-search-title">
                   
                   No results
                   
-                  <% if @filterrific.with_vehicle_make_id.present? %>
+                  <% if @filterrific.with_vehicle_make_id.present? && 
+                        @filterrific.with_vehicle_model_id.present? %>
                     
                     for
                     
@@ -224,21 +226,23 @@
                           
                     <%= VehicleModel.
                           find(@filterrific.with_vehicle_model_id).
-                          name if @filterrific.with_vehicle_model_id.present? %>'
+                          name %>'
+                  
+                  <% elsif @filterrific.with_vehicle_make_id.present? %>
+                  
+                    for
+                    
+                    '<%= VehicleMake.
+                           find(@filterrific.with_vehicle_make_id).
+                           name %>'
+                  <% end %>
                           
-                    <%if @filterrific.with_zip_code.present? %>
-                      in your area.
-                    <% end %>.
+                  <%if @filterrific.with_zip_code.present? %>
+                    in your area.
                   <% end %>
                 </h3>
-                
-                <p class="empty-search-info">
-                  To get more results, try adjusting your search by changing 
-                  motorcycle model, removing any filters, or changing search
-                  radius.
-                </p>
                  
-                <p class="empty-search-info">
+                <span class="empty-search-info">
                    
                   <% if @filterrific.with_vehicle_make_id.present? &&
                         @filterrific.with_zip_code.present? &&
@@ -256,11 +260,10 @@
                       <%= f.hidden_field :with_zip_code, 
                                          value: @filterrific.with_zip_code %>
                                          
-                      <%= f.submit "Browse all #{ VehicleMake.find(@filterrific.with_vehicle_make_id).name }'s in your area",
-                                   class: "empty-search-link" %>
-                      
-                      or 
+                      <%= f.submit "Browse All #{ VehicleMake.find(@filterrific.with_vehicle_make_id).name }'s In Your Area",
+                                   class: "empty-search-link" %> or
                     <% end %>
+                   
                     
                   <% elsif @filterrific.with_zip_code.present? &&
                            Vehicle.
@@ -277,30 +280,30 @@
                         <%= ff.hidden_field :max_distance, value: 150 %>
                       <% end %>
                       
-                      <%= f.submit "Browse all motorcycles in your area",
-                                   class: "empty-search-link" %>
-                        
-                      or 
+                      <%= f.submit "Browse All Motorcycles In Your Area",
+                                   class: "empty-search-link" %> or
                     <% end %>
-  
-                  <% elsif @filterrific.with_vehicle_make_id.present? %>
+    
+                  <% elsif @filterrific.with_vehicle_make_id.present? && 
+                           Vehicle.
+                             where(vehicle_make_id: 
+                                     @filterrific.with_vehicle_make_id).
+                             exists? %>
                     
                     <%= form_for_filterrific @filterrific do |f| %>
                     
                       <%= f.hidden_field :with_vehicle_make_id, 
                                      value: @filterrific.with_vehicle_make_id %>
                                      
-                      <%= f.submit "Browse all #{ VehicleMake.find(@filterrific.with_vehicle_make_id).name }'s",
-                                   class: "empty-search-link" %>
+                      <%= f.submit "Browse All #{ VehicleMake.find(@filterrific.with_vehicle_make_id).name }'s",
+                                   class: "empty-search-link" %> or
                     <% end %>
-                    
-                    or 
                   <% end %>
-                  
-                  <%= link_to("reset all filters", 
-                              reset_filterrific_url, 
-                              class: "empty-search-reset") %>.
-                </p> 
+                </span>
+                
+                <%= link_to("Reset All Filters", 
+                            reset_filterrific_url, 
+                            class: "empty-search-reset") %>
               </div>
             <% end %>
             

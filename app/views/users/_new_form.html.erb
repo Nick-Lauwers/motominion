@@ -73,6 +73,15 @@
   <!--</div>-->
   
   <%= f.submit "Create Account", class: "btn btn-primary" %>
-
-  <p>Already have an account? <%= link_to "Log in", login_path %></p>
+  
+  <div class="login-links-container">
+    <p class="login-link-text">
+      
+      Already have an account? 
+      
+      <%= link_to "Log in", 
+                  login_path,
+                  class: "login-link" %>
+    </p>
+  </div>
 <% end %>

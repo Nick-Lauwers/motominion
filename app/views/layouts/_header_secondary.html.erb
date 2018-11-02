@@ -320,7 +320,7 @@
                                   :id,
                                   :name,
                                   { include_blank: true,
-                                    prompt: "Select make" },
+                                    prompt: "All makes" },
                                   id: "vehicle-make-header",
                                   class: "form-control
                                           header-form-control
@@ -342,7 +342,7 @@
                                           :id,
                                           :name,
                                           { include_blank: true,
-                                            prompt: "Select model" },
+                                            prompt: "All models" },
                                           id: "vehicle-model-header",
                                           class: "form-control 
                                                   header-form-control
@@ -381,64 +381,64 @@
 
     // dependent dropdown
       
-      // var vehicleModelHeader   = $('#vehicle-model-header');
-      // var vehicleMakeHeader    = $('#vehicle-make-header');
-      // var vehicle_model_header = vehicleModelHeader.html();
+      var vehicleModelHeader   = $('#vehicle-model-header');
+      var vehicleMakeHeader    = $('#vehicle-make-header');
+      var vehicle_model_header = vehicleModelHeader.html();
   
-      // if ( vehicleMakeHeader.val() == '' ) {
-      //   vehicleModelHeader.prop("disabled", true);
-      // }
+      if ( vehicleMakeHeader.val() == '' ) {
+        vehicleModelHeader.prop("disabled", true);
+      }
       
-      // else {
+      else {
         
-      //   vehicleMakeHeader.prepend("<option value=''>All makes</option>");
+        vehicleMakeHeader.prepend("<option value=''>All makes</option>");
                                       
-      //   var vehicle_make_header = $('#vehicle-make-header :selected').text();
-      //   var escaped_vehicle_make_header = 
-      //     vehicle_make_header.
-      //       replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-      //   var options_header = 
-      //     $(vehicle_model_header).
-      //       filter("optgroup[label=" + escaped_vehicle_make_header + "]").
-      //       html();
+        var vehicle_make_header = $('#vehicle-make-header :selected').text();
+        var escaped_vehicle_make_header = 
+          vehicle_make_header.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_header = 
+          $(vehicle_model_header).
+            filter("optgroup[label=" + escaped_vehicle_make_header + "]").
+            html();
         
-      //   if (options_header) {
-      //     vehicleModelHeader.html("<option value=''>All models</option>" +
-      //                             "<option value=''></option>" +
-      //                             options_header);
-      //     vehicleModelHeader.prop("disabled", false);
-      //   } 
+        if (options_header) {
+          vehicleModelHeader.html("<option value=''>All models</option>" +
+                                  "<option value=''></option>" +
+                                  options_header);
+          vehicleModelHeader.prop("disabled", false);
+        } 
         
-      //   else {
-      //     vehicleModelHeader.empty();
-      //     vehicleModelHeader.html("<option value=''>All models</option>");
-      //     vehicleModelHeader.prop("disabled", true);
-      //   }
-      // }
+        else {
+          vehicleModelHeader.empty();
+          vehicleModelHeader.html("<option value=''>All models</option>");
+          vehicleModelHeader.prop("disabled", true);
+        }
+      }
       
-      // vehicleMakeHeader.change(function() {
+      vehicleMakeHeader.change(function() {
         
-      //   var vehicle_make_header = $('#vehicle-make-header :selected').text();
-      //   var escaped_vehicle_make_header = 
-      //     vehicle_make_header.
-      //       replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
-      //   var options_filters = 
-      //     $(vehicle_model_header).
-      //       filter("optgroup[label=" + escaped_vehicle_make_header + "]").
-      //       html();
+        var vehicle_make_header = $('#vehicle-make-header :selected').text();
+        var escaped_vehicle_make_header = 
+          vehicle_make_header.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_header = 
+          $(vehicle_model_header).
+            filter("optgroup[label=" + escaped_vehicle_make_header + "]").
+            html();
         
-      //   if (options_header) {
-      //     vehicleModelHeader.html("<option value=''>All models</option>" +
-      //                             "<option value=''></option>" +
-      //                             options_header);
-      //     vehicleModelHeader.prop("disabled", false);
-      //   } 
+        if (options_header) {
+          vehicleModelHeader.html("<option value=''>All models</option>" +
+                                  "<option value=''></option>" +
+                                  options_header);
+          vehicleModelHeader.prop("disabled", false);
+        } 
         
-      //   else {
-      //     vehicleModelHeader.empty();
-      //     vehicleModelHeader.html("<option value=''>All models</option>");
-      //     vehicleModelHeader.prop("disabled", true);
-      //   }
-      // });
+        else {
+          vehicleModelHeader.empty();
+          vehicleModelHeader.html("<option value=''>All models</option>");
+          vehicleModelHeader.prop("disabled", true);
+        }
+      });
   });
 </script>
