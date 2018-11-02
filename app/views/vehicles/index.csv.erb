@@ -80,12 +80,6 @@
       <% year = 1990 %>
     <% end %>
     
-    <!--<(perc) if vehicle.photos.length > 0 %>-->
-    <!--  <(perc) image_url_0 = "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s %>-->
-    <!--<(perc) else %>-->
-    <!--  <(perc) image_url_0 = "http://www.facebook.com/teapic.jpg" %>-->
-    <!--<(perc) end %>-->
-    
     <% image_url_0 = "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s %>
     <% image_url_1 = "https:" + URI.unescape( vehicle.photos[1].image.url() ).to_s %>
     <% image_url_2 = "https:" + URI.unescape( vehicle.photos[2].image.url() ).to_s %>
