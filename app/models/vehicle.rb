@@ -9,10 +9,9 @@ class Vehicle < ActiveRecord::Base
   belongs_to :vehicle_make
   belongs_to :vehicle_model
   
-  has_many :purchases, dependent: :destroy
+  has_many :impressions
   
-  # has_one :payment
-  
+  has_many :purchases,         dependent: :destroy
   has_many :reviews,           dependent: :destroy
   has_many :questions,         dependent: :destroy
   has_many :photos,            dependent: :destroy

@@ -5,6 +5,7 @@ class Dealership < ActiveRecord::Base
   has_many :reviews,              dependent: :destroy
   has_many :google_reviews,       dependent: :destroy
   has_many :dealer_invitations,   dependent: :destroy
+  has_many :impressions,          dependent: :destroy
   
   has_many :business_hours,       dependent: :destroy
   accepts_nested_attributes_for :business_hours

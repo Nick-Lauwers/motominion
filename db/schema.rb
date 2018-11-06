@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181013031540) do
+ActiveRecord::Schema.define(version: 20181105234204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -317,6 +317,21 @@ ActiveRecord::Schema.define(version: 20181013031540) do
   end
 
   add_index "google_reviews", ["dealership_id"], name: "index_google_reviews_on_dealership_id", using: :btree
+
+  create_table "impressions", force: :cascade do |t|
+    t.string   "impression_type"
+    t.string   "ip_address"
+    t.integer  "count"
+    t.integer  "user_id"
+    t.integer  "vehicle_id"
+    t.integer  "dealership_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "impressions", ["dealership_id"], name: "index_impressions_on_dealership_id", using: :btree
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
+  add_index "impressions", ["vehicle_id"], name: "index_impressions_on_vehicle_id", using: :btree
 
   create_table "inquiries", force: :cascade do |t|
     t.datetime "date"
@@ -789,6 +804,9 @@ ActiveRecord::Schema.define(version: 20181013031540) do
   add_foreign_key "favorite_vehicles", "users"
   add_foreign_key "favorite_vehicles", "vehicles"
   add_foreign_key "google_reviews", "dealerships"
+  add_foreign_key "impressions", "dealerships"
+  add_foreign_key "impressions", "users"
+  add_foreign_key "impressions", "vehicles"
   add_foreign_key "inquiries", "conversations"
   add_foreign_key "inquiries", "users"
   add_foreign_key "inquiries", "vehicles"

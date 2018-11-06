@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  impression_type: 
+  ip_address: MyString
+  count: 1
+  user_id: 
+  vehicle_id: 
+  dealership_id: 
+
+two:
+  impression_type: 
+  ip_address: MyString
+  count: 1
+  user_id: 
+  vehicle_id: 
+  dealership_id: 

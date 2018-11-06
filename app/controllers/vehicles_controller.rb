@@ -101,6 +101,75 @@ class VehiclesController < ApplicationController
       @google_reviews = @vehicle.dealership.google_reviews
     end
     
+    # request.remote_ip
+    
+    if current_user 
+      
+      if Impression.where("user_id = ? AND vehicle_id = ?",
+                          current_user.id, @vehicle.id).exists?
+        Impression.where("user_id = ? AND vehicle_id = ?",
+                         current_user.id, @vehicle.id).
+                   first.
+                   increment!(:count)
+      
+      else
+        
+        if @vehicle.dealership.present? 
+          Impression.create(impression_type: "vehicle",
+                            count:           1,
+                            user:            current_user,
+                            vehicle:         @vehicle,
+                            dealership:      @vehicle.dealership)
+        
+        else
+          Impression.create(impression_type: "vehicle",
+                            count:           1,
+                            user:            current_user,
+                            vehicle:         @vehicle)
+        end
+      end
+      
+    elsif request.remote_ip != nil
+    
+      if Impression.where("ip_address = ? AND vehicle_id = ?",
+                          request.remote_ip, @vehicle.id).exists?
+        Impression.where("ip_address = ? AND vehicle_id = ?",
+                         request.remote_ip, @vehicle.id).
+                  first.
+                  increment!(:count)
+    
+      else
+        
+        if @vehicle.dealership.present?
+          Impression.create(impression_type: "vehicle",
+                            count:           1,
+                            ip_address:      request.remote_ip,
+                            vehicle:         @vehicle,
+                            dealership:      @vehicle.dealership)
+        
+        else
+          Impression.create(impression_type: "vehicle",
+                            count:           1,
+                            ip_address:      request.remote_ip,
+                            vehicle:         @vehicle)
+        end
+      end
+                       
+    else
+      
+      if @vehicle.dealership.present?
+        Impression.create(impression_type: "vehicle",
+                          count:           1,
+                          vehicle:         @vehicle,
+                          dealership:      @vehicle.dealership)
+      
+      else
+        Impression.create(impression_type: "vehicle",
+                          count:           1,
+                          vehicle:         @vehicle)
+      end
+    end
+    
     @tested    = Appointment.where("vehicle_id = ? AND buyer_id = ? AND 
                                     status = ? AND date <= ?", 
                                    @vehicle.id, 

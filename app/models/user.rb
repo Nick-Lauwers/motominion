@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   
   # has_one :profile,            dependent: :destroy
   
+  has_many :impressions
+  
   has_many :vehicles,            dependent: :destroy
   has_many :autoparts,           dependent: :destroy
   has_many :discussions,         dependent: :destroy
