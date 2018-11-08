@@ -107,11 +107,9 @@ xml.listings do
 
       xml.sale_price   nil
       
-      if vehicle.last_found_at >= 2.days.ago
-        xml.availability "AVAILABLE"
-      else
+      
         xml.availability "NOT_AVAILABLE"
-      end
+      
       
       if vehicle.condition == "New"
         xml.state_of_vehicle "NEW"
