@@ -4,7 +4,8 @@ class VehiclesController < ApplicationController
   
   require 'will_paginate/array'
   
-  before_action :logged_in_user,     except: [:show, :search, :autocomplete]
+  before_action :logged_in_user,     except: [:show, :search, :autocomplete, 
+                                              :feed]
   before_action :profile_pic_upload, only:   [:post]
   before_action :get_vehicle,        only:   [:destroy, :show, :update, :basics,
                                               :details, :upgrades, :photos, 
