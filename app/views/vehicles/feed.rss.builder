@@ -111,7 +111,7 @@ xml.listings do
       if vehicle.last_found_at >= 2.days.ago
         xml.availability "AVAILABLE"
       else
-        xml.availability "NOT AVAILABLE"
+        xml.availability "NOT_AVAILABLE"
       end
       
       if vehicle.condition == "New"
@@ -138,7 +138,12 @@ xml.listings do
       end
       
       xml.image do
-        xml.url "https:" + URI.unescape( vehicle.photos[0].image.url() ).to_s
+        xml.url "https:" + URI.unescape( vehicle.photos[1].image.url() ).to_s
+        xml.tag nil
+      end
+      
+      xml.image do
+        xml.url "https:" + URI.unescape( vehicle.photos[2].image.url() ).to_s
         xml.tag nil
       end
     end
