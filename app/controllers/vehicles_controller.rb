@@ -96,12 +96,6 @@ class VehiclesController < ApplicationController
     end
   end
   
-  def feed
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
   def show
     
     if @vehicle.dealership.present?
@@ -406,6 +400,66 @@ class VehiclesController < ApplicationController
   def autocomplete
     render json: Vehicle.search(params[:vehicle], autocomplete: false, limit: 10).map do |vehicle|
       { listing_name: vehicle.listing_name, city: vehicle.address.city, value: vehicle.id }
+    end
+  end
+  
+  def feed_1
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_2
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_3
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_4
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_5
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_6
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_7
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_8
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_9
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_10
+    respond_to do |format|
+      format.rss { render :layout => false }
     end
   end
   

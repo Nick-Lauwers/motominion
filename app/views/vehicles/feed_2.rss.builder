@@ -4,7 +4,7 @@ xml.listings do
   xml.link :rel => "self", :href => "https://www.motominion.com"
 
   Vehicle.
-    where(id: 1..1000).
+    where(id: 1000..1999).
     where.not(dealership_id: nil).
     joins(:photos).
     group('vehicles.id').
@@ -109,17 +109,21 @@ xml.listings do
 
       xml.sale_price   nil
       
-      
-        xml.availability "NOT_AVAILABLE"
-      
-      
+      if vehicle.last_found_at >= 2.days.ago
+        xml.availability "AVAILABLE"
+      else
+         xml.availability "NOT_AVAILABLE"
+      end
+
       if vehicle.condition == "New"
         xml.state_of_vehicle "NEW"
       else
         xml.state_of_vehicle "USED"
       end
       
-      xml.dealer_id 1
+      xml.dealer_id    vehicle.dealership.id
+      xml.dealer_name  vehicle.dealership.dealership_name
+      xml.dealer_phone vehicle.dealership.sales_phone
       
       if vehicle.vehicle_model.present?
         xml.custom_label_0 vehicle.vehicle_model.vehicle_type
