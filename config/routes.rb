@@ -84,6 +84,8 @@ Rails.application.routes.draw do
 
   resources :vehicles do
     
+    get 'feed' => 'vehicles#feed'
+    
     resources :reviews,  only: [:create, :destroy]
     resources :payments, only: [:new, :create]
     

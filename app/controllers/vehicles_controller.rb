@@ -95,6 +95,13 @@ class VehiclesController < ApplicationController
     end
   end
   
+  def feed
+    @vehicles = Vehicle.all
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
   def show
     
     if @vehicle.dealership.present?
