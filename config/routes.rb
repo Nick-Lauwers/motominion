@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get    'dashboard'               => 'static_pages#dashboard'
   get    'tour'                    => 'static_pages#tour'
   get    'legal'                   => 'static_pages#legal'
+  get    'feed'                    => 'vehicles#feed'
   get    'customers'               => 'appointments#customers'
   get    'test-drives'             => 'appointments#test_drives'
   get    'purchases_made'          => 'purchases#purchases_made'
@@ -83,8 +84,6 @@ Rails.application.routes.draw do
   end
 
   resources :vehicles do
-    
-    get 'feed' => 'vehicles#feed'
     
     resources :reviews,  only: [:create, :destroy]
     resources :payments, only: [:new, :create]
