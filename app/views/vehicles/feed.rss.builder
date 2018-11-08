@@ -4,9 +4,11 @@ xml.listings do
   xml.link :rel => "self", :href => "https://www.motominion.com"
 
   Vehicle.
+    where.not(dealership_id: nil).
     joins(:photos).
     group('vehicles.id').
     having('count(photos) > 2').
+    first(30).
     each do |vehicle|
      
     xml.listing do
