@@ -8,7 +8,7 @@ module ExternalDb
       
       # find the last integer, then start at that integer
       
-      if ( last_found >= 2.days.ago ) &&
+      if ( last_found >= 7.days.ago ) &&
          ( ::Vehicle.where(scraped_id: vehicle_id).exists? )
          
         

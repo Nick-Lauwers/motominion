@@ -8,7 +8,7 @@ module ExternalDb
     def sync_to_vehicle
       
       if ( vehicle_type_id == 3 || vehicle_type_id == 4 ) &&
-         ( last_found >= 2.days.ago )
+         ( last_found >= 7.days.ago )
         ::Vehicle.where(scraped_id: id).first_or_initialize.tap do |v|
           
           dealership = ::Dealership.where(scraped_id: source_id).first
