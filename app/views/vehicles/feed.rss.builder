@@ -4,7 +4,6 @@ xml.listings do
   xml.link :rel => "self", :href => "https://www.motominion.com"
 
   Vehicle.
-    where(dealership_id: !nil).
     joins(:photos).
     group('vehicles.id').
     having('count(photos) > 2').
@@ -120,9 +119,7 @@ xml.listings do
         xml.state_of_vehicle "USED"
       end
       
-      xml.dealer_id    vehicle.dealership.id
-      xml.dealer_name  vehicle.dealership.dealership_name
-      xml.dealer_phone vehicle.dealership.sales_phone
+      xml.dealer_id 1
       
       if vehicle.vehicle_model.present?
         xml.custom_label_0 vehicle.vehicle_model.vehicle_type
