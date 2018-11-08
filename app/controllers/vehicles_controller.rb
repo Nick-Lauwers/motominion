@@ -96,7 +96,7 @@ class VehiclesController < ApplicationController
   end
   
   def feed
-    @vehicles = Vehicle.all
+    @vehicles = Vehicle.first
     respond_to do |format|
       format.rss { render :layout => false }
     end

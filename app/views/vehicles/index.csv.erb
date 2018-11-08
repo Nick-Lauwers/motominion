@@ -122,7 +122,7 @@
       <% state_of_vehicle = "USED" %>
     <% end %>
     
-    <% if vehicle.vehicle_model.present? &&  %>
+    <% if vehicle.vehicle_model.present? %>
       <% vehicle_type = vehicle.vehicle_model.vehicle_type %>
     <% elsif vehicle.body_style.present? %>
       <% vehicle_type = vehicle.body_style %>
