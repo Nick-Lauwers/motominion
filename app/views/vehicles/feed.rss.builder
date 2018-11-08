@@ -16,7 +16,7 @@ xml.rss :version => "2.0" do
         group('vehicles.id').
         having('count(photos) > 2').
         order("RANDOM()").
-        limit(30).
+        limit(1).
         each do |vehicle|
         
         xml.item do
