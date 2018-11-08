@@ -7,9 +7,9 @@ xml.listings do
     where(dealership_id: !nil).
     joins(:photos).
     group('vehicles.id').
-    having('count(photos) > 2') do |vehicle|
-      
-    
+    having('count(photos) > 2').
+    each do |vehicle|
+     
     xml.listing do
     
       xml.vehicle_id vehicle.id
