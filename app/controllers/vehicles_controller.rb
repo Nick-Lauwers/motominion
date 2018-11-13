@@ -194,6 +194,10 @@ class VehiclesController < ApplicationController
                           where(vehicle_make: @vehicle.vehicle_make).
                           near("#{@vehicle.city}, #{@vehicle.state}", 150).
                           first(3)
+    @related_vehicles_mobile = Vehicle.
+                                 where(vehicle_make: @vehicle.vehicle_make).
+                                 near("#{@vehicle.city}, #{@vehicle.state}", 150).
+                                 first(4) 
   end
   
   def search

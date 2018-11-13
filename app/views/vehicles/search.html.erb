@@ -80,9 +80,9 @@
             
             <% if @vehicles.any? %>
             
-              <div class="search-introduction hidden-xs">
+              <div class="search-introduction">
               
-                <div class="search-introduction-static">
+                <div class="search-introduction-static hidden-xs">
                   
                   <i class="fa fa-times search-introduction-static-close"></i>
                   
@@ -110,7 +110,7 @@
                 </div>
               
                 <div class="search-introduction-dynamic">
-                  <div class="row">
+                  <div class="row search-introduction-dynamic-content">
                     
                     <div class="col-md-3">
                       <span class="search-introduction-dynamic-title">
@@ -124,9 +124,9 @@
                     </div>
                     
                     <div class="col-md-9 marquee">
-                      <div>
+                      <div class="marquee-container">
     
-                        <span>
+                        <span class="marquee-text">
                           
                           <strong><%= Vehicle.first.listing_name %>:</strong> 
                           $<%= Vehicle.first.actual_price %>  
@@ -142,7 +142,7 @@
                           $<%= Vehicle.third.actual_price %>
                         </span>
     
-                        <span>
+                        <span class="marquee-text">
                           
                           <strong><%= Vehicle.first.listing_name %>:</strong>
                           $<%= Vehicle.first.actual_price %>
@@ -164,7 +164,44 @@
               </div>
             <% end %>
             
-            <div class="filter-controls">
+            <!--<div class="mobile-search-info">-->
+              
+            <!--  <span class="feed-title">-->
+
+            <!--    <(perc) if @filterrific.with_vehicle_make_id.present? %>-->
+          
+            <!--      <(perc)= VehicleMake.-->
+            <!--            find(@filterrific.with_vehicle_make_id).-->
+            <!--            name %>-->
+                  
+            <!--      <(perc) if @filterrific.with_vehicle_model_id.present? && -->
+            <!--              VehicleModel.-->
+            <!--                find(@filterrific.with_vehicle_model_id).-->
+            <!--                name != "All Models" %>-->
+          
+            <!--        <(perc)= VehicleModel.-->
+            <!--              find(@filterrific.with_vehicle_model_id).-->
+            <!--              name %>-->
+            <!--      <(perc) end %>-->
+                
+            <!--    <(perc) else %>-->
+            <!--      All Makes and Models-->
+            <!--    <(perc) end %>-->
+            <!--  </span>-->
+
+            <!--  <span class="feed-info">-->
+            <!--    <(perc) if @filterrific.with_zip_code.present? %>-->
+
+            <!--      <(perc)= pluralize(@vehicles.count, "motorcycle") %> found near -->
+            <!--      <(perc)= @filterrific.with_zip_code.to_s.to_region %>-->
+          
+            <!--    <(perc) else %>-->
+            <!--      Enter a city to narrow your search-->
+            <!--    <(perc) end %>-->
+            <!--  </span>-->
+            <!--</div>-->
+            
+            <div class="filter-controls hidden-xs">
               
               <button class="btn-filters">
                 <i class="fa fa-sliders fa-lg filters-icon" 
@@ -199,113 +236,116 @@
               </div>
             </div>
             
-            <% if @vehicles.any? %>
-              <ol class="row search-items">
-                <%= render partial:    "search_item", 
-                           collection: @vehicles, 
-                           as:         :vehicle %>
-              </ol>
-            
-            <% else %>
-              <div class="empty-search">
-                
-                <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/empty-search.png") %>
-                
-                <h3 class="empty-search-title">
+            <div class="search-items">
+              
+              <% if @vehicles.any? %>
+                <ol class="row search-items-content">
+                  <%= render partial:    "search_item", 
+                             collection: @vehicles, 
+                             as:         :vehicle %>
+                </ol>
+              
+              <% else %>
+                <div class="empty-search">
                   
-                  No results
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/empty-search.png") %>
                   
-                  <% if @filterrific.with_vehicle_make_id.present? && 
-                        @filterrific.with_vehicle_model_id.present? %>
+                  <h3 class="empty-search-title">
                     
-                    for
+                    No results
                     
-                    '<%= VehicleMake.
-                           find(@filterrific.with_vehicle_make_id).
-                           name %>
-                          
-                    <%= VehicleModel.
-                          find(@filterrific.with_vehicle_model_id).
-                          name %>'
-                  
-                  <% elsif @filterrific.with_vehicle_make_id.present? %>
-                  
-                    for
-                    
-                    '<%= VehicleMake.
-                           find(@filterrific.with_vehicle_make_id).
-                           name %>'
-                  <% end %>
-                          
-                  <%if @filterrific.with_zip_code.present? %>
-                    in your area.
-                  <% end %>
-                </h3>
-                 
-                <span class="empty-search-info">
-                   
-                  <% if @filterrific.with_vehicle_make_id.present? &&
-                        @filterrific.with_zip_code.present? &&
-                        Vehicle.
-                          where(vehicle_make_id: 
-                                  @filterrific.with_vehicle_make_id).
-                          near(@filterrific.with_zip_code.to_s.to_region, 20).
-                          exists? %>
-                        
-                    <%= form_for_filterrific @filterrific do |f| %>
-                    
-                      <%= f.hidden_field :with_vehicle_make_id, 
-                                     value: @filterrific.with_vehicle_make_id %>
-                                      
-                      <%= f.hidden_field :with_zip_code, 
-                                         value: @filterrific.with_zip_code %>
-                                         
-                      <%= f.submit "Browse All #{ VehicleMake.find(@filterrific.with_vehicle_make_id).name }'s In Your Area",
-                                   class: "empty-search-link" %> or
-                    <% end %>
-                   
-                    
-                  <% elsif @filterrific.with_zip_code.present? &&
-                           Vehicle.
-                             near(@filterrific.with_zip_code.to_s.to_region, 
-                                  150). 
-                             exists? %>
-                    <%= form_for_filterrific @filterrific do |f| %>
-                    
-                      <%= f.fields_for :with_distance do |ff| %>
+                    <% if @filterrific.with_vehicle_make_id.present? && 
+                          @filterrific.with_vehicle_model_id.present? %>
                       
-                        <%= ff.hidden_field :zip_code, 
-                                            value: @filterrific.with_zip_code %>
-                                            
-                        <%= ff.hidden_field :max_distance, value: 150 %>
+                      for
+                      
+                      '<%= VehicleMake.
+                             find(@filterrific.with_vehicle_make_id).
+                             name %>
+                            
+                      <%= VehicleModel.
+                            find(@filterrific.with_vehicle_model_id).
+                            name %>'
+                    
+                    <% elsif @filterrific.with_vehicle_make_id.present? %>
+                    
+                      for
+                      
+                      '<%= VehicleMake.
+                             find(@filterrific.with_vehicle_make_id).
+                             name %>'
+                    <% end %>
+                            
+                    <%if @filterrific.with_zip_code.present? %>
+                      in your area.
+                    <% end %>
+                  </h3>
+                   
+                  <span class="empty-search-info">
+                     
+                    <% if @filterrific.with_vehicle_make_id.present? &&
+                          @filterrific.with_zip_code.present? &&
+                          Vehicle.
+                            where(vehicle_make_id: 
+                                    @filterrific.with_vehicle_make_id).
+                            near(@filterrific.with_zip_code.to_s.to_region, 20).
+                            exists? %>
+                          
+                      <%= form_for_filterrific @filterrific do |f| %>
+                      
+                        <%= f.hidden_field :with_vehicle_make_id, 
+                                       value: @filterrific.with_vehicle_make_id %>
+                                        
+                        <%= f.hidden_field :with_zip_code, 
+                                           value: @filterrific.with_zip_code %>
+                                           
+                        <%= f.submit "Browse All #{ VehicleMake.find(@filterrific.with_vehicle_make_id).name }'s In Your Area",
+                                     class: "empty-search-link" %> or
                       <% end %>
+                     
                       
-                      <%= f.submit "Browse All Motorcycles In Your Area",
-                                   class: "empty-search-link" %> or
+                    <% elsif @filterrific.with_zip_code.present? &&
+                             Vehicle.
+                               near(@filterrific.with_zip_code.to_s.to_region, 
+                                    150). 
+                               exists? %>
+                      <%= form_for_filterrific @filterrific do |f| %>
+                      
+                        <%= f.fields_for :with_distance do |ff| %>
+                        
+                          <%= ff.hidden_field :zip_code, 
+                                              value: @filterrific.with_zip_code %>
+                                              
+                          <%= ff.hidden_field :max_distance, value: 150 %>
+                        <% end %>
+                        
+                        <%= f.submit "Browse All Motorcycles In Your Area",
+                                     class: "empty-search-link" %> or
+                      <% end %>
+      
+                    <% elsif @filterrific.with_vehicle_make_id.present? && 
+                             Vehicle.
+                               where(vehicle_make_id: 
+                                       @filterrific.with_vehicle_make_id).
+                               exists? %>
+                      
+                      <%= form_for_filterrific @filterrific do |f| %>
+                      
+                        <%= f.hidden_field :with_vehicle_make_id, 
+                                       value: @filterrific.with_vehicle_make_id %>
+                                       
+                        <%= f.submit "Browse All #{ VehicleMake.find(@filterrific.with_vehicle_make_id).name }'s",
+                                     class: "empty-search-link" %> or
+                      <% end %>
                     <% end %>
-    
-                  <% elsif @filterrific.with_vehicle_make_id.present? && 
-                           Vehicle.
-                             where(vehicle_make_id: 
-                                     @filterrific.with_vehicle_make_id).
-                             exists? %>
-                    
-                    <%= form_for_filterrific @filterrific do |f| %>
-                    
-                      <%= f.hidden_field :with_vehicle_make_id, 
-                                     value: @filterrific.with_vehicle_make_id %>
-                                     
-                      <%= f.submit "Browse All #{ VehicleMake.find(@filterrific.with_vehicle_make_id).name }'s",
-                                   class: "empty-search-link" %> or
-                    <% end %>
-                  <% end %>
-                </span>
-                
-                <%= link_to("Reset All Filters", 
-                            reset_filterrific_url, 
-                            class: "empty-search-reset") %>
-              </div>
-            <% end %>
+                  </span>
+                  
+                  <%= link_to("Reset All Filters", 
+                              reset_filterrific_url, 
+                              class: "empty-search-reset") %>
+                </div>
+              <% end %>
+            </div>
             
             <div class="search-advice">
               <div class="search-advice-content">
@@ -380,24 +420,56 @@
   <%= render 'personalized_searches/form' %>
 </div>
 
-<div class="search-nav-mobile visible-xs">
-
-  <div class="search-nav-grid search-nav-grid-active">
-    <i class="fa 
-              fa-lg
-              fa-th-large 
-              search-nav-grid-icon 
-              search-nav-grid-icon-active" 
-       aria-hidden="true"></i> 
+<div class="visible-xs">
+  <div class="single-action btn-enquiry">
+    <i class='fa fa-lg fa-comments-o single-action-icon'></i>
   </div>
+</div>
+
+<!--<div class="search-nav-mobile visible-xs">-->
+
+<!--  <div class="search-nav-grid search-nav-grid-active">-->
+<!--    <i class="fa -->
+<!--              fa-lg-->
+<!--              fa-th-large -->
+<!--              search-nav-grid-icon -->
+<!--              search-nav-grid-icon-active" -->
+<!--       aria-hidden="true"></i> -->
+<!--  </div>-->
   
-  <div class="search-nav-map search-nav-map-inactive">
-    <i class="fa 
-              fa-lg
-              fa-map-marker 
-              search-nav-map-icon
-              search-nav-map-icon-inactive" 
-       aria-hidden="true"></i> 
+<!--  <div class="search-nav-map search-nav-map-inactive">-->
+<!--    <i class="fa -->
+<!--              fa-lg-->
+<!--              fa-map-marker -->
+<!--              search-nav-map-icon-->
+<!--              search-nav-map-icon-inactive" -->
+<!--       aria-hidden="true"></i> -->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="search-nav visible-xs">
+  <div class="row">
+    
+    <div class="col-xs-4 
+                btn-search-nav 
+                search-nav-grid
+                search-nav-grid-active" %>
+      <i class="fa fa-th-large btn-search-nav-icon" aria-hidden="true"></i>
+      Grid
+    </div>
+
+    <div class="col-xs-4 
+                btn-search-nav 
+                search-nav-map
+                search-nav-map-inactive">
+      <i class="fa fa-map-marker btn-search-nav-icon" aria-hidden="true"></i>
+      Map
+    </div>
+    
+    <div class="col-xs-4 btn-search-nav btn-filters-modal">
+      <i class="fa fa-sliders btn-search-nav-icon" aria-hidden="true"></i>
+      Filters
+    </div>
   </div>
 </div>
 
@@ -411,39 +483,38 @@
       var searchResultsBackground = $('.search-results-background');
       
       if ( $(window).width() <= 768 ) {    
-        searchResults.height(searchResultsBackground.outerHeight() + 50);
+        searchResults.height(searchResultsBackground.outerHeight());
       }
     
     // filters
     
-      var filtersButton           = $('.btn-filters');
-      var modalFilters            = $('#modal-filters');
-      var cancelButton            = $('.btn-cancel-filters');
-      var searchFilters           = $('.search-filters');
-      var searchItemsContainer    = $('.search-items-container');
-      var modalFiltersHeaderClose = $('.modal-filters-header-close');
-  
+      var filtersButton        = $('.btn-filters');
+      var cancelButton         = $('.btn-cancel-filters');
+      var searchFilters        = $('.search-filters');
+      var searchItemsContainer = $('.search-items-container');
+
       filtersButton.click(function() {
         
-        if ( $(window).width() > 768 ) { 
-          
+        searchFilters.slideToggle();
+        searchItemsContainer.slideToggle();
+        
+        cancelButton.click(function() {
           searchFilters.slideToggle();
           searchItemsContainer.slideToggle();
-          
-          cancelButton.click(function() {
-            searchFilters.slideToggle();
-            searchItemsContainer.slideToggle();
-          });
-        } 
+        });
+      });
+      
+      var filtersModalButton      = $('.btn-filters-modal');
+      var modalFilters            = $('#modal-filters');
+      var modalFiltersHeaderClose = $('.modal-filters-header-close');
+      
+      filtersModalButton.click(function() {
+
+        modalFilters.modal('show');
         
-        else {
-          
-          modalFilters.modal('show');
-          
-          modalFiltersHeaderClose.click(function() {
-            modalFilters.modal('hide');
-          }); 
-        }
+        modalFiltersHeaderClose.click(function() {
+          modalFilters.modal('hide');
+        }); 
       });
     
     // sliders

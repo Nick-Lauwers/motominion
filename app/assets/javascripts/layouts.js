@@ -64,13 +64,46 @@ $(function() {
       });
 
   // contact widget
-    
+  
+    var enquiryButton            = $('.btn-enquiry');
+    var contactWidgetVisible     = $('.contact-widget-visible');
+    var contactWidgetClose       = $('.contact-widget-close');
+    var contactWidgetHidden      = $('.contact-widget-hidden');
     var contactWidgetPhone       = $('.contact-widget-phone');
     var contactWidgetMail        = $('.contact-widget-mail');
     var contactWidgetPhoneIcon   = $('.contact-widget-phone-icon');
     var contactWidgetMailIcon    = $('.contact-widget-mail-icon');
     var contactWidgetHiddenPhone = $('#contact-widget-hidden-phone');
     var contactWidgetHiddenMail  = $('#contact-widget-hidden-mail');
+    
+    enquiryButton.click(function(){
+      enquiryButton.fadeOut(250);
+      contactWidgetVisible.delay(250).fadeIn(250);
+    });
+    
+    contactWidgetClose.click(function(){
+      
+      contactWidgetVisible.fadeOut(250);
+      contactWidgetHidden.fadeOut(250);
+      
+      contactWidgetPhone.
+    	  removeClass('contact-widget-phone-active').
+    	  addClass('contact-widget-phone-inactive');
+
+      contactWidgetMail.
+    	  removeClass('contact-widget-mail-active').
+    	  addClass('contact-widget-mail-inactive');
+    	
+    	contactWidgetPhoneIcon.
+    	  removeClass('contact-widget-phone-icon-active').
+    	  addClass('contact-widget-phone-icon-inactive');
+    	  
+    	contactWidgetMailIcon.
+    	  removeClass('contact-widget-mail-icon-active').
+    	  addClass('contact-widget-mail-icon-inactive');
+    	  
+      enquiryButton.delay(250).fadeIn(250);
+    });
     
     contactWidgetPhone.click(function() {
       

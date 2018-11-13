@@ -1,0 +1,203 @@
+<!--completed-->
+
+<li id="related-vehicle-<%= related_vehicle.id %>" 
+    class="col-md-4 col-xs-4 related-vehicle">
+  <div class="related-vehicle-image">
+    
+    <%= link_to related_vehicle, target: "_blank" do %>
+      <div class="related-vehicle-image-content", 
+           style="background-image: url('<%= related_vehicle.photos[0].image.url() if 
+                                             related_vehicle.photos.length > 0 %>')">
+        
+      </div>
+    <% end %>
+    
+    <% if FavoriteVehicle.
+            where("vehicle_id = ? AND ( is_loved = ? OR is_liked = ? )", 
+                  related_vehicle.id, true, true).
+            exists? %>
+            
+      <%= link_to unfavorite_vehicle_path(related_vehicle),
+                  method: :put,
+                  class: "add-to-wish-list" do %>
+        <i class="fa fa-2x fa-trash wish-list-icon" aria-hidden="true"></i>
+      <% end %>
+     
+    <% else %>
+    
+      <%= link_to favorite_vehicle_path(related_vehicle, is_loved: true), 
+                  method: :put,
+                  class: "add-to-wish-list" do %>
+        <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+    
+    <!--<(perc) if feed_item.dealership.present? %>-->
+      <div class="special-offer"
+           id="feed-item-special-offer-<%= related_vehicle.id %>">
+        
+        <span class="special-offer-score">
+          <%= related_vehicle.listing_score.overall_score %>
+        </span>
+        
+        <span class="special-offer-description">Listing Score</span>
+        
+        <!--<i class="fa fa-lg fa-tag special-offer-icon"></i>-->
+        
+        <!--<div type="button" -->
+        <!--     class="special-offer-button" -->
+        <!--     data-id="<(perc)= feed_item.id %>"-->
+        <!--     data-toggle="modal" -->
+        <!--     data-target="#modal-special-offer">-->
+        <!--  Special Offer-->
+        <!--</div>-->
+      </div>
+    <!--<(perc) end %>-->
+  </div>
+
+  <%= link_to related_vehicle, target: "_blank" do %>
+    <div class="row">
+          
+      <div class="col-xs-3 related-vehicle-user">
+          <div class="related-vehicle-user-content">
+            
+            <% if related_vehicle.user.present? %>
+              <!--<div class="avatar-and-online">-->
+                
+                <div class="related-vehicle-avatar avatar-general",
+                     style="background-image: url(
+                       '<%= related_vehicle.user.avatar.url(:thumb) %>')">
+                </div>
+              
+                <!--<(perc) if feed_item.user.online? %>-->
+                <!--  <div class="online online-lg-primary hidden-xs"></div>-->
+                <!--<(perc) end %>-->
+              <!--</div>-->
+              
+            <% else %>
+              <div class="avatar-verified">
+              
+                <div class="related-vehicle-avatar avatar-general", 
+                     style="background-image: url(
+                           '<%= related_vehicle.dealership.users.sample(1).first.avatar.url(:thumb) %>')">
+                </div>
+                
+                <div class="verified-check">
+                  <i class="fa fa-check verified-check-icon" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        
+        <div class="col-xs-9">
+          <div class="related-vehicle-info">
+            
+            <span class="related-vehicle-title">
+              
+              <% if related_vehicle.actual_price.present? %>
+                $<%= related_vehicle.actual_price %> | 
+              <% elsif related_vehicle.msrp.present? %>
+                $<%= related_vehicle.msrp %> | 
+              <% end %>
+              
+              <%= related_vehicle.listing_name %>
+            </span>
+  
+            <div id="average-rating-vehicle-item-<%= related_vehicle.id %>", 
+                 class="average-rating-related-vehicle"></div>
+            
+            <span class="related-vehicle-review-count">
+            
+              <% if related_vehicle.dealership.present? && 
+                    related_vehicle.dealership_id != 1 && 
+                    related_vehicle.dealership_id != 2 %>
+                <%= pluralize(related_vehicle.dealership.google_reviews.count, 
+                              "review") %>
+                
+              <% else %>
+                <%= pluralize(related_vehicle.reviews.count, "review") %>
+              <% end %>
+            </span>
+            
+            <div class="feature-list">
+            
+              <i class="fa fa-lg fa-info-circle feature-list-icon"></i>
+    
+              <ol class="feature-list-content">
+              
+                <li>Motorcycle Features</li>
+              
+                <% if related_vehicle.cruise_control %>
+                  <li>Cruise Control</li>
+                <% end %>
+                
+                <% if related_vehicle.am_fm %>
+                  <li>AM / FM Radio</li>
+                <% end %>
+                
+                <% if related_vehicle.navigation_system %>
+                  <li>Navigation System</li>
+                <% end %>
+                
+                <% if related_vehicle.heated_seats %>
+                  <li>Heated Seats</li>
+                <% end %>
+                
+                <% if related_vehicle.heated_hand_grips %>
+                  <li>Heated Hand Grips</li>
+                <% end %>
+                
+                <% if related_vehicle.alarm_system %>
+                  <li>Alarm System</li>
+                <% end %>
+                
+                <% if related_vehicle.saddlebags %>
+                  <li>Saddlebags</li>
+                <% end %>
+                
+                <% if related_vehicle.trunk %>
+                  <li>Trunk</li>
+                <% end %>
+                
+                <% if related_vehicle.tow_hitch %>
+                  <li>Tow Hitch</li>
+                <% end %>
+                
+                <% if related_vehicle.cycle_cover %>
+                  <li>Cycle Cover</li>
+                <% end %>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</li>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // rating
+    
+      var averageRating = $('#average-rating-related-vehicle-<%= related_vehicle.id %>');
+  
+      <% if related_vehicle.dealership.present? && 
+            related_vehicle.dealership_id != 1 && 
+            related_vehicle.dealership_id != 2 %>
+        averageRating.raty({
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= related_vehicle.dealership.google_place_rating %>
+        });
+      
+      <% else %>
+        averageRating.raty({
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= related_vehicle.average_rating %>
+        });  
+      <% end %>
+  });
+</script>

@@ -539,14 +539,16 @@
         <div id="specifications">
           
           <h3 class="vehicle-details-title">Specifications</h3>
-
+          
+          <span class="vehicle-details-table-title">General</span>
+          
           <table class="vehicle-details-table">
-                
+
             <% if @vehicle.vehicle_make.present? || 
                   @vehicle.vehicle_make_name.present? %>
               <tr>
                 
-                <td class="specifications-table-column">Type</td>
+                <td class="vehicle-details-table-subtitle">Type</td>
                 
                 <td>
                   <strong>
@@ -616,241 +618,320 @@
                 <td><strong><%= @vehicle.stock_number %></strong></td>
               </tr>
             <% end %>
-            
-            <% if @vehicle.engine.present? %>
-              <tr>
-                <td>Engine</td>
-                <td><strong><%= @vehicle.engine %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.engine_type.present? %>
-              <tr>
-                <td>Engine Type</td>
-                <td><strong><%= @vehicle.engine_type %></strong></td>
-              </tr>
-            <% end %>
-                
-            <% if @vehicle.engine_size.present? %>    
-              <tr>
-                <td>Engine Size</td>
-                <td><strong><%= @vehicle.engine_size %> cc</strong></td>
-              </tr>
-            <% end %>
-                
-            <% if @vehicle.displacement.present? %>
-              <tr>
-                <td>Displacement</td>
-                <td><strong><%= @vehicle.displacement%></strong></td>
-              </tr>
-            <% end %>
-                
-            <% if @vehicle.compression_ratio.present? %>
-              <tr>
-                <td>Compression Ratio</td>
-                <td><strong><%= @vehicle.compression_ratio %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.bore_stroke.present? %>
-              <tr>
-                <td>Bore X Stroke</td>
-                <td><strong><%= @vehicle.bore_stroke %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.bore.present? %>
-              <tr>
-                <td>Bore</td>
-                <td><strong><%= @vehicle.bore %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.stroke.present? %>
-              <tr>
-                <td>Stroke</td>
-                <td><strong><%= @vehicle.stroke %></strong></td>
-              </tr>
-            <% end %>
-              
-            <% if @vehicle.transmission.present? %>
-              <tr>
-                <td>Transmission</td>
-                <td><strong><%= @vehicle.transmission %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.primary_drive.present? %>
-              <tr>
-                <td>Primary Drive</td>
-                <td><strong><%= @vehicle.primary_drive %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.final_drive.present? %>
-              <tr>
-                <td>Final Drive</td>
-                <td><strong><%= @vehicle.final_drive %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.fuel_type.present? %>
-              <tr>
-                <td>Fuel Type</td>
-                <td><strong><%= @vehicle.fuel_type %></strong></td>
-              </tr>
-            <% end %>
-
-            <% if @vehicle.fuel_system.present? %>
-              <tr>
-                <td>Fuel System</td>
-                <td><strong><%= @vehicle.fuel_system %></strong></td>
-              </tr>
-            <% end %>
-                
-            <% if @vehicle.fuel_capacity.present? %>
-              <tr>
-                <td>Fuel Capacity</td>
-                <td><strong><%= @vehicle.fuel_capacity %></strong></td>
-              </tr>
-            <% end %>  
+          </table> 
           
-            <% if @vehicle.brakes.present? %>
-              <tr>
-                <td>Brakes</td>
-                <td><stong><%= @vehicle.brakes %></strong></td>
-              </tr>
-            <% end %>
+          <% if @vehicle.engine.present? || @vehicle.engine_type.present? || 
+                @vehicle.engine_size.present? || 
+                @vehicle.displacement.present? || 
+                @vehicle.compression_ratio.present? || 
+                @vehicle.bore_stroke.present? || @vehicle.bore.present? || 
+                @vehicle.stroke.present? || @vehicle.transmission.present? ||
+                @vehicle.primary_drive.present? || 
+                @vehicle.final_drive.present? %>
+                
+            <span class="vehicle-details-table-title">Engine</span>
+              
+            <table class="vehicle-details-table">
+              
+              <% if @vehicle.engine.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Engine</td>
+                  <td><strong><%= @vehicle.engine %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.engine_type.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Engine Type</td>
+                  <td><strong><%= @vehicle.engine_type %></strong></td>
+                </tr>
+              <% end %>
+                  
+              <% if @vehicle.engine_size.present? %>    
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Engine Size</td>
+                  <td><strong><%= @vehicle.engine_size %> cc</strong></td>
+                </tr>
+              <% end %>
+                  
+              <% if @vehicle.displacement.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Displacement</td>
+                  <td><strong><%= @vehicle.displacement%></strong></td>
+                </tr>
+              <% end %>
+                  
+              <% if @vehicle.compression_ratio.present? %>
+                <tr>
+                  
+                  <td class="vehicle-details-table-subtitle">
+                    Compression Ratio
+                  </td>
+                  
+                  <td><strong><%= @vehicle.compression_ratio %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.bore_stroke.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Bore X Stroke</td>
+                  <td><strong><%= @vehicle.bore_stroke %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.bore.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Bore</td>
+                  <td><strong><%= @vehicle.bore %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.stroke.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Stroke</td>
+                  <td><strong><%= @vehicle.stroke %></strong></td>
+                </tr>
+              <% end %>
+                
+              <% if @vehicle.transmission.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Transmission</td>
+                  <td><strong><%= @vehicle.transmission %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.primary_drive.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Primary Drive</td>
+                  <td><strong><%= @vehicle.primary_drive %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.final_drive.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Final Drive</td>
+                  <td><strong><%= @vehicle.final_drive %></strong></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+          
+          <% if @vehicle.fuel_type.present? || 
+                @vehicle.fuel_system.present? || 
+                @vehicle.fuel_capacity.present? %>
+                
+            <span class="vehicle-details-table-title">Fuel</span>
             
-            <% if @vehicle.front_brakes.present? %>
-              <tr>
-                <td>Front Brakes</td>
-                <td><%= @vehicle.front_brakes %></td>
-              </tr>
-            <% end %>
+            <table class="vehicle-details-table">
+              
+              <% if @vehicle.fuel_type.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Fuel Type</td>
+                  <td><strong><%= @vehicle.fuel_type %></strong></td>
+                </tr>
+              <% end %>
+  
+              <% if @vehicle.fuel_system.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Fuel System</td>
+                  <td><strong><%= @vehicle.fuel_system %></strong></td>
+                </tr>
+              <% end %>
+                  
+              <% if @vehicle.fuel_capacity.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Fuel Capacity</td>
+                  <td><strong><%= @vehicle.fuel_capacity %></strong></td>
+                </tr>
+              <% end %>  
+            </table> 
+          <% end %>
+          
+          <% if @vehicle.brakes.present? || @vehicle.front_brakes.present? ||
+                @vehicle.rear_brakes.present? %>
+          
+            <span class="vehicle-details-table-title">Brakes</span>
             
-            <% if @vehicle.rear_brakes.present? %>
-              <tr>
-                <td>Rear Brakes</td>
-                <td><%= @vehicle.rear_brakes %></td>
-              </tr>
-            <% end %>
+            <table class="vehicle-details-table">
+              
+              <% if @vehicle.brakes.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Brakes</td>
+                  <td><stong><%= @vehicle.brakes %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.front_brakes.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Front Brakes</td>
+                  <td><%= @vehicle.front_brakes %></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rear_brakes.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Rear Brakes</td>
+                  <td><%= @vehicle.rear_brakes %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+          
+          <% if @vehicle.suspension.present? || 
+                @vehicle.front_suspension.present? ||
+                @vehicle.rear_suspension.present? %>
             
-            <% if @vehicle.suspension.present? %>
-              <tr>
-                <td>Suspension</td>
-                <td><(perc)= @vehicle.suspension %></td>
-              </tr>
-            <% end %>
+            <span class="vehicle-details-table-title">Suspension</span>
             
-            <% if @vehicle.front_suspension.present? %>
-              <tr>
-                <td>Front Suspension</td>
-                <td><strong><%= @vehicle.front_suspension %></strong></td>
-              </tr>
-            <% end %>
+            <table class="vehicle-details-table">
+              
+              <% if @vehicle.suspension.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Suspension</td>
+                  <td><%= @vehicle.suspension %></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.front_suspension.present? %>
+                <tr>
+                  
+                  <td class="vehicle-details-table-subtitle">
+                    Front Suspension
+                  </td>
+                  
+                  <td><strong><%= @vehicle.front_suspension %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rear_suspension.present? %>
+                <tr>
+                  
+                  <td class="vehicle-details-table-subtitle">
+                    Rear Suspension
+                  </td>
+                  
+                  <td><strong><%= @vehicle.rear_suspension %></strong></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>  
+          
+          <% if @vehicle.tires.present? || @vehicle.front_tire.present? ||
+                @vehicle.rear_tire.present? %>
+                
+            <span class="vehicle-details-table-title">Tires</span>
             
-            <% if @vehicle.rear_suspension.present? %>
-              <tr>
-                <td>Rear Suspension</td>
-                <td><strong><%= @vehicle.rear_suspension %></strong></td>
-              </tr>
-            <% end %>
+            <table class="vehicle-details-table">
+                
+              <% if @vehicle.tires.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Tires</td>
+                  <td><strong><%= @vehicle.tires %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.front_tire.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Front Tire</td>
+                  <td><strong><%= @vehicle.front_tire %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rear_tire.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Rear Tire</td>
+                  <td><strong><%= @vehicle.rear_tire %></strong></td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+          
+          <% if @vehicle.dry_weight.present? || @vehicle.curb_weight.present? ||
+                @vehicle.curb_weight.present? || @vehicle.rake_trail.present? ||
+                @vehicle.rake.present? || @vehicle.trail.present? ||
+                @vehicle.wheelbase.present? || 
+                @vehicle.ground_clearance.present? ||
+                @vehicle.seat_height.present? || 
+                @vehicle.seat_height_unladen.present? ||
+                @vehicle.seat_height_laden.present? %>
             
-            <% if @vehicle.tires.present? %>
-              <tr>
-                <td>Tires</td>
-                <td><strong><%= @vehicle.tires %></strong></td>
-              </tr>
-            <% end %>
+            <span class="vehicle-details-table-title">Dimensions</span>
             
-            <% if @vehicle.front_tire.present? %>
-              <tr>
-                <td>Front Tire</td>
-                <td><strong><%= @vehicle.front_tire %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.rear_tire.present? %>
-              <tr>
-                <td>Rear Tire</td>
-                <td><strong><%= @vehicle.rear_tire %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.dry_weight.present? %>
-              <tr>
-                <td>Dry Weight</td>
-                <td><strong><%= @vehicle.dry_weight %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.curb_weight.present? %>
-              <tr>
-                <td>Curb Weight</td>
-                <td><strong><%= @vehicle.curb_weight %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.rake_trail.present? %>
-              <tr>
-                <td>Rake X Trail</td>
-                <td><strong><%= @vehicle.rake_trail %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.rake.present? %>
-              <tr>
-                <td>Rake</td>
-                <td><strong><%= @vehicle.rake %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.trail.present? %>
-              <tr>
-                <td>Trail</td>
-                <td><strong><%= @vehicle.trail %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.wheelbase.present? %>
-              <tr>
-                <td>Wheelbase</td>
-                <td><strong><%= @vehicle.wheelbase %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.ground_clearance.present? %>
-              <tr>
-                <td>Ground Clearance</td>
-                <td><strong><%= @vehicle.ground_clearance %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.seat_height.present? %>
-              <tr>
-                <td>Seat Height</td>
-                <td><strong><%= @vehicle.seat_height %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.seat_height_unladen.present? %>
-              <tr>
-                <td>Seat Height, Unladen</td>
-                <td><strong><%= @vehicle.seat_height_unladen %></strong></td>
-              </tr>
-            <% end %>
-            
-            <% if @vehicle.seat_height_laden.present? %>
-              <tr>
-                <td>Seat Height, Laden</td>
-                <td><strong><%= @vehicle.seat_height_laden %></strong></td>
-              </tr>
-            <% end %>  
-          </table>
+            <table class="vehicle-details-table">
+              
+              <% if @vehicle.dry_weight.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Dry Weight</td>
+                  <td><strong><%= @vehicle.dry_weight %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.curb_weight.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Curb Weight</td>
+                  <td><strong><%= @vehicle.curb_weight %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rake_trail.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Rake X Trail</td>
+                  <td><strong><%= @vehicle.rake_trail %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.rake.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Rake</td>
+                  <td><strong><%= @vehicle.rake %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.trail.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Trail</td>
+                  <td><strong><%= @vehicle.trail %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.wheelbase.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Wheelbase</td>
+                  <td><strong><%= @vehicle.wheelbase %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.ground_clearance.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Ground Clearance</td>
+                  <td><strong><%= @vehicle.ground_clearance %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.seat_height.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Seat Height</td>
+                  <td><strong><%= @vehicle.seat_height %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.seat_height_unladen.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Seat Height, Unladen</td>
+                  <td><strong><%= @vehicle.seat_height_unladen %></strong></td>
+                </tr>
+              <% end %>
+              
+              <% if @vehicle.seat_height_laden.present? %>
+                <tr>
+                  <td class="vehicle-details-table-subtitle">Seat Height, Laden</td>
+                  <td><strong><%= @vehicle.seat_height_laden %></strong></td>
+                </tr>
+              <% end %>  
+            </table>
+          <% end %>
         </div>
-        
-        
+
         <% if @vehicle.dealership.blank? %>      
           <div id="features">
             
@@ -985,6 +1066,15 @@
         <div id="listing-score">
         
           <h3 class="vehicle-details-title">Listing Score Breakdown</h3>
+          
+          <p class="vehicle-details-info">
+            This listing was posted 
+            <%= time_ago_in_words(@vehicle.created_at) %> ago and has a score of 
+            <span class="vehicle-details-info-red"><%= @vehicle.listing_score.overall_score %></span>. 
+            The listing quality and dealership scores are 
+            <span class="vehicle-details-info-red">outstanding</span>. 
+            Some of the contributing factors are listed below.
+          </p>
           
           <table class="vehicle-details-table">
             
@@ -1846,22 +1936,41 @@
   </div>
 </div>
 
-<!--<div id="related-vehicles">-->
-<!--  <div class="related-vehicles-content">-->
+  <div id="related-vehicles">
     
-<!--    <h2 class="related-vehicles-title">-->
-<!--      Related Motorcycles-->
-<!--    </h2>-->
-    
-<!--    <div class="related-vehicles-list">-->
-<!--      <ol class="related-vehicles-list-content">-->
-<!--        <(perc)= render partial:    "layouts/feed_item",-->
-<!--                   collection: @related_vehicles,-->
-<!--                   as:         :feed_item %>-->
-<!--      </ol>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+  <% if @related_vehicles.count == 3 %>
+      <div class="related-vehicles-content hidden-xs">
+        
+        <h2 class="related-vehicles-title">
+          Related Motorcycles
+        </h2>
+        
+        <div class="related-vehicles-list">
+          <ol class="related-vehicles-list-content">
+            <%= render partial:    "related_vehicle",
+                       collection: @related_vehicles %>
+          </ol>
+        </div>
+      </div>
+  <% end %>
+  
+  <% if @related_vehicles_mobile.count == 4 %>
+      
+      <div class="related-vehicles-content visible-xs">
+        
+        <h2 class="related-vehicles-title">
+          Related Motorcycles
+        </h2>
+        
+        <div class="related-vehicles-mobile">
+          <ol class="related-vehicles-mobile-content">
+            <%= render partial:    "related_vehicle_mobile",
+                       collection: @related_vehicles_mobile %>
+          </ol>
+        </div>
+      </div>
+    <% end %>
+</div>
 
 <!--<= link_to new_club_path, class: "single-action hidden-xs" do %>-->
 <!--  <i class='fa fa-group fa-lg single-action-icon'></i>-->
