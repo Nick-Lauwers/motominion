@@ -764,14 +764,14 @@
               <% if @vehicle.front_brakes.present? %>
                 <tr>
                   <td class="vehicle-details-table-subtitle">Front Brakes</td>
-                  <td><%= @vehicle.front_brakes %></td>
+                  <td><strong><%= @vehicle.front_brakes %></strong></td>
                 </tr>
               <% end %>
               
               <% if @vehicle.rear_brakes.present? %>
                 <tr>
                   <td class="vehicle-details-table-subtitle">Rear Brakes</td>
-                  <td><%= @vehicle.rear_brakes %></td>
+                  <td><strong><%= @vehicle.rear_brakes %></strong></td>
                 </tr>
               <% end %>
             </table>
@@ -788,7 +788,7 @@
               <% if @vehicle.suspension.present? %>
                 <tr>
                   <td class="vehicle-details-table-subtitle">Suspension</td>
-                  <td><%= @vehicle.suspension %></td>
+                  <td><strong><%= @vehicle.suspension %></strong></td>
                 </tr>
               <% end %>
               
