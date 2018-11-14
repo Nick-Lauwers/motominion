@@ -4,7 +4,7 @@ xml.listings do
   xml.link :rel => "self", :href => "https://www.motominion.com"
 
   Vehicle.
-    where(id: 4000..4999).
+    where(id: 5000..5999).
     where.not(dealership_id: nil).
     joins(:photos).
     group('vehicles.id').
@@ -139,13 +139,64 @@ xml.listings do
       end
       
       xml.image do
-        xml.url "https:" + URI.unescape( vehicle.photos[1].image.url() ).to_s
+        xml.url "https:" + URI.unescape( vehicle.photos[2].image.url() ).to_s
         xml.tag nil
       end
       
-      xml.image do
-        xml.url "https:" + URI.unescape( vehicle.photos[2].image.url() ).to_s
-        xml.tag nil
+      if vehicle.photos[3].exists?
+        xml.image do
+          xml.url "https:" + URI.unescape( vehicle.photos[3].image.url() ).to_s
+          xml.tag nil
+        end
+      end
+      
+      if vehicle.photos[4].exists?
+        xml.image do
+          xml.url "https:" + URI.unescape( vehicle.photos[4].image.url() ).to_s
+          xml.tag nil
+        end
+      end
+      
+      if vehicle.photos[5].exists?
+        xml.image do
+          xml.url "https:" + URI.unescape( vehicle.photos[5].image.url() ).to_s
+          xml.tag nil
+        end
+      end
+      
+      if vehicle.photos[6].exists?
+        xml.image do
+          xml.url "https:" + URI.unescape( vehicle.photos[6].image.url() ).to_s
+          xml.tag nil
+        end
+      end
+      
+      if vehicle.photos[7].exists?
+        xml.image do
+          xml.url "https:" + URI.unescape( vehicle.photos[7].image.url() ).to_s
+          xml.tag nil
+        end
+      end
+      
+      if vehicle.photos[8].exists?
+        xml.image do
+          xml.url "https:" + URI.unescape( vehicle.photos[8].image.url() ).to_s
+          xml.tag nil
+        end
+      end
+      
+      if vehicle.photos[9].exists?
+        xml.image do
+          xml.url "https:" + URI.unescape( vehicle.photos[9].image.url() ).to_s
+          xml.tag nil
+        end
+      end
+      
+      if vehicle.photos[10].exists?
+        xml.image do
+          xml.url "https:" + URI.unescape( vehicle.photos[10].image.url() ).to_s
+          xml.tag nil
+        end
       end
     end
   end

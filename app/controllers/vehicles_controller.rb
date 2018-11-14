@@ -410,6 +410,12 @@ class VehiclesController < ApplicationController
     end
   end
   
+  def feed_0
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
   def feed_1
     respond_to do |format|
       format.rss { render :layout => false }
@@ -465,6 +471,24 @@ class VehiclesController < ApplicationController
   end
   
   def feed_10
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_11
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_12
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_13
     respond_to do |format|
       format.rss { render :layout => false }
     end
