@@ -4861,9 +4861,10 @@ ul.pagination {
 .vehicle-details-table {
   font-size: 1em;
   width: 100%;
-  // td {
-  //   padding-right: 1.5em;
-  // }
+  td {
+    text-align: center;
+    vertical-align: top;
+  }
 }
 
 .vehicle-details-table-title {

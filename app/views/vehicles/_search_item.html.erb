@@ -6,11 +6,11 @@
   <div class="search-item-image">
     
     <%= link_to vehicle, target: "_blank" do %>
-      <div class="search-item-image-content", 
-           style="background-image: url('<%= vehicle.photos[0].image.url() if 
-                                             vehicle.photos.length > 0 %>')">
-        
-      </div>
+    
+      
+        <div class="search-item-image-content", 
+             style="background-image: url('http://www.pbs.org/mercy-street/lunchbox_plugins/s/photogallery/img/no-image-available.jpg')">
+        </div>
     <% end %>
     
     <% if FavoriteVehicle.
