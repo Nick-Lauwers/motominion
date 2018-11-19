@@ -4863,7 +4863,7 @@ ul.pagination {
   width: 100%;
   tr {
     td {
-      vertical-align: top;
+      vertical-align: top !important;
     }
   }
 }
