@@ -4862,8 +4862,9 @@ ul.pagination {
   font-size: 1em;
   width: 100%;
   tr {
-    td {
-      vertical-align: top !important;
+    td,
+    .vehicle-details-subtitle {
+      vertical-align: top;
       padding: 0;
     }
   }
