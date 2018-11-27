@@ -89,8 +89,9 @@ class VehiclesController < ApplicationController
   
   def index
     
-    @vehicles = current_user.vehicles
-    
+    @private_vehicles    = current_user.vehicles
+    @dealership_vehicles = Dealership.find(current_user.dealership_id).vehicles
+
     respond_to do |format|
       format.html
       format.csv 

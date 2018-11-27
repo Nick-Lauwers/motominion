@@ -3,7 +3,7 @@ class DealershipsController < ApplicationController
   before_action :get_dealership, only: [:edit, :update, :show, :authentication, 
                                         :basics, :about, :contact, :hours, 
                                         :address, :logo, :photo, :vehicles, 
-                                        :reviews]
+                                        :reviews, :insights]
   
   def new
     @dealership = Dealership.new
@@ -70,6 +70,10 @@ class DealershipsController < ApplicationController
   end
   
   def photo
+  end
+  
+  def insights
+    @vehicle_views = Impression.where(dealership: @dealership)
   end
   
   def vehicles

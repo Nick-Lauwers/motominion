@@ -21,6 +21,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
+    active_median (0.2.2)
+      activerecord (>= 4.2)
     activejob (4.2.2)
       activesupport (= 4.2.2)
       globalid (>= 0.3.0)
@@ -86,6 +88,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    chartkick (3.0.1)
     climate_control (0.2.0)
     clockwork (2.0.3)
       tzinfo
@@ -267,6 +270,8 @@ GEM
     gmaps4rails (2.1.2)
     google_places (1.2.0)
       httparty (>= 0.13.1)
+    groupdate (4.1.0)
+      activesupport (>= 4.2)
     guard (2.14.2)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -487,6 +492,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_median
   activemerchant
   acts_as_votable
   area
@@ -498,6 +504,7 @@ DEPENDENCIES
   bootstrap3-datetimepicker-rails (~> 4.17.43)
   byebug (= 3.4.0)
   carrierwave (= 0.10.0)
+  chartkick
   clockwork
   cocoon
   coffee-rails (= 4.1.0)
@@ -510,6 +517,7 @@ DEPENDENCIES
   geocoder
   gmaps4rails
   google_places
+  groupdate
   guard-minitest (= 2.3.1)
   jbuilder (= 2.2.3)
   jquery-rails (= 4.0.3)

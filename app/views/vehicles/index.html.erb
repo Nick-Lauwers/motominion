@@ -26,13 +26,22 @@
       
       <div class="col-md-8">
         
-        <% if @vehicles.exists? %>
+        <% if @private_vehicles.exists? %>
           <ol class="backend-list">
-            <%= render @vehicles %>
+            <%= render partial:    "private_vehicle", 
+                       collection: @private_vehicles, 
+                       as:         :vehicle %>
+          </ol>
+        
+        <% elsif @dealership_vehicles.exists? %>
+          <ol class="backend-list">
+            <%= render partial:    "dealership_vehicle", 
+                       collection: @dealership_vehicles, 
+                       as:         :vehicle %>
           </ol>
         
         <% else %>
-          <!--<div class="empty-list">-->
+          <div class="empty-list">
           
             <!--<i class="fa fa-bars fa-4x empty-list-icon" -->
             <!--   aria-hidden="true"></i>-->
@@ -51,7 +60,7 @@
             <!--       aria-hidden="true"></i> -->
             <!--  <(perc) end %>-->
             <!--</div>-->
-          <!--</div>-->
+          </div>
         <% end %>
       </div>
     </div>

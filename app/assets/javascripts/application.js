@@ -24,4 +24,6 @@
 //= require cocoon
 //= require trix
 //= require filterrific/filterrific-jquery
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .

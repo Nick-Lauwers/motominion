@@ -155,6 +155,7 @@ Rails.application.routes.draw do
       get 'photo'
       get 'vehicles'
       get 'reviews'
+      get 'insights'
     end
   end
 

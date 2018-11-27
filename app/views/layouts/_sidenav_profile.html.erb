@@ -9,13 +9,23 @@
     <%= link_to "Edit Profile", edit_user_path(current_user) %>
   </li>
   
-  <% if current_user.dealership_id %>
+  <% if current_user.dealership_id.present? %>
     <li class="<%= 'sidenav-active' if 
                    current_page?(
                      edit_dealership_path(current_user.dealership_id)
                     ) %>">
       <%= link_to "Company Details", 
                   edit_dealership_path(current_user.dealership_id) %>
+    </li>
+  <% end %>
+  
+  <% if current_user.dealership_id.present? %>
+    <li class="<%= 'sidenav-active' if 
+                   current_page?(
+                     insights_dealership_path(current_user.dealership_id)
+                    ) %>">
+      <%= link_to "Insights", 
+                  insights_dealership_path(current_user.dealership_id) %>
     </li>
   <% end %>
   

@@ -7,10 +7,16 @@
     
     <%= link_to vehicle, target: "_blank" do %>
     
-      
+      <% if related_vehicle.photos.length > 0 %>
+        <div class="related-vehicle-image-content", 
+             style="background-image: url('<%= related_vehicle.photos[0].image.url() %>')">
+        </div>
+        
+      <% else %>
         <div class="search-item-image-content", 
              style="background-image: url('http://www.pbs.org/mercy-street/lunchbox_plugins/s/photogallery/img/no-image-available.jpg')">
         </div>
+      <% end %>
     <% end %>
     
     <% if FavoriteVehicle.
