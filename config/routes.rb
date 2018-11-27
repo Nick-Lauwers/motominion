@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get    'feed_11'                 => 'vehicles#feed_11'
   get    'feed_12'                 => 'vehicles#feed_12'
   get    'feed_13'                 => 'vehicles#feed_13'
+  get    'admin'                   => 'dealerships#admin'
   get    'customers'               => 'appointments#customers'
   get    'test-drives'             => 'appointments#test_drives'
   get    'purchases_made'          => 'purchases#purchases_made'

@@ -7,9 +7,9 @@
     
     <%= link_to vehicle, target: "_blank" do %>
     
-      <% if related_vehicle.photos.length > 0 %>
-        <div class="related-vehicle-image-content", 
-             style="background-image: url('<%= related_vehicle.photos[0].image.url() %>')">
+      <% if vehicle.photos.length > 0 %>
+        <div class="search-item-image-content", 
+             style="background-image: url('<%= vehicle.photos[0].image.url() %>')">
         </div>
         
       <% else %>

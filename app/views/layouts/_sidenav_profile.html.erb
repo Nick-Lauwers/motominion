@@ -35,6 +35,12 @@
       Reviews (<%= Review.where(reviewed_id: current_user.id).count %>)
     <% end %>
   </li>
+  
+  <% if current_user.id == 24  %>
+    <li class="<%= 'sidenav-active' if current_page?(admin_path) %>">
+      <%= link_to "Admin Overview", admin_path %>
+    </li>
+  <% end %>
 </ul>
 
 <!--<= link_to 'View Profile', -->

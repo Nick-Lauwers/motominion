@@ -1,6 +1,4 @@
-<!--completed-->
-
-<% provide(:title, 'Insights') %>
+<% provide(:title, 'Admin') %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -25,8 +23,10 @@
       </div>
       
       <div class="col-md-8">
-        <h3>Visits By Day</h3>
-        <%= area_chart @vehicle_views.group_by_day(:created_at, format: "%B %d, %Y").count, discrete: true %>
+        <% Dealership.all.each do |dealership| %>
+          <h3><%= dealership.dealership_name %></h3>
+          <%= area_chart Impression.where(dealership: dealership).group_by_day(:created_at, format: "%B %d, %Y").count, discrete: true %>
+        <% end %>
       </div>
     </div>
   </div>
