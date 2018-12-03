@@ -3,10 +3,9 @@
 <% other = conversation.sender == 
            current_user ? conversation.recipient : conversation.sender %>
            
-<%= link_to conversation_messages_path(conversation), 
-            class: "conversation-link" do %>
-   
-  <li id="conversation-item-<%= conversation.id %>" class="conversation-item">           
+<li id="conversation-item-<%= conversation.id %>" class="conversation-item"> 
+
+  <%= link_to conversation_messages_path(conversation) do %>
     <table class="conversation-item-content">
       <tr>
         
@@ -46,14 +45,12 @@
           </div>
         </td>
         
-        <td class="conversation-content-container hidden-xs">
-          <p class="conversation-content">
-            <!--<(perc) if conversation.messages.exists? %>-->
+        <td class="conversation-container hidden-xs">
+          <div class="conversation">
+            <p class="conversation-content">
               <%= sanitize conversation.messages.last.content %>
-            <!--<(perc) else %>-->
-            <!--  (No Messages)-->
-            <!--<(perc) end %>-->
-          </p>
+            </p>
+          </div>
         </td>
         
         <td>
@@ -71,8 +68,8 @@
         </td>
       </tr>
     </table>
-  </li>
-<% end %>
+  <% end %>
+</li>
 
 <!--simplify conversation and messages relationship (mailboxer gem)-->
 <!--stay gray after selected-->

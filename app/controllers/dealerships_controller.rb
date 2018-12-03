@@ -3,7 +3,8 @@ class DealershipsController < ApplicationController
   before_action :get_dealership, only: [:edit, :update, :show, :authentication, 
                                         :basics, :about, :contact, :hours, 
                                         :address, :logo, :photo, :vehicles, 
-                                        :reviews, :insights]
+                                        :reviews, :insights, :performance,
+                                        :inventory]
   
   def new
     @dealership = Dealership.new
@@ -72,8 +73,13 @@ class DealershipsController < ApplicationController
   def photo
   end
   
-  def insights
-    @vehicle_views = Impression.where(dealership: @dealership)
+  def performance
+    @vehicle_views  = Impression.where(dealership: @dealership)
+    @google_reviews = @dealership.google_reviews
+  end
+  
+  def inventory
+    @vehicles = @dealership.vehicles.paginate(page: params[:page], per_page: 15)
   end
   
   def vehicles

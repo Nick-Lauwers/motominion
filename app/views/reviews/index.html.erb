@@ -23,7 +23,90 @@
       </div>
       
       <div class="col-md-8">
+
+        <% if @reviews.present? || @google_reviews.present? %>
+          <div class="row reviews-summary">
+            
+            <div class="col-md-4">
+              
+              <h3 class="reviews-subheading">Average Rating</h3>
+              
+              <div class="row vertical-align">
+                
+                <div class="col-xs-3">
+                  <div class="average-rating-number">
+                    
+                    <% if @vehicle.dealership.present? %> 
+                      <%= @vehicle.dealership.google_place_rating %>
+                    <% else %>
+                      <%= @vehicle.average_rating %>
+                    <% end %>
+                  </div>
+                </div>
+                
+                <div class="col-xs-9">
+                  
+                  <div class="average-rating"></div>
+                  
+                  <span class="number-of-reviews">
+                    <% if @vehicle.dealership.present? %> 
+                      (based on <%= pluralize(@google_reviews.count, "review") %>)
+                    <% else %>
+                      (based on <%= pluralize(@vehicle.reviews.count, "review") %>)
+                    <% end %>
+                  </span> 
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="pros-cons-list">
+                
+                <h3 class="reviews-subheading">Pros</h3>
+                
+                <ul class="pros-cons-list-content">
+                  <!--<li>Security & safety (51)</li>-->
+                  <!--<li>Location (45)</li>-->
+                  <!--<li>Management / staff (40)</li>-->
+                  <li>None Listed Yet</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="col-md-4">
+              <div class="pros-cons-list">
+                
+                <h3 class="reviews-subheading">Cons</h3>
+                
+                <ul class="pros-cons-list-content">
+                  <li>None Listed Yet</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <%= render 'reviews/form' if @tested && !@hasReview %>
+          
+          <ol class="reviews-list">
+            <%= render 'reviews_list' %>
+          </ol>
+          
+        <% else %>
         
+          <% if @tested && !@hasReview %>
+            <%= render 'reviews/form' %>
+          
+          <% else %>
+            <div class="empty-list">
+              
+              <i class="fa fa-balance-scale fa-4x empty-list-icon" 
+                 aria-hidden="true"></i>
+                 
+              <p class="empty-list-info">No reviews for this motorcycle yet</p>
+            </div>
+          <% end %>
+        <% end %>
+
         <!--<ul class="nav nav-tabs">-->
           
         <!--  <li class="active">-->
@@ -43,19 +126,19 @@
           
         <!--  <div class="tab-pane fade active in" id="reviews_about_you">-->
             
-            <% if @reviews_about_you.exists? %>
-              <ol class="backend-list">
-                <%= render partial:    "review_about_you", 
-                           collection: @reviews_about_you, 
-                           as:         :review %>
-              </ol>
+          <!--  <(perc) if @reviews_about_you.exists? %>-->
+          <!--    <ol class="backend-list">-->
+          <!--      <(perc)= render partial:    "review_about_you", -->
+          <!--                 collection: @reviews_about_you, -->
+          <!--                 as:         :review %>-->
+          <!--    </ol>-->
               
-            <% else %>
-              <p class="empty-list-info">
-                You have not received any reviews.
-              </p>
-            <% end %>
-          </div>
+          <!--  <(perc) else %>-->
+          <!--    <p class="empty-list-info">-->
+          <!--      You have not received any reviews.-->
+          <!--    </p>-->
+          <!--  <(perc) end %>-->
+          <!--</div>-->
           
         <!--  <div class="tab-pane fade" id="reviews_by_you">-->
             

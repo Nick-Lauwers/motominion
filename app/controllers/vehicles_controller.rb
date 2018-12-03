@@ -89,8 +89,7 @@ class VehiclesController < ApplicationController
   
   def index
     
-    @private_vehicles    = current_user.vehicles
-    @dealership_vehicles = Dealership.find(current_user.dealership_id).vehicles
+    @vehicles = current_user.vehicles
 
     respond_to do |format|
       format.html
@@ -107,7 +106,13 @@ class VehiclesController < ApplicationController
       @google_reviews = @vehicle.dealership.google_reviews
     end
     
-    # request.remote_ip
+    if current_user
+      VehicleView.create(user: current_user, vehicle: @vehicle)
+    elsif request.remote_ip != nil
+      VehicleView.create(ip_address: request.remote_ip, vehicle: @vehicle)
+    else
+      VehicleView.create(vehicle: @vehicle)
+    end
     
     if current_user 
       

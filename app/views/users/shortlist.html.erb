@@ -96,7 +96,7 @@
             </span>
             
             <% if @loved_items.exists? %>
-              <ol class="row search-items">
+              <ol class="row search-items-content">
                 <%= render partial: "shortlist_item",
                            collection: @loved_items %>
               </ol>
@@ -142,7 +142,7 @@
             </span>
             
             <% if @liked_items.exists? %>
-              <ol class="row search-items">
+              <ol class="row search-items-content">
                 <%= render partial: "shortlist_item",
                            collection: @liked_items %>
               </ol>

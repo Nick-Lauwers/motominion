@@ -333,23 +333,26 @@
                                 class: "visible-xs") %>
                 </div>
                 
-                <div class="col-md-10 col-xs-11">
-                  <p class="vehicle-overview-views-info">
-                    
-                    <strong>
-                      <% if @vehicle.dealership.present? %>
-                        This
-                      <% else %>
-                        <%= @vehicle.user.first_name %>'s 
-                      <% end %>
-                      motorcycle is on people's minds.
-                    </strong>
-                    
-                    <br>
-                    
-                    It's received 500+ views this week.
-                  </p>
-                </div>
+                <% if @vehicle.vehicle_views.count > 0 %>
+                  <div class="col-md-10 col-xs-11">
+                    <p class="vehicle-overview-views-info">
+                      
+                      <strong>
+                        <% if @vehicle.dealership.present? %>
+                          This
+                        <% else %>
+                          <%= @vehicle.user.first_name %>'s 
+                        <% end %>
+                        motorcycle is on people's minds.
+                      </strong>
+                      
+                      <br>
+                      
+                      It's received 
+                      <%= pluralize(@vehicle.vehicle_views.count, "view") %>.
+                    </p>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>

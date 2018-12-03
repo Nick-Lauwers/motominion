@@ -6217,13 +6217,18 @@ ul.pagination {
 }
 
 .dashboard-tabs li a,
-.inbox-tabs li a {
+.inbox-tabs li a,
+.performance-tabs li a {
   font-size: 13px;
   padding: 18.5px 0 14.5px;
 }
 
 .dashboard-tab-content {
   padding: 4em 10em 0;
+}
+
+.performance-tab-content {
+  padding: 4em 0 0;
 }
 
 .tab-pane-list {
@@ -6420,7 +6425,8 @@ ul.pagination {
 .conversation-avatar,
 .new-question-avatar,
 .customer-avatar,
-.backend-question-avatar {
+.backend-question-avatar,
+.inventory-item-avatar {
   border-radius: 50%;
   height: 45px;
   width: 45px;
@@ -6437,7 +6443,8 @@ ul.pagination {
 }
 
 .conversation-item,
-.new-question-item {
+.new-question-item,
+.inventory-item {
   margin-bottom: 4em;
   transition: 0.3s;
   &:hover {
@@ -6449,17 +6456,28 @@ ul.pagination {
 }
 
 .conversation-item-content,
-.new-question-item-content {
+.new-question-item-content,
+.inventory-item-content {
   width:100%
+}
+
+.conversation-detail,
+.customer-detail,
+.inventory-item-detail {
+  padding: 0 3em 0 1em;
 }
 
 .conversation-detail,
 .customer-detail {
   width: 12em;
-  padding: 0 3em 0 1em;
+}  
+
+.inventory-item-detail {
+  width: 17em;
 }
 
-.conversation-name {
+.conversation-name,
+.inventory-item-name {
   font-size: 1.1em;
   font-weight: bold;
   text-align: left;
@@ -6469,7 +6487,8 @@ ul.pagination {
   overflow: hidden;
 }
 
-.conversation-date {
+.conversation-date,
+.inventory-item-date {
   font-size: 1em;
   text-align: left;
   color: $gray-dark;
@@ -6477,17 +6496,40 @@ ul.pagination {
   overflow: hidden;
 }
 
-.conversation-content-container {
+.inventory-item-date {
+  max-height: 1.4em;
+}
+
+.conversation-container {
   width: 100%;
 }
 
+.conversation {
+  max-height: 2.8em;
+  overflow: hidden;
+}
+
 .conversation-content {
+  height: auto;
   font-size: 1em;
   text-align: left;
   color: $gray-text;
-  max-height: 1.4em;
   margin: 0;
-  overflow: hidden;
+}
+
+.inventory-item-pageviews,
+.inventory-item-shortlists {
+  font-size: 1em;
+  font-weight: bold;
+  display: block;
+}
+
+.inventory-item-pageviews {
+  color: $green;
+}
+
+.inventory-item-shortlists {
+  color: $red;
 }
 
 // .conversation-appointment {
@@ -6499,11 +6541,11 @@ ul.pagination {
 //   margin: 0;
 // }
 
-.conversation-delete-link {
+.conversation-delete-link,
+.inventory-item-link {
   font-size: 1em;
   text-align: right;
   color: $gray-dark;
-  width: 5.5em;
   display: inline-block;
   transition: 0.3s;
   &:hover,
@@ -6511,6 +6553,14 @@ ul.pagination {
     text-decoration: underline;
     color: black;
   }
+}
+
+.conversation-delete-link {
+  width: 5.5em;
+}
+
+.inventory-item-link {
+  width: 10em;
 }
 
 .new-question-name {
@@ -6606,7 +6656,8 @@ ul.pagination {
 }
 
 .recipient-expand,
-.vehicle-overview-expand {
+.vehicle-overview-expand,
+.backend-review-expand {
   font-weight: bold;
   color: $green;
   cursor: pointer;
@@ -6620,9 +6671,13 @@ ul.pagination {
   text-align: center;
 }
 
+.vehicle-overview-expand,
+.backend-review-expand {
+  display: none;
+}
+
 .vehicle-overview-expand {
   margin-top: 0.5em;
-  display: none;
 }
 
 .messages-info-requests {
@@ -7076,18 +7131,18 @@ ul.pagination {
 }
 
 .backend-review-item {
-  margin-bottom: 4.5em;
+  margin-bottom: 4em;
 }
 
-.backend-review-author {
-  transition: 0.3s;
-}
+// .backend-review-author {
+//   transition: 0.3s;
+// }
 
-.backend-review-author-clickable:hover,
-.backend-review-author-clickable:focus {
-  text-decoration: none;
-  opacity: 0.4;
-}
+// .backend-review-author-clickable:hover,
+// .backend-review-author-clickable:focus {
+//   text-decoration: none;
+//   opacity: 0.4;
+// }
 
 .backend-review-container {
   padding-top: 0.65em;
@@ -7095,12 +7150,14 @@ ul.pagination {
 
 .backend-review-comment {
   text-align: left;
-  margin: 0 0 0.35em;
+  margin: 0;
 }
 
 .backend-review-date {
   font-size: 1em;
   color: $gray-dark;
+  margin: 0.35em 0 0;
+  display: block;
 }
 
 .appointment-detail-icon,
@@ -11103,6 +11160,67 @@ a.remove_fields {
   margin: 0 -15px;
 }
 
+.performance-indicators {
+  margin-bottom: 4em;
+  overflow: auto;
+}
+
+.performance-indicator {
+  background-color: $red;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px 0 $gray-light;
+  height: 75px;
+  position: relative;
+}
+
+.performance-indicator-a {
+  background-color: #a06bdd;
+}
+
+.performance-indicator-b {
+  background-color: #00c29d;
+}
+
+.performance-indicator-c {
+  background-color: #e85caa;
+}
+
+.performance-indicator-d {
+  background-color: #4181de;
+}
+
+.performance-indicator-detail {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.performance-indicator-title,
+.performance-indicator-info {
+  color: white;
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+  display: block;
+}
+
+.performance-indicator-title {
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+.performance-indicator-info {
+  font-size: 1em;
+  font-style: italic;
+}
+
+.chart-summary {
+  font-size: 1.025em;
+  font-weight: bold;
+  font-style: italic;
+  color: $gray-darkest;
+  margin: 0 0 1.5em;
+}
+
 @media (max-width: 768px) {
   
   .col-xs-6-modified {
@@ -11373,7 +11491,8 @@ a.remove_fields {
     width: 60px;
   }
   
-  .dashboard-tab-content {
+  .dashboard-tab-content,
+  .performance-tab-content {
     padding: 2em 0 0;
   }
   

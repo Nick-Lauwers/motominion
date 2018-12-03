@@ -1,0 +1,54 @@
+<li id="inventory-item-<%= vehicle.id %>" class="inventory-item">           
+  <%= link_to consumer_activity_vehicle_path(vehicle) do %>
+    <table class="inventory-item-content">
+      <tr>
+        
+        <td>
+          <div class="inventory-item-avatar avatar-general", 
+               style="background-image: url('<%= vehicle.photos[0].image.url() if
+                                                 vehicle.photos.length > 0 %>')">
+          </div>
+        </td>
+        
+        <td>
+          <div class="inventory-item-detail">
+
+            <p class="inventory-item-name"><%= vehicle.listing_name %></p>
+            
+            <p class="conversation-date inventory-item-date">
+              <% if vehicle.posted_at.present? %>
+                Posted <%= time_ago_in_words(vehicle.posted_at) %> ago
+              <% else %>
+                Not posted yet
+              <% end %>
+            </p>
+          </div>
+        </td>
+        
+        <td class="conversation-container hidden-xs">
+          
+          <span class="inventory-item-pageviews">
+            <%= pluralize(vehicle.vehicle_views.count, "View") %>
+          </span>
+          
+          <span class="inventory-item-shortlists">
+            <%= pluralize(vehicle.favorite_vehicles.where("is_loved = ? or is_liked = ?", true, true).count, "Shortlist") %>
+          </span>
+        </td>
+        
+        <td>
+          <!--<p class="conversation-appointment">-->
+          <!--  <(perc)= pluralize(conversation.appointments.count, "Request") %>-->
+          <!--</p>-->
+          
+          <%= link_to vehicle, target: "_blank" do %>
+            <span class="inventory-item-link">
+              <i class="fa fa-window-restore" aria-hidden="true"></i>
+              View Listing
+            </span>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</li>

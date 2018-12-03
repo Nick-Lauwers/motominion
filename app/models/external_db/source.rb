@@ -17,14 +17,14 @@ module ExternalDb
             d.last_run_duplicate_records = last_run_duplicate_records
             d.last_run_error_records = last_run_error_records
         
-            if d.google_place_id.present?
+            # if d.google_place_id.present?
               
-              g = GooglePlaces::Client.
-                    new(ENV['GOOGLE_API_KEY']).
-                    spot(d.google_place_id)
+            #   g = GooglePlaces::Client.
+            #         new(ENV['GOOGLE_API_KEY']).
+            #         spot(d.google_place_id)
                 
-              d.google_place_rating = g.rating
-            end
+            #   d.google_place_rating = g.rating
+            # end
             
             d.save
             
@@ -54,22 +54,22 @@ module ExternalDb
             
             puts "Dealership #{id} added."
             
-            if d.google_place_id.present?
+            # if d.google_place_id.present?
               
-              g = GooglePlaces::Client.
-                    new(ENV['GOOGLE_API_KEY']).
-                    spot(d.google_place_id)
+            #   g = GooglePlaces::Client.
+            #         new(ENV['GOOGLE_API_KEY']).
+            #         spot(d.google_place_id)
                 
-              d.google_place_rating = g.rating
-              d.save
+            #   d.google_place_rating = g.rating
+            #   d.save
                 
-              g.reviews.each do |r|
-                d.google_reviews.create(author_name:       r.author_name,
-                                        profile_photo_url: r.profile_photo_url,
-                                        rating:            r.rating,
-                                        text:              r.text,
-                                        time:              r.time)
-              end
+            #   g.reviews.each do |r|
+            #     d.google_reviews.create(author_name:       r.author_name,
+            #                             profile_photo_url: r.profile_photo_url,
+            #                             rating:            r.rating,
+            #                             text:              r.text,
+            #                             time:              r.time)
+            #   end
             end
           end
         end

@@ -12,33 +12,42 @@
         <%= link_to "Inbox", conversations_path %>
       </li>
       
-      <li class="<%= 'nav-active' if 
-        current_page?(shortlist_user_path(current_user)) %>">
-        <%= link_to "Shortlist", shortlist_user_path(current_user) %>
-      </li>
-      
-      <% if current_user.personalized_search.present? %>
+      <% if current_user.dealership_id.present? %>
         <li class="<%= 'nav-active' if 
-          (current_page?(personalized_search_path(current_user.
-                                                  personalized_search)) ||
-           current_page?(edit_personalized_search_path(current_user.
-                                                       personalized_search))) %>">
-          <%= link_to "Matches", current_user.personalized_search %>
+                       (current_page?(performance_dealership_path(current_user.dealership)) || 
+                        current_page?(inventory_dealership_path(current_user.dealership)) )%>"> 
+          <%= link_to "Performance", 
+                      performance_dealership_path(current_user.dealership) %>
         </li>
         
       <% else %>
+      
         <li class="<%= 'nav-active' if 
-          (current_page?(new_personalized_search_path) || 
-           current_page?(start_personalized_searches_path)) %>">
-          <%= link_to "Matches", start_personalized_searches_path %>
+          current_page?(shortlist_user_path(current_user)) %>">
+          <%= link_to "Shortlist", shortlist_user_path(current_user) %>
+        </li>
+        
+        <% if current_user.personalized_search.present? %>
+          <li class="<%= 'nav-active' if 
+            (current_page?(personalized_search_path(current_user.
+                                                    personalized_search)) ||
+             current_page?(edit_personalized_search_path(current_user.
+                                                         personalized_search))) %>">
+            <%= link_to "Matches", current_user.personalized_search %>
+          </li>
+          
+        <% else %>
+          <li class="<%= 'nav-active' if 
+            (current_page?(new_personalized_search_path) || 
+             current_page?(start_personalized_searches_path)) %>">
+            <%= link_to "Matches", start_personalized_searches_path %>
+          </li>
+        <% end %>
+
+        <li class="<%= 'nav-active' if current_page?(vehicles_path) %>"> 
+          <%= link_to "Your Listings", vehicles_path %>
         </li>
       <% end %>
-
-      <li class="<%= 'nav-active' if current_page?(vehicles_path) %>"> 
-         <!--current_page?(customers_path) ||-->
-         <!--current_page?(orders_received_path) ||-->
-        <%= link_to "Your Listings", vehicles_path %>
-      </li>
       
       <li class="<%= 'nav-active' if 
         (current_page?(edit_user_path(current_user)) ||
@@ -46,12 +55,6 @@
          current_page?(user_reviews_path(current_user))) %>">
         <%= link_to "Profile", edit_user_path(current_user) %>
       </li>
-      
-      <!--<li class="<(oerc)= 'nav-active' if -->
-      <!--  (current_page?(payment_method_path) || -->
-      <!--  current_page?(payout_method_path)) %>">-->
-      <!--  <(perc)= link_to "Account", payment_method_path %>-->
-      <!--</li>-->
     </ul>
   </div>
 </nav>
@@ -68,6 +71,14 @@
          current_page?(questions_path)) %>
     <a href='#' class="dropdown-toggle" data-toggle="dropdown">
       Inbox <b class="caret"></b>
+    </a>
+  <% end %>
+  
+  <% if current_user.dealership_id.present? && 
+        (current_page?(performance_dealership_path(current_user.dealership)) ||
+         current_page?(inventory_dealership_path(current_user.dealership))) %>
+    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+      Performance <b class="caret"></b>
     </a>
   <% end %>
   
@@ -90,8 +101,6 @@
   <% end %>
   
   <% if current_page?(vehicles_path) %>
-         <!--current_page?(customers_path) ||-->
-         <!--current_page?(orders_received_path)) -->
     <a href='#' class="dropdown-toggle" data-toggle="dropdown">
       Your Listings <b class="caret"></b>
     </a>
@@ -105,13 +114,6 @@
     </a>
   <% end %>
   
-  <!--<(perc) if (current_page?(payment_method_path) || -->
-  <!--       current_page?(payout_method_path)) %>"> %>-->
-  <!--  <a href='#' class="dropdown-toggle" data-toggle="dropdown">-->
-  <!--    Account <b class="caret"></b>-->
-  <!--  </a>-->
-  <!--<(perc) end %>-->
-  
   <ul class="dropdown-menu">
     
     <li class="<%= 'dropdown-active' if current_page?(dashboard_path) %>">
@@ -124,44 +126,46 @@
       <%= link_to "Inbox", conversations_path %>
     </li>
     
-    <li class="<%= 'dropdown-active' if 
-      current_page?(shortlist_user_path(current_user)) %>">
-      <%= link_to "Shortlist", shortlist_user_path(current_user) %>
-    </li>
-    
-    <% if current_user.personalized_search.present? %>
+    <% if current_user.dealership_id.present? %>
       <li class="<%= 'dropdown-active' if 
-        (current_page?(personalized_search_path(current_user.
-                                                personalized_search)) ||
-         current_page?(edit_personalized_search_path(current_user.
-                                                     personalized_search))) %>">
-        <%= link_to "Matches", current_user.personalized_search %>
+        (current_page?(performance_dealership_path(current_user.dealership)) ||
+         current_page?(inventory_dealership_path(current_user.dealership))) %>"> 
+        <%= link_to "Performance", performance_dealership_path(current_user.dealership) %>
+      </li>
+    
+    <% else %>
+    
+      <li class="<%= 'dropdown-active' if 
+        current_page?(shortlist_user_path(current_user)) %>">
+        <%= link_to "Shortlist", shortlist_user_path(current_user) %>
       </li>
       
-    <% else %>
-      <li class="<%= 'dropdown-active' if 
-        (current_page?(new_personalized_search_path) || 
-         current_page?(start_personalized_searches_path)) %>">
-        <%= link_to "Matches", start_personalized_searches_path %>
+      <% if current_user.personalized_search.present? %>
+        <li class="<%= 'dropdown-active' if 
+          (current_page?(personalized_search_path(current_user.
+                                                  personalized_search)) ||
+           current_page?(edit_personalized_search_path(current_user.
+                                                       personalized_search))) %>">
+          <%= link_to "Matches", current_user.personalized_search %>
+        </li>
+        
+      <% else %>
+        <li class="<%= 'dropdown-active' if 
+          (current_page?(new_personalized_search_path) || 
+           current_page?(start_personalized_searches_path)) %>">
+          <%= link_to "Matches", start_personalized_searches_path %>
+        </li>
+      <% end %>
+      
+      <li class="<%= 'dropdown-active' if current_page?(vehicles_path) %>"> 
+        <%= link_to "Your Listings", vehicles_path %>
       </li>
     <% end %>
-    
-    <li class="<%= 'dropdown-active' if current_page?(vehicles_path) %>"> 
-       <!--current_page?(customers_path) ||-->
-       <!--current_page?(orders_received_path)) -->
-      <%= link_to "Your Listings", vehicles_path %>
-    </li>
 
     <li class="<%= 'dropdown-active' if 
       (current_page?(edit_user_path(current_user)) || 
        current_page?(user_reviews_path(current_user))) %>">
       <%= link_to "Profile", edit_user_path(current_user) %>
     </li>
-    
-    <!--<li class="<(perc)= 'dropdown-active' if -->
-    <!--          (current_page?(payment_method_path) || -->
-    <!--           current_page?(payout_method_path)) %>"> %>">-->
-    <!--  <(perc)= link_to "Account", payment_method_path %>-->
-    <!--</li>-->
   </ul>
 </nav>

@@ -10,6 +10,7 @@ class Vehicle < ActiveRecord::Base
   belongs_to :vehicle_model
   
   has_many :impressions
+  has_many :vehicle_views
   
   has_many :purchases,         dependent: :destroy
   has_many :reviews,           dependent: :destroy

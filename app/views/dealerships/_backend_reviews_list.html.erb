@@ -1,0 +1,92 @@
+<% @google_reviews.each do |r| %>
+
+  <li id="backend-review-item-<%= r.id %>" class="row backend-review-item">
+  
+    <div class="col-md-4 vertical-align">
+
+      <div class="author-avatar avatar-general", 
+             style="background-image: url(
+                     '<%= r.profile_photo_url %>')">
+      </div>
+
+      <span class="author-name"><%= r.author_name %></span>
+    </div>
+    
+    <div class="col-md-8 backend-review-container">
+  
+      <div class="backend-review-rating">
+        <div id="stars-<%= r.id %>"></div>
+      </div>
+      
+      <span class="backend-review-title">
+        Review from <%= r.author_name %>
+      </span>
+      
+      <p id="backend-review-comment-<%= r.id %>" class="backend-review-comment">
+        <%= r.text %>
+      </p>
+      
+      <span id="backend-review-expand-<%= r.id %>" 
+            class="backend-review-expand">
+        + More
+      </span>
+      
+      <span class="backend-review-date">
+        <%= r.created_at.strftime("%D") %>
+      </span>
+    </div>
+  </li>
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+      
+      // rating
+      
+      var stars = $('#stars-<%= r.id %>');
+  
+      stars.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= r.rating %>
+      });
+      
+      // expand review
+    
+      var backendReviewComment = $('#backend-review-comment-<%= r.id %>');
+      var backendReviewExpand  = $('#backend-review-expand-<%= r.id %>');
+
+      function em(input) {
+        var emSize = parseFloat($("body").css("font-size"));
+        return (emSize * input);
+      }
+      
+      if (backendReviewComment.height() >= em(5.7)) {
+        
+        backendReviewComment.each(function() {
+          $.data(this, "realHeight", $(this).height());
+        }).css({ overflow: "hidden", height: '5.7em' });
+        
+        backendReviewExpand.css({display: "block"});
+        
+        backendReviewExpand.click(function(e) {
+          
+          e.preventDefault();
+          
+          if (backendReviewComment.hasClass("toggled")) {
+            backendReviewComment.animate({ 
+              height: '5.7em'
+            }, 600).removeClass("toggled");
+            backendReviewExpand.html("+ More");
+          } 
+          
+          else {
+            backendReviewComment.animate({ 
+              height: backendReviewComment.data("realHeight") 
+            }, 600).addClass("toggled");
+            backendReviewExpand.html("- Less");
+          }
+        });
+      }
+    })
+  </script>
+<% end %>

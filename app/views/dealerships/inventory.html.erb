@@ -1,6 +1,6 @@
 <!--completed-->
 
-<% provide(:title, "Your Listings") %>
+<% provide(:title, "Performance") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -21,36 +21,31 @@
     <div class="row">
     
       <div class="col-md-4"> 
-        <%= render 'layouts/sidenav_your_listings' %>
+        <%= render 'layouts/sidenav_performance' %>
       </div>
       
       <div class="col-md-8">
-        
         <% if @vehicles.exists? %>
+
           <ol class="backend-list">
-            <%= render @vehicles %>
+            <%= render partial:    'inventory_item',
+                       collection: @vehicles,
+                       as:         :vehicle %>
           </ol>
+          
+          <%= will_paginate @vehicles, 
+              previous_label: 
+                '<i class="fa fa-arrow-left" aria-hidden="true"></i>', 
+              next_label: 
+                '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
+              inner_window: 1, 
+              outer_window: 0 %>
         
         <% else %>
           <div class="empty-list">
-          
-            <!--<i class="fa fa-bars fa-4x empty-list-icon" -->
-            <!--   aria-hidden="true"></i>-->
-               
             <p class="empty-list-info">
               No listings posted
             </p>
-            
-            <!--<div class="empty-list-button">-->
-            <!--  <(perc)= link_to new_vehicle_path, -->
-            <!--              class: "btn btn-green" do %>-->
-            
-            <!--    List-->
-                
-            <!--    <i class="fa fa-arrow-right next-button-icon" -->
-            <!--       aria-hidden="true"></i> -->
-            <!--  <(perc) end %>-->
-            <!--</div>-->
           </div>
         <% end %>
       </div>

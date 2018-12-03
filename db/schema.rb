@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181105234204) do
+ActiveRecord::Schema.define(version: 20181128044818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -673,6 +673,17 @@ ActiveRecord::Schema.define(version: 20181105234204) do
 
   add_index "vehicle_models", ["vehicle_make_id"], name: "index_vehicle_models_on_vehicle_make_id", using: :btree
 
+  create_table "vehicle_views", force: :cascade do |t|
+    t.string   "ip_address"
+    t.integer  "user_id"
+    t.integer  "vehicle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "vehicle_views", ["user_id"], name: "index_vehicle_views_on_user_id", using: :btree
+  add_index "vehicle_views", ["vehicle_id"], name: "index_vehicle_views_on_vehicle_id", using: :btree
+
   create_table "vehicles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "listing_name"
@@ -840,6 +851,8 @@ ActiveRecord::Schema.define(version: 20181105234204) do
   add_foreign_key "special_offers", "vehicles"
   add_foreign_key "upgrades", "vehicles"
   add_foreign_key "vehicle_models", "vehicle_makes"
+  add_foreign_key "vehicle_views", "users"
+  add_foreign_key "vehicle_views", "vehicles"
   add_foreign_key "vehicles", "dealerships"
   add_foreign_key "vehicles", "users"
   add_foreign_key "vehicles", "vehicle_makes"

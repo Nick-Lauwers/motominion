@@ -19,22 +19,14 @@
     </li>
   <% end %>
   
-  <% if current_user.dealership_id.present? %>
+  <% if current_user.dealership_id.blank? %>
     <li class="<%= 'sidenav-active' if 
-                   current_page?(
-                     insights_dealership_path(current_user.dealership_id)
-                    ) %>">
-      <%= link_to "Insights", 
-                  insights_dealership_path(current_user.dealership_id) %>
+                   current_page?(user_reviews_path(current_user)) %>">
+      <%= link_to user_reviews_path(current_user) do %>
+        Reviews (<%= Review.where(reviewed_id: current_user.id).count %>)
+      <% end %>
     </li>
   <% end %>
-  
-  <li class="<%= 'sidenav-active' if 
-                 current_page?(user_reviews_path(current_user)) %>">
-    <%= link_to user_reviews_path(current_user) do %>
-      Reviews (<%= Review.where(reviewed_id: current_user.id).count %>)
-    <% end %>
-  </li>
   
   <% if current_user.id == 24  %>
     <li class="<%= 'sidenav-active' if current_page?(admin_path) %>">

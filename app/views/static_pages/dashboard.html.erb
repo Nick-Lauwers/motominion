@@ -47,9 +47,11 @@
             </ol>
           
           <% else %>
-            <p class="empty-list-info">
-              No recent messages or questions
-            </p> 
+            <div class="empty-list">
+              <p class="empty-list-info">
+                No recent messages
+              </p> 
+            </div>
           <% end %>
         </div>
         
@@ -62,9 +64,11 @@
             </ol>
           
           <% else %>
-            <p class="empty-list-info">
-              You have not received any questions.
-            </p>
+            <div class="empty-list">
+              <p class="empty-list-info">
+                No recent questions
+              </p> 
+            </div>
           <% end %>
         </div>
       </div>
@@ -82,7 +86,7 @@
         </ol>
       
       <% else %>
-        <!--<div class="empty-list">-->
+        <div class="empty-list">
             
         <!--  <i class="fa fa-tachometer fa-4x empty-list-icon" -->
         <!--     aria-hidden="true"></i>-->
@@ -90,7 +94,7 @@
           <p class="empty-list-info">
             You have not accepted any test drive requests.
           </p>
-        <!--</div>-->
+        </div>
       <% end %>
     </div>
   </div>

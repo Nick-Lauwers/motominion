@@ -2,6 +2,8 @@
 
 class User < ActiveRecord::Base
   
+  belongs_to :dealership
+  
   # Experiment
   # has_many :conversations,       dependent: :destroy
   # has_many :appointments,      dependent: :destroy

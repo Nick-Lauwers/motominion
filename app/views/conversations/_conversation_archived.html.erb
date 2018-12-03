@@ -45,14 +45,12 @@
           </div>
         </td>
         
-        <td class="conversation-content-container hidden-xs">
-          <p class="conversation-content">
-            <!--<(perc) if conversation.messages.exists? %>-->
+        <td class="conversation-container hidden-xs">
+          <div class="conversation">
+            <p class="conversation-content">
               <%= sanitize conversation.messages.last.content %>
-            <!--<(perc) else %>-->
-            <!--  (No Messages)-->
-            <!--<(perc) end %>-->
-          </p>
+            </p>
+          </div>
         </td>
         
         <td>

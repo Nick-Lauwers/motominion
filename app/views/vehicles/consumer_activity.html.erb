@@ -22,14 +22,26 @@
       
       <li><%= link_to "Dashboard", dashboard_path %></li>
       <li><%= link_to "Inbox",     conversations_path %></li>
-      <li><%= link_to "Shortlist", shortlist_user_path %></li>
       
-      <!--<li>-->
-      <!--  <= link_to "Matches", -->
-      <!--              personalized_search_path(current_user.personalized_search) %>-->
-      <!--</li>-->
+      <% if @vehicle.dealership.present? %>
+        
+        <li class="nav-active"> 
+          <%= link_to "Performance", 
+              performance_dealership_path(current_user.dealership) %>
+        </li>
+        
+      <% else %>
       
-      <li class="nav-active"><%= link_to "Your Listings", vehicles_path %></li>
+        <li><%= link_to "Shortlist", shortlist_user_path %></li>
+        
+        <li>
+          <%= link_to "Matches", 
+              personalized_search_path(current_user.personalized_search) %>
+        </li>
+        
+        <li class="nav-active"><%= link_to "Your Listings", vehicles_path %></li>
+      <% end %>
+      
       <li><%= link_to "Profile", edit_user_path(current_user) %></li>
     </ul>
   </div>
@@ -37,24 +49,42 @@
 
 <nav class="dropdown dropdown-backend visible-xs">
   
-  <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-    Your Listings <b class="caret"></b>
-  </a>
+  <% if @vehicle.dealership.present? %>
+    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+      Performance <b class="caret"></b>
+    </a>
+      
+  <% else %>
+    <a href='#' class="dropdown-toggle" data-toggle="dropdown">
+      Your Listings <b class="caret"></b>
+    </a>
+  <% end %>
   
   <ul class="dropdown-menu">
     
     <li><%= link_to "Dashboard",   dashboard_path %></li>
     <li><%= link_to "Inbox",       conversations_path %></li>
-    <li><%= link_to "Shortlist",   shortlist_user_path %></li>
     
-    <!--<li>-->
-    <!--  <= link_to "Matches",     -->
-    <!--              personalized_search_path(current_user.personalized_search) %>-->
-    <!--</li>-->
+    <% if @vehicle.dealership.present? %>
+      
+      <li class="dropdown-active"> 
+        <%= link_to "Performance", 
+            performance_dealership_path(current_user.dealership) %>
+      </li>
+      
+    <% else %>
     
-    <li class="dropdown-active">
-      <%= link_to "Your Listings", vehicles_path %>
-    </li>
+      <li><%= link_to "Shortlist",   shortlist_user_path %></li>
+      
+      <li>
+        <%= link_to "Matches",     
+                    personalized_search_path(current_user.personalized_search) %>
+      </li>
+      
+      <li class="dropdown-active">
+        <%= link_to "Your Listings", vehicles_path %>
+      </li>
+    <% end %>
     
     <li><%= link_to "Profile", edit_user_path(current_user) %></li>
   </ul>
@@ -84,17 +114,81 @@
           </span>
           
           <span class="purchase-info-time">
-            Posted <%= time_ago_in_words(@vehicle.posted_at) %> ago
+            <% if @vehicle.posted_at.present? %>
+              Posted <%= time_ago_in_words(@vehicle.posted_at) %> ago
+            <% else %>
+              Not posted yet
+            <% end %>
           </span>
         </div>
       </div>
       
       <div class="col-md-8 col-md-offset-1">
         
-        <%= link_to vehicles_path, class: "vehicles-return" do %>
-          <i class="fa fa-angle-left"></i>
-          Return to Your Listings
+        <% if @vehicle.dealership.present? %>
+          <%= link_to inventory_dealership_path(@vehicle.dealership), 
+                      class: "vehicles-return" do %>
+            <i class="fa fa-angle-left"></i>
+            Return to Inventory
+          <% end %>
+        
+        <% else %>
+          <%= link_to vehicles_path, class: "vehicles-return" do %>
+            <i class="fa fa-angle-left"></i>
+            Return to Your Listings
+          <% end %>
         <% end %>
+        
+        <div class="row-modified performance-indicators">
+          
+          <div class="col-md-3-modified col-xs-6-modified">
+            <div class="performance-indicator performance-indicator-a">
+              <div class="performance-indicator-detail">
+                
+                <span class="performance-indicator-title">78</span>
+                
+                <span class="performance-indicator-info">
+                  Average Score
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3-modified col-xs-6-modified">
+            <div class="performance-indicator performance-indicator-b">
+              <div class="performance-indicator-detail">
+                <span class="performance-indicator-title">45</span>
+                <span class="performance-indicator-info">Shortlists</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3-modified col-xs-6-modified">
+            <div class="performance-indicator performance-indicator-c">
+              <div class="performance-indicator-detail">
+                <span class="performance-indicator-title">73</span>
+                <span class="performance-indicator-info">Test Drives</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3-modified col-xs-6-modified">
+            <div class="performance-indicator performance-indicator-d">
+              <div class="performance-indicator-detail">
+                <span class="performance-indicator-title">3</span>
+                <span class="performance-indicator-info">Purchases</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <p class="chart-summary">
+          In the last 30 days, vehicles in your inventory have been viewed 
+          a total of 30 times:
+        </p>
+
+        <%= column_chart @vehicle.impressions.group_by_day(:created_at, format: "%d %B").count,
+                         colors: ["#38b2a6"] %>
         
         <% if current_user.dealership_id.present? %>
         
@@ -134,9 +228,11 @@
               </ol>
               
             <% else %>
-              <p class="empty-list-info">
-                No orders received
-              </p>
+              <div class="empty-list">
+                <p class="empty-list-info">
+                  No orders received
+                </p>
+              </div>
             <% end %>
           </div>
         <% end %>
@@ -180,9 +276,11 @@
             </ol>
             
           <% else %>
-            <p class="empty-list-info">
-              No test drive requests received
-            </p>
+            <div class="empty-list">
+              <p class="empty-list-info">
+                No test drive requests received
+              </p>
+            </div>
           <% end %>
         </div>
       </div>

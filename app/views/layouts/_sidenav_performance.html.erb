@@ -1,0 +1,18 @@
+<h2 class="sidenav-title">
+  Performance
+</h2>
+
+<ul class="sidenav-list">
+  
+  <li class="<%= 'sidenav-active' if current_page?(performance_dealership_path(@dealership)) %>">
+    <%= link_to performance_dealership_path(@dealership) do %>
+      Feedback
+    <% end %>
+  </li>
+  
+  <li class="<%= 'sidenav-active' if current_page?(inventory_dealership_path(@dealership)) %>">
+    <%= link_to inventory_dealership_path(@dealership) do %>
+      Inventory (<%= @dealership.vehicles.count %>)
+    <% end %>
+  </li>
+</ul>
