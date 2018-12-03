@@ -70,7 +70,7 @@ module ExternalDb
             #                             text:              r.text,
             #                             time:              r.time)
             #   end
-            end
+            # end
           end
         end
       end
