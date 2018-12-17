@@ -5,7 +5,14 @@ class User < ActiveRecord::Base
   belongs_to :dealership
   
   # Experiment
-  # has_many :conversations,       dependent: :destroy
+  
+  has_many :initiated_conversations, class_name: 'Conversation', 
+    dependent: :destroy, foreign_key: :sender_id
+  accepts_nested_attributes_for :initiated_conversations, allow_destroy: true
+  
+  # has_many :conversations
+  # accepts_nested_attributes_for :conversations, allow_destroy: true
+  
   # has_many :appointments,      dependent: :destroy
   # has_many :inquiries,         dependent: :destroy
   
@@ -20,11 +27,10 @@ class User < ActiveRecord::Base
   has_many :posts,               dependent: :destroy
   has_many :post_comments,       dependent: :destroy
   has_many :blogs,               dependent: :destroy
-  has_many :questions,           dependent: :destroy
-  has_many :answers,             dependent: :destroy
   has_many :favorite_vehicles,   dependent: :destroy
   has_many :favorite_autoparts,  dependent: :destroy
   has_many :memberships,         dependent: :destroy
+  has_many :vehicle_inquiries,   dependent: :destroy
   
   has_one :personalized_search,  dependent: :destroy
   
@@ -55,19 +61,24 @@ class User < ActiveRecord::Base
   acts_as_voter
   
   before_save   :downcase_email
-  before_create :create_activation_digest, unless: :dealership_admin
+  # before_update :create_activation_digest, if: :create_activation_digest_changed?
+  # before_create :create_activation_digest, unless: :dealership_admin
   
   # after_create  :create_profile
   
-  validates :first_name, :last_name,  presence: true, length: { maximum: 25 }
+  validates :first_name, :last_name,  
+    # presence: true, 
+    length: { maximum: 25 }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length:     { maximum: 255 },
                                     format:     { with: VALID_EMAIL_REGEX },
                                     uniqueness: { case_sensitive: false }
                                     
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  has_secure_password :validations => false
+  validates :password, 
+    # presence: true, 
+    length: { minimum: 6 }, allow_nil: true
   
   validates :residence, :school, :work, length: { maximum: 70 }
   
@@ -91,6 +102,12 @@ class User < ActiveRecord::Base
     def new_token
       SecureRandom.urlsafe_base64
     end
+  end
+  
+  # Creates and assigns the activation token and digest.
+  def create_activation_digest
+    self.activation_token = User.new_token
+    update_attribute(:activation_digest, User.digest(activation_token))
   end
   
   # Remembers a user in the database for use in persistent sessions.
@@ -182,10 +199,10 @@ class User < ActiveRecord::Base
     end
     
     # Creates and assigns the activation token and digest.
-    def create_activation_digest
-      self.activation_token   = User.new_token
-      self.activation_digest  = User.digest(activation_token)
-    end
+    # def create_activation_digest
+    #   self.activation_token   = User.new_token
+    #   self.activation_digest  = User.digest(activation_token)
+    # end
 end
 
 # eliminate / revise omniauth email

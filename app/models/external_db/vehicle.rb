@@ -18,11 +18,11 @@ module ExternalDb
           v.vehicle_model_name = model
           v.listing_name       = "#{year} #{make} #{model}"
           v.color              = exterior
+          v.latitude           = dealership.latitude
+          v.longitude          = dealership.longitude
           v.street_address     = dealership.street_address
           v.city               = dealership.city
           v.state              = dealership.state
-          v.latitude           = dealership.latitude
-          v.longitude          = dealership.longitude
           v.created_at         = created
           v.posted_at          = created
           v.bumped_at          = created

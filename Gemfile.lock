@@ -21,8 +21,6 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.1)
-    active_median (0.2.2)
-      activerecord (>= 4.2)
     activejob (4.2.2)
       activesupport (= 4.2.2)
       globalid (>= 0.3.0)
@@ -492,7 +490,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_median
   activemerchant
   acts_as_votable
   area

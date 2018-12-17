@@ -87,7 +87,7 @@ $(function() {
           }
         }
       });
-      
+
     // expand description
     
       var vehicleOverviewDescription     = $('.vehicle-overview-description');
@@ -403,6 +403,8 @@ $(function() {
       var searchResults           = $('.search-results');
       var searchResultsBackground = $('.search-results-background');
       var searchMap               = $('#search-map');
+      var mapItem                 = $('.map-item');
+      var marker                  = $('.marker');
       
       searchNavGrid.click(function() {
         
@@ -423,6 +425,9 @@ $(function() {
         	searchNavMapIcon.
         	  removeClass('search-nav-map-icon-active').
         	  addClass('search-nav-map-icon-inactive');
+        	  
+        	mapItem.css("display", "none");
+        	marker.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
         	 
         	searchMap.css({"z-index": -1000});
         	searchResultsBackground.css({"display": "block"});
@@ -473,6 +478,9 @@ $(function() {
         	  removeClass('search-nav-grid-icon-inactive').
         	  addClass('search-nav-grid-icon-active');
         	  
+        	mapItem.css("display", "none");
+        	marker.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
+
           searchMap.css({"z-index": -1000});
         	searchResultsBackground.css({"display": "block"});
         	searchResults.height(searchResultsBackground.outerHeight() + 50);

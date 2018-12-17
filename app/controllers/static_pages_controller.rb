@@ -53,18 +53,6 @@ class StaticPagesController < ApplicationController
     
     @conversations = Conversation.where(next_contributor_id: current_user.id,
                                         latest_message_read: false)
-    
-    if current_user.dealership_id.present?
-      @questions = Question.where(
-                     vehicle: 
-                       Dealership.find(current_user.dealership_id).vehicles,
-                     read_at: nil
-                   )
-                   
-    else
-      @questions = Question.where(vehicle: current_user.vehicles, 
-                                      read_at: nil)
-    end
 
     @customers = Appointment.where("seller_id = ? AND date >= ?",
                                        current_user.id,

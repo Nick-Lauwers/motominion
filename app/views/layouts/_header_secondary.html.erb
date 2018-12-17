@@ -184,24 +184,10 @@
                  
                 Inbox
                  
-                <% if ( Conversation.where(
-                          next_contributor_id: current_user.id,
-                          latest_message_read: false).exists? or
-                                            
-                        ( (current_user.dealership_id.present? && 
-                             Question.where(
-                               vehicle: Dealership.
-                                          find(current_user.dealership_id).
-                                          vehicles, 
-                               read_at: nil).exists?
-                          ) or 
-                          
-                          (current_user.dealership_id.present? && 
-                             Question.where(
-                               vehicle: current_user.vehicles,
-                               read_at: nil).exists?)
-                        )
-                      ) %>
+                <% if Conversation.where(
+                        next_contributor_id: current_user.id,
+                        latest_message_read: false
+                      ).exists? %>
                       
                   <div class="notification"></div>
                 <% end %>

@@ -1,7 +1,9 @@
 class PersonalizedSearchesController < ApplicationController
   
   before_action :logged_in_user
-  before_action :get_personalized_search, except: [:new, :create, :incomplete]
+  before_action :private_buyer
+  before_action :get_personalized_search, except: [:new, :create, :incomplete,
+                                                   :start, :experiment]
   
   def new
     @personalized_search = PersonalizedSearch.new
@@ -62,6 +64,10 @@ class PersonalizedSearchesController < ApplicationController
   end
   
   def installed_options
+  end
+  
+  def experiment
+    @personalized_search = PersonalizedSearch.new
   end
   
   private

@@ -14,9 +14,9 @@ class Vehicle < ActiveRecord::Base
   
   has_many :purchases,         dependent: :destroy
   has_many :reviews,           dependent: :destroy
-  has_many :questions,         dependent: :destroy
   has_many :photos,            dependent: :destroy
   has_many :favorite_vehicles, dependent: :destroy
+  has_many :vehicle_inquiries, dependent: :destroy
   
   has_many :appointments, dependent: :destroy
   has_many :conversations, through: :appointments
@@ -66,7 +66,8 @@ class Vehicle < ActiveRecord::Base
   # validates :vin, presence: true, format: { with: VALID_VIN_REGEX }
   
   geocoded_by      :address
-  after_validation :geocode, if: :address_changed?
+  after_validation :geocode, 
+    if: Proc.new { |vehicle| vehicle.address_changed? && vehicle.dealership_id.blank? }
   
   filterrific(
     # default_filter_params: { sorted_by: 'created_at_desc' },
@@ -332,6 +333,10 @@ class Vehicle < ActiveRecord::Base
   def address_changed?
     street_address_changed? or apartment_changed? or city_changed? or 
     state_changed?
+  end
+  
+  def lat_lon_empty?
+    latitude_empty? or longitude_empty
   end
   
   # Adds location and user association to search

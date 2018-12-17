@@ -78,11 +78,64 @@ class ConversationsController < ApplicationController
                                         
         AppointmentMailer.appointment_request(appointment).deliver_now
         AppointmentMailer.appointment_request_admin(appointment).deliver_now
+      
+      elsif conversation_params[:vehicle_inquiries_attributes].present?
+        
+        @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
+        
+        vehicle_inquiry = @conversation.vehicle_inquiries.create!(
+                            conversation_params[:vehicle_inquiries_attributes].
+                            values.
+                            first
+                          )
+        
+        if current_user.first_name.blank?
+          current_user.update_attributes(first_name: vehicle_inquiry.first_name)
+        end
+        
+        if current_user.last_name.blank?
+          current_user.update_attributes(last_name: vehicle_inquiry.last_name)
+        end 
+                          
+        inquiry_booleans = [ vehicle_inquiry.price, 
+                             vehicle_inquiry.special_offers,
+                             vehicle_inquiry.availability,
+                             vehicle_inquiry.condition,
+                             vehicle_inquiry.vehicle_history,
+                             vehicle_inquiry.test_drives ];
+                             
+        inquiry_strings = [ "pricing", "special offers", "availability",
+                            "condition", "vehicle history", 
+                            "scheduling a test drive" ];
+                            
+        string  = "";
+        
+        for i in 0..inquiry_booleans.count
+          if inquiry_booleans[i] == true
+            string = string + inquiry_strings[i] + "; "
+          end
+        end
+
+        message = @conversation.messages.create!(
+                    user:    current_user, 
+                    content: "Hi, " + 
+                            @other.first_name + 
+                            ". I recently noticed your motorcycle, " +
+                            vehicle_inquiry.vehicle.listing_name + 
+                            ", and have questions about: " +
+                            string
+                  )
+        
+        @conversation.update_attributes(next_contributor_id: @other.id, 
+                                        latest_message_read: false)
+        
+        MessageMailer.message_received(message).deliver_now
+        MessageMailer.message_received_admin(message).deliver_now
       end
       
     else
       
-      @conversation = Conversation.create(conversation_params)
+      @conversation = Conversation.create!(conversation_params)
       
       if conversation_params[:appointments_attributes].present?
       
@@ -129,6 +182,59 @@ class ConversationsController < ApplicationController
                                         
         AppointmentMailer.appointment_request(appointment).deliver_now
         AppointmentMailer.appointment_request_admin(appointment).deliver_now
+      
+      elsif conversation_params[:vehicle_inquiries_attributes].present?
+        
+        @other = current_user == @conversation.sender ? @conversation.recipient : @conversation.sender
+        
+        vehicle_inquiry = @conversation.vehicle_inquiries.create!(
+                            conversation_params[:vehicle_inquiries_attributes].
+                            values.
+                            first
+                          )
+                          
+        if current_user.first_name.blank?
+          current_user.update_attributes(first_name: vehicle_inquiry.first_name)
+        end
+        
+        if current_user.last_name.blank?
+          current_user.update_attributes(last_name: vehicle_inquiry.last_name)
+        end  
+                          
+        inquiry_booleans = [ vehicle_inquiry.price, 
+                             vehicle_inquiry.special_offers,
+                             vehicle_inquiry.availability,
+                             vehicle_inquiry.condition,
+                             vehicle_inquiry.vehicle_history,
+                             vehicle_inquiry.test_drives ];
+                             
+        inquiry_strings = [ "pricing", "special offers", "availability",
+                            "condition", "vehicle history", 
+                            "scheduling a test drive" ];
+                            
+        string  = "";
+        
+        for i in 0..inquiry_booleans.count
+          if inquiry_booleans[i] == true
+            string = string + inquiry_strings[i] + "; "
+          end
+        end
+
+        message = @conversation.messages.create!(
+                    user:    current_user, 
+                    content: "Hi, " + 
+                            @other.first_name + 
+                            ". I recently noticed your motorcycle, " +
+                            vehicle_inquiry.vehicle.listing_name + 
+                            ", and have questions about: " +
+                            string
+                  )
+        
+        @conversation.update_attributes(next_contributor_id: @other.id, 
+                                        latest_message_read: false)
+        
+        MessageMailer.message_received(message).deliver_now
+        MessageMailer.message_received_admin(message).deliver_now
       end
     end
     
@@ -197,11 +303,19 @@ class ConversationsController < ApplicationController
                                            :next_contributor_id, 
                                            :sender_archived, 
                                            :recipient_archived,
+                                           :is_sender_anonymous,
                                            :sender_last_viewed_at, 
                                            :recipient_last_viewed_at,
+                                           :latest_message_read,
                                            appointments_attributes: 
                                            [:date, :status, :seller_id, 
-                                            :buyer_id, :vehicle_id])
+                                            :buyer_id, :vehicle_id],
+                                           vehicle_inquiries_attributes: 
+                                           [:price, :special_offers, 
+                                            :availability, :condition, 
+                                            :vehicle_history, :test_drives,
+                                            :user_id, :vehicle_id, :first_name,
+                                            :last_name, :email])
     end
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181128044818) do
+ActiveRecord::Schema.define(version: 20181213040533) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -651,6 +651,27 @@ ActiveRecord::Schema.define(version: 20181128044818) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  create_table "vehicle_inquiries", force: :cascade do |t|
+    t.boolean  "price",           default: false
+    t.boolean  "special_offers",  default: false
+    t.boolean  "availability",    default: false
+    t.boolean  "condition",       default: false
+    t.boolean  "vehicle_history", default: false
+    t.boolean  "test_drives",     default: false
+    t.integer  "user_id"
+    t.integer  "vehicle_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+  end
+
+  add_index "vehicle_inquiries", ["conversation_id"], name: "index_vehicle_inquiries_on_conversation_id", using: :btree
+  add_index "vehicle_inquiries", ["user_id"], name: "index_vehicle_inquiries_on_user_id", using: :btree
+  add_index "vehicle_inquiries", ["vehicle_id"], name: "index_vehicle_inquiries_on_vehicle_id", using: :btree
+
   create_table "vehicle_makes", force: :cascade do |t|
     t.string   "name"
     t.string   "cover_photo_url"
@@ -850,6 +871,9 @@ ActiveRecord::Schema.define(version: 20181128044818) do
   add_foreign_key "reviews", "vehicles"
   add_foreign_key "special_offers", "vehicles"
   add_foreign_key "upgrades", "vehicles"
+  add_foreign_key "vehicle_inquiries", "conversations"
+  add_foreign_key "vehicle_inquiries", "users"
+  add_foreign_key "vehicle_inquiries", "vehicles"
   add_foreign_key "vehicle_models", "vehicle_makes"
   add_foreign_key "vehicle_views", "users"
   add_foreign_key "vehicle_views", "vehicles"

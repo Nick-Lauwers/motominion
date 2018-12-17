@@ -1,0 +1,49 @@
+<li class="test-drive-sidenav-item">
+
+  <%= f.hidden_field :recipient_id, value: dealer.id %>
+  
+  <%= button_tag(class: "test-drive-sidenav-button") do %>
+    <div class="row vertical-align">
+      
+      <div class="col-md-3 avatar-and-online">
+        
+        <div class="test-drive-sidenav-avatar avatar-general",
+             style="background-image: url(
+                     '<%= dealer.avatar.url(:thumb) %>')">
+        </div>
+        
+        <!--<(perc) if @vehicle.user.online? %>-->
+        <!--  <div class="online online-lg-primary hidden-xs"></div>-->
+        <!--<(perc) end %>-->
+      </div>
+      
+      <div class="col-md-9 test-drive-sidenav-info">
+
+        <span class="test-drive-sidenav-name">
+          <%= dealer.full_name %>
+        </span>
+                    
+        <span class="average-rating"></span>
+        
+        <!--<span class="test-drive-sidenav-reviews">-->
+        <!--   · <(perc)= pluralize(@vehicle.reviews.count, "review") %>-->
+        <!--</span>-->
+      </div>
+    </div>
+  <% end %>
+</li>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    
+    // rating
+    
+      var averageRating = $('.average-rating');
+      
+      averageRating.raty({
+        path:     '/assets',
+        readOnly: true,
+        score:    <%= @vehicle.dealership.google_place_rating %>
+      });
+  });
+</script>

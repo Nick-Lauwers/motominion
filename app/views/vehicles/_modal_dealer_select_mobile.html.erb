@@ -18,20 +18,111 @@
 <div class="modal-dealer-select-mobile-body">
   <div class="modal-dealer-select-mobile-body-content">
     
-    <h2 class="modal-dealer-select-mobile-subtitle">
-      At Motominion, we believe in the power of the consumer.
-    </h2>
-    
-    <span class="modal-dealer-select-mobile-info">
-      Select the dealer that you would most like to work with.
-    </span>
-    
-    <ol class="modal-dealer-select-mobile-list">
-        <%= render partial:    'modal_dealer_select_item',
-                   collection: User.where(
-                                 dealership_id: @vehicle.dealership_id
-                               ),
-                   as:         :dealer %>
-    </ol>
+    <div class="inquiries">
+
+      <p class="inquiries-info">
+        What are you most curious about?
+      </p>
+      
+      <% if @vehicle.user.present? %>
+        <%= form_for @conversation do |f| %>
+        <% end %>
+      
+      <% else %>
+        <%= form_for User.new do |f| %>
+          
+          <%= f.fields_for :conversations, Conversation.new do |ff| %>
+            <div class="inquiries-options">
+              <!--<(perc)= ff.fields_for :messages, Message.new do |fff| %>-->
+              <!--  <ul class="installed-options-list">-->
+                  
+              <!--    <li>-->
+              <!--      <(perc)= fff.check_box :is_price %>-->
+              <!--      <(perc)= fff.label :is_price, "Pricing" %> -->
+              <!--    </li>-->
+                  
+              <!--    <li>-->
+              <!--      <(perc)= fff.check_box :is_special_offers %>-->
+              <!--      <(perc)= fff.label :is_special_offers, "Special Offers" %> -->
+              <!--    </li>-->
+                  
+              <!--    <li>-->
+              <!--      <(perc)= fff.check_box :is_availability %>-->
+              <!--      <(perc)= fff.label :is_availability, "Availability" %> -->
+              <!--    </li>-->
+                  
+              <!--    <li>-->
+              <!--      <(perc)= fff.check_box :is_condition %>-->
+              <!--      <(perc)= fff.label :is_condition, "Condition" %> -->
+              <!--    </li>-->
+                  
+              <!--    <li>-->
+              <!--      <(perc)= fff.check_box :is_vehicle_history %>-->
+              <!--      <(perc)= fff.label :is_vehicle_history, "Vehicle History" %> -->
+              <!--    </li>-->
+                  
+              <!--    <li>-->
+              <!--      <(perc)= fff.check_box :is_test_drive %>-->
+              <!--      <(perc)= fff.label :is_test_drive, "Schedule A Test Drive" %> -->
+              <!--    </li>-->
+              <!--  </ul>-->
+              <!--<(perc) end %>-->
+            </div>
+          <% end %>
+          
+          <div class="inquiries-contact">
+            
+            <div class="row">
+
+              <div class="col-xs-6">
+                <div class="form-group form-group-primary">
+                  <%= f.text_field :first_name, 
+                                   placeholder: "First name", 
+                                   class: 'form-control form-control-primary' %>
+                </div>
+              </div>
+              
+              <div class="col-xs-6">
+                <div class="form-group form-group-primary">
+                  <%= f.text_field :last_name, 
+                                   placeholder: "Last name", 
+                                   class: 'form-control form-control-primary' %>
+                </div>
+              </div>
+            </div>
+              
+            <div class="row">
+              
+              <div class="col-xs-12">
+                <div class="form-group form-group-primary">
+                  <%= f.text_field :email, 
+                                   placeholder: "Email address", 
+                                   class: 'form-control form-control-primary' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <%= f.fields_for :conversations, Conversation.new do |ff| %>
+          
+            <h2 class="modal-dealer-select-mobile-subtitle">
+              At Motominion, we believe in the power of the consumer.
+            </h2>
+            
+            <span class="modal-dealer-select-mobile-info">
+              Select the dealer that you would most like to work with.
+            </span>
+            
+            <ol class="modal-dealer-select-mobile-list">
+                <%= render partial:    'modal_dealer_select_item',
+                           collection: User.where(
+                                         dealership_id: @vehicle.dealership_id
+                                       ),
+                           as:         :dealer %>
+            </ol>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

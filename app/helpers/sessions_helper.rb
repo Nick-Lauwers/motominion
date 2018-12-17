@@ -68,6 +68,11 @@ module SessionsHelper
     end
   end
   
+  # Returns true if the user is a private buyer, false if he/she is a dealer.
+  def private_buyer?
+    current_user.dealership.blank?
+  end
+  
   # Returns true if the user has a profile pic, false otherwise.
   def profile_pic?
     current_user.avatar.exists?

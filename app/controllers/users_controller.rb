@@ -24,43 +24,65 @@ class UsersController < ApplicationController
   
   def create
     
-    @user  = User.new(user_params)
-    @token = params[:invitation_token]
+    @user = User.new(user_params)
+    
+    initiated_conversations_params = 
+      user_params[:initiated_conversations_attributes].values.first
+      
+    vehicle_inquiries_params = 
+      initiated_conversations_params[:vehicle_inquiries_attributes].values.first
     
     if @user.save
-      
-      # Determine if there is a way to add token after account activation.
-      if @token != nil
-        org = Invitation.find_by_token(@token).club
-        @user.clubs.push(org)
-      end
-      
-      if @user.dealership_id.present?
-        log_in @user
-        redirect_to dealer_details_user_path(@user)
-        
-      # if @user.dealership_admin
-      #   log_in @user
-      #   redirect_to new_dealership_dealer_invitation_path(@user.dealership_id)
-      # elsif @user.dealership_id.present?
-      #   log_in @user
-      #   redirect_to dealership_path(@user.dealership_id)
-      
-      else
-        @user.send_activation_email
-        flash[:info] = "Please check your email to activate your account."
-        redirect_to root_url
-      end
-      
-    else
-      # if params[:dealership_admin].present?
-      #   render 'new_dealer_admin'
-      # elsif params[:dealership_id].present?
-      #   render 'new_dealer'
-      # else
-        render 'new'
-      # end
+      @vehicle_inquiry = @user.
+                           initiated_conversations.
+                           create!(initiated_conversations_params).
+                           vehicle_inquiries.
+                           create!(vehicle_inquiries_params)
     end
+    # @conversation = Conversation.new(user_params[:initiated_conversations_attributes])
+    # @token = params[:invitation_token]
+    
+    if @vehicle_inquiry.save
+      # @notice.entity_roles.build(name: 'submitter').build_entity
+      log_in @user
+      flash[:success] = "Message sent!"
+    else
+      flash[:danger] = "Email has already been taken."
+    end
+    
+    redirect_to :back
+    
+    #   # Determine if there is a way to add token after account activation.
+    #   if @token != nil
+    #     org = Invitation.find_by_token(@token).club
+    #     @user.clubs.push(org)
+    #   end
+      
+    #   if @user.dealership_id.present?
+    #     log_in @user
+    #     redirect_to dealer_details_user_path(@user)
+        
+    #   # if @user.dealership_admin
+    #   #   log_in @user
+    #   #   redirect_to new_dealership_dealer_invitation_path(@user.dealership_id)
+    #   # elsif @user.dealership_id.present?
+    #   #   log_in @user
+    #   #   redirect_to dealership_path(@user.dealership_id)
+      
+    #   else
+    #     @user.send_activation_email
+    #     flash[:info] = "Please check your email to activate your account."
+    #     redirect_to root_url
+    #   end
+      
+    # else
+    #   # if params[:dealership_admin].present?
+    #   #   render 'new_dealer_admin'
+    #   # elsif params[:dealership_id].present?
+    #   #   render 'new_dealer'
+    #   # else
+    #     render 'new'
+    #   # end
   end
   
   def edit
@@ -98,6 +120,9 @@ class UsersController < ApplicationController
   
   def dealer_details
   end
+  
+  def password
+  end
 
   def shortlist
     
@@ -119,22 +144,27 @@ class UsersController < ApplicationController
                   or(favorite_vehicles: {is_test_drive: true}).
                   or(favorite_vehicles: {is_purchase: true})
 
-    @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
-      
-      marker.lat vehicle.latitude
-      marker.lng vehicle.longitude
-      
-      marker.picture({
-        url: "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png",
-        width:  32,
-        height: 32
-      })
-      
-      marker.infowindow render_to_string(partial: "vehicles/map_item",
-                                         object:  vehicle,
-                                         as:      :vehicle)
-      
-      marker.json({ :id => vehicle.id })
+    @geojson = Array.new;
+
+    @vehicles.each do |vehicle|
+      @geojson << {
+        type: 'Feature',
+        id: vehicle.id,
+        geometry: {
+          type: 'Point',
+          coordinates: [ vehicle.longitude, vehicle.latitude ]
+        },
+        properties: {
+          "id":    vehicle.id,
+          "image": vehicle.photos[0].image.url(),
+          "title": vehicle.listing_name
+        }
+      }
+    end
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }
     end
   end
   
@@ -183,7 +213,16 @@ class UsersController < ApplicationController
                                    :password_confirmation, :is_subscribed, 
                                    :phone_number, :residence, :school, :work, 
                                    :description, :avatar, :dealership_id, 
-                                   :dealership_admin, :activated, :activated_at)
+                                   :dealership_admin, :activated, :activated_at,
+                                   initiated_conversations_attributes: 
+                                   [:sender_id, :recipient_id, 
+                                   :is_sender_anonymous, :latest_message_read, 
+                                   :sender_archived, :recipient_archived,
+                                   vehicle_inquiries_attributes: [:price, 
+                                   :special_offers, :availability, :condition,
+                                   :vehicle_history, :test_drives, :user_id,
+                                   :vehicle_id, :email, :first_name, 
+                                   :last_name]])
     end
     
     # Before filters

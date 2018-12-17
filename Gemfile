@@ -49,7 +49,6 @@ gem 'sidekiq'
 gem 'clockwork'
 gem 'chartkick'
 gem 'groupdate'
-gem 'active_median'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'

@@ -33,9 +33,11 @@ Rails.application.routes.draw do
   get    'payout_method'           => 'users#payout'
   get    'signup'                  => 'users#new'
   get    'login'                   => 'sessions#new'
+  get    'password_test'           => 'sessions#password_test'
+  post   'password_test'           => 'sessions#create'
   get    'auth/:provider/callback' => 'sessions#create_social'
-  post   'add_card'                => 'users#add_card'
   post   'login'                   => 'sessions#create'
+  post   'add_card'                => 'users#add_card'
   delete 'logout'                  => 'sessions#destroy'
   
   resources :autopart_photos
@@ -44,8 +46,6 @@ Rails.application.routes.draw do
   resources :account_activations,    only: [:edit]
   resources :dealership_activations, only: [:edit]
   resources :password_resets,        only: [:new, :create, :edit, :update]
-  resources :questions,              only: [:index, :create, :destroy]
-  resources :answers,                only: [:create, :destroy]
   resources :enquiries,              only: [:new, :create]
   resources :profiles,               only: [:show, :edit, :update]
 
@@ -94,6 +94,7 @@ Rails.application.routes.draw do
       get 'profile_pic_dealer'
       get 'dealer_details'
       get 'shortlist'
+      get 'password'
     end
   end
 
@@ -226,6 +227,7 @@ Rails.application.routes.draw do
     
     collection do
       get 'start'
+      get 'experiment'
     end
     
     member do

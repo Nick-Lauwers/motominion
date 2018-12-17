@@ -48,7 +48,10 @@ class MessagesController < ApplicationController
   private
   
     def message_params
-      params.require(:message).permit(:content, :user_id)
+      params.require(:message).permit(:content, :user_id, :is_price,
+                                      :is_special_offers, :is_availability,
+                                      :is_condition, :is_vehicle_history,
+                                      :is_test_drive)
     end
       
     # Before filters

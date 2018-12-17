@@ -1,7 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-slider";
-@import 'bootstrap-datetimepicker';
+@import "bootstrap-datetimepicker";
 
 /* mixins, variables, etc. */
 
@@ -2872,31 +2872,6 @@ footer {
   }
 }
 
-.map-item {
-  width: 250px;
-  overflow: hidden;
-}
-
-.map-item-image-content {
-  background-color: $gray-darkest;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 175px;
-}
-
-.map-item-user {
-  position: relative;
-  height: 35px;
-}
-
-.map-item-avatar {
-  border: 2px solid white;
-  border-radius: 50%;
-  height: 70px;
-  width: 70px;
-}
-
 .mobile-listing-item,
 .wish-list-item {
   margin-bottom: 3em;
@@ -3078,8 +3053,7 @@ body {
   background: #151515;
 }
 
-.special-offer,
-.special-offer-map-item {
+.special-offer {
   // font-size: 1.05em;
   // font-weight: bold;
   // line-height: 30px;
@@ -3101,12 +3075,7 @@ body {
   right: -140px;
 }
 
-.special-offer-map-item {
-  right: -125px;
-}
-
-.special-offer:before,
-.special-offer-map-item:before {
+.special-offer:before {
   content: '';
   position: absolute;
   left: -7px;
@@ -3508,6 +3477,58 @@ body {
 
 #search-map {
   height: calc(100vh - 50px);
+}
+
+.map-item {
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px 0 $gray-dark;
+  position: fixed;
+  bottom: 60px;
+  left: 15px;
+  right: 86px;
+  display: none;
+  z-index: 20000;
+}
+
+.map-item-photo,
+.map-item-detail {
+  display: inline-block;
+  float: left;
+}
+
+.map-item-photo {
+  width: 35%;
+}
+
+.map-item-detail {
+  width: 65%;
+  padding: 0.75em;
+}
+
+.map-item-photo-content {
+  height: 85px;
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.map-item-title {
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1.25;
+  color: $gray-text;
+  max-height: 2.5em;
+  margin-bottom: 0.3em;
+  overflow: hidden;
+  display: block;
+}
+
+.map-item-price {
+  font-size: 0.9em;
+  font-weight: bold;
+  display: inline-block;
 }
 
 #shortlist-map {
@@ -4602,19 +4623,12 @@ ul.pagination {
   left: 75%;
 }
 
-.verified-check-icon,
-.vehified-check-icon-map-item {
+.verified-check-icon {
   position: relative;
 }
 
 .verified-check-icon {
   left: 2px;
-}
-
-.verified-check-icon-map-item {
-  position: relative;
-  top: 1px;
-  left: 3px;
 }
 
 .vehicle-overview-avatar,
@@ -4944,7 +4958,8 @@ ul.pagination {
 //   margin-bottom: 2.3em;
 // }
 
-.questions-title {
+.questions-title,
+.inquiry-title {
   background-color: $gray-lightest;
   border-bottom: 1px solid $gray-border;
   height: 50px;
@@ -4952,7 +4967,8 @@ ul.pagination {
   position: relative;
 }
 
-.questions-title-content {
+.questions-title-content,
+.inquiry-title-content {
   font-size: 1.125em;
   font-weight: bold;
   color: $gray-darker;
@@ -4975,12 +4991,34 @@ ul.pagination {
   margin-top: -0.8em;
 }
 
-.questions-info {
+.inquiries {
+  padding: 1.6em;
+}
+
+.questions-info,
+.inquiries-info {
   font-size: 0.9em;
-  font-style: italic;
   color: $gray-dark;
-  margin: 0.5em 0 1.5em;
   display: block;
+}
+
+.questions-info {
+  font-style: italic;
+  margin: 0.5em 0 1.5em;
+}
+
+.inquiries-info {
+  text-align: center;
+  margin: 0 0 0.6em;
+}
+
+// .inquiries-options {
+//   margin-bottom: 0.3em;
+// }
+
+.inquiries-contact {
+  padding-top: 1em;
+  border-top: 1px solid $gray-border;
 }
 
 .questions-list,
@@ -5102,7 +5140,8 @@ ul.pagination {
   right: 10px;
 }
 
-.test-drive-sidenav-list {
+.test-drive-sidenav-list,
+.nitty-gritty-sidenav-list {
   text-align: left;
   list-style: none;
   height: 50px;
@@ -7418,7 +7457,7 @@ ul.pagination {
   text-align: center;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 0.3em;
 }
 
 .installed-options-list li,
@@ -7437,8 +7476,7 @@ ul.pagination {
     border: 1px solid $gray-light;
     border-radius: 2px;
     cursor: pointer;
-    padding-top: 3px;
-    padding-bottom: 3px;
+    padding: 3px 8px;
     margin: 0;
     transition: border-color 0.3s, color 0.3s, background-color 0.3s;
     &:hover {
@@ -7458,8 +7496,6 @@ ul.pagination {
 
 .installed-options-list li { 
   display: inline-block;
-  padding-right: 8px;
-  padding-left: 8px;
   margin-right: 0.3em;
 }
 
@@ -8455,6 +8491,55 @@ a.remove_fields {
   color: $gray-dark;
   margin-top: 0.4em;
   float: right;
+}
+
+/* map popups */
+
+.marker {
+  background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png');
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  position: fixed !important;
+  left: 0 !important;
+  bottom: 0 !important;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+  padding: 0;
+  width: 250px;
+  overflow: hidden;
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 1%;
+}
+
+.mapboxgl-popup-content img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.mapboxgl-container .leaflet-marker-icon {
+  cursor: pointer;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+  // margin-top: 15px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+  display: none;
+  // border-bottom-color: #91c949;
 }
 
 /* vehicle make */

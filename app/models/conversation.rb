@@ -9,12 +9,17 @@ class Conversation < ActiveRecord::Base
   # belongs_to :recipient, class_name: 'User', foreign_key: :recipient_id
   
   has_many :messages, dependent: :destroy
-  
-  # Experiment
+
   has_many :appointments, dependent: :destroy
   has_many :vehicles, through: :appointments
   
   accepts_nested_attributes_for :appointments, allow_destroy: true
+  
+  has_many :vehicle_inquiries, dependent: :destroy
+  has_many :vehicles, through: :vehicle_inquiries
+  
+  accepts_nested_attributes_for :vehicle_inquiries, allow_destroy: true
+  
   # has_many :vehicles, through: :inquiries
 
   # Experiment

@@ -4,6 +4,9 @@
     
     <title><%= full_title(yield(:title)) %></title>
     
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
@@ -16,7 +19,7 @@
                    initial-scale=1, 
                    maximum-scale=1, 
                    user-scalable=no">
-                   
+
     <meta name="google-site-verification" 
           content="Tq25JM-gEN3FrLb4oZG4NxQreLMxhJ3rbZvWRyYoh38" />
                    

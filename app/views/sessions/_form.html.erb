@@ -1,6 +1,6 @@
 <!--completed-->
 
-<%= form_for(:session, url: login_path) do |f| %>
+<%= form_for(:session, url: login_url) do |f| %>
 
   <!--<= link_to "Sign in with Facebook", "/auth/facebook" %>-->
   
@@ -29,28 +29,28 @@
        aria-hidden="true"></i>
   </div>
 
-  <div class="form-element">
+  <!--<div class="form-element">-->
     
-    <%= f.password_field :password, 
-                         placeholder: "Password", 
-                         class: 'form-control 
-                                 form-control-secondary 
-                                 login-form-control' %>
+  <!--  <(perc)= f.password_field :password, -->
+  <!--                       placeholder: "Password", -->
+  <!--                       class: 'form-control -->
+  <!--                               form-control-secondary -->
+  <!--                               login-form-control' %>-->
                                  
-    <i class="fa fa-unlock fa-lg form-icon" 
-       aria-hidden="true"></i>
-  </div>
+  <!--  <i class="fa fa-unlock fa-lg form-icon" -->
+  <!--     aria-hidden="true"></i>-->
+  <!--</div>-->
 
-  <div class="checkbox-container">
-    <div class="checkbox-inline">
+  <!--<div class="checkbox-container">-->
+  <!--  <div class="checkbox-inline">-->
       
-      <%= f.check_box :remember_me, class: "checkbox" %>
+  <!--    <(perc)= f.check_box :remember_me, class: "checkbox" %>-->
       
-      <%= f.label :remember_me, 
-                  "Remember me on this computer",
-                  class: "checkbox-label" %>
-    </div>
-  </div>
+  <!--    <(perc)= f.label :remember_me, -->
+  <!--                "Remember me on this computer",-->
+  <!--                class: "checkbox-label" %>-->
+  <!--  </div>-->
+  <!--</div>-->
 
   <%= f.submit "Log In", class: "btn btn-primary" %>
 <% end %>

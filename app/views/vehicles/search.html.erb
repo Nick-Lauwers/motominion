@@ -60,8 +60,58 @@
 
 <div class="search-results">
   
-  <div id="search-map"></div>
+  <div class="search-map-container">
+    <div id="search-map"></div>
+    
+    <% @vehicles.each do |vehicle| %>
+      <%= link_to vehicle, target: "_blank" do %>
+        <div id="map-item-<%= vehicle.id %>" class="map-item">
   
+          <div class="map-item-photo">
+  
+            <% if vehicle.photos.length > 0 %>
+              <div class="map-item-photo-content", 
+                   style="background-image: url('<%= vehicle.photos[0].image.url() %>')">
+              </div>
+              
+            <% else %>
+              <div class="map-item-photo-content", 
+                   style="background-image: url('http://www.pbs.org/mercy-street/lunchbox_plugins/s/photogallery/img/no-image-available.jpg')">
+              </div>
+            <% end %>
+          </div>
+          
+          <div class="map-item-detail">
+            
+            <span class="map-item-title">
+              <%= vehicle.listing_name %>
+            </span>
+            
+            <span class="map-item-price">
+              <% if vehicle.actual_price.present? %>
+                $<%= vehicle.actual_price %> |
+              <% elsif vehicle.msrp.present? %>
+                $<%= vehicle.msrp %> |
+              <% end %>
+            </span>
+            
+            <% if vehicle.dealership.present? %>
+              <span class="certified">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Certified
+              </span>
+            <% else %>
+              <span class="private">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                Private
+              </span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="search-results-background">
     <div class="search-list-container">
       <div class="row">
@@ -426,27 +476,6 @@
   </div>
 </div>
 
-<!--<div class="search-nav-mobile visible-xs">-->
-
-<!--  <div class="search-nav-grid search-nav-grid-active">-->
-<!--    <i class="fa -->
-<!--              fa-lg-->
-<!--              fa-th-large -->
-<!--              search-nav-grid-icon -->
-<!--              search-nav-grid-icon-active" -->
-<!--       aria-hidden="true"></i> -->
-<!--  </div>-->
-  
-<!--  <div class="search-nav-map search-nav-map-inactive">-->
-<!--    <i class="fa -->
-<!--              fa-lg-->
-<!--              fa-map-marker -->
-<!--              search-nav-map-icon-->
-<!--              search-nav-map-icon-inactive" -->
-<!--       aria-hidden="true"></i> -->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="search-nav visible-xs">
   <div class="row">
     
@@ -596,149 +625,137 @@
       });
       
     // search map
-      
-      var hoverMarkerIcon = {
-        url:    "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png",
-        width:  32,
-        height: 32
-      };
-      
-      handler = Gmaps.build('Google');
-      
-      handler.buildMap({
-        
-        provider: {
-          
-          <% if ( @filterrific.with_zip_code.present? ) %>
-            center: new google.maps.LatLng(
-              <%= @filterrific.with_zip_code.to_lat.to_f %>, 
-              <%= @filterrific.with_zip_code.to_lon.to_f %>
-            ), 
-            
-          <% else %>
-            center: new google.maps.LatLng(34.0522, -118.2437),
-          <% end %>   
 
-          zoom:              10,
-          maxZoom:           14,
-          scrollwheel:       false,
-          mapTypeControl:    false,
-          streetViewControl: false,
-          clickableIcons:    false,
+      mapboxgl.accessToken = 'pk.eyJ1IjoibW90b21pbmlvbiIsImEiOiJjanA4eDMwN3AwNHoxM3VvNWpkMzJhbWF4In0.zFFkCLgxG2tCFjF_0_twpg';
 
-          zoomControlOptions: {
-            position: google.maps.ControlPosition.TOP_LEFT
-          },
-          
-          styles: [
-            {
-              "featureType": "landscape",
-              "stylers": [
-                { "hue": "#FFBB00" },
-                { "saturation": 43.400000000000006 },
-                { "lightness": 37.599999999999994 },
-                { "gamma": 1 }
-              ]
-            },
-            
-            {
-              "featureType": "road.highway",
-              "stylers": [
-                { "hue": "#FFC200" },
-                { "saturation": -61.8 },
-                { "lightness": 45.599999999999994 },
-                { "gamma": 1 }
-              ]
-            },
+      var map = new mapboxgl.Map({
+                      container: 'search-map',
+                      style: 'mapbox://styles/mapbox/streets-v10',
+                      
+                      <% if ( @filterrific.with_zip_code.present? ) %>
+                        center: [
+                          <%= @filterrific.with_zip_code.to_lon.to_f %>,
+                          <%= @filterrific.with_zip_code.to_lat.to_f %>
+                        ], 
+                          
+                      <% else %>
+                        center: [-119.4179, 36.7783],
+                      <% end %>   
+                      
+                      zoom: 5
+                    });
       
-            {
-              "featureType": "road.arterial",
-              "stylers": [
-                { "hue": "#FF0300" },
-                { "saturation": -100 },
-                { "lightness": 51.19999999999999 },
-                { "gamma": 1 }
-              ]
-            },
+      // This will let you use the .remove() function later on
+      if (!('remove' in Element.prototype)) {
+        Element.prototype.remove = function() {
+          if (this.parentNode) {
+            this.parentNode.removeChild(this);
+          }
+        };
+      }
+                
+      map.on('load', function() {
+        $.ajax({
+          dataType: 'text',
+          url: 'search.json?page=<%= @vehicles.current_page %>',
           
-            {
-              "featureType": "road.local",
-              "stylers": [
-                { "hue": "#FF0300" },
-                { "saturation": -100 },
-                { "lightness": 52 },
-                { "gamma": 1 }
-              ]
-            },
-          
-            {
-              "featureType": "water",
-              "stylers": [
-                { "hue": "#0078FF" },
-                { "saturation": -13.200000000000003 },
-                { "lightness": 2.4000000000000057 },
-                { "gamma": 1 }
-              ]
-            },
+          success: function(data) {
             
-            {
-              "featureType": "poi",
-              "stylers": [
-                { "hue": "#00FF6A" },
-                { "saturation": -1.0989010989011234 },
-                { "lightness": 11.200000000000017 },
-                { "gamma": 1 }
-              ]
-            },
-          
-            {
-              "featureType": "poi",
-              "elementType": "labels",
-              "stylers": [
-                { "visibility": "off" }
-              ]
-            }
-          ]
-        },
+            var myjson;
+            myjson = $.parseJSON(data);
             
-        internal: {
-          id: 'search-map'
-        }
-      }, function() {
-        
-        if ( $(window).width() > 768 ) {    
-          markers = handler.addMarkers(<%= raw @hash.to_json %>, 
-                                       { clickable: false }) } 
-        
-        else {
-          markers = handler.addMarkers(<%= raw @hash.to_json %>, 
-                                       { clickable: true }) }
-        
-        _.each(<%=raw @hash.to_json %>, function(json, index) {
-          var hoverMarker = {};
-          
-          hoverMarker.marker = void 0;
-          json.marker = markers[index];
-          
-          $("#search-item-" + json.id).on("mouseover", function() {
-            
-            hoverMarker = {
-              lat: json.lat,
-              lng: json.lng,
-              picture: hoverMarkerIcon
+            var geojson = {
+              type: 'FeatureCollection',
+              features: myjson
             };
             
-            handler.removeMarker(json.marker);
-            hoverMarker.marker = handler.addMarker(hoverMarker);
-          }).on("mouseout", function() {
-            handler.removeMarker(hoverMarker.marker);
-            json.marker = handler.addMarker(json);
-          });
-        });
+            map.addSource('locations', {
+              type: 'geojson',
+              data: geojson
+            });
             
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      }); 
+            var bounds = new mapboxgl.LngLatBounds();
+            
+            function createPopUp(currentFeature) {
+              
+              var popUps = document.getElementsByClassName('mapboxgl-popup');
+              
+              // Check if there is already a popup on the map and if so, remove it.
+              if (popUps[0]) popUps[0].remove();
+            
+              var popup = new mapboxgl.
+                              Popup({ closeOnClick: false }).
+                              setLngLat(currentFeature.geometry.coordinates).
+                              setHTML('<div class="row">' +
+                                      '<div class="col-xs-6">' +
+                                      '<img src="'+ currentFeature.properties.image +'">' +
+                                      '</div>' +
+                                      '<div class="col-xs-6">' +
+                                      '<h3 class="search-item-title">' + currentFeature.properties.title + '</h3>' +
+                                      '</div>' +
+                                      '</div>').
+                              addTo(map);
+            }
+            
+            function createMapItem(currentFeature) {
+              
+              var mapItems = $('.map-item');
+              var markers  = $('.marker');
+              
+              mapItems.css("display", "none")
+              markers.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
+              
+              var mapItem = $('#map-item-' + currentFeature.properties.id);
+              
+              mapItem.css({ "display": "block" })
+            }
+            
+            geojson.features.forEach(function(marker) {
+              
+              bounds.extend(marker.geometry.coordinates);
+              
+              var el = document.createElement('div');
+              el.className = 'marker';
+              
+              new mapboxgl.
+                  Marker(el, { offset: [0, -23] }).
+                  setLngLat(marker.geometry.coordinates).
+                  addTo(map);
+              
+              var searchNavMap = $('.search-nav-map');
+              var mapItem      = $('#map-item-' + marker.properties.id);
+
+              el.addEventListener('click', function(e) {
+                
+                if ( $(window).width() <= 768 ) { 
+                  createMapItem(marker);
+                  el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+                }
+              });
+              
+              var searchItem = document.getElementById("search-item-" + marker.properties.id);
+              
+              searchItem.addEventListener('mouseover', function(e) {  
+                el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+              });
+              
+              searchItem.addEventListener('mouseout', function(e) {  
+                el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')";
+              });
+            });
+            
+            if ( $(window).width() > 768 ) { 
+              map.fitBounds(bounds, { padding: 150 })
+            }
+            
+            else {
+              map.fitBounds(bounds, { padding: 50 })
+            };
+          },
+          
+          error: function() {}
+        });
+      });
   });
 </script>
 

@@ -44,45 +44,41 @@
       
       <div class="row vertical-align">
         
-        <% if @vehicle.user.present? %>
-          <div class="col-xs-3 avatar-and-online">
+        <div class="col-xs-3">
+          <div class="modal-avatar-border">
             
-            <div class="modal-avatar-border">
+            <% if @vehicle.dealership.present? %>
+              <%= link_to @vehicle.dealership do %>
+                <div class="modal-avatar avatar-general", 
+                     style="background-image: url(
+                             '<%= @vehicle.dealership.logo.url(:thumb) %>')">
+                </div>
+              <% end %>
+              
+            <% else %>
               <%= link_to @vehicle.user do %>
                 <div class="modal-avatar avatar-general", 
                      style="background-image: url(
                              '<%= @vehicle.user.avatar.url(:thumb) %>')">
                 </div>
               <% end %>
-            </div>
-            
-            <% if @vehicle.user.online? %>
-              <div class="online online-md-primary"></div>
             <% end %>
           </div>
-        
-        <% else %>
-          <!--<(perc)= link_to @vehicle.dealership do %>-->
-          <!--  <div class="modal-avatar avatar-general", -->
-          <!--       style="background-image: url(-->
-          <!--               '<(perc)= @vehicle.dealership.logo.url(:thumb) %>')">-->
-          <!--  </div>-->
-          <!--<(perc) end %>-->
-        <% end %>
+        </div>
         
         <div class="col-xs-9">
           
           <span class="modal-title"><%= @vehicle.listing_name %></span>
           
-          <% if @vehicle.user.present? %>
+          <% if @vehicle.dealership.present? %>
+            <%= link_to @vehicle.dealership.dealership_name,
+                        @vehicle.dealership,
+                        class: "modal-info" %>
+
+          <% else %>
             <%= link_to @vehicle.user.full_name,
                         @vehicle.user,
                         class: "modal-info" %>
-                        
-          <% else %>
-            <!--<(perc)= link_to @vehicle.dealership.dealership_name,-->
-            <!--            @vehicle.dealership,-->
-            <!--            class: "modal-info" %>-->
           <% end %>
         </div>
       </div>

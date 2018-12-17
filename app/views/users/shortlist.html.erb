@@ -220,139 +220,93 @@
     
     // map
     
-      var hoverMarkerIcon = {
-        url:    "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png",
-        width:  32,
-        height: 32
-      };
-      
-      handler = Gmaps.build('Google');
-      
-      handler.buildMap({
-        
-        provider: {
+      mapboxgl.accessToken = 'pk.eyJ1IjoibW90b21pbmlvbiIsImEiOiJjanA4eDMwN3AwNHoxM3VvNWpkMzJhbWF4In0.zFFkCLgxG2tCFjF_0_twpg';
 
-          center:            new google.maps.LatLng(34.0522, -118.2437),
-          zoom:              10,          
-          maxZoom:           14,
-          scrollwheel:       false,
-          mapTypeControl:    false,
-          streetViewControl: false,
-          clickableIcons:    false,
-          
-          zoomControlOptions: {
-            position: google.maps.ControlPosition.TOP_LEFT
-          },
-          
-          styles: [
-            {
-              "featureType": "landscape",
-              "stylers": [
-                { "hue": "#FFBB00" },
-                { "saturation": 43.400000000000006 },
-                { "lightness": 37.599999999999994 },
-                { "gamma": 1 }
-              ]
-            },
-            
-            {
-              "featureType": "road.highway",
-              "stylers": [
-                { "hue": "#FFC200" },
-                { "saturation": -61.8 },
-                { "lightness": 45.599999999999994 },
-                { "gamma": 1 }
-              ]
-            },
+      var map = new mapboxgl.Map({
+                      container: 'search-map',
+                      style: 'mapbox://styles/mapbox/streets-v9',
+                      center: [-118.2437, 34.0522],
+                      zoom: 10
+                    });
       
-            {
-              "featureType": "road.arterial",
-              "stylers": [
-                { "hue": "#FF0300" },
-                { "saturation": -100 },
-                { "lightness": 51.19999999999999 },
-                { "gamma": 1 }
-              ]
-            },
+      // This will let you use the .remove() function later on
+      if (!('remove' in Element.prototype)) {
+        Element.prototype.remove = function() {
+          if (this.parentNode) {
+            this.parentNode.removeChild(this);
+          }
+        };
+      }
+                
+      map.on('load', function() {
+        $.ajax({
+          dataType: 'text',
+          url: 'shortlist.json',
           
-            {
-              "featureType": "road.local",
-              "stylers": [
-                { "hue": "#FF0300" },
-                { "saturation": -100 },
-                { "lightness": 52 },
-                { "gamma": 1 }
-              ]
-            },
-          
-            {
-              "featureType": "water",
-              "stylers": [
-                { "hue": "#0078FF" },
-                { "saturation": -13.200000000000003 },
-                { "lightness": 2.4000000000000057 },
-                { "gamma": 1 }
-              ]
-            },
+          success: function(data) {
             
-            {
-              "featureType": "poi",
-              "stylers": [
-                { "hue": "#00FF6A" },
-                { "saturation": -1.0989010989011234 },
-                { "lightness": 11.200000000000017 },
-                { "gamma": 1 }
-              ]
-            },
-          
-            {
-              "featureType": "poi",
-              "elementType": "labels",
-              "stylers": [
-                { "visibility": "off" }
-              ]
-            }
-          ]
-        },
+            var myjson;
+            myjson = $.parseJSON(data);
             
-        internal: {
-          id: 'shortlist-map'
-        }
-      }, function() {
-        
-        if ( $(window).width() > 768 ) { 
-          markers = handler.addMarkers(<%= raw @hash.to_json %>,
-                                       { clickable: false }) }
-        
-        else {
-          markers = handler.addMarkers(<%= raw @hash.to_json %>,
-                                       { clickable: true }) }
-                                       
-        _.each(<%= raw @hash.to_json %>, function(json, index) {
-          
-          var hoverMarker = {};
-          
-          hoverMarker.marker = void 0;
-          json.marker = markers[index];
-          
-          $(".shortlist-item-" + json.id).on("mouseover", function() {
-            
-            hoverMarker = {
-              lat: json.lat,
-              lng: json.lng,
-              picture: hoverMarkerIcon
+            var geojson = {
+              type: 'FeatureCollection',
+              features: myjson
             };
             
-            handler.removeMarker(json.marker);
-            hoverMarker.marker = handler.addMarker(hoverMarker);
-          }).on("mouseout", function() {
-            handler.removeMarker(hoverMarker.marker);
-            json.marker = handler.addMarker(json);
-          });
+            map.addSource('locations', {
+              type: 'geojson',
+              data: geojson
+            });
+            
+            var bounds = new mapboxgl.LngLatBounds();
+            
+            function createPopUp(currentFeature) {
+              
+              var popUps = document.getElementsByClassName('mapboxgl-popup');
+              
+              // Check if there is already a popup on the map and if so, remove it.
+              if (popUps[0]) popUps[0].remove();
+            
+              var popup = new mapboxgl.
+                              Popup({ closeOnClick: false }).
+                              setLngLat(currentFeature.geometry.coordinates).
+                              setHTML('<img src="'+ currentFeature.properties.image +'">' +
+                                      '<h3>' + currentFeature.properties.title + '</h3>').
+                              addTo(map);
+            }
+            
+            geojson.features.forEach(function(marker) {
+              
+              bounds.extend(marker.geometry.coordinates);
+              
+              var el = document.createElement('div');
+              el.className = 'marker';
+              
+              new mapboxgl.
+                  Marker(el, { offset: [0, -23] }).
+                  setLngLat(marker.geometry.coordinates).
+                  addTo(map);
+              
+              // el.addEventListener('click', function(e) {
+              //   createPopUp(marker);
+              // });
+              
+              var mapItem = document.getElementById("shortlist-item-" + marker.properties.id);
+              
+              mapItem.addEventListener('mouseover', function(e) {  
+                el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+              });
+              
+              mapItem.addEventListener('mouseout', function(e) {  
+                el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')";
+              });
+            });
+            
+            map.fitBounds(bounds, { padding: 100 });
+          },
+          
+          error: function() {}
         });
-
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
       });
   });
 </script>

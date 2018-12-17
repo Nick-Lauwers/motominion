@@ -30,6 +30,15 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    # Confirms a private buyer / seller.
+    def private_buyer
+      unless private_buyer?
+        store_location
+        flash[:failure] = "Access restricted to private buyers; Dealers are unable to generate personalized results."
+        redirect_to_back_or_default
+      end
+    end
+    
     # Confirms profile pic upload.
     def profile_pic_upload
       unless profile_pic?

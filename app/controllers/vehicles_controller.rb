@@ -193,9 +193,6 @@ class VehiclesController < ApplicationController
     @photos           = @vehicle.photos
     @reviews          = @vehicle.reviews
     @hasReview        = @reviews.find_by(reviewer_id: current_user.id) if current_user
-    @questions        = @vehicle.questions
-    @question         = Question.new
-    @answer           = Answer.new
     @availabilities   = @vehicle.availabilities
     @related_vehicles = Vehicle.
                           where(vehicle_make: @vehicle.vehicle_make).
@@ -204,7 +201,7 @@ class VehiclesController < ApplicationController
     @related_vehicles_mobile = Vehicle.
                                  where(vehicle_make: @vehicle.vehicle_make).
                                  near("#{@vehicle.city}, #{@vehicle.state}", 150).
-                                 first(4) 
+                                 first(4)
   end
   
   def search
@@ -269,22 +266,40 @@ class VehiclesController < ApplicationController
                         "listing_name ASC").
                   paginate(page: params[:page], per_page: 10)
 
-    @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
+    # @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
       
-      marker.lat vehicle.latitude
-      marker.lng vehicle.longitude
+    #   marker.lat vehicle.latitude
+    #   marker.lng vehicle.longitude
       
-      marker.picture({
-        url: "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png",
-        width:  32,
-        height: 32
-      })
+    #   marker.picture({
+    #     url: "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png",
+    #     width:  32,
+    #     height: 32
+    #   })
       
-      marker.infowindow render_to_string(partial: "map_item",
-                                         object:  vehicle,
-                                         as:      :vehicle)
+    #   marker.infowindow render_to_string(partial: "map_item",
+    #                                     object:  vehicle,
+    #                                     as:      :vehicle)
       
-      marker.json({ :id => vehicle.id })
+    #   marker.json({ :id => vehicle.id })
+    # end
+    
+    @geojson = Array.new;
+
+    @vehicles.each do |vehicle|
+      @geojson << {
+        type: 'Feature',
+        id: vehicle.id,
+        geometry: {
+          type: 'Point',
+          coordinates: [ vehicle.longitude, vehicle.latitude ]
+        },
+        properties: {
+          "id":    vehicle.id,
+          "image": vehicle.photos[0].image.url(),
+          "title": vehicle.listing_name
+        }
+      }
     end
     
     @vehicle = Vehicle.new
@@ -295,10 +310,10 @@ class VehiclesController < ApplicationController
       @personalized_search = PersonalizedSearch.new
     end
     
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }
+    end
   end
   
   def basics

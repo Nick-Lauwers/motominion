@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: false
+  special_offers: false
+  availability: false
+  condition: false
+  vehicle_history: false
+  test_drives: false
+
+two:
+  price: false
+  special_offers: false
+  availability: false
+  condition: false
+  vehicle_history: false
+  test_drives: false

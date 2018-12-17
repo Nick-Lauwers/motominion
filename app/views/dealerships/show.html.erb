@@ -436,42 +436,25 @@
     
     // map
     
-      handler = Gmaps.build('Google');
-      
-      handler.buildMap({ 
+      mapboxgl.accessToken = 'pk.eyJ1IjoibW90b21pbmlvbiIsImEiOiJjanA4eDMwN3AwNHoxM3VvNWpkMzJhbWF4In0.zFFkCLgxG2tCFjF_0_twpg';
+
+      var map = new mapboxgl.Map({
+                      container: 'dealer-map',
+                      style: 'mapbox://styles/mapbox/streets-v9',
+                      center: [<%= @dealership.longitude %>, <%= @dealership.latitude %>],
+                      zoom: 12
+                    });
+                
+      map.on('load', function() {
+
+        var el = document.createElement('div');
         
-        provider: {
-          
-          maxZoom:        15,
-          scrollwheel:    false,
-          mapTypeControl: false,
-          
-          zoomControlOptions: {
-            position: google.maps.ControlPosition.TOP_LEFT
-          },
-          
-          streetViewControlOptions: {
-            position: google.maps.ControlPosition.LEFT_TOP
-          }, 
-        },
+        el.className = 'marker';
         
-        internal: {
-          id: 'dealer-map'
-        }
-      }, function() {
-        
-        markers = handler.addCircles( [{
-                    lat: <%= @dealership.latitude %>, 
-                    lng: <%= @dealership.longitude %>, 
-                    radius: 700
-                  }], { 
-                    strokeColor: '#38b2a6',
-                    fillColor: '#38b2a6',
-                    strokeWeight: 2 
-                  });
-        
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
+        var marker = new mapboxgl.
+                           Marker(el, { offset: [0, -23] }).
+                           setLngLat([<%= @dealership.longitude %>, <%= @dealership.latitude %>]).
+                           addTo(map);
       });
   });
 </script>
