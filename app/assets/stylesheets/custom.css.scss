@@ -3467,7 +3467,23 @@ body {
   position: relative;
 }
 
-#search-map,
+.search-map-container {
+  width: 40%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.search-map-container {
+  height: calc(100vh - 50px);
+}
+
+#search-map {
+  width: 100%;
+  height: 100%;
+}
+
+// #search-map,
 #shortlist-map {
   width: 40%;
   position: absolute;
@@ -3475,9 +3491,9 @@ body {
   left: 0;
 }
 
-#search-map {
-  height: calc(100vh - 50px);
-}
+// #search-map {
+//   height: calc(100vh - 50px);
+// }
 
 .map-item {
   background-color: white;
@@ -3550,7 +3566,7 @@ body {
 .shortlist-list-container {
   max-width: 1008px;
   margin: 0 auto;
-  min-height: calc(100vh);
+  min-height: calc(100vh - 50px);
 }
 
 .search-list-content,

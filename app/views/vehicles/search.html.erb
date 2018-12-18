@@ -625,7 +625,7 @@
       });
       
     // search map
-
+      
       mapboxgl.accessToken = 'pk.eyJ1IjoibW90b21pbmlvbiIsImEiOiJjanA4eDMwN3AwNHoxM3VvNWpkMzJhbWF4In0.zFFkCLgxG2tCFjF_0_twpg';
 
       var map = new mapboxgl.Map({
@@ -656,8 +656,12 @@
                 
       map.on('load', function() {
         $.ajax({
+          
           dataType: 'text',
-          url: 'search.json?page=<%= @vehicles.current_page %>',
+          url: window.location.href.replace("/search", "/search.json"),
+          // url: 'search.json' + window.location.search,
+          // url: window.location.href.gsub("search", "search.json"),
+          // url: 'search.json?page=<= @vehicles.current_page %>',
           
           success: function(data) {
             
@@ -745,7 +749,7 @@
             });
             
             if ( $(window).width() > 768 ) { 
-              map.fitBounds(bounds, { padding: 150 })
+              map.fitBounds(bounds, { padding: 100 })
             }
             
             else {

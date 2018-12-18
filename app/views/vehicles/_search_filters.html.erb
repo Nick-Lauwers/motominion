@@ -143,6 +143,104 @@
     </div>
   </div>
   
+  <div class="dropdown-filters">
+    
+    <div class="row">
+      
+      <div class="col-md-6 body-style">
+        <div class="form-group form-group-primary">
+          
+          <%= f.label :with_body_style, "Style and Engine" %>
+          
+          <div class="form-element">
+            
+            <%= f.select :with_body_style, 
+                         [ "Cafe Racer", "Cruiser", "Dirt Bike / Dual-Sport", 
+                           "Mini / Pocket", "Moped", "Sportbike", "Standard", 
+                           "Touring", "Trike" ],
+                         { include_blank: true,
+                           prompt: "Body style" },
+                         class: "form-control select-primary" %>
+                
+            <i class="fa fa-motorcycle fa-lg form-icon" 
+               aria-hidden="true"></i>
+               
+            <i class="fa fa-caret-down fa-lg form-caret" 
+               aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-6 color">
+      <!--  <div class="form-group form-group-primary">-->
+          
+      <!--    <(perc)= f.label :with_color, "&nbsp;".html_safe %>-->
+          
+      <!--    <div class="form-element">-->
+            
+      <!--      <(perc)= f.select :with_color, -->
+      <!--                   [ "Black", "Blue", "Brown", "Gold", "Gray", "Green", -->
+      <!--                     "Orange", "Pink", "Purple", "Red", "Silver", "Teal", -->
+      <!--                     "Unknown", "White", "Yellow" ],-->
+      <!--                   { include_blank: true,-->
+      <!--                     prompt: "Color" },-->
+      <!--                   class: "form-control select-primary" %>-->
+
+      <!--      <i class="fa fa-paint-brush fa-lg form-icon" -->
+      <!--         aria-hidden="true"></i>-->
+             
+      <!--      <i class="fa fa-caret-down fa-lg form-caret" -->
+      <!--         aria-hidden="true"></i>-->
+      <!--    </div>-->
+      <!--  </div>-->
+      </div>
+    </div>
+    
+    <!--<div class="row">-->
+       
+    <!--  <div class="col-md-6 engine-type">-->
+    <!--    <div class="form-group form-group-primary">-->
+          
+    <!--      <div class="form-element">-->
+            
+    <!--        <(perc)= f.select :with_engine_type, -->
+    <!--                     [ "Single", "Parallel-Twin", "Inline-Three",-->
+    <!--                       "Inline-Four", "V-Twin", "V4", "Flat-Twin / Boxer", -->
+    <!--                       "L-Twin", "Other", "Unknown" ],-->
+    <!--                     { include_blank: true,-->
+    <!--                       prompt: "Engine type" },-->
+    <!--                     class: "form-control select-primary" %>-->
+
+    <!--        <i class="fa fa-cogs fa-lg form-icon" -->
+    <!--           aria-hidden="true"></i>-->
+             
+    <!--        <i class="fa fa-caret-down fa-lg form-caret" -->
+    <!--           aria-hidden="true"></i>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </div>-->
+
+    <!--  <div class="col-md-6 fuel-type">-->
+    <!--    <div class="form-group form-group-primary">-->
+    <!--      <div class="form-element">-->
+            
+    <!--        <(perc)= f.select :with_fuel_type, -->
+    <!--                     [ "Electric", "Gasoline" ],-->
+    <!--                     { include_blank: true,-->
+    <!--                       prompt: "Fuel type" },-->
+    <!--                     class: "form-control select-primary" %>-->
+
+    <!--        <i class="fa fa-leaf fa-lg form-icon" -->
+    <!--           aria-hidden="true"></i>-->
+               
+    <!--        <i class="fa fa-caret-down fa-lg form-caret" -->
+    <!--           aria-hidden="true"></i>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--</div>-->
+  </div>
+  
   <div class="slider-filters">
     <div class="row">
       
@@ -238,8 +336,8 @@
             <%= f.text_field :with_year_gte, 
                              id: 'year_slider', 
                              type: 'text',
-                             data: { 'slider-min'   => '1900',
-                                     'slider-max'   => '2016',
+                             data: { 'slider-min'   => '1990',
+                                     'slider-max'   => '2019',
                                      'slider-step'  => '1',
                                      'slider-value' => @filterrific.
                                                        with_year_gte } %>
@@ -248,10 +346,10 @@
             <%= f.text_field :with_year_gte, 
                              id: 'year_slider', 
                              type: 'text',
-                             data: { 'slider-min'   => '1900',
-                                     'slider-max'   => '2016',
+                             data: { 'slider-min'   => '1990',
+                                     'slider-max'   => '2019',
                                      'slider-step'  => '1',
-                                     'slider-value' => '1900' } %>
+                                     'slider-value' => '1990' } %>
           <% end %>
         </div>
       </div>
@@ -288,104 +386,6 @@
                                      'slider-step'  => '1',
                                      'slider-value' => '50' } %>
           <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="dropdown-filters">
-    
-    <div class="row">
-      
-      <div class="col-md-6 body-style">
-        <div class="form-group form-group-primary">
-          
-          <%= f.label :with_body_style, "Style and Engine" %>
-          
-          <div class="form-element">
-            
-            <%= f.select :with_body_style, 
-                         [ "Cafe Racer", "Cruiser", "Dirt Bike / Dual-Sport", 
-                           "Mini / Pocket", "Moped", "Sportbike", "Standard", 
-                           "Touring", "Trike" ],
-                         { include_blank: true,
-                           prompt: "Body style" },
-                         class: "form-control select-primary" %>
-                
-            <i class="fa fa-motorcycle fa-lg form-icon" 
-               aria-hidden="true"></i>
-               
-            <i class="fa fa-caret-down fa-lg form-caret" 
-               aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      
-      <div class="col-md-6 color">
-        <div class="form-group form-group-primary">
-          
-          <%= f.label :with_color, "&nbsp;".html_safe %>
-          
-          <div class="form-element">
-            
-            <%= f.select :with_color, 
-                         [ "Black", "Blue", "Brown", "Gold", "Gray", "Green", 
-                           "Orange", "Pink", "Purple", "Red", "Silver", "Teal", 
-                           "Unknown", "White", "Yellow" ],
-                         { include_blank: true,
-                           prompt: "Color" },
-                         class: "form-control select-primary" %>
-
-            <i class="fa fa-paint-brush fa-lg form-icon" 
-               aria-hidden="true"></i>
-             
-            <i class="fa fa-caret-down fa-lg form-caret" 
-               aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="row">
-       
-      <div class="col-md-6 engine-type">
-        <div class="form-group form-group-primary">
-          
-          <div class="form-element">
-            
-            <%= f.select :with_engine_type, 
-                         [ "Single", "Parallel-Twin", "Inline-Three",
-                           "Inline-Four", "V-Twin", "V4", "Flat-Twin / Boxer", 
-                           "L-Twin", "Other", "Unknown" ],
-                         { include_blank: true,
-                           prompt: "Engine type" },
-                         class: "form-control select-primary" %>
-
-            <i class="fa fa-cogs fa-lg form-icon" 
-               aria-hidden="true"></i>
-             
-            <i class="fa fa-caret-down fa-lg form-caret" 
-               aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 fuel-type">
-        <div class="form-group form-group-primary">
-          <div class="form-element">
-            
-            <%= f.select :with_fuel_type, 
-                         [ "Electric", "Gasoline" ],
-                         { include_blank: true,
-                           prompt: "Fuel type" },
-                         class: "form-control select-primary" %>
-
-            <i class="fa fa-leaf fa-lg form-icon" 
-               aria-hidden="true"></i>
-               
-            <i class="fa fa-caret-down fa-lg form-caret" 
-               aria-hidden="true"></i>
-          </div>
         </div>
       </div>
     </div>

@@ -381,7 +381,7 @@ $(function() {
       
     // fixed map
       
-      var fixedMap = $('#search-map');
+      var fixedMap = $('.search-map-container');
       
       fixedMap.stick_in_parent({ offset_top: 50 });
 
