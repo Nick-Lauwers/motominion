@@ -263,7 +263,8 @@ class VehiclesController < ApplicationController
     @vehicles = @filterrific.
                   find.
                   includes(:listing_score).
-                  order("listing_scores.overall_score DESC").
+                  order("listing_scores.overall_score DESC",
+                        "RANDOM()").
                         # ,
                         # "year DESC",
                         # "listing_name ASC").
