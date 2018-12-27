@@ -263,9 +263,10 @@ class VehiclesController < ApplicationController
     @vehicles = @filterrific.
                   find.
                   includes(:listing_score).
-                  order("listing_scores.overall_score DESC",
-                        "year DESC",
-                        "listing_name ASC").
+                  order("listing_scores.overall_score DESC").
+                        # ,
+                        # "year DESC",
+                        # "listing_name ASC").
                   paginate(page: params[:page], per_page: 10)
 
     # @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
