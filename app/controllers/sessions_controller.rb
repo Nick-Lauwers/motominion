@@ -9,46 +9,38 @@ class SessionsController < ApplicationController
     
     @user = User.find_by(email: params[:session][:email].downcase)
     
-    if @user && @user.password_digest.present? && @user.authenticate(params[:session][:password])
+    if @user && 
+       @user.password_digest.present? && 
+       @user.authenticate(params[:session][:password])
       log_in @user
-      params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
+      # params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       redirect_back_or dashboard_path
     
     elsif @user && @user.password_digest.present?
-      flash[:failure] = 'It appears that you already have a password...'
-      redirect_to password_test_path
+      redirect_to password_user_path(@user)
     
     elsif @user
+    
       @user.create_activation_digest
       UserMailer.log_in(@user).deliver_now
-      flash[:success] = 'Welcome back! An email has been sent with a login link.'
+      
+      if @user.first_name.present?
+        flash[:success] = "#{@user.first_name}, we've sent you an email with a 
+                           login link. Go check!"
+      else
+        flash[:success] = "We've sent you an email with a login link. Go check!"
+      end
+      
       redirect_to root_url
     
     else
+      
       @user = User.create(email: params[:session][:email].downcase)
       @user.create_activation_digest
       UserMailer.log_in(@user).deliver_now
       flash[:success] = 'Welcome! An email has been sent with a login link.'
       redirect_to root_url
     end
-    
-    # if @user && @user.authenticate(params[:session][:password])
-    #   if @user.activated?
-    #     log_in @user
-    #     params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-    #     redirect_back_or dashboard_path
-        
-    #   else
-    #     message  = "Account not activated. "
-    #     message += "Check your email for the activation link."
-    #     flash[:warning] = message
-    #     redirect_to root_url
-    #   end
-      
-    # else
-    #   flash.now[:failure] = 'Invalid email/password combination'
-    #   render 'new'
-    # end
   end
   
   def create_social
@@ -72,11 +64,5 @@ class SessionsController < ApplicationController
   # def password
   #     @user = User.find(27)
   #   # @user = User.find_by(email: params[:session][:email].downcase)
-  # end
-  
-  # def password_create
-  #   log_in @user
-  #   flash[:success] = 'Welcome back!'
-  #   redirect_to root_url
   # end
 end

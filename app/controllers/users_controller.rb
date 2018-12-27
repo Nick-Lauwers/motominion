@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :add_card]
   before_action :correct_user,   only: [:edit, :update, :profile_pic, 
                                         :profile_pic_dealer, :dealer_details]
+  before_action :private_buyer,  only: [:shortlist]
   
   def new
     
@@ -24,30 +25,82 @@ class UsersController < ApplicationController
   
   def create
     
-    @user = User.new(user_params)
-    
-    initiated_conversations_params = 
-      user_params[:initiated_conversations_attributes].values.first
-      
-    vehicle_inquiries_params = 
-      initiated_conversations_params[:vehicle_inquiries_attributes].values.first
-    
-    if @user.save
-      @vehicle_inquiry = @user.
-                           initiated_conversations.
-                           create!(initiated_conversations_params).
-                           vehicle_inquiries.
-                           create!(vehicle_inquiries_params)
-    end
-    # @conversation = Conversation.new(user_params[:initiated_conversations_attributes])
+    @user = User.new(params.require(:user).permit(:first_name, :last_name, :email, :password, 
+                                   :password_confirmation, :is_subscribed, 
+                                   :phone_number, :residence, :school, :work, 
+                                   :description, :avatar, :dealership_id, 
+                                   :dealership_admin, :activated, :activated_at))
     # @token = params[:invitation_token]
     
-    if @vehicle_inquiry.save
-      # @notice.entity_roles.build(name: 'submitter').build_entity
+    if @user.save
+      
+      initiated_conversations_params = 
+        user_params[:initiated_conversations_attributes]['0'].
+          permit(:id, :recipient_id, :is_sender_anonymous, :latest_message_read, 
+                 :sender_archived, :recipient_archived)
+      
+      vehicle_inquiries_params = 
+        user_params[:initiated_conversations_attributes]['0'][:vehicle_inquiries_attributes]['0'].
+          permit(:id, :price, :special_offers, :availability, :condition,
+                 :vehicle_history, :test_drives, :user_id, :vehicle_id, :email, 
+                 :first_name, :last_name)
+      
+      @conversation = @user.
+                        initiated_conversations.
+                        create!(initiated_conversations_params)
+                        
+      @vehicle_inquiry = @conversation.
+                           vehicle_inquiries.
+                           create!(vehicle_inquiries_params)                  
+      
+      @vehicle_inquiry.update_attributes!(user_id:    @user.id, 
+                                          email:      @user.email, 
+                                          first_name: @user.first_name, 
+                                          last_name:  @user.last_name)
+      
+      inquiry_booleans = [ @vehicle_inquiry.price, 
+                           @vehicle_inquiry.special_offers,
+                           @vehicle_inquiry.availability,
+                           @vehicle_inquiry.condition,
+                           @vehicle_inquiry.vehicle_history,
+                           @vehicle_inquiry.test_drives ];
+                           
+      inquiry_strings = [ "pricing", "special offers", "availability",
+                          "condition", "vehicle history", 
+                          "scheduling a test drive" ];
+                          
+      string  = "";
+      
+      for i in 0..inquiry_booleans.count
+        if inquiry_booleans[i] == true
+          string = string + inquiry_strings[i] + "; "
+        end
+      end
+
+      message = @conversation.messages.create!(
+                  user:    @user, 
+                  content: "Hi, " + 
+                           @conversation.recipient.first_name + 
+                           ". I recently noticed your motorcycle, " +
+                           @vehicle_inquiry.vehicle.listing_name + 
+                           ", and have questions about: " +
+                           string
+                )
+      
+      @conversation.update_attributes(next_contributor_id: @conversation.recipient.id, 
+                                      latest_message_read: false)
+      
+      MessageMailer.message_received(message).deliver_now
+      MessageMailer.message_received_admin(message).deliver_now
+                                   
       log_in @user
       flash[:success] = "Message sent!"
+      
     else
-      flash[:danger] = "Email has already been taken."
+      flash[:failure] = "This email address has already been taken; If the 
+                        address belongs to you, please
+                        #{view_context.link_to("log in", login_path)}
+                        to continue."
     end
     
     redirect_to :back
@@ -122,6 +175,7 @@ class UsersController < ApplicationController
   end
   
   def password
+    @user = User.find(params[:id])
   end
 
   def shortlist
@@ -205,6 +259,9 @@ class UsersController < ApplicationController
       flash[:alert] = e.message
       redirect_to payment_method_path
   end
+  
+  def password
+  end
       
   private
   
@@ -215,10 +272,10 @@ class UsersController < ApplicationController
                                    :description, :avatar, :dealership_id, 
                                    :dealership_admin, :activated, :activated_at,
                                    initiated_conversations_attributes: 
-                                   [:sender_id, :recipient_id, 
-                                   :is_sender_anonymous, :latest_message_read, 
-                                   :sender_archived, :recipient_archived,
-                                   vehicle_inquiries_attributes: [:price, 
+                                   [:id, :recipient_id, :is_sender_anonymous, 
+                                   :latest_message_read, :sender_archived, 
+                                   :recipient_archived,
+                                   vehicle_inquiries_attributes: [:id, :price, 
                                    :special_offers, :availability, :condition,
                                    :vehicle_history, :test_drives, :user_id,
                                    :vehicle_id, :email, :first_name, 

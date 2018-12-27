@@ -1602,80 +1602,104 @@
             
           <div class="inquiry-title">
             <span class="inquiry-title-content">
+              
+              <i class="fa fa-comments-o fa-lg inquiry-icon" 
+                 aria-hidden="true"></i>
+                 
               Get the Nitty Gritty
             </span>
           </div>
           
-          <div class="inquiries">
-
-            <p class="inquiries-info">
-              What are you most curious about?
-            </p>
+          <div class="inquiry">
             
             <% if logged_in? %>
             
               <%= form_for @conversation do |f| %>
                 
                 <%= f.fields_for :vehicle_inquiries, VehicleInquiry.new do |ff| %>
+                  <div class="inquiry-options">
+
+                    <p class="inquiry-info">
+                      What are you most curious about?
+                    </p>
+                    
+                    <ul class="inquiry-options-list">
+                      
+                      <li>
+                        <%= ff.check_box :price %>
+                        <%= ff.label :price, "Pricing" %> 
+                      </li>
+                      
+                      <li>
+                        <%= ff.check_box :special_offers %>
+                        <%= ff.label :special_offers, "Special Offers" %> 
+                      </li>
+                      
+                      <li>
+                        <%= ff.check_box :availability %>
+                        <%= ff.label :availability, "Availability" %> 
+                      </li>
+                      
+                      <li>
+                        <%= ff.check_box :condition %>
+                        <%= ff.label :condition, "Condition" %> 
+                      </li>
+                      
+                      <li>
+                        <%= ff.check_box :vehicle_history %>
+                        <%= ff.label :vehicle_history, "Motorcycle History" %> 
+                      </li>
+                      
+                      <li>
+                        <%= ff.check_box :test_drives %>
+                        <%= ff.label :test_drives, "Schedule A Test Drive" %> 
+                      </li>
+                      
+                      <%= ff.hidden_field :user_id,    value: current_user.id %>
+                      
+                      <%= ff.hidden_field :vehicle_id, value: @vehicle.id %>
+                    </ul>
                   
-                  <ul class="installed-options-list">
-                    
-                    <li>
-                      <%= ff.check_box :price %>
-                      <%= ff.label :price, "Pricing" %> 
-                    </li>
-                    
-                    <li>
-                      <%= ff.check_box :special_offers %>
-                      <%= ff.label :special_offers, "Special Offers" %> 
-                    </li>
-                    
-                    <li>
-                      <%= ff.check_box :availability %>
-                      <%= ff.label :availability, "Availability" %> 
-                    </li>
-                    
-                    <li>
-                      <%= ff.check_box :condition %>
-                      <%= ff.label :condition, "Condition" %> 
-                    </li>
-                    
-                    <li>
-                      <%= ff.check_box :vehicle_history %>
-                      <%= ff.label :vehicle_history, "Vehicle History" %> 
-                    </li>
-                    
-                    <li>
-                      <%= ff.check_box :test_drives %>
-                      <%= ff.label :test_drives, "Schedule A Test Drive" %> 
-                    </li>
-                    
-                    <%= ff.hidden_field :user_id, value: current_user.id %>
-                    
-                    <%= ff.hidden_field :vehicle_id, value: @vehicle.id %>
-                  </ul>
-                  
-                  <%= ff.hidden_field :email, value: current_user.email %>
+                    <%= ff.hidden_field :email, value: current_user.email %>
+                  </div>
                   
                   <% if current_user.first_name.blank? ||
                         current_user.last_name.blank? %>
-                    <div class="inquiries-contact">
-                    
-                    <div class="row">
-        
-                      <div class="col-xs-6">
-                        <div class="form-group form-group-primary">
-                          <%= ff.text_field :first_name, 
-                                           placeholder: "First name", 
-                                           class: 'form-control form-control-primary' %>
-                        </div>
-                      </div>
+                    <div class="inquiry-contact">
                       
-                      <div class="col-xs-6">
-                        <div class="form-group form-group-primary">
-                          <%= ff.text_field :last_name, 
-                                           placeholder: "Last name", 
-                                           class: 'form-control form-control-primary' %>
+                      <p class="inquiry-info">
+                      
+                        Please provide your name so that 
+                        
+                        <% if @vehicle.dealership.present? %>
+                          <%= @vehicle.dealership.dealership_name %>
+                        <% else %>
+                          <%= @vehicle.user.first_name %>
+                        <% end %>
+                        
+                        can reach out.
+                      </p>
+                    
+                      <div class="row-modified">
+          
+                        <div class="col-md-6-modified">
+                          <div class="form-group form-group-primary">
+                            <%= ff.text_field :first_name, 
+                                             placeholder: "First name", 
+                                             class: 'form-control 
+                                                     form-control-primary',
+                                             required: true%>
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-6-modified">
+                          <div class="form-group form-group-primary">
+                            <%= ff.text_field :last_name, 
+                                             placeholder: "Last name", 
+                                             class: 'form-control 
+                                                     form-control-primary',
+                                             required: true %>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -1700,115 +1724,100 @@
               
                 <%= f.hidden_field :recipient_archived,  value: false %>
                 
-                <% if @vehicle.dealership.present? %>
+                <div class="inquiry-recipient">
                   
-                  <div class="test-drive-sidenav-scroll-container">
-                    <div class="test-drive-sidenav-scroll">
-          
-                      <i class="fa 
-                                fa-chevron-left 
-                                test-drive-sidenav-left"></i>
-                
-                      <i class="fa 
-                                fa-chevron-right 
-                                test-drive-sidenav-right"></i>
-                
-                      <ol class="nitty-gritty-sidenav-list">
-                        <%= render partial:    'nitty_gritty_item_logged_in',
-                                   collection: User.where(
-                                                 dealership_id: @vehicle.dealership_id
-                                               ),
-                                   as:         :dealer,
-                                   locals:     { f: f } %>
-                      </ol>
-                    </div>
-                  </div>
-                
-                <% else %>
-                  <%= f.hidden_field :recipient_id, value: @vehicle.user.id %>
-                  <%= f.submit "Submit", class: "btn btn-primary" %>
-                <% end %>
+                  <% if @vehicle.dealership.present? %>
+
+                      <span class="inquiry-info">
+                        Select the dealer you would like to work with.
+                      </span>
+                      
+                      <div class="test-drive-sidenav-scroll-container">
+                        <div class="test-drive-sidenav-scroll">
+              
+                          <i class="fa 
+                                    fa-chevron-left 
+                                    test-drive-sidenav-left"></i>
+                    
+                          <i class="fa 
+                                    fa-chevron-right 
+                                    test-drive-sidenav-right"></i>
+                    
+                          <ol class="nitty-gritty-sidenav-list">
+                            <%= render partial:    'nitty_gritty_item_logged_in',
+                                       collection: User.where(
+                                                     dealership_id: @vehicle.dealership_id
+                                                   ),
+                                       as:         :dealer,
+                                       locals:     { f: f } %>
+                          </ol>
+                        </div>
+                      </div>
+
+                  <% else %>
+                  
+                    <%= f.hidden_field :recipient_id, value: @vehicle.user.id %>
+                    
+                    <%= button_tag class: "btn-inquiry" do %>
+                      
+                      Check Availability
+                      
+                      <i class="fa fa-lg fa-angle-right btn-inquiry-icon" 
+                         aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+                </div>
               <% end %>
               
             <% else %>
               <%= form_for User.new do |f| %>
+                <%= f.fields_for :initiated_conversations, 
+                                 @conversation do |ff| %>
+                
+                  <%= ff.fields_for :vehicle_inquiries, 
+                                    @vehicle_inquiry do |fff| %>
+                    <div class="inquiry-options">
 
-                <div class="row">
-    
-                  <div class="col-xs-6">
-                    <div class="form-group form-group-primary">
-                      <%= f.text_field :first_name, 
-                                       placeholder: "First name", 
-                                       class: 'form-control form-control-primary' %>
+                      <p class="inquiry-info">
+                        What are you most curious about?
+                      </p>
+                      
+                      <ul class="inquiry-options-list">
+                        
+                        <li>
+                          <%= fff.check_box :price %>
+                          <%= fff.label :price, "Pricing" %> 
+                        </li>
+                        
+                        <li>
+                          <%= fff.check_box :special_offers %>
+                          <%= fff.label :special_offers, "Special Offers" %> 
+                        </li>
+                        
+                        <li>
+                          <%= fff.check_box :availability %>
+                          <%= fff.label :availability, "Availability" %> 
+                        </li>
+                        
+                        <li>
+                          <%= fff.check_box :condition %>
+                          <%= fff.label :condition, "Condition" %> 
+                        </li>
+                        
+                        <li>
+                          <%= fff.check_box :vehicle_history %>
+                          <%= fff.label :vehicle_history, 
+                                        "Motorcycle History" %> 
+                        </li>
+                        
+                        <li>
+                          <%= fff.check_box :test_drives %>
+                          <%= fff.label :test_drives, "Schedule A Test Drive" %> 
+                        </li>
+                        
+                        <%= fff.hidden_field :vehicle_id, value: @vehicle.id %>
+                      </ul>
                     </div>
-                  </div>
-                  
-                  <div class="col-xs-6">
-                    <div class="form-group form-group-primary">
-                      <%= f.text_field :last_name, 
-                                       placeholder: "Last name", 
-                                       class: 'form-control form-control-primary' %>
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-xs-12">
-                    <div class="form-group form-group-primary">
-                       <%= f.email_field :email, 
-                                         placeholder: "Email address", 
-                                         class: 'form-control 
-                                                form-control-primary' %>
-                    </div>
-                  </div>
-                </div>
-                
-                <%= f.fields_for :initiated_conversations, Conversation.new do |ff| %>
-                
-                  <%= ff.fields_for :vehicle_inquiries, VehicleInquiry.new do |fff| %>
-                  
-                    <ul class="installed-options-list">
-                      
-                      <li>
-                        <%= fff.check_box :price %>
-                        <%= fff.label :price, "Pricing" %> 
-                      </li>
-                      
-                      <li>
-                        <%= fff.check_box :special_offers %>
-                        <%= fff.label :special_offers, "Special Offers" %> 
-                      </li>
-                      
-                      <li>
-                        <%= fff.check_box :availability %>
-                        <%= fff.label :availability, "Availability" %> 
-                      </li>
-                      
-                      <li>
-                        <%= fff.check_box :condition %>
-                        <%= fff.label :condition, "Condition" %> 
-                      </li>
-                      
-                      <li>
-                        <%= fff.check_box :vehicle_history %>
-                        <%= fff.label :vehicle_history, "Vehicle History" %> 
-                      </li>
-                      
-                      <li>
-                        <%= fff.check_box :test_drives %>
-                        <%= fff.label :test_drives, "Schedule A Test Drive" %> 
-                      </li>
-                      
-                      <%= fff.hidden_field :user_id, value: 1 %>
-                      
-                      <%= fff.hidden_field :vehicle_id, value: @vehicle.id %>
-                    </ul>
-                    
-                    <%= fff.hidden_field :email, value: "help@help.com" %>
-                    
-                    <%= fff.hidden_field :first_name, value: "Help" %>
-                          
-                    <%= fff.hidden_field :last_name, value: "Help" %>
                   <% end %>
                   
                   <%= ff.hidden_field :is_sender_anonymous, value: false %>
@@ -1818,334 +1827,144 @@
                   <%= ff.hidden_field :sender_archived,     value: false %>
                 
                   <%= ff.hidden_field :recipient_archived,  value: false %>
-                
-                  <% if @vehicle.dealership.present? %>
-                    <div class="test-drive-sidenav-scroll-container">
-                      <div class="test-drive-sidenav-scroll">
-            
-                        <i class="fa 
-                                  fa-chevron-left 
-                                  test-drive-sidenav-left"></i>
                   
-                        <i class="fa 
-                                  fa-chevron-right 
-                                  test-drive-sidenav-right"></i>
+                  <div class="inquiry-contact">
+                    
+                    <p class="inquiry-info">
+                      
+                      How would you like 
+                      
+                      <% if @vehicle.dealership.present? %>
+                        <%= @vehicle.dealership.dealership_name %>
+                      <% else %>
+                        <%= @vehicle.user.first_name %>
+                      <% end %>
+                      
+                      to get back to you?
+                    </p>
                   
-                        <ol class="nitty-gritty-sidenav-list">
-                          <%= render partial:    'nitty_gritty_item_signed_out',
-                                     collection: User.where(
-                                                   dealership_id: @vehicle.dealership_id
-                                                 ),
-                                     as:         :dealer,
-                                     locals:     { ff: ff } %>
-                        </ol>
+                    <div class="row-modified">
+      
+                      <div class="col-md-6-modified">
+                        <div class="form-group form-group-primary">
+                          <%= f.text_field :first_name, 
+                                           placeholder: "First name", 
+                                           class: 'form-control 
+                                                   form-control-primary',
+                                           required: true %>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-6-modified">
+                        <div class="form-group form-group-primary">
+                          <%= f.text_field :last_name, 
+                                           placeholder: "Last name", 
+                                           class: 'form-control 
+                                                   form-control-primary',
+                                           required: true %>
+                        </div>
                       </div>
                     </div>
+                    
+                    <div class="form-group form-group-primary">
+                       <%= f.email_field :email, 
+                                         placeholder: "Email address", 
+                                         class: 'form-control 
+                                                form-control-primary',
+                                         required: true %>
+                    </div>
+                  </div>
+                   
+                  <div class="inquiry-recipient"> 
                   
-                  <% else %>
-                    <%= ff.hidden_field :recipient_id, value: @vehicle.user.id %>
-                    <%= f.submit "Submit", class: "btn btn-primary" %>
-                  <% end %>
+                    <% if @vehicle.dealership.present? %>
+  
+                      <span class="inquiry-info">
+                        Select the dealer you would like to work with.
+                      </span>
+                      
+                      <div class="test-drive-sidenav-scroll-container">
+                        <div class="test-drive-sidenav-scroll">
+              
+                          <i class="fa 
+                                    fa-chevron-left 
+                                    test-drive-sidenav-left"></i>
+                    
+                          <i class="fa 
+                                    fa-chevron-right 
+                                    test-drive-sidenav-right"></i>
+                    
+                          <ol class="nitty-gritty-sidenav-list">
+                            <%= render partial:    'nitty_gritty_item_signed_out',
+                                       collection: User.where(
+                                                     dealership_id: @vehicle.dealership_id
+                                                   ),
+                                       as:         :dealer,
+                                       locals:     { ff: ff } %>
+                          </ol>
+                        </div>
+                      </div>
+  
+                    <% else %>
+                    
+                      <%= ff.hidden_field :recipient_id, 
+                                          value: @vehicle.user.id %>
+                      
+                      <%= button_tag class: "btn-inquiry" do %>
+                      
+                        Check Availability
+                        
+                        <i class="fa fa-lg fa-angle-right btn-inquiry-icon" 
+                           aria-hidden="true"></i>
+                      <% end %>
+                    <% end %>
+                  </div>
                 <% end %>
-                
-                <!--<(perc)= f.submit "Forward" %>-->
               <% end %>
             <% end %>
-
-            <!--<(perc) if @vehicle.user.present? %>-->
-            <!--  <(perc)= form_for User.new do |f| %>-->
-                
-            <!--    <(perc)= f.fields_for :conversations, Conversation.new do |ff| %>-->
-            <!--      <div class="inquiries-options">-->
-            <!--        <(perc)= ff.fields_for :messages, Message.new do |fff| %>-->
-            <!--          <ul class="installed-options-list">-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_price %>-->
-            <!--              <(perc)= fff.label :is_price, "Pricing" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_special_offers %>-->
-            <!--              <(perc)= fff.label :is_special_offers, "Special Offers" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_availability %>-->
-            <!--              <(perc)= fff.label :is_availability, "Availability" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_condition %>-->
-            <!--              <(perc)= fff.label :is_condition, "Condition" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_vehicle_history %>-->
-            <!--              <(perc)= fff.label :is_vehicle_history, "Vehicle History" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_test_drive %>-->
-            <!--              <(perc)= fff.label :is_test_drive, "Schedule A Test Drive" %> -->
-            <!--            </li>-->
-            <!--          </ul>-->
-            <!--        <(perc) end %>-->
-            <!--      </div>-->
-            <!--    <(perc) end %>-->
-                
-            <!--    <div class="inquiries-contact">-->
-                  
-            <!--      <div class="row">-->
-      
-            <!--        <div class="col-md-6">-->
-            <!--          <div class="form-group form-group-primary">-->
-            <!--            <(perc)= f.text_field :first_name, -->
-            <!--                             placeholder: "First name", -->
-            <!--                             class: 'form-control form-control-primary' %>-->
-            <!--          </div>-->
-            <!--        </div>-->
-                    
-            <!--        <div class="col-md-6">-->
-            <!--          <div class="form-group form-group-primary">-->
-            <!--            <(perc)= f.text_field :last_name, -->
-            <!--                             placeholder: "Last name", -->
-            <!--                             class: 'form-control form-control-primary' %>-->
-            <!--          </div>-->
-            <!--        </div>-->
-            <!--      </div>-->
-                    
-            <!--      <div class="row">-->
-                    
-            <!--        <div class="col-md-12">-->
-            <!--          <div class="form-group form-group-primary">-->
-            <!--            <(perc)= f.text_field :email, -->
-            <!--                             placeholder: "Email address", -->
-            <!--                             class: 'form-control form-control-primary' %>-->
-            <!--          </div>-->
-            <!--        </div>-->
-            <!--      </div>-->
-            <!--    </div>-->
-                
-            <!--    <(perc)= f.fields_for :conversations, Conversation.new do |ff| %>-->
-                
-            <!--    <(perc) end %>-->
-            <!--  <(perc) end %>-->
-            
-            <!--<(perc) else %>-->
-            <!--  <(perc)= form_for User.new do |f| %>-->
-                
-            <!--    <(perc)= f.fields_for :conversations, Conversation.new do |ff| %>-->
-            <!--      <div class="inquiries-options">-->
-            <!--        <(perc)= ff.fields_for :messages, Message.new do |fff| %>-->
-            <!--          <ul class="installed-options-list">-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_price %>-->
-            <!--              <(perc)= fff.label :is_price, "Pricing" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_special_offers %>-->
-            <!--              <(perc)= fff.label :is_special_offers, "Special Offers" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_availability %>-->
-            <!--              <(perc)= fff.label :is_availability, "Availability" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_condition %>-->
-            <!--              <(perc)= fff.label :is_condition, "Condition" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_vehicle_history %>-->
-            <!--              <(perc)= fff.label :is_vehicle_history, "Vehicle History" %> -->
-            <!--            </li>-->
-                        
-            <!--            <li>-->
-            <!--              <(perc)= fff.check_box :is_test_drive %>-->
-            <!--              <(perc)= fff.label :is_test_drive, "Schedule A Test Drive" %> -->
-            <!--            </li>-->
-            <!--          </ul>-->
-            <!--        <(perc) end %>-->
-            <!--      </div>-->
-            <!--    <(perc) end %>-->
-                
-            <!--    <div class="inquiries-contact">-->
-                  
-            <!--      <div class="row">-->
-      
-            <!--        <div class="col-md-6">-->
-            <!--          <div class="form-group form-group-primary">-->
-            <!--            <(perc)= f.text_field :first_name, -->
-            <!--                             placeholder: "First name", -->
-            <!--                             class: 'form-control form-control-primary' %>-->
-            <!--          </div>-->
-            <!--        </div>-->
-                    
-            <!--        <div class="col-md-6">-->
-            <!--          <div class="form-group form-group-primary">-->
-            <!--            <(perc)= f.text_field :last_name, -->
-            <!--                             placeholder: "Last name", -->
-            <!--                             class: 'form-control form-control-primary' %>-->
-            <!--          </div>-->
-            <!--        </div>-->
-            <!--      </div>-->
-                    
-            <!--      <div class="row">-->
-                    
-            <!--        <div class="col-md-12">-->
-            <!--          <div class="form-group form-group-primary">-->
-            <!--            <(perc)= f.text_field :email, -->
-            <!--                             placeholder: "Email address", -->
-            <!--                             class: 'form-control form-control-primary' %>-->
-            <!--          </div>-->
-            <!--        </div>-->
-            <!--      </div>-->
-            <!--    </div>-->
-                
-            <!--    <(perc)= f.fields_for :conversations, Conversation.new do |ff| %>-->
-                
-            <!--      <p class="inquiries-info">-->
-            <!--        Please select the associate you would most like to deal -->
-            <!--        with.-->
-            <!--      </p>-->
-                
-            <!--      <div class="test-drive-sidenav-scroll-container">-->
-            <!--        <div class="test-drive-sidenav-scroll">-->
-          
-            <!--          <i class="fa -->
-            <!--                    fa-chevron-left -->
-            <!--                    test-drive-sidenav-left"></i>-->
-                
-            <!--          <i class="fa -->
-            <!--                    fa-chevron-right -->
-            <!--                    test-drive-sidenav-right"></i>-->
-                
-            <!--          <ol class="test-drive-sidenav-list">-->
-            <!--            <(perc)= render partial:    'test_drive_sidenav_item',-->
-            <!--                       collection: User.where(-->
-            <!--                                     dealership_id: @vehicle.dealership_id-->
-            <!--                                   ),-->
-            <!--                       as:         :dealer %>-->
-            <!--          </ol>-->
-            <!--        </div>-->
-            <!--      </div>-->
-            <!--    <(perc) end %>-->
-            <!--  <(perc) end %>-->
-
-            
-                
-              <!--  <(perc) if logged_in? %>-->
-                  
-              <!--  <(perc) else %>-->
-                  
-              <!--  <(perc) end %>-->
-                
-              <!--  <span class="questions-info">-->
-              <!--    Select your preferred associate.-->
-              <!--  </span>-->
-                
-              <!--  <div class="test-drive-sidenav-scroll-container">-->
-              <!--    <div class="test-drive-sidenav-scroll">-->
-        
-              <!--      <i class="fa -->
-              <!--                fa-chevron-left -->
-              <!--                test-drive-sidenav-left"></i>-->
-              
-              <!--      <i class="fa -->
-              <!--                fa-chevron-right -->
-              <!--                test-drive-sidenav-right"></i>-->
-              
-              <!--      <ol class="test-drive-sidenav-list">-->
-              <!--        <(perc)= render partial:    'test_drive_sidenav_item',-->
-              <!--                   collection: User.where(-->
-              <!--                                 dealership_id: @vehicle.dealership_id-->
-              <!--                               ),-->
-              <!--                   as:         :dealer %>-->
-              <!--      </ol>-->
-              <!--    </div>-->
-              <!--  </div>-->
-              <!--<(perc) end %>-->
-            <!--< end %>-->
-            </div>
           </div>
+        </div>
           
-          <div class="shortlist-scrolled hidden-xs">
-            
-            <span class="shortlist-scrolled-info">
-              Add motorcycles to your shortlist by tapping "Love It" or "Maybe"
-              to compare later.
-            </span>
-            
-            <table  class="shortlist-buttons">
-              <tr>
-                
-                <td class="shortlist-button">
-                  <%= link_to favorite_vehicle_path(@vehicle, is_loved: true),
-                              class: "btn-shortlist add-to-wish-list",
-                              method: :put do %>
-                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    Love It!
-                  <% end %>
-                </td>
-                
-                <td class="shortlist-button">
-                  <%= link_to favorite_vehicle_path(@vehicle, is_liked: true),
-                              class: "btn-shortlist add-to-wish-list",
-                              method: :put do %>
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                    Maybe
-                  <% end %>
-                </td>
-                
-                <td class="shortlist-button">
-                  <%= link_to favorite_vehicle_path(@vehicle, 
-                                                    is_disliked: true),
-                              class: "btn-shortlist",
-                              method: :put do %>
-                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    Nope
-                  <% end %>
-                </td>
-              </tr>
-            </table>
-          </div>
+        <div class="shortlist-scrolled hidden-xs">
           
-          <!--<(perc)= link_to favorite_vehicle_path(@vehicle), -->
-          <!--            class: "vehicle-scrolled-link",-->
-          <!--            method: :put do %>-->
-                      
-          <!--  <i class="fa fa-heart-o" -->
-          <!--    aria-hidden="true"></i> -->
-                 
-          <!--  Add to Shortlist-->
-          <!--<(perc) end %>-->
-            
-        <!--<div class="appointment-scrolled">-->
-        <!--  <(perc)= link_to '#vehicle-overview', -->
-        <!--      class: "btn btn-primary btn-primary-scrolled" do %>-->
-        <!--    <i class="fa fa-arrow-up up-button-icon" -->
-        <!--       aria-hidden="true"></i> -->
-        <!--    Test Drive-->
-        <!--  <(perc) end %>-->
-        <!--</div>-->
-        
-        <!--<div class="products-scrolled">-->
-        <!--  <span class="products-scrolled-title">1 Additional Product</span>-->
-        <!--  <(perc)= link_to "View Details", '#', class: "products-scrolled-link" %>-->
-        <!--  <p class="products-scrolled-info">Spoiler at reduced cost</p>-->
-        <!--</div>-->
-
-        <!--<(perc)= link_to '#' do %>-->
-        <!--  <p class="wish-list-scrolled">-->
-        <!--    <i class="fa fa-heart wish-list-link-icon" aria-hidden="true"></i>-->
-        <!--    Add to Wish List-->
-        <!--  </p>-->
-        <!--<(perc) end %>-->
+          <span class="shortlist-scrolled-info">
+            Add motorcycles to your shortlist by tapping "Love It" or "Maybe"
+            to compare later.
+          </span>
+          
+          <table  class="shortlist-buttons">
+            <tr>
+              
+              <td class="shortlist-button">
+                <%= link_to favorite_vehicle_path(@vehicle, is_loved: true),
+                            class: "btn-shortlist add-to-wish-list",
+                            method: :put do %>
+                  <i class="fa fa-heart-o" aria-hidden="true"></i>
+                  Love It!
+                <% end %>
+              </td>
+              
+              <td class="shortlist-button">
+                <%= link_to favorite_vehicle_path(@vehicle, is_liked: true),
+                            class: "btn-shortlist add-to-wish-list",
+                            method: :put do %>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                  Maybe
+                <% end %>
+              </td>
+              
+              <td class="shortlist-button">
+                <%= link_to favorite_vehicle_path(@vehicle, 
+                                                  is_disliked: true),
+                            class: "btn-shortlist",
+                            method: :put do %>
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  Nope
+                <% end %>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -2378,40 +2197,40 @@
   </div>
 </div>
 
-  <div id="related-vehicles">
+<div id="related-vehicles">
     
   <% if @related_vehicles.count == 3 %>
-      <div class="related-vehicles-content hidden-xs">
-        
-        <h2 class="related-vehicles-title">
-          Related Motorcycles
-        </h2>
-        
-        <div class="related-vehicles-list">
-          <ol class="related-vehicles-list-content">
-            <%= render partial:    "related_vehicle",
-                       collection: @related_vehicles %>
-          </ol>
-        </div>
+    <div class="related-vehicles-content hidden-xs">
+      
+      <h2 class="related-vehicles-title">
+        Related Motorcycles
+      </h2>
+      
+      <div class="related-vehicles-list">
+        <ol class="related-vehicles-list-content">
+          <%= render partial:    "related_vehicle",
+                     collection: @related_vehicles %>
+        </ol>
       </div>
+    </div>
   <% end %>
   
   <% if @related_vehicles_mobile.count == 4 %>
       
-      <div class="related-vehicles-content visible-xs">
-        
-        <h2 class="related-vehicles-title">
-          Related Motorcycles
-        </h2>
-        
-        <div class="related-vehicles-mobile">
-          <ol class="related-vehicles-mobile-content">
-            <%= render partial:    "related_vehicle_mobile",
-                       collection: @related_vehicles_mobile %>
-          </ol>
-        </div>
+    <div class="related-vehicles-content visible-xs">
+      
+      <h2 class="related-vehicles-title">
+        Related Motorcycles
+      </h2>
+      
+      <div class="related-vehicles-mobile">
+        <ol class="related-vehicles-mobile-content">
+          <%= render partial:    "related_vehicle_mobile",
+                     collection: @related_vehicles_mobile %>
+        </ol>
       </div>
-    <% end %>
+    </div>
+  <% end %>
 </div>
 
 <!--<= link_to new_club_path, class: "single-action hidden-xs" do %>-->
@@ -2445,32 +2264,34 @@
 <!--  </div>-->
 <!--<(perc) end %>-->
 
-<% if @vehicle.dealership.present? %>
-  <div class="request-details btn-negotiate-dealer visible-xs">
-    Get the Nitty Gritty!
-  </div>
-
-<% else %>
-  <!--<div class="single-action">-->
-  <%= form_for @conversation, 
-               url: conversations_path(@conversation), 
-               method: :post do |f| %>
-           
-    <%= f.hidden_field :sender_id,          value: current_user.id if 
-                                                   current_user %>
-    
-    <%= f.hidden_field :recipient_id,       value: @user.id %>
-    
-    <%= f.hidden_field :sender_archived,    value: false %>
-
-    <%= f.hidden_field :recipient_archived, value: false %>
+<!--<(perc) if @vehicle.dealership.present? %>-->
   
-    <%= button_tag(class: "request-details-button visible-xs") do %>
-      Get the Nitty Gritty!
-    <% end %>
-  <% end %>
+
+<!--<(perc) else %>-->
+  <!--<div class="single-action">-->
+<!--  <(perc)= form_for @conversation, -->
+<!--               url: conversations_path(@conversation), -->
+<!--               method: :post do |f| %>-->
+           
+<!--    <(perc)= f.hidden_field :sender_id,          value: current_user.id if -->
+<!--                                                   current_user %>-->
+    
+<!--    <(perc)= f.hidden_field :recipient_id,       value: @user.id %>-->
+    
+<!--    <(perc)= f.hidden_field :sender_archived,    value: false %>-->
+
+<!--    <(perc)= f.hidden_field :recipient_archived, value: false %>-->
+  
+<!--    <(perc)= button_tag(class: "request-details-button visible-xs") do %>-->
+<!--      Get the Nitty Gritty!-->
+<!--    <(perc) end %>-->
+<!--  <(perc) end %>-->
   <!--</div>-->
-<% end %>
+<!--<(perc) end %>-->
+
+<div class="request-details hello visible-xs">
+  Get the Nitty Gritty!
+</div>
 
 <div class="shortlist-nav visible-xs">
   <div class="row">
@@ -2500,78 +2321,6 @@
     <% end %>
   </div>
 </div>
-
-<!--<div class='multi-action visible-xs'>-->
-  
-<!--  <button class='action-button'><i class='fa fa-plus fa-lg'></i></button>-->
-  
-<!--  <ul class='actions'>-->
-    
-<!--    <li>-->
-<!--      <(perc)= link_to new_purchase_path(vehicle_id: @vehicle.id) do %>-->
-<!--        <i class='fa fa-credit-card'></i>-->
-<!--      <(perc) end %> -->
-<!--    </li>-->
-    
-<!--    <li class="btn-appointment-mobile">-->
-<!--      <a>-->
-<!--        <i class='fa fa-calendar-check-o'></i>-->
-<!--      </a>-->
-<!--    </li>-->
-    
-<!--    <li>-->
-<!--      <a>-->
-<!--        <(perc)= form_for @conversation, -->
-<!--                     url: conversations_path(@conversation), -->
-<!--                     method: :post do |f| %>-->
-                 
-<!--          <(perc)= f.hidden_field :sender_id,          value: current_user.id if -->
-<!--                                                         current_user %>-->
-          
-<!--          <(perc) if @vehicle.user.present? %>-->
-<!--            <(perc)= f.hidden_field :recipient_id,     value: @user.id %>-->
-<!--          <(perc) end %>-->
-          
-<!--          <(perc)= f.hidden_field :sender_archived,    value: false %>-->
-      
-<!--          <(perc)= f.hidden_field :recipient_archived, value: false %>-->
-          
-<!--          <(perc)= button_tag(class: "btn-message-mobile") do %>-->
-<!--            <i class='fa fa-comments-o'></i>-->
-<!--          <(perc) end %>-->
-<!--        <(perc) end %>-->
-<!--      </a>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</div>-->
-
-<!--<(perc)= link_to new_club_path, class: "single-action" do %>-->
-<!--  <i class='fa fa-group fa-lg single-action-icon'></i>-->
-<!--<(perc) end %>-->
-
-<!--<div class="message-button visible-xs">-->
-<!--  <(perc)= form_for @conversation, -->
-<!--                       url: conversations_path(@conversation), -->
-<!--                       method: :post do |f| %>-->
-                       
-<!--    <(perc)= f.hidden_field :sender_id,          value: current_user.id if -->
-<!--                                                   current_user %>-->
-    
-<!--    <(perc)= f.hidden_field :recipient_id,       value: @user.id %>-->
-    
-<!--    <(perc)= f.hidden_field :sender_archived,    value: false %>-->
-  
-<!--    <(perc)= f.hidden_field :recipient_archived, value: false %>-->
-    
-<!--    <(perc)= button_tag type: 'submit', class: "btn-message" do %>-->
-<!--      <i class="fa fa-comments-o fa-2x" aria-hidden="true"></i>-->
-<!--    <(perc) end %>-->
-<!--  <(perc) end %>-->
-<!--</div>-->
-    
-<!--<div class="btn-primary btn-appointment-mobile btn visible-xs">-->
-<!--  Book A Test Drive-->
-<!--</div>-->
 
 <script type="text/javascript">
 

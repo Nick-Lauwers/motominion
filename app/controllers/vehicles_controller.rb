@@ -16,6 +16,7 @@ class VehiclesController < ApplicationController
                                               :about_you, :consumer_activity,
                                               :post, :favorite, :unfavorite,
                                               :sold, :undo_sold, :bump]
+  before_action :private_buyer,      only:   [:favorite, :unfavorite]
   
   def new
     
@@ -189,6 +190,7 @@ class VehiclesController < ApplicationController
                                    Time.now).present? if current_user
     
     @conversation     = Conversation.new
+    @vehicle_inquiry  = VehicleInquiry.new
     @user             = @vehicle.user                               
     @photos           = @vehicle.photos
     @reviews          = @vehicle.reviews

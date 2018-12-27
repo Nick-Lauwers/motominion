@@ -2,7 +2,7 @@
   <div class="modal-dealer-select-mobile-header-content">
     
     <span class="modal-dealer-select-mobile-header-title">
-      Select An Associate
+      Get the Nitty Gritty
     </span>
     
     <i class="fa 
@@ -17,112 +17,308 @@
 
 <div class="modal-dealer-select-mobile-body">
   <div class="modal-dealer-select-mobile-body-content">
-    
-    <div class="inquiries">
 
-      <p class="inquiries-info">
-        What are you most curious about?
-      </p>
-      
-      <% if @vehicle.user.present? %>
-        <%= form_for @conversation do |f| %>
-        <% end %>
-      
-      <% else %>
-        <%= form_for User.new do |f| %>
+    <% if logged_in? %>
+    
+      <%= form_for @conversation do |f| %>
+        
+        <%= f.fields_for :vehicle_inquiries, VehicleInquiry.new do |ff| %>
+          <div class="inquiry-options">
+
+            <span class="modal-dealer-select-mobile-info">
+              What are you most curious about?
+            </span>
+            
+            <ul class="inquiry-options-list">
+              
+              <li>
+                <%= ff.check_box :price %>
+                <%= ff.label :price, "Pricing" %> 
+              </li>
+              
+              <li>
+                <%= ff.check_box :special_offers %>
+                <%= ff.label :special_offers, "Special Offers" %> 
+              </li>
+              
+              <li>
+                <%= ff.check_box :availability %>
+                <%= ff.label :availability, "Availability" %> 
+              </li>
+              
+              <li>
+                <%= ff.check_box :condition %>
+                <%= ff.label :condition, "Condition" %> 
+              </li>
+              
+              <li>
+                <%= ff.check_box :vehicle_history %>
+                <%= ff.label :vehicle_history, "Motorcycle History" %> 
+              </li>
+              
+              <li>
+                <%= ff.check_box :test_drives %>
+                <%= ff.label :test_drives, "Schedule A Test Drive" %> 
+              </li>
+              
+              <%= ff.hidden_field :user_id,    value: current_user.id %>
+              
+              <%= ff.hidden_field :vehicle_id, value: @vehicle.id %>
+            </ul>
           
-          <%= f.fields_for :conversations, Conversation.new do |ff| %>
-            <div class="inquiries-options">
-              <!--<(perc)= ff.fields_for :messages, Message.new do |fff| %>-->
-              <!--  <ul class="installed-options-list">-->
-                  
-              <!--    <li>-->
-              <!--      <(perc)= fff.check_box :is_price %>-->
-              <!--      <(perc)= fff.label :is_price, "Pricing" %> -->
-              <!--    </li>-->
-                  
-              <!--    <li>-->
-              <!--      <(perc)= fff.check_box :is_special_offers %>-->
-              <!--      <(perc)= fff.label :is_special_offers, "Special Offers" %> -->
-              <!--    </li>-->
-                  
-              <!--    <li>-->
-              <!--      <(perc)= fff.check_box :is_availability %>-->
-              <!--      <(perc)= fff.label :is_availability, "Availability" %> -->
-              <!--    </li>-->
-                  
-              <!--    <li>-->
-              <!--      <(perc)= fff.check_box :is_condition %>-->
-              <!--      <(perc)= fff.label :is_condition, "Condition" %> -->
-              <!--    </li>-->
-                  
-              <!--    <li>-->
-              <!--      <(perc)= fff.check_box :is_vehicle_history %>-->
-              <!--      <(perc)= fff.label :is_vehicle_history, "Vehicle History" %> -->
-              <!--    </li>-->
-                  
-              <!--    <li>-->
-              <!--      <(perc)= fff.check_box :is_test_drive %>-->
-              <!--      <(perc)= fff.label :is_test_drive, "Schedule A Test Drive" %> -->
-              <!--    </li>-->
-              <!--  </ul>-->
-              <!--<(perc) end %>-->
+            <%= ff.hidden_field :email, value: current_user.email %>
+          </div>
+          
+          <% if current_user.first_name.blank? ||
+                current_user.last_name.blank? %>
+            <div class="inquiry-contact">
+              
+              <span class="modal-dealer-select-mobile-info">
+              
+                Please provide your name so that 
+                
+                <% if @vehicle.dealership.present? %>
+                  <%= @vehicle.dealership.dealership_name %>
+                <% else %>
+                  <%= @vehicle.user.first_name %>
+                <% end %>
+                
+                can reach out.
+              </span>
+            
+              <div class="row-modified">
+  
+                <div class="col-md-6-modified">
+                  <div class="form-group form-group-primary">
+                    <%= ff.text_field :first_name, 
+                                     placeholder: "First name", 
+                                     class: 'form-control 
+                                             form-control-primary',
+                                     required: true%>
+                  </div>
+                </div>
+                
+                <div class="col-md-6-modified">
+                  <div class="form-group form-group-primary">
+                    <%= ff.text_field :last_name, 
+                                     placeholder: "Last name", 
+                                     class: 'form-control 
+                                             form-control-primary',
+                                     required: true %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+          <% else %>
+          
+            <%= ff.hidden_field :first_name, 
+                                value: current_user.first_name %>
+                                
+            <%= ff.hidden_field :last_name, 
+                                value: current_user.last_name %>
+          <% end %>
+        <% end %>
+
+        <%= f.hidden_field :sender_id, value: current_user.id %>
+
+        <%= f.hidden_field :is_sender_anonymous, value: false %>
+      
+        <%= f.hidden_field :latest_message_read, value: false %>
+      
+        <%= f.hidden_field :sender_archived,     value: false %>
+      
+        <%= f.hidden_field :recipient_archived,  value: false %>
+        
+        <div class="inquiry-recipient">
+          
+          <% if @vehicle.dealership.present? %>
+
+              <span class="modal-dealer-select-mobile-info">
+                Select the dealer you would like to work with.
+              </span>
+              
+              <div class="test-drive-sidenav-scroll-container">
+                <div class="test-drive-sidenav-scroll">
+      
+                  <i class="fa 
+                            fa-chevron-left 
+                            test-drive-sidenav-left"></i>
+            
+                  <i class="fa 
+                            fa-chevron-right 
+                            test-drive-sidenav-right"></i>
+            
+                  <ol class="nitty-gritty-sidenav-list">
+                    <%= render partial:    'nitty_gritty_item_logged_in',
+                               collection: User.where(
+                                             dealership_id: @vehicle.dealership_id
+                                           ),
+                               as:         :dealer,
+                               locals:     { f: f } %>
+                  </ol>
+                </div>
+              </div>
+
+          <% else %>
+          
+            <%= f.hidden_field :recipient_id, value: @vehicle.user.id %>
+            
+            <%= button_tag class: "btn-inquiry" do %>
+              
+              Check Availability
+              
+              <i class="fa fa-lg fa-angle-right btn-inquiry-icon" 
+                 aria-hidden="true"></i>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      
+    <% else %>
+      <%= form_for User.new do |f| %>
+        <%= f.fields_for :initiated_conversations, 
+                         @conversation do |ff| %>
+        
+          <%= ff.fields_for :vehicle_inquiries, 
+                            @vehicle_inquiry do |fff| %>
+            <div class="inquiry-options">
+
+              <span class="modal-dealer-select-mobile-info">
+                What are you most curious about?
+              </span>
+              
+              <ul class="inquiry-options-list">
+                
+                <li>
+                  <%= fff.check_box :price %>
+                  <%= fff.label :price, "Pricing" %> 
+                </li>
+                
+                <li>
+                  <%= fff.check_box :special_offers %>
+                  <%= fff.label :special_offers, "Special Offers" %> 
+                </li>
+                
+                <li>
+                  <%= fff.check_box :availability %>
+                  <%= fff.label :availability, "Availability" %> 
+                </li>
+                
+                <li>
+                  <%= fff.check_box :condition %>
+                  <%= fff.label :condition, "Condition" %> 
+                </li>
+                
+                <li>
+                  <%= fff.check_box :vehicle_history %>
+                  <%= fff.label :vehicle_history, 
+                                "Motorcycle History" %> 
+                </li>
+                
+                <li>
+                  <%= fff.check_box :test_drives %>
+                  <%= fff.label :test_drives, "Schedule A Test Drive" %> 
+                </li>
+                
+                <%= fff.hidden_field :vehicle_id, value: @vehicle.id %>
+              </ul>
             </div>
           <% end %>
           
-          <div class="inquiries-contact">
+          <%= ff.hidden_field :is_sender_anonymous, value: false %>
+        
+          <%= ff.hidden_field :latest_message_read, value: false %>
+        
+          <%= ff.hidden_field :sender_archived,     value: false %>
+        
+          <%= ff.hidden_field :recipient_archived,  value: false %>
+          
+          <div class="inquiry-contact">
             
-            <div class="row">
+            <span class="modal-dealer-select-mobile-info">
+              
+              How would you like 
+              
+              <% if @vehicle.dealership.present? %>
+                <%= @vehicle.dealership.dealership_name %>
+              <% else %>
+                <%= @vehicle.user.first_name %>
+              <% end %>
+              
+              to get back to you?
+            </span>
+          
+            <div class="row-modified">
 
-              <div class="col-xs-6">
+              <div class="col-xs-6-modified">
                 <div class="form-group form-group-primary">
                   <%= f.text_field :first_name, 
                                    placeholder: "First name", 
-                                   class: 'form-control form-control-primary' %>
+                                   class: 'form-control 
+                                           form-control-primary',
+                                   required: true %>
                 </div>
               </div>
               
-              <div class="col-xs-6">
+              <div class="col-xs-6-modified">
                 <div class="form-group form-group-primary">
                   <%= f.text_field :last_name, 
                                    placeholder: "Last name", 
-                                   class: 'form-control form-control-primary' %>
+                                   class: 'form-control 
+                                           form-control-primary',
+                                   required: true %>
                 </div>
               </div>
             </div>
-              
-            <div class="row">
-              
-              <div class="col-xs-12">
-                <div class="form-group form-group-primary">
-                  <%= f.text_field :email, 
-                                   placeholder: "Email address", 
-                                   class: 'form-control form-control-primary' %>
-                </div>
-              </div>
+            
+            <div class="form-group form-group-primary">
+               <%= f.email_field :email, 
+                                 placeholder: "Email address", 
+                                 class: 'form-control 
+                                        form-control-primary',
+                                 required: true %>
             </div>
           </div>
+           
+          <div class="inquiry-recipient"> 
           
-          <%= f.fields_for :conversations, Conversation.new do |ff| %>
-          
-            <h2 class="modal-dealer-select-mobile-subtitle">
-              At Motominion, we believe in the power of the consumer.
-            </h2>
+            <% if @vehicle.dealership.present? %>
             
-            <span class="modal-dealer-select-mobile-info">
-              Select the dealer that you would most like to work with.
-            </span>
+              <!--<h2 class="modal-dealer-select-mobile-subtitle">-->
+              <!--  At Motominion, we believe in the power of the consumer.-->
+              <!--</h2>-->
+              
+              <span class="modal-dealer-select-mobile-info">
+                Select the dealer that you would most like to work with.
+              </span>
+              
+              <ol class="modal-dealer-select-mobile-list">
+                  <%= render partial:    'modal_dealer_select_item',
+                            # partial:    'nitty_gritty_item_signed_out',
+                             collection: User.where(
+                                           dealership_id: @vehicle.dealership_id
+                                         ),
+                             as:         :dealer,
+                             locals:     { ff: ff } %>
+              </ol>
+              
+            <% else %>
             
-            <ol class="modal-dealer-select-mobile-list">
-                <%= render partial:    'modal_dealer_select_item',
-                           collection: User.where(
-                                         dealership_id: @vehicle.dealership_id
-                                       ),
-                           as:         :dealer %>
-            </ol>
-          <% end %>
+              <%= ff.hidden_field :recipient_id, 
+                                  value: @vehicle.user.id %>
+              
+              <%= button_tag class: "btn-inquiry" do %>
+              
+                Check Availability
+                
+                <i class="fa fa-lg fa-angle-right btn-inquiry-icon" 
+                   aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>

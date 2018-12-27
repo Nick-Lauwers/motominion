@@ -33,8 +33,7 @@ Rails.application.routes.draw do
   get    'payout_method'           => 'users#payout'
   get    'signup'                  => 'users#new'
   get    'login'                   => 'sessions#new'
-  get    'password_test'           => 'sessions#password_test'
-  post   'password_test'           => 'sessions#create'
+  post   'password'                => 'sessions#create'
   get    'auth/:provider/callback' => 'sessions#create_social'
   post   'login'                   => 'sessions#create'
   post   'add_card'                => 'users#add_card'
@@ -90,11 +89,11 @@ Rails.application.routes.draw do
     # end
 
     member do
+      get 'password'
       get 'profile_pic'
       get 'profile_pic_dealer'
       get 'dealer_details'
       get 'shortlist'
-      get 'password'
     end
   end
 

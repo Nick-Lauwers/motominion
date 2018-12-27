@@ -29,6 +29,7 @@ $green-text:          #52ccc0;
 $blue:                #6d7fb4;
 $red:                 #fd8649;
 $yellow-dark:         #fcce01;
+$success-text:        #3c763d;
 $failure-text:        #b94a48;
 $failure-background:  #f2dede;
 $failure-border:      #eed3d7;
@@ -51,7 +52,8 @@ html {
 .alert-info,
 .alert-success,
 .alert-warning,
-.alert-failure {
+.alert-failure,
+.alert-danger {
   text-align: center;
   max-width: 1008px;
   position: absolute;
@@ -61,10 +63,19 @@ html {
   z-index: 1000;
 }
 
+.alert-success a {
+  text-decoration: underline;
+  color: $success-text;
+}
+
 .alert-failure {
   color: $failure-text;
   background-color: $failure-background;
   border-color: $failure-border;
+  a {
+    text-decoration: underline;
+    color: $failure-text;
+  }
 }
 
 .vertical-align {
@@ -1633,7 +1644,8 @@ footer {
   font-size: 1em;
   color: $gray-dark;
   display: block;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
+  // margin-bottom: 3em;
 }
 
 .modal-buy-online-mobile-list,
@@ -4974,67 +4986,53 @@ ul.pagination {
 //   margin-bottom: 2.3em;
 // }
 
-.questions-title,
 .inquiry-title {
   background-color: $gray-lightest;
   border-bottom: 1px solid $gray-border;
   height: 50px;
-  padding: 0 1.6em;
   position: relative;
 }
 
-.questions-title-content,
 .inquiry-title-content {
   font-size: 1.125em;
   font-weight: bold;
+  text-align: center;
   color: $gray-darker;
+  width: 100%;
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(-50%);
 }
 
-.questions {
-  max-height: 300px;
-  overflow: auto;
-  &::-webkit-scrollbar { 
-    width: 0;
-  }
+.inquiry-icon {
+  margin-right: 0.4em;
 }
 
-.questions-info-container {
-  padding: 1.6em;
-  margin-top: -0.8em;
+.inquiry {
+  padding: 1.2em 1.6em;
 }
 
-.inquiries {
-  padding: 1.6em;
-}
-
-.questions-info,
-.inquiries-info {
+.inquiry-info {
   font-size: 0.9em;
+  text-align: center;
   color: $gray-dark;
+  margin: 0 0 0.6em;
   display: block;
 }
 
-.questions-info {
-  font-style: italic;
-  margin: 0.5em 0 1.5em;
+.inquiry-options,
+.inquiry-contact {
+  margin-bottom: 0.6em;
 }
 
-.inquiries-info {
-  text-align: center;
-  margin: 0 0 0.6em;
+.inquiry-contact {
+  margin-bottom: 0.3em;
 }
 
-// .inquiries-options {
-//   margin-bottom: 0.3em;
-// }
-
-.inquiries-contact {
-  padding-top: 1em;
+.inquiry-contact,
+.inquiry-recipient {
   border-top: 1px solid $gray-border;
+  padding-top: 1em;
 }
 
 .questions-list,
@@ -5069,6 +5067,29 @@ ul.pagination {
 
 .shortlist-button {
   width: 33%;
+}
+
+.btn-inquiry {
+  font-size: 0.85em;
+  font-weight: bold;
+  line-height: 2.1;
+  color: $gray-dark;
+  background-color: $gray-lightest;
+  border: 1px solid $gray-light;
+  border-radius: 2px;
+  width: 100%;
+  padding: 3px 0;
+  transition: border-color 0.3s, color 0.3s, background-color 0.3s;
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: $green;
+    border-color: $green;
+  }
+}
+  
+.btn-inquiry-icon {
+  margin-left: 0.1em;
 }
 
 .btn-shortlist {
@@ -7469,7 +7490,8 @@ ul.pagination {
   display: block;
 }
 
-.installed-options-list {
+.installed-options-list,
+.inquiry-options-list {
   text-align: center;
   list-style: none;
   padding: 0;
@@ -7477,6 +7499,7 @@ ul.pagination {
 }
 
 .installed-options-list li,
+.inquiry-options-list li,
 .installed-option,
 .condition,
 .seller-type {
@@ -7510,7 +7533,8 @@ ul.pagination {
   }
 }
 
-.installed-options-list li { 
+.installed-options-list li,
+.inquiry-options-list li { 
   display: inline-block;
   margin-right: 0.3em;
 }
