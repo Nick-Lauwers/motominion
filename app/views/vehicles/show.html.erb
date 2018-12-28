@@ -19,14 +19,14 @@
 
 <%= render 'modal_test_drive_mobile' %>
 
+<div class="modal" id="modal-dealer-select-mobile" role="dialog">
+  <%= render "modal_dealer_select_mobile" %>
+</div>
+
 <% if @vehicle.dealership.present? %>
 
   <div class="modal" id="modal-dealer-select-desktop" role="dialog">
     <%= render "modal_dealer_select_desktop" %>
-  </div>
-  
-  <div class="modal" id="modal-dealer-select-mobile" role="dialog">
-    <%= render "modal_dealer_select_mobile" %>
   </div>
 
   <div class="modal" id="modal-buy-online-desktop" role="dialog">
@@ -2289,7 +2289,7 @@
   <!--</div>-->
 <!--<(perc) end %>-->
 
-<div class="request-details hello visible-xs">
+<div class="request-details btn-negotiate-dealer visible-xs">
   Get the Nitty Gritty!
 </div>
 
