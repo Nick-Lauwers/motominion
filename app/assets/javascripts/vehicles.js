@@ -381,9 +381,10 @@ $(function() {
       
     // fixed map
       
-      var fixedMap = $('.search-map-container');
-      
-      fixedMap.stick_in_parent({ offset_top: 50 });
+      if ( $(window).width() > 768 ) {
+        var fixedMap = $('.search-map-container');
+        fixedMap.stick_in_parent({ offset_top: 50 });
+      }
 
     // search introduction
       
@@ -402,7 +403,9 @@ $(function() {
       var searchNavMapIcon        = $('.search-nav-map-icon');
       var searchResults           = $('.search-results');
       var searchResultsBackground = $('.search-results-background');
+      var searchMapContainer      = $('.search-map-container');
       var searchMap               = $('#search-map');
+      var footer                  = $('.footer');
       var mapItem                 = $('.map-item');
       var marker                  = $('.marker');
       
@@ -428,10 +431,11 @@ $(function() {
         	  
         	mapItem.css("display", "none");
         	marker.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
-        	 
+        	
         	searchMap.css({"z-index": -1000});
         	searchResultsBackground.css({"display": "block"});
-        	searchResults.height(searchResultsBackground.outerHeight() + 50);
+        	searchResults.height(searchResultsBackground.outerHeight());
+        	footer.css("display", "block");
         }
       });
     
@@ -454,10 +458,11 @@ $(function() {
         	searchNavGridIcon.
         	  removeClass('search-nav-grid-icon-active').
         	  addClass('search-nav-grid-icon-inactive');
-        	  
+        	
         	searchMap.css({"z-index": 1000});
         	searchResultsBackground.css({"display": "none"});
-        	searchResults.height(searchMap.outerHeight() + 50);
+        	searchResults.height(searchMap.outerHeight());
+        	footer.css("display", "none");
         }
           
         else {
@@ -480,10 +485,11 @@ $(function() {
         	  
         	mapItem.css("display", "none");
         	marker.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
-
+          
           searchMap.css({"z-index": -1000});
         	searchResultsBackground.css({"display": "block"});
-        	searchResults.height(searchResultsBackground.outerHeight() + 50);
+        	searchResults.height(searchResultsBackground.outerHeight());
+        	footer.css("display", "block");
         }
       });
 });

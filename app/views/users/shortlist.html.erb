@@ -22,7 +22,58 @@
 
 <div class="shortlist-results">
   
-  <div id="shortlist-map"></div>
+  <div class="shortlist-map-container">
+    
+    <div id="shortlist-map"></div>
+    
+    <% @vehicles.each do |vehicle| %>
+      <%= link_to vehicle, target: "_blank" do %>
+        <div id="shortlist-map-item-<%= vehicle.id %>" class="map-item">
+  
+          <div class="map-item-photo">
+  
+            <% if vehicle.photos.length > 0 %>
+              <div class="map-item-photo-content", 
+                   style="background-image: url('<%= vehicle.photos[0].image.url() %>')">
+              </div>
+              
+            <% else %>
+              <div class="map-item-photo-content", 
+                   style="background-image: url('http://www.pbs.org/mercy-street/lunchbox_plugins/s/photogallery/img/no-image-available.jpg')">
+              </div>
+            <% end %>
+          </div>
+          
+          <div class="map-item-detail">
+            
+            <span class="map-item-title">
+              <%= vehicle.listing_name %>
+            </span>
+            
+            <span class="map-item-price">
+              <% if vehicle.actual_price.present? %>
+                $<%= vehicle.actual_price %> |
+              <% elsif vehicle.msrp.present? %>
+                $<%= vehicle.msrp %> |
+              <% end %>
+            </span>
+            
+            <% if vehicle.dealership.present? %>
+              <span class="certified">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Certified
+              </span>
+            <% else %>
+              <span class="private">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                Private
+              </span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
   
   <div class="shortlist-results-background">
     <div class="shortlist-list-container">
@@ -185,26 +236,47 @@
   </div>
 </div>
 
-<div class="shortlist-nav-mobile visible-xs">
-
-  <div class="shortlist-nav-grid shortlist-nav-grid-active">
-    <i class="fa 
-              fa-lg
-              fa-th-large 
-              shortlist-nav-grid-icon 
-              shortlist-nav-grid-icon-active" 
-       aria-hidden="true"></i> 
-  </div>
-  
-  <div class="shortlist-nav-map shortlist-nav-map-inactive">
-    <i class="fa 
-              fa-lg
-              fa-map-marker 
-              shortlist-nav-map-icon
-              shortlist-nav-map-icon-inactive" 
-       aria-hidden="true"></i> 
+<div class="shortlist-nav visible-xs">
+  <div class="row">
+    
+    <div class="col-xs-6
+                btn-shortlist-nav
+                shortlist-nav-grid
+                shortlist-nav-grid-active">
+      <i class="fa fa-th-large btn-shorlist-nav-icon" aria-hidden="true"></i>
+      Grid
+    </div>
+    
+    <div class="col-xs-6
+                btn-shortlist-nav
+                shortlist-nav-map
+                shortlist-nav-map-inactive">
+      <i class="fa fa-map-marker btn-shortlist-nav-icon" aria-hidden="true"></i>
+      Map
+    </div>
   </div>
 </div>
+
+<!--<div class="shortlist-nav-mobile visible-xs">-->
+
+<!--  <div class="shortlist-nav-grid shortlist-nav-grid-active">-->
+<!--    <i class="fa -->
+<!--              fa-lg-->
+<!--              fa-th-large -->
+<!--              shortlist-nav-grid-icon -->
+<!--              shortlist-nav-grid-icon-active" -->
+<!--       aria-hidden="true"></i> -->
+<!--  </div>-->
+  
+<!--  <div class="shortlist-nav-map shortlist-nav-map-inactive">-->
+<!--    <i class="fa -->
+<!--              fa-lg-->
+<!--              fa-map-marker -->
+<!--              shortlist-nav-map-icon-->
+<!--              shortlist-nav-map-icon-inactive" -->
+<!--       aria-hidden="true"></i> -->
+<!--  </div>-->
+<!--</div>-->
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -223,23 +295,16 @@
       mapboxgl.accessToken = 'pk.eyJ1IjoibW90b21pbmlvbiIsImEiOiJjanA4eDMwN3AwNHoxM3VvNWpkMzJhbWF4In0.zFFkCLgxG2tCFjF_0_twpg';
 
       var map = new mapboxgl.Map({
-                      container: 'search-map',
+                      container: 'shortlist-map',
                       style: 'mapbox://styles/mapbox/streets-v9',
-                      center: [-118.2437, 34.0522],
-                      zoom: 10
+                      center: [-119.4179, 36.7783],
+                      zoom: 5,
+                      maxZoom: 15
                     });
-      
-      // This will let you use the .remove() function later on
-      if (!('remove' in Element.prototype)) {
-        Element.prototype.remove = function() {
-          if (this.parentNode) {
-            this.parentNode.removeChild(this);
-          }
-        };
-      }
                 
       map.on('load', function() {
         $.ajax({
+          
           dataType: 'text',
           url: 'shortlist.json',
           
@@ -260,19 +325,17 @@
             
             var bounds = new mapboxgl.LngLatBounds();
             
-            function createPopUp(currentFeature) {
+            function createMapItem(currentFeature) {
               
-              var popUps = document.getElementsByClassName('mapboxgl-popup');
+              var mapItems = $('.map-item');
+              var markers  = $('.marker');
               
-              // Check if there is already a popup on the map and if so, remove it.
-              if (popUps[0]) popUps[0].remove();
-            
-              var popup = new mapboxgl.
-                              Popup({ closeOnClick: false }).
-                              setLngLat(currentFeature.geometry.coordinates).
-                              setHTML('<img src="'+ currentFeature.properties.image +'">' +
-                                      '<h3>' + currentFeature.properties.title + '</h3>').
-                              addTo(map);
+              mapItems.css("display", "none")
+              markers.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
+              
+              var mapItem = $('#shortlist-map-item-' + currentFeature.properties.id);
+              
+              mapItem.css({ "display": "block" })
             }
             
             geojson.features.forEach(function(marker) {
@@ -287,22 +350,36 @@
                   setLngLat(marker.geometry.coordinates).
                   addTo(map);
               
-              // el.addEventListener('click', function(e) {
-              //   createPopUp(marker);
-              // });
+              var shortlistNavMap  = $('.shortlist-nav-map');
+              var shortlistMapItem = $('#shortlist-map-item' + marker.properties.id);
               
-              var mapItem = document.getElementById("shortlist-item-" + marker.properties.id);
-              
-              mapItem.addEventListener('mouseover', function(e) {  
-                el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+              el.addEventListener('click', function(e) {
+                if ( $(window).width() <= 768 ) { 
+                  createMapItem(marker);
+                  el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+                }
               });
               
-              mapItem.addEventListener('mouseout', function(e) {  
-                el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')";
+              var shortlistItem = document.getElementById("wish-list-item-" + marker.properties.id);
+              
+              shortlistItem.addEventListener('mouseover', function(e) {  
+                el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+                el.style.zIndex          = "2000";              
+              });
+              
+              shortlistItem.addEventListener('mouseout', function(e) {  
+                el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')";
+                el.style.zIndex          = "1000";
               });
             });
             
-            map.fitBounds(bounds, { padding: 100 });
+            if ( $(window).width() > 768 ) { 
+              map.fitBounds(bounds, { padding: 100 })
+            }
+            
+            else {
+              map.fitBounds(bounds, { padding: 50 })
+            };
           },
           
           error: function() {}

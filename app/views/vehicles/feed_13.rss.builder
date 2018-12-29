@@ -22,7 +22,7 @@ xml.listings do
       end
       
       if vehicle.description_clean.present?
-        xml.description vehicle.description_clean
+        xml.description vehicle.description_clean.truncate(100)
       else
         xml.description "Description is unavailable."
       end

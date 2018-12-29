@@ -61,6 +61,7 @@
 <div class="search-results">
   
   <div class="search-map-container">
+    
     <div id="search-map"></div>
     
     <% @vehicles.each do |vehicle| %>
@@ -642,7 +643,8 @@
                         center: [-119.4179, 36.7783],
                       <% end %>   
                       
-                      zoom: 5
+                      zoom: 5,
+                      maxZoom: 15
                     });
       
       // This will let you use the .remove() function later on
@@ -659,10 +661,7 @@
           
           dataType: 'text',
           url: window.location.href.replace("/search", "/search.json"),
-          // url: 'search.json' + window.location.search,
-          // url: window.location.href.gsub("search", "search.json"),
-          // url: 'search.json?page=<= @vehicles.current_page %>',
-          
+
           success: function(data) {
             
             var myjson;
@@ -730,21 +729,22 @@
               var mapItem      = $('#map-item-' + marker.properties.id);
 
               el.addEventListener('click', function(e) {
-                
                 if ( $(window).width() <= 768 ) { 
                   createMapItem(marker);
-                  el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+                  el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
                 }
               });
               
               var searchItem = document.getElementById("search-item-" + marker.properties.id);
               
               searchItem.addEventListener('mouseover', function(e) {  
-                el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+                el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+                el.style.zIndex          = "2000";             
               });
               
               searchItem.addEventListener('mouseout', function(e) {  
-                el.style.backgroundImage="url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')";
+                el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')";
+                el.style.zIndex          = "1000";             
               });
             });
             

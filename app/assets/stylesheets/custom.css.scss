@@ -3479,7 +3479,8 @@ body {
   position: relative;
 }
 
-.search-map-container {
+.search-map-container,
+.shortlist-map-container {
   width: 40%;
   position: absolute;
   top: 0;
@@ -3490,18 +3491,19 @@ body {
   height: calc(100vh - 50px);
 }
 
-#search-map {
+#search-map,
+#shortlist-map {
   width: 100%;
   height: 100%;
 }
 
 // #search-map,
-#shortlist-map {
-  width: 40%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+// #shortlist-map {
+//   width: 40%;
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+// }
 
 // #search-map {
 //   height: calc(100vh - 50px);
@@ -8540,6 +8542,7 @@ a.remove_fields {
   height: 32px;
   width: 32px;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .mapboxgl-popup {
@@ -8983,8 +8986,9 @@ a.remove_fields {
   }
 }
 
+.search-nav,
 .shortlist-nav,
-.search-nav {
+.wishlist-nav {
   font-size: 1em;
   font-weight: bold;
   text-align: center;
@@ -8994,14 +8998,15 @@ a.remove_fields {
   z-index: 100000;
 }
 
+.btn-search-nav,
 .btn-shortlist-nav,
-.btn-search-nav {
+.btn-wishlist-nav {
   color: white;
   padding-top: 0.7em;
   padding-bottom: 0.7em;
 }
 
-.btn-shortlist-nav {
+.btn-wishlist-nav {
   background-color: $green;
   &:hover,
   &:focus {
@@ -9015,15 +9020,24 @@ a.remove_fields {
   background-color: $green;
 }
 
-.btn-shortlist-nav-middle,
 .search-nav-map {
   border-left: 1px solid white;
   border-right: 1px solid white;
 }
 
+.shortlist-nav-map {
+  border-left: 1px solid white;
+}
+
+.btn-wishlist-nav-icon,
 .btn-shortlist-nav-icon,
 .btn-search-nav-icon {
   margin-right: 0.6em;
+}
+
+.btn-wishlist-nav-middle {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 }
 
 .club-profile-hero,
@@ -12449,6 +12463,11 @@ a.remove_fields {
   
   .vehicle-details-table-title {
     font-size: 0.95em;
+  }
+  
+  .search-map-container,
+  .shortlist-map-container {
+    width: 100%;
   }
 }
 

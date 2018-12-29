@@ -210,7 +210,7 @@ class UsersController < ApplicationController
         },
         properties: {
           "id":    vehicle.id,
-          "image": vehicle.photos[0].image.url(),
+          # "image": vehicle.photos[0].image.url(),
           "title": vehicle.listing_name
         }
       }

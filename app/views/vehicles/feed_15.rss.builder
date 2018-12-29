@@ -4,7 +4,7 @@ xml.listings do
   xml.link :rel => "self", :href => "https://www.motominion.com"
 
   Vehicle.
-    where(id: 1..999).
+    where(id: 15000..15999).
     where.not(dealership_id: nil).
     joins(:photos).
     group('vehicles.id').

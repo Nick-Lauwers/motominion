@@ -52,9 +52,10 @@ $(function() {
   
     // fixed map
       
-      var fixedShortlistMap = $('#shortlist-map');
-     
-      fixedShortlistMap.stick_in_parent();
+      if ( $(window).width() > 768 ) {
+        var fixedShortlistMap = $('.shortlist-map-container');
+        fixedShortlistMap.stick_in_parent();
+      }
       
     // mobile shortlist nav
       
@@ -65,6 +66,8 @@ $(function() {
       var shortlistResults           = $('.shortlist-results');
       var shortlistResultsBackground = $('.shortlist-results-background');
       var shortlistMap               = $('#shortlist-map');
+      var mapItem                    = $('.map-item');
+      var marker                     = $('.marker');
       
       shortlistNavGrid.click(function() {
         
@@ -85,10 +88,14 @@ $(function() {
         	shortlistNavMapIcon.
         	  removeClass('shortlist-nav-map-icon-active').
         	  addClass('shortlist-nav-map-icon-inactive');
+        	  
+        	mapItem.css("display", "none");
+        	marker.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
+
         	 
         	shortlistMap.css({"z-index": -1000});
         	shortlistResultsBackground.css({"display": "block"});
-        	shortlistResults.height(shortlistResultsBackground.outerHeight() + 50);
+        	shortlistResults.height(shortlistResultsBackground.outerHeight());
         }
       });
     
@@ -114,7 +121,7 @@ $(function() {
         	  
         	shortlistMap.css({"z-index": 1000});
         	shortlistResultsBackground.css({"display": "none"});
-        	shortlistResults.height(shortlistMap.outerHeight() + 50);
+        	shortlistResults.height(shortlistMap.outerHeight());
         }
           
         else {
@@ -135,9 +142,13 @@ $(function() {
         	  removeClass('shortlist-nav-grid-icon-inactive').
         	  addClass('shortlist-nav-grid-icon-active');
         	  
+        	mapItem.css("display", "none");
+        	marker.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
+
+        	  
           shortlistMap.css({"z-index": -1000});
         	shortlistResultsBackground.css({"display": "block"});
-        	shortlistResults.height(shortlistResultsBackground.outerHeight() + 50);
+        	shortlistResults.height(shortlistResultsBackground.outerHeight());
         }
       });
 });

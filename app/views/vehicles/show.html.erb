@@ -20,7 +20,6 @@
 <%= render 'modal_test_drive_mobile' %>
 
 <div class="modal" id="modal-dealer-select-mobile" role="dialog">
-  <%= render "modal_dealer_select_mobile" %>
 </div>
 
 <% if @vehicle.dealership.present? %>
@@ -2293,30 +2292,30 @@
   Get the Nitty Gritty!
 </div>
 
-<div class="shortlist-nav visible-xs">
+<div class="wishlist-nav visible-xs">
   <div class="row">
     
     <%= link_to favorite_vehicle_path(@vehicle, is_loved: true),
-                class: "col-xs-4 btn-shortlist-nav add-to-wish-list",
+                class: "col-xs-4 btn-wishlist-nav add-to-wish-list",
                 method: :put do %>
-      <i class="fa fa-heart-o btn-shortlist-nav-icon" aria-hidden="true"></i>
+      <i class="fa fa-heart-o btn-wishlist-nav-icon" aria-hidden="true"></i>
       Love It!
     <% end %>
 
     <%= link_to favorite_vehicle_path(@vehicle, is_liked: true),
                 class: "col-xs-4 
-                        btn-shortlist-nav 
-                        btn-shortlist-nav-middle
+                        btn-wishlist-nav 
+                        btn-wishlist-nav-middle
                         add-to-wish-list",
                 method: :put do %>
-      <i class="fa fa-check btn-shortlist-nav-icon" aria-hidden="true"></i>
+      <i class="fa fa-check btn-wishlist-nav-icon" aria-hidden="true"></i>
       Maybe
     <% end %>
     
     <%= link_to favorite_vehicle_path(@vehicle, is_disliked: true),
-                class: "col-xs-4 btn-shortlist-nav",
+                class: "col-xs-4 btn-wishlist-nav",
                 method: :put do %>
-      <i class="fa fa-trash-o btn-shortlist-nav-icon" aria-hidden="true"></i>
+      <i class="fa fa-trash-o btn-wishlist-nav-icon" aria-hidden="true"></i>
       Nope
     <% end %>
   </div>
@@ -2340,6 +2339,12 @@
   );
   
   $(document).ready(function() {
+    
+    // render dealer select modal if on mobile
+  
+      if ( $(window).width() < 768 ) {
+        $("#modal-dealer-select-mobile").html("<%= escape_javascript(render partial: 'modal_dealer_select_mobile') %>");
+      }
     
     // rating
     
