@@ -2321,8 +2321,14 @@
   </div>
 </div>
 
-<script type="text/javascript">
+<script>
+  if ( $(window).width() < 768 ) {
+    $("#modal-dealer-select-mobile").html("<%= escape_javascript render 'modal_dealer_select_mobile' %>");
+  }
+</script>
 
+<script type="text/javascript">
+  
   // Facebook tracking
   
   // var content_ids_array = [];
@@ -2342,9 +2348,9 @@
     
     // render dealer select modal if on mobile
   
-      if ( $(window).width() < 768 ) {
-        $("#modal-dealer-select-mobile").html("<%= escape_javascript(render partial: 'modal_dealer_select_mobile') %>");
-      }
+      // if ( $(window).width() < 768 ) {
+      //   $("#modal-dealer-select-mobile").html("<= escape_javascript render 'modal_dealer_select_mobile' %>");
+      // }
     
     // rating
     

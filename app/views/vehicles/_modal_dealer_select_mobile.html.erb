@@ -294,8 +294,7 @@
               </span>
               
               <ol class="modal-dealer-select-mobile-list">
-                  <%= render partial:    'modal_dealer_select_item',
-                            # partial:    'nitty_gritty_item_signed_out',
+                  <%= render partial:    'nitty_gritty_item_signed_out',
                              collection: User.where(
                                            dealership_id: @vehicle.dealership_id
                                          ),
