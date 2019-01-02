@@ -87,6 +87,23 @@ $(function() {
           }
         }
       });
+      
+    // message banner
+    
+      var messageBanner = $('.message-banner');
+    
+      $(window).scroll(function() {
+        
+        var scrolltop = $(this).scrollTop();
+        
+        if(scrolltop >= 300 && scrolltop <= 1200) {
+          messageBanner.fadeIn();
+        }
+        
+        else {
+          messageBanner.fadeOut();
+        }
+      });
 
     // expand description
     

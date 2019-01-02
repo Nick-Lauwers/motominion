@@ -1641,17 +1641,19 @@ footer {
 
 .modal-buy-online-mobile-info,
 .modal-dealer-select-mobile-info {
-  font-size: 1em;
+  font-size: 0.95em;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
   color: $gray-dark;
-  display: block;
   margin-bottom: 1em;
-  // margin-bottom: 3em;
+  display: block;
 }
 
 .modal-buy-online-mobile-list,
 .modal-dealer-select-mobile-list,
 .modal-test-drive-mobile-list {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
 }
 
@@ -5188,10 +5190,10 @@ ul.pagination {
   padding-left: 0;
 }
 
-.test-drive-sidenav-button {
+.test-drive-sidenav-button,
+.nitty-gritty-button {
   background-color: transparent;
   border: none;
-  width: 12em;
   padding: 0;
   outline: none;
   transition: 0.3s;
@@ -5201,6 +5203,18 @@ ul.pagination {
   &:focus {
     opacity: 0.4;
   }
+}
+
+.test-drive-sidenav-button {
+  width: 12em;
+}
+
+.nitty-gritty-button {
+  width: 100%;
+}
+
+.nitty-gritty-button-detail {
+  text-align: left;
 }
 
 .test-drive-sidenav-avatar {
@@ -8937,16 +8951,24 @@ a.remove_fields {
   margin: 0 -15px;
 }
 
-.single-action {
+.single-action,
+.message-button {
   background-color: $red;
   border-radius: 50%;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  height: 56px;
-  width: 56px;
+  height: 60px;
+  width: 60px;
+}
+
+.single-action {
   position: fixed;
   bottom: 15px;
   right: 15px;
   z-index: 20000;
+}
+
+.message-button {
+  position: relative;
 }
 
 .single-action-button {
@@ -8957,12 +8979,45 @@ a.remove_fields {
   width: 56px;
 }
 
-.single-action-icon {
+.single-action-icon,
+.message-button-icon {
   color: white;
   position: absolute;
-  top: 28px;
-  left: 28px;
+  top: 30px;
+  left: 30px;
   transform: translate(-50%, -50%);
+}
+
+.message-action {
+  position: fixed;
+  right: 5%;
+  bottom: 110px;
+  z-index: 30000;
+}
+
+.message-banner {
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: $red;
+  border-radius: 3px;
+  box-shadow: 0 3px 24px 0 $gray-dark;
+  padding: 0.7em 1.5em;
+  margin-right: 15px;
+  position: relative;
+  display: none;
+}
+
+.message-banner:after {
+  content: "";
+  border-top: 10px solid transparent;
+  border-right: none;
+  border-left: 10px solid $red;
+  border-bottom: 10px solid transparent;
+  position: absolute;
+  right: -10px;
+  top: 10px;
 }
 
 .request-details,
@@ -8986,9 +9041,85 @@ a.remove_fields {
   }
 }
 
+.wishlist-options-container {
+  text-align: center;
+  background-color: $gray-transparent;
+  width: 100%;
+  height: 90px;
+  position: fixed;
+  bottom: 0;
+  z-index: 20000;
+}
+
+.wishlist-options {
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.wishlist-options-content {
+  position: absolute;
+  top: -5px;
+}
+
+.btn-maybe,
+.btn-love-it,
+.btn-nope {
+  font-weight: bold;
+  box-shadow: 0 3px 24px 0 $gray-darker;
+  position: relative;
+  float: left;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: white;
+    background-color: $gray-light;
+  }
+}
+
+.btn-maybe,
+.btn-nope {
+  color: $tan;
+  background-color: $yellow-dark;
+  width: 30%;
+  height: 40px;
+}
+
+.btn-maybe {
+  border-radius: 2px 0 0 2px;
+}
+
+.btn-nope {
+  border-radius: 0 2px 2px 0;
+}
+
+.btn-love-it {
+  color: $tan;
+  background-color: $red;
+  border-radius: 2px;
+  width: 40%;
+  height: 50px;
+  z-index: 30000;
+}
+
+.something-text {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.wishlist-nav-text {
+  font-size: 0.85em;
+  font-weight: bold;
+  font-style: italic;
+  color: white;
+  padding: 0.5em 0;
+  display: block;
+}
+
 .search-nav,
-.shortlist-nav,
-.wishlist-nav {
+.shortlist-nav {
   font-size: 1em;
   font-weight: bold;
   text-align: center;
@@ -8999,21 +9130,10 @@ a.remove_fields {
 }
 
 .btn-search-nav,
-.btn-shortlist-nav,
-.btn-wishlist-nav {
+.btn-shortlist-nav {
   color: white;
   padding-top: 0.7em;
   padding-bottom: 0.7em;
-}
-
-.btn-wishlist-nav {
-  background-color: $green;
-  &:hover,
-  &:focus {
-    text-decoration: none;
-    color: white;
-    background-color: $gray-light;
-  }
 }
 
 .btn-filters-modal {

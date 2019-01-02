@@ -2288,36 +2288,64 @@
   <!--</div>-->
 <!--<(perc) end %>-->
 
-<div class="request-details btn-negotiate-dealer visible-xs">
-  Get the Nitty Gritty!
+<!--<div class="request-details btn-negotiate-dealer visible-xs">-->
+<!--  Get the Nitty Gritty!-->
+<!--</div>-->
+
+<div class="message-action visible-xs">
+  <div class="vertical-align">
+    
+    <div class="message-banner">
+      Get the Nitty Gritty!
+    </div>
+    
+    <div class="message-button btn-negotiate-dealer">
+      <i class='fa fa-lg fa-comments-o message-button-icon'></i>
+    </div>
+  </div>
 </div>
 
-<div class="wishlist-nav visible-xs">
-  <div class="row">
-    
-    <%= link_to favorite_vehicle_path(@vehicle, is_loved: true),
-                class: "col-xs-4 btn-wishlist-nav add-to-wish-list",
-                method: :put do %>
-      <i class="fa fa-heart-o btn-wishlist-nav-icon" aria-hidden="true"></i>
-      Love It!
-    <% end %>
+<div class="wishlist-options-container visible-xs">
+  <div class="wishlist-options">
+    <div class="wishlist-options-content">
 
-    <%= link_to favorite_vehicle_path(@vehicle, is_liked: true),
-                class: "col-xs-4 
-                        btn-wishlist-nav 
-                        btn-wishlist-nav-middle
-                        add-to-wish-list",
-                method: :put do %>
-      <i class="fa fa-check btn-wishlist-nav-icon" aria-hidden="true"></i>
-      Maybe
-    <% end %>
+      <div class="wishlist-options-buttons vertical-align">
+        
+        <%= link_to favorite_vehicle_path(@vehicle, is_liked: true),
+                    class: "btn-maybe btn-wishlist-nav add-to-wish-list",
+                    method: :put do %>
+          <div class="something-text">
+            <i class="fa fa-check btn-wishlist-nav-icon" aria-hidden="true"></i>
+            Maybe
+          </div>
+        <% end %>
     
-    <%= link_to favorite_vehicle_path(@vehicle, is_disliked: true),
-                class: "col-xs-4 btn-wishlist-nav",
-                method: :put do %>
-      <i class="fa fa-trash-o btn-wishlist-nav-icon" aria-hidden="true"></i>
-      Nope
-    <% end %>
+        <%= link_to favorite_vehicle_path(@vehicle, is_loved: true),
+                    class: "btn-love-it 
+                            btn-wishlist-nav 
+                            add-to-wish-list",
+                    method: :put do %>
+          <div class="something-text">
+            <i class="fa fa-heart btn-wishlist-nav-icon" aria-hidden="true"></i>
+            Love It!
+          </div>
+        <% end %>
+        
+        <%= link_to favorite_vehicle_path(@vehicle, is_disliked: true),
+                    class: "btn-nope btn-wishlist-nav",
+                    method: :put do %>
+          <div class="something-text">
+            <i class="fa fa-trash btn-wishlist-nav-icon" aria-hidden="true"></i>
+            Nope
+          </div>
+        <% end %>
+      </div>
+  
+      <span class="wishlist-nav-text">
+        Add motorcycles to your shortlist by tapping "Love It" or "Maybe" to 
+        compare later.  
+      </span>
+    </div>
   </div>
 </div>
 
