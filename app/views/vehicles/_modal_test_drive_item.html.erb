@@ -1,22 +1,19 @@
 <li class="modal-dealer-select-item">
+
+  <%= f.hidden_field  :recipient_id,        value: dealer.id %>
   
-  <%= f.hidden_field :recipient_id,        value: dealer.id %>
-                                 
-    <%= f.hidden_field :next_contributor_id, value: dealer.id %>
+  <%= f.hidden_field  :next_contributor_id, value: dealer.id %>
   
+  <%= ff.hidden_field :seller_id,           value: dealer.id %>
+
   <%= button_tag(class: "dealer-select-button") do %>
     <div class="row vertical-align">
       
       <div class="col-md-3 avatar-and-online">
-        
         <div class="dealer-select-avatar avatar-general",
              style="background-image: url(
                      '<%= dealer.avatar.url(:thumb) %>')">
         </div>
-        
-        <!--<(perc) if @vehicle.user.online? %>-->
-        <!--  <div class="online online-lg-primary hidden-xs"></div>-->
-        <!--<(perc) end %>-->
       </div>
       
       <div class="col-md-9 dealer-select-info">
@@ -27,9 +24,9 @@
                     
         <span class="average-rating"></span>
         
-        <span class="dealer-select-reviews">
-           · <%= pluralize(@vehicle.reviews.count, "review") %>
-        </span>
+        <!--<span class="test-drive-sidenav-reviews">-->
+        <!--   · <(perc)= pluralize(@vehicle.reviews.count, "review") %>-->
+        <!--</span>-->
       </div>
     </div>
   <% end %>

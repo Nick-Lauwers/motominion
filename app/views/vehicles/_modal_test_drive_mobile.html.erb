@@ -32,64 +32,70 @@
         </div>
       <% end %>
       
-      <% if @vehicle.dealership.present? %>
-        <%= form_for @conversation, 
-               url: conversations_path(@conversation), 
-               method: :post do |f| %>
-          
-          <%= f.fields_for :appointments, Appointment.new do |ff| %>
-          
-            <div class="form-element form-element-availability">
-                
-              <%= ff.text_field :date, 
-                                placeholder: "Test Drive", 
-                                id: "appointment-time-modal",
-                                class: "form-control form-control-secondary" %>
-                  
-              <i class="fa fa-calendar-o fa-lg form-icon" 
-                 aria-hidden="true"></i>
-                 
-              <i class="fa fa-caret-down fa-lg form-caret" 
-                 aria-hidden="true"></i>
-            </div>
-            
-            <%= ff.hidden_field :status,              value: "pending" %>
-            
-            <!--<(perc)= ff.hidden_field :seller_id,           value: @vehicle.user.id %>-->
-            
-            <%= ff.hidden_field :buyer_id, 
-                                value: current_user.id if current_user %>
-            
-            <%= ff.hidden_field :vehicle_id,          value: @vehicle.id %>
-          <% end %>
-          
-          <ol class="modal-test-drive-mobile-list">
-            <!--<(perc)= render partial:    'modal_test_drive_item',-->
-            <!--           collection: User.where(-->
-            <!--                         dealership_id: @vehicle.dealership_id-->
-            <!--                       ),-->
-            <!--           as:         :dealer %>-->
-          </ol>
-        <% end %>
+      <%= form_for @conversation do |f| %>
       
-      <% else %>
-        <%= form_for @conversation do |f| %>
-  
-          <%= f.hidden_field :sender_id,           value: current_user.id if
-                                                                  current_user%>
-
-          <%= f.hidden_field :recipient_id,        value: @vehicle.user.id %>
-          
-          <%= f.hidden_field :next_contributor_id, value: @vehicle.user.id %>
-          
-          <%= f.hidden_field :latest_message_read, value: false %>
-          
-          <%= f.hidden_field :sender_archived,     value: false %>
-          
-          <%= f.hidden_field :recipient_archived,  value: false %>
+        <% if @vehicle.user.present? %>
         
+          <%= f.hidden_field :sender_id,           
+                                  value: current_user.id if current_user %>
+            
+          <%= f.hidden_field :recipient_id, 
+                              value: @vehicle.user.id %>
+                             
+          <%= f.hidden_field :next_contributor_id, 
+                              value: @vehicle.user.id %>
+
+          <%= f.hidden_field :is_sender_anonymous, value: false %>
+        
+          <%= f.hidden_field :latest_message_read, value: false %>
+        
+          <%= f.hidden_field :sender_archived,     value: false %>
+        
+          <%= f.hidden_field :recipient_archived,  value: false %>
+      
           <%= f.fields_for :appointments, Appointment.new do |ff| %>
           
+            <div class="form-element form-element-availability">
+                    
+              <%= ff.text_field :date, 
+                                placeholder: "Test Drive", 
+                                id: "appointment-time-modal",
+                                class: "form-control form-control-secondary" %>
+                  
+              <i class="fa fa-calendar-o fa-lg form-icon" 
+                 aria-hidden="true"></i>
+                 
+              <i class="fa fa-caret-down fa-lg form-caret" 
+                 aria-hidden="true"></i>
+            </div>
+            
+            <%= ff.hidden_field :status, value: "pending" %>
+              
+            <%= ff.hidden_field :seller_id, value: @vehicle.user.id %>
+
+            <%= ff.hidden_field :buyer_id, 
+                                value: current_user.id if current_user %>
+          
+            <%= ff.hidden_field :vehicle_id, value: @vehicle.id %>
+          <% end %>
+        
+          <%= f.submit "Book!", class: "btn btn-tertiary btn-appointment" %>
+        
+        <% else %>
+          
+          <%= f.hidden_field :sender_id,           
+                             value: current_user.id if current_user %>
+
+          <%= f.hidden_field :is_sender_anonymous, value: false %>
+        
+          <%= f.hidden_field :latest_message_read, value: false %>
+        
+          <%= f.hidden_field :sender_archived,     value: false %>
+        
+          <%= f.hidden_field :recipient_archived,  value: false %>
+          
+          <%= f.fields_for :appointments, Appointment.new do |ff| %>
+
             <div class="form-element form-element-availability">
                 
               <%= ff.text_field :date, 
@@ -103,18 +109,30 @@
               <i class="fa fa-caret-down fa-lg form-caret" 
                  aria-hidden="true"></i>
             </div>
-            
-            <%= ff.hidden_field :status,              value: "pending" %>
-            
-            <%= ff.hidden_field :seller_id,           value: @vehicle.user.id %>
-            
+          
+            <%= ff.hidden_field :status, value: "pending" %>
+
             <%= ff.hidden_field :buyer_id, 
                                 value: current_user.id if current_user %>
-            
-            <%= ff.hidden_field :vehicle_id,          value: @vehicle.id %>
-          <% end %>
           
-          <%= f.submit "Book!", class: "btn btn-tertiary btn-appointment" %>
+            <%= ff.hidden_field :vehicle_id, value: @vehicle.id %>
+            
+            <div class="modal-test-drive-mobile-dealer">
+            
+              <span class="modal-test-drive-mobile-info">
+                Select the dealer you would like to work with.
+              </span>
+              
+              <ol class="modal-test-drive-mobile-list">
+                <%= render partial:    'modal_test_drive_item',
+                           collection: User.where(
+                                         dealership_id: @vehicle.dealership_id
+                                       ),
+                           as:         :dealer,
+                           locals:     { f: f, ff: ff } %>
+              </ol>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
     </div>

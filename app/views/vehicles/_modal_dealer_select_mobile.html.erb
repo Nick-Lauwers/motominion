@@ -120,7 +120,7 @@
           <% end %>
         <% end %>
 
-        <%= f.hidden_field :sender_id, value: current_user.id %>
+        <%= f.hidden_field :sender_id,           value: current_user.id %>
 
         <%= f.hidden_field :is_sender_anonymous, value: false %>
       
@@ -134,35 +134,24 @@
           
           <% if @vehicle.dealership.present? %>
 
-              <span class="modal-dealer-select-mobile-info">
-                Select the dealer you would like to work with.
-              </span>
-              
-              <div class="test-drive-sidenav-scroll-container">
-                <div class="test-drive-sidenav-scroll">
-      
-                  <i class="fa 
-                            fa-chevron-left 
-                            test-drive-sidenav-left"></i>
+            <span class="modal-dealer-select-mobile-info">
+              Select the dealer you would like to work with.
+            </span>
             
-                  <i class="fa 
-                            fa-chevron-right 
-                            test-drive-sidenav-right"></i>
-            
-                  <ol class="nitty-gritty-sidenav-list">
-                    <%= render partial:    'nitty_gritty_item_logged_in',
-                               collection: User.where(
-                                             dealership_id: @vehicle.dealership_id
-                                           ),
-                               as:         :dealer,
-                               locals:     { f: f } %>
-                  </ol>
-                </div>
-              </div>
+            <ol class="modal-dealer-select-mobile-list">
+                <%= render partial:    'nitty_gritty_item_logged_in',
+                           collection: User.where(
+                                         dealership_id: @vehicle.dealership_id
+                                       ),
+                           as:         :dealer,
+                           locals:     { f: f } %>
+            </ol>
 
           <% else %>
           
-            <%= f.hidden_field :recipient_id, value: @vehicle.user.id %>
+            <%= f.hidden_field :recipient_id,        value: @vehicle.user.id %>
+            
+            <%= f.hidden_field :next_contributor_id, value: @vehicle.user.id %>
             
             <%= button_tag class: "btn-inquiry" do %>
               
@@ -305,6 +294,9 @@
             <% else %>
             
               <%= ff.hidden_field :recipient_id, 
+                                  value: @vehicle.user.id %>
+                                  
+              <%= ff.hidden_field :next_contributor_id, 
                                   value: @vehicle.user.id %>
               
               <%= button_tag class: "btn-inquiry" do %>

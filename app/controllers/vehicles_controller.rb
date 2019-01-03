@@ -192,6 +192,7 @@ class VehiclesController < ApplicationController
                                    Time.now).present? if current_user
     
     @conversation     = Conversation.new
+    @appointment      = Appointment.new
     @vehicle_inquiry  = VehicleInquiry.new
     @user             = @vehicle.user                               
     @photos           = @vehicle.photos

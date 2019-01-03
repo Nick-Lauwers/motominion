@@ -1629,6 +1629,7 @@ footer {
 .modal-dealer-select-mobile-body,
 .modal-test-drive-mobile-body {
   padding: 1.1em 0;
+  height: 100%;
 }
 
 .modal-buy-online-mobile-subtitle,
@@ -1640,7 +1641,8 @@ footer {
 }
 
 .modal-buy-online-mobile-info,
-.modal-dealer-select-mobile-info {
+.modal-dealer-select-mobile-info,
+.modal-test-drive-mobile-info {
   font-size: 0.95em;
   font-weight: bold;
   font-style: italic;
@@ -1805,6 +1807,12 @@ footer {
 .modal-test-drive-mobile-list {
   list-style: none;
   padding-left: 0;
+}
+
+.modal-test-drive-mobile-dealer {
+  border-top: 1px solid $gray-border;
+  padding-top: 1em;
+  margin-top: 1em;
 }
 
 .modal-buy-online-item {
@@ -3518,7 +3526,7 @@ body {
   position: fixed;
   bottom: 60px;
   left: 15px;
-  right: 86px;
+  right: 15px;
   display: none;
   z-index: 20000;
 }
@@ -3539,7 +3547,7 @@ body {
 }
 
 .map-item-photo-content {
-  height: 85px;
+  height: 100px;
   background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
@@ -3864,6 +3872,7 @@ body {
   background-color: white;
   border: 1px solid $gray-border;
   padding: 1.7em;
+  display: none;
 }
 
 .advice-icon {
@@ -3949,16 +3958,11 @@ ul.pagination {
   cursor: pointer;
 }
 
+.search-nav-map-inactive,
+.shortlist-nav-map-inactive,
 .search-nav-grid-inactive,
 .shortlist-nav-grid-inactive {
-  // background-color: $red;
-  background-color: $green;
-  transition: 0.3s;
-}
-
-.search-nav-map-inactive,
-.shortlist-nav-map-inactive {
-  // background-color: $yellow-dark;
+  color: $tan;
   background-color: $green;
   transition: 0.3s;
 }
@@ -3967,8 +3971,8 @@ ul.pagination {
 .search-nav-map-active,
 .shortlist-nav-grid-active,
 .shortlist-nav-map-active {
-  // background-color: $tan;
-  background-color: $gray-light;
+  color: $green;
+  background-color: $tan;
   transition: 0.3s;
 }
 
@@ -4961,6 +4965,7 @@ ul.pagination {
 .negotiate {
   margin-top: 4em;
   display: block;
+  display: none !important;
   transition: 0.3s;
   &:hover {
     opacity: 0.4;
@@ -9072,8 +9077,6 @@ a.remove_fields {
   &:hover,
   &:focus {
     text-decoration: none;
-    color: white;
-    background-color: $gray-light;
   }
 }
 
@@ -9083,6 +9086,11 @@ a.remove_fields {
   background-color: $yellow-dark;
   width: 30%;
   height: 40px;
+  &:hover,
+  &:focus {
+    color: $yellow-dark;
+    background-color: $tan;
+  }
 }
 
 .btn-maybe {
@@ -9100,6 +9108,11 @@ a.remove_fields {
   width: 40%;
   height: 50px;
   z-index: 30000;
+  &:hover,
+  &:focus {
+    color: $red;
+    background-color: $tan;
+  }
 }
 
 .something-text {
@@ -9120,7 +9133,7 @@ a.remove_fields {
 
 .search-nav,
 .shortlist-nav {
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: bold;
   text-align: center;
   width: 100%;
@@ -9131,16 +9144,16 @@ a.remove_fields {
 
 .btn-search-nav,
 .btn-shortlist-nav {
-  color: white;
   padding-top: 0.7em;
   padding-bottom: 0.7em;
 }
 
 .btn-filters-modal {
+  color: $tan;
   background-color: $green;
 }
 
-.search-nav-map {
+.search-nav-grid {
   border-left: 1px solid white;
   border-right: 1px solid white;
 }

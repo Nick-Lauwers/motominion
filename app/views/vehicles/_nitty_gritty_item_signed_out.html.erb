@@ -1,6 +1,8 @@
 <li class="test-drive-sidenav-item">
 
-  <%= ff.hidden_field :recipient_id, value: dealer.id %>
+  <%= ff.hidden_field :recipient_id,        value: dealer.id %>
+  
+  <%= ff.hidden_field :next_contributor_id, value: dealer.id %>
   
   <%= button_tag(class: "nitty-gritty-button") do %>
     <div class="row vertical-align">
