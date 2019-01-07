@@ -12,7 +12,8 @@
       </div>
     <% end %>
     
-    <% if current_user.
+    <% if current_user &&
+          current_user.
             favorite_vehicles.
             where("vehicle_id = ? AND ( is_loved = ? OR is_liked = ? )", 
                   related_vehicle.id, true, true).

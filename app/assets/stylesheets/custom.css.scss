@@ -10316,11 +10316,17 @@ a.remove_fields {
     &:focus {
       box-shadow: 0 1px 8px 0 $gray-light;
       transform: scale(0.85);
+      .personalized-search-checkbox-icon {
+        opacity: 1;
+      }
     }
   }
   input:checked + label {
     box-shadow: 0 1px 8px 0 $gray-light;
     transform: scale(0.85);
+    .personalized-search-checkbox-icon {
+      opacity: 1;
+    }
   }
 }
 
@@ -10474,9 +10480,11 @@ a.remove_fields {
 }
 
 .personalized-search-checkbox-text {
+  max-width: 75%;
   position: absolute;
   top: 10px;
   left: 10px;
+  z-index: 1000;
 }
 
 .personalized-search-checkbox-title {
@@ -10485,7 +10493,6 @@ a.remove_fields {
   color: white;
   position: relative;
   display: block;
-  z-index: 1000;
 }
 
 .personalized-search-checkbox-subtitle {
@@ -10494,6 +10501,16 @@ a.remove_fields {
   font-style: italic;
   color: white;
   display: block;
+}
+
+.personalized-search-checkbox-icon {
+  color: white;
+  opacity: 0;
+  position: absolute;
+  top: 13px;
+  right: 10px;
+  z-index: 1000;
+  transition: 0.1s;
 }
 
 .match-item,
@@ -10599,7 +10616,7 @@ a.remove_fields {
   font-weight: bold;
   text-align: center;
   color: white;
-  background-color: $green;
+  background-color: #fcbb29;
   border-radius: 20px;
   box-shadow: 0 3px 24px 0 $gray-light;
   width: 50%;

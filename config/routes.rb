@@ -233,7 +233,7 @@ Rails.application.routes.draw do
     
     collection do
       get 'start'
-      get 'experiment'
+      get 'survey'
     end
     
     member do
@@ -244,12 +244,7 @@ Rails.application.routes.draw do
       get 'manufacturer'
       get 'price'
       get 'mileage'
-      get 'year'
-      get 'installed_options'
       get 'location'
-      get 'experience'
-      get 'seats'
-      get 'stats'
     end
   end
   

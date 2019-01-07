@@ -3,7 +3,7 @@ class PersonalizedSearchesController < ApplicationController
   before_action :logged_in_user
   before_action :private_buyer
   before_action :get_personalized_search, except: [:new, :create, :incomplete,
-                                                   :start, :experiment]
+                                                   :start, :survey]
   
   def new
     @personalized_search = PersonalizedSearch.new
@@ -61,13 +61,7 @@ class PersonalizedSearchesController < ApplicationController
   def mileage
   end
   
-  def year
-  end
-  
-  def installed_options
-  end
-  
-  def experiment
+  def survey
     @personalized_search = PersonalizedSearch.new
   end
   
