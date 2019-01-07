@@ -259,7 +259,8 @@ class VehiclesController < ApplicationController
         :with_saddlebags,
         :with_trunk,
         :with_tow_hitch,
-        :with_cycle_cover
+        :with_cycle_cover,
+        :with_manufacturer
       ],
     ) or return
     

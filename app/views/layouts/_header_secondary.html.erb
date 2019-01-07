@@ -70,7 +70,11 @@
           </li>
           
           <li class="hidden-xs">
-            <%= link_to "Matches", personalized_search_path(current_user) %>
+            <% if current_user.personalized_search.present? %>
+              <%= link_to "Matches", current_user.personalized_search %>
+            <% else %>
+              <%= link_to "Matches", start_personalized_searches_path %>
+            <% end %>
           </li>
         <% end %>
         

@@ -28,7 +28,19 @@
       <%= link_to '#', 
                   class: "search-parameter-link search-parameter-link-end" do %>
 
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/location.png" %>
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/manufacturer.png" %>
+        
+        <div class="search-parameter-icon-filter"></div>
+        
+        <span class="search-parameter-link-text-inactive">Manufacturer</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-incomplete">
+      <%= link_to '#',
+                  class: "search-parameter-link search-parameter-link-end" do %>
+      
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/location.png" %>  
         
         <div class="search-parameter-icon-filter"></div>
         
@@ -40,23 +52,11 @@
       <%= link_to '#',
                   class: "search-parameter-link search-parameter-link-end" do %>
       
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/experience.png" %>  
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/cash.png" %>  
         
         <div class="search-parameter-icon-filter"></div>
         
-        <span class="search-parameter-link-text-inactive">Experience</span>
-      <% end %>
-    </div>
-    
-    <div class="search-parameter-incomplete">
-      <%= link_to '#',
-                  class: "search-parameter-link search-parameter-link-end" do %>
-      
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %>  
-        
-        <div class="search-parameter-icon-filter"></div>
-        
-        <span class="search-parameter-link-text-inactive">Stats</span>
+        <span class="search-parameter-link-text-inactive">Price</span>
       <% end %>
     </div>
     
@@ -76,29 +76,42 @@
       <%= link_to '#',
                   class: "search-parameter-link search-parameter-link-end" do %>
         
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png" %>
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %>
         
         <div class="search-parameter-icon-filter"></div>
         
-        <span class="search-parameter-link-text-inactive">Features</span>
+        <span class="search-parameter-link-text-inactive">Mileage</span>
       <% end %>
     </div>
   </div>
     
-  <h1 class="search-parameter-title">What styles do you prefer?</h1>
+  <h1 class="search-parameter-title-desktop hidden-xs">
+    What styles interest you most?
+  </h1>
+  
+  <div class="search-parameter-title-mobile visible-xs">
+    <span class="search-parameter-title-content-mobile">
+      Start Your Motorcycle Search
+    </span>
+  </div>
 
   <div class="search-parameter-form-large">
+    
+    <span class="search-parameter-form-info visible-xs">
+      What styles interest you most?
+    </span>
     
     <%= form_for @personalized_search do |f| %>
                  <!--url: user_personalized_search_path(current_user) do |f| %>-->
       
-      <div class="row">
+      <div class="personalized-search-block">
                 
         <div class="col-md-4 
+                    col-xs-6
                     personalized-search-checkbox
                     personalized-search-checkbox-a">
           
-          <%= f.check_box :is_cafe_racer %>
+          <%= f.check_box :is_cafe_racer, class: "style-checkbox" %>
           
           <%= f.label :is_cafe_racer do %>   
           
@@ -108,7 +121,7 @@
                 Cafe Racer
               </span>
               
-              <span class="personalized-search-checkbox-subtitle">
+              <span class="personalized-search-checkbox-subtitle hidden-xs">
                 Click to Select
               </span>
             </div> 
@@ -118,11 +131,12 @@
           <% end %>
         </div>
         
-        <div class="col-md-4 
+        <div class="col-md-4
+                    col-xs-6
                     personalized-search-checkbox
                     personalized-search-checkbox-b">
           
-          <%= f.check_box :is_cruiser %>
+          <%= f.check_box :is_cruiser, class: "style-checkbox" %>
           
           <%= f.label :is_cruiser do %>   
           
@@ -132,7 +146,7 @@
                 Cruiser
               </span>
               
-              <span class="personalized-search-checkbox-subtitle">
+              <span class="personalized-search-checkbox-subtitle hidden-xs">
                 Click to Select
               </span>
             </div> 
@@ -142,11 +156,12 @@
           <% end %>
         </div>
         
-        <div class="col-md-4 
+        <div class="col-md-4
+                    col-xs-6
                     personalized-search-checkbox
                     personalized-search-checkbox-c">
           
-          <%= f.check_box :is_dual_sport %>
+          <%= f.check_box :is_dual_sport, class: "style-checkbox" %>
           
           <%= f.label :is_dual_sport do %>   
           
@@ -156,7 +171,7 @@
                 Dirt Bike / Dual-Sport
               </span>
               
-              <span class="personalized-search-checkbox-subtitle">
+              <span class="personalized-search-checkbox-subtitle hidden-xs">
                 Click to Select
               </span>
             </div> 
@@ -165,15 +180,13 @@
                           class: "personalized-search-button-icon") %>
           <% end %>
         </div>
-      </div>
-      
-      <div class="row">
-        
+
         <div class="col-md-4
+                    col-xs-6
                     personalized-search-checkbox
                     personalized-search-checkbox-d">
           
-          <%= f.check_box :is_mini_pocket %>
+          <%= f.check_box :is_mini_pocket, class: "style-checkbox" %>
           
           <%= f.label :is_mini_pocket do %>   
           
@@ -182,7 +195,7 @@
                 Mini / Pocket
               </span>
               
-              <span class="personalized-search-checkbox-subtitle">
+              <span class="personalized-search-checkbox-subtitle hidden-xs">
                 Click to Select
               </span>
             </div> 
@@ -192,11 +205,12 @@
           <% end %>
         </div>
         
-        <div class="col-md-4 
+        <div class="col-md-4
+                    col-xs-6
                     personalized-search-checkbox
                     personalized-search-checkbox-e">
           
-          <%= f.check_box :is_moped %>
+          <%= f.check_box :is_moped, class: "style-checkbox" %>
           
           <%= f.label :is_moped do %>   
           
@@ -206,7 +220,7 @@
                 Moped
               </span>
               
-              <span class="personalized-search-checkbox-subtitle">
+              <span class="personalized-search-checkbox-subtitle hidden-xs">
                 Click to Select
               </span>
             </div> 
@@ -217,10 +231,11 @@
         </div>
         
         <div class="col-md-4 
+                    col-xs-6
                     personalized-search-checkbox
                     personalized-search-checkbox-f">
           
-          <%= f.check_box :is_sportbike %>
+          <%= f.check_box :is_sportbike, class: "style-checkbox" %>
           
           <%= f.label :is_sportbike do %>   
           
@@ -230,7 +245,7 @@
                 Sportbike
               </span>
               
-              <span class="personalized-search-checkbox-subtitle">
+              <span class="personalized-search-checkbox-subtitle hidden-xs">
                 Click to Select
               </span>
             </div> 
@@ -239,15 +254,13 @@
                           class: "personalized-search-button-icon") %>
           <% end %>
         </div>
-      </div>
-      
-      <div class="row">
-        
-        <div class="col-md-4 
+
+        <div class="col-md-4
+                    col-xs-6
                     personalized-search-checkbox
                     personalized-search-checkbox-g">
           
-          <%= f.check_box :is_standard %>
+          <%= f.check_box :is_standard, class: "style-checkbox" %>
           
           <%= f.label :is_standard do %>   
           
@@ -257,7 +270,7 @@
                 Standard
               </span>
               
-              <span class="personalized-search-checkbox-subtitle">
+              <span class="personalized-search-checkbox-subtitle hidden-xs">
                 Click to Select
               </span>
             </div> 
@@ -268,10 +281,11 @@
         </div>
         
         <div class="col-md-4
+                    col-xs-6
                     personalized-search-checkbox
                     personalized-search-checkbox-h">
           
-          <%= f.check_box :is_touring %>
+          <%= f.check_box :is_touring, class: "style-checkbox" %>
           
           <%= f.label :is_touring do %>   
           
@@ -281,7 +295,7 @@
                 Touring
               </span>
               
-              <span class="personalized-search-checkbox-subtitle">
+              <span class="personalized-search-checkbox-subtitle hidden-xs">
                 Click to Select
               </span>
             </div> 
@@ -291,11 +305,12 @@
           <% end %>
         </div>
         
-        <div class="col-md-4 
+        <div class="col-md-4
+                    col-xs-6
                     personalized-search-checkbox
                     personalized-search-checkbox-i">
           
-          <%= f.check_box :is_trike %>
+          <%= f.check_box :is_trike, class: "style-checkbox" %>
           
           <%= f.label :is_trike do %>   
           
@@ -305,7 +320,7 @@
                 Trike
               </span>
               
-              <span class="personalized-search-checkbox-subtitle">
+              <span class="personalized-search-checkbox-subtitle hidden-xs">
                 Click to Select
               </span>
             </div> 
@@ -316,13 +331,13 @@
         </div>
         
         <%= hidden_field_tag :redirect_location, 
-            location_personalized_search_path(@personalized_search) %>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-12">
-          <%= button_tag(type: "submit",
-                     class: "next-button") do %>
+                             manufacturer_personalized_search_path(
+                               @personalized_search
+                             ) %>
+
+        <div class="col-md-12 col-xs-12">
+          <%= button_tag(type:  "submit",
+                         class: "next-button style-button") do %>
         
             <div class="personalized-search-button-text">
               
@@ -331,7 +346,7 @@
               </span>
               
               <span class="personalized-search-button-subtitle">
-                Continue to Location
+                Continue to Manufacturer
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </span>
             </div>

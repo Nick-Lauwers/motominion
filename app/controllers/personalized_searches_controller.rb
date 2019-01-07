@@ -17,7 +17,8 @@ class PersonalizedSearchesController < ApplicationController
       if params[:redirect_to_show].present?
         redirect_to @personalized_search
       else
-        redirect_to location_personalized_search_path(@personalized_search)
+        # redirect_to location_personalized_search_path(@personalized_search)
+        redirect_to manufacturer_personalized_search_path(@personalized_search)
       end
     else
       # render 'new'
@@ -70,6 +71,22 @@ class PersonalizedSearchesController < ApplicationController
     @personalized_search = PersonalizedSearch.new
   end
   
+  def manufacturer
+  end
+  
+  def all_manufacturers
+    
+    @personalized_search.
+      update_attributes(is_aprilia: true, is_bmw: true, is_can_am: true, 
+                        is_ducati: true, is_harley_davidson: true, 
+                        is_honda: true, is_indian: true, is_ktm: true, 
+                        is_kawasaki: true, is_kymco: true, is_suzuki: true, 
+                        is_triumph: true, is_vespa: true, is_victory: true, 
+                        is_yamaha: true)
+      
+    redirect_to location_personalized_search_path(@personalized_search)
+  end
+  
   private
     
     def personalized_search_params
@@ -79,7 +96,10 @@ class PersonalizedSearchesController < ApplicationController
         :am_fm, :cb_radio, :navigation_system, :heated_seats, :alarm_system,
         :saddlebags, :trunk, :tow_hitch, :cycle_cover, :price, :mileage, :year,
         :is_one_seat, :is_two_seats, :is_beginner, :is_intermediate, 
-        :is_advanced, :zip_code, :max_distance)
+        :is_advanced, :zip_code, :max_distance, :is_aprilia, :is_bmw,
+        :is_can_am, :is_ducati, :is_harley_davidson, :is_honda, :is_indian,
+        :is_ktm, :is_kawasaki, :is_kymco, :is_suzuki, :is_triumph, :is_vespa,
+        :is_victory, :is_yamaha)
     end
     
     # Before filters

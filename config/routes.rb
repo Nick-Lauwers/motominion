@@ -237,7 +237,11 @@ Rails.application.routes.draw do
     end
     
     member do
+      
+      put :all_manufacturers
+      
       get 'style'
+      get 'manufacturer'
       get 'price'
       get 'mileage'
       get 'year'

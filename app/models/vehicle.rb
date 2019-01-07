@@ -106,7 +106,8 @@ class Vehicle < ActiveRecord::Base
       :with_saddlebags,
       :with_trunk,
       :with_tow_hitch,
-      :with_cycle_cover
+      :with_cycle_cover,
+      :with_manufacturer
     ]
   )
   
@@ -142,6 +143,116 @@ class Vehicle < ActiveRecord::Base
     elsif distance_attrs.zip_code.present?
       Vehicle.all
     end
+  }
+  
+  scope :with_style, lambda { |style_attrs|
+    
+    h = []
+    
+    if style_attrs.is_cafe_racer == "true"
+      h << "Cafe Racer"
+    end
+    
+    if style_attrs.is_cruiser == "true"
+      h << "Cruiser"
+    end
+    
+    if style_attrs.is_dual_sport == "true"
+      h << "Dirt Bike / Dual-Sport"
+    end
+    
+    if style_attrs.is_mini_pocket == "true"
+      h << "Mini / Pocket"
+    end
+    
+    if style_attrs.is_moped == "true"
+      h << "Moped"
+    end
+    
+    if style_attrs.is_sportbike == "true"
+      h << "Sportbike"
+    end
+    
+    if style_attrs.is_standard == "true"
+      h << "Standard"
+    end
+    
+    if style_attrs.is_touring == "true"
+      h << "Touring"
+    end
+    
+    if style_attrs.is_trike == "true"
+      h << "Trike"
+    end
+    
+    Vehicle.joins(:vehicle_model).where('vehicle_models.vehicle_type = ?', h)
+  }
+  
+  scope :with_manufacturer, lambda { |manufacturer_attrs|
+    
+    i = []
+    
+    if manufacturer_attrs.is_aprilia == "true"
+      i << 1
+    end
+    
+    if manufacturer_attrs.is_bmw == "true"
+      i << 2
+    end
+    
+    if manufacturer_attrs.is_can_am == "true"
+      i << 3
+    end
+    
+    if manufacturer_attrs.is_ducati == "true"
+      i << 4
+    end
+    
+    if manufacturer_attrs.is_harley_davidson == "true"
+      i << 5
+    end
+    
+    if manufacturer_attrs.is_honda == "true"
+      i << 6
+    end
+    
+    if manufacturer_attrs.is_indian == "true"
+      i << 7
+    end
+    
+    if manufacturer_attrs.is_kawasaki == "true"
+      i << 8
+    end
+    
+    if manufacturer_attrs.is_ktm == "true"
+      i << 9
+    end
+
+    if manufacturer_attrs.is_kymco == "true"
+     i << 10
+    end
+    
+    if manufacturer_attrs.is_suzuki == "true"
+      i << 11
+    end
+    
+    if manufacturer_attrs.is_triumph == "true"
+      i << 12
+    end
+    
+    if manufacturer_attrs.is_vespa == "true"
+      i << 13
+    end
+    
+    if manufacturer_attrs.is_victory == "true"
+      i << 14
+    end
+    
+    if manufacturer_attrs.is_yamaha == "true"
+      i << 15
+    end
+    
+    Vehicle.where(vehicle_make_id: i)
   }
   
   scope :near_city, lambda { |city|

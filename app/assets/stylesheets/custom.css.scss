@@ -10250,6 +10250,51 @@ a.remove_fields {
   display: block;
 }
 
+.personalized-search-block {
+  margin: 0 -15px 0 -15px;
+  overflow: auto;
+}
+
+// .personalized-search-manufacturer {
+//   height: 19em;
+// }
+
+.personalized-search-expand {
+  width: 100%;
+}
+
+.personalized-search-expand-content {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  color: $green;
+  cursor: pointer;
+  display: block;
+  transition: 0.3s;
+  &:hover {
+    opacity: 0.4;
+  }
+}
+
+.skip-this-step {
+  width: 100%;
+  margin-top: 0.7em;
+}
+
+.skip-this-step-content {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  color: $green;
+  display: block;
+  transition: 0.3s;
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    opacity: 0.4;
+  }
+}
+
 .personalized-search-checkbox {
   input {
     display: none;
@@ -10260,9 +10305,10 @@ a.remove_fields {
     width: 100%;
     height: 75px;
     position: relative;
-    cursor:pointer;
+    cursor: pointer;
     overflow: hidden;
     transition: box-shadow 0.3s, transform 0.3s;
+    overflow: hidden;
     &:hover {
       box-shadow: 0 3px 24px 0 $gray-light;
       transform: scale(1.1);
@@ -10276,6 +10322,14 @@ a.remove_fields {
     box-shadow: 0 1px 8px 0 $gray-light;
     transform: scale(0.85);
   }
+}
+
+.personalized-search-checkbox-background {
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
 }
 
 .personalized-search-button {
@@ -10429,7 +10483,9 @@ a.remove_fields {
   font-size: 1.1em;
   font-weight: bold;
   color: white;
+  position: relative;
   display: block;
+  z-index: 1000;
 }
 
 .personalized-search-checkbox-subtitle {
@@ -10535,6 +10591,26 @@ a.remove_fields {
   position: absolute;
   bottom: -20px;
   right: -20px;
+}
+
+.max-price,
+.max-mileage {
+  font-size: 1.05em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: $green;
+  border-radius: 20px;
+  box-shadow: 0 3px 24px 0 $gray-light;
+  width: 50%;
+  padding: 0.3em 0;
+  margin: 0 auto 1em;
+  display: block;
+}
+
+#max_price_value,
+#max_mileage_value {
+  color: white;
 }
 
 // .match-item-photo {
@@ -11203,6 +11279,11 @@ a.remove_fields {
     width: 22em;
   }
   
+  .search-parameter {
+    background-color: $gray-lightest;
+    padding: 4em 0;
+  }
+  
   // .clubs-overview-cover-photo,
   // .clubs-search-cover-photo {
   //   max-width: 1008px;
@@ -11307,11 +11388,6 @@ a.remove_fields {
 
 /* personalized searches */
 
-.search-parameter {
-  background-color: $gray-lightest;
-  padding: 4em 0;
-}
-
 .search-parameter-progress-bar {
   width: 668px;
   margin: 1em auto 9em;
@@ -11379,7 +11455,7 @@ a.remove_fields {
   z-index: 200;
 }
 
-.search-parameter-title {
+.search-parameter-title-desktop {
   font-size: 2.1em;
   font-weight: bold;
   line-height: 1.5;
@@ -11389,6 +11465,30 @@ a.remove_fields {
   margin: 0 0 1.5em;
 }
 
+.search-parameter-title-mobile {
+  background-color: $green;
+  height: 50px;
+  padding: 0 5%;
+  position: relative;
+}
+
+.search-parameter-title-content-mobile {
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.search-parameter-form-info {
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+  color: $gray-dark;
+  margin: 0 0 1em;
+  display: block;
+}
+
 .search-parameter-form-large,
 .search-parameter-form-small {
   background-color: white;
@@ -11396,6 +11496,7 @@ a.remove_fields {
   padding: 4em;
   margin: 0 auto;
   position: relative;
+  overflow: auto;
 }
 
 .search-parameter-form-large {
@@ -11533,9 +11634,7 @@ a.remove_fields {
   .contact,
   .vehicle-makes,
   .blog-header-content,
-  .blog-body-content,
-  .search-parameter-form-small,
-  .search-parameter-form-large {
+  .blog-body-content {
     margin: 0 5%;
     overflow: hidden;
   }
@@ -11544,6 +11643,11 @@ a.remove_fields {
   .profile-pic-button {
     margin-left: 5%;
     margin-right: 5%;
+  }
+  
+  .search-parameter-form-large,
+  .search-parameter-form-small {
+    padding: 2.3em 5%;
   }
   
   .user-summary-content {
@@ -12322,7 +12426,7 @@ a.remove_fields {
   
 .begin-here {
   
-}  
+}                  
 
   .feed-vehicle-make-title {
     font-size: 1em;
@@ -12601,6 +12705,11 @@ a.remove_fields {
   .search-map-container,
   .shortlist-map-container {
     width: 100%;
+  }
+  
+  .max-price,
+  .max-mileage {
+    margin-top: 3em;
   }
 }
 

@@ -20,72 +20,77 @@
                   class: "search-parameter-link
                           search-parameter-link-start" do %>
                           
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/style.png" %>
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/style.png" %>
         
         <span class="search-parameter-link-text-active">Style</span>
       <% end %>   
       
-      <%= link_to price_personalized_search_path,
+      <%= link_to manufacturer_personalized_search_path,
                   class: "search-parameter-link 
                           search-parameter-link-end" do %>
                           
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/price.png" %>
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/manufacturer.png" %>
       
+        <span class="search-parameter-link-text-active">Manufacturer</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-complete">
+      <%= link_to location_personalized_search_path,
+                  class: "search-parameter-link search-parameter-link-end" do %>      
+      
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/location.png" %>  
+        
+        <span class="search-parameter-link-text-active">Location</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-complete">
+      <%= link_to price_personalized_search_path,
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/cash.png" %>  
+
         <span class="search-parameter-link-text-active">Price</span>
       <% end %>
     </div>
     
     <div class="search-parameter-incomplete">
       <%= link_to '#',
-                  class: "search-parameter-link search-parameter-link-end" do %>      
-      
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %>  
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %>
         
         <div class="search-parameter-icon-filter"></div>
         
         <span class="search-parameter-link-text-inactive">Mileage</span>
       <% end %>
     </div>
-    
-    <div class="search-parameter-incomplete">
-      <%= link_to '#',
-                  class: "search-parameter-link search-parameter-link-end" do %>
-        
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/year.png" %>  
-        
-        <div class="search-parameter-icon-filter"></div>
-        
-        <span class="search-parameter-link-text-inactive">Year</span>
-      <% end %>
-    </div>
-    
-    <div class="search-parameter-incomplete">
-      <%= link_to '#',
-                  class: "search-parameter-link search-parameter-link-end" do %>
-        
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png" %>
-        
-        <div class="search-parameter-icon-filter"></div>
-        
-        <span class="search-parameter-link-text-inactive">Features</span>
-      <% end %>
-    </div>
   </div>
   
-  <h1 class="search-parameter-title">What are you looking to pay?</h1>
+  <h1 class="search-parameter-title-desktop hidden-xs">
+    What are you looking to pay?
+  </h1>
+  
+  <div class="search-parameter-title-mobile visible-xs">
+    <span class="search-parameter-title-content-mobile">
+      Start Your Motorcycle Search
+    </span>
+  </div>
   
   <div class="search-parameter-form-small">
     
+    <span class="search-parameter-form-info visible-xs">
+      What are you looking to pay?
+    </span>
+    
+    <span class="max-price">
+      Up to $ <span id="max_price_value">50000</span>
+    </span>
+    
     <%= form_for @personalized_search do |f| %>
-                 <!--url: user_personalized_search_path(current_user) do |f| %>-->
 
-      <div class="form-group form-group-search-parameter">
-        
-        <!--<(perc)= label_tag :price, "Max Price" %>-->
-        
-        <!--<(perc)= f.text_field :price, -->
-        <!--                   placeholder: "Email address", -->
-        <!--                   class: 'form-control form-control-primary' %>-->
+      <div class="form-group">
         
         <%= f.label :price, "Max Price" %>
         
@@ -93,7 +98,7 @@
           <% if @personalized_search.price.present? %>
             $<%= @personalized_search.price %>
           <% else %>
-            $200000
+            $50000
           <% end %>
         </span>
         
@@ -102,7 +107,7 @@
                            id: 'personalized_price_slider', 
                            type: 'text',
                            data: { 'slider-min'   => '0',
-                                   'slider-max'   => '200000',
+                                   'slider-max'   => '50000',
                                    'slider-step'  => '1',
                                    'slider-value' => 
                                      @personalized_search.price } %>
@@ -112,18 +117,16 @@
                            id: 'personalized_price_slider', 
                            type: 'text',
                            data: { 'slider-min'   => '0',
-                                   'slider-max'   => '200000',
+                                   'slider-max'   => '50000',
                                    'slider-step'  => '1',
-                                   'slider-value' => '200000' } %>
+                                   'slider-value' => '50000' } %>
         <% end %>
       </div>
       
       <%= hidden_field_tag :redirect_location, 
             mileage_personalized_search_path(@personalized_search) %>
     
-      <%= button_tag(type: "submit",
-                     class: "next-button
-                             personalized-search-button-a") do %>
+      <%= button_tag(type: "submit", class: "next-button") do %>
                              
         <div class="personalized-search-button-text">
           
@@ -150,18 +153,17 @@
     
     var priceSlider         = $('#personalized_price_slider');
     var priceSliderValue    = $('#personalized_price_slider_val');
+    var maxPriceValue       = $('#max_price_value');
     
     priceSlider.slider();
     
     priceSlider.on('slide', function(slideEvt) {
     	priceSliderValue.text('$' + slideEvt.value);
+    	maxPriceValue.text(slideEvt.value);
     });
     
     priceSlider.on('slideStop', function(slideEvt) {
     	priceSliderValue.text('$' + slideEvt.value);
+    	maxPriceValue.text(slideEvt.value);
     });
-    
-  // Facebook  
-  
-    fbq('track', 'ViewContent');
 </script>

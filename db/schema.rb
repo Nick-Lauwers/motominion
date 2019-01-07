@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181213040533) do
+ActiveRecord::Schema.define(version: 20190103235447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -459,6 +459,21 @@ ActiveRecord::Schema.define(version: 20181213040533) do
     t.string   "zip_code"
     t.integer  "max_distance"
     t.boolean  "is_cafe_racer"
+    t.boolean  "is_aprilia"
+    t.boolean  "is_bmw"
+    t.boolean  "is_can_am"
+    t.boolean  "is_ducati"
+    t.boolean  "is_harley_davidson"
+    t.boolean  "is_honda"
+    t.boolean  "is_indian"
+    t.boolean  "is_ktm"
+    t.boolean  "is_kawasaki"
+    t.boolean  "is_kymco"
+    t.boolean  "is_suzuki"
+    t.boolean  "is_triumph"
+    t.boolean  "is_vespa"
+    t.boolean  "is_victory"
+    t.boolean  "is_yamaha"
   end
 
   add_index "personalized_searches", ["user_id"], name: "index_personalized_searches_on_user_id", using: :btree

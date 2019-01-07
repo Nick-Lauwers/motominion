@@ -13,14 +13,24 @@
 
     <div class="test-drive-item-content">
       
-      <div class="test-drive-item-image", 
-           style="background-image: url(
-                   '<%= test_drive.vehicle.photos[0].image.url() if 
-                        test_drive.vehicle.photos.length > 0 %>'">
-        <div class="test-drive-item-message">
-          <i class="fa fa-lg fa-envelope-o" aria-hidden="true"></i>
+      <% if test_drive.vehicle.photos.length > 0 %>
+        <div class="test-drive-item-image", 
+             style="background-image: url(
+                     '<%= test_drive.vehicle.photos[0].image.url() %>'">
+          <div class="test-drive-item-message">
+            <i class="fa fa-lg fa-envelope-o" aria-hidden="true"></i>
+          </div>
         </div>
-      </div>
+        
+      <% else %>
+        <div class="test-drive-item-image", 
+             style="background-image: url(
+                     'https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/no-image-available.jpg'">
+          <div class="test-drive-item-message">
+            <i class="fa fa-lg fa-envelope-o" aria-hidden="true"></i>
+          </div>
+        </div>
+      <% end %>
       
       <div class="test-drive-item-detail">
         
@@ -33,10 +43,8 @@
         </span>
         
         <span class="test-drive-item-info">
-          <%= test_drive.vehicle.year %>
-          <%= test_drive.vehicle.vehicle_make.name %>
-          <%= test_drive.vehicle.vehicle_model.name %> · 
-          <%= test_drive.vehicle.user.full_name %>
+          <%= test_drive.vehicle.listing_name %> · 
+          <%= test_drive.seller.full_name %>
         </span>
         
         <span class="test-drive-item-info">

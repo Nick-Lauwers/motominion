@@ -20,17 +20,38 @@
                   class: "search-parameter-link
                           search-parameter-link-start" do %>
                           
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/style.png" %>
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/style.png" %>
         
         <span class="search-parameter-link-text-active">Style</span>
       <% end %>   
       
-      <%= link_to price_personalized_search_path,
+      <%= link_to manufacturer_personalized_search_path,
                   class: "search-parameter-link 
                           search-parameter-link-end" do %>
                           
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/price.png" %>
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/manufacturer.png" %>
       
+        <span class="search-parameter-link-text-active">Manufacturer</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-complete">
+      <%= link_to location_personalized_search_path,
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/location.png" %> 
+      
+        <span class="search-parameter-link-text-active">Location</span>
+      <% end %>
+    </div>
+    
+    <div class="search-parameter-complete">
+      
+      <%= link_to price_personalized_search_path,
+                  class: "search-parameter-link search-parameter-link-end" do %>
+        
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/cash.png" %>  
+        
         <span class="search-parameter-link-text-active">Price</span>
       <% end %>
     </div>
@@ -39,47 +60,36 @@
       <%= link_to mileage_personalized_search_path,
                   class: "search-parameter-link search-parameter-link-end" do %>
         
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %> 
-      
+        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/mileage.png" %>
+        
         <span class="search-parameter-link-text-active">Mileage</span>
-      <% end %>
-    </div>
-    
-    <div class="search-parameter-incomplete">
-      
-      <%= link_to '#',
-                  class: "search-parameter-link search-parameter-link-end" do %>
-        
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/year.png" %>  
-        
-        <div class="search-parameter-icon-filter"></div>
-        
-        <span class="search-parameter-link-text-inactive">Year</span>
-      <% end %>
-    </div>
-    
-    <div class="search-parameter-incomplete">
-      
-      <%= link_to '#',
-                  class: "search-parameter-link search-parameter-link-end" do %>
-        
-        <%= image_tag "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/features.png" %>
-        
-        <div class="search-parameter-icon-filter"></div>
-        
-        <span class="search-parameter-link-text-inactive">Features</span>
       <% end %>
     </div>
   </div>
   
-  <h1 class="search-parameter-title">
+  <h1 class="search-parameter-title-desktop hidden-xs">
     How many miles are you willing to accept?
   </h1>
   
+  <div class="search-parameter-title-mobile visible-xs">
+    <span class="search-parameter-title-content-mobile">
+      Start Your Motorcycle Search
+    </span>
+  </div>
+  
   <div class="search-parameter-form-small">
+    
+    <span class="search-parameter-form-info visible-xs">
+      How many miles are you willing to accept?
+    </span>
+    
+    <span class="max-mileage">
+      Up to <span id="max_mileage_value">200000</span> mi
+    </span>
+    
     <%= form_for @personalized_search do |f| %>
       
-      <div class="form-group form-group-search-parameter">
+      <div class="form-group">
         
         <%= f.label :mileage, "Max Mileage" %>
     
@@ -87,7 +97,7 @@
           <% if @personalized_search.mileage.present? %>
             <%= @personalized_search.mileage%> mi
           <% else %>  
-            300000 mi
+            200000 mi
           <% end %>
         </span>
         
@@ -96,7 +106,7 @@
                            id: 'personalized_mileage_slider', 
                            type: 'text',
                            data: { 'slider-min'   => '0',
-                                   'slider-max'   => '300000',
+                                   'slider-max'   => '200000',
                                    'slider-step'  => '1',
                                    'slider-value' => 
                                      @personalized_search.mileage } %>
@@ -106,17 +116,16 @@
                            id: 'personalized_mileage_slider', 
                            type: 'text',
                            data: { 'slider-min'   => '0',
-                                   'slider-max'   => '300000',
+                                   'slider-max'   => '200000',
                                    'slider-step'  => '1',
-                                   'slider-value' => '300000' } %>
+                                   'slider-value' => '200000' } %>
         <% end %>
       </div>
       
-      <%= hidden_field_tag :redirect_location, 
-            year_personalized_search_path(@personalized_search) %>
+      <!--<(perc)= hidden_field_tag :redirect_location, -->
+      <!--      year_personalized_search_path(@personalized_search) %>-->
     
-      <%= button_tag(type: "submit", class: "next-button
-                                             personalized-search-button-a") do %>
+      <%= button_tag(type: "submit", class: "next-button") do %>
         
         <div class="personalized-search-button-text">
           
@@ -125,7 +134,7 @@
           </span>
           
           <span class="personalized-search-button-subtitle">
-            Continue to Year
+            View Results
             <i class="fa fa-angle-right" aria-hidden="true"></i>
           </span>
         </div>        
@@ -143,14 +152,17 @@
     
     var mileageSlider         = $('#personalized_mileage_slider');
     var mileageSliderValue    = $('#personalized_mileage_slider_val');
+    var maxMileageValue       = $('#max_mileage_value');
     
     mileageSlider.slider();
     
     mileageSlider.on('slide', function(slideEvt) {
     	mileageSliderValue.text(slideEvt.value + ' mi');
+    	maxMileageValue.text(slideEvt.value);
     });
     
     mileageSlider.on('slideStop', function(slideEvt) {
     	mileageSliderValue.text(slideEvt.value + ' mi');
+    	maxMileageValue.text(slideEvt.value);
     });
 </script>

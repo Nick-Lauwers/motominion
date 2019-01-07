@@ -14,12 +14,14 @@
         
       <% else %>
         <div class="search-item-image-content", 
-             style="background-image: url('http://www.pbs.org/mercy-street/lunchbox_plugins/s/photogallery/img/no-image-available.jpg')">
+             style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/no-image-available.jpg')">
         </div>
       <% end %>
     <% end %>
     
-    <% if FavoriteVehicle.
+    <% if current_user &&
+          current_user.
+            favorite_vehicles.
             where("vehicle_id = ? AND ( is_loved = ? OR is_liked = ? )", 
                   vehicle.id, true, true).
             exists? %>

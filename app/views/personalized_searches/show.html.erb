@@ -45,13 +45,47 @@
                     id: "filterrific-no-ajax-auto-submit"
                   } do |f| %>
                   
-              <!--<(perc)= f.hidden_field :with_city, value: "San Francisco" %>-->
-
-              <%= f.hidden_field :with_actual_price_lte, 
-                                 value: @personalized_search.price %>
+              <%= f.fields_for :with_style do |with_style_fields| %>
               
-              <%= f.hidden_field :with_mileage_numeric_lte, 
-                                 value: @personalized_search.mileage %>
+                <%= with_style_fields.hidden_field :is_cafe_racer,
+                      value: @personalized_search.is_cafe_racer %>
+                
+                <%= with_style_fields.hidden_field :is_cruiser,
+                      value: @personalized_search.is_cruiser %>
+                
+                <%= with_style_fields.hidden_field :is_dual_sport,
+                      value: @personalized_search.is_dual_sport %>
+                
+                <%= with_style_fields.hidden_field :is_mini_pocket,
+                      value: @personalized_search.is_mini_pocket %>
+                
+                <%= with_style_fields.hidden_field :is_moped,
+                      value: @personalized_search.is_moped %>
+                
+                <%= with_style_fields.hidden_field :is_sportbike,
+                      value: @personalized_search.is_sportbike %>
+                
+                <%= with_style_fields.hidden_field :is_standard,
+                      value: @personalized_search.is_standard %>
+
+                <%= with_style_fields.hidden_field :is_touring,
+                      value: @personalized_search.is_touring %>
+                
+                <%= with_style_fields.hidden_field :is_trike,
+                      value: @personalized_search.is_trike %>
+              <% end %>
+                  
+              <%= f.fields_for :with_distance do |with_distance_fields| %>
+              
+                <%= with_distance_fields.hidden_field :zip_code,
+                      value: @personalized_search.zip_code %>
+                      
+                <%= with_distance_fields.hidden_field :max_distance,
+                      value: @personalized_search.max_distance + 50 %>
+              <% end %>
+              
+              <%= f.hidden_field :with_actual_price_lte, 
+                                 value: @personalized_search.price + 1000 %>
                                  
               <button type="submit"
                       class="match-item match-item-a">
@@ -88,51 +122,100 @@
                   html: {
                     id: "filterrific-no-ajax-auto-submit"
                   } do |f| %>
-            
-              <%= f.hidden_field :with_year_gte, 
-                                 value: @personalized_search.year %>
+              
+              <%= f.fields_for :with_style do |with_style_fields| %>
+              
+                <%= with_style_fields.hidden_field :is_cafe_racer,
+                      value: @personalized_search.is_cafe_racer %>
+                
+                <%= with_style_fields.hidden_field :is_cruiser,
+                      value: @personalized_search.is_cruiser %>
+                
+                <%= with_style_fields.hidden_field :is_dual_sport,
+                      value: @personalized_search.is_dual_sport %>
+                
+                <%= with_style_fields.hidden_field :is_mini_pocket,
+                      value: @personalized_search.is_mini_pocket %>
+                
+                <%= with_style_fields.hidden_field :is_moped,
+                      value: @personalized_search.is_moped %>
+                
+                <%= with_style_fields.hidden_field :is_sportbike,
+                      value: @personalized_search.is_sportbike %>
+                
+                <%= with_style_fields.hidden_field :is_standard,
+                      value: @personalized_search.is_standard %>
+
+                <%= with_style_fields.hidden_field :is_touring,
+                      value: @personalized_search.is_touring %>
+                
+                <%= with_style_fields.hidden_field :is_trike,
+                      value: @personalized_search.is_trike %>
+              <% end %>
+              
+              <%= f.fields_for :with_manufacturer do |with_manufacturer_fields| %>
+              
+                <%= with_manufacturer_fields.hidden_field :is_aprilia,
+                      value: @personalized_search.is_aprilia %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_bmw,
+                      value: @personalized_search.is_bmw %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_can_am,
+                      value: @personalized_search.is_can_am %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_ducati,
+                      value: @personalized_search.is_ducati %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_harley_davidson,
+                      value: @personalized_search.is_harley_davidson %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_honda,
+                      value: @personalized_search.is_honda %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_indian,
+                      value: @personalized_search.is_indian %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_ktm,
+                      value: @personalized_search.is_ktm %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_kawasaki,
+                      value: @personalized_search.is_kawasaki %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_kymco,
+                      value: @personalized_search.is_kymco %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_suzuki,
+                      value: @personalized_search.is_suzuki %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_triumph,
+                      value: @personalized_search.is_triumph %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_vespa,
+                      value: @personalized_search.is_vespa %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_victory,
+                      value: @personalized_search.is_victory %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_yamaha,
+                      value: @personalized_search.is_yamaha %>
+              <% end %>
+                  
+              <%= f.fields_for :with_distance do |with_distance_fields| %>
+              
+                <%= with_distance_fields.hidden_field :zip_code,
+                      value: @personalized_search.zip_code %>
+                      
+                <%= with_distance_fields.hidden_field :max_distance,
+                      value: @personalized_search.max_distance %>
+              <% end %>
               
               <%= f.hidden_field :with_actual_price_lte, 
                                  value: @personalized_search.price %>
               
               <%= f.hidden_field :with_mileage_numeric_lte, 
                                  value: @personalized_search.mileage %>
-                                 
-              <%= f.hidden_field :with_cruise_control,
-                                 value: @personalized_search.cruise_control %>
-                                 
-              <%= f.hidden_field :with_am_fm,
-                                 value: @personalized_search.am_fm %>
-              
-              <%= f.hidden_field :with_cb_radio,
-                                 value: @personalized_search.cb_radio %>
-              
-              <%= f.hidden_field :with_navigation_system,
-                                 value: @personalized_search.
-                                   navigation_system %>
-                                 
-              <%= f.hidden_field :with_heated_seats,
-                                 value: @personalized_search.heated_seats %>
-              
-              <%= f.hidden_field :with_heated_hand_grips,
-                                 value: @personalized_search.
-                                   heated_hand_grips %>
-                                   
-              <%= f.hidden_field :with_alarm_system,
-                                 value: @personalized_search.alarm_system %>
-              
-              <%= f.hidden_field :with_saddlebags,
-                                 value: @personalized_search.saddlebags %>
-                                          
-              <%= f.hidden_field :with_trunk,
-                                 value: @personalized_search.trunk %>
-                                 
-              <%= f.hidden_field :with_tow_hitch,
-                                 value: @personalized_search.tow_hitch %>
-                                 
-              <%= f.hidden_field :with_cycle_cover,
-                                 value: @personalized_search.cycle_cover %>
-              
+
               <button type="submit"
                       class="match-item match-item-b">
                 
@@ -161,8 +244,50 @@
                     id: "filterrific-no-ajax-auto-submit"
                   } do |f| %>
             
+              <%= f.fields_for :with_style do |with_style_fields| %>
+              
+                <%= with_style_fields.hidden_field :is_cafe_racer,
+                      value: @personalized_search.is_cafe_racer %>
+                
+                <%= with_style_fields.hidden_field :is_cruiser,
+                      value: @personalized_search.is_cruiser %>
+                
+                <%= with_style_fields.hidden_field :is_dual_sport,
+                      value: @personalized_search.is_dual_sport %>
+                
+                <%= with_style_fields.hidden_field :is_mini_pocket,
+                      value: @personalized_search.is_mini_pocket %>
+                
+                <%= with_style_fields.hidden_field :is_moped,
+                      value: @personalized_search.is_moped %>
+                
+                <%= with_style_fields.hidden_field :is_sportbike,
+                      value: @personalized_search.is_sportbike %>
+                
+                <%= with_style_fields.hidden_field :is_standard,
+                      value: @personalized_search.is_standard %>
+
+                <%= with_style_fields.hidden_field :is_touring,
+                      value: @personalized_search.is_touring %>
+                
+                <%= with_style_fields.hidden_field :is_trike,
+                      value: @personalized_search.is_trike %>
+              <% end %>
+                  
+              <%= f.fields_for :with_distance do |with_distance_fields| %>
+              
+                <%= with_distance_fields.hidden_field :zip_code,
+                      value: @personalized_search.zip_code %>
+                      
+                <%= with_distance_fields.hidden_field :max_distance,
+                      value: @personalized_search.max_distance %>
+              <% end %>
+              
               <%= f.hidden_field :with_actual_price_lte, 
                                  value: @personalized_search.price %>
+              
+              <%= f.hidden_field :with_mileage_numeric_lte, 
+                                 value: @personalized_search.mileage %>
               
               <button type="submit"
                       class="match-item match-item-c">
@@ -170,11 +295,11 @@
                 <div class="match-item-detail">
                   
                   <span class="match-item-title">
-                    Stay On Budget
+                    Compromise On Manufacturer
                   </span>
                   
                   <span class="match-item-subtitle">
-                    But flex mileage and features
+                    But keep everything else
                   </span>
                   
                   <span class="match-item-info">
@@ -199,40 +324,98 @@
                     id: "filterrific-no-ajax-auto-submit"
                   } do |f| %>
             
-              <%= f.hidden_field :with_cruise_control,
-                                 value: @personalized_search.cruise_control %>
-                                 
-              <%= f.hidden_field :with_am_fm,
-                                 value: @personalized_search.am_fm %>
+              <%= f.fields_for :with_style do |with_style_fields| %>
               
-              <%= f.hidden_field :with_cb_radio,
-                                 value: @personalized_search.cb_radio %>
+                <%= with_style_fields.hidden_field :is_cafe_racer,
+                      value: @personalized_search.is_cafe_racer %>
+                
+                <%= with_style_fields.hidden_field :is_cruiser,
+                      value: @personalized_search.is_cruiser %>
+                
+                <%= with_style_fields.hidden_field :is_dual_sport,
+                      value: @personalized_search.is_dual_sport %>
+                
+                <%= with_style_fields.hidden_field :is_mini_pocket,
+                      value: @personalized_search.is_mini_pocket %>
+                
+                <%= with_style_fields.hidden_field :is_moped,
+                      value: @personalized_search.is_moped %>
+                
+                <%= with_style_fields.hidden_field :is_sportbike,
+                      value: @personalized_search.is_sportbike %>
+                
+                <%= with_style_fields.hidden_field :is_standard,
+                      value: @personalized_search.is_standard %>
+
+                <%= with_style_fields.hidden_field :is_touring,
+                      value: @personalized_search.is_touring %>
+                
+                <%= with_style_fields.hidden_field :is_trike,
+                      value: @personalized_search.is_trike %>
+              <% end %>
               
-              <%= f.hidden_field :with_navigation_system,
-                                 value: @personalized_search.
-                                   navigation_system %>
-                                 
-              <%= f.hidden_field :with_heated_seats,
-                                 value: @personalized_search.heated_seats %>
+              <%= f.fields_for :with_manufacturer do |with_manufacturer_fields| %>
               
-              <%= f.hidden_field :with_heated_hand_grips,
-                                 value: @personalized_search.
-                                   heated_hand_grips %>
-                                   
-              <%= f.hidden_field :with_alarm_system,
-                                 value: @personalized_search.alarm_system %>
+                <%= with_manufacturer_fields.hidden_field :is_aprilia,
+                      value: @personalized_search.is_aprilia %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_bmw,
+                      value: @personalized_search.is_bmw %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_can_am,
+                      value: @personalized_search.is_can_am %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_ducati,
+                      value: @personalized_search.is_ducati %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_harley_davidson,
+                      value: @personalized_search.is_harley_davidson %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_honda,
+                      value: @personalized_search.is_honda %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_indian,
+                      value: @personalized_search.is_indian %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_ktm,
+                      value: @personalized_search.is_ktm %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_kawasaki,
+                      value: @personalized_search.is_kawasaki %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_kymco,
+                      value: @personalized_search.is_kymco %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_suzuki,
+                      value: @personalized_search.is_suzuki %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_triumph,
+                      value: @personalized_search.is_triumph %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_vespa,
+                      value: @personalized_search.is_vespa %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_victory,
+                      value: @personalized_search.is_victory %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_yamaha,
+                      value: @personalized_search.is_yamaha %>
+              <% end %>
+                  
+              <%= f.fields_for :with_distance do |with_distance_fields| %>
               
-              <%= f.hidden_field :with_saddlebags,
-                                 value: @personalized_search.saddlebags %>
-                                          
-              <%= f.hidden_field :with_trunk,
-                                 value: @personalized_search.trunk %>
-                                 
-              <%= f.hidden_field :with_tow_hitch,
-                                 value: @personalized_search.tow_hitch %>
-                                 
-              <%= f.hidden_field :with_cycle_cover,
-                                 value: @personalized_search.cycle_cover %>
+                <%= with_distance_fields.hidden_field :zip_code,
+                      value: @personalized_search.zip_code %>
+                      
+                <%= with_distance_fields.hidden_field :max_distance,
+                      value: @personalized_search.max_distance + 50 %>
+              <% end %>
+              
+              <%= f.hidden_field :with_actual_price_lte, 
+                                 value: @personalized_search.price %>
+              
+              <%= f.hidden_field :with_mileage_numeric_lte, 
+                                 value: @personalized_search.mileage %>
               
               <button type="submit"
                       class="match-item match-item-d">
@@ -240,11 +423,11 @@
                 <div class="match-item-detail">
                   
                   <span class="match-item-title">
-                    Get All Features
+                    Flex On Location
                   </span>
                   
                   <span class="match-item-subtitle">
-                    But flex price and mileage
+                    Expand search radius by 50 miles
                   </span>
                   
                   <span class="match-item-info">
@@ -266,46 +449,98 @@
                     id: "filterrific-no-ajax-auto-submit"
                   } do |f| %>
             
-              <%= f.hidden_field :with_year_gte, 
-                                 value: @personalized_search.year %>
+              <%= f.fields_for :with_style do |with_style_fields| %>
+              
+                <%= with_style_fields.hidden_field :is_cafe_racer,
+                      value: @personalized_search.is_cafe_racer %>
+                
+                <%= with_style_fields.hidden_field :is_cruiser,
+                      value: @personalized_search.is_cruiser %>
+                
+                <%= with_style_fields.hidden_field :is_dual_sport,
+                      value: @personalized_search.is_dual_sport %>
+                
+                <%= with_style_fields.hidden_field :is_mini_pocket,
+                      value: @personalized_search.is_mini_pocket %>
+                
+                <%= with_style_fields.hidden_field :is_moped,
+                      value: @personalized_search.is_moped %>
+                
+                <%= with_style_fields.hidden_field :is_sportbike,
+                      value: @personalized_search.is_sportbike %>
+                
+                <%= with_style_fields.hidden_field :is_standard,
+                      value: @personalized_search.is_standard %>
+
+                <%= with_style_fields.hidden_field :is_touring,
+                      value: @personalized_search.is_touring %>
+                
+                <%= with_style_fields.hidden_field :is_trike,
+                      value: @personalized_search.is_trike %>
+              <% end %>
+              
+              <%= f.fields_for :with_manufacturer do |with_manufacturer_fields| %>
+              
+                <%= with_manufacturer_fields.hidden_field :is_aprilia,
+                      value: @personalized_search.is_aprilia %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_bmw,
+                      value: @personalized_search.is_bmw %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_can_am,
+                      value: @personalized_search.is_can_am %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_ducati,
+                      value: @personalized_search.is_ducati %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_harley_davidson,
+                      value: @personalized_search.is_harley_davidson %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_honda,
+                      value: @personalized_search.is_honda %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_indian,
+                      value: @personalized_search.is_indian %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_ktm,
+                      value: @personalized_search.is_ktm %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_kawasaki,
+                      value: @personalized_search.is_kawasaki %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_kymco,
+                      value: @personalized_search.is_kymco %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_suzuki,
+                      value: @personalized_search.is_suzuki %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_triumph,
+                      value: @personalized_search.is_triumph %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_vespa,
+                      value: @personalized_search.is_vespa %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_victory,
+                      value: @personalized_search.is_victory %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_yamaha,
+                      value: @personalized_search.is_yamaha %>
+              <% end %>
+                  
+              <%= f.fields_for :with_distance do |with_distance_fields| %>
+              
+                <%= with_distance_fields.hidden_field :zip_code,
+                      value: @personalized_search.zip_code %>
+                      
+                <%= with_distance_fields.hidden_field :max_distance,
+                      value: @personalized_search.max_distance %>
+              <% end %>
+              
+              <%= f.hidden_field :with_actual_price_lte, 
+                                 value: @personalized_search.price + 1000 %>
               
               <%= f.hidden_field :with_mileage_numeric_lte, 
                                  value: @personalized_search.mileage %>
-                                 
-              <%= f.hidden_field :with_cruise_control,
-                                 value: @personalized_search.cruise_control %>
-                                 
-              <%= f.hidden_field :with_am_fm,
-                                 value: @personalized_search.am_fm %>
-              
-              <%= f.hidden_field :with_cb_radio,
-                                 value: @personalized_search.cb_radio %>
-              
-              <%= f.hidden_field :with_navigation_system,
-                                 value: @personalized_search.
-                                   navigation_system %>
-                                 
-              <%= f.hidden_field :with_heated_seats,
-                                 value: @personalized_search.heated_seats %>
-              
-              <%= f.hidden_field :with_heated_hand_grips,
-                                 value: @personalized_search.
-                                   heated_hand_grips %>
-                                   
-              <%= f.hidden_field :with_alarm_system,
-                                 value: @personalized_search.alarm_system %>
-              
-              <%= f.hidden_field :with_saddlebags,
-                                 value: @personalized_search.saddlebags %>
-                                          
-              <%= f.hidden_field :with_trunk,
-                                 value: @personalized_search.trunk %>
-                                 
-              <%= f.hidden_field :with_tow_hitch,
-                                 value: @personalized_search.tow_hitch %>
-                                 
-              <%= f.hidden_field :with_cycle_cover,
-                                 value: @personalized_search.cycle_cover %>
               
               <button type="submit"
                       class="match-item match-item-e">
@@ -314,6 +549,10 @@
                   
                   <span class="match-item-title">
                     Pay A Bit More
+                  </span>
+                  
+                  <span class="match-item-subtitle">
+                    Increase budget by $1000
                   </span>
                   
                   <span class="match-item-info">
@@ -339,15 +578,95 @@
                     id: "filterrific-no-ajax-auto-submit"
                   } do |f| %>
                   
-              <!--<(perc)= f.hidden_field :with_city, value: "San Francisco" %>-->
+              <%= f.fields_for :with_style do |with_style_fields| %>
               
-              <%= f.hidden_field :with_dealer, value: "Dealer" %>
+                <%= with_style_fields.hidden_field :is_cafe_racer,
+                      value: @personalized_search.is_cafe_racer %>
+                
+                <%= with_style_fields.hidden_field :is_cruiser,
+                      value: @personalized_search.is_cruiser %>
+                
+                <%= with_style_fields.hidden_field :is_dual_sport,
+                      value: @personalized_search.is_dual_sport %>
+                
+                <%= with_style_fields.hidden_field :is_mini_pocket,
+                      value: @personalized_search.is_mini_pocket %>
+                
+                <%= with_style_fields.hidden_field :is_moped,
+                      value: @personalized_search.is_moped %>
+                
+                <%= with_style_fields.hidden_field :is_sportbike,
+                      value: @personalized_search.is_sportbike %>
+                
+                <%= with_style_fields.hidden_field :is_standard,
+                      value: @personalized_search.is_standard %>
+
+                <%= with_style_fields.hidden_field :is_touring,
+                      value: @personalized_search.is_touring %>
+                
+                <%= with_style_fields.hidden_field :is_trike,
+                      value: @personalized_search.is_trike %>
+              <% end %>
+              
+              <%= f.fields_for :with_manufacturer do |with_manufacturer_fields| %>
+              
+                <%= with_manufacturer_fields.hidden_field :is_aprilia,
+                      value: @personalized_search.is_aprilia %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_bmw,
+                      value: @personalized_search.is_bmw %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_can_am,
+                      value: @personalized_search.is_can_am %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_ducati,
+                      value: @personalized_search.is_ducati %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_harley_davidson,
+                      value: @personalized_search.is_harley_davidson %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_honda,
+                      value: @personalized_search.is_honda %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_indian,
+                      value: @personalized_search.is_indian %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_ktm,
+                      value: @personalized_search.is_ktm %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_kawasaki,
+                      value: @personalized_search.is_kawasaki %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_kymco,
+                      value: @personalized_search.is_kymco %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_suzuki,
+                      value: @personalized_search.is_suzuki %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_triumph,
+                      value: @personalized_search.is_triumph %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_vespa,
+                      value: @personalized_search.is_vespa %>
+                      
+                <%= with_manufacturer_fields.hidden_field :is_victory,
+                      value: @personalized_search.is_victory %>
+                
+                <%= with_manufacturer_fields.hidden_field :is_yamaha,
+                      value: @personalized_search.is_yamaha %>
+              <% end %>
+                  
+              <%= f.fields_for :with_distance do |with_distance_fields| %>
+              
+                <%= with_distance_fields.hidden_field :zip_code,
+                      value: @personalized_search.zip_code %>
+                      
+                <%= with_distance_fields.hidden_field :max_distance,
+                      value: @personalized_search.max_distance %>
+              <% end %>
               
               <%= f.hidden_field :with_actual_price_lte, 
                                  value: @personalized_search.price %>
-              
-              <%= f.hidden_field :with_mileage_numeric_lte, 
-                                 value: @personalized_search.mileage %>
                                  
               <button type="submit"
                       class="match-item match-item-f">
@@ -355,12 +674,11 @@
                 <div class="match-item-detail">
                   
                   <span class="match-item-title">
-                    Certified Dealers Only
+                    Mileage Isn't Important
                   </span>
                   
                   <span class="match-item-subtitle">
-                    View the dealer inventory that best matches your
-                    preferences
+                    But keep the rest as is
                   </span>
                   
                   <span class="match-item-info">

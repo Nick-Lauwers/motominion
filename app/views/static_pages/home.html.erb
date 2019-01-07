@@ -409,7 +409,9 @@
         
         <% if current_user && current_user.personalized_search.present? %>
           <%= link_to "choosing your own preferences",
-                      style_personalized_searches_path,
+                      style_personalized_search_path(
+                        current_user.personalized_search
+                      ),
                       class: "preferences-link" %>.
                       
         <% else %>
