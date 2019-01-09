@@ -84,7 +84,7 @@
         </div>
         
         <div class="col-md-8 shortlist-list-content">
-          
+
           <% if @purchases.exists? %>
             <div class="shortlist-purchases">
               <ol class="row backend-list">
@@ -327,15 +327,15 @@
             
             function createMapItem(currentFeature) {
               
-              var mapItems = $('.map-item');
+              // var mapItems = $('.map-item');
               var markers  = $('.marker');
               
-              mapItems.css("display", "none")
+              // mapItems.css("display", "none")
               markers.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
               
-              var mapItem = $('#shortlist-map-item-' + currentFeature.properties.id);
+              // var mapItem = $('#shortlist-map-item-' + currentFeature.properties.id);
               
-              mapItem.css({ "display": "block" })
+              // mapItem.css({ "display": "block" })
             }
             
             geojson.features.forEach(function(marker) {
@@ -351,7 +351,7 @@
                   addTo(map);
               
               var shortlistNavMap  = $('.shortlist-nav-map');
-              var shortlistMapItem = $('#shortlist-map-item' + marker.properties.id);
+              // var shortlistMapItem = $('#shortlist-map-item' + marker.properties.id);
               
               el.addEventListener('click', function(e) {
                 if ( $(window).width() <= 768 ) { 
@@ -360,7 +360,7 @@
                 }
               });
               
-              var shortlistItem = document.getElementById("wish-list-item-" + marker.properties.id);
+              var shortlistItem = document.getElementById(marker.properties.id);
               
               shortlistItem.addEventListener('mouseover', function(e) {  
                 el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";

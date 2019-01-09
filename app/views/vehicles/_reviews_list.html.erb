@@ -21,7 +21,7 @@
             
             <div class="author-avatar avatar-general", 
                  style="background-image: url(
-                         '<%= r.reviewer.avatar.url(:thumb) %>')">>
+                         '<%= r.reviewer.avatar.url(:thumb) %>')">
             </div>
             
             <% if r.reviewer.online? %>
@@ -37,22 +37,35 @@
     <div class="col-md-8">
       <div class="review-container">
   
+        <span class="review-title visible-xs"><%= r.title %></span>
+  
         <div class="review-rating">
           <div id="stars-<%= r.id %>"></div>
         </div>
         
-        <span class="review-title"><%= r.title %></span>
+        <span class="review-title hidden-xs"><%= r.title %></span>
         
         <span class="review-date"><%= r.created_at.strftime("%D") %></span>
         
-        <p class="review-comment"><%= r.comment %></p>
+        <p id="review-comment-<%= r.id %>"
+           class="review-comment">
+          <%= r.comment %>
+        </p>
         
-        <div class="review-remove">
+        <div class="review-controls">
+          
+          <span id="review-expand-<%= r.id %>" 
+                class="review-expand">
+            + More
+          </span>
+          
           <%= link_to "Remove my review", 
                       [@vehicle, r], 
                       method: :delete, 
                       data: { confirm: "Are you sure?" } if 
                             current_user && current_user == r.reviewer %>
+          
+          <div style="clear: both"></div>
         </div>
       </div>
     </div>
@@ -62,20 +75,59 @@
     $(document).ready(function() {
       
       // rating
-      var stars = $('#stars-<%= r.id %>');
+      
+        var stars = $('#stars-<%= r.id %>');
+    
+        stars.raty({
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= r.rating %>
+        });
+      
+      // expand review
+    
+        var reviewComment = $('#review-comment-<%= r.id %>');
+        var reviewExpand  = $('#review-expand-<%= r.id %>');
   
-      stars.raty({
-        path:     '/assets',
-        readOnly: true,
-        score:    <%= r.rating %>
-      });
+        function em(input) {
+          var emSize = parseFloat($("body").css("font-size"));
+          return (emSize * input);
+        }
+        
+        if (reviewComment.height() >= em(5.5)) {
+          
+          reviewComment.each(function() {
+            $.data(this, "realHeight", $(this).height());
+          }).css({ overflow: "hidden", height: '5.5em' });
+          
+          reviewExpand.css({display: "block"});
+          
+          reviewExpand.click(function(e) {
+            
+            e.preventDefault();
+            
+            if (reviewComment.hasClass("toggled")) {
+              reviewComment.animate({ 
+                height: '5.5em'
+              }, 600).removeClass("toggled");
+              reviewExpand.html("+ More");
+            } 
+            
+            else {
+              reviewComment.animate({ 
+                height: reviewComment.data("realHeight") 
+              }, 600).addClass("toggled");
+              reviewExpand.html("- Less");
+            }
+          });
+        }
     })
   </script>
 <% end %>
 
 <% @google_reviews.each do |r| %>
 
-  <li class="row review-item">
+  <li id="google-review-item-<%= r.id %>" class="row review-item">
     
     <div class="col-md-4">
       <div class="row">
@@ -98,18 +150,34 @@
     
     <div class="col-md-8">
       <div class="review-container">
-  
-        <div class="review-rating">
-          <div id="stars-<%= r.id %>"></div>
-        </div>
         
-        <span class="review-title">
+        <span class="review-title visible-xs">
           Review from <%= r.author_name %>
         </span>
         
-        <span class="review-date"><%= r.time %></span>
-        <!--.strftime("%D")-->
-        <p class="review-comment"><%= r.text %></p>
+        <div class="review-rating">
+          <div id="google-stars-<%= r.id %>"></div>
+        </div>
+        
+        <span class="review-title hidden-xs">
+          Review from <%= r.author_name %>
+        </span>
+
+        <span class="review-date"><%= Time.at(r.time).strftime('%D') %></span>
+
+        <p id="google-review-comment-<%= r.id %>" class="review-comment">
+          <%= r.text %>
+        </p>
+        
+        <div class="review-controls">
+          
+          <span id="google-review-expand-<%= r.id %>" 
+                class="review-expand">
+            + More
+          </span>
+          
+          <div style="clear: both"></div>
+        </div>
       </div>
     </div>
   </li>
@@ -118,13 +186,52 @@
     $(document).ready(function() {
       
       // rating
-      var stars = $('#stars-<%= r.id %>');
+      
+        var stars = $('#google-stars-<%= r.id %>');
+    
+        stars.raty({
+          path:     '/assets',
+          readOnly: true,
+          score:    <%= r.rating %>
+        });
+      
+      // expand review
+    
+        var googleReviewComment = $('#google-review-comment-<%= r.id %>');
+        var googleReviewExpand  = $('#google-review-expand-<%= r.id %>');
   
-      stars.raty({
-        path:     '/assets',
-        readOnly: true,
-        score:    <%= r.rating %>
-      });
+        function em(input) {
+          var emSize = parseFloat($("body").css("font-size"));
+          return (emSize * input);
+        }
+        
+        if (googleReviewComment.height() >= em(5.5)) {
+          
+          googleReviewComment.each(function() {
+            $.data(this, "realHeight", $(this).height());
+          }).css({ overflow: "hidden", height: '5.5em' });
+          
+          googleReviewExpand.css({display: "block"});
+          
+          googleReviewExpand.click(function(e) {
+            
+            e.preventDefault();
+            
+            if (googleReviewComment.hasClass("toggled")) {
+              googleReviewComment.animate({ 
+                height: '5.5em'
+              }, 600).removeClass("toggled");
+              googleReviewExpand.html("+ More");
+            } 
+            
+            else {
+              googleReviewComment.animate({ 
+                height: googleReviewComment.data("realHeight") 
+              }, 600).addClass("toggled");
+              googleReviewExpand.html("- Less");
+            }
+          });
+        }
     })
   </script>
 <% end %>

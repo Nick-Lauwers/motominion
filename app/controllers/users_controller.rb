@@ -197,21 +197,69 @@ class UsersController < ApplicationController
                   or(favorite_vehicles: {is_liked: true}).
                   or(favorite_vehicles: {is_test_drive: true}).
                   or(favorite_vehicles: {is_purchase: true})
+                  
+    shortlist_items = current_user.
+                        favorites.
+                        joins(:favorite_vehicles).
+                        where(favorite_vehicles: {is_loved: true}).
+                        or(favorite_vehicles: {is_liked: true})
+    
+    test_drive_items = Appointment.where("buyer_id = ? AND date >= ?", 
+                                         current_user.id, 
+                                         Time.now)
+    
+    purchase_items = Purchase.where(buyer_id: current_user.id)
 
     @geojson = Array.new;
 
-    @vehicles.each do |vehicle|
+    shortlist_items.each do |vehicle|
+      
       @geojson << {
         type: 'Feature',
-        id: vehicle.id,
+        id: "shortlist-item-" + vehicle.id.to_s,
         geometry: {
           type: 'Point',
           coordinates: [ vehicle.longitude, vehicle.latitude ]
         },
         properties: {
-          "id":    vehicle.id,
+          "id":    "shortlist-item-" + vehicle.id.to_s,
           # "image": vehicle.photos[0].image.url(),
           "title": vehicle.listing_name
+        }
+      }
+    end
+    
+    test_drive_items.each do |appointment|
+      
+      @geojson << {
+        type: 'Feature',
+        id: "test-drive-item-" + appointment.id.to_s,
+        geometry: {
+          type: 'Point',
+          coordinates: [ appointment.vehicle.longitude, 
+                         appointment.vehicle.latitude ]
+        },
+        properties: {
+          "id":    "test-drive-item-" + appointment.id.to_s,
+          # "image": vehicle.photos[0].image.url(),
+          "title": appointment.vehicle.listing_name
+        }
+      }
+    end
+    
+    purchase_items.each do |purchase|
+      
+      @geojson << {
+        type: 'Feature',
+        id: "purchase-item-" + purchase.id.to_s,
+        geometry: {
+          type: 'Point',
+          coordinates: [ purchase.vehicle.longitude, purchase.vehicle.latitude ]
+        },
+        properties: {
+          "id":    "purchase-item-" + purchase.id.to_s,
+          # "image": vehicle.photos[0].image.url(),
+          "title": purchase.vehicle.listing_name
         }
       }
     end

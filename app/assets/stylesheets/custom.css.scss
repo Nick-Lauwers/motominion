@@ -1896,7 +1896,8 @@ footer {
   font-size: 2em;
   font-weight: bold;
   line-height: 1.5;
-  margin: 0 0 0.67em;
+  margin: 0;
+  // margin: 0 0 0.67em;
 }
 
 .credentials-subtitle {
@@ -5859,13 +5860,18 @@ ul.pagination {
   }
 }  
 
-.review-remove {
-  text-align: right;
+.review-controls {
+  width: 100%;
+}
+
+.review-remove,
+.review-controls {
   a {
     font-size: 1em;
     line-height: 2;
     text-decoration: underline;
     color: $gray-dark;
+    float: right;
     &:hover,
     &:focus {
       color: $gray-dark;
@@ -6754,6 +6760,7 @@ ul.pagination {
 
 .recipient-expand,
 .vehicle-overview-expand,
+.review-expand,
 .backend-review-expand {
   font-weight: bold;
   color: $green;
@@ -6766,6 +6773,10 @@ ul.pagination {
 
 .recipient-expand {
   text-align: center;
+}
+
+.review-expand {
+  float: left;
 }
 
 .vehicle-overview-expand,
@@ -10250,6 +10261,10 @@ a.remove_fields {
   display: block;
 }
 
+.personalized-search-parameter {
+  margin-bottom: 2em;
+}
+
 .personalized-search-block {
   margin: 0 -15px 0 -15px;
   overflow: auto;
@@ -11849,20 +11864,23 @@ a.remove_fields {
   }
   
   .reviews-summary {
-    margin-bottom: 1.5em;
+    margin-bottom: 0;
   }
   
   .review-container {
-    margin-top: 1.5em;
+    margin-top: 1em;
   }
   
   .review-title-form-control {
     display: block;
   }
   
-  .review-title {
+  // .review-title {
+  //   margin-bottom: 0.3em;
+  // }
+  
+  .review-date {
     display: block;
-    margin-bottom: 0.3em;
   }
   
   #vehicle-map {
@@ -12443,7 +12461,27 @@ a.remove_fields {
   
 .begin-here {
   
-}                  
+}
+
+  .review-rating {
+    padding: 0;
+  }
+  
+  .review-title {
+    margin: 0;
+  }
+  
+  .review-date {
+    margin: 0.35em 0 0.6em;
+  }
+
+  .reviews-title {
+    font-style: italic;
+  }
+  
+  .review-controls {
+    font-size: 0.9em;
+  }
 
   .feed-vehicle-make-title {
     font-size: 1em;
@@ -12591,6 +12629,10 @@ a.remove_fields {
     line-height: 1.8;
   }
   
+  .pros-cons-list-content {
+    margin-bottom: 0;
+  }
+  
   .pros-cons-list {
     padding-left: 0;
     margin: 1.5em 0 0;
@@ -12665,7 +12707,22 @@ a.remove_fields {
   }
   
   .credentials-header {
-    padding: 3.5em 2em;
+    text-align: left;
+    text-shadow: none;
+    background-image: none;
+    height: 50px;
+    padding: 0;
+  }
+
+  .credentials-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    line-height: 50px;
+    margin: 0 5%;
+  }
+  
+  .credentials-form {
+    padding: 4em 5%;
   }
   
   .search-list-container {
@@ -12727,6 +12784,10 @@ a.remove_fields {
   .max-price,
   .max-mileage {
     margin-top: 3em;
+  }
+  
+  .slider-filters {
+    padding-bottom: 7em;
   }
 }
 

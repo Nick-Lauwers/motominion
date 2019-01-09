@@ -40,553 +40,684 @@
         <%= form_for @personalized_search do |f| %>
 
           <%= render 'shared/error_messages', object: f.object %>
+            
+            <div class="personalized-search-parameter">
+              
+              <span class="installed-options-title">Style</span>
+              
+              <div class="personalized-search-block">
+  
+                <div class="col-md-4
+                            col-xs-6
+                            personalized-search-checkbox
+                            personalized-search-checkbox-a">
+                  
+                  <%= f.check_box :is_cafe_racer %>
+                  
+                  <%= f.label :is_cafe_racer do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      <span class="personalized-search-checkbox-title">
+                        Cafe Racer
+                      </span>
+                    </div>
+                    
+                    <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-a.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            col-xs-6 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-b">
+                  
+                  <%= f.check_box :is_cruiser %>
+                  
+                  <%= f.label :is_cruiser do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      <span class="personalized-search-checkbox-title">
+                        Cruiser
+                      </span>
+                    </div> 
+                    
+                    <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-b.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            col-xs-6 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-c">
+                  
+                  <%= f.check_box :is_dual_sport %>
+                  
+                  <%= f.label :is_dual_sport do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      <span class="personalized-search-checkbox-title">
+                        Dirt Bike / Dual-Sport
+                      </span>
+                    </div> 
+                    
+                    <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-c.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            col-xs-6
+                            personalized-search-checkbox
+                            personalized-search-checkbox-d">
+                  
+                  <%= f.check_box :is_mini_pocket %>
+                  
+                  <%= f.label :is_mini_pocket do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      <span class="personalized-search-checkbox-title">
+                        Mini / Pocket
+                      </span>
+                    </div>
+                    
+                    <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-d.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            col-xs-6 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-e">
+                  
+                  <%= f.check_box :is_moped %>
+                  
+                  <%= f.label :is_moped do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      <span class="personalized-search-checkbox-title">
+                        Moped
+                      </span>
+                    </div> 
+                    
+                    <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-e.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            col-xs-6 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-f">
+                  
+                  <%= f.check_box :is_sportbike %>
+                  
+                  <%= f.label :is_sportbike do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      <span class="personalized-search-checkbox-title">
+                        Sportbike
+                      </span>
+                    </div>
+                    
+                    <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-f.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            col-xs-6 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-g">
+                  
+                  <%= f.check_box :is_standard %>
+                  
+                  <%= f.label :is_standard do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      <span class="personalized-search-checkbox-title">
+                        Standard
+                      </span>
+                    </div> 
+                    
+                    <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-g.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            col-xs-6
+                            personalized-search-checkbox
+                            personalized-search-checkbox-h">
+                  
+                  <%= f.check_box :is_touring %>
+                  
+                  <%= f.label :is_touring do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      <span class="personalized-search-checkbox-title">
+                        Touring
+                      </span>
+                    </div> 
+                    
+                    <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-h.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4
+                            col-xs-6 
+                            personalized-search-checkbox
+                            personalized-search-checkbox-i">
+                  
+                  <%= f.check_box :is_trike %>
+                  
+                  <%= f.label :is_trike do %>   
+                  
+                    <div class="personalized-search-checkbox-text">
+                      <span class="personalized-search-checkbox-title">
+                        Trike
+                      </span>
+                    </div>
+                    
+                    <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                       aria-hidden="true"></i>
+                    
+                    <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-i.png",
+                                  class: "personalized-search-button-icon") %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="personalized-search-parameter">
+            
+              <span class="installed-options-title">Manufacturer</span>
+              
+              <div class="personalized-search-block
+                          personalized-search-manufacturer">
+                
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+                  
+                  <%= f.check_box :is_aprilia %>
+                  
+                  <%= f.label :is_aprilia do %>   
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/aprilia.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Aprilia
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+                  
+                  <%= f.check_box :is_bmw %>
+                  
+                  <%= f.label :is_bmw do %> 
+                    <div class="personalized-search-checkbox-background",
+                          style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/bmw.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          BMW
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+         
+                  <%= f.check_box :is_can_am %>
+                  
+                  <%= f.label :is_can_am do %>  
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/can-am.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Can-Am
+                        </span>
+                      </div> 
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
+                </div>
         
-            <span class="installed-options-title">Style</span>
-            
-            <div class="personalized-search-block">
-
-              <div class="col-md-4
-                          col-xs-6
-                          personalized-search-checkbox
-                          personalized-search-checkbox-a">
-                
-                <%= f.check_box :is_cafe_racer %>
-                
-                <%= f.label :is_cafe_racer do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Cafe Racer
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+        
+                  <%= f.check_box :is_ducati %>
                   
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-a.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4
-                          col-xs-6 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-b">
-                
-                <%= f.check_box :is_cruiser %>
-                
-                <%= f.label :is_cruiser do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Cruiser
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
-                  
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-b.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4
-                          col-xs-6 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-c">
-                
-                <%= f.check_box :is_dual_sport %>
-                
-                <%= f.label :is_dual_sport do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Dirt Bike / Dual-Sport
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
-                  
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-c.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4
-                          col-xs-6
-                          personalized-search-checkbox
-                          personalized-search-checkbox-d">
-                
-                <%= f.check_box :is_mini_pocket %>
-                
-                <%= f.label :is_mini_pocket do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Mini / Pocket
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
-                  
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-d.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4
-                          col-xs-6 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-e">
-                
-                <%= f.check_box :is_moped %>
-                
-                <%= f.label :is_moped do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Moped
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
-                  
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-e.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4
-                          col-xs-6 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-f">
-                
-                <%= f.check_box :is_sportbike %>
-                
-                <%= f.label :is_sportbike do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Sportbike
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
-                  
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-f.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4
-                          col-xs-6 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-g">
-                
-                <%= f.check_box :is_standard %>
-                
-                <%= f.label :is_standard do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Standard
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
-                  
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-g.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4
-                          col-xs-6
-                          personalized-search-checkbox
-                          personalized-search-checkbox-h">
-                
-                <%= f.check_box :is_touring %>
-                
-                <%= f.label :is_touring do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Touring
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
-                  
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-h.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4
-                          col-xs-6 
-                          personalized-search-checkbox
-                          personalized-search-checkbox-i">
-                
-                <%= f.check_box :is_trike %>
-                
-                <%= f.label :is_trike do %>   
-                
-                  <div class="personalized-search-checkbox-text">
-                    
-                    <span class="personalized-search-checkbox-title">
-                      Trike
-                    </span>
-                    
-                    <span class="personalized-search-checkbox-subtitle">
-                      Click to Select
-                    </span>
-                  </div> 
-                  
-                  <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-i.png",
-                                class: "personalized-search-button-icon") %>
-                <% end %>
-              </div>
-            </div>
-            
-            <span class="installed-options-title">Manufacturer</span>
-            
-            <div class="personalized-search-block">
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-                
-                <%= f.check_box :is_aprilia %>
-                
-                <%= f.label :is_aprilia do %>   
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/aprilia.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Aprilia
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-                
-                <%= f.check_box :is_bmw %>
-                
-                <%= f.label :is_bmw do %> 
-                  <div class="personalized-search-checkbox-background",
-                        style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/bmw.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        BMW
-                      </span>
+                  <%= f.label :is_ducati do %> 
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/ducati.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Ducati
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
                     </div>
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-       
-                <%= f.check_box :is_can_am %>
+                  <% end %>
+                </div>
                 
-                <%= f.label :is_can_am do %>  
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/can-am.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Can-Am
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-      
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-      
-                <%= f.check_box :is_ducati %>
-                
-                <%= f.label :is_ducati do %> 
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/ducati.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Ducati
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-      
-                <%= f.check_box :is_harley_davidson %>
-                
-                <%= f.label :is_harley_davidson do %> 
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/harley-davidson.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Harley-Davidson
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-      
-                <%= f.check_box :is_honda %>
-                
-                <%= f.label :is_honda do %>  
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/honda.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Honda
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-      
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-                
-                <%= f.check_box :is_indian %>
-                
-                <%= f.label :is_indian do %> 
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/indian.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Indian
-                      </span>
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+        
+                  <%= f.check_box :is_harley_davidson %>
+                  
+                  <%= f.label :is_harley_davidson do %> 
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/harley-davidson.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Harley-Davidson
+                        </span>
+                      </div> 
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
                     </div>
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
+                  <% end %>
+                </div>
                 
-                <%= f.check_box :is_ktm %>
-                
-                <%= f.label :is_ktm do %> 
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/ktm.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        KTM
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-                
-                <%= f.check_box :is_kawasaki %>
-                
-                <%= f.label :is_kawasaki do %>
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/kawasaki.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Kawasaki
-                      </span>
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+        
+                  <%= f.check_box :is_honda %>
+                  
+                  <%= f.label :is_honda do %>  
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/honda.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Honda
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
                     </div>
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-                
-                <%= f.check_box :is_kymco %>
-                
-                <%= f.label :is_kymco do %>
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/kymco.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        KYMCO
-                      </span>
+                  <% end %>
+                </div>
+        
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+                  
+                  <%= f.check_box :is_indian %>
+                  
+                  <%= f.label :is_indian do %> 
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/indian.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Indian
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
                     </div>
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-                  
-                <%= f.check_box :is_suzuki %>
-                  
-                <%= f.label :is_suzuki do %> 
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/suzuki.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Suzuki
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
+                  <% end %>
+                </div>
                 
-                <%= f.check_box :is_triumph %>
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
                   
-                <%= f.label :is_triumph do %>  
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/triumph.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Triumph
-                      </span>
+                  <%= f.check_box :is_ktm %>
+                  
+                  <%= f.label :is_ktm do %> 
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/ktm.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          KTM
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
                     </div>
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
+                  <% end %>
+                </div>
                 
-                <%= f.check_box :is_vespa %>
-                
-                <%= f.label :is_vespa do %>  
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/vespa.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Vespa
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
                   
-                <%= f.check_box :is_victory %>
-                
-                <%= f.label :is_victory do %> 
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/victory.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Victory
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-              
-              <div class="col-md-4 
-                          col-xs-6
-                          personalized-search-checkbox">
-                
-                <%= f.check_box :is_yamaha %>
-                
-                <%= f.label :is_yamaha do %>
-                  <div class="personalized-search-checkbox-background",
-                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/yamaha.jpg')">
-                    <div class="personalized-search-checkbox-text">
-                      <span class="personalized-search-checkbox-title">
-                        Yamaha
-                      </span>
-                    </div> 
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          
-            <div class="row">
-              
-              <div class="col-md-6">
-                <div class="form-group form-group-primary">
+                  <%= f.check_box :is_kawasaki %>
                   
-                  <%= f.label :zip_code, "Location" %>
+                  <%= f.label :is_kawasaki do %>
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/kawasaki.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Kawasaki
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
                   
-                  <div class="form-element">
+                  <%= f.check_box :is_kymco %>
+                  
+                  <%= f.label :is_kymco do %>
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/kymco.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          KYMCO
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
                     
-                    <%= f.text_field :zip_code,
-                                     placeholder: "Zip Code",
-                                     class: "form-control
-                                             form-control-tertiary" %>
-                                                                
-                    <i class="fa fa-map-pin fa-lg form-icon" 
-                       aria-hidden="true"></i>
-                  </div>
+                  <%= f.check_box :is_suzuki %>
+                    
+                  <%= f.label :is_suzuki do %> 
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/suzuki.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Suzuki
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+                  
+                  <%= f.check_box :is_triumph %>
+                    
+                  <%= f.label :is_triumph do %>  
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/triumph.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Triumph
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+                  
+                  <%= f.check_box :is_vespa %>
+                  
+                  <%= f.label :is_vespa do %>  
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/vespa.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Vespa
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+                    
+                  <%= f.check_box :is_victory %>
+                  
+                  <%= f.label :is_victory do %> 
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/victory.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Victory
+                        </span>
+                      </div> 
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
+                </div>
+                
+                <div class="col-md-4 
+                            col-xs-6
+                            personalized-search-checkbox">
+                  
+                  <%= f.check_box :is_yamaha %>
+                  
+                  <%= f.label :is_yamaha do %>
+                    <div class="personalized-search-checkbox-background",
+                         style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/yamaha.jpg')">
+                      
+                      <div class="personalized-search-checkbox-text">
+                        <span class="personalized-search-checkbox-title">
+                          Yamaha
+                        </span>
+                      </div>
+                      
+                      <i class="fa 
+                              fa-lg
+                              fa-check-circle
+                              personalized-search-checkbox-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  <% end %>
                 </div>
               </div>
               
-              <div class="col-md-6">
-                <div class="form-group form-group-primary">
-                 
-                  <%= f.label :max_distance, "&nbsp;".html_safe %>
-                  
-                  <div class="form-element">
+              <div class="personalized-search-expand">
+                <span class="personalized-search-expand-content">
+                  + More
+                </span>
+              </div>
+            </div>
+            
+            <div class="personalized-search-parameter">
+              <div class="row">
+                
+                <div class="col-md-6">
+                  <div class="form-group">
                     
-                  <%= f.select :max_distance,
-                               [ ["10 mi", 10], ["25 mi", 25], 
-                                 ["50 mi", 50], ["75 mi", 75],
-                                 ["100 mi", 100], ["150 mi", 150],
-                                 ["250 mi", 250], ["400 mi", 400] ],
-                               { include_blank: true,
-                                 prompt: "Nationwide" },
-                               class: "form-control select-primary" %>
+                    <%= f.label :zip_code, "Location" %>
                     
-                    <i class="fa fa-bullseye fa-lg form-icon" 
-                     aria-hidden="true"></i>
-                     
-                    <i class="fa fa-caret-down fa-lg form-caret" 
+                    <div class="form-element">
+                      
+                      <%= f.text_field :zip_code,
+                                       placeholder: "Zip Code",
+                                       class: "form-control
+                                               form-control-tertiary",
+                                       required: true %>
+                                                                  
+                      <i class="fa fa-map-pin fa-lg form-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-6">
+                  <div class="form-group form-group-primary">
+                   
+                    <%= f.label :max_distance, "&nbsp;".html_safe, class: "hidden-xs" %>
+                    
+                    <div class="form-element">
+                      
+                    <%= f.select :max_distance,
+                                 [ ["10 mi", 10], ["25 mi", 25], 
+                                   ["50 mi", 50], ["75 mi", 75],
+                                   ["100 mi", 100], ["150 mi", 150],
+                                   ["250 mi", 250], ["400 mi", 400] ],
+                                 { include_blank: true,
+                                   prompt: "Nationwide" },
+                                 { required: true, 
+                                   class: "form-control select-primary" } %>
+                      
+                      <i class="fa fa-bullseye fa-lg form-icon" 
                        aria-hidden="true"></i>
+                       
+                      <i class="fa fa-caret-down fa-lg form-caret" 
+                         aria-hidden="true"></i>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -595,19 +726,19 @@
             <div class="row">
               
               <div class="col-md-6">
-                <div class="form-group form-group-search-parameter">
+                <div class="form-group">
 
                   <%= f.label :price, "Max Price" %>
                   
                   <span id="edit_price_slider_val" class="slider-label">
-                    $200000
+                    $50000
                   </span>     
                   
                   <%= f.text_field :price, 
                                    id: 'edit_price_slider', 
                                    type: 'text',
                                    data: { 'slider-min'   => '0',
-                                           'slider-max'   => '200000',
+                                           'slider-max'   => '50000',
                                            'slider-step'  => '1',
                                            'slider-value' => 
                                              @personalized_search.price } %>
@@ -615,19 +746,19 @@
               </div>
               
               <div class="col-md-6">
-                <div class="form-group form-group-search-parameter">
+                <div class="form-group">
                   
                   <%= f.label :mileage, "Max Mileage" %>
               
                   <span id="edit_mileage_slider_val" class="slider-label">
-                    300000 mi
+                    200000 mi
                   </span>
                   
                   <%= f.text_field :mileage,
                                    id: 'edit_mileage_slider', 
                                    type: 'text',
                                    data: { 'slider-min'   => '0',
-                                           'slider-max'   => '300000',
+                                           'slider-max'   => '200000',
                                            'slider-step'  => '1',
                                            'slider-value' => 
                                              @personalized_search.mileage } %>

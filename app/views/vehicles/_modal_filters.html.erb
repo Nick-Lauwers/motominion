@@ -376,40 +376,40 @@
             </div>
           </div>
           
-          <div class="col-md-6 engine-size">
-            <div class="form-group form-group-primary">
+          <!--<div class="col-md-6 engine-size">-->
+          <!--  <div class="form-group form-group-primary">-->
               
-              <%= f.label :with_engine_size_gte, "Min Engine Size" %>
+          <!--    <(perc)= f.label :with_engine_size_gte, "Min Engine Size" %>-->
               
-              <span id="engine_size_slider_val_modal" class="slider-label">
-                <% if @filterrific.with_engine_size_gte.present? %>
-                  <%= @filterrific.with_engine_size_gte %> cc
-                <% else %>
-                  50 cc
-                <% end %>
-              </span>
+          <!--    <span id="engine_size_slider_val_modal" class="slider-label">-->
+          <!--      <(perc) if @filterrific.with_engine_size_gte.present? %>-->
+          <!--        <(perc)= @filterrific.with_engine_size_gte %> cc-->
+          <!--      <(perc) else %>-->
+          <!--        50 cc-->
+          <!--      <(perc) end %>-->
+          <!--    </span>-->
               
-              <% if @filterrific.with_engine_size_gte.present? %>
-                <%= f.text_field :with_engine_size_gte,
-                                 id: 'engine_size_slider_modal', 
-                                 type: 'text',
-                                 data: { 'slider-min'   => '50',
-                                         'slider-max'   => '2294',
-                                         'slider-step'  => '1',
-                                         'slider-value' => @filterrific.
-                                                       with_engine_size_gte } %>
+          <!--    <(perc) if @filterrific.with_engine_size_gte.present? %>-->
+          <!--      <(perc)= f.text_field :with_engine_size_gte,-->
+          <!--                       id: 'engine_size_slider_modal', -->
+          <!--                       type: 'text',-->
+          <!--                       data: { 'slider-min'   => '50',-->
+          <!--                               'slider-max'   => '2294',-->
+          <!--                               'slider-step'  => '1',-->
+          <!--                               'slider-value' => @filterrific.-->
+          <!--                                             with_engine_size_gte } %>-->
               
-              <% else %>
-                <%= f.text_field :with_engine_size_gte,
-                                 id: 'engine_size_slider_modal', 
-                                 type: 'text',
-                                 data: { 'slider-min'   => '50',
-                                         'slider-max'   => '2294',
-                                         'slider-step'  => '1',
-                                         'slider-value' => '50' } %>
-              <% end %>
-            </div>
-          </div>
+          <!--    <(perc) else %>-->
+          <!--      <(perc)= f.text_field :with_engine_size_gte,-->
+          <!--                       id: 'engine_size_slider_modal', -->
+          <!--                       type: 'text',-->
+          <!--                       data: { 'slider-min'   => '50',-->
+          <!--                               'slider-max'   => '2294',-->
+          <!--                               'slider-step'  => '1',-->
+          <!--                               'slider-value' => '50' } %>-->
+          <!--    <(perc) end %>-->
+          <!--  </div>-->
+          <!--</div>-->
         </div>
       </div>
 
