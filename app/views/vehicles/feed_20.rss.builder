@@ -149,55 +149,6 @@ xml.listings do
           xml.tag nil
         end
       end
-      
-      if vehicle.photos[4].present?
-        xml.image do
-          xml.url "https:" + URI.unescape( vehicle.photos[4].image.url() ).to_s
-          xml.tag nil
-        end
-      end
-      
-      if vehicle.photos[5].present?
-        xml.image do
-          xml.url "https:" + URI.unescape( vehicle.photos[5].image.url() ).to_s
-          xml.tag nil
-        end
-      end
-      
-      if vehicle.photos[6].present?
-        xml.image do
-          xml.url "https:" + URI.unescape( vehicle.photos[6].image.url() ).to_s
-          xml.tag nil
-        end
-      end
-      
-      if vehicle.photos[7].present?
-        xml.image do
-          xml.url "https:" + URI.unescape( vehicle.photos[7].image.url() ).to_s
-          xml.tag nil
-        end
-      end
-      
-      if vehicle.photos[8].present?
-        xml.image do
-          xml.url "https:" + URI.unescape( vehicle.photos[8].image.url() ).to_s
-          xml.tag nil
-        end
-      end
-      
-      if vehicle.photos[9].present?
-        xml.image do
-          xml.url "https:" + URI.unescape( vehicle.photos[9].image.url() ).to_s
-          xml.tag nil
-        end
-      end
-      
-      if vehicle.photos[10].present?
-        xml.image do
-          xml.url "https:" + URI.unescape( vehicle.photos[10].image.url() ).to_s
-          xml.tag nil
-        end
-      end
     end
   end
 end
