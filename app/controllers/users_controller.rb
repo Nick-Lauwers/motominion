@@ -237,7 +237,7 @@ class UsersController < ApplicationController
         geometry: {
           type: 'Point',
           coordinates: [ appointment.vehicle.longitude, 
-                         appointment.vehicle.latitude ]
+                        appointment.vehicle.latitude ]
         },
         properties: {
           "id":    "test-drive-item-" + appointment.id.to_s,

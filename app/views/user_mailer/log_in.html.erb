@@ -4,11 +4,5 @@
   Here's that magic link that we promised you. Happy bike hunting!
 </p>
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
-                                                    email: @user.email) %>
-                                                    
-<p>Still really love passwords?</p>
-
-<!--if password doesn't already exist?-->
-<!--<(perc)= link_to "Create one here", edit_password_reset_url(@user.reset_token, -->
-<!--                                                      email: @user.email) %>-->
+<%= link_to "Log Me In!", edit_account_activation_url(@user.activation_token,
+                                                      email: @user.email) %>

@@ -26,9 +26,11 @@ class SessionsController < ApplicationController
       
       if @user.first_name.present?
         flash[:success] = "#{@user.first_name}, we've sent you an email with a 
-                           login link. Go check!"
+                           login link. It may take a second or two to arrive. Go 
+                           check!"
       else
-        flash[:success] = "We've sent you an email with a login link. Go check!"
+        flash[:success] = "We've sent you an email with a login link. It may 
+                           take a second or two to arrive. Go check!"
       end
       
       redirect_to root_url
@@ -38,7 +40,8 @@ class SessionsController < ApplicationController
       @user = User.create(email: params[:session][:email].downcase)
       @user.create_activation_digest
       UserMailer.log_in(@user).deliver_now
-      flash[:success] = 'Welcome! An email has been sent with a login link.'
+      flash[:success] = "Welcome! We've sent you an email with a login link.
+                         It may take a second or two to arrive."
       redirect_to root_url
     end
   end

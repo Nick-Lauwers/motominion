@@ -11,7 +11,8 @@ class VehiclesController < ApplicationController
                                               :feed_9, :feed_10, :feed_11,
                                               :feed_12, :feed_13, :feed_14,
                                               :feed_15, :feed_16, :feed_17,
-                                              :feed_18, :feed_19, :feed_20]
+                                              :feed_18, :feed_19, :feed_20,
+                                              :synchronize_vehicles]
   before_action :profile_pic_upload, only:   [:post]
   before_action :get_vehicle,        only:   [:destroy, :show, :update, :basics,
                                               :details, :upgrades, :photos, 
@@ -19,6 +20,12 @@ class VehiclesController < ApplicationController
                                               :post, :favorite, :unfavorite,
                                               :sold, :undo_sold, :bump]
   before_action :private_buyer,      only:   [:favorite, :unfavorite]
+  
+  def synchronize_vehicles
+    SynchronizationWorker.perform_async
+    flash[:notice] = "Vehicles getting added to db"
+    redirect_to root_url
+  end
   
   def new
     

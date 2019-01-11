@@ -15,9 +15,9 @@ class AccountActivationsController < ApplicationController
       log_in user
       
       if user.first_name.present?
-        flash[:success] = "Welcome back, #{user.first_name}! If you would like 
-                           to login using a password rather than through email,
-                           set up your password 
+        flash[:success] = "Welcome back, #{user.first_name}! In the future, 
+                           if you would like to login using a password rather 
+                           than through email, set up your password 
                            #{view_context.link_to("here", 
                                                   edit_user_path(current_user))}."
       else
@@ -35,7 +35,7 @@ class AccountActivationsController < ApplicationController
       # password path; Then, in the 
      
     else
-      flash[:danger] = "Invalid activation link"
+      flash[:danger] = "Invalid link"
       redirect_to root_url
     end
   end
