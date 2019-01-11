@@ -40,9 +40,10 @@ Rails.application.routes.draw do
   get    'payout_method'           => 'users#payout'
   get    'signup'                  => 'users#new'
   get    'login'                   => 'sessions#new'
-  post   'password'                => 'sessions#create'
   get    'auth/:provider/callback' => 'sessions#create_social'
   post   'login'                   => 'sessions#create'
+  post   'password'                => 'sessions#create'
+  post   'upload'                  => 'vehicles#upload'
   post   'add_card'                => 'users#add_card'
   delete 'logout'                  => 'sessions#destroy'
   

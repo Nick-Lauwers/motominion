@@ -21,7 +21,7 @@ class VehiclesController < ApplicationController
                                               :sold, :undo_sold, :bump]
   before_action :private_buyer,      only:   [:favorite, :unfavorite]
   
-  def synchronize_vehicles
+  def upload
     SynchronizationWorker.perform_async
     flash[:notice] = "Vehicles getting added to db"
     redirect_to root_url
