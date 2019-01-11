@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190111193755) do
+ActiveRecord::Schema.define(version: 20190111200207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -890,7 +890,6 @@ ActiveRecord::Schema.define(version: 20190111193755) do
   add_foreign_key "vehicle_inquiries", "vehicles"
   add_foreign_key "vehicle_models", "vehicle_makes"
   add_foreign_key "vehicle_views", "users"
-  add_foreign_key "vehicle_views", "vehicles"
   add_foreign_key "vehicles", "dealerships"
   add_foreign_key "vehicles", "users"
   add_foreign_key "vehicles", "vehicle_makes"
