@@ -32,6 +32,53 @@ $(function() {
       }, "slow");
     });
     
+  // new
+  
+    // disable save
+    
+      var newCheckboxes             = $('.new-checkbox')
+      var newStyleCheckboxes        = $('.new-style-checkbox');
+      var newManufacturerCheckboxes = $('.new-manufacturer-checkbox');
+      var newSaveButton             = $('.new-save-button');
+      
+      newCheckboxes.change(function () {
+        newSaveButton.prop( 'disabled', 
+                            newStyleCheckboxes.filter(':checked').length < 1 || 
+                            newManufacturerCheckboxes.filter(':checked').length < 1 );
+      });
+      
+      newCheckboxes.change();
+    
+  // edit
+  
+    // disable edit
+    
+      var editCheckboxes             = $('.edit-checkbox')
+      var editStyleCheckboxes        = $('.edit-style-checkbox');
+      var editManufacturerCheckboxes = $('.edit-manufacturer-checkbox');
+      var editSaveButton             = $('.edit-save-button');
+      
+      editCheckboxes.change(function () {
+        editSaveButton.prop( 'disabled', 
+                             editStyleCheckboxes.filter(':checked').length < 1 || 
+                             editManufacturerCheckboxes.filter(':checked').length < 1 );
+      });
+      
+      editCheckboxes.change();
+  
+  // start
+  
+    // disable save
+      
+      var startStyleCheckboxes = $('.start-style-checkbox');
+      var startStyleButton     = $('.start-style-button');
+      
+      startStyleCheckboxes.change(function () {
+        startStyleButton.prop('disabled', startStyleCheckboxes.filter(':checked').length < 1);
+      });
+      
+      startStyleCheckboxes.change();
+    
   // style
   
     // disable save

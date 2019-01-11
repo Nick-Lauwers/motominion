@@ -9,35 +9,12 @@ class StaticPagesController < ApplicationController
     else
       @personalized_search = PersonalizedSearch.new
     end
-    
-    # @personalized_search = current_user.build_personalized_search
-    
+
     @feed_items = Vehicle.
                   where(sold_at: nil).
                   # where.not(posted_at: nil).
                   paginate(page: params[:page], per_page: 9, total_entries: 18).
                   order(bumped_at: :desc)
-    
-    # @filterrific = initialize_filterrific(
-      
-    #   Vehicle,
-    #   params[:filterrific],
-      
-    #   select_options: {
-    #     sorted_by:             Vehicle.options_for_sorted_by,
-    #     with_vehicle_make_id:  VehicleMake.options_for_select,
-    #     with_vehicle_model_id: VehicleModel.options_for_select
-    #   },
-      
-    #   persistence_id: false,
-    #   default_filter_params: {},
-      
-    #   available_filters: [
-    #     :with_vehicle_make_id, 
-    #     :with_vehicle_model_id,
-    #     :with_city
-    #   ],
-    # ) or return
   end
 
   def help
