@@ -26,6 +26,9 @@
         
         <%= button_to "Upload Dealer Vehicles", upload_path %>
         
+        <h3>Overview</h3>
+        <%= area_chart Impression.group_by_day(:created_at, format: "%B %d, %Y").count, discrete: true %>
+
         <% Dealership.all.each do |dealership| %>
           <h3><%= dealership.dealership_name %></h3>
           <%= area_chart Impression.where(dealership: dealership).group_by_day(:created_at, format: "%B %d, %Y").count, discrete: true %>
