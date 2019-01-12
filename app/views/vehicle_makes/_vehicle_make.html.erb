@@ -4,7 +4,7 @@
   
     <div class="vehicle-make-item-image", 
          style="background-image: url(
-                 '<%= vehicle_make.cover_photo_url %>')">
+                 '<%= vehicle_make.cover_photo_url.gsub '-large', '-medium' %>')">
     </div>
     
     <span class="vehicle-make-item-name">
