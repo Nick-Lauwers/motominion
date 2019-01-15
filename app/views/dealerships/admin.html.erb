@@ -35,7 +35,7 @@
         
           <h3><%= dealership.dealership_name %></h3>
           
-          <%= column_chart Impression.where(dealership: dealership).group_by_day(:created_at, format: "%d %B").count,
+          <%= column_chart Impression.where('created_at > ? AND dealership_id = ?', 30.days.ago, dealership.id).group_by_day(:created_at, format: "%d %B").count,
                            colors: ["#38b2a6"] %>
         <% end %>
       </div>
