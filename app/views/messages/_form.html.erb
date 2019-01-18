@@ -22,7 +22,8 @@
         <%= f.trix_editor :content, 
                           rows: 2,
                           placeholder: "Send a personal message.", 
-                          class: "form-control message-form-control" %>
+                          class: "form-control message-form-control",
+                          id: "new_message" %>
 
         <%= f.hidden_field :user_id, value: current_user.id %>
         

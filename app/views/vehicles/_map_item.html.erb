@@ -1,0 +1,113 @@
+<div id="map-item-<%= vehicle.id %>" class="map-item">
+    
+  <%= link_to vehicle, target: "_blank" do %>
+    <div class="map-item-content">
+      
+      <div class="map-item-photo">
+  
+        <% if vehicle.photos.length > 0 %>
+          <div class="map-item-photo-content", 
+               style="background-image: url('<%= vehicle.photos[0].image.url() %>')">
+          </div>
+          
+        <% else %>
+          <div class="map-item-photo-content", 
+               style="background-image: url('http://www.pbs.org/mercy-street/lunchbox_plugins/s/photogallery/img/no-image-available.jpg')">
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="map-item-detail">
+        
+        <span class="map-item-title">
+          <%= vehicle.listing_name %>
+        </span>
+        
+        <span class="map-item-price">
+          <% if vehicle.actual_price.present? %>
+            $<%= vehicle.actual_price %> |
+          <% elsif vehicle.msrp.present? %>
+            $<%= vehicle.msrp %> |
+          <% end %>
+        </span>
+        
+        <% if vehicle.dealership.present? %>
+          <span class="certified">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            Certified
+          </span>
+        <% else %>
+          <span class="private">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            Private
+          </span>
+        <% end %>
+        
+        <% if @vehicles.where(latitude:  vehicle.latitude, 
+                              longitude: vehicle.longitude).count > 1 %>
+          <span class="map-item-count">
+            <%= @vehicles.where(latitude:  vehicle.latitude, 
+                                longitude: vehicle.longitude).count %>
+            bikes at this location
+          </span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% @vehicles.each do |v| %>
+    <% if v.address == vehicle.address && v.id != vehicle.id %>
+      <%= link_to v, target: "_blank" do %>
+        <div class="map-item-content map-item-extra">
+        
+          <div class="map-item-photo">
+      
+            <% if v.photos.length > 0 %>
+              <div class="map-item-photo-content", 
+                   style="background-image: url('<%= v.photos[0].image.url() %>')">
+              </div>
+              
+            <% else %>
+              <div class="map-item-photo-content", 
+                   style="background-image: url('http://www.pbs.org/mercy-street/lunchbox_plugins/s/photogallery/img/no-image-available.jpg')">
+              </div>
+            <% end %>
+          </div>
+          
+          <div class="map-item-detail">
+            
+            <span class="map-item-title">
+              <%= v.listing_name %>
+            </span>
+            
+            <span class="map-item-price">
+              <% if v.actual_price.present? %>
+                $<%= v.actual_price %> |
+              <% elsif v.msrp.present? %>
+                $<%= v.msrp %> |
+              <% end %>
+            </span>
+            
+            <% if v.dealership.present? %>
+              <span class="certified">
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Certified
+              </span>
+            <% else %>
+              <span class="private">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                Private
+              </span>
+            <% end %>
+
+            <span class="map-item-count">
+              <%= @vehicles.where(latitude:  vehicle.latitude, 
+                                  longitude: vehicle.longitude).count %>
+              bikes at this location
+            </span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

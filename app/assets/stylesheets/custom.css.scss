@@ -2572,6 +2572,17 @@ footer {
   color: $green;
 }
 
+.map-item-count {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+  background-color: $green;
+  border-radius: 5px;
+  padding: 0.3em 0.7em;
+  margin-top: 0.5em;
+  display: inline-block;
+}
+
 .feed-item-mobile-name,
 .related-vehicle-mobile-name {
   font-size: 0.9em;
@@ -2739,6 +2750,19 @@ footer {
   background-position: center;
   background-repeat: no-repeat;
   height: 210px;
+}
+
+.response-item-image {
+  border-radius: 2px;
+  background-color: $gray-darkest;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 50px;
+}
+
+.response-item {
+  margin-top: 0.7em;
 }
 
 .mobile-listing-item-image,
@@ -3272,15 +3296,21 @@ body {
 }
 
 .map-item {
-  background-color: white;
-  border-radius: 2px;
-  box-shadow: 0 2px 16px 0 $gray-dark;
   position: fixed;
   bottom: 60px;
   left: 15px;
   right: 15px;
+  max-height: 135px;
+  overflow: scroll;
   display: none;
   z-index: 20000;
+}
+
+.map-item-content {
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 2px 16px 0 $gray-dark;
+  overflow: auto;
 }
 
 .map-item-photo,
@@ -3321,6 +3351,10 @@ body {
   font-size: 0.9em;
   font-weight: bold;
   display: inline-block;
+}
+
+.map-item-extra {
+  margin-top: 15px;
 }
 
 #shortlist-map {
@@ -10003,7 +10037,8 @@ a.remove_fields {
   .dealer-signup-testimonial-detail,
   .feature-testimonial,
   .tour-feature-content,
-  .dealer-signup-tour-text {
+  .dealer-signup-tour-text,
+  .test-drive-introduction-detail {
     display: flex;
     align-items: center;
   }

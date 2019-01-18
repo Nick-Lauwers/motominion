@@ -448,7 +448,7 @@ $(function() {
         	  
         	mapItem.css("display", "none");
         	marker.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
-        	
+        	  
         	searchMap.css({"z-index": -1000});
         	searchResultsBackground.css({"display": "block"});
         	searchResults.height(searchResultsBackground.outerHeight());
@@ -502,7 +502,7 @@ $(function() {
         	  
         	mapItem.css("display", "none");
         	marker.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
-          
+
           searchMap.css({"z-index": -1000});
         	searchResultsBackground.css({"display": "block"});
         	searchResults.height(searchResultsBackground.outerHeight());

@@ -339,17 +339,12 @@
               ) %>
           <div class="test-drive-introduction">
   
-            <i class="fa fa-times test-drive-introduction-close"></i>
+            <!--<i class="fa fa-times test-drive-introduction-close"></i>-->
             
-            <div class="row vertical-align">
-            
-              <div class="col-md-2">
-                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/hourglass.png",
-                              class: "test-drive-introduction-image") %>
-              </div>
+            <div class="row test-drive-introduction-detail">
               
-              <div class="col-md-10">
-  
+              <div class="col-md-7">
+                
                 <span class="test-drive-introduction-title">
                   Respond to <%= @other.first_name %>'s test drive
                     <%= pluralize_without_count(
@@ -363,40 +358,64 @@
                   Respond within 24 hours to maintain your response rate.
                 </p>
               </div>
+              
+              <div class="col-md-5">
+                <% if @conversation.messages.exists? %>
+                  <%= link_to "Export Conversation to Email", 
+                              export_conversation_path(@conversation), 
+                              class: "btn-export" %>
+                <% end %>
+              </div>
             </div>
-            
-            <div class="row">
-              <div class="col-md-10 col-md-offset-2">
-                <ol class="test-drive-introduction-list">
-                  <% @conversation.appointments.where(
-                        status: 'pending', seller_id: current_user.id
-                     ).each do |appointment| %>
+
+            <ol class="test-drive-introduction-list">
+              <% @conversation.appointments.where(
+                          status: 'pending', seller_id: current_user.id
+                       ).each do |appointment| %>
+                <li id="response-item-<%= appointment.id %>"
+                    class="response-item">
+                  <div class="row vertical-align">
                     
-                    <li id="response-item-<%= appointment.id %>"
-                        class="response-item">
-                      <div class="row vertical-align">
-                        
-                        <div class="col-md-6">
+                    <div class="col-md-2 hidden-xs">
+                      <%= link_to appointment.vehicle do %>
+                      
+                        <% if appointment.vehicle.photos.length > 0 %>
+                          <div class="response-item-image", 
+                               style="background-image: url('<%= appointment.vehicle.photos[0].image.url() %>')">
+                          </div>
                           
-                          <%= link_to appointment.vehicle.listing_name,
-                                      appointment.vehicle, 
-                                      class: "response-vehicle" %>
-                          
-                          <span class="response-date">
-                            <%= appointment.date.strftime(
-                                  "%A, %d %b (%-l:%M%p)"
-                                ) %>
-                          </span>
-                        </div>
+                        <% else %>
+                          <div class="response-item-image", 
+                               style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/no-image-available.jpg')">
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+
+                    <div class="col-md-5 col-xs-6">
+                      
+                      <%= link_to appointment.vehicle.listing_name,
+                                  appointment.vehicle, 
+                                  class: "response-vehicle" %>
+                      
+                      <span class="response-date">
+                        <%= appointment.date.strftime(
+                              "%A, %d %b (%-l:%M%p)"
+                            ) %>
+                      </span>
+                    </div>
+                    
+                    <div class="col-md-5 col-xs-6">
+                      <div class="row">
                         
-                        <div class="col-md-3">
+                        <div class="col-md-6 col-xs-6">
                           <%= link_to "Accept",
                                       accept_vehicle_appointment_path(appointment.vehicle, appointment),
                                       method: :put,
                                       class: "btn-test-drive-accept" %>
                         </div>
-                        
-                        <div class="col-md-3">
+                      
+                        <div class="col-md-6 col-xs-6">
                           <%= link_to "Decline",
                                       decline_vehicle_appointment_path(
                                         appointment.vehicle, appointment
@@ -405,25 +424,21 @@
                                       class: "btn-test-drive-decline" %>
                         </div>
                       </div>
-                    </li>
-                  <% end %>
-                </ol>
-              </div>
-            </div>
-
-            <div class="row test-drive-buttons">
-              <div class="col-md-10 col-md-offset-2">
-                <div class="row">
-                  <div class="col-md-6 col-md-offset-6">
-                    <% if @conversation.messages.exists? %>
-                      <%= link_to "Export Conversation to Email", 
-                                  export_conversation_path(@conversation), 
-                                  class: "btn-export" %>
-                    <% end %>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
+                </li>
+              <% end %>
+            </ol>
+
+            <!--<div class="row test-drive-buttons">-->
+            <!--  <div class="col-md-10 col-md-offset-2">-->
+            <!--    <div class="row">-->
+            <!--      <div class="col-md-6 col-md-offset-6">-->
+                    
+            <!--      </div>-->
+            <!--    </div>-->
+            <!--  </div>-->
+            <!--</div>-->
           </div>
         <% end %>
         
@@ -486,7 +501,7 @@
   </div>
 </div>
 
-<%= subscribe_to conversation_messages_path(@conversation) %>
+<!--<= subscribe_to conversation_messages_path(@conversation) %>-->
 
 <!--must login iot access-->
 <!--change title-->

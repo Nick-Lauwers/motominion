@@ -1,0 +1,51 @@
+<%= link_to vehicle, target: "_blank" do %>
+  <div id="map-shortlist-map-item-<%= vehicle.id %>" class="map-item">
+  
+    <div class="map-item-photo">
+
+      <% if vehicle.photos.length > 0 %>
+        <div class="map-item-photo-content", 
+             style="background-image: url('<%= vehicle.photos[0].image.url() %>')">
+        </div>
+        
+      <% else %>
+        <div class="map-item-photo-content", 
+             style="background-image: url('http://www.pbs.org/mercy-street/lunchbox_plugins/s/photogallery/img/no-image-available.jpg')">
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="map-item-detail">
+      
+      <span class="map-item-title">
+        <%= vehicle.listing_name %>
+      </span>
+      
+      <span class="map-item-price">
+        <% if vehicle.actual_price.present? %>
+          $<%= vehicle.actual_price %> |
+        <% elsif vehicle.msrp.present? %>
+          $<%= vehicle.msrp %> |
+        <% end %>
+      </span>
+      
+      <% if vehicle.dealership.present? %>
+        <span class="certified">
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+          Certified
+        </span>
+      <% else %>
+        <span class="private">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          Private
+        </span>
+      <% end %>
+      
+      <% @vehicles.each do |v| %>
+        <% if v.address == vehicle.address && v.id != vehicle.id %>
+          Hello
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

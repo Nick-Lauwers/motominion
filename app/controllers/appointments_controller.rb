@@ -62,7 +62,24 @@ class AppointmentsController < ApplicationController
   end
   
   def accept
+    
     @appointment.update_attribute(:status, 'accepted')
+    
+    @appointment.conversation.messages.create!(
+      user:    current_user, 
+      content: "How are you, " + 
+               @appointment.buyer.first_name + 
+               "? We would love to have you test drive our listing, " +
+               @appointment.vehicle.listing_name +
+               ". Please show up at least ten minutes before your scheduled 
+               appointment, which will be " +
+               @appointment.date.strftime("%A, %d %b") + ", at " + 
+               @appointment.date.strftime("%-l:%M%p") + 
+               ". Looking forward to seeing you, " +
+               @appointment.buyer.first_name + 
+               "!"
+    )
+        
     @appointment.conversation.update_attributes(next_contributor_id: :buyer_id, 
                                                 latest_message_read: false)
     AppointmentMailer.appointment_accepted(@appointment).deliver_now
@@ -72,7 +89,26 @@ class AppointmentsController < ApplicationController
   end
   
   def decline
+    
     @appointment.update_attribute(:status, 'declined')
+    
+    @appointment.conversation.messages.create!(
+      user:    current_user, 
+      content: "Hi, " + 
+               @appointment.buyer.first_name + 
+               "! Unfortunately, we are unable to schedule you for a test drive
+               of our listing, " +
+               @appointment.vehicle.listing_name +
+               ". We aren't available at your requested time, " +
+               @appointment.date.strftime("%A, %d %b") + ", at " + 
+               @appointment.date.strftime("%-l:%M%p") + 
+               ". If there is another time that works well for you, please 
+               message us with the details. Looking forward to hearing from 
+               you, " +
+               @appointment.buyer.first_name + 
+               "!"
+    )
+    
     @appointment.conversation.update_attributes(next_contributor_id: :buyer_id, 
                                                 latest_message_read: false)
     AppointmentMailer.appointment_declined(@appointment).deliver_now

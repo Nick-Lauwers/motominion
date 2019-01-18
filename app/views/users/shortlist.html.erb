@@ -26,53 +26,9 @@
     
     <div id="shortlist-map"></div>
     
-    <% @vehicles.each do |vehicle| %>
-      <%= link_to vehicle, target: "_blank" do %>
-        <div id="shortlist-map-item-<%= vehicle.id %>" class="map-item">
-  
-          <div class="map-item-photo">
-  
-            <% if vehicle.photos.length > 0 %>
-              <div class="map-item-photo-content", 
-                   style="background-image: url('<%= vehicle.photos[0].image.url() %>')">
-              </div>
-              
-            <% else %>
-              <div class="map-item-photo-content", 
-                   style="background-image: url('http://www.pbs.org/mercy-street/lunchbox_plugins/s/photogallery/img/no-image-available.jpg')">
-              </div>
-            <% end %>
-          </div>
-          
-          <div class="map-item-detail">
-            
-            <span class="map-item-title">
-              <%= vehicle.listing_name %>
-            </span>
-            
-            <span class="map-item-price">
-              <% if vehicle.actual_price.present? %>
-                $<%= vehicle.actual_price %> |
-              <% elsif vehicle.msrp.present? %>
-                $<%= vehicle.msrp %> |
-              <% end %>
-            </span>
-            
-            <% if vehicle.dealership.present? %>
-              <span class="certified">
-                <i class="fa fa-check-circle" aria-hidden="true"></i>
-                Certified
-              </span>
-            <% else %>
-              <span class="private">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                Private
-              </span>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render partial:    "map_item", 
+               collection: @vehicles, 
+               as:         :vehicle %>
   </div>
   
   <div class="shortlist-results-background">
@@ -327,15 +283,15 @@
             
             function createMapItem(currentFeature) {
               
-              // var mapItems = $('.map-item');
+              var mapItems = $('.map-item');
               var markers  = $('.marker');
               
-              // mapItems.css("display", "none")
+              mapItems.css("display", "none")
               markers.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
               
-              // var mapItem = $('#shortlist-map-item-' + currentFeature.properties.id);
+              var mapItem = $('#map-' + currentFeature.properties.id);
               
-              // mapItem.css({ "display": "block" })
+              mapItem.css({ "display": "block" })
             }
             
             geojson.features.forEach(function(marker) {
@@ -359,6 +315,8 @@
                   el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
                 }
               });
+              
+              // marker.properties.id = shortlist-item-vehicle_id, test-drive-item-appointment_id, purchase-item-purchase_id
               
               var shortlistItem = document.getElementById(marker.properties.id);
               
