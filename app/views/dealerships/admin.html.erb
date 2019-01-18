@@ -28,14 +28,38 @@
         
         <h3>Overview</h3>
         
-        <%= column_chart Impression.where('created_at > ?', 30.days.ago).group_by_day(:created_at, format: "%d %B").count,
+        <p>
+          Total Views This Week: 
+          <%= VehicleView.where('created_at > ?', 7.days.ago).count %>
+        </p>
+        
+        <%= column_chart VehicleView.
+                           where('created_at > ?', 30.days.ago).
+                           group_by_day(:created_at, format: "%d %B").
+                           count,
                          colors: ["#38b2a6"] %>
 
         <% Dealership.all.each do |dealership| %>
         
           <h3><%= dealership.dealership_name %></h3>
           
-          <%= column_chart Impression.where('created_at > ? AND dealership_id = ?', 30.days.ago, dealership.id).group_by_day(:created_at, format: "%d %B").count,
+          <p>
+            
+            Total Views This Week: 
+            
+            <%= VehicleView.
+                  joins(:vehicle).
+                  where(created_at: 7.days.ago..Time.now, 
+                        vehicles:   { dealership_id: dealership.id }).
+                  count %>
+          </p>
+          
+          <%= column_chart VehicleView.
+                             joins(:vehicle).
+                             where(created_at: 7.days.ago..Time.now, 
+                                   vehicles:   { dealership_id: dealership.id }).
+                             group_by_day('vehicle_views.created_at', format: "%d %B").
+                             count, 
                            colors: ["#38b2a6"] %>
         <% end %>
       </div>
