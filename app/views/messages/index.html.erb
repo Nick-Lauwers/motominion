@@ -456,7 +456,7 @@
               Last viewed by <%= @other.first_name %> on: <strong><%= @conversation.recipient_last_viewed_at.strftime("%d %B %Y") %></strong>
             <% end %>
             
-          <% elsif (current_user.id == @conversation.recipient_id)  %>
+          <% elsif (current_user.id == @conversation.recipient_id  && @conversation.sender_last_viewed_at.present?)  %>
           
             <% if @conversation.sender_last_viewed_at.today? %>
               Last viewed by 
