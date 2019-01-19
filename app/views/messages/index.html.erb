@@ -22,21 +22,29 @@
       
       <li class="nav-active"><%= link_to "Inbox", conversations_path %></li>
       
-      <li><%= link_to "Shortlist", shortlist_user_path(current_user) %></li>
-      
-      <% if current_user.personalized_search.present? %>
+      <% if current_user.dealership_id.present? %>
         <li>
-          <%= link_to "Matches", 
-              personalized_search_path(current_user.personalized_search) %>
+          <%= link_to "Performance",
+                      performance_dealership_path(current_user.dealership) %>
         </li>
       
       <% else %>
-        <li>
-          <%= link_to "Matches", new_personalized_search_path %>
-        </li>
-      <% end %>
+        
+        <li><%= link_to "Shortlist", shortlist_user_path(current_user) %></li>
       
-      <li><%= link_to "Your Listings", vehicles_path %></li>
+        <% if current_user.personalized_search.present? %>
+          <li>
+            <%= link_to "Matches", current_user.personalized_search %>
+          </li>
+        
+        <% else %>
+          <li>
+            <%= link_to "Matches", start_personalized_searches_path %>
+          </li>
+        <% end %>
+      
+        <li><%= link_to "Your Listings", vehicles_path %></li>
+      <% end %>
       
       <li><%= link_to "Profile", edit_user_path(current_user) %></li>
     </ul>
@@ -55,21 +63,29 @@
     
     <li class="dropdown-active"><%= link_to "Inbox", conversations_path %></li>
     
-    <li><%= link_to "Shortlist", shortlist_user_path(current_user) %></li>
-    
-    <% if current_user.personalized_search.present? %>
+    <% if current_user.dealership_id.present? %>
       <li>
-        <%= link_to "Matches", 
-            personalized_search_path(current_user.personalized_search) %>
+        <%= link_to "Performance", 
+                    performance_dealership_path(current_user.dealership) %>
       </li>
     
     <% else %>
-      <li>
-        <%= link_to "Matches", new_personalized_search_path %>
-      </li>
-    <% end %>
     
-    <li><%= link_to "Your Listings", vehicles_path %></li>
+      <li><%= link_to "Shortlist", shortlist_user_path(current_user) %></li>
+    
+      <% if current_user.personalized_search.present? %>
+        <li>
+          <%= link_to "Matches", current_user.personalized_search %>
+        </li>
+      
+      <% else %>
+        <li>
+          <%= link_to "Matches", start_personalized_searches_path %>
+        </li>
+      <% end %>
+    
+      <li><%= link_to "Your Listings", vehicles_path %></li>
+    <% end %>
     
     <li><%= link_to "Profile", edit_user_path(current_user) %></li>
   </ul>
