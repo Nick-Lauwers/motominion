@@ -283,72 +283,72 @@
       
       <div class="col-md-8 col-md-offset-1">
         
-        <% if current_user.id == @conversation.sender_id %>
-          <div class="conversation-introduction">
+        <!--<(perc) if current_user.id == @conversation.sender_id %>-->
+        <!--  <div class="conversation-introduction">-->
   
-            <i class="fa fa-times conversation-introduction-close"></i>
+        <!--    <i class="fa fa-times conversation-introduction-close"></i>-->
             
-            <div class="row vertical-align">
+        <!--    <div class="row vertical-align">-->
             
-              <div class="col-md-2 hidden-xs">
-                <%= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/identity.png",
-                              class: "conversation-introduction-image") %>
-              </div>
+        <!--      <div class="col-md-2 hidden-xs">-->
+        <!--        <(perc)= image_tag("https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/identity.png",-->
+        <!--                      class: "conversation-introduction-image") %>-->
+        <!--      </div>-->
               
-              <div class="col-md-10">
+        <!--      <div class="col-md-10">-->
   
-                <span class="conversation-introduction-title">
-                  Your identity is currently:
-                </span>
+        <!--        <span class="conversation-introduction-title">-->
+        <!--          Your identity is currently:-->
+        <!--        </span>-->
                 
-                <% if @conversation.is_sender_anonymous == true %>
-                  <span class="conversation-introduction-hidden">Hidden</span>
-                <% else %>
-                  <span class="conversation-introduction-visible">Visible</span>
-                <% end %>
+        <!--        <(perc) if @conversation.is_sender_anonymous == true %>-->
+        <!--          <span class="conversation-introduction-hidden">Hidden</span>-->
+        <!--        <(perc) else %>-->
+        <!--          <span class="conversation-introduction-visible">Visible</span>-->
+        <!--        <(perc) end %>-->
             
-                <p class="conversation-introduction-info">
-                      When your identity is hidden, sellers are unable to view
-                      your personal information; usernames and profile photos 
-                      remain hidden. As you close a deal, sellers may ask that 
-                      you reveal your identity in order to strengthen trust in 
-                      you.
-                </p>
-              </div>
-            </div>
+        <!--        <p class="conversation-introduction-info">-->
+        <!--              When your identity is hidden, sellers are unable to view-->
+        <!--              your personal information; usernames and profile photos -->
+        <!--              remain hidden. As you close a deal, sellers may ask that -->
+        <!--              you reveal your identity in order to strengthen trust in -->
+        <!--              you.-->
+        <!--        </p>-->
+        <!--      </div>-->
+        <!--    </div>-->
             
-            <div class="row conversation-buttons">
-              <div class="col-md-10 col-md-offset-2">
-                <div class="row">
+        <!--    <div class="row conversation-buttons">-->
+        <!--      <div class="col-md-10 col-md-offset-2">-->
+        <!--        <div class="row">-->
                   
-                  <div class="col-md-6">
+        <!--          <div class="col-md-6">-->
                     
-                    <% if @conversation.is_sender_anonymous == true %>
-                      <%= link_to "Reveal Identity",
-                                  reveal_identity_conversation_path(@conversation),
-                                  method: :put,
-                                  class: "btn-anonymous" %>
+        <!--            <(perc) if @conversation.is_sender_anonymous == true %>-->
+        <!--              <(perc)= link_to "Reveal Identity",-->
+        <!--                          reveal_identity_conversation_path(@conversation),-->
+        <!--                          method: :put,-->
+        <!--                          class: "btn-anonymous" %>-->
                     
-                    <% else %> 
-                      <%= link_to "Hide Identity",
-                                  hide_identity_conversation_path(@conversation),
-                                  method: :put,
-                                  class: "btn-anonymous" %>
-                    <% end %>
-                  </div>
+        <!--            <(perc) else %> -->
+        <!--              <(perc)= link_to "Hide Identity",-->
+        <!--                          hide_identity_conversation_path(@conversation),-->
+        <!--                          method: :put,-->
+        <!--                          class: "btn-anonymous" %>-->
+        <!--            <(perc) end %>-->
+        <!--          </div>-->
                   
-                  <div class="col-md-6">
-                    <% if @conversation.messages.exists? %>
-                      <%= link_to "Export Conversation to Email", 
-                                  export_conversation_path(@conversation), 
-                                  class: "btn-export" %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        <!--          <div class="col-md-6">-->
+        <!--            <(perc) if @conversation.messages.exists? %>-->
+        <!--              <(perc)= link_to "Export Conversation to Email", -->
+        <!--                          export_conversation_path(@conversation), -->
+        <!--                          class: "btn-export" %>-->
+        <!--            <(perc) end %>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--      </div>-->
+        <!--    </div>-->
+        <!--  </div>-->
+        <!--<(perc) end %>-->
 
         <% if @conversation.appointments.exists?(
                 status: 'pending', seller_id: current_user.id

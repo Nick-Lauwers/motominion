@@ -45,55 +45,67 @@
           
           <div class="tab-pane fade active in" id="performance_insights">
             
-            <div class="row-modified performance-indicators">
+            <!--<div class="row-modified performance-indicators">-->
               
-              <div class="col-md-3-modified col-xs-6-modified">
-                <div class="performance-indicator performance-indicator-a">
-                  <div class="performance-indicator-detail">
+            <!--  <div class="col-md-3-modified col-xs-6-modified">-->
+            <!--    <div class="performance-indicator performance-indicator-a">-->
+            <!--      <div class="performance-indicator-detail">-->
                     
-                    <span class="performance-indicator-title">78</span>
+            <!--        <span class="performance-indicator-title">78</span>-->
                     
-                    <span class="performance-indicator-info">
-                      Average Score
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <!--        <span class="performance-indicator-info">-->
+            <!--          Average Score-->
+            <!--        </span>-->
+            <!--      </div>-->
+            <!--    </div>-->
+            <!--  </div>-->
               
-              <div class="col-md-3-modified col-xs-6-modified">
-                <div class="performance-indicator performance-indicator-b">
-                  <div class="performance-indicator-detail">
-                    <span class="performance-indicator-title">45</span>
-                    <span class="performance-indicator-info">Shortlists</span>
-                  </div>
-                </div>
-              </div>
+            <!--  <div class="col-md-3-modified col-xs-6-modified">-->
+            <!--    <div class="performance-indicator performance-indicator-b">-->
+            <!--      <div class="performance-indicator-detail">-->
+            <!--        <span class="performance-indicator-title">45</span>-->
+            <!--        <span class="performance-indicator-info">Shortlists</span>-->
+            <!--      </div>-->
+            <!--    </div>-->
+            <!--  </div>-->
               
-              <div class="col-md-3-modified col-xs-6-modified">
-                <div class="performance-indicator performance-indicator-c">
-                  <div class="performance-indicator-detail">
-                    <span class="performance-indicator-title">73</span>
-                    <span class="performance-indicator-info">Test Drives</span>
-                  </div>
-                </div>
-              </div>
+            <!--  <div class="col-md-3-modified col-xs-6-modified">-->
+            <!--    <div class="performance-indicator performance-indicator-c">-->
+            <!--      <div class="performance-indicator-detail">-->
+            <!--        <span class="performance-indicator-title">73</span>-->
+            <!--        <span class="performance-indicator-info">Test Drives</span>-->
+            <!--      </div>-->
+            <!--    </div>-->
+            <!--  </div>-->
               
-              <div class="col-md-3-modified col-xs-6-modified">
-                <div class="performance-indicator performance-indicator-d">
-                  <div class="performance-indicator-detail">
-                    <span class="performance-indicator-title">3</span>
-                    <span class="performance-indicator-info">Purchases</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!--  <div class="col-md-3-modified col-xs-6-modified">-->
+            <!--    <div class="performance-indicator performance-indicator-d">-->
+            <!--      <div class="performance-indicator-detail">-->
+            <!--        <span class="performance-indicator-title">3</span>-->
+            <!--        <span class="performance-indicator-info">Purchases</span>-->
+            <!--      </div>-->
+            <!--    </div>-->
+            <!--  </div>-->
+            <!--</div>-->
             
             <p class="chart-summary">
-              In the last 30 days, vehicles in your inventory have been viewed 
-              a total of 30 times:
+              
+              In the last week, vehicles in your inventory have been viewed 
+              a total of 
+              
+              <%= pluralize(VehicleView.
+                              joins(:vehicle).
+                              where(created_at: 7.days.ago..Time.now, 
+                                    vehicles:   { dealership_id: @dealership.id }).
+                              count, 'times') %>
             </p>
 
-            <%= column_chart @vehicle_views.group_by_day(:created_at, format: "%d %B").count,
+            <%= column_chart VehicleView.
+                               joins(:vehicle).
+                               where(created_at: 30.days.ago..Time.now, 
+                                     vehicles:   { dealership_id: @dealership.id }).
+                               group_by_day('vehicle_views.created_at', format: "%d %B").
+                               count, 
                              colors: ["#38b2a6"] %>
           </div>
           
