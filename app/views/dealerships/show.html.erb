@@ -69,6 +69,7 @@
             <%= @dealership.email %>
             
             <%= link_to "http://#{@dealership.website}",
+                        target: "_blank",
                         class: "dealer-profile-hero-website" do %>
               <%= @dealership.website %>
             <% end %>
