@@ -2709,6 +2709,13 @@ footer {
   }
 }
 
+.related-vehicle {
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
 .mobile-listing-item,
 .wish-list-item {
   margin-bottom: 3em;
