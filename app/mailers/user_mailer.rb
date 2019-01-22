@@ -7,7 +7,7 @@ class UserMailer < ApplicationMailer
 
   def log_in(user)
     @user = user
-    mail to: user.email, subject: "Welcome Back"
+    mail to: user.email, subject: "The Magic Link"
   end
   
   def password_reset(user)
