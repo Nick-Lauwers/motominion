@@ -115,16 +115,30 @@ class ConversationsController < ApplicationController
             string = string + inquiry_strings[i] + "; "
           end
         end
-
-        message = @conversation.messages.create!(
-                    user:    current_user, 
-                    content: "Hi, " + 
-                            @other.first_name + 
-                            ". I recently noticed your motorcycle, " +
-                            vehicle_inquiry.vehicle.listing_name + 
-                            ", and have questions about: " +
-                            string
-                  )
+        
+        if vehicle_inquiry.price || vehicle_inquiry.special_offers ||
+           vehicle_inquiry.availability || vehicle_inquiry.condition ||
+           vehicle_inquiry.vehicle_history || vehicle_inquiry.test_drives
+          message = @conversation.messages.create!(
+                      user:    current_user, 
+                      content: "Hi, " + 
+                              @other.first_name + 
+                              ". I recently noticed your motorcycle, " +
+                              vehicle_inquiry.vehicle.listing_name + 
+                              ", and have questions about: " +
+                              string
+                    )
+        
+        else
+          message = @conversation.messages.create!(
+                      user:    current_user, 
+                      content: "Hi, " + 
+                              @other.first_name + 
+                              ". I recently noticed your motorcycle, " +
+                              vehicle_inquiry.vehicle.listing_name + 
+                              ", and am wondering if it is still available."
+                    )
+        end
         
         @conversation.update_attributes(next_contributor_id: @other.id, 
                                         latest_message_read: false)
@@ -220,15 +234,29 @@ class ConversationsController < ApplicationController
           end
         end
 
-        message = @conversation.messages.create!(
-                    user:    current_user, 
-                    content: "Hi, " + 
-                            @other.first_name + 
-                            ". I recently noticed your motorcycle, " +
-                            vehicle_inquiry.vehicle.listing_name + 
-                            ", and have questions about: " +
-                            string
-                  )
+        if vehicle_inquiry.price || vehicle_inquiry.special_offers ||
+           vehicle_inquiry.availability || vehicle_inquiry.condition ||
+           vehicle_inquiry.vehicle_history || vehicle_inquiry.test_drives
+          message = @conversation.messages.create!(
+                      user:    current_user, 
+                      content: "Hi, " + 
+                              @other.first_name + 
+                              ". I recently noticed your motorcycle, " +
+                              vehicle_inquiry.vehicle.listing_name + 
+                              ", and have questions about: " +
+                              string
+                    )
+        
+        else
+          message = @conversation.messages.create!(
+                      user:    current_user, 
+                      content: "Hi, " + 
+                              @other.first_name + 
+                              ". I recently noticed your motorcycle, " +
+                              vehicle_inquiry.vehicle.listing_name + 
+                              ", and am wondering if it is still available."
+                    )
+        end
         
         @conversation.update_attributes(next_contributor_id: @other.id, 
                                         latest_message_read: false)
