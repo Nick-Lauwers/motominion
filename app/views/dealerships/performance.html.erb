@@ -97,12 +97,12 @@
                               joins(:vehicle).
                               where(created_at: 7.days.ago..Time.now, 
                                     vehicles:   { dealership_id: @dealership.id }).
-                              count, 'times') %>
+                              count, 'times') %>.
             </p>
 
             <%= column_chart VehicleView.
                                joins(:vehicle).
-                               where(created_at: 30.days.ago..Time.now, 
+                               where(created_at: 7.days.ago..Time.now, 
                                      vehicles:   { dealership_id: @dealership.id }).
                                group_by_day('vehicle_views.created_at', format: "%d %B").
                                count, 
