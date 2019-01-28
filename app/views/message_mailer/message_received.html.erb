@@ -1,10 +1,197 @@
-<h1 style="color:green;">You Received A Message! | Motominion</h1>
+<div style="background-color: #f9f9f9;
+            max-width: 600px;
+            margin: 0 auto">
+  
+  <div style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/email-header.jpg');
+              background-color: #f9f9f9;
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;
+              height: 125px;
+              opacity: 0.6;
+              position: relative">
+    <div style="width: 100%;
+                height: 125px;
+                background: linear-gradient(rgba(249, 249, 249, 0), #f9f9f9);
+                position: absolute;
+                bottom: 0;">
+    </div>
+  </div>
+  
+  <div style="padding: 3em 4em 4em">
+    
+    <div style="text-align: right;
+                width: 220px;
+                margin: 0 auto 2.5em">
+      
+      <img src="https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/logo.png",
+           style="height: 40px;
+                  float: left">
+           
+      <h1 style="color: #4c4c4c;
+                 line-height: 40px;
+                 margin: 0;
+                 display: inline-block">
+        motominion
+      </h1>
+    </div>
 
-<p>Hi <%= @recipient.first_name %>,</p>
-
-<p>
-  You just received a message from <strong><%= @sender.first_name %></strong>. 
-  Click on the link below to view the details:
-</p>
-
-<%= link_to "View Message", conversation_messages_url(@conversation) %>
+    <div>
+    
+      <h1 style="font-size: 1.05em;
+                 text-align: center;
+                 color: #4c4c4c;
+                 margin: 0 0 1.5em">
+        <%= @sender.first_name %> sent you a message...
+      </h1>
+      
+      <p style="font-size: 1em;
+                line-height: 1.5;
+                color: #63656a;
+                margin: 0 0 1.5em">
+        
+        Good news, 
+        
+        <% if @recipient.dealership.present? %>
+          <%= @recipient.dealership.name %>!
+        <% else %>
+          <%= @recipient.first_name %>!
+        <% end %>
+        
+        You just received a message from 
+        
+        <strong><%= @sender.first_name %> <%= @sender.last_name %></strong>:
+      </p>
+      
+      <div style="background-color: white;
+                  padding: 1.25em 1.5em;
+                  box-shadow: 0 2px 16px 0 rgba(76, 76, 76, 0.08);
+                  border: 1px solid #e7e7e7;
+                  border-radius: 2px">
+        <p style="font-size: 1em;
+                  line-height: 1.5;
+                  color: #63656a;
+                  margin: 0">
+          <%= @message %>
+        </p>
+      </div>
+      
+      <p style="font-size: 1em;
+                line-height: 1.5;
+                color: #63656a;
+                margin: 2em 0 0.5em">
+        To view the full details of the message and to reply back, click the 
+        link below! Be sure to respond promptly; your overall rating on 
+        Motominion is based, in part, on your response rate.
+      </p>
+    
+      <%= link_to conversation_messages_url(@conversation),
+                  { style: "font-weight: bold;
+                            text-decoration: none;
+                            color: white;
+                            background-color: #5BBB9A;
+                            border-radius: 2px;
+                            box-shadow: 0 3px 24px 0 #c8c9cb;
+                            width: 185px;
+                            height: 65px;
+                            margin: 2em auto 0;
+                            position: relative;
+                            display: block;
+                            overflow: hidden" } do %>
+                            
+        <span style="position: absolute;
+                     top: 10px;
+                     left: 10px">
+          Reply to <%= @recipient.first_name %>
+        </span>
+        
+        <img src='https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-i.png',
+             style="position: absolute;
+                    right: -10px;
+                    bottom: -10px">
+      <% end %>
+    </div>
+    
+    <div style="font-size: 0.95em;
+                text-align: center;
+                color: #63656a;
+                border-top: 1px solid #e7e7e7;
+                padding-top: 3em;
+                margin-top: 3em">
+      
+      <div style="height: 28px;
+                  margin: 0 0 1em;
+                  position: relative">
+        <ul style="list-style: none;
+                   padding: 0;
+                   margin: 0;
+                   position: absolute;
+                   left: 50%;
+                   transform: translateX(-50%)">
+        
+          <li style="display: inline-block">
+            <%= link_to 'https://www.facebook.com/MotominionMotorcycles/',
+                        target: "_blank" do %>
+              <img src="https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/facebook.png">
+            <% end %>
+          </li>
+          
+          <li style="display: inline-block;
+                     margin-left: 1em">
+            <%= link_to 'https://twitter.com/motominion',
+                        target: "_blank" do %>
+              <img src="https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/twitter.png">
+            <% end %>
+          </li>
+          
+          <li style="display: inline-block;
+                     margin-left: 1em">
+            <%= link_to 'https://www.linkedin.com/company/motominion/about/',
+                        target: "_blank" do %>
+              <img src="https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/linkedin.png">
+            <% end %>
+          </li>
+          
+          <li style="display: inline-block;
+                     margin-left: 1em">
+            <%= link_to 'https://www.instagram.com/motominion_motorcycles/',
+                        target: "_blank" do %>
+              <img src="https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/instagram.png">
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      
+      <span style="margin-bottom: 1em;
+                   display: block">
+        This is an automated mailing from Motominion. 
+      </span>
+      
+      <span style="margin-bottom: 1em;
+                   display: block">
+        
+        You registered on Motominion at: <%= @recipient.email %>. 
+        
+        </br> 
+        
+        <%= link_to "Unsubscribe", 
+                    '#',
+                    { style: "color: #63656a;" } %> 
+                    
+        from personalized recommendations and price and availability changes. 
+      </span>
+      
+      <span style="margin-bottom: 1em;
+                   display: block">
+        Motominion, Inc.
+        </br>
+        8 10th St., Ste 1505 • San Francisco, CA 94103 
+      </span>
+      
+      <span style="display: block">
+        Copyright © 2019 Motominion. All rights reserved.
+      </span>
+      </p>
+    </div>
+  </div>
+</div>

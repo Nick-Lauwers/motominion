@@ -2,6 +2,7 @@ class MessageMailer < ApplicationMailer
 
   def message_received(message)
     
+    @message      = message.content
     @recipient    = message.user == message.conversation.sender ? message.conversation.recipient : message.conversation.sender
     @sender       = message.user
     @conversation = message.conversation

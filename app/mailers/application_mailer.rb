@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "support-noreply@motominion.com"
+  default from: "discover@motominion.com"
   layout 'mailer'
 end
