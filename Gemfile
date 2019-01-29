@@ -49,6 +49,7 @@ gem 'sidekiq'
 gem 'clockwork'
 gem 'chartkick'
 gem 'groupdate'
+gem 'tel_to_helper'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'

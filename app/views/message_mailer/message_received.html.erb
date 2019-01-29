@@ -98,29 +98,19 @@
       </p>
     
       <%= link_to conversation_messages_url(@conversation),
-                  { style: "font-weight: bold;
+                  { style: "line-height: 50px;
+                            font-weight: bold;
+                            text-align: center;
                             text-decoration: none;
                             color: white;
                             background-color: #5BBB9A;
                             border-radius: 2px;
                             box-shadow: 0 3px 24px 0 #c8c9cb;
                             width: 185px;
-                            height: 65px;
+                            height: 50px;
                             margin: 2em auto 0;
-                            position: relative;
-                            display: block;
-                            overflow: hidden" } do %>
-                            
-        <span style="position: absolute;
-                     top: 10px;
-                     left: 10px">
-          Reply to <%= @recipient.first_name %>
-        </span>
-        
-        <img src='https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/search-button-i.png',
-             style="position: absolute;
-                    right: -10px;
-                    bottom: -10px">
+                            display: block;" } do %>
+        Reply to <%= @sender.first_name %>
       <% end %>
     </div>
     

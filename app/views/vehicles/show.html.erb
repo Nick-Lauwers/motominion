@@ -2102,66 +2102,6 @@
   <% end %>
 </div>
 
-<!--<= link_to new_club_path, class: "single-action hidden-xs" do %>-->
-<!--  <i class='fa fa-group fa-lg single-action-icon'></i>-->
-<!--< end %>-->
-
-<!--<(perc) if @vehicle.dealership.present? %>-->
-<!--  <div class="single-action btn-negotiate-dealer">-->
-<!--    <i class='fa fa-lg fa-comments-o single-action-icon'></i>-->
-<!--  </div>-->
-
-<!--<(perc) else %>-->
-<!--  <div class="single-action">-->
-<!--    <(perc)= form_for @conversation, -->
-<!--                 url: conversations_path(@conversation), -->
-<!--                 method: :post do |f| %>-->
-             
-<!--      <(perc)= f.hidden_field :sender_id,          value: current_user.id if -->
-<!--                                                     current_user %>-->
-      
-<!--      <(perc)= f.hidden_field :recipient_id,       value: @user.id %>-->
-      
-<!--      <(perc)= f.hidden_field :sender_archived,    value: false %>-->
-
-<!--      <(perc)= f.hidden_field :recipient_archived, value: false %>-->
-    
-<!--      <(perc)= button_tag(class: "single-action-button") do %>-->
-<!--        <i class='fa fa-lg fa-comments-o single-action-icon'></i>-->
-<!--      <(perc) end %>-->
-<!--    <(perc) end %>-->
-<!--  </div>-->
-<!--<(perc) end %>-->
-
-<!--<(perc) if @vehicle.dealership.present? %>-->
-  
-
-<!--<(perc) else %>-->
-  <!--<div class="single-action">-->
-<!--  <(perc)= form_for @conversation, -->
-<!--               url: conversations_path(@conversation), -->
-<!--               method: :post do |f| %>-->
-           
-<!--    <(perc)= f.hidden_field :sender_id,          value: current_user.id if -->
-<!--                                                   current_user %>-->
-    
-<!--    <(perc)= f.hidden_field :recipient_id,       value: @user.id %>-->
-    
-<!--    <(perc)= f.hidden_field :sender_archived,    value: false %>-->
-
-<!--    <(perc)= f.hidden_field :recipient_archived, value: false %>-->
-  
-<!--    <(perc)= button_tag(class: "request-details-button visible-xs") do %>-->
-<!--      Get the Nitty Gritty!-->
-<!--    <(perc) end %>-->
-<!--  <(perc) end %>-->
-  <!--</div>-->
-<!--<(perc) end %>-->
-
-<!--<div class="request-details btn-negotiate-dealer visible-xs">-->
-<!--  Get the Nitty Gritty!-->
-<!--</div>-->
-
 <div class="message-action visible-xs">
   <div class="vertical-align">
     
@@ -2174,6 +2114,48 @@
     </div>
   </div>
 </div>
+
+<!--<div class='multi-action visible-xs'>-->
+  
+<!--  <button class='action-button'><i class='fa fa-plus fa-lg'></i></button>-->
+  
+<!--  <ul class='actions'>-->
+    
+<!--    <li class="experiment-100">-->
+      <!--<a>-->
+<!--        <(perc)= link_to Dealership.find(1).sales_phone, "tel:#{Dealership.find(1).sales_phone}" %>-->
+        <!--<= tel_to Dealership.find(1).sales_phone do %>-->
+        <!--  <i class="fa fa-phone fa-lg" aria-hidden="true"></i>-->
+        <!--< end %>-->
+      <!--</a>-->
+<!--    </li>-->
+    
+<!--    <li class="btn-negotiate-dealer">-->
+<!--      <a>-->
+<!--        <i class='fa fa-comments-o fa-lg'></i>-->
+        <!--<= form_for @conversation, -->
+        <!--             url: conversations_path(@conversation), -->
+        <!--             method: :post do |f| %>-->
+                 
+        <!--  <= f.hidden_field :sender_id,          value: current_user.id if -->
+        <!--                                                 current_user %>-->
+          
+        <!--  < if @vehicle.user.present? %>-->
+        <!--    <= f.hidden_field :recipient_id,     value: @user.id %>-->
+        <!--  < end %>-->
+          
+        <!--  <= f.hidden_field :sender_archived,    value: false %>-->
+      
+        <!--  <= f.hidden_field :recipient_archived, value: false %>-->
+          
+        <!--  <= button_tag(class: "btn-message-mobile") do %>-->
+        <!--    <i class='fa fa-comments-o'></i>-->
+        <!--  < end %>-->
+        <!--< end %>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->
 
 <div class="wishlist-options-container visible-xs">
   <div class="wishlist-options">
@@ -2219,6 +2201,23 @@
   </div>
 </div>
 
+<!-- Event snippet for Customer Lead conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-780354558/X67YCJHBhJQBEP6HjfQC',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
 <script>
   if ( $(window).width() < 768 ) {
     $("#modal-dealer-select-mobile").html("<%= escape_javascript render 'modal_dealer_select_mobile' %>");
@@ -2229,18 +2228,59 @@
   
   // Facebook tracking
   
-  // var content_ids_array = [];
-
-  // for (var i = 1; i <= <(perc) Vehicle.count %>; i++) {
-  //   content_ids_array.push(i.toString());
-  // }
+    fbq('track', 'ViewContent',
+      {
+        content_type: 'vehicle',
+        content_ids: [ '<%= @vehicle.id.to_s %>' ]
+      }
+    );
+    
+    $('.inquiry-button').on('click', function () {
+      fbq('track', 'Lead', {
+        content_type: 'vehicle',
+        content_ids: [ '<%= @vehicle.id.to_s %>' ]
+      });     
+    });
+    
+    $('.inquiry-button').on('click', function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-780354558/X67YCJHBhJQBEP6HjfQC',
+          'event_callback': callback
+      });
+      return false;
+    })
+    
+    $('.inquiry-button').on('click', function GetCustomEvent() {
+      window.uetq = window.uetq || [];  
+      window.uetq.push ('event', 'Submit Inquiry', {});  
+    })
   
-  fbq('track', 'ViewContent',
-    {
-      content_type: 'vehicle',
-      content_ids: [ '<%= @vehicle.id.to_s %>' ]
-    }
-  );
+  // var inquiryButton = document.getElementById('addToCartButton');
+  // button.addEventListener(
+  //   'click', 
+  //   function() { 
+  //     fbq('track', 'AddToCart', {
+  //       content_name: 'Really Fast Running Shoes', 
+  //       content_category: 'Apparel & Accessories > Shoes',
+  //       content_ids: ['1234'],
+  //       content_type: 'product',
+  //       value: 4.99,
+  //       currency: 'USD' 
+  //     });          
+  //   },
+  //   false
+  // );
+  
+  // document.addEventListener('click', function (event) {
+  //   if ( event.target.classList.contains( 'accordion-link' ) ) {
+  //       // Do something...
+  //   }
+  // }, false);
   
   $(document).ready(function() {
     
@@ -2291,6 +2331,8 @@
                            setLngLat([<%= @vehicle.longitude %>, <%= @vehicle.latitude %>]).
                            addTo(map);
       });
+      
+      var experiment100 = $('.experiment-100');
   });
 </script>
 

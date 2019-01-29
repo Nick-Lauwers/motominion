@@ -18,7 +18,8 @@ class VehiclesController < ApplicationController
                                               :details, :upgrades, :photos, 
                                               :about_you, :consumer_activity,
                                               :post, :favorite, :unfavorite,
-                                              :sold, :undo_sold, :bump]
+                                              :sold, :undo_sold, :bump,
+                                              :telephone_call]
   before_action :private_buyer,      only:   [:favorite, :unfavorite]
   
   def upload
@@ -445,6 +446,10 @@ class VehiclesController < ApplicationController
     render json: Vehicle.search(params[:vehicle], autocomplete: false, limit: 10).map do |vehicle|
       { listing_name: vehicle.listing_name, city: vehicle.address.city, value: vehicle.id }
     end
+  end
+  
+  def telephone_call
+    @vehicle.telephone_call.create(user: current_user)
   end
   
   def feed_0

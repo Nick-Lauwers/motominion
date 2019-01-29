@@ -11,6 +11,7 @@ class Vehicle < ActiveRecord::Base
   
   has_many :impressions
   has_many :vehicle_views
+  has_many :telephone_calls
   
   has_many :purchases,         dependent: :destroy
   has_many :reviews,           dependent: :destroy
