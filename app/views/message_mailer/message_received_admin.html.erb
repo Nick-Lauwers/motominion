@@ -236,16 +236,6 @@
             <%= sanitize @message %>
           </p>
         </div>
-        
-        <p class="email-info-bottom">
-          To view the full details of the message and to reply back, click the 
-          link below! Be sure to respond promptly; your overall rating on 
-          Motominion is based, in part, on your response rate.
-        </p>
-      
-        <%= link_to "Reply to #{@sender.first_name}",
-                    conversation_messages_url(@conversation), 
-                    class: "email-link" %>
       </div>
       
       <div class="email-footer">

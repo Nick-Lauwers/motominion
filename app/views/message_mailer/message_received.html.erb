@@ -211,7 +211,14 @@
       <div>
       
         <h2 class="email-subject">
-          <%= @sender.first_name %> sent you a message...
+          
+          <% if @sender.dealership.present? %>
+            <%= @sender.dealership.dealership_name %>
+          <% else %>
+            <%= @sender.first_name %>
+          <% end %>
+          
+          sent you a message...
         </h2>
         
         <p class="email-info-top">

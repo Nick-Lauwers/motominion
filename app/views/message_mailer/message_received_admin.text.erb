@@ -1,8 +1,3 @@
-The following message was recently sent:
+<% if @sender.dealership.present? %><%= @sender.dealership.dealership_name %><% else %><%= @sender.first_name %><% end %> sent a message to <% if @recipient.dealership.present? %><%= @recipient.dealership.dealership_name %><% else %><%= @recipient.first_name %><% end %>:
 
-Hi <%= @recipient.first_name %>,
-
-You just received a message from <%= @sender.first_name %>. Click on the link 
-below to view the details:
-
-<%= conversation_messages_url(@conversation) %>
+"<%= sanitize @message %>"
