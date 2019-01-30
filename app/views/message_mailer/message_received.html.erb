@@ -1,5 +1,5 @@
 <head>
-  <style type="text/css" media="screen">
+  <style>
   
     .email {
       background-color: #f9f9f9;
@@ -89,7 +89,7 @@
       line-height: 50px;
       text-align: center;
       text-decoration: none;
-      color: white;
+      color: white !important;
       background-color: #5bbb9a;
       border-radius: 2px;
       box-shadow: 0 3px 24px 0 #c8c9cb;
@@ -132,6 +132,10 @@
     .email-footer-info {
       margin-bottom: 1em;
       display: block
+    }
+    
+    .unsubscribe-link {
+      color: #63656a;
     }
     
     .first,
@@ -215,14 +219,18 @@
           Good news, 
           
           <% if @recipient.dealership.present? %>
-            <%= @recipient.dealership.name %>!
+            <%= @recipient.dealership.dealership_name %>!
           <% else %>
             <%= @recipient.first_name %>!
           <% end %>
           
           You just received a message from 
           
-          <strong><%= @sender.first_name %> <%= @sender.last_name %></strong>:
+          <% if @sender.dealership.present? %>
+            <strong><%= @sender.dealership.dealership_name %></strong>:
+          <% else %>
+            <strong><%= @sender.full_name %></strong>:
+          <% end %>
         </p>
         
         <div class="email-message">
@@ -287,9 +295,7 @@
           
           </br> 
           
-          <%= link_to "Unsubscribe", 
-                      '#',
-                      { style: "color: #63656a;" } %> 
+          <%= link_to "Unsubscribe", '#', class: "unsubscribe-link" %> 
                       
           from personalized recommendations and price and availability changes. 
         </span>

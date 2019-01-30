@@ -1,6 +1,11 @@
-Hi <%= @recipient.first_name %>,
+<%= @sender.first_name %> sent you a message...
 
-You just received a message from <%= @sender.first_name %>. Click on the link 
-below to view the details:
+Good news, <% if @recipient.dealership.present? %><%= @recipient.dealership.dealership_name %>!<% else %><%= @recipient.first_name %>!<% end %>
+  
+You just received a message from <% if @sender.dealership.present? %><%= @sender.dealership.dealership_name%>:<% else%><%= @sender.full_name %>:<% end %>
+
+"<%= sanitize @message %>"
+
+To view the full details of the message and to reply back, click the link below! Be sure to respond promptly; your overall rating on Motominion is based, in part, on your response rate.
 
 <%= conversation_messages_url(@conversation) %>
