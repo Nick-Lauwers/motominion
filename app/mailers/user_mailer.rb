@@ -7,11 +7,14 @@ class UserMailer < ApplicationMailer
 
   def log_in(user)
     @user = user
-    mail to: user.email, subject: "The Magic Link"
+    mail to: user.email, subject: "#{Emoji.find_by_alias("sparkles").raw} The Magic Link #{Emoji.find_by_alias("sparkles").raw}"
   end
   
   def password_reset(user)
     @user = user
-    mail to: user.email, subject: "Password Reset"
+    mail to: user.email, subject: "#{Emoji.find_by_alias("closed_lock_with_key").raw} Password Reset"
   end
 end
+
+# Nick, we received a request to reset your password. If this request was sent
+# by you, click on the link below to proceed...

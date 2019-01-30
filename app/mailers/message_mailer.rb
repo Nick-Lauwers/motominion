@@ -28,7 +28,7 @@ class MessageMailer < ApplicationMailer
       subject: "#{Emoji.find_by_alias("bell").raw} #{@sender.dealership.dealership_name} sent a message!"
     else 
       mail to: "nlauwers@motominion.com", 
-      subject: "#{Emoji.find_by_alias("bell").raw} #{@sender.first_name} sent a message!"
+      subject: "#{Emoji.find_by_alias("bell").raw} #{@sender.full_name} sent a message!"
     end
   end
 end

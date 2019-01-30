@@ -1,3 +1,5 @@
-<% if @sender.dealership.present? %><%= @sender.dealership.dealership_name %><% else %><%= @sender.first_name %><% end %> sent a message to <% if @recipient.dealership.present? %><%= @recipient.dealership.dealership_name %><% else %><%= @recipient.first_name %><% end %>:
+A message was sent...
+
+<% if @sender.dealership.present? %><%= @sender.dealership.dealership_name %><% else %><%= @sender.full_name %><% end %> just sent a message to <% if @recipient.dealership.present? %><%= @recipient.dealership.dealership_name %><% else %><%= @recipient.full_name %><% end %>:
 
 "<%= sanitize @message %>"
