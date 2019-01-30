@@ -6,5 +6,4 @@ class MessageMailerPreview < ActionMailer::Preview
     message = Message.first
     MessageMailer.message_received(message)
   end
-
 end

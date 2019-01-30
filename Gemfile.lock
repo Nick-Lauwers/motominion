@@ -262,6 +262,7 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
+    gemoji (3.0.0)
     geocoder (1.4.7)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -513,6 +514,7 @@ DEPENDENCIES
   faker (= 1.4.2)
   filterrific (= 4.0.1)
   fog (= 1.36.0)
+  gemoji
   geocoder
   gmaps4rails
   google_places
