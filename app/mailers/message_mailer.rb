@@ -7,7 +7,7 @@ class MessageMailer < ApplicationMailer
     @sender       = message.user
     @conversation = message.conversation
     
-    mail to: @recipient.email, subject: "#{Emoji.find_by_alias("bell").raw} #{@recipient.first_name} sent you a message!"
+    mail to: @recipient.email, subject: "#{Emoji.find_by_alias("bell").raw} #{@sender.first_name} sent you a message!"
   end
   
   def message_received_admin(message)
