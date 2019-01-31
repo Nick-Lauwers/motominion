@@ -2226,62 +2226,6 @@ function gtag_report_conversion(url) {
 
 <script type="text/javascript">
   
-  // Facebook tracking
-  
-    fbq('track', 'ViewContent',
-      {
-        content_type: 'vehicle',
-        content_ids: [ '<%= @vehicle.id.to_s %>' ]
-      }
-    );
-    
-    $('.inquiry-button').on('click', function () {
-      fbq('track', 'Lead', {
-        content_type: 'vehicle',
-        content_ids: [ '<%= @vehicle.id.to_s %>' ]
-      });     
-    });
-    
-    $('.inquiry-button').on('click', function gtag_report_conversion(url) {
-      var callback = function () {
-        if (typeof(url) != 'undefined') {
-          window.location = url;
-        }
-      };
-      gtag('event', 'conversion', {
-          'send_to': 'AW-780354558/X67YCJHBhJQBEP6HjfQC',
-          'event_callback': callback
-      });
-      return false;
-    })
-    
-    $('.inquiry-button').on('click', function GetCustomEvent() {
-      window.uetq = window.uetq || [];  
-      window.uetq.push ('event', 'Submit Inquiry', {});  
-    })
-  
-  // var inquiryButton = document.getElementById('addToCartButton');
-  // button.addEventListener(
-  //   'click', 
-  //   function() { 
-  //     fbq('track', 'AddToCart', {
-  //       content_name: 'Really Fast Running Shoes', 
-  //       content_category: 'Apparel & Accessories > Shoes',
-  //       content_ids: ['1234'],
-  //       content_type: 'product',
-  //       value: 4.99,
-  //       currency: 'USD' 
-  //     });          
-  //   },
-  //   false
-  // );
-  
-  // document.addEventListener('click', function (event) {
-  //   if ( event.target.classList.contains( 'accordion-link' ) ) {
-  //       // Do something...
-  //   }
-  // }, false);
-  
   $(document).ready(function() {
     
     // render dealer select modal if on mobile
@@ -2289,6 +2233,44 @@ function gtag_report_conversion(url) {
       // if ( $(window).width() < 768 ) {
       //   $("#modal-dealer-select-mobile").html("<= escape_javascript render 'modal_dealer_select_mobile' %>");
       // }
+      
+    // Facebook tracking
+  
+      fbq('track', 'ViewContent',
+        {
+          content_type: 'vehicle',
+          content_ids: [ '<%= @vehicle.id.to_s %>' ]
+        }
+      );
+      
+      $('.nitty-gritty-button').click(function() {
+        fbq('track', 'Lead', {
+          value: 15,
+          currency: 'USD',
+        });
+      }
+    
+    // Google tracking
+    
+      $('.inquiry-button').on('click', function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-780354558/X67YCJHBhJQBEP6HjfQC',
+            'event_callback': callback
+        });
+        return false;
+      })
+    
+    // Bing tracking
+    
+      // $('.inquiry-button').on('click', function GetCustomEvent() {
+      //   window.uetq = window.uetq || [];  
+      //   window.uetq.push ('event', 'Submit Inquiry', {});  
+      // })
     
     // rating
     
