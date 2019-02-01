@@ -2265,10 +2265,21 @@ function gtag_report_conversion(url) {
           currency: 'USD',
         });
         
-        gtag('event', 'conversion', {
-          'send_to': 'AW-780354558/X67YCJHBhJQBEP6HjfQC',
-          'event_callback': callback
-        });
+        function gtag_report_conversion(url) {
+          
+          var callback = function () {
+            if (typeof(url) != 'undefined') {
+              window.location = url;
+            }
+          };
+          
+          gtag('event', 'conversion', {
+              'send_to': 'AW-780354558/X67YCJHBhJQBEP6HjfQC',
+              'event_callback': callback
+          });
+          
+          return false;
+        }
       });
     
     // render dealer select modal if on mobile
