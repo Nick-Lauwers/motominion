@@ -2226,16 +2226,34 @@ function gtag_report_conversion(url) {
 
 <script type="text/javascript">
   
+  // Facebook tracking
+  
+    
+    
+    
+    
+    $('.inquiry-button').on('click', function gtag_report_conversion(url) {
+      var callback = function () {
+        if (typeof(url) != 'undefined') {
+          window.location = url;
+        }
+      };
+      gtag('event', 'conversion', {
+          'send_to': 'AW-780354558/X67YCJHBhJQBEP6HjfQC',
+          'event_callback': callback
+      });
+      return false;
+    })
+    
+    // $('.inquiry-button').on('click', function GetCustomEvent() {
+    //   window.uetq = window.uetq || [];  
+    //   window.uetq.push ('event', 'Submit Inquiry', {});  
+    // })
+  
   $(document).ready(function() {
     
-    // render dealer select modal if on mobile
-  
-      // if ( $(window).width() < 768 ) {
-      //   $("#modal-dealer-select-mobile").html("<= escape_javascript render 'modal_dealer_select_mobile' %>");
-      // }
-      
     // Facebook tracking
-  
+    
       fbq('track', 'ViewContent',
         {
           content_type: 'vehicle',
@@ -2243,34 +2261,18 @@ function gtag_report_conversion(url) {
         }
       );
       
-      $('.nitty-gritty-button').click(function() {
+      $('.nitty-gritty-button').on('click', function () {
         fbq('track', 'Lead', {
           value: 15,
           currency: 'USD',
         });
-      }
+      });
     
-    // Google tracking
-    
-      $('.inquiry-button').on('click', function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        gtag('event', 'conversion', {
-            'send_to': 'AW-780354558/X67YCJHBhJQBEP6HjfQC',
-            'event_callback': callback
-        });
-        return false;
-      })
-    
-    // Bing tracking
-    
-      // $('.inquiry-button').on('click', function GetCustomEvent() {
-      //   window.uetq = window.uetq || [];  
-      //   window.uetq.push ('event', 'Submit Inquiry', {});  
-      // })
+    // render dealer select modal if on mobile
+  
+      // if ( $(window).width() < 768 ) {
+      //   $("#modal-dealer-select-mobile").html("<= escape_javascript render 'modal_dealer_select_mobile' %>");
+      // }
     
     // rating
     
