@@ -51,6 +51,8 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'tel_to_helper'
 gem 'gemoji'
+gem 'sitemap_generator'
+gem 'fog-aws'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'
