@@ -1144,14 +1144,14 @@
           
           <ol class="feed-posts hidden-xs">
             <%= render partial:     'post_desktop',
-                       collection:  Post.order("RANDOM()").limit(4),
+                       collection:  Post.limit(4).order("RANDOM()"),
                        as:          :post %>
           </ol>
           
           <div class="feed-posts-container">
             <ol class="feed-posts visible-xs">
               <%= render partial:     'post_mobile',
-                         collection:  Post.order("RANDOM()").limit(4),
+                         collection:  Post.limit(4).order("RANDOM()"),
                          as:          :post %>
             </ol>
           </div>
