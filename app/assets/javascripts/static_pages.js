@@ -29,4 +29,12 @@ $(function() {
         evn.preventDefault();
         $('html, body').scrollTo(this.hash, this.hash, { offset: -50 }); 
       });
+      
+    // fixed social column
+    
+      var socialColumn = $('.social-column');
+      
+      if ( $(window).width() > 768 ) {
+        socialColumn.stick_in_parent({ offset_top: 80 });
+      }
 });

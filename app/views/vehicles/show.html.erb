@@ -1,6 +1,15 @@
 <!--completed-->
 
-<% provide(:title, @vehicle.listing_name) %>
+<% if @vehicle.vehicle_make.present? && @vehicle.vehicle_model.present? %>
+  <% provide(:title,       "#{ (@vehicle.year.to_s + " ") if @vehicle.year.present?}#{@vehicle.vehicle_make.name} #{@vehicle.vehicle_model.name} #{@vehicle.vehicle_model.vehicle_type} For Sale In #{@vehicle.city}, #{@vehicle.state}") %>
+  <% provide(:description, "#{ (@vehicle.condition + " ") if @vehicle.condition.present?}#{ (@vehicle.year.to_s + " ") if @vehicle.year.present?}#{@vehicle.vehicle_make.name} #{@vehicle.vehicle_model.name} #{@vehicle.vehicle_model.vehicle_type} for sale near you#{ (" at " + @vehicle.dealership.dealership_name) if @vehicle.dealership.present?} in #{@vehicle.city}, #{@vehicle.state}.") %>
+<% elsif @vehicle.vehicle_make.present? %>
+  <% provide(:title,       "#{ (@vehicle.year.to_s + " ") if @vehicle.year.present?}#{@vehicle.vehicle_make.name} #{ (@vehicle.body_style + " ") if @vehicle.body_style.present?}For Sale In #{@vehicle.city}, #{@vehicle.state}") %>
+  <% provide(:description, "#{ (@vehicle.condition + " ") if @vehicle.condition.present?}#{ (@vehicle.year.to_s + " ") if @vehicle.year.present?}#{@vehicle.vehicle_make.name} #{ (@vehicle.body_style + " ") if @vehicle.body_style.present?}for sale near you#{ (" at " + @vehicle.dealership.dealership_name) if @vehicle.dealership.present?} in #{@vehicle.city}, #{@vehicle.state}.") %>
+<% elsif @vehicle.vehicle_make_name.present? %>
+  <% provide(:title,       "#{ (@vehicle.year.to_s + " ") if @vehicle.year.present?}#{@vehicle.vehicle_make_name} #{ (@vehicle.vehicle_model_name + " ") if @vehicle.vehicle_make_name.present?}#{ (@vehicle.body_style + " ") if @vehicle.body_style.present?}For Sale In #{@vehicle.city}, #{@vehicle.state}") %>
+  <% provide(:description, "#{ (@vehicle.condition + " ") if @vehicle.condition.present?}#{ (@vehicle.year.to_s + " ") if @vehicle.year.present?}#{@vehicle.vehicle_make_name} #{ (@vehicle.vehicle_model_name + " ") if @vehicle.vehicle_make_name.present?}#{ (@vehicle.body_style + " ") if @vehicle.body_style.present?}for sale near you#{ (" at " + @vehicle.dealership.dealership_name) if @vehicle.dealership.present?} in #{@vehicle.city}, #{@vehicle.state}.") %>
+<% end %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
@@ -19,13 +28,13 @@
 
 <% if @vehicle.dealership.present? %>
 
-  <div class="modal" id="modal-dealer-select-desktop" role="dialog">
-    <%= render "modal_dealer_select_desktop" %>
-  </div>
+  <!--<div class="modal" id="modal-dealer-select-desktop" role="dialog">-->
+  <!--  <(perc)= render "modal_dealer_select_desktop" %>-->
+  <!--</div>-->
 
-  <div class="modal" id="modal-buy-online-desktop" role="dialog">
-    <%= render "modal_buy_online_desktop" %>
-  </div>
+  <!--<div class="modal" id="modal-buy-online-desktop" role="dialog">-->
+  <!--  <(perc)= render "modal_buy_online_desktop" %>-->
+  <!--</div>-->
   
   <div class="modal" id="modal-buy-online-mobile" role="dialog">
     <%= render "modal_buy_online_mobile" %>
@@ -401,7 +410,7 @@
 
         <div id="specifications">
           
-          <h3 class="vehicle-details-title">Specifications</h3>
+          <h2 class="vehicle-details-title">Specifications</h2>
           
           <span class="vehicle-details-table-title">General</span>
           
@@ -798,7 +807,7 @@
         <% if @vehicle.dealership.blank? %>      
           <div id="features">
             
-            <h3 class="vehicle-details-title">Features</h3>
+            <h2 class="vehicle-details-title">Features</h2>
             
             <div class="row">
               
@@ -928,7 +937,7 @@
 
         <div id="listing-score">
         
-          <h3 class="vehicle-details-title">Listing Score Breakdown</h3>
+          <h2 class="vehicle-details-title">Listing Score Breakdown</h2>
           
           <p class="vehicle-details-info">
             This listing was posted 
@@ -1069,7 +1078,7 @@
           
           <% if @vehicle.dealership.present? %>
         
-            <h3 class="vehicle-details-title">Hours of Operation</h3>
+            <h2 class="vehicle-details-title">Hours of Operation</h2>
         
             <div class="row">
               

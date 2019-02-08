@@ -1,4 +1,5 @@
-<% provide(:title, @club.name) %>
+<% provide(:title,       "#{@club.name} - #{@club.city}, #{@club.state}") %>
+<% provide(:description, "Connect with #{@club.name}, located in #{@club.city}, #{@club.state}") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>

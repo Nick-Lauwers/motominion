@@ -1,6 +1,12 @@
 <!--completed-->
 
-<% provide(:title, "Motorcycle Search") %>
+<% if @filterrific.with_condition.present? %>
+  <% provide(:title,       "#{@filterrific.with_condition}#{ (" " + VehicleMake.find(@filterrific.with_vehicle_make_id).name) if @filterrific.with_vehicle_make_id.present?}#{ (" " + VehicleModel.find(@filterrific.with_vehicle_model_id).name) if (@filterrific.with_vehicle_model_id.present? && VehicleModel.find(@filterrific.with_vehicle_model_id).name != "All Models")} Motorcycles For Sale#{ (" In " + @filterrific.with_zip_code.to_s.to_region) if @filterrific.with_zip_code.present? }") %>
+  <% provide(:description, "Browse thousands of #{@filterrific.with_condition.downcase}#{ (" " + VehicleMake.find(@filterrific.with_vehicle_make_id).name) if @filterrific.with_vehicle_make_id.present?}#{ (" " + VehicleModel.find(@filterrific.with_vehicle_model_id).name) if (@filterrific.with_vehicle_model_id.present? && VehicleModel.find(@filterrific.with_vehicle_model_id).name != "All Models")} motorcycles for sale#{ (" in " + @filterrific.with_zip_code.to_s.to_region + ",") if @filterrific.with_zip_code.present? } to find the best local deals.") %>
+<% else %>
+  <% provide(:title,       "New & Used#{ (" " + VehicleMake.find(@filterrific.with_vehicle_make_id).name) if @filterrific.with_vehicle_make_id.present?}#{ (" " + VehicleModel.find(@filterrific.with_vehicle_model_id).name) if (@filterrific.with_vehicle_model_id.present? && VehicleModel.find(@filterrific.with_vehicle_model_id).name != "All Models")} Motorcycles For Sale#{ (" In " + @filterrific.with_zip_code.to_s.to_region) if @filterrific.with_zip_code.present? }") %>
+  <% provide(:description, "Browse thousands of new and used#{ (" " + VehicleMake.find(@filterrific.with_vehicle_make_id).name) if @filterrific.with_vehicle_make_id.present?}#{ (" " + VehicleModel.find(@filterrific.with_vehicle_model_id).name) if (@filterrific.with_vehicle_model_id.present? && VehicleModel.find(@filterrific.with_vehicle_model_id).name != "All Models")} motorcycles for sale#{ (" in " + @filterrific.with_zip_code.to_s.to_region + ",") if @filterrific.with_zip_code.present? } to find the best local deals.") %>
+<% end %>
 
 <header class="header-fixed-visible">
   <%= render 'layouts/header_secondary' %>
@@ -27,6 +33,12 @@
     
     <h1 class="search-summary-title">
 
+      <% if @filterrific.with_condition.present? %>
+        <%= @filterrific.with_condition %>
+      <% else %>
+        New & Used
+      <% end %>
+
       <% if @filterrific.with_vehicle_make_id.present? %>
 
         <%= VehicleMake.find(@filterrific.with_vehicle_make_id).name %>
@@ -35,22 +47,20 @@
                 VehicleModel.
                   find(@filterrific.with_vehicle_model_id).
                   name != "All Models" %>
-
           <%= VehicleModel.find(@filterrific.with_vehicle_model_id).name %>
         <% end %>
+      <% end %>
       
-      <% else %>
-        All Makes and Models
+      Motorcycles
+        
+      <% if @filterrific.with_zip_code.present? %>
+        In <%= @filterrific.with_zip_code.to_s.to_region %>
       <% end %>
     </h1>
     
     <h2 class="search-summary-info">
-      
       <% if @filterrific.with_zip_code.present? %>
-
-        <%= pluralize(@vehicles.count, "motorcycle") %> found near 
-        <%= @filterrific.with_zip_code.to_s.to_region %>
-
+        <%= pluralize(@vehicles.count, "motorcycle") %> in your area
       <% else %>
         Enter a city to narrow your search
       <% end %>

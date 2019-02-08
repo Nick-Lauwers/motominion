@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'sitemap/index'
+
   get 'message_photos/create'
 
   root                                'static_pages#home'
@@ -41,6 +43,16 @@ Rails.application.routes.draw do
   get    'signup'                  => 'users#new'
   get    'login'                   => 'sessions#new'
   get    'auth/:provider/callback' => 'sessions#create_social'
+  get    'sitemap-nav'             => 'sitemap#sitemap_nav'
+  get    'sitemap-vehicles_0'      => 'sitemap#sitemap_vehicles_0.xml'
+  get    'sitemap-vehicles_1'      => 'sitemap#sitemap_vehicles_1'
+  get    'sitemap-vehicles_2'      => 'sitemap#sitemap_vehicles_2'
+  get    'sitemap-vehicles_3'      => 'sitemap#sitemap_vehicles_3'
+  get    'sitemap_vehicle_makes'   => 'sitemap#sitemap_vehicle_makes'
+  get    'sitemap_discussions'     => 'sitemap#sitemap_discussions'
+  get    'sitemap_posts'           => 'sitemap#sitemap_posts'
+  get    'sitemap_dealerships'     => 'sitemap#sitemap_dealerships'
+  get    'sitemap_clubs'           => 'sitemap#sitemap_clubs'
   post   'login'                   => 'sessions#create'
   post   'password'                => 'sessions#create'
   post   'upload'                  => 'vehicles#upload'
@@ -55,6 +67,7 @@ Rails.application.routes.draw do
   resources :password_resets,        only: [:new, :create, :edit, :update]
   resources :enquiries,              only: [:new, :create]
   resources :profiles,               only: [:show, :edit, :update]
+  resources :sitemap,                only: [:index]
 
   resources :vehicle_makes do
     member do

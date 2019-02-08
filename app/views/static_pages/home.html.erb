@@ -1,5 +1,7 @@
 <!--completed-->
 
+<% provide(:title, "New & Used Motorcycles For Sale") %>
+
 <header class="hidden-xs header-fixed-hidden">
   <%= render 'layouts/header_secondary' %>
 </header>
@@ -40,7 +42,9 @@
   
   <div class="hero-desktop-detail">
     
-    <h1 class="hero-desktop-title">Motorcycles Made Easy</h1>
+    <h1 class="hero-desktop-title">
+      Motorcycles For Sale
+    </h1>
     
     <h2 class="hero-desktop-info">
       Discover bikes in your own backyard
@@ -116,7 +120,7 @@
   
   <div class="hero-mobile-detail">
     
-    <h1 class="hero-mobile-title">Motorcycles Made Easy</h1>
+    <h1 class="hero-mobile-title">Motorcycles For Sale</h1>
     
     <h2 class="hero-mobile-info">
       Discover bikes in your own backyard
@@ -195,11 +199,11 @@
     
     <div class="feed-content">
       
-      <h3 class="feed-title">Browse by city</h3>
+      <h2 class="feed-title">Find motorcycles for sale in...</h2>
       
-      <span class="feed-info">
+      <h3 class="feed-info">
         Discover bikes being sold throughout California.
-      </span>
+      </h3>
       
       <div class="cities">
         
@@ -402,9 +406,9 @@
     
     <div class="feed-content">
       
-      <h3 class="feed-title">What are you looking for?</h3>
+      <h2 class="feed-title">What are you looking for?</h3>
       
-      <span class="feed-info">
+      <h3 class="feed-info">
         Personalize your results by
         
         <% if current_user && current_user.personalized_search.present? %>
@@ -419,7 +423,7 @@
                       survey_personalized_searches_path,
                       class: "preferences-link" %>.
         <% end %>
-      </span>
+      </h3>
           
       <div class="personalized-search-list">
         <div class="personalized-search-list-content">
@@ -745,11 +749,11 @@
     
     <div class="feed-content">
       
-      <h3 class="feed-title">Browse by make</h3>
+      <h2 class="feed-title">Browse popular motorcycle makes</h2>
       
-      <span class="feed-info">
+      <h3 class="feed-info">
         Discover thousands of bikes from each manufacturer.
-      </span>
+      </h3>
       
       <div class="manufacturers">
         
@@ -1041,283 +1045,171 @@
     
     <div class="feed-content">
       
-      <h3 class="feed-title">Sell Your Motorcycle</h3>
+      <h2 class="feed-title">Sell my motorcycle</h2>
       
-      <%= link_to new_vehicle_path, class: "feed-listing" do %>
-        <div class="feed-listing-content">
+      <div class="feed-community">
+        <div class="row feed-community-content">  
         
-          <div class="feed-listing-image"
-               style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/feed-listing-medium.jpeg')">
-            
-            <div class="feed-listing-gradient"></div>
-            
-            <div class="feed-listing-text">
-            
-              <span class="feed-listing-title">List For Free</span>
-              
-              <span class="feed-listing-subtitle">
-                Join thousands of private sellers
-              </span>
-            </div>
+          <div class="col-md-6 col-xs-6 feed-forum-item-container">
+            <%= link_to discussions_path, class: "feed-forum-item" do %>
+              <div class="feed-forum-image"
+                   style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/listing-medium.jpg')">
+                <h3 class="feed-forum-image-text">List For Free</h3>
+                <div class="feed-forum-image-gradient"></div>
+              </div>
+            <% end %>
+          </div> 
+          
+          <div class="col-md-6 col-xs-6 feed-forum-item-container">
+            <%= link_to clubs_path, class: "feed-forum-item" do %>
+              <div class="feed-forum-image"
+                   style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/dealership-medium.jpg')">
+                <h3 class="feed-forum-image-text">Dealer Portal</h3>
+                <div class="feed-forum-image-gradient"></div>
+              </div>
+            <% end %>
           </div>
-        </div>
-      <% end %>
-    </div>
-    
-    <!--<div class="listing-experiment">-->
-    <!--  <div class="row">-->
-        
-    <!--    <div class="col-md-6">-->
-    <!--      <div class="listing-experiment-photo"></div>-->
-    <!--    </div>-->
-        
-    <!--    <div class="col-md-6">-->
-          
-          <!--Unsplash photo-->
-          
-    <!--      <div class="feed-listing-text">-->
-                
-    <!--        <span class="feed-title">-->
-    <!--          Out with the old; In with the new!-->
-    <!--        </span>-->
-            
-    <!--        <span class="feed-info">-->
-    <!--          List your motorcycle for free using Motominion.-->
-    <!--        </span>-->
-            
-    <!--        <div class="feed-listing-button">-->
-    <!--          <(perc)= link_to new_vehicle_path,-->
-    <!--                      class: "btn btn-green" do %>-->
-    <!--            Find Out More-->
-    <!--            <i class="fa fa-angle-right" aria-hidden="true"></i>-->
-    <!--          <(perc) end %>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--</div>-->
-
-    <!--<div class="feed-content">-->
-        
-    <!--  <h3 class="feed-title">Browse Ducati motorcycles</h3>-->
-      
-    <!--  <span class="feed-info">Like what you see?</span>-->
-      
-    <!--  <(perc)= form_for_filterrific @filterrific, -->
-    <!--                           url: search_vehicles_path, -->
-    <!--                           html: { -->
-    <!--                             id:    "filterrific-no-ajax-auto-submit",-->
-    <!--                             class: "vehicle-make-link"-->
-    <!--                           } do |f| %>-->
-                               
-    <!--    <(perc)= f.hidden_field :with_vehicle_make_id, value: 4 %>-->
-        
-    <!--    <(perc)= f.submit "Browse all of our Ducati's.", -->
-    <!--                 class: "vehicle-make-link-content" %>-->
-    <!--  <(perc) end %>-->
-      
-    <!--  <ol class="feed-items hidden-xs">-->
-    <!--    <(perc)= render partial: "feed_item", -->
-    <!--               collection: Vehicle.-->
-    <!--                             where(vehicle_make_id: 4).-->
-    <!--                             where(dealership_id: 1..70).-->
-    <!--                             includes(:listing_score).-->
-    <!--                             order("listing_scores.overall_score DESC",-->
-    <!--                                  "year DESC",-->
-    <!--                                  "listing_name ASC").-->
-    <!--                             first(3) %>-->
-    <!--  </ol>-->
-      
-    <!--  <div class="feed-items-mobile visible-xs"> -->
-    <!--    <ol class="feed-items-mobile-content">-->
-    <!--      <(perc)= render partial: "feed_item_mobile",-->
-    <!--                 collection: Vehicle.-->
-    <!--                               where(vehicle_make_id: 4).-->
-    <!--                               where(dealership_id: 1..70).-->
-    <!--                               includes(:listing_score).-->
-    <!--                               order("listing_scores.overall_score DESC",-->
-    <!--                                     "year DESC",-->
-    <!--                                     "listing_name ASC").-->
-    <!--                               first(4) %>-->
-    <!--    </ol>-->
-    <!--  </div>-->
-    <!--</div> -->
-    
-    <h3 class="feed-title">Community Connections</h3>
-    
-    <div class="feed-community">
-      <div class="row feed-community-content">  
-      
-        <div class="col-md-6 col-xs-6 feed-forum-item-container">
-          <%= link_to discussions_path, class: "feed-forum-item" do %>
-
-            <div class="feed-forum-image"
-                 style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/feed-forum.jpg')">
-              <h3 class="feed-forum-image-text">Ask For Advice</h3>
-              <div class="feed-forum-image-gradient"></div>
-            </div>
-            
-            <span class="feed-forum-title">
-              Start A Discussion
-              <i class="fa fa-angle-right" aria-hidden="true"></i> 
-            </span>
-            
-            <span class="feed-forum-info">
-              Connect with motorcycle enthusiasts, share stories, and ask for 
-              advice.
-            </span>
-          <% end %>
-        </div> 
-        
-        <div class="col-md-6 col-xs-6 feed-forum-item-container">
-          <%= link_to clubs_path, class: "feed-forum-item" do %>
-
-            <div class="feed-forum-image"
-                 style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/feed-car-clubs.jpg')">
-              <h3 class="feed-forum-image-text">Promote Your Club</h3>
-              <div class="feed-forum-image-gradient"></div>
-            </div>
-            
-            <span class="feed-forum-title">
-              Connect Locally
-              <i class="fa fa-angle-right" aria-hidden="true"></i> 
-            </span>
-            
-            <span class="feed-forum-info">
-              Join friends of your own bike club and discuss issues 
-              relevant to your group.
-            </span>
-          <% end %>
         </div>
       </div>
     </div>
+    
+    <div class="feed-content">
+      <div class="row">
+        
+        <div class="col-md-4 social-column">
 
-    <!--<div class="feed-content hidden-xs">-->
-    <!--  <div class="feed-listing">-->
-    <!--    <div class="feed-listing-content">-->
-    <!--      <div class="row vertical-align">-->
+          <h2 class="feed-title">Be inspired</h2>
+          
+          <h3 class="feed-info">
+            Not just a place for buying and selling...
+          </h3>
+          
+          <div class="social-column-content">
             
-    <!--        <div class="col-md-5">-->
-    <!--          <div class="feed-listing-image"></div>-->
-    <!--        </div>-->
+            <div class="social-column-image">
+            </div>
             
-    <!--        <div class="col-md-7">-->
+            <span class="social-column-info">
               
-    <!--          <div class="feed-listing-text">-->
-                
-    <!--            <span class="feed-title">-->
-    <!--              Out with the old; In with the new!-->
-    <!--            </span>-->
-                
-    <!--            <span class="feed-info">-->
-    <!--              List your motorcycle for free using Motominion.-->
-    <!--            </span>-->
-                
-    <!--            <div class="feed-listing-button">-->
-    <!--              <(perc)= link_to new_vehicle_path,-->
-    <!--                          class: "btn btn-green" do %>-->
-    <!--                Find Out More-->
-    <!--                <i class="fa fa-angle-right" aria-hidden="true"></i>-->
-    <!--              <(perc) end %>-->
-    <!--            </div>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--</div>-->
-
-    <!--<div class="feed-content">-->
+              Connect with motorcycle enthusiasts, ask for advice, and get 
+              updates from the Motominion team.
+              
+              <%= link_to discussions_path, 
+                          class: "preferences-link" do %>
+                Browse the community
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              <% end %>
+            </span>
+            
+            <div class="social-column-line"></div>
+            
+            <span class="social-column-info social-column-info-last">
+              
+              In the market for a new motorcycle, but not sure where to start?
+              We'll mix and match preferences to find what's best for you.
+              
+              <% if current_user && current_user.personalized_search.present? %>
+                <%= link_to style_personalized_search_path(
+                              current_user.personalized_search
+                            ),
+                            class: "preferences-link" do %>
+                  Begin your search
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <% end %>
+                            
+              <% else %>
+                <%= link_to survey_personalized_searches_path,
+                            class: "preferences-link" do %>
+                  Begin your search
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            </span>
+          </div>
+        </div>
         
-    <!--  <h3 class="feed-title">Browse Harley Davidson motorcycles</h3>-->
+        <div class="col-md-8">
+          
+          <h2 class="feed-title">Share your story</h2>
+          
+          <h3 class="feed-info">
+            
+            Share your favorite photos with the Motominion community.
+            
+            <%= link_to vehicle_makes_path, class: "preferences-link" do %>
+              Browse photos
+              <i class="fa fa-angle-right" aria-hidden="true"></i>
+            <% end %>
+          </h3>
+          
+          <ol class="feed-posts hidden-xs">
+            <%= render partial:     'post_desktop',
+                       collection:  Post.order("RANDOM()").limit(4),
+                       as:          :post %>
+          </ol>
+          
+          <div class="feed-posts-container">
+            <ol class="feed-posts visible-xs">
+              <%= render partial:     'post_mobile',
+                         collection:  Post.order("RANDOM()").limit(4),
+                         as:          :post %>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="feed-content last">
       
-    <!--  <span class="feed-info">Like what you see?</span>-->
-      
-    <!--  <(perc)= form_for_filterrific @filterrific, -->
-    <!--                           url: search_vehicles_path, -->
-    <!--                           html: { -->
-    <!--                             id:    "filterrific-no-ajax-auto-submit",-->
-    <!--                             class: "vehicle-make-link"-->
-    <!--                           } do |f| %>-->
-                               
-    <!--    <(perc)= f.hidden_field :with_vehicle_make_id, value: 5 %>-->
+      <h2 class="feed-title">Community connections</h2>
+    
+      <div class="feed-community">
+        <div class="row feed-community-content">  
         
-    <!--    <(perc)= f.submit "Browse all of our Harley Davidson's.", -->
-    <!--                 class: "vehicle-make-link-content" %>-->
-    <!--  <(perc) end %>-->
-      
-    <!--  <ol class="feed-items hidden-xs">-->
-    <!--    <(perc)= render partial: "feed_item", -->
-    <!--               collection: Vehicle.-->
-    <!--                             where(vehicle_make_id: 5).-->
-    <!--                             where(dealership_id: 1..70).-->
-    <!--                             includes(:listing_score).-->
-    <!--                             order("listing_scores.overall_score DESC",-->
-    <!--                                  "year DESC",-->
-    <!--                                  "listing_name ASC").-->
-    <!--                             first(3) %>-->
-    <!--  </ol>-->
-      
-    <!--  <div class="feed-items-mobile visible-xs"> -->
-    <!--    <ol class="feed-items-mobile-content">-->
-    <!--      <(perc)= render partial: "feed_item_mobile",-->
-    <!--                 collection: Vehicle.-->
-    <!--                               where(vehicle_make_id: 5).-->
-    <!--                               where(dealership_id: 1..70).-->
-    <!--                               includes(:listing_score).-->
-    <!--                               order("listing_scores.overall_score DESC",-->
-    <!--                                     "year DESC",-->
-    <!--                                     "listing_name ASC").-->
-    <!--                               first(4) %>-->
-    <!--    </ol>-->
-    <!--  </div>-->
-    <!--</div> -->
-
-    <!--<div class="feed-content">-->
-        
-    <!--  <h3 class="feed-title">Browse Triumph motorcycles</h3>-->
-      
-    <!--  <span class="feed-info">Like what you see?</span>-->
-      
-    <!--  <(perc)= form_for_filterrific @filterrific, -->
-    <!--                           url: search_vehicles_path, -->
-    <!--                           html: { -->
-    <!--                             id:    "filterrific-no-ajax-auto-submit",-->
-    <!--                             class: "vehicle-make-link"-->
-    <!--                           } do |f| %>-->
-                               
-    <!--    <(perc)= f.hidden_field :with_vehicle_make_id, value: 12 %>-->
-        
-    <!--    <(perc)= f.submit "Browse all of our Triumph's.", -->
-    <!--                 class: "vehicle-make-link-content" %>-->
-    <!--  <(perc) end %>-->
-      
-    <!--  <ol class="feed-items hidden-xs">-->
-    <!--    <(perc)= render partial: "feed_item", -->
-    <!--               collection: Vehicle.-->
-    <!--                             where(vehicle_make_id: 12).-->
-    <!--                             where(dealership_id: 1..70).-->
-    <!--                             includes(:listing_score).-->
-    <!--                             order("listing_scores.overall_score DESC",-->
-    <!--                                  "year DESC",-->
-    <!--                                  "listing_name ASC").-->
-    <!--                             first(3) %>-->
-    <!--  </ol>-->
-      
-    <!--  <div class="feed-items-mobile visible-xs"> -->
-    <!--    <ol class="feed-items-mobile-content">-->
-    <!--      <(perc)= render partial: "feed_item_mobile",-->
-    <!--                 collection: Vehicle.-->
-    <!--                               where(vehicle_make_id: 12).-->
-    <!--                               where(dealership_id: 1..70).-->
-    <!--                               includes(:listing_score).-->
-    <!--                               order("listing_scores.overall_score DESC",-->
-    <!--                                     "year DESC",-->
-    <!--                                     "listing_name ASC").-->
-    <!--                               first(4) %>-->
-    <!--    </ol>-->
-    <!--  </div>-->
-    <!--</div> -->
+          <div class="col-md-6 col-xs-6 feed-forum-item-container">
+            <%= link_to discussions_path, class: "feed-forum-item" do %>
+  
+              <div class="feed-forum-image"
+                   style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/feed-forum.jpg')">
+                <h3 class="feed-forum-image-text">Ask For Advice</h3>
+                <div class="feed-forum-image-gradient"></div>
+              </div>
+              
+              <span class="feed-forum-title">
+                Start A Discussion
+                <i class="fa fa-angle-right" aria-hidden="true"></i> 
+              </span>
+              
+              <span class="feed-forum-info">
+                Connect with motorcycle enthusiasts, share stories, and ask for 
+                advice.
+              </span>
+            <% end %>
+          </div> 
+          
+          <div class="col-md-6 col-xs-6 feed-forum-item-container">
+            <%= link_to clubs_path, class: "feed-forum-item" do %>
+  
+              <div class="feed-forum-image"
+                   style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/motorcycle-couple-medium.jpg')">
+                <h3 class="feed-forum-image-text">Promote Your Club</h3>
+                <div class="feed-forum-image-gradient"></div>
+              </div>
+              
+              <span class="feed-forum-title">
+                Connect Locally
+                <i class="fa fa-angle-right" aria-hidden="true"></i> 
+              </span>
+              
+              <span class="feed-forum-info">
+                Join friends of your own bike club and discuss issues 
+                relevant to your group.
+              </span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -1,6 +1,6 @@
 <!--complete-->
 
-<li id="post-item-<%= post.id %>" class="col-md-6 post-item">
+<li id="post-item-<%= post.id %>" class="col-xs-3 post-item">
   <div class="post-item-content">
       
     <div class="post-item-header">
@@ -55,7 +55,7 @@
       </div>
     </div>
     
-    <%= link_to post, class: "post-item-link" do %>
+    <%= link_to 'javascript:;', class: "post-item-link" do %>
       <div class="post-item-photo", 
            style="background-image: url(
                    '<%= post.photo.url(:small) if 
@@ -63,7 +63,7 @@
       </div>
     <% end %>
     
-    <%= link_to post, class: "post-item-link" do %>
+    <%= link_to 'javascript:;', class: "post-item-link" do %>
     
       <div class="post-item-body">
         

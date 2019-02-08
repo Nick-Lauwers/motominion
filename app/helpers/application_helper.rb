@@ -11,7 +11,16 @@ module ApplicationHelper
       base_title
       
     else
-      page_title + " | " + base_title
+      page_title + " • " + base_title
+    end
+  end
+  
+  # Returns the meta description on a per-page basis.
+  def meta_description(page_description = '')
+    if page_description.empty?
+      "Browse new and used motorcycle listings to find the best local deals. Search available models from Harley-Davidson, Honda, Yamaha, Polaris, Kawasaki, and more."
+    else
+      page_description
     end
   end
   

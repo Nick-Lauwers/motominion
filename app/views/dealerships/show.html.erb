@@ -1,4 +1,5 @@
-<% provide(:title, @dealership.dealership_name) %>
+<% provide(:title,       "#{@dealership.dealership_name} - #{@dealership.city}, #{@dealership.state}") %>
+<% provide(:description, "Browse new and used motorcycles from #{@dealership.dealership_name} in #{@dealership.city}, #{@dealership.state}. Read reviews, view inventory, and contact associates.") %>
 
 <header class="header-static-gray">
   <%= render 'layouts/header_secondary' %>
