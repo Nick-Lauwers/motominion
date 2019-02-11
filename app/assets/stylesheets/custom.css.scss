@@ -2313,9 +2313,6 @@ footer {
 .city,
 .manufacturer {
   background-color: $gray-darkest;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   border: none;
   border-radius: 2px;
   box-shadow: 0 2px 16px 0 $gray-light;
@@ -2324,6 +2321,7 @@ footer {
   padding: 0;
   margin-bottom: 1.4em;
   position: relative;
+  overflow: hidden;
   &:hover,
   &:focus {
     outline: none;
@@ -2331,6 +2329,12 @@ footer {
       opacity: 0.3;
     }
   }
+}
+
+.cover-image {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .overlay {
@@ -2600,9 +2604,6 @@ footer {
 
 .feed-forum-image {
   background-color: $gray-darkest;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   border-radius: 2px;
   box-shadow: 0 2px 16px 0 $gray-light;
   height: 250px;
@@ -2716,12 +2717,17 @@ footer {
 }
 
 .feed-item-image-content,
-.search-item-image-content,
+// .search-item-image-content,
 .related-vehicle-image-content {
   background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  height: 210px;
+}
+
+.search-item-image-content {
+  background-color: $gray-darkest;
   height: 210px;
 }
 
@@ -7993,9 +7999,6 @@ a.remove_fields {
 
 .post-item-photo {
   background-color: $gray-darkest;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   height: 225px;
 }
 
@@ -8419,6 +8422,27 @@ a.remove_fields {
 .wishlist-options-content {
   position: absolute;
   top: -5px;
+}
+
+.btn-inline-nitty-gritty {
+  font-weight: bold;
+  color: $tan;
+  background-color: $red;
+  border-radius: 2px;
+  box-shadow: 0 3px 24px 0 $gray-darker;
+  width: 90%;
+  height: 50px;
+  margin: 0 auto;
+  &:hover,
+  &:focus {
+    color: $red;
+    background-color: $tan;
+  }
+}
+
+.inline-nitty-gritty-text {
+  font-size: 1.2em;
+  line-height: 50px;
 }
 
 .btn-maybe,

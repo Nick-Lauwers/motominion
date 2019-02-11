@@ -80,7 +80,7 @@
   
           <% if @vehicle_make.posts.exists? %>
             <ol class="vehicle-make-posts-list-content">
-              <%= render @vehicle_make.posts %>
+              <%= render @vehicle_make.posts.order(created_at: :desc) %>
             </ol>
             
           <% else %>

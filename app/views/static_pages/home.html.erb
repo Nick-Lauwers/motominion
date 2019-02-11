@@ -219,8 +219,11 @@
               <%= f.hidden_field :near_city, value: "Los Angeles, CA" %>
               
               <%= button_tag(type:  "submit", 
-                             class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/los-angeles-medium.jpg')") do %>
+                             class: "city") do %>
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/los-angeles-medium.jpg', 
+                              class: "cover-image",
+                              alt: "New and used motorcycles for sale in Los Angeles, CA.") %>
                 
                 <div class="overlay"></div>
                 
@@ -244,8 +247,11 @@
               <%= f.hidden_field :near_city, value: "San Jose, CA" %>
               
               <%= button_tag(type:  "submit", 
-                             class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-jose-medium.jpg')") do %>
+                             class: "city") do %>
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-jose-medium.jpg', 
+                              class: "cover-image",
+                              alt: "New and used motorcycles for sale in San Jose, CA.") %>
                 
                 <div class="overlay"></div>
                 
@@ -269,8 +275,11 @@
               <%= f.hidden_field :near_city, value: "San Diego, CA" %>
               
               <%= button_tag(type:  "submit", 
-                             class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-diego-medium.jpg')") do %>
+                             class: "city") do %>
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-diego-medium.jpg', 
+                              class: "cover-image",
+                              alt: "New and used motorcycles for sale in San Diego, CA.") %>
                 
                 <div class="overlay"></div>
                 
@@ -297,9 +306,14 @@
               <%= f.hidden_field :near_city, value: "San Diego, CA" %>
               
               <%= button_tag(type:  "submit", 
-                             class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-diego-medium.jpg')") do %>
+                             class: "city") do %>
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-diego-medium.jpg', 
+                              class: "cover-image",
+                              alt: "New and used motorcycles for sale in San Diego, CA.") %>
+                
                 <div class="overlay"></div>
+                
                 <span class="city-title">San Diego</span>
               <% end %>
             <% end %>
@@ -315,9 +329,14 @@
               <%= f.hidden_field :near_city, value: "Long Beach, CA" %>
               
               <%= button_tag(type:  "submit", 
-                             class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/long-beach-medium.jpg')") do %>
+                             class: "city") do %>
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/long-beach-medium.jpg', 
+                              class: "cover-image",
+                              alt: "New and used motorcycles for sale in Long Beach, CA.") %>
+                
                 <div class="overlay"></div>
+                
                 <span class="city-title">Long Beach</span>
               <% end %>
             <% end %>
@@ -336,8 +355,11 @@
               <%= f.hidden_field :near_city, value: "Long Beach, CA" %>
               
               <%= button_tag(type:  "submit", 
-                             class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/long-beach-medium.jpg')") do %>
+                             class: "city") do %>
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/long-beach-medium.jpg', 
+                              class: "cover-image",
+                              alt: "New and used motorcycles for sale in Long Beach, CA.") %>
                 
                 <div class="overlay"></div>
                 
@@ -361,8 +383,11 @@
               <%= f.hidden_field :near_city, value: "Oakland, CA" %>
               
               <%= button_tag(type:  "submit", 
-                             class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/oakland-medium.jpg')") do %>
+                             class: "city") do %>
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/oakland-medium.jpg', 
+                              class: "cover-image",
+                              alt: "New and used motorcycles for sale in Oakland, CA.") %>
                 
                 <div class="overlay"></div>
                 
@@ -386,8 +411,11 @@
               <%= f.hidden_field :near_city, value: "San Francisco, CA" %>
               
               <%= button_tag(type:  "submit", 
-                             class: "city",
-                             style: "background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-francisco-medium.jpg')") do %>
+                             class: "city") do %>
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/san-francisco-medium.jpg', 
+                              class: "cover-image",
+                              alt: "New and used motorcycles for sale in San Francisco, CA.") %>
                 
                 <div class="overlay"></div>
                 
@@ -769,8 +797,11 @@
               <%= f.hidden_field :with_vehicle_make_id, value: 1 %>
               
               <%= button_tag(type:  "submit", 
-                             class: "manufacturer",
-                             style: "background-image: url(' #{ VehicleMake.find(1).cover_photo_url.gsub '-large', '-medium' }')") do %>
+                             class: "manufacturer") do %>
+                
+                <%= image_tag( (VehicleMake.find(1).cover_photo_url.gsub '-large', '-medium'), 
+                                class: "cover-image",
+                                alt: "New and used #{ VehicleMake.find(1).name } motorcycles for sale.") %>
                 
                 <div class="overlay"></div>
                 
@@ -796,8 +827,11 @@
               <%= f.hidden_field :with_vehicle_make_id, value: 2 %>
               
               <%= button_tag(type:  "submit", 
-                             class: "manufacturer",
-                             style: "background-image: url(' #{ VehicleMake.find(2).cover_photo_url.gsub '-large', '-medium' }')") do %>
+                             class: "manufacturer") do %>
+                
+                <%= image_tag( (VehicleMake.find(2).cover_photo_url.gsub '-large', '-medium'), 
+                                class: "cover-image",
+                                alt: "New and used #{ VehicleMake.find(2).name } motorcycles for sale.") %>
                 
                 <div class="overlay"></div>
                 
@@ -823,8 +857,11 @@
               <%= f.hidden_field :with_vehicle_make_id, value: 3 %>
               
               <%= button_tag(type:  "submit", 
-                             class: "manufacturer",
-                             style: "background-image: url(' #{ VehicleMake.find(3).cover_photo_url.gsub '-large', '-medium' }')") do %>
+                             class: "manufacturer") do %>
+                
+                <%= image_tag( (VehicleMake.find(3).cover_photo_url.gsub '-large', '-medium'), 
+                                class: "cover-image",
+                                alt: "New and used #{ VehicleMake.find(3).name } motorcycles for sale.") %>
                 
                 <div class="overlay"></div>
                 
@@ -854,8 +891,11 @@
             <%= f.hidden_field :with_vehicle_make_id, value: 3 %>
             
             <%= button_tag(type:  "submit", 
-                           class: "manufacturer",
-                           style: "background-image: url(' #{ VehicleMake.find(3).cover_photo_url.gsub '-large', '-medium' }')") do %>
+                           class: "manufacturer") do %>
+              
+              <%= image_tag( (VehicleMake.find(3).cover_photo_url.gsub '-large', '-medium'), 
+                              class: "cover-image",
+                              alt: "New and used #{ VehicleMake.find(3).name } motorcycles for sale.") %>
               
               <div class="overlay"></div>
               
@@ -876,8 +916,11 @@
             <%= f.hidden_field :with_vehicle_make_id, value: 4 %>
             
             <%= button_tag(type:  "submit", 
-                           class: "manufacturer",
-                           style: "background-image: url(' #{ VehicleMake.find(4).cover_photo_url.gsub '-large', '-medium' }')") do %>
+                           class: "manufacturer") do %>
+              
+              <%= image_tag( (VehicleMake.find(4).cover_photo_url.gsub '-large', '-medium'), 
+                              class: "cover-image",
+                              alt: "New and used #{ VehicleMake.find(4).name } motorcycles for sale.") %>
               
               <div class="overlay"></div>
               
@@ -901,8 +944,11 @@
             <%= f.hidden_field :with_vehicle_make_id, value: 4 %>
             
             <%= button_tag(type:  "submit", 
-                           class: "manufacturer",
-                           style: "background-image: url(' #{ VehicleMake.find(4).cover_photo_url.gsub '-large', '-medium' }')") do %>
+                           class: "manufacturer") do %>
+              
+              <%= image_tag( (VehicleMake.find(4).cover_photo_url.gsub '-large', '-medium'), 
+                              class: "cover-image",
+                              alt: "New and used #{ VehicleMake.find(4).name } motorcycles for sale.") %>
               
               <div class="overlay"></div>
               
@@ -928,8 +974,11 @@
             <%= f.hidden_field :with_vehicle_make_id, value: 5 %>
             
             <%= button_tag(type:  "submit", 
-                           class: "manufacturer",
-                           style: "background-image: url(' #{ VehicleMake.find(5).cover_photo_url.gsub '-large', '-medium' }')") do %>
+                           class: "manufacturer") do %>
+              
+              <%= image_tag( (VehicleMake.find(5).cover_photo_url.gsub '-large', '-medium'), 
+                              class: "cover-image",
+                              alt: "New and used #{ VehicleMake.find(5).name } motorcycles for sale.") %>
               
               <div class="overlay"></div>
               
@@ -955,8 +1004,11 @@
             <%= f.hidden_field :with_vehicle_make_id, value: 6 %>
             
             <%= button_tag(type:  "submit", 
-                           class: "manufacturer",
-                           style: "background-image: url(' #{ VehicleMake.find(6).cover_photo_url.gsub '-large', '-medium' }')") do %>
+                           class: "manufacturer") do %>
+              
+              <%= image_tag( (VehicleMake.find(6).cover_photo_url.gsub '-large', '-medium'), 
+                              class: "cover-image",
+                              alt: "New and used #{ VehicleMake.find(6).name } motorcycles for sale.") %>
               
               <div class="overlay"></div>
               
@@ -1052,9 +1104,14 @@
         
           <div class="col-md-6 col-xs-6 feed-forum-item-container">
             <%= link_to new_vehicle_path, class: "feed-forum-item" do %>
-              <div class="feed-forum-image"
-                   style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/listing-medium.jpg')">
+              <div class="feed-forum-image">
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/listing-medium.jpg',
+                              class: "cover-image",
+                              alt: "List your motorcycle for free.") %>
+                              
                 <h3 class="feed-forum-image-text">List For Free</h3>
+                
                 <div class="feed-forum-image-gradient"></div>
               </div>
             <% end %>
@@ -1062,9 +1119,14 @@
           
           <div class="col-md-6 col-xs-6 feed-forum-item-container">
             <%= link_to new_dealership_path, class: "feed-forum-item" do %>
-              <div class="feed-forum-image"
-                   style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/dealership-medium.jpg')">
+              <div class="feed-forum-image">
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/dealership-medium.jpg',
+                              class: "cover-image",
+                              alt: "Sales resources for motorcycle dealers") %>
+                              
                 <h3 class="feed-forum-image-text">Dealer Portal</h3>
+                
                 <div class="feed-forum-image-gradient"></div>
               </div>
             <% end %>
@@ -1144,14 +1206,14 @@
           
           <ol class="feed-posts hidden-xs">
             <%= render partial:     'post_desktop',
-                       collection:  Post.limit(4).order("RANDOM()"),
+                       collection:  Post.order("RANDOM()").limit(4),
                        as:          :post %>
           </ol>
           
           <div class="feed-posts-container">
             <ol class="feed-posts visible-xs">
               <%= render partial:     'post_mobile',
-                         collection:  Post.limit(4).order("RANDOM()"),
+                         collection:  Post.order("RANDOM()").limit(4),
                          as:          :post %>
             </ol>
           </div>
@@ -1168,10 +1230,15 @@
         
           <div class="col-md-6 col-xs-6 feed-forum-item-container">
             <%= link_to discussions_path, class: "feed-forum-item" do %>
-  
-              <div class="feed-forum-image"
-                   style="background-image: url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/feed-forum.jpg')">
+            
+              <div class="feed-forum-image">
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/feed-forum.jpg',
+                              class: "cover-image",
+                              alt: "Ask for advice.") %>
+                              
                 <h3 class="feed-forum-image-text">Ask For Advice</h3>
+                
                 <div class="feed-forum-image-gradient"></div>
               </div>
               
@@ -1190,9 +1257,14 @@
           <div class="col-md-6 col-xs-6 feed-forum-item-container">
             <%= link_to clubs_path, class: "feed-forum-item" do %>
   
-              <div class="feed-forum-image"
-                   style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/motorcycle-couple-medium.jpg')">
+              <div class="feed-forum-image">
+                
+                <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/motorcycle-couple-medium.jpg',
+                              class: "cover-image",
+                              alt: "Promote your motorcycle club.") %>
+                              
                 <h3 class="feed-forum-image-text">Promote Your Club</h3>
+                
                 <div class="feed-forum-image-gradient"></div>
               </div>
               

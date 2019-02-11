@@ -8,13 +8,17 @@
     <%= link_to vehicle, target: "_blank" do %>
     
       <% if vehicle.photos.length > 0 %>
-        <div class="search-item-image-content", 
-             style="background-image: url('<%= vehicle.photos[0].image.url() %>')">
+        <div class="search-item-image-content">
+          <%= image_tag(vehicle.photos[0].image.url(),
+                        class: "cover-image",
+                        alt: vehicle.listing_name) %>
         </div>
         
       <% else %>
-        <div class="search-item-image-content", 
-             style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/no-image-available.jpg')">
+        <div class="search-item-image-content">
+          <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/no-image-available.jpg',
+                        class: "cover-image",
+                        alt: vehicle.listing_name) %>
         </div>
       <% end %>
     <% end %>

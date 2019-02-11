@@ -146,7 +146,7 @@
       <% if @club.posts.exists? %>
         <ol class="club-profile-posts-list-content">
           <%= render partial:    'posts/post',
-                     collection: @club.posts %>
+                     collection: @club.posts.order(created_at: :desc) %>
         </ol>
         
       <% else %>

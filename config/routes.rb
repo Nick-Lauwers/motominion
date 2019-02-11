@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   resources :profiles,               only: [:show, :edit, :update]
   resources :sitemap,                only: [:index]
 
-  resources :vehicle_makes do
+  resources :vehicle_makes, path: "motorcycle_makes" do
     member do
       get 'posts'
       get 'discussions'
@@ -118,7 +118,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :vehicles do
+  resources :vehicles, path: "motorcycles" do
     
     resources :reviews,  only: [:create, :destroy]
     resources :payments, only: [:new, :create]

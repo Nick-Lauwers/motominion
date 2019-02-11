@@ -23,9 +23,6 @@
                           class: "post-item-user-name" %> 
             
               <% if logged_in? && post.user == current_user %>
-                            
-                ·
-                
                 <div class="post-item-edit">
                    
                   <%= link_to "Edit", edit_post_path(post) %>
@@ -56,10 +53,11 @@
     </div>
     
     <%= link_to 'javascript:;', class: "post-item-link" do %>
-      <div class="post-item-photo", 
-           style="background-image: url(
-                   '<%= post.photo.url(:small) if 
-                        post.photo.exists? %>')">
+      <div class="post-item-photo">
+        <% if post.photo.exists? %>
+          <%= image_tag(post.photo.url(:small),
+                        class: "cover-image") %>
+        <% end %>
       </div>
     <% end %>
     
