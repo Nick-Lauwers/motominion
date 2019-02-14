@@ -1,0 +1,334 @@
+<% provide(:title, 'Blog') %>
+
+<header class="header-static-gray">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<div class="blog-header">
+  <div class="blog-header-content">
+    
+    <ol class="blog-categories">
+      
+      <li>
+        <%= link_to "General", 
+                    articles_path,
+                    class: "blog-link" %>
+      </li>
+      
+      <li>
+        <%= link_to "Buying", 
+                    articles_path,
+                    class: "blog-link" %>
+      </li>
+      
+      <li>
+        <%= link_to "Selling", 
+                    articles_path,
+                    class: "blog-link" %>
+      </li>
+    </ol>
+    
+    <ol class="blog-platforms">
+      
+      <li>
+        <%= link_to 'https://www.facebook.com/MotominionMotorcycles/', 
+                    target: "_blank" do %>
+          <i class="fa fa-facebook fa-lg"></i>
+        <% end %>
+      </li>
+      
+      <li>
+        <%= link_to 'https://twitter.com/motominion', 
+                    target: "_blank" do %>
+          <i class="fa fa-twitter fa-lg"></i>
+        <% end %>
+      </li>
+      
+      <li>
+        <%= link_to 'https://www.linkedin.com/company/motominion/about/',
+                    target: "_blank" do %>
+          <i class="fa fa-linkedin fa-lg"></i>
+        <% end %>
+      </li>
+      
+      <li>
+        <%= link_to 'https://www.instagram.com/motominion_motorcycles/', 
+                    target: "_blank" do %>
+          <i class="fa fa-instagram fa-lg"></i>
+        <% end %>
+      </li>
+    </ol>
+    
+    <div class="blog-intro">
+      
+      <h1 class="blog-title">Motominion Blog</h1>
+    
+      <span class="blog-subtitle">
+        Expert tips and advice about motorcycle ownership.
+      </span>
+      
+      <span class="blog-subtitle">
+        News and perspectives from the motorcycle and automotive industries.
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="blog-body">
+  <div class="blog-body-content">
+    <ol class="blog-list">
+      
+      <li class="col-md-4">
+        <%= link_to insurance_articles_path, class: "blog-item" do %>
+          <div class="blog-item-content">
+          
+            <div class="blog-item-image">
+              <%= image_tag('https://images.unsplash.com/photo-1541417770319-381fc687373c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+                            class: "cover-image",
+                            alt: "Motorcycle insurance") %>
+            </div>
+            
+            <div class="blog-item-info">
+              
+              <h3 class="blog-item-title">Motorcycle Insurance</h3>
+              
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <div class="blog-item-avatar avatar-general", 
+                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/logo.png')">
+                  </div>
+                </div>
+                
+                <div class="col-md-10">
+                  <span class="blog-item-author">Team Motominion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      
+      <li class="col-md-4">
+        <%= link_to parts_and_accessories_articles_path, class: "blog-item" do %>
+          <div class="blog-item-content">
+          
+            <div class="blog-item-image">
+              <%= image_tag('https://images.unsplash.com/photo-1479909013849-e16a7dd14323?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+                            class: "cover-image",
+                            alt: "Parts and accessories") %>
+            </div>
+            
+            <div class="blog-item-info">
+              
+              <h3 class="blog-item-title">Parts and Accessories</h3>
+              
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <div class="blog-item-avatar avatar-general", 
+                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/logo.png')">
+                  </div>
+                </div>
+                
+                <div class="col-md-10">
+                  <span class="blog-item-author">Team Motominion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      
+      <li class="col-md-4">
+        <%= link_to legal_articles_path, class: "blog-item" do %>
+          <div class="blog-item-content">
+          
+            <div class="blog-item-image">
+              <%= image_tag('https://images.unsplash.com/photo-1542578623-71aad138a007?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+                            class: "cover-image",
+                            alt: "Legal") %>
+            </div>
+            
+            <div class="blog-item-info">
+              
+              <h3 class="blog-item-title">Legal</h3>
+              
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <div class="blog-item-avatar avatar-general", 
+                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/logo.png')">
+                  </div>
+                </div>
+                
+                <div class="col-md-10">
+                  <span class="blog-item-author">Team Motominion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      
+      <li class="col-md-4">
+        <%= link_to loans_and_financing_articles_path, class: "blog-item" do %>
+          <div class="blog-item-content">
+          
+            <div class="blog-item-image">
+              <%= image_tag('https://images.unsplash.com/photo-1508501493333-1fc489ca6b0e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80',
+                            class: "cover-image",
+                            alt: "Loans and financing") %>
+            </div>
+            
+            <div class="blog-item-info">
+              
+              <h3 class="blog-item-title">Loans and Financing</h3>
+              
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <div class="blog-item-avatar avatar-general", 
+                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/logo.png')">
+                  </div>
+                </div>
+                
+                <div class="col-md-10">
+                  <span class="blog-item-author">Team Motominion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      
+      <li class="col-md-4">
+        <%= link_to motorcycle_repair_articles_path, class: "blog-item" do %>
+          <div class="blog-item-content">
+          
+            <div class="blog-item-image">
+              <%= image_tag('https://images.unsplash.com/photo-1533709896227-66c686ee7e61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+                            class: "cover-image",
+                            alt: "Motorcycle repair") %>
+            </div>
+            
+            <div class="blog-item-info">
+              
+              <h3 class="blog-item-title">Motorcycle Repair</h3>
+              
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <div class="blog-item-avatar avatar-general", 
+                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/logo.png')">
+                  </div>
+                </div>
+                
+                <div class="col-md-10">
+                  <span class="blog-item-author">Team Motominion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      
+      <li class="col-md-4">
+        <%= link_to motorcycle_tours_and_rentals_articles_path, class: "blog-item" do %>
+          <div class="blog-item-content">
+          
+            <div class="blog-item-image">
+              <%= image_tag('https://images.unsplash.com/photo-1541973754640-962f89e7dbc3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80',
+                            class: "cover-image",
+                            alt: "Motorcycle tours and rentals") %>
+            </div>
+            
+            <div class="blog-item-info">
+              
+              <h3 class="blog-item-title">Motorcycle Tours and Rentals</h3>
+              
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <div class="blog-item-avatar avatar-general", 
+                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/logo.png')">
+                  </div>
+                </div>
+                
+                <div class="col-md-10">
+                  <span class="blog-item-author">Team Motominion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      
+      <li class="col-md-4">
+        <%= link_to shipping_articles_path, class: "blog-item" do %>
+          <div class="blog-item-content">
+          
+            <div class="blog-item-image">
+              <%= image_tag('https://images.unsplash.com/photo-1506424482693-1f123321fa53?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1592&q=80',
+                            class: "cover-image",
+                            alt: "Shipping") %>
+            </div>
+            
+            <div class="blog-item-info">
+              
+              <h3 class="blog-item-title">Shipping</h3>
+              
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <div class="blog-item-avatar avatar-general", 
+                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/logo.png')">
+                  </div>
+                </div>
+                
+                <div class="col-md-10">
+                  <span class="blog-item-author">Team Motominion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+      
+      <li class="col-md-4">
+        <%= link_to warranties_and_roadside_assistance_articles_path, class: "blog-item" do %>
+          <div class="blog-item-content">
+          
+            <div class="blog-item-image">
+              <%= image_tag('https://images.unsplash.com/photo-1519868112-25e427421b77?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1575&q=80',
+                            class: "cover-image",
+                            alt: "Warranties and roadside assistance") %>
+            </div>
+            
+            <div class="blog-item-info">
+              
+              <h3 class="blog-item-title">Warranties and Roadside Assistance</h3>
+              
+              <div class="row vertical-align">
+                
+                <div class="col-md-2">
+                  <div class="blog-item-avatar avatar-general", 
+                       style="background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/logo.png')">
+                  </div>
+                </div>
+                
+                <div class="col-md-10">
+                  <span class="blog-item-author">Team Motominion</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </li>
+    </ol>
+  </div>
+</div>

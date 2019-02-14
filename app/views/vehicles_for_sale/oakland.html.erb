@@ -1,0 +1,262 @@
+<!--completed-->
+
+<%= render 'search' %>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+    
+    // search results height
+      
+      var searchResults           = $('.search-results');
+      var searchResultsBackground = $('.search-results-background');
+      
+      if ( $(window).width() <= 768 ) {    
+        searchResults.height(searchResultsBackground.outerHeight());
+      }
+    
+    // filters
+    
+      var filtersButton        = $('.btn-filters');
+      var cancelButton         = $('.btn-cancel-filters');
+      var searchFilters        = $('.search-filters');
+      var searchItemsContainer = $('.search-items-container');
+
+      filtersButton.click(function() {
+        
+        searchFilters.slideToggle();
+        searchItemsContainer.slideToggle();
+        
+        cancelButton.click(function() {
+          searchFilters.slideToggle();
+          searchItemsContainer.slideToggle();
+        });
+      });
+      
+      var filtersModalButton      = $('.btn-filters-modal');
+      var modalFilters            = $('#modal-filters');
+      var modalFiltersHeaderClose = $('.modal-filters-header-close');
+      
+      filtersModalButton.click(function() {
+
+        modalFilters.modal('show');
+        
+        modalFiltersHeaderClose.click(function() {
+          modalFilters.modal('hide');
+        }); 
+      });
+    
+    // sliders
+    
+      var priceSlider                = $('#price_slider');
+      var mileageSlider              = $('#mileage_slider');
+      var yearSlider                 = $('#year_slider');
+      var engineSizeSlider           = $('#engine_size_slider');
+      var priceSliderModal           = $('#price_slider_modal');
+      var mileageSliderModal         = $('#mileage_slider_modal');
+      var yearSliderModal            = $('#year_slider_modal');
+      var engineSizeSliderModal      = $('#engine_size_slider_modal');
+      var priceSliderValue           = $('#price_slider_val');
+      var mileageSliderValue         = $('#mileage_slider_val');
+      var yearSliderValue            = $('#year_slider_val');
+      var engineSizeSliderValue      = $('#engine_size_slider_val')
+      var priceSliderValueModal      = $('#price_slider_val_modal');
+      var mileageSliderValueModal    = $('#mileage_slider_val_modal');
+      var yearSliderValueModal       = $('#year_slider_val_modal');
+      var engineSizeSliderValueModal = $('#engine_size_slider_val_modal');
+      
+      priceSlider.slider();
+      mileageSlider.slider();
+      yearSlider.slider();
+      engineSizeSlider.slider();
+      priceSliderModal.slider();
+      mileageSliderModal.slider();
+      yearSliderModal.slider();
+      engineSizeSliderModal.slider();
+      
+      priceSlider.on('slide', function(slideEvt) {
+      	priceSliderValue.text('$' + slideEvt.value);
+      });
+      mileageSlider.on('slide', function(slideEvt) {
+      	mileageSliderValue.text(slideEvt.value + ' mi');
+      });
+      yearSlider.on('slide', function(slideEvt) {
+      	yearSliderValue.text(slideEvt.value);
+      });
+      engineSizeSlider.on('slide', function(slideEvt) {
+      	engineSizeSliderValue.text(slideEvt.value + ' cc');
+      });
+      priceSliderModal.on('slide', function(slideEvt) {
+      	priceSliderValueModal.text('$' + slideEvt.value);
+      });
+      mileageSliderModal.on('slide', function(slideEvt) {
+      	mileageSliderValueModal.text(slideEvt.value + ' mi');
+      });
+      yearSliderModal.on('slide', function(slideEvt) {
+      	yearSliderValueModal.text(slideEvt.value);
+      });
+      engineSizeSliderModal.on('slide', function(slideEvt) {
+      	engineSizeSliderModalValue.text(slideEvt.value + ' cc');
+      });
+      
+      priceSlider.on('slideStop', function(slideEvt) {
+      	priceSliderValue.text('$' + slideEvt.value);
+      });
+      mileageSlider.on('slideStop', function(slideEvt) {
+      	mileageSliderValue.text(slideEvt.value + ' mi');
+      });
+      yearSlider.on('slideStop', function(slideEvt) {
+      	yearSliderValue.text(slideEvt.value);
+      });
+      engineSizeSlider.on('slideStop', function(slideEvt) {
+      	engineSizeSliderValue.text(slideEvt.value + ' cc');
+      });
+      priceSliderModal.on('slideStop', function(slideEvt) {
+      	priceSliderValueModal.text('$' + slideEvt.value);
+      });
+      mileageSliderModal.on('slideStop', function(slideEvt) {
+      	mileageSliderValueModal.text(slideEvt.value + ' mi');
+      });
+      yearSliderModal.on('slideStop', function(slideEvt) {
+      	yearSliderValueModal.text(slideEvt.value);
+      });
+      engineSizeSliderModal.on('slideStop', function(slideEvt) {
+      	engineSizeSliderValueModal.text(slideEvt.value + ' cc');
+      });
+      
+    // search map
+      
+      mapboxgl.accessToken = 'pk.eyJ1IjoibW90b21pbmlvbiIsImEiOiJjanA4eDMwN3AwNHoxM3VvNWpkMzJhbWF4In0.zFFkCLgxG2tCFjF_0_twpg';
+
+      var map = new mapboxgl.Map({
+                      container: 'search-map',
+                      style: 'mapbox://styles/mapbox/streets-v10',
+                      // center: [
+                      //     <= @filterrific.with_zip_code.to_lon.to_f %>,
+                      //     <= @filterrific.with_zip_code.to_lat.to_f %>
+                      //   ], 
+                          
+                      center: [-119.4179, 36.7783],
+
+                      zoom: 5,
+                      maxZoom: 15
+                    });
+      
+      // This will let you use the .remove() function later on
+      if (!('remove' in Element.prototype)) {
+        Element.prototype.remove = function() {
+          if (this.parentNode) {
+            this.parentNode.removeChild(this);
+          }
+        };
+      }
+                
+      map.on('load', function() {
+        $.ajax({
+          
+          dataType: 'text',
+          url: window.location.href.replace("/oakland", "/oakland.json"),
+
+          success: function(data) {
+            
+            var myjson;
+            myjson = $.parseJSON(data);
+            
+            var geojson = {
+              type: 'FeatureCollection',
+              features: myjson
+            };
+            
+            map.addSource('locations', {
+              type: 'geojson',
+              data: geojson
+            });
+            
+            var bounds = new mapboxgl.LngLatBounds();
+            
+            function createPopUp(currentFeature) {
+              
+              var popUps = document.getElementsByClassName('mapboxgl-popup');
+              
+              // Check if there is already a popup on the map and if so, remove it.
+              if (popUps[0]) popUps[0].remove();
+            
+              var popup = new mapboxgl.
+                              Popup({ closeOnClick: false }).
+                              setLngLat(currentFeature.geometry.coordinates).
+                              setHTML('<div class="row">' +
+                                      '<div class="col-xs-6">' +
+                                      '<img src="'+ currentFeature.properties.image +'">' +
+                                      '</div>' +
+                                      '<div class="col-xs-6">' +
+                                      '<h3 class="search-item-title">' + currentFeature.properties.title + '</h3>' +
+                                      '</div>' +
+                                      '</div>').
+                              addTo(map);
+            }
+            
+            function createMapItem(currentFeature) {
+              
+              var mapItems = $('.map-item');
+              var markers  = $('.marker');
+              
+              mapItems.css("display", "none")
+              markers.css("background-image", "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')");
+              
+              var mapItem = $('#map-item-' + currentFeature.properties.id);
+              
+              mapItem.css({ "display": "block" })
+            }
+            
+            geojson.features.forEach(function(marker) {
+              
+              bounds.extend(marker.geometry.coordinates);
+              
+              var el = document.createElement('div');
+              el.className = 'marker';
+              
+              new mapboxgl.
+                  Marker(el, { offset: [0, -23] }).
+                  setLngLat(marker.geometry.coordinates).
+                  addTo(map);
+              
+              var searchNavMap = $('.search-nav-map');
+              var mapItem      = $('#map-item-' + marker.properties.id);
+
+              el.addEventListener('click', function(e) {
+                if ( $(window).width() <= 768 ) { 
+                  createMapItem(marker);
+                  el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+                }
+              });
+              
+              var searchItem = document.getElementById("search-item-" + marker.properties.id);
+              
+              searchItem.addEventListener('mouseover', function(e) {  
+                el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
+                el.style.zIndex          = "2000";             
+              });
+              
+              searchItem.addEventListener('mouseout', function(e) {  
+                el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png')";
+                el.style.zIndex          = "1000";             
+              });
+            });
+            
+            if ( $(window).width() > 768 ) { 
+              map.fitBounds(bounds, { padding: 100 })
+            }
+            
+            else {
+              map.fitBounds(bounds, { padding: 50 })
+            };
+          },
+          
+          error: function() {}
+        });
+      });
+  });
+</script>
+
+<!--title modification-->
+<!--https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html-->

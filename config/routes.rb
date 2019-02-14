@@ -69,6 +69,19 @@ Rails.application.routes.draw do
   resources :profiles,               only: [:show, :edit, :update]
   resources :sitemap,                only: [:index]
 
+  resources :articles do
+    collection do
+      get 'insurance'
+      get 'parts_and_accessories'
+      get 'legal'
+      get 'loans_and_financing'
+      get 'motorcycle_repair'
+      get 'motorcycle_tours_and_rentals'
+      get 'shipping'
+      get 'warranties_and_roadside_assistance'
+    end
+  end
+
   resources :vehicle_makes, path: "motorcycle_makes" do
     member do
       get 'posts'
@@ -158,6 +171,42 @@ Rails.application.routes.draw do
       member do
         put :rotate
       end
+    end
+  end
+  
+  resources :vehicles_for_sale, path: "motorcycles_for_sale" do
+    collection do
+      get 'san_francisco'
+      get 'oakland'
+      get 'san_jose'
+      get 'los_angeles'
+      get 'long_beach'
+      get 'san_diego'
+      get 'cafe_racer'
+      get 'cruisers'
+      get 'dirt_bike'
+      get 'dual_sport'
+      get 'mini_pocket'
+      get 'moped'
+      get 'sportbike'
+      get 'standard'
+      get 'touring'
+      get 'trike'
+      get 'aprilia'
+      get 'bmw'
+      get 'can_am'
+      get 'ducati'
+      get 'harley_davidson'
+      get 'honda'
+      get 'indian'
+      get 'kawasaki'
+      get 'ktm'
+      get 'kymco'
+      get 'suzuki'
+      get 'triumph'
+      get 'vespa'
+      get 'victory'
+      get 'yamaha'
     end
   end
   

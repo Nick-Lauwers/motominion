@@ -13,6 +13,7 @@ class VehiclesController < ApplicationController
                                               :feed_15, :feed_16, :feed_17,
                                               :feed_18, :feed_19, :feed_20,
                                               :synchronize_vehicles]
+                                
   before_action :profile_pic_upload, only:   [:post]
   before_action :get_vehicle,        only:   [:destroy, :show, :update, :basics,
                                               :details, :upgrades, :photos, 
@@ -281,24 +282,6 @@ class VehiclesController < ApplicationController
                         # "year DESC",
                         # "listing_name ASC").
                   paginate(page: params[:page], per_page: 10)
-
-    # @hash = Gmaps4rails.build_markers(@vehicles) do |vehicle, marker|
-      
-    #   marker.lat vehicle.latitude
-    #   marker.lng vehicle.longitude
-      
-    #   marker.picture({
-    #     url: "https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-red.png",
-    #     width:  32,
-    #     height: 32
-    #   })
-      
-    #   marker.infowindow render_to_string(partial: "map_item",
-    #                                     object:  vehicle,
-    #                                     as:      :vehicle)
-      
-    #   marker.json({ :id => vehicle.id })
-    # end
     
     @geojson = Array.new;
 
@@ -331,7 +314,7 @@ class VehiclesController < ApplicationController
       format.json { render json: @geojson }
     end
   end
-  
+    
   def basics
   end
   

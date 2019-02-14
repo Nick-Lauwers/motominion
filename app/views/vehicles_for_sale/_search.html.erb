@@ -1,0 +1,350 @@
+<% provide(:title,       "New & Used Motorcycles For Sale In #{@region}") %>
+<% provide(:description, "Browse thousands of new and used motorcycles for sale in #{@region}.") %>
+
+<header class="header-fixed-visible">
+  <%= render 'layouts/header_secondary' %>
+</header>
+
+<%= render 'layouts/modal_search' %>
+
+<%= render 'layouts/modal_menu' %>
+
+<%= render 'layouts/contact' %>
+
+<%= render 'vehicles/modal_filters' %>
+
+<!--<div class="modal" id="modal-special-offer-desktop" role="dialog">-->
+<!--  <(perc)= render "layouts/modal_special_offer_desktop" %>-->
+<!--</div>-->
+
+<!--<div class="modal" id="modal-special-offer-mobile" role="dialog">-->
+<!--  <(perc)= render "layouts/modal_special_offer_mobile" %>-->
+<!--</div>-->
+
+<div class="search-summary hidden-xs">
+  <div class="search-summary-content">
+    
+    <h1 class="search-summary-title">
+      New & Used Motorcycles In <%= @region %>
+    </h1>
+    
+    <h2 class="search-summary-info">
+      <%= pluralize(@vehicles.count, "motorcycle") %> in your area
+    </h2>
+  </div>
+</div>
+
+<div class="search-results">
+  
+  <div class="search-map-container">
+    
+    <div id="search-map"></div>
+    
+    <%= render partial:    "vehicles/map_item", 
+               collection: @vehicles, 
+               as:         :vehicle %>
+  </div>
+
+  <div class="search-results-background">
+    <div class="search-list-container">
+      <div class="row">
+        
+        <div class="col-md-4">
+          <!--intentionally left empty-->
+        </div>
+        
+        <div class="col-md-8 search-list-content">
+          
+          <div class="search-filters">
+            <%= render 'vehicles/search_filters' %>
+          </div>
+          
+          <div class="search-items-container">
+            
+            <% if @vehicles.any? %>
+            
+              <div class="search-introduction">
+              
+                <div class="search-introduction-static hidden-xs">
+                  
+                  <i class="fa fa-times search-introduction-static-close"></i>
+                  
+                  <div class="row vertical-align">
+                    
+                    <div class="col-md-2">
+                      <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/search-introduction.png",
+                                    class: "search-introduction-static-image") %>
+                    </div>
+                    
+                    <div class="col-md-10">
+                      
+                      <span class="search-introduction-static-title">
+                        Motorcycles in Your Area
+                      </span>
+                  
+                      <p class="search-introduction-static-info">
+                        Find and compare bikes in your area with Motominion.com. 
+                        We list over 10,000 motorcycles from hundreds of 
+                        dealerships across the country. We will walk you through
+                        every step of the purchasing experience!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              
+                <div class="search-introduction-dynamic">
+                  <div class="row search-introduction-dynamic-content">
+                    
+                    <div class="col-md-3">
+                      <span class="search-introduction-dynamic-title">
+                        
+                        Newest Listings 
+                        
+                        <!--<(perc) if @filterrific.with_zip_code.present? %>-->
+                        <!--  - <(perc)= @filterrific.with_zip_code.to_s.to_region %>-->
+                        <!--<(perc) end %>-->
+                      </span>
+                    </div>
+                    
+                    <div class="col-md-9 marquee">
+                      <div class="marquee-container">
+    
+                        <span class="marquee-text">
+                          
+                          <strong><%= Vehicle.first.listing_name %>:</strong> 
+                          $<%= Vehicle.first.actual_price %>  
+                          
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          
+                          <strong><%= Vehicle.second.listing_name %>:</strong> 
+                          $<%= Vehicle.second.actual_price %>
+                          
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          
+                          <strong><%= Vehicle.third.listing_name %>:</strong> 
+                          $<%= Vehicle.third.actual_price %>
+                        </span>
+    
+                        <span class="marquee-text">
+                          
+                          <strong><%= Vehicle.first.listing_name %>:</strong>
+                          $<%= Vehicle.first.actual_price %>
+                          
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          
+                          <strong><%= Vehicle.second.listing_name %>:</strong>
+                          $<%= Vehicle.second.actual_price %>
+                          
+                          &nbsp;&nbsp;&nbsp;&nbsp;
+                          
+                          <strong><%= Vehicle.third.listing_name %>:</strong>
+                          $<%= Vehicle.third.actual_price %>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            
+            <!--<div class="mobile-search-info">-->
+              
+            <!--  <span class="feed-title">-->
+
+            <!--    <(perc) if @filterrific.with_vehicle_make_id.present? %>-->
+          
+            <!--      <(perc)= VehicleMake.-->
+            <!--            find(@filterrific.with_vehicle_make_id).-->
+            <!--            name %>-->
+                  
+            <!--      <(perc) if @filterrific.with_vehicle_model_id.present? && -->
+            <!--              VehicleModel.-->
+            <!--                find(@filterrific.with_vehicle_model_id).-->
+            <!--                name != "All Models" %>-->
+          
+            <!--        <(perc)= VehicleModel.-->
+            <!--              find(@filterrific.with_vehicle_model_id).-->
+            <!--              name %>-->
+            <!--      <(perc) end %>-->
+                
+            <!--    <(perc) else %>-->
+            <!--      All Makes and Models-->
+            <!--    <(perc) end %>-->
+            <!--  </span>-->
+
+            <!--  <span class="feed-info">-->
+            <!--    <(perc) if @filterrific.with_zip_code.present? %>-->
+
+            <!--      <(perc)= pluralize(@vehicles.count, "motorcycle") %> found near -->
+            <!--      <(perc)= @filterrific.with_zip_code.to_s.to_region %>-->
+          
+            <!--    <(perc) else %>-->
+            <!--      Enter a city to narrow your search-->
+            <!--    <(perc) end %>-->
+            <!--  </span>-->
+            <!--</div>-->
+            
+            <div class="filter-controls hidden-xs">
+              
+              <button class="btn-filters">
+                <i class="fa fa-sliders fa-lg filters-icon" 
+                   aria-hidden="true"></i>Filters
+              </button>
+              
+              <div class="form-group form-group-primary search-sort">
+                
+                <label for="sort">Sort By:</label>
+                
+                <div class="form-element-primary">
+                  
+                  <select class="form-control search-sort-form-control" 
+                          id="sort">
+                    
+                    <option>
+                      <!--<(perc)= link_to "Nearest", '#' %>-->
+                    </option>
+                    
+                    <option>
+                      <!--<(perc)= link_to "Most Popular", '#' %>-->
+                    </option>
+                    
+                    <option>
+                      <!--<(perc)= link_to "Lowest Price", :sort => "price" %>-->
+                    </option>
+                  </select>
+                  
+                  <i class="fa fa-caret-down fa-lg form-caret" 
+                     aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="search-items">
+              
+              <% if @vehicles.any? %>
+                <ol class="row search-items-content">
+                  <%= render partial:    "vehicles/search_item", 
+                             collection: @vehicles, 
+                             as:         :vehicle %>
+                </ol>
+              
+              <% else %>
+                <div class="empty-search">
+                  
+                  <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/empty-search.png") %>
+                  
+                  <h3 class="empty-search-title">
+                    No results in your area.
+                  </h3>
+
+                  <%= link_to("Reset All Filters", 
+                              reset_filterrific_url, 
+                              class: "empty-search-reset") %>
+                </div>
+              <% end %>
+            </div>
+            
+            <div class="search-advice">
+              <div class="search-advice-content">
+                
+                <div class="row vertical-align hidden-xs">
+                  
+                  <div class="col-md-2">
+                    <i class="fa fa-comments-o fa-4x advice-icon" 
+                       aria-hidden="true"></i>
+                  </div>
+                
+                  <div class="col-md-7">
+                    
+                    <h2 class="advice-title">
+                      Need free advice? Talk to our team!
+                    </h2>
+                    
+                    <p class="advice-info">
+                      Our experts can help you find the perfect vehicle.
+                    </p>
+                  </div>
+                
+                  <div class="col-md-3">
+                    <%= link_to "Get In Touch", 
+                                new_enquiry_path, 
+                                class: "btn btn-green" %>
+                  </div>
+                </div>
+                
+                <div class="visible-xs">
+                  <div class="row vertical-align">
+                    
+                    <div class="col-xs-3">
+                      <i class="fa fa-comments-o fa-4x advice-icon" 
+                         aria-hidden="true"></i>
+                    </div>
+                  
+                    <div class="col-xs-9">
+                      
+                      <h2 class="advice-title">
+                        Need free advice? Talk to our team!
+                      </h2>
+                      
+                      <p class="advice-info">
+                        Our experts can help you find the perfect vehicle.
+                      </p>
+                    </div>
+                  </div>
+                
+                  <%= link_to "Get In Touch", 
+                              new_enquiry_path, 
+                              class: "btn btn-green btn-get-in-touch" %>
+                </div>
+              </div>
+            </div>
+
+            <%= will_paginate @vehicles, 
+                previous_label: 
+                  '<i class="fa fa-arrow-left" aria-hidden="true"></i>', 
+                next_label: 
+                  '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
+                inner_window: 1, 
+                outer_window: 0 %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hidden-xs">
+  <%= render 'personalized_searches/form' %>
+</div>
+
+<!--<div class="visible-xs">-->
+<!--  <div class="single-action btn-enquiry">-->
+<!--    <i class='fa fa-lg fa-comments-o single-action-icon'></i>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="search-nav visible-xs">
+  <div class="row">
+    
+    <div class="col-xs-4 
+                btn-search-nav
+                search-nav-map
+                search-nav-map-inactive">
+      <i class="fa fa-map-marker btn-search-nav-icon" aria-hidden="true"></i>
+      Map
+    </div>
+
+    <div class="col-xs-4 
+                btn-search-nav 
+                search-nav-grid
+                search-nav-grid-active">
+      <i class="fa fa-th-large btn-search-nav-icon" aria-hidden="true"></i>
+      Grid
+    </div>
+    
+    <div class="col-xs-4 btn-search-nav btn-filters-modal">
+      <i class="fa fa-sliders btn-search-nav-icon" aria-hidden="true"></i>
+      Filters
+    </div>
+  </div>
+</div>

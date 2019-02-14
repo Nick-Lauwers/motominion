@@ -7,7 +7,7 @@ module ExternalDb
     def sync_to_dealership 
       if vehicles.where(vehicle_type_id: [3, 4]).exists?
         
-        if ::Dealership.where(scraped_id: id).exists?
+        if ( ::Dealership.where(scraped_id: id).exists? ) && ( source_id != 10 )
           ::Dealership.where(scraped_id: id).first.tap do |d|
         
             d.last_run_start_at = last_run_start
@@ -31,7 +31,7 @@ module ExternalDb
             puts "Dealership #{id} modified."
           end
         
-        else
+        elsif ( source_id != 10 )
           ::Dealership.where(scraped_id: id).first_or_initialize.tap do |d|
             
             d.scrape_name = scrape_name
