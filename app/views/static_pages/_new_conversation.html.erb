@@ -22,9 +22,16 @@
               <div class="online online-md-primary hidden-xs"></div>
             <% end %>
             
-            <div class="conversation-avatar avatar-general", 
-                 style="background-image: url('<%= other.avatar.url(:thumb) %>')">
-            </div>
+            <% if other.dealership.present? %>
+              <div class="conversation-avatar avatar-general", 
+                   style="background-image: url('<%= other.dealership.photo.url() %>')">
+              </div>
+              
+            <% else %>
+              <div class="conversation-avatar avatar-general", 
+                   style="background-image: url('<%= other.avatar.url(:thumb) %>')">
+              </div>
+            <% end %>
           <% end %>
         </td>
         
@@ -34,8 +41,13 @@
             <% if other.id == conversation.sender_id && 
                   conversation.is_sender_anonymous == true %>
               <p class="conversation-name">Anonymous</p>
+            
             <% else %>
-              <p class="conversation-name"><%= other.full_name %></p>
+              <% if other.dealership.present? %>
+                <p class="conversation-name"><%= other.dealership.dealership_name %></p>
+              <% else %>
+                <p class="conversation-name"><%= other.full_name %></p>
+              <% end %>
             <% end %>
             
             <p class="conversation-date">

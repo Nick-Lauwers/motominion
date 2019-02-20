@@ -26,16 +26,18 @@
       
       <div class="col-md-8">
         
-        <div class="profile-preview-button">
-          <%= link_to user_path, 
-                      class: "btn-profile-preview" do %>
-                        
-            <i class="fa fa-user-circle-o fa-lg profile-preview-icon" 
-               aria-hidden="true"></i>
-            
-            Profile Preview
-          <% end %>
-        </div>
+        <% if current_user.dealership.blank? %>
+          <div class="profile-preview-button">
+            <%= link_to user_path, 
+                        class: "btn-profile-preview" do %>
+                          
+              <i class="fa fa-user-circle-o fa-lg profile-preview-icon" 
+                 aria-hidden="true"></i>
+              
+              Profile Preview
+            <% end %>
+          </div>
+        <% end %>
 
         <div class="account-form">
           <%= render 'edit_form' %>

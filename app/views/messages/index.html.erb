@@ -123,17 +123,28 @@
           
           <% else %>
             
-            <%= link_to user_path(@other) do %>
+            <% if @other.dealership.present? %>
               <div class="recipient-avatar avatar-general", 
                    style="background-image: url(
-                           '<%= @other.avatar.url(:thumb) %>')">
+                           '<%= @other.dealership.photo.url() %>')">
               </div>
+
+            <% else %>
+              <%= link_to user_path(@other) do %>
+                <div class="recipient-avatar avatar-general", 
+                     style="background-image: url(
+                             '<%= @other.avatar.url(:thumb) %>')">
+                </div>
+              <% end %>
             <% end %>
 
             <div class='recipient-username-link'>
-                
-              <%= link_to @other.full_name,
-                          user_path(@other) %>
+              
+              <% if @other.dealership.present %>
+                <%= @other.dealership.dealership_name %>
+              <% else %>
+                <%= link_to @other.full_name, user_path(@other) %>
+              <% end %>
                             
                 <!--<(perc) if @other.online? %>-->
                 <!--  <div class="online-name online-name-lg hidden-xs"></div>-->

@@ -59,7 +59,7 @@ module ExternalDb
           puts "Vehicle #{id} added / modified."
         end
 
-      elsif ( vehicle_type_id == 3 || vehicle_type_id == 4 ) && ( source_id != 10  )
+      elsif ( vehicle_type_id == 3 || vehicle_type_id == 4 ) && ( source_id != 10 )
         if ::Vehicle.where(scraped_id: id).exists?
           ::Vehicle.where(scraped_id: id).first.destroy
         end

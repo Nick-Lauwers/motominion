@@ -78,7 +78,7 @@
           
             <span class="profile-overview-position">General Partner ·</span>
             
-            <%= link_to Dealership.find(@user.dealership_id).name,
+            <%= link_to Dealership.find(@user.dealership_id).dealership_name,
                         Dealership.find(@user.dealership_id), 
                         class: "profile-overview-dealership" %>
           
