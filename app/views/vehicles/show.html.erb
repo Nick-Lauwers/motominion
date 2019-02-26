@@ -935,49 +935,49 @@
           </div>
         <% end %>
         
-        <% if Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).count > 1 %>
-          <div id="price-analysis">
+        <!--<(perc) if Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).count > 1 %>-->
+        <!--  <div id="price-analysis">-->
           
-            <h2 class="vehicle-details-title">Price Analysis</h2>
+        <!--    <h2 class="vehicle-details-title">Price Analysis</h2>-->
             
-            <p class="vehicle-details-info">
-              Including this listing, we found 
-              <span class="vehicle-details-info-red">
-              <%= pluralize(Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).count, "#{@vehicle.vehicle_make.name} #{@vehicle.vehicle_model.name}") %>
-              </span>
-              in your area. Below, we've mapped the prices of all
-              <%= @vehicle.vehicle_model.name %>s
-              near you. We also show the least expensive listings.
-            </p>
+        <!--    <p class="vehicle-details-info">-->
+        <!--      Including this listing, we found -->
+        <!--      <span class="vehicle-details-info-red">-->
+        <!--      <(perc)= pluralize(Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).count, "#{@vehicle.vehicle_make.name} #{@vehicle.vehicle_model.name}") %>-->
+        <!--      </span>-->
+        <!--      in your area. Below, we've mapped the prices of all-->
+        <!--      <(perc)= @vehicle.vehicle_model.name %>s-->
+        <!--      near you. We also show the least expensive listings.-->
+        <!--    </p>-->
             
-            <div class="price-analysis-overview row">
+        <!--    <div class="price-analysis-overview row">-->
               
-              <div class="col-md-8">
-                <%= scatter_chart Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).pluck(:year, :actual_price), 
-                                  colors:    ["#38b2a6"],
-                                  thousands: ",",
-                                  prefix:    "$",
-                                  xtitle:    "Year" %>
-              </div>
+        <!--      <div class="col-md-8">-->
+        <!--        <(perc)= scatter_chart Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).pluck(:year, :actual_price), -->
+        <!--                          colors:    ["#38b2a6"],-->
+        <!--                          thousands: ",",-->
+        <!--                          prefix:    "$",-->
+        <!--                          xtitle:    "Year" %>-->
+        <!--      </div>-->
               
-              <div class="col-md-4">
+        <!--      <div class="col-md-4">-->
                 
-                <ol class="price-analysis-list hidden-xs">
-                  <%= render partial:    "price_analysis_vehicle",
-                             collection: Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).order("actual_price ASC").limit(2),
-                             as:         :vehicle %>
-                </ol>
+        <!--        <ol class="price-analysis-list hidden-xs">-->
+        <!--          <(perc)= render partial:    "price_analysis_vehicle",-->
+        <!--                     collection: Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).order("actual_price ASC").limit(2),-->
+        <!--                     as:         :vehicle %>-->
+        <!--        </ol>-->
                 
-                <div class="related-vehicles-mobile visible-xs">
-                  <ol class="related-vehicles-mobile-content">
-                    <%= render partial:    "related_vehicle_mobile",
-                               collection: Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).order("actual_price ASC").limit(4) %>
-                  </ol>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        <!--        <div class="related-vehicles-mobile visible-xs">-->
+        <!--          <ol class="related-vehicles-mobile-content">-->
+        <!--            <(perc)= render partial:    "related_vehicle_mobile",-->
+        <!--                       collection: Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).order("actual_price ASC").limit(4) %>-->
+        <!--          </ol>-->
+        <!--        </div>-->
+        <!--      </div>-->
+        <!--    </div>-->
+        <!--  </div>-->
+        <!--<(perc) end %>-->
 
         <div id="listing-score">
         
