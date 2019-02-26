@@ -1,0 +1,37 @@
+<li id="related-vehicle-mobile-<%= vehicle.id %>" 
+    class="price-analysis-vehicle">
+  
+  <%= link_to vehicle, target: "_blank" do %>
+  
+    <div class="related-vehicle-mobile-image", 
+         style="background-image: url(
+                 '<%= vehicle.photos[0].image.url() if 
+                      vehicle.photos.length > 0 %>'
+                )">
+    </div>
+    
+    <% if vehicle.dealership.present? %>
+      <span class="certified">
+        <i class="fa fa-check-circle" aria-hidden="true"></i>
+        Certified
+      </span>
+    <% else %>
+      <span class="private">
+        <i class="fa fa-user-circle" aria-hidden="true"></i>
+        Private
+      </span>
+    <% end %>
+    
+    <span class="related-vehicle-mobile-price">
+      <% if vehicle.actual_price.present? %>
+        | $<%= vehicle.actual_price %> 
+      <% elsif vehicle.msrp.present? %>
+        | $<%= vehicle.msrp %>
+      <% end %>
+    </span>
+    
+    <span class="related-vehicle-mobile-name">
+      <%= vehicle.listing_name %>
+    </span>
+  <% end %>
+</li>

@@ -2496,8 +2496,13 @@ footer {
   padding: 0 10px;
 }
 
+.price-analysis-vehicle {
+  margin-bottom: 1em;
+}
+
 .feed-item-mobile a,
-.related-vehicle-mobile a {
+.related-vehicle-mobile a,
+.price-analysis-vehicle a {
   &:hover,
   &:focus {
     text-decoration: none;
@@ -2775,8 +2780,10 @@ footer {
 .search-item {
   z-index: 20000;
   margin-bottom: 3em;
+  filter: drop-shadow(0px 2px 16px $gray-dark);
   transition: 0.3s;
   &:hover {
+    filter: drop-shadow(0 3px 32px $gray-dark);
     transform: scale(1.05);
   }
 }
@@ -4655,8 +4662,19 @@ ul.pagination {
 #features,
 #pricing,
 #sellers-notes,
+#price-analysis,
 #listing-score {
   margin-bottom: 4em;
+}
+
+.price-analysis-overview {
+  margin-top: 2em;
+}
+
+.price-analysis-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .vehicle-details-title,
@@ -10770,6 +10788,7 @@ a.remove_fields {
   #features,
   #pricing,
   #sellers-notes,
+  #price-analysis,
   #listing-score,
   #availability {
     margin-bottom: 1.7em;
