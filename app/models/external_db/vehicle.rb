@@ -72,19 +72,19 @@ module ExternalDb
       normalized_make  = make.to_s.downcase.gsub(/[^0-9a-z]/, '')
       normalized_model = model.to_s.downcase.gsub(/[^0-9a-z]/, '')
           
-      VehicleMake.order("LENGTH(name) DESC").all.each do |vehicle_make|
+      VehicleMake.order("LENGTH(name) ASC").all.each do |vehicle_make|
+
         if vehicle_make.name.downcase.gsub(/[^0-9a-z]/, '').in?(normalized_make)
           
           vehicle.vehicle_make = vehicle_make
           
-          vehicle_make.vehicle_models.order("LENGTH(name) DESC").all.each do |vehicle_model|
+          vehicle_make.vehicle_models.order("LENGTH(name) ASC").all.each do |vehicle_model|
             if vehicle_model.name.downcase.gsub(/[^0-9a-z]/, '').in?(normalized_model)
               vehicle.vehicle_model = vehicle_model
-              break
             end
           end
           
-          break
+        # elsif vehicle_make.name.downcase.gsub(/[^0-9a-z]/, '')
         end
       end
     end
