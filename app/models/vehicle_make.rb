@@ -11,4 +11,8 @@ class VehicleMake < ActiveRecord::Base
   def self.options_for_select
     order('LOWER(name)').map { |e| [e.name, e.id] }
   end
+  
+  def name_with_count
+    "#{name} (#{vehicles.count})"
+  end
 end
