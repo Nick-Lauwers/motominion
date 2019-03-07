@@ -69,8 +69,11 @@ module ExternalDb
     # Update make and model ids
     def update_make_model_id(vehicle)
       
+      vehicle.vehicle_make  = nil
+      vehicle.vehicle_model = nil
+      
       normalized_make  = make.to_s.downcase.gsub(/[^0-9a-z]/, '')
-      normalized_model = model.to_s.downcase.gsub(/[^0-9a-z]/, '')
+      normalized_model = (model.to_s + " " + trim_details.to_s).downcase.gsub(/[^0-9a-z]/, '')
           
       VehicleMake.order("LENGTH(name) ASC").all.each do |vehicle_make|
 
@@ -84,7 +87,9 @@ module ExternalDb
             end
           end
           
-        # elsif vehicle_make.name.downcase.gsub(/[^0-9a-z]/, '')
+          if vehicle.vehicle_model == nil
+            vehicle.vehicle_model = vehicle_make.vehicle_models.where(name: "Other Models").first
+          end
         end
       end
     end

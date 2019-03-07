@@ -12,7 +12,7 @@ class VehicleMake < ActiveRecord::Base
     order('LOWER(name)').map { |e| [e.name, e.id] }
   end
   
-  def name_with_count
-    "#{name} (#{vehicles.count})"
+  def vehicle_models_above_zero
+    vehicle_models.joins(:vehicles).group('vehicle_models.id')
   end
 end
