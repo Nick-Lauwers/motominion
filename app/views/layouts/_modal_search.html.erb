@@ -37,10 +37,10 @@
                      
           <%= f.grouped_collection_select(:with_vehicle_model_id, 
                                           VehicleMake.order(:name),
-                                          :vehicle_models,
+                                          :vehicle_models_above_zero,
                                           :name,
                                           :id,
-                                          :name,
+                                          :name_with_count,
                                           { include_blank: true,
                                             prompt: "All models" },
                                           id: "vehicle-model-search-modal",
