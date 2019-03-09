@@ -135,7 +135,7 @@
                              
                 <% else %>
                   <%= render partial:    'modal_test_drive_item',
-                             collection: User.find(184),
+                             collection: User.where(id: 184),
                              as:         :dealer,
                              locals:     { f: f, ff: ff } %>
                 <% end %>

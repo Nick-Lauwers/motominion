@@ -395,7 +395,7 @@
                                    
                       <% else %>
                         <%= render partial:    'test_drive_sidenav_item',
-                                   collection: User.find(184),
+                                   collection: User.where(id: 184),
                                    as:         :dealer,
                                    locals:     { f: f, ff: ff } %>
                       <% end %>
@@ -1677,7 +1677,7 @@
                                          
                             <% else %>
                               <%= render partial:    'nitty_gritty_item_logged_in',
-                                         collection: User.find(184),
+                                         collection: User.where(id: 184),
                                          as:         :dealer,
                                          locals:     { f: f } %>
                             <% end %>
@@ -1840,7 +1840,7 @@
                                          
                             <% else %>
                               <%= render partial:    'nitty_gritty_item_signed_out',
-                                         collection: User.find(184),
+                                         collection: User.where(id: 184),
                                          as:         :dealer,
                                          locals:     { ff: ff } %>
                             <% end %>
