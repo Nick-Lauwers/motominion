@@ -2,13 +2,21 @@
     class="col-xs-3 related-vehicle-mobile">
   
   <%= link_to related_vehicle_mobile, target: "_blank" do %>
-  
-    <div class="related-vehicle-mobile-image", 
-         style="background-image: url(
-                 '<%= related_vehicle_mobile.photos[0].image.url() if 
-                      related_vehicle_mobile.photos.length > 0 %>'
-                )">
-    </div>
+    
+    <% if related_vehicle_mobile.photos.length > 0 %>
+      <div class="related-vehicle-mobile-image">
+        <%= image_tag(related_vehicle_mobile.photos[0].image.url(),
+                      class: "cover-image",
+                      alt: related_vehicle_mobile.listing_name) %>
+      </div>
+      
+    <% else %>
+      <div class="related-vehicle-mobile-image">
+        <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/no-image-available.jpg',
+                      class: "cover-image",
+                      alt: related_vehicle_mobile.listing_name) %>
+      </div>
+    <% end %>
     
     <% if related_vehicle_mobile.dealership.present? %>
       <span class="certified">
