@@ -54,10 +54,10 @@
               <div class="form-element">
                 <%= f.grouped_collection_select(:with_vehicle_model_id,
                                                 VehicleMake.order(:name),
-                                                :vehicle_models,
+                                                :vehicle_models_above_zero,
                                                 :name,
                                                 :id,
-                                                :name,
+                                                :name_with_count,
                                                 { include_blank: 'All models' },
                                                 id: "vehicle-model-modal-filters",
                                                 class: "form-control 

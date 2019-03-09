@@ -384,12 +384,21 @@
                               test-drive-sidenav-right"></i>
               
                     <ol class="test-drive-sidenav-list">
-                      <%= render partial:    'test_drive_sidenav_item',
-                                 collection: User.where(
-                                               dealership_id: @vehicle.dealership_id
-                                             ),
-                                 as:         :dealer,
-                                 locals:     { f: f, ff: ff } %>
+                      
+                      <% if @vehicle.dealership_id != 60 %>
+                        <%= render partial:    'test_drive_sidenav_item',
+                                   collection: User.where(
+                                                 dealership_id: @vehicle.dealership_id
+                                               ),
+                                   as:         :dealer,
+                                   locals:     { f: f, ff: ff } %>
+                                   
+                      <% else %>
+                        <%= render partial:    'test_drive_sidenav_item',
+                                   collection: User.find(184),
+                                   as:         :dealer,
+                                   locals:     { f: f, ff: ff } %>
+                      <% end %>
                     </ol>
                   </div>
                 </div>
@@ -1657,12 +1666,21 @@
                                     test-drive-sidenav-right"></i>
                     
                           <ol class="nitty-gritty-sidenav-list">
-                            <%= render partial:    'nitty_gritty_item_logged_in',
-                                       collection: User.where(
-                                                     dealership_id: @vehicle.dealership_id
-                                                   ),
-                                       as:         :dealer,
-                                       locals:     { f: f } %>
+                            
+                            <% if @vehicle.dealership_id != 60 %>
+                              <%= render partial:    'nitty_gritty_item_logged_in',
+                                         collection: User.where(
+                                                       dealership_id: @vehicle.dealership_id
+                                                     ),
+                                         as:         :dealer,
+                                         locals:     { f: f } %>
+                                         
+                            <% else %>
+                              <%= render partial:    'nitty_gritty_item_logged_in',
+                                         collection: User.find(184),
+                                         as:         :dealer,
+                                         locals:     { f: f } %>
+                            <% end %>
                           </ol>
                         </div>
                       </div>
@@ -1811,12 +1829,21 @@
                                     test-drive-sidenav-right"></i>
                     
                           <ol class="nitty-gritty-sidenav-list">
-                            <%= render partial:    'nitty_gritty_item_signed_out',
-                                       collection: User.where(
-                                                     dealership_id: @vehicle.dealership_id
-                                                   ),
-                                       as:         :dealer,
-                                       locals:     { ff: ff } %>
+                            
+                            <% if @vehicle.dealership_id != 60 %>
+                              <%= render partial:    'nitty_gritty_item_signed_out',
+                                         collection: User.where(
+                                                       dealership_id: @vehicle.dealership_id
+                                                     ),
+                                         as:         :dealer,
+                                         locals:     { ff: ff } %>
+                                         
+                            <% else %>
+                              <%= render partial:    'nitty_gritty_item_signed_out',
+                                         collection: User.find(184),
+                                         as:         :dealer,
+                                         locals:     { ff: ff } %>
+                            <% end %>
                           </ol>
                         </div>
                       </div>

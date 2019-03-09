@@ -124,12 +124,21 @@
               </span>
               
               <ol class="modal-test-drive-mobile-list">
-                <%= render partial:    'modal_test_drive_item',
-                           collection: User.where(
-                                         dealership_id: @vehicle.dealership_id
-                                       ),
-                           as:         :dealer,
-                           locals:     { f: f, ff: ff } %>
+                
+                <% if @vehicle.dealership_id != 60 %>
+                  <%= render partial:    'modal_test_drive_item',
+                             collection: User.where(
+                                           dealership_id: @vehicle.dealership_id
+                                         ),
+                             as:         :dealer,
+                             locals:     { f: f, ff: ff } %>
+                             
+                <% else %>
+                  <%= render partial:    'modal_test_drive_item',
+                             collection: User.find(184),
+                             as:         :dealer,
+                             locals:     { f: f, ff: ff } %>
+                <% end %>
               </ol>
             </div>
           <% end %>

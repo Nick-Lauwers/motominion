@@ -139,12 +139,21 @@
             </span>
             
             <ol class="modal-dealer-select-mobile-list">
+              
+              <% if @vehicle.dealership_id != 60 %>
+                  <%= render partial:    'nitty_gritty_item_logged_in',
+                             collection: User.where(
+                                           dealership_id: @vehicle.dealership_id
+                                         ),
+                             as:         :dealer,
+                             locals:     { f: f } %>
+                             
+              <% else %>
                 <%= render partial:    'nitty_gritty_item_logged_in',
-                           collection: User.where(
-                                         dealership_id: @vehicle.dealership_id
-                                       ),
+                           collection: User.find(184),
                            as:         :dealer,
                            locals:     { f: f } %>
+              <% end %>
             </ol>
 
           <% else %>
@@ -283,12 +292,21 @@
               </span>
               
               <ol class="modal-dealer-select-mobile-list">
+                
+                <% if @vehicle.dealership_id != 60 %>
                   <%= render partial:    'nitty_gritty_item_signed_out',
                              collection: User.where(
                                            dealership_id: @vehicle.dealership_id
                                          ),
                              as:         :dealer,
                              locals:     { ff: ff } %>
+                               
+                <% else %>
+                  <%= render partial:    'nitty_gritty_item_signed_out',
+                             collection: User.find(184),
+                             as:         :dealer,
+                             locals:     { ff: ff } %>
+                <% end %>
               </ol>
               
             <% else %>
