@@ -2509,8 +2509,7 @@ footer {
   }
 }
 
-.feed-item-mobile-image,
-.related-vehicle-mobile-image {
+.feed-item-mobile-image {
   background-color: $gray-darkest;
   background-size: cover;
   background-position: center;
@@ -2524,6 +2523,11 @@ footer {
     box-shadow: 0 3px 24px 0 $gray-light;
     transform: scale(1.05);
   }
+}
+
+.related-vehicle-mobile-image {
+  background-color: $gray-darkest;
+  height: 100px;
 }
 
 .certified,
