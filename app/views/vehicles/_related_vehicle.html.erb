@@ -5,11 +5,21 @@
   <div class="related-vehicle-image">
     
     <%= link_to related_vehicle, target: "_blank" do %>
-      <div class="related-vehicle-image-content", 
-           style="background-image: url('<%= related_vehicle.photos[0].image.url() if 
-                                             related_vehicle.photos.length > 0 %>')">
+    
+      <% if related_vehicle.photos.length > 0 %>
+        <div class="related-vehicle-image-content">
+          <%= image_tag(related_vehicle.photos[0].image.url(),
+                        class: "cover-image",
+                        alt: related_vehicle.listing_name) %>
+        </div>
         
-      </div>
+      <% else %>
+        <div class="related-vehicle-image-content">
+          <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/no-image-available.jpg',
+                        class: "cover-image",
+                        alt: related_vehicle.listing_name) %>
+        </div>
+      <% end %>
     <% end %>
     
     <% if current_user &&
