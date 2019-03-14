@@ -1136,89 +1136,92 @@
       </div>
     </div>
     
-    <!--<div class="feed-content">-->
+    <div class="feed-content">
       
-    <!--  <h2 class="feed-title">Personalize your search</h2>-->
+      <h2 class="feed-title">Personalize your search</h2>
       
-    <!--  <div class="motominion-summary">-->
-    <!--    <div class="row vertical-align">-->
+      <div class="motominion-summary">
+        <div class="row vertical-align">
             
-    <!--      <div class="col-md-5 col-md-offset-1 motominion-summary-content">-->
+          <div class="col-md-5 col-md-offset-1 motominion-summary-content">
+
+            <span class="social-column-info hello-4">
+              At Motominion, we strive to provide a cohesive purchasing 
+              experience for the powersport consumer. We offer highly 
+              curated search, in order to connect buyers with the vehicles 
+              that best fit their needs, and with the dealers that sell them. 
+              Then, we provide the consumer confidence features that you expect, 
+              including price analyses, dealer reviews, and other insights. 
+            </span>
             
-    <!--        <span class="social-column-info hello-4">-->
-    <!--          At Motominion, our mission is to find you a motorcycle and our method is -->
-    <!--          trust and transparency. With tons of motorcycles for sale in -->
-    <!--          almost every state, city, and neighborhood across California, we‘re -->
-    <!--          here to help you find your next motorcycle.-->
-    <!--        </span>-->
+            <br>
             
-    <!--        <br>-->
+            <span class="social-column-info hello-4">
+              Ready to start your search? Complete a buyer profile and we'll 
+              group bikes into categories, like “Within Budget” or “Being Sold 
+              Near Me”. Our approach makes it easier for buyers to discover 
+              motorcycles that have exactly what they are looking for, as well 
+              as anything that they may have missed.            
+            </span>
+            <br>
             
-    <!--        <span class="social-column-info hello-4">-->
-    <!--          Here’s how it works: first, we get to know you. You’ll answer a few simple -->
-    <!--          questions and we’ll find the best matches – just for you. Then, we mix and -->
-    <!--          match your personalized results, making it easy to discover bikes with -->
-    <!--          the perfect combination of price, location and amenities. From there, we -->
-              <!--help you figure out which listings are best to visit and eventually lease, -->
-              <!--showing you up-to-date pricing and availability, rent specials, and much -->
-              <!--more. After all, everyone deserves a motorcycle they love.-->
-    <!--        </span>-->
-            
-    <!--        <br>-->
-            
-    <!--        <(perc) if current_user && current_user.personalized_search.present? %>-->
-    <!--          <(perc)= link_to "Choosing your own preferences",-->
-    <!--                      style_personalized_search_path(-->
-    <!--                        current_user.personalized_search-->
-    <!--                      ),-->
-    <!--                      class: "preferences-link" %>.-->
+            <% if current_user && current_user.personalized_search.present? %>
+              <%= link_to style_personalized_search_path(
+                            current_user.personalized_search
+                          ),
+                          class: "preferences-link" do %>
+                Complete my profile
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              <% end %>
                           
-    <!--        <(perc) else %>-->
-    <!--          <(perc)= link_to "Choosing your own preferences",-->
-    <!--                      survey_personalized_searches_path,-->
-    <!--                      class: "preferences-link" %>.-->
-    <!--        <(perc) end %>-->
-    <!--      </div>-->
+            <% else %>
+              <%= link_to survey_personalized_searches_path,
+                          class: "preferences-link" do %>
+                Complete my profile
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </div>
           
-    <!--      <div class="col-md-6">-->
-    <!--        <div class="motominion-icons">-->
+          <div class="col-md-6 hidden-xs">
+            <div class="motominion-icons">
               
-    <!--          <div class="icon-group-a">-->
+              <div class="icon-group-a">
                 
-    <!--            <(perc)= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-a.png",-->
-    <!--                          class: "icon-large") %>-->
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-a.png",
+                              class: "icon-large") %>
                             
-    <!--            <(perc)= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-b.png",-->
-    <!--                          class: "icon-small") %>-->
-    <!--          </div>-->
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-b.png",
+                              class: "icon-small") %>
+              </div>
             
-    <!--          <div class="icon-group-b">-->
+              <div class="icon-group-b">
                 
-    <!--            <(perc)= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-d.png",-->
-    <!--                          class: "icon-large") %>-->
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-d.png",
+                              class: "icon-large") %>
                               
-    <!--            <(perc)= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-e.png",-->
-    <!--                          class: "icon-small") %>-->
-    <!--          </div>-->
+                <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-e.png",
+                              class: "icon-small") %>
+              </div>
               
-    <!--          <(perc)= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-c.png",-->
-    <!--                        class: "icon-medium") %> -->
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-c.png",
+                            class: "icon-medium") %> 
             
-    <!--          <(perc)= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-f.png",-->
-    <!--                        class: "icon-tiny") %>-->
+              <%= image_tag("https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/icon-f.png",
+                            class: "icon-tiny") %>
               
-    <!--          <div class="icon-circle icon-circle-a"></div>-->
+              <div class="icon-circle icon-circle-a"></div>
               
-    <!--          <div class="icon-circle icon-circle-b"></div>-->
+              <div class="icon-circle icon-circle-b"></div>
               
-    <!--          <div class="icon-circle icon-circle-c"></div>-->
+              <div class="icon-circle icon-circle-c"></div>
                
-    <!--          <div class="icon-circle icon-circle-d"></div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--  </div>-->
-    <!--</div>-->
+              <div class="icon-circle icon-circle-d"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     
     <div class="feed-content">
       <div class="row">
