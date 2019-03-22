@@ -519,6 +519,78 @@ class VehiclesController < ApplicationController
     end
   end
   
+  def feed_14
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_15
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_16
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_17
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_18
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_19
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_20
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_21
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_22
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_23
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_24
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
+  def feed_25
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
   private
     
     # Gets filterrific
