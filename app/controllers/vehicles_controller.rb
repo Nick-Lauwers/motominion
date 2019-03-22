@@ -12,6 +12,8 @@ class VehiclesController < ApplicationController
                                               :feed_12, :feed_13, :feed_14,
                                               :feed_15, :feed_16, :feed_17,
                                               :feed_18, :feed_19, :feed_20,
+                                              :feed_21, :feed_22, :feed_23,
+                                              :feed_24, :feed_25,
                                               :synchronize_vehicles]
                                 
   before_action :profile_pic_upload, only:   [:post]
