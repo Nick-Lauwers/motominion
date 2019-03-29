@@ -994,13 +994,24 @@ label {
 }
 
 #vehicle, 
-#filterrific_with_zip_code,
+// #filterrific_with_zip_code,
 #discussion {
   padding-left: 3.4em;
 }
 
 #filterrific_with_zip_code {
   border-left: 1px solid $gray-border;
+  padding-left: 2.9em;
+}
+
+#vehicle-make-mobile {
+  border-top: 1px solid $gray-border;
+  border-left: 1px solid $gray-border;
+}
+
+#vehicle-model-mobile {
+  border-top: 1px solid $gray-border;
+  border-right: 1px solid $gray-border;
 }
 
 #appointment-time,
@@ -1978,6 +1989,11 @@ footer {
   font-style: italic;
 }
 
+.hero-mobile-container {
+  background-color: $gray-lightest;
+  padding-bottom: 2em;
+}
+
 .hero-mobile {
   background-color: $gray-darkest;
   background-size: cover;
@@ -1985,6 +2001,7 @@ footer {
   background-repeat: no-repeat;
   background-image: url('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/hero-mobile.jpeg');
   height: 500px;
+  padding-bottom: 3em;
   position: relative;
 }
 
@@ -10584,6 +10601,11 @@ a.remove_fields {
   
   .col-xs-6-modified {
     width: 50%;
+  }
+  
+  #filterrific_with_zip_code {
+    border-top: 1px solid $gray-border;
+    border-bottom: 1px solid $gray-border;
   }
   
   .feed,

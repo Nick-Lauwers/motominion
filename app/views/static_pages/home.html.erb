@@ -116,50 +116,94 @@
   </div>
 </div>
 
-<div class="hero-mobile visible-xs">
-  
-  <div class="hero-mobile-detail">
+<div class="hero-mobile-container visible-xs">
+  <div class="hero-mobile">
     
-    <h1 class="hero-mobile-title">Motorcycles For Sale</h1>
-    
-    <h2 class="hero-mobile-info">
-      Discover bikes in your own backyard
-    </h2>
-    
-    <div class="hero-mobile-search">
-      <%= form_for_filterrific @filterrific, 
-          url: search_vehicles_path, 
-          html: { 
-            id:    "filterrific-no-ajax-auto-submit",
-            class: "search-form-primary" 
-          } do |f| %>
-            
-        <div class="row search-form-primary-content">
+    <div class="hero-mobile-detail">
+      
+      <h1 class="hero-mobile-title">Motorcycles For Sale</h1>
+      
+      <h2 class="hero-mobile-info">
+        Discover bikes in your own backyard
+      </h2>
+      
+      <div class="hero-mobile-search">
+        <%= form_for_filterrific @filterrific, 
+            url: search_vehicles_path, 
+            html: { 
+              id:    "filterrific-no-ajax-auto-submit",
+              class: "search-form-primary" 
+            } do |f| %>
           
-          <div class="col-xs-10 search-bar-primary">
+          <div class="row search-form-primary-content">  
+          
+            <div class="col-xs-6 search-bar-primary">
+                           
+              <%= f.collection_select(:with_vehicle_make_id,
+                                      VehicleMake.all,
+                                      :id,
+                                      :name,
+                                      { include_blank: true,
+                                        prompt: "All makes" },
+                                      id: "vehicle-make-mobile",
+                                      class: "form-control
+                                              search-form-control
+                                              search-select-primary") %>
+    
+              <i class="fa fa-search fa-lg search-bar-primary-icon" 
+                 aria-hidden="true"></i>
+              
+              <i class="fa fa-caret-down fa-lg form-caret" 
+                 aria-hidden="true"></i>
+            </div>
             
-            <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
-               aria-hidden="true"></i>
+            <div class="col-xs-6 search-bar-primary">
+              
+              <%= f.grouped_collection_select(:with_vehicle_model_id,
+                                              VehicleMake.order(:name),
+                                              :vehicle_models_above_zero,
+                                              :name,
+                                              :id,
+                                              :name_with_count,
+                                              { include_blank: true,
+                                                prompt: "All models" },
+                                              id: "vehicle-model-mobile",
+                                              class: "form-control
+                                                      search-form-control
+                                                      search-select-secondary") %>
+                           
+              <i class="fa fa-caret-down fa-lg form-caret" 
+                 aria-hidden="true"></i>
+            </div>
+          </div>
+              
+          <div class="row search-form-primary-content">
             
-            <%= f.text_field :with_zip_code, 
-                             placeholder: "Search by ZIP Code", 
-                             class: "form-control 
-                                     search-form-control 
-                                     typeahead" %>
+            <div class="col-xs-10 search-bar-primary">
+              
+              <i class="fa fa-map-pin fa-lg search-bar-primary-icon" 
+                 aria-hidden="true"></i>
+              
+              <%= f.text_field :with_zip_code, 
+                               placeholder: "ZIP Code", 
+                               class: "form-control 
+                                       search-form-control 
+                                       typeahead" %>
+            </div>
+    
+            <div class="col-xs-2 search-button-primary">
+              <%= button_tag(type:  "submit", 
+                             class: "btn btn-search") do %>
+                <i class="fa fa-lg fa-search search-button-icon-mobile"></i>
+              <% end %>
+            </div>
           </div>
-  
-          <div class="col-xs-2 search-button-primary">
-            <%= button_tag(type:  "submit", 
-                           class: "btn btn-search") do %>
-              <i class="fa fa-lg fa-search search-button-icon-mobile"></i>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
+  
+    <div class="hero-mobile-gradient"></div>
   </div>
-
-  <div class="hero-mobile-gradient"></div>
 </div>
 
 <div class="hidden-xs offerings">
@@ -1444,7 +1488,7 @@
         }
     });
     
-    // dependent dropdown
+    // dependent dropdown desktop
     
       var vehicleModelHome    = $('#vehicle-model-home');
       var vehicleMakeHome     = $('#vehicle-make-home');
@@ -1503,6 +1547,68 @@
           vehicleModelHome.empty();
           vehicleModelHome.html("<option value=''>All models</option>");
           vehicleModelHome.prop("disabled", true);
+        }
+      });
+    
+    // dependent dropdown mobile
+    
+      var vehicleModelMobile    = $('#vehicle-model-mobile');
+      var vehicleMakeMobile     = $('#vehicle-make-mobile');
+      var vehicle_model_mobile  = vehicleModelMobile.html();
+  
+      if ( vehicleMakeMobile.val() == '' ) {
+        vehicleModelMobile.prop("disabled", true);
+      }
+      
+      else {
+        
+        vehicleMakeMobile.prepend("<option value=''>All makes</option>");
+                                      
+        var vehicle_make_mobile = $('#vehicle-make-mobile :selected').text();
+        var escaped_vehicle_make_mobile = 
+          vehicle_make_mobile.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_mobile = 
+          $(vehicle_model_mobile).
+            filter("optgroup[label=" + escaped_vehicle_make_mobile + "]").
+            html();
+        
+        if (options_mobile) {
+          vehicleModelMobile.html("<option value=''>All models</option>" +
+                                "<option value=''></option>" +
+                                options_mobile);
+          vehicleModelMobile.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelMobile.empty();
+          vehicleModelMobile.html("<option value=''>All models</option>");
+          vehicleModelMobile.prop("disabled", true);
+        }
+      }
+      
+      vehicleMakeMobile.change(function() {
+        
+        var vehicle_make_mobile = $('#vehicle-make-mobile :selected').text();
+        var escaped_vehicle_make_mobile = 
+          vehicle_make_mobile.
+            replace(/([ #;&,.+*~\':"!^$[\]()=>|\/@])/g, '\\$1');
+        var options_mobile = 
+          $(vehicle_model_mobile).
+            filter("optgroup[label=" + escaped_vehicle_make_mobile + "]").
+            html();
+        
+        if (options_mobile) {
+          vehicleModelMobile.html("<option value=''>All models</option>" +
+                                "<option value=''></option>" +
+                                options_mobile);
+          vehicleModelMobile.prop("disabled", false);
+        } 
+        
+        else {
+          vehicleModelMobile.empty();
+          vehicleModelMobile.html("<option value=''>All models</option>");
+          vehicleModelMobile.prop("disabled", true);
         }
       });
   });
