@@ -82,7 +82,9 @@
                      class: 'form-control form-control-primary' %>
   </div>
 
-  <%= f.hidden_field :vehicle_id, value: params[:vehicle_id] %>
+  <%= f.hidden_field :vehicle_id, value: @vehicle.id %>  
+
+  <!--<= f.hidden_field :vehicle_id, value: params[:vehicle_id] %>-->
   
   <%= f.hidden_field :seller_id, value: @dealer.id %>
   
