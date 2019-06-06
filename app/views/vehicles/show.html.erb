@@ -122,13 +122,15 @@
           <% if @vehicle.dealership.present? && 
                 ( @vehicle.actual_price.present? || @vehicle.msrp.present? ) %>
             
-            <div class="btn-navbar-contact-hidden btn-buy-online">
-              
-              <i class="fa fa-shopping-cart listing-navbar-icon" 
-                 aria-hidden="true"></i>
-              
-              Reserve Online
-            </div>
+            <%= link_to new_purchase_path(vehicle: @vehicle) do %>
+              <div class="btn-navbar-contact-hidden btn-buy-online">
+                
+                <i class="fa fa-shopping-cart listing-navbar-icon" 
+                   aria-hidden="true"></i>
+                
+                Reserve Online
+              </div>
+            <% end %>
           
           <% elsif @vehicle.dealership.present? %>
             

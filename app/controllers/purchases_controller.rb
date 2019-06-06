@@ -7,8 +7,8 @@ class PurchasesController < ApplicationController
   
   def new
     
-    @vehicle  = Vehicle.find(253)
-    @dealer  = User.find(62)
+    @vehicle = Vehicle.find(params[:vehicle])
+    @dealer  = @vehicle.dealership.users.first
     
     if Purchase.where('vehicle_id = ? AND buyer_id = ?', @vehicle.id, current_user.id).exists?
       redirect_to basics_purchase_path(Purchase.where('vehicle_id = ? AND buyer_id = ?', @vehicle.id, current_user.id).first)
