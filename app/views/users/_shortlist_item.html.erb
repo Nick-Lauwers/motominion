@@ -4,11 +4,21 @@
   <div class="search-item-image">
     
     <%= link_to shortlist_item.vehicle, target: "_blank" do %>
-      <div class="search-item-image-content", 
-           style="background-image: url('<%= shortlist_item.vehicle.photos[0].image.url() if 
-                                             shortlist_item.vehicle.photos.length > 0 %>')">
+    
+      <% if shortlist_item.vehicle.photos.length > 0 %>
+        <div class="search-item-image-content">
+          <%= image_tag(shortlist_item.vehicle.photos[0].image.url(),
+                        class: "cover-image",
+                        alt: shortlist_item.vehicle.listing_name) %>
+        </div>
         
-      </div>
+      <% else %>
+        <div class="search-item-image-content">
+          <%= image_tag('https://s3.us-east-2.amazonaws.com/motominion-assets/static-assets/no-image-available.jpg',
+                        class: "cover-image",
+                        alt: shortlist_item.vehicle.listing_name) %>
+        </div>
+      <% end %>
     <% end %>
     
     <%= link_to unfavorite_vehicle_path(shortlist_item.vehicle),

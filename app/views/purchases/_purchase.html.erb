@@ -1,11 +1,12 @@
 <li id="purchase-item-<%= purchase.id %>" 
-    class="col-md-6 purchase-item shortlist-item-<%= current_user.
-                                                       favorite_vehicles.
-                                                       where(
-                                                         vehicle: 
-                                                         purchase.vehicle).
-                                                       first.
-                                                       vehicle_id %>">
+    class="col-md-6 purchase-item">
+<!--shortlist-item-<= current_user.-->
+<!--                                                       favorite_vehicles.-->
+<!--                                                       where(-->
+<!--                                                         vehicle: -->
+<!--                                                         purchase.vehicle).-->
+<!--                                                       first.-->
+<!--                                                       vehicle_id %>">-->
   
   <% if purchase.processed_at.present? %>
     <%= link_to purchase do %>
