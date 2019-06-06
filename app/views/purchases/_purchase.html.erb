@@ -98,7 +98,11 @@
           </span>
           
           <span class="purchase-item-price">
-            $ <%= purchase.vehicle.price %>
+            <% if purchase.vehicle.actual_price.present? %>
+              $<%= purchase.vehicle.actual_price %>
+            <% elsif purchase.vehicle.msrp.present? %>
+              $<%= purchase.vehicle.msrp %>
+            <% end %>
           </span>
           
           <span class="purchase-item-dealership">
