@@ -140,7 +140,7 @@
 
             <div class='recipient-username-link'>
               
-              <% if @other.dealership.present %>
+              <% if @other.dealership.present? %>
                 <%= @other.dealership.dealership_name %>
               <% else %>
                 <%= link_to @other.full_name, user_path(@other) %>
