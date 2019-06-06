@@ -106,7 +106,7 @@
           </span>
           
           <span class="purchase-item-dealership">
-            <%= Dealership.find(purchase.seller.dealership_id).name %> · 
+            <%= Dealership.find(purchase.seller.dealership_id).dealership_name %> · 
             <%= purchase.seller.full_name %>
           </span>
         </div>
