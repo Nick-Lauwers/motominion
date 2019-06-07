@@ -56,7 +56,7 @@
     </div>
     
     <%= link_to 'javascript:;', class: "post-item-link" do %>
-      <div class="post-item-photo" %>
+      <div class="post-item-photo">
         <% if post.photo.exists? %>
           <%= image_tag(post.photo.url(:small),
                         class: "cover-image") %>
