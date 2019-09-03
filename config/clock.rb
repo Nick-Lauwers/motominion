@@ -1,14 +1,14 @@
-# require 'clockwork'
-# require './config/boot'
-# require './config/environment'
+require 'clockwork'
+require './config/boot'
+require './config/environment'
 
-# module Clockwork
+module Clockwork
   
-#   handler do |job|
-#     puts "Running #{job}"
-#   end
+  # handler do |job|
+  #   puts "Running #{job}"
+  # end
 
-#   every(1.day, 'synchronize', at: '10:00', tz: 'UTC') { 
-#     SynchronizationWorker.perform_async
-#   }
-# end
+  # every(1.day, 'synchronize', at: '10:00', tz: 'UTC') { 
+  #   SynchronizationWorker.perform_async
+  # }
+end
