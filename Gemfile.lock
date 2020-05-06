@@ -69,9 +69,9 @@ GEM
     bcrypt (3.1.7)
     binding_of_caller (0.7.3.pre1)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.7)
+    bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
-      sass (>= 3.3.4)
+      sassc (>= 2.0.0)
     bootstrap-slider-rails (9.8.0)
       railties (>= 3.2, < 6.0)
     bootstrap-will_paginate (0.0.10)
@@ -441,6 +441,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
+    sassc (2.3.0)
+      ffi (~> 1.9)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
@@ -504,7 +506,7 @@ DEPENDENCIES
   area
   aws-sdk-s3
   bcrypt (= 3.1.7)
-  bootstrap-sass (= 3.3.7)
+  bootstrap-sass (= 3.4.1)
   bootstrap-slider-rails
   bootstrap-will_paginate (= 0.0.10)
   bootstrap3-datetimepicker-rails (~> 4.17.43)
