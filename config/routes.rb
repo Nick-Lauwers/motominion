@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'sitemap/index'
-
-  get 'message_photos/create'
-
   root                                'static_pages#home'
   get    'help'                    => 'static_pages#help'
   get    'about'                   => 'static_pages#about'
@@ -11,48 +7,19 @@ Rails.application.routes.draw do
   get    'dashboard'               => 'static_pages#dashboard'
   get    'tour'                    => 'static_pages#tour'
   get    'legal'                   => 'static_pages#legal'
-  get    'feed_0'                  => 'vehicles#feed_0'
-  get    'feed_1'                  => 'vehicles#feed_1'
-  get    'feed_2'                  => 'vehicles#feed_2'
-  get    'feed_3'                  => 'vehicles#feed_3'
-  get    'feed_4'                  => 'vehicles#feed_4'
-  get    'feed_5'                  => 'vehicles#feed_5'
-  get    'feed_6'                  => 'vehicles#feed_6'
-  get    'feed_7'                  => 'vehicles#feed_7'
-  get    'feed_8'                  => 'vehicles#feed_8'
-  get    'feed_9'                  => 'vehicles#feed_9'
-  get    'feed_10'                 => 'vehicles#feed_10'
-  get    'feed_11'                 => 'vehicles#feed_11'
-  get    'feed_12'                 => 'vehicles#feed_12'
-  get    'feed_13'                 => 'vehicles#feed_13'
-  get    'feed_14'                 => 'vehicles#feed_14'
-  get    'feed_15'                 => 'vehicles#feed_15'
-  get    'feed_16'                 => 'vehicles#feed_16'
-  get    'feed_17'                 => 'vehicles#feed_17'
-  get    'feed_18'                 => 'vehicles#feed_18'
-  get    'feed_19'                 => 'vehicles#feed_19'
-  get    'feed_20'                 => 'vehicles#feed_20'
-  get    'feed_21'                 => 'vehicles#feed_21'
-  get    'feed_22'                 => 'vehicles#feed_22'
-  get    'feed_23'                 => 'vehicles#feed_23'
-  get    'feed_24'                 => 'vehicles#feed_24'
-  get    'feed_25'                 => 'vehicles#feed_25'
+  get    'feed'                    => 'vehicles#feed'
   get    'admin'                   => 'dealerships#admin'
   get    'customers'               => 'appointments#customers'
   get    'test-drives'             => 'appointments#test_drives'
   get    'purchases_made'          => 'purchases#purchases_made'
   get    'orders_received'         => 'purchases#orders_received'
-  # get    'start_personalized_search' => 'personalized_searches#start'
   get    'payment_method'          => 'users#payment'
   get    'payout_method'           => 'users#payout'
   get    'signup'                  => 'users#new'
   get    'login'                   => 'sessions#new'
   get    'auth/:provider/callback' => 'sessions#create_social'
   get    'sitemap-nav'             => 'sitemap#sitemap_nav'
-  get    'sitemap-vehicles_0'      => 'sitemap#sitemap_vehicles_0.xml'
-  get    'sitemap-vehicles_1'      => 'sitemap#sitemap_vehicles_1'
-  get    'sitemap-vehicles_2'      => 'sitemap#sitemap_vehicles_2'
-  get    'sitemap-vehicles_3'      => 'sitemap#sitemap_vehicles_3'
+  get    'sitemap-vehicles'        => 'sitemap#sitemap_vehicles'
   get    'sitemap_vehicle_makes'   => 'sitemap#sitemap_vehicle_makes'
   get    'sitemap_discussions'     => 'sitemap#sitemap_discussions'
   get    'sitemap_posts'           => 'sitemap#sitemap_posts'
@@ -63,6 +30,9 @@ Rails.application.routes.draw do
   post   'upload'                  => 'vehicles#upload'
   post   'add_card'                => 'users#add_card'
   delete 'logout'                  => 'sessions#destroy'
+
+  get 'sitemap/index'
+  get 'message_photos/create'
   
   resources :autopart_photos
   resources :message_photos
@@ -116,16 +86,6 @@ Rails.application.routes.draw do
   resources :users do
     
     resources :reviews, only: [:index, :destroy]
-    
-    # resource :personalized_search do
-    #   member do
-    #     get 'price'
-    #     get 'mileage'
-    #     get 'year'
-    #     get 'installed_options'
-    #     get 'summary'
-    #   end
-    # end
 
     member do
       get 'password'
@@ -140,9 +100,6 @@ Rails.application.routes.draw do
     
     resources :reviews,  only: [:create, :destroy]
     resources :payments, only: [:new, :create]
-    
-    # put :favorite, on: :member
-    # put :sold,     on: :member
     
     member do
       
@@ -315,8 +272,4 @@ Rails.application.routes.draw do
       get 'location'
     end
   end
-  
-  # match "conversations/:id/messages/accept" => "conversations#messages#accept", :as => "conversation_messages_accept_path"
-  
-  # match "conversations/:id/messages/decline" => "conversations#messages#decline", :as => "conversation_messages_decline_path"
 end

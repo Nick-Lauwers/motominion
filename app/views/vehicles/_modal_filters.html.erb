@@ -1,5 +1,3 @@
-<!--complete-->
-
 <div class="modal" id="modal-filters" role="dialog">
   
   <div class="modal-filters-header">
@@ -193,75 +191,9 @@
           </div>
           
           <div class="col-md-6 color">
-          <!--  <div class="form-group form-group-primary">-->
-              
-          <!--    <(perc)= f.label :with_color, -->
-          <!--                "&nbsp;".html_safe,-->
-          <!--                class: "hidden-xs" %>-->
-              
-          <!--    <div class="form-element">-->
-                
-          <!--      <(perc)= f.select :with_color, -->
-          <!--                   [ "Black", "Blue", "Brown", "Gold", "Gray", "Green", -->
-          <!--                     "Orange", "Pink", "Purple", "Red", "Silver", "Teal", -->
-          <!--                     "Unknown", "White", "Yellow" ],-->
-          <!--                   { include_blank: true,-->
-          <!--                     prompt: "Color" },-->
-          <!--                   class: "form-control select-primary" %>-->
-    
-          <!--      <i class="fa fa-paint-brush fa-lg form-icon" -->
-          <!--         aria-hidden="true"></i>-->
-                 
-          <!--      <i class="fa fa-caret-down fa-lg form-caret" -->
-          <!--         aria-hidden="true"></i>-->
-          <!--    </div>-->
-          <!--  </div>-->
+            <!-- intentionally left blank -->
           </div>
         </div>
-        
-        <!--<div class="row">-->
-           
-        <!--  <div class="col-md-6 engine-type">-->
-        <!--    <div class="form-group form-group-primary">-->
-              
-        <!--      <div class="form-element">-->
-                
-        <!--        <(perc)= f.select :with_engine_type, -->
-        <!--                     [ "Single", "Parallel-Twin", "Inline-Three",-->
-        <!--                       "Inline-Four", "V-Twin", "V4", "Flat-Twin / Boxer", -->
-        <!--                       "L-Twin", "Other", "Unknown" ],-->
-        <!--                     { include_blank: true,-->
-        <!--                       prompt: "Engine type" },-->
-        <!--                     class: "form-control select-primary" %>-->
-    
-        <!--        <i class="fa fa-cogs fa-lg form-icon" -->
-        <!--           aria-hidden="true"></i>-->
-                 
-        <!--        <i class="fa fa-caret-down fa-lg form-caret" -->
-        <!--           aria-hidden="true"></i>-->
-        <!--      </div>-->
-        <!--    </div>-->
-        <!--  </div>-->
-    
-        <!--  <div class="col-md-6 fuel-type">-->
-        <!--    <div class="form-group form-group-primary">-->
-        <!--      <div class="form-element">-->
-                
-        <!--        <(perc)= f.select :with_fuel_type, -->
-        <!--                     [ "Electric", "Gasoline" ],-->
-        <!--                     { include_blank: true,-->
-        <!--                       prompt: "Fuel type" },-->
-        <!--                     class: "form-control select-primary" %>-->
-    
-        <!--        <i class="fa fa-leaf fa-lg form-icon" -->
-        <!--           aria-hidden="true"></i>-->
-                   
-        <!--        <i class="fa fa-caret-down fa-lg form-caret" -->
-        <!--           aria-hidden="true"></i>-->
-        <!--      </div>-->
-        <!--    </div>-->
-        <!--  </div>-->
-        <!--</div>-->
       </div>
       
       <div class="slider-filters">
@@ -375,119 +307,8 @@
               <% end %>
             </div>
           </div>
-          
-          <!--<div class="col-md-6 engine-size">-->
-          <!--  <div class="form-group form-group-primary">-->
-              
-          <!--    <(perc)= f.label :with_engine_size_gte, "Min Engine Size" %>-->
-              
-          <!--    <span id="engine_size_slider_val_modal" class="slider-label">-->
-          <!--      <(perc) if @filterrific.with_engine_size_gte.present? %>-->
-          <!--        <(perc)= @filterrific.with_engine_size_gte %> cc-->
-          <!--      <(perc) else %>-->
-          <!--        50 cc-->
-          <!--      <(perc) end %>-->
-          <!--    </span>-->
-              
-          <!--    <(perc) if @filterrific.with_engine_size_gte.present? %>-->
-          <!--      <(perc)= f.text_field :with_engine_size_gte,-->
-          <!--                       id: 'engine_size_slider_modal', -->
-          <!--                       type: 'text',-->
-          <!--                       data: { 'slider-min'   => '50',-->
-          <!--                               'slider-max'   => '2294',-->
-          <!--                               'slider-step'  => '1',-->
-          <!--                               'slider-value' => @filterrific.-->
-          <!--                                             with_engine_size_gte } %>-->
-              
-          <!--    <(perc) else %>-->
-          <!--      <(perc)= f.text_field :with_engine_size_gte,-->
-          <!--                       id: 'engine_size_slider_modal', -->
-          <!--                       type: 'text',-->
-          <!--                       data: { 'slider-min'   => '50',-->
-          <!--                               'slider-max'   => '2294',-->
-          <!--                               'slider-step'  => '1',-->
-          <!--                               'slider-value' => '50' } %>-->
-          <!--    <(perc) end %>-->
-          <!--  </div>-->
-          <!--</div>-->
         </div>
       </div>
-
-      <!--<div class="installed-options checkbox-filters">-->
-        
-      <!--  <h4 class="installed-options-title">Installed Options</h4>-->
-        
-      <!--  <div class="row">-->
-      
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_cruise_control %>-->
-      <!--      <(perc)= f.label :with_cruise_control, "Cruise Control" %> -->
-      <!--    </div>-->
-          
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_am_fm %>-->
-      <!--      <(perc)= f.label :with_am_fm, "AM / FM Radio" %> -->
-      <!--    </div>-->
-          
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_cb_radio %>-->
-      <!--      <(perc)= f.label :with_cb_radio, "CB Radio" %> -->
-      <!--    </div>-->
-      <!--  </div>-->
-        
-      <!--  <div class="row"> -->
-        
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_navigation_system %>-->
-      <!--      <(perc)= f.label :with_navigation_system, "Navigation System" %>-->
-      <!--    </div>-->
-          
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_heated_seats %>-->
-      <!--      <(perc)= f.label :with_heated_seats, "Heated Seats" %> -->
-      <!--    </div>-->
-          
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_heated_hand_grips %>-->
-      <!--      <(perc)= f.label :with_heated_hand_grips, "Heated Hand Grips" %> -->
-      <!--    </div>-->
-      <!--  </div> -->
-        
-      <!--  <div class="row">-->
-            
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_alarm_system %>-->
-      <!--      <(perc)= f.label :with_alarm_system, "Alarm System" %>       -->
-      <!--    </div>-->
-          
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_saddlebags %>-->
-      <!--      <(perc)= f.label :with_saddlebags, "Saddlebags" %>          -->
-      <!--    </div>-->
-          
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_trunk %>-->
-      <!--      <(perc)= f.label :with_trunk, "Trunk" %> -->
-      <!--    </div>-->
-      <!--  </div>-->
-        
-      <!--  <div class="row">-->
-          
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_tow_hitch %>-->
-      <!--      <(perc)= f.label :with_tow_hitch, "Tow Hitch" %>-->
-      <!--    </div>-->
-          
-      <!--    <div class="col-md-4 installed-option">-->
-      <!--      <(perc)= f.check_box :with_cycle_cover %>-->
-      <!--      <(perc)= f.label :with_cycle_cover, "Cycle Cover" %> -->
-      <!--    </div>-->
-          
-      <!--    <div class="col-md-4">-->
-            <!--intentionally left empty-->
-      <!--    </div>-->
-      <!--  </div> -->
-      <!--</div>-->
       
       <div class="modal-filters-button-container">
         <%= f.submit "Apply", class: "btn btn-modal-filters" %>

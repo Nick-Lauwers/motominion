@@ -50,10 +50,6 @@
                   memberships.
                   where(club_id: @club.id, admin: true).
                   exists? %>
-                  
-            <!--<= link_to "Update", edit_club_path %>-->
-            
-            <!--<(perc)= link_to "Add A Product", new_club_club_product_path(@club) %>-->
             
             <%= link_to new_club_invitation_path(@club),
                         class: "btn btn-club-invitation" do %>

@@ -3,11 +3,8 @@ class ClubProductsController < ApplicationController
   before_action :logged_in_user,   except: [:show, :index]
   before_action :get_club,         only:   [:new, :create, :index]
   before_action :get_club_product, only:   [:show]
-  
-  # before_action :profile_pic, :club_admin
-  
+    
   def new
-    # @club_product = @club.club_products.build
   end
   
   def create

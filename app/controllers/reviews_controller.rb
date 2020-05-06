@@ -1,6 +1,3 @@
-# completed
-# Check order of reviews
-
 class ReviewsController < ApplicationController
   
   def index

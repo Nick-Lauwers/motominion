@@ -1,5 +1,3 @@
-<!--completed-->
-
 <div class="header-primary">
   <nav class="navbar">
     
@@ -28,27 +26,6 @@
                     header-icon-menu" 
              aria-hidden="true"></i>
         </li>        
-      
-        <!--<li class="hidden-xs"><(perc)= link_to "Clubs", clubs_overview_path %></li>-->
-      
-        <!--<li class="dropdown dropdown-frontend hidden-xs">-->
-          
-        <!--  <a href='#' class="dropdown-toggle" data-toggle="dropdown">-->
-        <!--     List <b class="caret"></b>-->
-        <!--  </a>-->
-          
-        <!--  <ul class="dropdown-menu">-->
-        <!--    <li><(perc)= link_to "List Your Vehicle", new_vehicle_path %></li>-->
-        <!--    <li><(perc)= link_to "List a Part",    new_autopart_path %></li>-->
-        <!--  </ul>-->
-        <!--</li>-->
-        
-        <!--<li class="hidden-xs">-->
-        <!--  <(perc)= link_to "https://www.mototrova.com",-->
-        <!--              class: "mototrova-link" do %>-->
-        <!--    <i class="fa fa-lg fa-car header-icon" aria-hidden="true"></i>-->
-        <!--  <(perc) end %>-->
-        <!--</li>-->
         
         <li class="hidden-xs">
           <%= link_to "List A Motorcycle", new_vehicle_path %>
@@ -69,118 +46,20 @@
           </li>
         <% end %>
         
-        <!--<li class="hidden-xs"><(perc)= link_to "Advice", discussions_path %></li>-->
-      
-        <!--<li class="dropdown dropdown-frontend">-->
-          
-        <!--  <a href='#' class="dropdown-toggle" data-toggle="dropdown">-->
-             
-        <!--    Inbox <b class="caret"></b>-->
-             
-        <!--    <(perc) if ( Conversation.where(-->
-        <!--              next_contributor_id: current_user.id,-->
-        <!--              latest_message_read: false).exists? or-->
-                                        
-        <!--            ( (current_user.dealership_id.present? && -->
-        <!--                 Question.where(-->
-        <!--                   vehicle: Dealership.-->
-        <!--                              find(current_user.dealership_id).-->
-        <!--                              vehicles, -->
-        <!--                   read_at: nil).exists?-->
-        <!--              ) or -->
-                      
-        <!--              (current_user.dealership_id.present? && -->
-        <!--                 Question.where(-->
-        <!--                   vehicle: current_user.vehicles,-->
-        <!--                   read_at: nil).exists?)-->
-        <!--            )-->
-        <!--          ) %>-->
-                                  
-        <!--      <div class="notification"></div>-->
-        <!--    <(perc) end %>-->
-        <!--  </a>-->
-          
-        <!--  <ul class="dropdown-menu">-->
-            
-        <!--    <li>-->
-        <!--      <(perc)= link_to conversations_path do %>-->
-                
-        <!--        Messages-->
-                
-        <!--        <(perc) if Conversation.where(-->
-        <!--                next_contributor_id: current_user.id,-->
-        <!--                latest_message_read: false-->
-        <!--              ).exists? %>-->
-                      
-        <!--          <div class="notification"></div>-->
-        <!--        <(perc) end %>-->
-        <!--      <(perc) end %>-->
-        <!--    </li>-->
-            
-        <!--    <li>-->
-        <!--      <(perc)= link_to questions_path do %>-->
-                
-        <!--        Questions-->
-                
-        <!--        <(perc) if ( (current_user.dealership_id.present? && -->
-        <!--                   Question.where(-->
-        <!--                     vehicle: Dealership.-->
-        <!--                                find(current_user.dealership_id).-->
-        <!--                                vehicles, -->
-        <!--                     read_at: nil).exists?-->
-        <!--                ) or -->
-                        
-        <!--                (current_user.dealership_id.present? && -->
-        <!--                   Question.where(-->
-        <!--                     vehicle: current_user.vehicles,-->
-        <!--                     read_at: nil).exists?)-->
-        <!--              ) %>-->
-                      
-        <!--          <div class="notification"></div>-->
-        <!--        <(perc) end %>-->
-        <!--      <(perc) end %>-->
-        <!--    </li>-->
-        <!--  </ul>-->
-        <!--</li>-->
-        
-        <!--<li class="dropdown dropdown-frontend">-->
-          
-        <!--  <a href='#' class="dropdown-toggle" data-toggle="dropdown">-->
-        <!--     Help <b class="caret"></b>-->
-        <!--  </a>-->
-          
-        <!--  <ul class="dropdown-menu">-->
-        <!--    <li><(perc)= link_to "How It Works", how_it_works_path %></li>-->
-            <!--<li><(perc)= link_to "Help Center",  help_path %></li>-->
-        <!--    <li><(perc)= link_to "Contact Us",   new_enquiry_path %></li>-->
-        <!--  </ul>-->
-        <!--</li>-->
-        
         <li class="dropdown dropdown-frontend hidden-xs">
           
           <a href='#' class="dropdown-toggle" data-toggle="dropdown">
-            
             <% if current_user.first_name.present? && current_user.dealership.blank? %>
               <%= current_user.first_name %> <b class="caret"></b>
             <% else %>
               My Account <b class="caret"></b>
             <% end %>
-            
-            <!--<(perc) if Review.where(-->
-            <!--        reviewed_id: current_user.id, -->
-            <!--        read_at: nil-->
-            <!--      ).exists? %>-->
-                  
-            <!--  <div class="notification"></div>-->
-            <!--<(perc) end %>-->
           </a>
           
           <ul class="dropdown-menu">
             
             <li><%= link_to "Dashboard",    dashboard_path %></li>
-            
-            <!--<li><(perc)= link_to "Edit Profile", edit_user_path(current_user) %></li>-->
-            
+                        
             <li>
               <%= link_to conversations_path do %>
                  
@@ -195,21 +74,6 @@
                 <% end %>
               <% end %>
             </li>
-
-            <!--<li>-->
-            <!--  <(perc)= link_to user_reviews_path(current_user) do %>-->
-                
-            <!--    Reviews-->
-                
-            <!--    <(perc) if Review.where(-->
-            <!--            reviewed_id: current_user.id, -->
-            <!--            read_at: nil-->
-            <!--          ).exists? %>-->
-                      
-            <!--      <div class="notification"></div>-->
-            <!--    <(perc) end %>-->
-            <!--  <(perc) end %>-->
-            <!--</li>-->
             
             <li><%= link_to "Log Out",     logout_path, method: "delete" %></li>
           </ul>
@@ -235,49 +99,11 @@
                     header-icon-mobile
                     header-icon-menu" 
              aria-hidden="true"></i>
-        </li>        
-      
-        <!--<li class="hidden-xs"><(perc)= link_to "Clubs", clubs_overview_path %></li>-->
-      
-        <!--<li class="dropdown dropdown-frontend hidden-xs">-->
-          
-        <!--  <a href='#' class="dropdown-toggle" data-toggle="dropdown">-->
-        <!--     List <b class="caret"></b>-->
-        <!--  </a>-->
-          
-        <!--  <ul class="dropdown-menu">-->
-        <!--    <li><(perc)= link_to "List Your Vehicle", new_vehicle_path %></li>-->
-        <!--    <li><(perc)= link_to "List a Part",    new_autopart_path %></li>-->
-        <!--  </ul>-->
-        <!--</li>-->
-        
-        <!--<li class="hidden-xs">-->
-        <!--  <(perc)= link_to "https://www.mototrova.com",-->
-        <!--              class: "mototrova-link" do %>-->
-        <!--    <i class="fa fa-lg fa-car header-icon" aria-hidden="true"></i>-->
-        <!--  <(perc) end %>-->
-        <!--</li>-->
+        </li>   
         
         <li class="hidden-xs">
           <%= link_to "List A Motorcycle", new_vehicle_path %>
         </li>
-        
-        <!--<li class="hidden-xs"><(perc)= link_to "Advice", discussions_path %></li>-->
-      
-        <!--<li class="dropdown dropdown-frontend">-->
-          
-        <!--  <a href='#' class="dropdown-toggle" data-toggle="dropdown">-->
-        <!--     Help <b class="caret"></b>-->
-        <!--  </a>-->
-          
-        <!--  <ul class="dropdown-menu">-->
-        <!--    <li><(perc)= link_to "How It Works", how_it_works_path %></li>-->
-            <!--<li><(perc)= link_to "Help Center",  help_path %></li>-->
-        <!--    <li><(perc)= link_to "Contact Us",   new_enquiry_path %></li>-->
-        <!--  </ul>-->
-        <!--</li>-->
-        
-        <!--<li class="hidden-xs"><(perc)= link_to "Sign Up", signup_path %></li>-->
         
         <li class="hidden-xs"><%= link_to "Log In",  login_path %></li>
       <% end %>

@@ -6,5 +6,4 @@ class ReviewMailerPreview < ActionMailer::Preview
     review = Review.first
     ReviewMailer.review_received(review)
   end
-
 end

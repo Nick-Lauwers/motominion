@@ -51,10 +51,6 @@
                   memberships.
                   where(club_id: @club.id, admin: true).
                   exists? %>
-                  
-            <!--<= link_to "Update", edit_club_path %>-->
-            
-            <!--<(perc)= link_to "Add A Product", new_club_club_product_path(@club) %>-->
             
             <%= link_to new_club_invitation_path(@club),
                         class: "btn btn-club-invitation" do %>
@@ -99,10 +95,6 @@
             <li class="nav-active"><%= link_to "Posts", posts_club_path %></li>
             
             <li><%= link_to "Discussions", discussions_club_path %></li>
-            
-            <!--<li>-->
-            <!--  <(perc)= link_to "Merchandise", club_club_products_path(@club) %>-->
-            <!--</li>-->
           </ul>
         </nav>
       </div>
@@ -134,7 +126,6 @@
   <ul class="dropdown-menu">
     <li class="dropdown-active"><%= link_to "Posts", posts_club_path %></li>
     <li><%= link_to "Discussions", discussions_club_path %></li>
-    <!--<li><(perc)= link_to "Merchandise", club_club_products_path(@club) %></li>-->
   </ul>
 </nav>
 

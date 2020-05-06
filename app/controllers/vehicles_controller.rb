@@ -5,16 +5,7 @@ class VehiclesController < ApplicationController
   require 'will_paginate/array'
   
   before_action :logged_in_user,     except: [:show, :search, :autocomplete, 
-                                              :feed_0, :feed_1, :feed_2, 
-                                              :feed_3, :feed_4, :feed_5, 
-                                              :feed_6, :feed_7, :feed_8, 
-                                              :feed_9, :feed_10, :feed_11,
-                                              :feed_12, :feed_13, :feed_14,
-                                              :feed_15, :feed_16, :feed_17,
-                                              :feed_18, :feed_19, :feed_20,
-                                              :feed_21, :feed_22, :feed_23,
-                                              :feed_24, :feed_25,
-                                              :synchronize_vehicles]
+                                              :feed, :synchronize_vehicles]
                                 
   before_action :profile_pic_upload, only:   [:post]
   before_action :get_vehicle,        only:   [:destroy, :show, :update, :basics,
@@ -32,11 +23,8 @@ class VehiclesController < ApplicationController
   end
   
   def new
-    
     @vehicle = current_user.vehicles.build
     @vehicle.availabilities.build
-
-    # @complete = "13%"
   end
   
   def create
@@ -45,14 +33,6 @@ class VehiclesController < ApplicationController
     update_score
     
     if @vehicle.save
-      
-      # if params[:images]
-      #   params[:images].each do |image|
-      #     @vehicle.photos.create(image: image)
-      #   end
-      # end
-      
-      # @photos = @vehicle.photos
       flash[:success] = "Basics saved; Complete all remaining details, then 
                          select 'Post Motorcycle'."
       redirect_to details_vehicle_path(@vehicle)
@@ -61,41 +41,16 @@ class VehiclesController < ApplicationController
       render 'new'
     end
   end
-  
-  # def destroy
-  #   @vehicle.destroy
-  #   flash[:success] = "Vehicle deleted"
-  #   redirect_to vehicles_path
-  # end
-  
-  # def edit
-    
-  #   if current_user.id == @vehicle.user.id
-  #     @photos = @vehicle.photos
-  #     # @complete = "100%"
-    
-  #   else
-  #     flash[:danger] = "Access denied"
-  #     redirect_to_back_or_default
-  #   end
-  # end
 
   def update
     
     if @vehicle.update(vehicle_params)
-      
-      # if params[:images]
-      #   params[:images].each do |image|
-      #     @vehicle.photos.create(image: image)
-      #   end
-      # end
       update_score
       flash[:success] = "Updates saved."
     
     else
       Rails.logger.info(@vehicle.errors.messages.inspect)
       flash[:danger] = "Update failed."
-      # render 'edit'
     end
     
     redirect_to :back
@@ -108,9 +63,6 @@ class VehiclesController < ApplicationController
     respond_to do |format|
       format.html
       format.csv 
-      # do
-      #   headers['Content-Type'] ||= 'text/csv'
-      # end
     end
   end
   
@@ -229,8 +181,6 @@ class VehiclesController < ApplicationController
       
       select_options: {
         sorted_by:             Vehicle.options_for_sorted_by,
-        # with_vehicle_make_id:  VehicleMake.options_for_select,
-        # with_vehicle_model_id: VehicleModel.options_for_select
       },
       
       persistence_id: false,
@@ -280,9 +230,6 @@ class VehiclesController < ApplicationController
                   where(sold_at: nil).
                   includes(:listing_score).
                   order("listing_scores.overall_score DESC").
-                        # ,
-                        # "year DESC",
-                        # "listing_name ASC").
                   paginate(page: params[:page], per_page: 10)
     
     @geojson = Array.new;
@@ -297,7 +244,6 @@ class VehiclesController < ApplicationController
         },
         properties: {
           "id":    vehicle.id,
-          # "image": vehicle.photos[0].image.url(),
           "title": vehicle.listing_name
         }
       }
@@ -437,157 +383,7 @@ class VehiclesController < ApplicationController
     @vehicle.telephone_call.create(user: current_user)
   end
   
-  def feed_0
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_1
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_2
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_3
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_4
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_5
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_6
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_7
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_8
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_9
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_10
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_11
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_12
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_13
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_14
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_15
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_16
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_17
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_18
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_19
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_20
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_21
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_22
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_23
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_24
-    respond_to do |format|
-      format.rss { render :layout => false }
-    end
-  end
-  
-  def feed_25
+  def feed
     respond_to do |format|
       format.rss { render :layout => false }
     end
@@ -734,28 +530,6 @@ class VehiclesController < ApplicationController
       end
       
       # Seller has many high-quality listings.
-      # if @vehicle.dealership.present?
-        
-      #   combined_score = 0
-
-      #   @vehicle.dealership.vehicles.each do |vehicle|
-      #     if vehicle.listing_score.overall_score.present?
-      #       combined_score = vehicle.listing_score.overall_score + 
-      #                         combined_score
-      #     end
-      #   end
-        
-      #   if combined_score/(@vehicle.dealership.vehicles.count + 1) <= 59
-      #     many_listings_score = 1
-      #   elsif combined_score/(@vehicle.dealership.vehicles.count + 1)<=79
-      #     many_listings_score = 2
-      #   else 
-      #     many_listings_score = 3
-      #   end
-      
-      # else
-      #   many_listings_score = 3
-      # end
       many_listings_score = 100
       
       # Calculate overall score.
@@ -763,7 +537,6 @@ class VehiclesController < ApplicationController
                         vin_score + certified_dealer_score +
                         direct_listing_score + test_drive_score + 
                         ( 3 * photos_score ) +
-                        # score.reviews_score + 
                         ( 2 * recently_posted_score ) + 
                         many_listings_score ) / 13
       
@@ -777,7 +550,6 @@ class VehiclesController < ApplicationController
           direct_listing_score:   direct_listing_score,
           test_drive_score:       test_drive_score,
           photos_score:           photos_score,
-          # reviews_score:        reviews_score,
           recently_posted_score:  recently_posted_score,
           many_listings_score:    many_listings_score,
           overall_score:          overall_score
@@ -793,7 +565,6 @@ class VehiclesController < ApplicationController
           direct_listing_score:   direct_listing_score,
           test_drive_score:       test_drive_score, 
           photos_score:           photos_score,
-          # reviews_score:        reviews_score, 
           recently_posted_score:  recently_posted_score,
           many_listings_score:    many_listings_score, 
           overall_score:          overall_score
@@ -808,9 +579,3 @@ class VehiclesController < ApplicationController
       @vehicle = Vehicle.find(params[:id])
     end
 end
-
-# add wrong user tests
-
-# http://stackoverflow.com/questions/40260125/implement-add-to-favorites
-# http://stackoverflow.com/questions/5831900/wishlist-relationships-in-rails
-# http://stackoverflow.com/questions/13240109/implement-add-to-favorites-in-rails-3-4

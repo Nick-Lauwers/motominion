@@ -59,11 +59,7 @@
         <td class="conversation-container hidden-xs">
           <div class="conversation">
             <p class="conversation-content">
-              <!--<(perc) if conversation.messages.exists? %>-->
-                <%= sanitize conversation.messages.last.content %>
-              <!--<(perc) else %>-->
-              <!--  (No Messages)-->
-              <!--<(perc) end %>-->
+              <%= sanitize conversation.messages.last.content %>
             </p>
           </div>
         </td>

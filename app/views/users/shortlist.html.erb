@@ -1,7 +1,3 @@
-<!--completed-->
-
-<!--completed-->
-
 <% provide(:title, "Shortlist") %>
 
 <header class="header-static-gray">
@@ -213,27 +209,6 @@
   </div>
 </div>
 
-<!--<div class="shortlist-nav-mobile visible-xs">-->
-
-<!--  <div class="shortlist-nav-grid shortlist-nav-grid-active">-->
-<!--    <i class="fa -->
-<!--              fa-lg-->
-<!--              fa-th-large -->
-<!--              shortlist-nav-grid-icon -->
-<!--              shortlist-nav-grid-icon-active" -->
-<!--       aria-hidden="true"></i> -->
-<!--  </div>-->
-  
-<!--  <div class="shortlist-nav-map shortlist-nav-map-inactive">-->
-<!--    <i class="fa -->
-<!--              fa-lg-->
-<!--              fa-map-marker -->
-<!--              shortlist-nav-map-icon-->
-<!--              shortlist-nav-map-icon-inactive" -->
-<!--       aria-hidden="true"></i> -->
-<!--  </div>-->
-<!--</div>-->
-
 <script type="text/javascript">
   $(document).ready(function() {
     
@@ -307,7 +282,6 @@
                   addTo(map);
               
               var shortlistNavMap  = $('.shortlist-nav-map');
-              // var shortlistMapItem = $('#shortlist-map-item' + marker.properties.id);
               
               el.addEventListener('click', function(e) {
                 if ( $(window).width() <= 768 ) { 
@@ -315,8 +289,6 @@
                   el.style.backgroundImage = "url('https://s3.us-east-2.amazonaws.com/online-dealership-assets/static-assets/map-marker-aqua.png')";
                 }
               });
-              
-              // marker.properties.id = shortlist-item-vehicle_id, test-drive-item-appointment_id, purchase-item-purchase_id
               
               var shortlistItem = document.getElementById(marker.properties.id);
               

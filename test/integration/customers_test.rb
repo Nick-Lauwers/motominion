@@ -1,5 +1,3 @@
-# complete
-
 require 'test_helper'
 
 class CustomersTest < ActionDispatch::IntegrationTest

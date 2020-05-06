@@ -137,11 +137,6 @@
                   
                   <p class="score-info-text">
                     Include the VIN to improve listing score.
-                    <!--<br>-->
-                    <!--<br>-->
-                    <!--The VIN can often be found on the lower-left corner of the -->
-                    <!--dashboard, in front of the steering wheel. You can read the -->
-                    <!--number by looking through the windshield.-->
                   </p>
                 </div>
               <% end %>
@@ -196,12 +191,6 @@
                                value: Dealership.
                                         find(current_user.dealership_id).
                                         address %>
-            
-            <!--<(perc)= f.hidden_field :building, -->
-            <!--                  value: Dealership.-->
-            <!--                            find(current_user.dealership_id).-->
-            <!--                            building %>-->
-            
             <%= f.hidden_field :city, 
                                value: Dealership.
                                         find(current_user.dealership_id).

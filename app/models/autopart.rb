@@ -4,18 +4,8 @@ class Autopart < ActiveRecord::Base
   
   has_many :autopart_photos, dependent: :destroy
   
-  # has_many :favorited_by, through: :favorite_autoparts, source: :user
-  
   validates :price, :summary, :street_address, :city, :state, presence: true
   validates :listing_name, presence: true, length: { maximum: 50 }
-  
-  # MINIMUM_PHOTOS = 2
-
-  # validate :on => :save do
-  #   if self.photos.size < MINIMUM_PHOTOS
-  #     errors.add :vehicle, "Must have at least #{MINIMUM_PHOTOS} photos."
-  #   end
-  # end
   
   geocoded_by      :address
   after_validation :geocode, if: :address_changed?

@@ -1,5 +1,3 @@
-# Change title to Test Drive Request | Dealership.com
-
 require 'test_helper'
 
 class AppointmentMailerTest < ActionMailer::TestCase

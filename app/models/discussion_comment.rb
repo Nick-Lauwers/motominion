@@ -1,5 +1,3 @@
-# complete
-
 class DiscussionComment < ActiveRecord::Base
   
   belongs_to :discussion

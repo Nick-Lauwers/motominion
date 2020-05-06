@@ -15,6 +15,3 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "#{Emoji.find_by_alias("closed_lock_with_key").raw} Password Reset"
   end
 end
-
-# Nick, we received a request to reset your password. If this request was sent
-# by you, click on the link below to proceed...

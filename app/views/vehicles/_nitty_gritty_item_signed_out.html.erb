@@ -8,15 +8,10 @@
     <div class="row vertical-align">
       
       <div class="col-xs-4 avatar-and-online">
-        
         <div class="test-drive-sidenav-avatar avatar-general",
              style="background-image: url(
                      '<%= dealer.avatar.url(:thumb) %>')">
         </div>
-        
-        <!--<(perc) if @vehicle.user.online? %>-->
-        <!--  <div class="online online-lg-primary hidden-xs"></div>-->
-        <!--<(perc) end %>-->
       </div>
       
       <div class="col-xs-8 nitty-gritty-button-detail">
@@ -26,10 +21,6 @@
         </span>
                     
         <span class="average-rating"></span>
-        
-        <!--<span class="test-drive-sidenav-reviews">-->
-        <!--   · <(perc)= pluralize(@vehicle.reviews.count, "review") %>-->
-        <!--</span>-->
       </div>
     </div>
   <% end %>

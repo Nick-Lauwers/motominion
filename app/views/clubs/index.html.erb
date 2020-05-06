@@ -109,11 +109,9 @@
     <% end %>
   </h2>
   
-  <!--< if @clubs.exists? %>-->
-    <ol class="clubs-list">
-      <%= render @clubs %>
-    </ol>
-  <!--< end %>-->
+  <ol class="clubs-list">
+    <%= render @clubs %>
+  </ol>
 </div>
 
 <%= link_to new_club_path, class: "single-action" do %>

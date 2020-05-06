@@ -6,28 +6,17 @@ class Dealership < ActiveRecord::Base
   has_many :google_reviews,       dependent: :destroy
   has_many :dealer_invitations,   dependent: :destroy
   has_many :impressions,          dependent: :destroy
-  
   has_many :business_hours,       dependent: :destroy
+
   accepts_nested_attributes_for :business_hours
   
   attr_accessor :activation_token
   
   before_save   :downcase_email
   before_create :create_activation_digest
-  
-  # validates :dealership_name,  presence: true, length: { maximum: 50 }
-  
-  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  # validates :email, presence: true, length:     { maximum: 255 },
-  #                                   format:     { with: VALID_EMAIL_REGEX },
-  #                                   uniqueness: { case_sensitive: false },
-  #                                   allow_blank: true
                                     
-  phony_normalize :sales_phone, :default_country_code => 'US'
-  # validates :sales_phone, phony_plausible: true
-  
+  phony_normalize :sales_phone,   :default_country_code => 'US'
   phony_normalize :service_phone, :default_country_code => 'US'
-  # validates :service_phone, phony_plausible: true
   
   geocoded_by      :address
   after_validation :geocode, if: :address_changed?

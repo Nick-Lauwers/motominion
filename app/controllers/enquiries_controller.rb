@@ -1,5 +1,3 @@
-# completed
-
 class EnquiriesController < ApplicationController
   
   def new

@@ -13,20 +13,7 @@ class SitemapController < ApplicationController
     end
   end
   
-  def sitemap_vehicles_0
-    @vehicles = Vehicle.where(id: 1..4999).all
-  end
-  
-  def sitemap_vehicles_1
-    @vehicles = Vehicle.where(id: 5000..9999).all
-  end
-  
-  def sitemap_vehicles_2
-    @vehicles = Vehicle.where(id: 10000..14999).all
-  end
-  
-  def sitemap_vehicles_3
-    @vehicles = Vehicle.where(id: 15000..19999).all
+  def sitemap_vehicles
   end
   
   def sitemap_vehicle_makes

@@ -16,8 +16,7 @@ gem 'jquery-rails',                    '4.0.3'
 gem 'jbuilder',                        '2.2.3'
 gem 'filterrific',                     '4.0.1' 
 gem 'pg',                              '~> 0.18.4'
-gem 'mysql2',                          '~> 0.3.21'
-# gem 'aws-sdk',                         '~> 2.3'
+gem 'mysql2',                          '~> 0.5.3'
 gem 'momentjs-rails',                  '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'stripe',                          '~> 3.0.0'
@@ -55,7 +54,7 @@ gem 'gemoji'
 group :development, :test do
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
-  gem 'spring',      '1.1.3'
+  # gem 'spring',      '1.1.3'
 end
 
 group :test do
@@ -65,7 +64,6 @@ group :test do
 end
 
 group :production do
-  # gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
-  gem 'puma',           '3.1.0'
+  gem 'puma',           '4.3.3'
 end

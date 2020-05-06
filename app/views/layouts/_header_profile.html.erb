@@ -1,5 +1,3 @@
-<!--completed-->
-
 <div class="header-profile">
   <div class="header-profile-content">
     <div class="row vertical-align">
@@ -24,34 +22,22 @@
       
       <div class="col-xs-4">
 
-        <!--< if logged_in? %>-->
-          <%= form_for @conversation, 
-                       url: conversations_path(@conversation), 
-                       method: :post do |f| %>
-                       
-            <%= f.hidden_field :sender_id,          value: current_user.id if 
-                                                           current_user %>
-            
-            <%= f.hidden_field :recipient_id,       value: @user.id %>
-            
-            <%= f.hidden_field :sender_archived,    value: false %>
-  
-            <%= f.hidden_field :recipient_archived, value: false %>
-            
-            <%= f.submit "Chat with " + @user.first_name, 
-                         class: "btn-header-profile" %>
-          <% end %>
-                          
-        <!--< else %>-->
-        <!--  <= button_to "Contact Seller", -->
-        <!--                login_path, -->
-        <!--                class: "btn-header-profile", -->
-        <!--                method: :get %>-->
-        <!--< end %>-->
-        
-        <!--<(perc)= button_to conversations_path(@conversation), -->
-        <!--              class:  "btn-header-profile",-->
-        <!--              method: :post %>-->
+        <%= form_for @conversation, 
+                     url: conversations_path(@conversation), 
+                     method: :post do |f| %>
+                     
+          <%= f.hidden_field :sender_id,          value: current_user.id if 
+                                                         current_user %>
+          
+          <%= f.hidden_field :recipient_id,       value: @user.id %>
+          
+          <%= f.hidden_field :sender_archived,    value: false %>
+
+          <%= f.hidden_field :recipient_archived, value: false %>
+          
+          <%= f.submit "Chat with " + @user.first_name, 
+                       class: "btn-header-profile" %>
+        <% end %>
       </div>
     </div>
   </div>

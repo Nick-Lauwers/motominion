@@ -1,5 +1,3 @@
-# completed
-
 class AccountActivationsController < ApplicationController
 
   def edit
@@ -29,10 +27,6 @@ class AccountActivationsController < ApplicationController
       end
       
       redirect_to root_url
-      
-      # Rather than redirecting to rooturl, redirect to a page that asks if you
-      # would like to login with a password; There will be a link to the reset
-      # password path; Then, in the 
      
     else
       flash[:danger] = "Invalid link"

@@ -1,5 +1,3 @@
-<!--completed-->
-
 <% if @vehicle.vehicle_make.present? && @vehicle.vehicle_model.present? %>
   <% provide(:title,       "#{ (@vehicle.year.to_s + " ") if @vehicle.year.present?}#{@vehicle.vehicle_make.name} #{@vehicle.vehicle_model.name} #{@vehicle.vehicle_model.vehicle_type} For Sale In #{@vehicle.city}, #{@vehicle.state}") %>
   <% provide(:description, "#{ (@vehicle.condition + " ") if @vehicle.condition.present?}#{ (@vehicle.year.to_s + " ") if @vehicle.year.present?}#{@vehicle.vehicle_make.name} #{@vehicle.vehicle_model.name} #{@vehicle.vehicle_model.vehicle_type} for sale near you#{ (" at " + @vehicle.dealership.dealership_name) if @vehicle.dealership.present?} in #{@vehicle.city}, #{@vehicle.state}.") %>
@@ -27,15 +25,6 @@
 </div>
 
 <% if @vehicle.dealership.present? %>
-
-  <!--<div class="modal" id="modal-dealer-select-desktop" role="dialog">-->
-  <!--  <(perc)= render "modal_dealer_select_desktop" %>-->
-  <!--</div>-->
-
-  <!--<div class="modal" id="modal-buy-online-desktop" role="dialog">-->
-  <!--  <(perc)= render "modal_buy_online_desktop" %>-->
-  <!--</div>-->
-  
   <div class="modal" id="modal-buy-online-mobile" role="dialog">
     <%= render "modal_buy_online_mobile" %>
   </div>
@@ -945,50 +934,6 @@
             </div>
           </div>
         <% end %>
-        
-        <!--<(perc) if Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).count > 1 %>-->
-        <!--  <div id="price-analysis">-->
-          
-        <!--    <h2 class="vehicle-details-title">Price Analysis</h2>-->
-            
-        <!--    <p class="vehicle-details-info">-->
-        <!--      Including this listing, we found -->
-        <!--      <span class="vehicle-details-info-red">-->
-        <!--      <(perc)= pluralize(Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).count, "#{@vehicle.vehicle_make.name} #{@vehicle.vehicle_model.name}") %>-->
-        <!--      </span>-->
-        <!--      in your area. Below, we've mapped the prices of all-->
-        <!--      <(perc)= @vehicle.vehicle_model.name %>s-->
-        <!--      near you. We also show the least expensive listings.-->
-        <!--    </p>-->
-            
-        <!--    <div class="price-analysis-overview row">-->
-              
-        <!--      <div class="col-md-8">-->
-        <!--        <(perc)= scatter_chart Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).pluck(:year, :actual_price), -->
-        <!--                          colors:    ["#38b2a6"],-->
-        <!--                          thousands: ",",-->
-        <!--                          prefix:    "$",-->
-        <!--                          xtitle:    "Year" %>-->
-        <!--      </div>-->
-              
-        <!--      <div class="col-md-4">-->
-                
-        <!--        <ol class="price-analysis-list hidden-xs">-->
-        <!--          <(perc)= render partial:    "price_analysis_vehicle",-->
-        <!--                     collection: Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).order("actual_price ASC").limit(2),-->
-        <!--                     as:         :vehicle %>-->
-        <!--        </ol>-->
-                
-        <!--        <div class="related-vehicles-mobile visible-xs">-->
-        <!--          <ol class="related-vehicles-mobile-content">-->
-        <!--            <(perc)= render partial:    "related_vehicle_mobile",-->
-        <!--                       collection: Vehicle.where(vehicle_model_id: @vehicle.vehicle_model_id).order("actual_price ASC").limit(4) %>-->
-        <!--          </ol>-->
-        <!--        </div>-->
-        <!--      </div>-->
-        <!--    </div>-->
-        <!--  </div>-->
-        <!--<(perc) end %>-->
 
         <div id="listing-score">
         
@@ -2113,7 +2058,7 @@
           <%= @vehicle.dealership.dealership_name %>
         </strong>
           <br>
-        <%= @vehicle.street_address %>, <!--<(perc)= @vehicle.building %>-->
+        <%= @vehicle.street_address %>,
           <br>
         <%= @vehicle.city %>, <%= @vehicle.state %> 
       </div>
@@ -2215,48 +2160,6 @@
   </div>
 <% end %>
 
-<!--<div class='multi-action visible-xs'>-->
-  
-<!--  <button class='action-button'><i class='fa fa-plus fa-lg'></i></button>-->
-  
-<!--  <ul class='actions'>-->
-    
-<!--    <li class="experiment-100">-->
-      <!--<a>-->
-<!--        <(perc)= link_to Dealership.find(1).sales_phone, "tel:#{Dealership.find(1).sales_phone}" %>-->
-        <!--<= tel_to Dealership.find(1).sales_phone do %>-->
-        <!--  <i class="fa fa-phone fa-lg" aria-hidden="true"></i>-->
-        <!--< end %>-->
-      <!--</a>-->
-<!--    </li>-->
-    
-<!--    <li class="btn-negotiate-dealer">-->
-<!--      <a>-->
-<!--        <i class='fa fa-comments-o fa-lg'></i>-->
-        <!--<= form_for @conversation, -->
-        <!--             url: conversations_path(@conversation), -->
-        <!--             method: :post do |f| %>-->
-                 
-        <!--  <= f.hidden_field :sender_id,          value: current_user.id if -->
-        <!--                                                 current_user %>-->
-          
-        <!--  < if @vehicle.user.present? %>-->
-        <!--    <= f.hidden_field :recipient_id,     value: @user.id %>-->
-        <!--  < end %>-->
-          
-        <!--  <= f.hidden_field :sender_archived,    value: false %>-->
-      
-        <!--  <= f.hidden_field :recipient_archived, value: false %>-->
-          
-        <!--  <= button_tag(class: "btn-message-mobile") do %>-->
-        <!--    <i class='fa fa-comments-o'></i>-->
-        <!--  < end %>-->
-        <!--< end %>-->
-<!--      </a>-->
-<!--    </li>-->
-<!--  </ul>-->
-<!--</div>-->
-
 <div class="wishlist-options-container visible-xs">
   <div class="wishlist-options">
     <div class="wishlist-options-content">
@@ -2321,8 +2224,6 @@
   </div>
 </div>
 
-<!-- Event snippet for Customer Lead conversion page
-In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
 <script>
 function gtag_report_conversion(url) {
   var callback = function () {
@@ -2345,27 +2246,6 @@ function gtag_report_conversion(url) {
 </script>
 
 <script type="text/javascript">
-  
-  // Facebook tracking
-  
-    
-    
-    
-    
-    // $('.inquiry-button').on('click', function gtag_report_conversion(url) {
-    //   var callback = function () {
-    //     if (typeof(url) != 'undefined') {
-    //       window.location = url;
-    //     }
-    //   };
-      
-    //   return false;
-    // })
-    
-    // $('.inquiry-button').on('click', function GetCustomEvent() {
-    //   window.uetq = window.uetq || [];  
-    //   window.uetq.push ('event', 'Submit Inquiry', {});  
-    // })
   
   $(document).ready(function() {
     
@@ -2403,14 +2283,6 @@ function gtag_report_conversion(url) {
         
         gtag_report_conversion();
       });
-    
-    // render dealer select modal if on mobile
-  
-      // if ( $(window).width() < 768 ) {
-      //   $("#modal-dealer-select-mobile").html("<= escape_javascript render 'modal_dealer_select_mobile' %>");
-      // }
-    
-    // rating
     
       var averageRating = $('.average-rating');
       
@@ -2455,28 +2327,3 @@ function gtag_report_conversion(url) {
       var experiment100 = $('.experiment-100');
   });
 </script>
-
-<!--<div class="similar-vehicles">-->
-<!--  <div class="similar-vehicles-content">-->
-    
-<!--    <h2 class="similar-vehicles-title">Similar Vehicles</h2>-->
-    
-<!--    <h3 class="similar-vehicles-subheading">-->
-<!--      <(perc)= @vehicle.listing_name %> not quite right? Check out these similar -->
-<!--          vehicles.-->
-<!--    </h3>-->
-    
-<!--    <(perc)= render 'similar_vehicles_list' %>-->
-<!--  </div>-->
-<!--</div>-->
-
-<!--<div class="related-discoveries">-->
-<!--  <div class="related-discoveries-content">-->
-    
-<!--    <h2 class="related-discoveries-title">Related Discoveries</h2>-->
-    
-<!--    <h3 class="related-discoveries-subheading">Discover top content</h3>-->
-    
-<!--    <= render 'related_discoveries_list' %>-->
-<!--  </div>-->
-<!--</div>-->

@@ -1,6 +1,3 @@
-# destroy redirect
-# authenticate_user
-
 class DiscussionsController < ApplicationController
   
   before_action :logged_in_user,     except: [:index, :show, :search, 
@@ -28,8 +25,6 @@ class DiscussionsController < ApplicationController
                                 references(:discussion_comments).
                                 order(created_at: :desc).
                                 limit(10)
-                                # .
-                                # paginate(page: params[:page], per_page: 2)
                         
     @top_contributors = User.
                           joins(:discussions).
@@ -37,11 +32,6 @@ class DiscussionsController < ApplicationController
                           order('sum(discussions.cached_votes_up) desc', 
                                 created_at: :asc).
                           limit(5)
-    
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   ajax_respond format, :section_id => "page"
-    # end
   end
   
   def show
@@ -78,7 +68,6 @@ class DiscussionsController < ApplicationController
     @discussion.destroy
     flash[:success] = "Discussion deleted"
     redirect_to discussions_path
-    # Does not redirect to correct place if in clubs or in vehicle makes
   end
   
   def like

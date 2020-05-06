@@ -57,7 +57,6 @@ class AutopartsController < ApplicationController
       redirect_to autoparts_path
     
     else
-      # flash[:danger] = "Please provide all information for this vehicle."
       render 'edit'
     end
   end

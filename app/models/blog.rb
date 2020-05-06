@@ -6,9 +6,7 @@ class Blog < ActiveRecord::Base
   
   validates :user_id, presence: true
   validates :title,   presence: true
-    # , length: { maximum: 70 }
   validates :content, presence: true
-    # , length: { maximum: 500 }
   
   has_attached_file :cover_photo
   validates_attachment_presence :cover_photo

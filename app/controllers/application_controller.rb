@@ -1,5 +1,3 @@
-# completed
-
 class ApplicationController < ActionController::Base
   
   protect_from_forgery with: :exception
@@ -72,9 +70,7 @@ class ApplicationController < ActionController::Base
         params[:filterrific],
         
         select_options: {
-          sorted_by:             Vehicle.options_for_sorted_by,
-          # with_vehicle_make_id:  VehicleMake.options_for_select,
-          # with_vehicle_model_id: VehicleModel.options_for_select
+          sorted_by:             Vehicle.options_for_sorted_by
         },
         
         persistence_id: false,

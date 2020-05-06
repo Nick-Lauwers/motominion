@@ -1,5 +1,3 @@
-<!--completed-->
-
 <% provide(:title, @user.full_name) %>
 
 <header class="header-fixed-hidden hidden-xs">
@@ -68,44 +66,37 @@
     <div class="row">
       
       <div class="col-md-7">
-        <!--<div class="profile-overview-text">-->
           
-          <span class="profile-overview-registration">
-            Joined in <%= @user.created_at.strftime("%B %Y") %>
-          </span>
+        <span class="profile-overview-registration">
+          Joined in <%= @user.created_at.strftime("%B %Y") %>
+        </span>
+        
+        <% if @user.dealership_id.present? %>
+        
+          <span class="profile-overview-position">General Partner ·</span>
           
-          <% if @user.dealership_id.present? %>
-          
-            <span class="profile-overview-position">General Partner ·</span>
+          <%= link_to Dealership.find(@user.dealership_id).dealership_name,
+                      Dealership.find(@user.dealership_id), 
+                      class: "profile-overview-dealership" %>
+        
+        <% else %>
+          <span class="profile-overview-position">Private Seller</span>
+        <% end %>
+        
+        <% if @user.description.present? %>
+          <p class="profile-overview-info"><%= @user.description %></p>
+        <% end %>
+        
+        <% if @user.phone_number.present? %>
+          <div class="profile-overview-contact">
             
-            <%= link_to Dealership.find(@user.dealership_id).dealership_name,
-                        Dealership.find(@user.dealership_id), 
-                        class: "profile-overview-dealership" %>
-          
-          <% else %>
-            <span class="profile-overview-position">Private Seller</span>
-          <% end %>
-          
-          <!--<span class="profile-overview-response">-->
-          <!--  Response rate: <strong>_ %</strong> · -->
-          <!--  Response time: <strong>_ hours</strong>-->
-          <!--</span>-->
-          
-          <% if @user.description.present? %>
-            <p class="profile-overview-info"><%= @user.description %></p>
-          <% end %>
-          
-          <% if @user.phone_number.present? %>
-            <div class="profile-overview-contact">
-              
-              <span class="contact-phone">Phone</span>
-              
-              <%= link_to @user.phone_number.phony_formatted(spaces: '-'), 
-                          '#', 
-                          class: "contact-link" %>
-            </div>
-          <% end %>
-        <!--</div>-->
+            <span class="contact-phone">Phone</span>
+            
+            <%= link_to @user.phone_number.phony_formatted(spaces: '-'), 
+                        '#', 
+                        class: "contact-link" %>
+          </div>
+        <% end %>
       </div>
         
       <div class="col-md-4 col-md-offset-1">
@@ -131,40 +122,21 @@
     <div class="row">
       
       <div class="col-md-7">
-        <!--<div class="profile-static">-->
-        
-          <div class="profile-details-listings">
-            
-            <h2 class="profile-details-title">
-              Listings (<%= @user.vehicles.count %>)
-            </h2>
-            
-            <% if @user.vehicles.exists? %>
-              <ol class="user-listings-list">
-                <%= render 'user_listings' %>
-              </ol>
-              
-            <% else %>
-              <p class="empty-list-info">No listings posted</p>  
-            <% end %>
-          </div>
+        <div class="profile-details-listings">
           
-          <!--<div class="profile-details-wish-lists">-->
+          <h2 class="profile-details-title">
+            Listings (<%= @user.vehicles.count %>)
+          </h2>
+          
+          <% if @user.vehicles.exists? %>
+            <ol class="user-listings-list">
+              <%= render 'user_listings' %>
+            </ol>
             
-          <!--  <h2 class="profile-details-title">-->
-          <!--    Wish Lists (<(perc)= @user.favorites.count %>)-->
-          <!--  </h2>-->
-            
-          <!--  <(perc) if @user.favorite_vehicles.exists? %>-->
-          <!--    <ol class="wish-list-items">-->
-          <!--      <(perc)= render 'wish_list' %>-->
-          <!--    </ol>-->
-            
-          <!--  <(perc) else %>-->
-          <!--    <p class="empty-list-info">No wish lists created</p>-->
-          <!--  <(perc) end %>-->
-          <!--</div>-->
-        <!--</div>-->
+          <% else %>
+            <p class="empty-list-info">No listings posted</p>  
+          <% end %>
+        </div>
       </div>
 
       <div class="col-md-1">
@@ -283,27 +255,11 @@
         </div>
         
         <div class="col-md-4">
-          <!--<div class="pros-cons-list">-->
-            
-          <!--  <h3 class="reviews-subheading">Pros</h3>-->
-            
-          <!--  <ul class="pros-cons-list-content">-->
-          <!--    <li>Security & safety (51)</li>-->
-          <!--    <li>Location (45)</li>-->
-          <!--    <li>Management / staff (40)</li>-->
-          <!--  </ul>-->
-          <!--</div>-->
+          <!-- intentionally left empty -->
         </div>
         
         <div class="col-md-4">
-          <!--<div class="pros-cons-list">-->
-            
-          <!--  <h3 class="reviews-subheading">Cons</h3>-->
-            
-          <!--  <ul class="pros-cons-list-content">-->
-          <!--    <li>Value for money (11)</li>-->
-          <!--  </ul>-->
-          <!--</div>-->
+          <!-- intentionally left empty -->
         </div>
       </div>
       
@@ -430,5 +386,3 @@
     });  
   });
 </script>
-
-<!--report user-->

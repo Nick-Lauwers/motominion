@@ -17,16 +17,13 @@ class PersonalizedSearchesController < ApplicationController
       if params[:redirect_to_show].present?
         redirect_to @personalized_search
       else
-        # redirect_to location_personalized_search_path(@personalized_search)
         redirect_to manufacturer_personalized_search_path(@personalized_search)
       end
     else
-      # render 'new'
     end
   end
   
   def edit
-    # @user = User.find(current_user.id)
   end
   
   def update
@@ -102,6 +99,5 @@ class PersonalizedSearchesController < ApplicationController
     def get_personalized_search
       @personalized_search = PersonalizedSearch.
                                find_by(user_id: current_user.id)
-      # @personalized_search = current_user.personalized_search
     end
 end

@@ -1,5 +1,3 @@
-# complete
-
 class Enquiry < ActiveRecord::Base
   
   before_save      { email.downcase! }

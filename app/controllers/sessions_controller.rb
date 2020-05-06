@@ -1,5 +1,3 @@
-# completed
-
 class SessionsController < ApplicationController
   
   def new
@@ -13,7 +11,6 @@ class SessionsController < ApplicationController
        @user.password_digest.present? && 
        @user.authenticate(params[:session][:password])
       log_in @user
-      # params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       redirect_back_or dashboard_path
     
     elsif @user && @user.password_digest.present?
@@ -63,9 +60,4 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
-  
-  # def password
-  #     @user = User.find(27)
-  #   # @user = User.find_by(email: params[:session][:email].downcase)
-  # end
 end

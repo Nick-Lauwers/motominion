@@ -111,59 +111,7 @@
           
           <div class="tab-pane fade" id="performance_reviews">
               
-            <% if @google_reviews.present? %>
-            
-              <!--<div class="row reviews-summary">-->
-                
-              <!--  <div class="col-md-4">-->
-                  
-              <!--    <h3 class="reviews-subheading">Average Rating</h3>-->
-                  
-              <!--    <div class="row vertical-align">-->
-                    
-              <!--      <div class="col-xs-3">-->
-              <!--        <div class="average-rating-number">-->
-              <!--          <(perc)= @dealership.google_place_rating %>-->
-              <!--        </div>-->
-              <!--      </div>-->
-                    
-              <!--      <div class="col-xs-9">-->
-                      
-              <!--        <div class="average-rating"></div>-->
-                      
-              <!--        <span class="number-of-reviews">-->
-              <!--          (based on <(perc)= pluralize(@google_reviews.count, "review") %>)-->
-              <!--        </span> -->
-              <!--      </div>-->
-              <!--    </div>-->
-              <!--  </div>-->
-                
-              <!--  <div class="col-md-4">-->
-              <!--    <div class="pros-cons-list">-->
-                    
-              <!--      <h3 class="reviews-subheading">Pros</h3>-->
-                    
-              <!--      <ul class="pros-cons-list-content">-->
-                      <!--<li>Security & safety (51)</li>-->
-                      <!--<li>Location (45)</li>-->
-                      <!--<li>Management / staff (40)</li>-->
-              <!--        <li>None Listed Yet</li>-->
-              <!--      </ul>-->
-              <!--    </div>-->
-              <!--  </div>-->
-                
-              <!--  <div class="col-md-4">-->
-              <!--    <div class="pros-cons-list">-->
-                    
-              <!--      <h3 class="reviews-subheading">Cons</h3>-->
-                    
-              <!--      <ul class="pros-cons-list-content">-->
-              <!--        <li>None Listed Yet</li>-->
-              <!--      </ul>-->
-              <!--    </div>-->
-              <!--  </div>-->
-              <!--</div>-->
-              
+            <% if @google_reviews.present? %>             
               <ol class="reviews-list">
                 <%= render 'backend_reviews_list' %>
               </ol>

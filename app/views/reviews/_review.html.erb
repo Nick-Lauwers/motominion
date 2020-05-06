@@ -1,5 +1,3 @@
-<!--completed-->
-
 <li id="review-item-<%= review.id %>" class="row review-item">
     
   <div class="col-xs-4">
@@ -39,12 +37,7 @@
       <p class="review-comment"><%= review.comment %></p>
       
       <div class="review-remove">
-        <%= link_to "Remove my review",
-                    '#' %>
-                    <!--[@vehicle, review], -->
-                    <!--method: :delete, -->
-                    <!--data: { confirm: "Are you sure?" } if -->
-                    <!--      current_user && current_user == review.reviewer %>-->
+        <%= link_to "Remove my review", '#' %>
       </div>
     </div>
   </div>

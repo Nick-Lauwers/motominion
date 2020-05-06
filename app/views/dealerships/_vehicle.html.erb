@@ -40,37 +40,15 @@
       <% end %>
     <% end %>
     
-    <!--<(perc) if vehicle.dealership_id.present? %>-->
-    
-      <div class="special-offer" 
-           id="search-item-special-offer-<%= vehicle.id %>">
-        
-        <span class="special-offer-score">
-          <%= vehicle.listing_score.overall_score %>
-        </span>
-        
-        <span class="special-offer-description">Listing Score</span>
-        <!--<div type="button" -->
-        <!--     class="special-offer-button" -->
-        <!--     data-id="<(perc)= vehicle.id %>"-->
-        <!--     data-toggle="modal" -->
-        <!--     data-target="#modal-special-offer-desktop">-->
-        <!--  Listing Score-->
-        <!--</div>-->
-      </div>
+    <div class="special-offer" 
+         id="search-item-special-offer-<%= vehicle.id %>">
       
-      <!--<div class="special-offer-mobile visible-xs" -->
-      <!--     id="search-item-special-offer-<(perc)= vehicle.id %>">-->
-        
-      <!--  <div type="button" -->
-      <!--       class="special-offer-button" -->
-      <!--       data-id="<(perc)= vehicle.id %>"-->
-      <!--       data-toggle="modal" -->
-      <!--       data-target="#modal-special-offer-mobile">-->
-      <!--    <(perc)= vehicle.listing_score.overall_score %>-->
-      <!--  </div>-->
-      <!--</div>-->
-    <!--<(perc) end %>-->
+      <span class="special-offer-score">
+        <%= vehicle.listing_score.overall_score %>
+      </span>
+      
+      <span class="special-offer-description">Listing Score</span>
+    </div>
   </div>
   
   <%= link_to vehicle, target: "_blank" do %>
@@ -80,17 +58,10 @@
         <div class="search-item-user-content">
           
           <% if vehicle.user.present? %>
-            <!--<div class="avatar-and-online">-->
-            
-              <div class="search-item-avatar avatar-general", 
-                   style="background-image: url(
-                         '<%= vehicle.user.avatar.url(:thumb) %>')">
-              </div>
-          
-              <!--<(perc) if vehicle.user.online? %>-->
-              <!--  <div class="online online-lg-primary hidden-xs"></div>-->
-              <!--<(perc) end %>-->
-            <!--</div>-->
+            <div class="search-item-avatar avatar-general", 
+                 style="background-image: url(
+                       '<%= vehicle.user.avatar.url(:thumb) %>')">
+            </div>
           
           <% else %>
             <div class="avatar-verified">
@@ -219,80 +190,3 @@
       <% end %>
   });
 </script>
-
-
-<!--<li id="feed-item-<(perc)= vehicle.id %>" class="col-md-4 dealer-vehicle-item">-->
-  
-<!--  <(perc)= link_to vehicle, target: "_blank" do %>-->
-<!--    <div class="feed-item-content">-->
-      
-<!--      <div class="feed-item-image", -->
-<!--           style="background-image: url(-->
-<!--                   '<(perc)= vehicle.photos[0].image.url() if -->
-<!--                        vehicle.photos.length > 0 %>')">-->
-<!--      </div>-->
-      
-<!--      <div class="row">-->
-          
-<!--        <div class="col-xs-3 feed-item-user">-->
-<!--          <div class="feed-item-user-content">-->
-<!--            <div class="avatar-and-online">-->
-              
-<!--              <div class="feed-item-avatar avatar-general",-->
-<!--                   style="background-image: url(-->
-<!--                     '<(perc)= vehicle.user.avatar.url(:thumb) %>')">-->
-<!--              </div>-->
-            
-<!--              <(perc) if vehicle.user.online? %>-->
-<!--                <div class="online online-lg-primary hidden-xs"></div>-->
-<!--              <(perc) end %>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-        
-<!--        <div class="col-xs-9">-->
-<!--          <div class="feed-item-info">-->
-            
-<!--            <span class="feed-item-title">-->
-              
-<!--              <(perc) if vehicle.actual_price.present? %>-->
-<!--                $<(perc)= vehicle.actual_price %> | -->
-<!--              <(perc) elsif vehicle.msrp.present? %>-->
-<!--                $<(perc)= vehicle.msrp %> | -->
-<!--              <(perc) end %>-->
-              
-<!--              <(perc)= vehicle.listing_name %>-->
-<!--            </span>-->
-  
-<!--            <div id="average-rating-feed-item-<(perc)= vehicle.id %>", -->
-<!--                 class="average-rating-feed-item"></div>-->
-            
-<!--            <span class="feed-item-review-count">-->
-<!--              <(perc)= pluralize(vehicle.reviews.count, "review") %>-->
-<!--            </span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  <(perc) end %>-->
-  
-<!--  <(perc)= link_to favorite_vehicle_path(vehicle), -->
-<!--              method: :put do %>-->
-<!--    <i class="fa fa-2x fa-heart-o wish-list-icon" aria-hidden="true"></i>-->
-<!--  <(perc) end %>-->
-<!--</li>-->
-
-<!--<script type="text/javascript">-->
-<!--  $(document).ready(function() {-->
-    
-    <!--// rating-->
-    
-<!--      var averageRating = $('#average-rating-feed-item-<(perc)= vehicle.id %>');-->
-  
-<!--      averageRating.raty({-->
-<!--        path:     '/assets',-->
-<!--        readOnly: true,-->
-<!--        score:    <(perc)= vehicle.average_rating %>-->
-<!--      });  -->
-<!--  });-->
-<!--</script>-->

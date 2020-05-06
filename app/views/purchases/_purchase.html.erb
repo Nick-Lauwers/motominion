@@ -1,18 +1,9 @@
 <li id="purchase-item-<%= purchase.id %>" 
     class="col-md-6 purchase-item">
-<!--shortlist-item-<= current_user.-->
-<!--                                                       favorite_vehicles.-->
-<!--                                                       where(-->
-<!--                                                         vehicle: -->
-<!--                                                         purchase.vehicle).-->
-<!--                                                       first.-->
-<!--                                                       vehicle_id %>">-->
   
   <% if purchase.processed_at.present? %>
     <%= link_to purchase do %>
       <div class="purchase-item-content">
-           <!--data-toggle="modal" -->
-           <!--data-target="#modal-purchase">-->
         
         <div class="purchase-item-image", 
              style="background-image: url('<%= 
@@ -24,9 +15,6 @@
           
           <span class="purchase-item-vehicle">
             <%= purchase.vehicle.listing_name %>
-            <!--<= purchase.vehicle.year %>-->
-            <!--<= purchase.vehicle.vehicle_make.name %>-->
-            <!--<= purchase.vehicle.vehicle_model.name %>-->
           </span>
           
           <span class="purchase-item-price">
@@ -48,34 +36,6 @@
             Submitted
           </span>
         </div>
-        
-        <!--<div class="hidden">-->
-          
-        <!--  <span class="vehicle">-->
-        <!--    <(perc)= purchase.vehicle.year %>-->
-        <!--    <(perc)= purchase.vehicle.vehicle_make.name %>-->
-        <!--    <(perc)= purchase.vehicle.vehicle_model.name %>-->
-        <!--  </span>-->
-          
-        <!--  <span class="color">Color: <(perc)= purchase.vehicle.exterior %></span>-->
-          
-        <!--  <span class="mileage">-->
-        <!--    Mileage: <(perc)= purchase.vehicle.mileage_numeric %>-->
-        <!--  </span>-->
-          
-        <!--  <span class="vin">VIN: <(perc)= purchase.vehicle.vin %></span>-->
-          
-        <!--  <span class="dealer">-->
-        <!--    Dealer:-->
-        <!--    <(perc)= Dealership.find(purchase.seller.dealership_id).dealership_name %>-->
-        <!--  </span>-->
-          
-        <!--  <span class="total"><(perc)= purchase.vehicle.actual_price %>.00</span>-->
-          
-        <!--  <span class="subtotal">-->
-        <!--    <(perc)= purchase.vehicle.actual_price - 2005 - 250 %>.00-->
-        <!--  </span>-->
-        <!--</div>-->
       </div>
     <% end %>
 
@@ -93,9 +53,6 @@
           
           <span class="purchase-item-vehicle">
             <%= purchase.vehicle.listing_name %>
-            <!--<= purchase.vehicle.year %>-->
-            <!--<= purchase.vehicle.vehicle_make.name %>-->
-            <!--<= purchase.vehicle.vehicle_model.name %>-->
           </span>
           
           <span class="purchase-item-price">
@@ -121,27 +78,3 @@
     <% end %>
   <% end %>
 </li>
-
-<!--<script type="text/javascript">-->
-<!--  $(document).ready(function() {-->
-<!--    $('#modal-purchase').on('show.bs.modal', function (event) {-->
-      
-<!--      var element               = $(event.relatedTarget);-->
-<!--      var dynamic_text_vehicle  = element.find('.vehicle').text();-->
-<!--      var dynamic_text_color    = element.find('.color').text();-->
-<!--      var dynamic_text_mileage  = element.find('.mileage').text();-->
-<!--      var dynamic_text_vin      = element.find('.vin').text();-->
-<!--      var dynamic_text_dealer   = element.find('.dealer').text();-->
-<!--      var dynamic_text_total    = element.find('.total').text();-->
-<!--      var dynamic_text_subtotal = element.find('.subtotal').text();-->
- 
-<!--      $('.receipt-vehicle').html(dynamic_text_vehicle);-->
-<!--      $('.receipt-color').html(dynamic_text_color);-->
-<!--      $('.receipt-mileage').html(dynamic_text_mileage);-->
-<!--      $('.receipt-vin').html(dynamic_text_vin);-->
-<!--      $('.receipt-dealer').html(dynamic_text_dealer);-->
-<!--      $('.receipt-total').html(dynamic_text_total);-->
-<!--      $('.receipt-subtotal').html(dynamic_text_subtotal);-->
-<!--    });-->
-<!--  });-->
-<!--</script>-->

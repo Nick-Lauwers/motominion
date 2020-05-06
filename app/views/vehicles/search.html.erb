@@ -1,5 +1,3 @@
-<!--completed-->
-
 <% if @filterrific.with_condition.present? %>
   <% provide(:title,       "#{@filterrific.with_condition}#{ (" " + VehicleMake.find(@filterrific.with_vehicle_make_id).name) if @filterrific.with_vehicle_make_id.present?}#{ (" " + VehicleModel.find(@filterrific.with_vehicle_model_id).name) if (@filterrific.with_vehicle_model_id.present? && VehicleModel.find(@filterrific.with_vehicle_model_id).name != "All Models")} Motorcycles For Sale#{ (" In " + @filterrific.with_zip_code.to_s.to_region) if @filterrific.with_zip_code.present? }") %>
   <% provide(:description, "Browse thousands of #{@filterrific.with_condition.downcase}#{ (" " + VehicleMake.find(@filterrific.with_vehicle_make_id).name) if @filterrific.with_vehicle_make_id.present?}#{ (" " + VehicleModel.find(@filterrific.with_vehicle_model_id).name) if (@filterrific.with_vehicle_model_id.present? && VehicleModel.find(@filterrific.with_vehicle_model_id).name != "All Models")} motorcycles for sale#{ (" in " + @filterrific.with_zip_code.to_s.to_region + ",") if @filterrific.with_zip_code.present? } to find the best local deals.") %>
@@ -19,14 +17,6 @@
 <%= render 'layouts/contact' %>
 
 <%= render 'modal_filters' %>
-
-<!--<div class="modal" id="modal-special-offer-desktop" role="dialog">-->
-<!--  <(perc)= render "layouts/modal_special_offer_desktop" %>-->
-<!--</div>-->
-
-<!--<div class="modal" id="modal-special-offer-mobile" role="dialog">-->
-<!--  <(perc)= render "layouts/modal_special_offer_mobile" %>-->
-<!--</div>-->
 
 <div class="search-summary hidden-xs">
   <div class="search-summary-content">
@@ -131,12 +121,7 @@
                     
                     <div class="col-md-3">
                       <span class="search-introduction-dynamic-title">
-                        
                         Newest Listings 
-                        
-                        <!--<(perc) if @filterrific.with_zip_code.present? %>-->
-                        <!--  - <(perc)= @filterrific.with_zip_code.to_s.to_region %>-->
-                        <!--<(perc) end %>-->
                       </span>
                     </div>
                     
@@ -180,43 +165,6 @@
                 </div>
               </div>
             <% end %>
-            
-            <!--<div class="mobile-search-info">-->
-              
-            <!--  <span class="feed-title">-->
-
-            <!--    <(perc) if @filterrific.with_vehicle_make_id.present? %>-->
-          
-            <!--      <(perc)= VehicleMake.-->
-            <!--            find(@filterrific.with_vehicle_make_id).-->
-            <!--            name %>-->
-                  
-            <!--      <(perc) if @filterrific.with_vehicle_model_id.present? && -->
-            <!--              VehicleModel.-->
-            <!--                find(@filterrific.with_vehicle_model_id).-->
-            <!--                name != "All Models" %>-->
-          
-            <!--        <(perc)= VehicleModel.-->
-            <!--              find(@filterrific.with_vehicle_model_id).-->
-            <!--              name %>-->
-            <!--      <(perc) end %>-->
-                
-            <!--    <(perc) else %>-->
-            <!--      All Makes and Models-->
-            <!--    <(perc) end %>-->
-            <!--  </span>-->
-
-            <!--  <span class="feed-info">-->
-            <!--    <(perc) if @filterrific.with_zip_code.present? %>-->
-
-            <!--      <(perc)= pluralize(@vehicles.count, "motorcycle") %> found near -->
-            <!--      <(perc)= @filterrific.with_zip_code.to_s.to_region %>-->
-          
-            <!--    <(perc) else %>-->
-            <!--      Enter a city to narrow your search-->
-            <!--    <(perc) end %>-->
-            <!--  </span>-->
-            <!--</div>-->
             
             <div class="filter-controls hidden-xs">
               
@@ -436,12 +384,6 @@
 <div class="hidden-xs">
   <%= render 'personalized_searches/form' %>
 </div>
-
-<!--<div class="visible-xs">-->
-<!--  <div class="single-action btn-enquiry">-->
-<!--    <i class='fa fa-lg fa-comments-o single-action-icon'></i>-->
-<!--  </div>-->
-<!--</div>-->
 
 <div class="search-nav visible-xs">
   <div class="row">
@@ -728,6 +670,3 @@
       });
   });
 </script>
-
-<!--title modification-->
-<!--https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html-->

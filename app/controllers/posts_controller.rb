@@ -23,8 +23,6 @@ class PostsController < ApplicationController
       flash[:success] = "Post submitted"
       redirect_to @post
     else
-      # check this one
-      # redirect_to new_post_path(club_id: @post.club_id)
       redirect_to :back
       flash[:failure] = "Be sure to include a photo and a caption."
     end
@@ -46,7 +44,6 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:success] = "Post deleted"
     redirect_to discussions_path
-    # Does not redirect to correct place if in clubs or in vehicle makes
   end
   
   def like

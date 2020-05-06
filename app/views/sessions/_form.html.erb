@@ -1,8 +1,4 @@
-<!--completed-->
-
 <%= form_for(:session, url: login_url) do |f| %>
-
-  <!--<= link_to "Sign in with Facebook", "/auth/facebook" %>-->
   
   <%= link_to "/auth/google", 
               class: "btn btn-social-auth" do %>
@@ -29,64 +25,5 @@
        aria-hidden="true"></i>
   </div>
 
-  <!--<div class="form-element">-->
-    
-  <!--  <(perc)= f.password_field :password, -->
-  <!--                       placeholder: "Password", -->
-  <!--                       class: 'form-control -->
-  <!--                               form-control-secondary -->
-  <!--                               login-form-control' %>-->
-                                 
-  <!--  <i class="fa fa-unlock fa-lg form-icon" -->
-  <!--     aria-hidden="true"></i>-->
-  <!--</div>-->
-
-  <!--<div class="checkbox-container">-->
-  <!--  <div class="checkbox-inline">-->
-      
-  <!--    <(perc)= f.check_box :remember_me, class: "checkbox" %>-->
-      
-  <!--    <(perc)= f.label :remember_me, -->
-  <!--                "Remember me on this computer",-->
-  <!--                class: "checkbox-label" %>-->
-  <!--  </div>-->
-  <!--</div>-->
-
   <%= f.submit "Log In", class: "btn btn-primary" %>
 <% end %>
-
-<!--<div class="login-links-container">-->
-  
-<!--  <(perc)= link_to "Forgot your password? Click here", -->
-<!--              new_password_reset_path,-->
-<!--              class: "login-link" %>-->
-
-<!--  <p class="login-link-text">-->
-    
-<!--    New user? -->
-    
-<!--    <(perc)= link_to "Sign up now!", -->
-<!--                signup_path, -->
-<!--                class: "login-link" %>-->
-<!--  </p>-->
-<!--</div>-->
-
-<!--<script>-->
-<!--  window.fbAsyncInit = function() {-->
-<!--    FB.init({-->
-<!--      appId      : ENV['FACEBOOK_KEY'],-->
-<!--      xfbml      : true,-->
-<!--      version    : 'v2.6'-->
-<!--    });-->
-<!--  };-->
-
-<!--  (function(d, s, id){-->
-<!--     var js, fjs = d.getElementsByTagName(s)[0];-->
-<!--     if (d.getElementById(id)) {return;}-->
-<!--     js = d.createElement(s); js.id = id;-->
-<!--     js.src = "//connect.facebook.net/en_US/sdk.js";-->
-<!--     fjs.parentNode.insertBefore(js, fjs);-->
-<!--   }(document, 'script', 'facebook-jssdk'));-->
-<!--</script>-->
-
-<!--Is facebook script necessary, if google script is not-->

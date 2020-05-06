@@ -1,5 +1,3 @@
-# completed
-
 class PhotosController < ApplicationController
   
   before_action :get_photo, except: [:create]
@@ -29,21 +27,6 @@ class PhotosController < ApplicationController
     respond_to :js
   end
   
-  # def rotate
-    
-  #   if @photo.rotation == nil || @photo.rotation == 0
-  #     @photo.update_attribute(:rotation, 90)
-  #   elsif @photo.rotation == 90
-  #     @photo.update_attribute(:rotation, 180)
-  #   elsif @photo.rotation == 180
-  #     @photo.update_attribute(:rotation, 270)
-  #   else
-  #     @photo.update_attribute(:rotation, 0)
-  #   end
-
-  #   redirect_to :back
-  # end
-
   private
       
     # Before filters
@@ -53,5 +36,3 @@ class PhotosController < ApplicationController
       @photo = Photo.find(params[:id])
     end
 end
-
-# ensure that user is logged in and that user is correct

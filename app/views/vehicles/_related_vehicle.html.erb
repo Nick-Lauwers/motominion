@@ -1,5 +1,3 @@
-<!--completed-->
-
 <li id="related-vehicle-<%= related_vehicle.id %>" 
     class="col-md-4 col-xs-4 related-vehicle">
   <div class="related-vehicle-image">
@@ -44,7 +42,6 @@
       <% end %>
     <% end %>
     
-    <!--<(perc) if feed_item.dealership.present? %>-->
       <div class="special-offer"
            id="feed-item-special-offer-<%= related_vehicle.id %>">
         
@@ -53,18 +50,7 @@
         </span>
         
         <span class="special-offer-description">Listing Score</span>
-        
-        <!--<i class="fa fa-lg fa-tag special-offer-icon"></i>-->
-        
-        <!--<div type="button" -->
-        <!--     class="special-offer-button" -->
-        <!--     data-id="<(perc)= feed_item.id %>"-->
-        <!--     data-toggle="modal" -->
-        <!--     data-target="#modal-special-offer">-->
-        <!--  Special Offer-->
-        <!--</div>-->
       </div>
-    <!--<(perc) end %>-->
   </div>
 
   <%= link_to related_vehicle, target: "_blank" do %>
@@ -74,17 +60,10 @@
           <div class="related-vehicle-user-content">
             
             <% if related_vehicle.user.present? %>
-              <!--<div class="avatar-and-online">-->
-                
-                <div class="related-vehicle-avatar avatar-general",
-                     style="background-image: url(
-                       '<%= related_vehicle.user.avatar.url(:thumb) %>')">
-                </div>
-              
-                <!--<(perc) if feed_item.user.online? %>-->
-                <!--  <div class="online online-lg-primary hidden-xs"></div>-->
-                <!--<(perc) end %>-->
-              <!--</div>-->
+              <div class="related-vehicle-avatar avatar-general",
+                   style="background-image: url(
+                     '<%= related_vehicle.user.avatar.url(:thumb) %>')">
+              </div>
               
             <% else %>
               <div class="avatar-verified">

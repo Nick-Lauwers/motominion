@@ -1,5 +1,3 @@
-<!--completed-->
-
 <li id="feed-item-<%= feed_item.id %>" class="col-md-4 col-xs-4 feed-item">
   <div class="feed-item-image">
     
@@ -31,27 +29,15 @@
       <% end %>
     <% end %>
     
-    <!--<(perc) if feed_item.dealership.present? %>-->
-      <div class="special-offer"
-           id="feed-item-special-offer-<%= feed_item.id %>">
-        
-        <span class="special-offer-score">
-          <%= feed_item.listing_score.overall_score %>
-        </span>
-        
-        <span class="special-offer-description">Listing Score</span>
-        
-        <!--<i class="fa fa-lg fa-tag special-offer-icon"></i>-->
-        
-        <!--<div type="button" -->
-        <!--     class="special-offer-button" -->
-        <!--     data-id="<(perc)= feed_item.id %>"-->
-        <!--     data-toggle="modal" -->
-        <!--     data-target="#modal-special-offer">-->
-        <!--  Special Offer-->
-        <!--</div>-->
-      </div>
-    <!--<(perc) end %>-->
+    <div class="special-offer"
+         id="feed-item-special-offer-<%= feed_item.id %>">
+      
+      <span class="special-offer-score">
+        <%= feed_item.listing_score.overall_score %>
+      </span>
+      
+      <span class="special-offer-description">Listing Score</span>
+    </div>
   </div>
 
   <%= link_to feed_item, target: "_blank" do %>
@@ -61,17 +47,10 @@
           <div class="feed-item-user-content">
             
             <% if feed_item.user.present? %>
-              <!--<div class="avatar-and-online">-->
-                
-                <div class="feed-item-avatar avatar-general",
-                     style="background-image: url(
-                       '<%= feed_item.user.avatar.url(:thumb) %>')">
-                </div>
-              
-                <!--<(perc) if feed_item.user.online? %>-->
-                <!--  <div class="online online-lg-primary hidden-xs"></div>-->
-                <!--<(perc) end %>-->
-              <!--</div>-->
+              <div class="feed-item-avatar avatar-general",
+                   style="background-image: url(
+                     '<%= feed_item.user.avatar.url(:thumb) %>')">
+              </div>
               
             <% else %>
               <div class="avatar-verified">
@@ -200,49 +179,3 @@
       <% end %>
   });
 </script>
-
-<!--<div class="feed-item-info">-->
-  <!--<div class="feed-item-stats">-->
-    
-    <!--<div class="feed-item-time">-->
-    <!--  <span>-->
-    <!--    <(perc)= time_ago_in_words(feed_item.created_at).capitalize %> ago-->
-    <!--  </span>-->
-    <!--</div>-->
-    
-    <!--<div class="feed-item-saves pull-right">-->
-    <!--  <span>-->
-    <!--    <(perc)= pluralize(feed_item.favorited_by.count, "Save") %> | -->
-    <!--    <(perc)= pluralize(feed_item.questions.count, "Question") %>-->
-    <!--  </span>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!--<div class="feed-item-title">-->
-<!--  <p>-->
-<!--    <i class="fa fa-tag feed-item-icon" aria-hidden="true"></i>-->
-<!--    <(perc)= feed_item.listing_name %>-->
-<!--  </p>-->
-<!--</div>-->
-
-<!--<div class="feed-item-info">-->
-  
-<!--  <p><(perc)= feed_item.summary %></p>-->
-  
-<!--  <div class="feed-item-stats">-->
-    
-<!--    <div class="feed-item-time">-->
-<!--      <span>-->
-<!--        <(perc)= time_ago_in_words(feed_item.created_at).capitalize %> ago-->
-<!--      </span>-->
-<!--    </div>-->
-    
-<!--    <div class="feed-item-saves pull-right">-->
-<!--      <span>-->
-<!--        <(perc)= pluralize(feed_item.favorited_by.count, "Save") %> | -->
-<!--        <(perc)= pluralize(feed_item.questions.count, "Question") %>-->
-<!--      </span>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

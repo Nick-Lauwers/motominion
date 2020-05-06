@@ -35,5 +35,4 @@ class PurchasesControllerTest < ActionController::TestCase
     get :financial
     assert_response :success
   end
-
 end

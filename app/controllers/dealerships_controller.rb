@@ -85,8 +85,6 @@ class DealershipsController < ApplicationController
   def vehicles
     @vehicles = @dealership.
                   vehicles.
-                  # where(sold_at: nil).
-                  # where.not(posted_at: nil).
                   paginate(page: params[:page], per_page: 15)
   end
   

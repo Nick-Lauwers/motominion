@@ -1,5 +1,3 @@
-# complete
-
 require 'test_helper'
 
 class GarageTest < ActionDispatch::IntegrationTest

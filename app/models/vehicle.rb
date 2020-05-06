@@ -1,8 +1,6 @@
 # complete
 
 class Vehicle < ActiveRecord::Base
-  
-#  searchkick word_start: [:listing_name, :city], locations: [:location]
 
   belongs_to :user
   belongs_to :dealership
@@ -21,7 +19,6 @@ class Vehicle < ActiveRecord::Base
   
   has_many :appointments, dependent: :destroy
   has_many :conversations, through: :appointments
-  # has_many :conversations, through: :inquiries
   has_many :favorited_by,  through: :favorite_vehicles, source: :user
   
   has_many :availabilities, dependent: :destroy
@@ -34,19 +31,6 @@ class Vehicle < ActiveRecord::Base
   accepts_nested_attributes_for :special_offers, allow_destroy: true
   
   has_one :listing_score, dependent: :destroy
-
-  # MINIMUM_PHOTOS = 2
-
-  # validate :on => :save do
-  #   if self.photos.size < MINIMUM_PHOTOS
-  #     errors.add :vehicle, "Must have at least #{MINIMUM_PHOTOS} photos."
-  #   end
-  # end
-  
-  # before_save      { vin.upcase! }
-  # default_scope -> { order(created_at: :desc) }
-  
-  # validates :vehicle_make_id, :vehicle_model_id, 
   
   validates :year, presence: true, 
     unless: Proc.new { |vehicle| vehicle.user_id.blank? }
@@ -55,23 +39,11 @@ class Vehicle < ActiveRecord::Base
   validates :mileage_numeric, presence: true, 
     unless: Proc.new { |vehicle| vehicle.user_id.blank? }
   
-            # :user_id, :body_style, :color, :transmission, :fuel_type, 
-            # :drivetrain, :street_address, :city, :state, :seating_capacity, 
-            # presence: true
-  # validates :listing_name, presence: true, length: { maximum: 50 }
-  # validates :summary,      presence: true
-  # , length: { maximum: 600 }
-  # validates :sellers_notes,                          length: { maximum: 600 }
-  
-  # VALID_VIN_REGEX = /[A-HJ-NPR-Za-hj-npr-z\d]{8}[\dX][A-HJ-NPR-Za-hj-npr-z\d]{3}\d{5}/
-  # validates :vin, presence: true, format: { with: VALID_VIN_REGEX }
-  
   geocoded_by      :address
   after_validation :geocode, 
     if: Proc.new { |vehicle| vehicle.address_changed? && vehicle.dealership_id.blank? }
   
   filterrific(
-    # default_filter_params: { sorted_by: 'created_at_desc' },
     available_filters: [
       :sorted_by,
       :with_vehicle_make_id, 
@@ -265,11 +237,6 @@ class Vehicle < ActiveRecord::Base
     where(body_style: "Cafe Racer")
   }
   
-  # scope :with_cruiser, lambda { |flag|
-  #   return nil if 0 == flag
-  #   where(body_style: "Cruiser")
-  # }
-  
   scope :with_dirt_bike_dual_sport, lambda { |flag|
     return nil if 0 == flag
     where(body_style: "Dirt Bike / Dual-Sport")
@@ -312,43 +279,21 @@ class Vehicle < ActiveRecord::Base
     end
   }
   
-  # scope :with_year_gte, lambda { |ref_year|
-  #   Vehicle.where.not(:year.lt(ref_year))
-  # }
-  
   scope :with_year_gte, lambda { |ref_year|
     where('vehicles.year >= ? OR vehicles.year IS NULL', ref_year)
   }
-  
-  # scope :with_actual_price_lte, lambda { |ref_price|
-  #   Vehicle.
-  #     where.not(:actual_price.gt(ref_price)).
-  #     where.not(:msrp.gt(ref_price))
-  # }
   
   scope :with_actual_price_lte, lambda { |ref_price|
     where('vehicles.actual_price <= ? OR vehicles.actual_price IS NULL', ref_price)
   }
   
-  # scope :with_mileage_numeric_lte, lambda { |ref_mileage|
-  #   Vehicle.where.not(:mileage_numeric.gt(ref_mileage))
-  # }
-  
   scope :with_mileage_numeric_lte, lambda { |ref_mileage|
     where('vehicles.mileage_numeric <= ? OR vehicles.mileage_numeric IS NULL', ref_mileage)
   }
   
-  # scope :with_engine_size_gte, lambda { |ref_engine_size|
-  #   Vehicle.where.not(engine_size.lt(ref_engine_size)
-  # }
-  
   scope :with_engine_size_gte, lambda { |ref_engine_size|
     where('vehicles.engine_size >= ? OR vehicles.engine_size IS NULL', ref_engine_size)
   }
-  
-  # scope :with_seating_capacity_gte, lambda { |ref_capacity|
-  #   where('vehicles.seating_capacity >= ?', ref_capacity)
-  # }
   
   scope :with_body_style, lambda { |body_style|
     joins(:vehicle_model).where('vehicle_models.vehicle_type = ?', body_style)
@@ -424,8 +369,6 @@ class Vehicle < ActiveRecord::Base
   # Provides sort options
   def self.options_for_sorted_by
     [
-      # ['Registration date (newest first)', 'created_at_desc'],
-      # ['Registration date (oldest first)', 'created_at_asc'],
       ['Lowest Price', 'price_asc']
     ]
   end
@@ -474,12 +417,3 @@ class Vehicle < ActiveRecord::Base
     write_attribute :mileage, val.to_s.gsub(/[\s,]/, '').to_i
   end
 end
-
-# Vehicle.where(dealership_id: 3).each do |vehicle|
-#   vehicle.latitude = 50.041345
-#   vehicle.longitude = -113.590972
-#   vehicle.street_address = "25 Alberta Rd"
-#   vehicle.city = "Claresholm"
-#   vehicle.state = "AB"
-#   vehicle.save
-# end

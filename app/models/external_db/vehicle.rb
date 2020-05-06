@@ -144,8 +144,6 @@ module ExternalDb
         photos_score = 0
       end
       
-      # Seller has several positive reviews.
-      
       # Listing was recently posted or bumped.
       if vehicle.bumped_at >= 1.day.ago
         recently_posted_score = 100
@@ -156,20 +154,6 @@ module ExternalDb
       end
       
       # Seller has many high-quality listings.
-      # combined_score = 0
-
-      # v.dealership.vehicles.each do |vehicle|
-      #   combined_score = vehicle.listing_score.overall_score + 
-      #                     combined_score
-      # end
-      
-      # if combined_score/(v.dealership.vehicles.count) <= 59
-      #   many_listings_score = 33
-      # elsif combined_score/(v.dealership.vehicles.count) <= 79
-      #   many_listings_score = 67
-      # else 
-      #   many_listings_score = 100
-      # end
       many_listings_score = 100
       
       # Calculate overall score.
@@ -178,7 +162,6 @@ module ExternalDb
                         certified_dealer_score +
                         direct_listing_score +
                         test_drive_score + ( 3 * photos_score ) +
-                        # score.reviews_score + 
                         ( 2 * recently_posted_score ) + 
                         many_listings_score ) / 13
       
@@ -192,7 +175,6 @@ module ExternalDb
           direct_listing_score:   direct_listing_score,
           test_drive_score:       test_drive_score,
           photos_score:           photos_score,
-          # reviews_score:        reviews_score,
           recently_posted_score:  recently_posted_score,
           many_listings_score:    many_listings_score,
           overall_score: overall_score
@@ -208,7 +190,6 @@ module ExternalDb
           direct_listing_score:   direct_listing_score,
           test_drive_score:       test_drive_score, 
           photos_score:           photos_score,
-          # reviews_score:        reviews_score, 
           recently_posted_score:  recently_posted_score,
           many_listings_score:    many_listings_score, 
           overall_score:          overall_score

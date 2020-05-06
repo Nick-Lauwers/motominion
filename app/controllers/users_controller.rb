@@ -1,6 +1,3 @@
-# completed
-# ensure that before actions are correct for payment and add_card
-
 class UsersController < ApplicationController
   
   before_action :logged_in_user, only: [:edit, :update, :add_card]
@@ -19,8 +16,6 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
-    
-    # @token = params[:invitation_token]
   end
   
   def create
@@ -31,7 +26,6 @@ class UsersController < ApplicationController
                                    :school, :work, :description, :avatar, 
                                    :dealership_id, :dealership_admin, 
                                    :activated, :activated_at))
-    # @token = params[:invitation_token]
     
     if @user.save
       
@@ -105,38 +99,6 @@ class UsersController < ApplicationController
     end
     
     redirect_to :back
-    
-    #   # Determine if there is a way to add token after account activation.
-    #   if @token != nil
-    #     org = Invitation.find_by_token(@token).club
-    #     @user.clubs.push(org)
-    #   end
-      
-    #   if @user.dealership_id.present?
-    #     log_in @user
-    #     redirect_to dealer_details_user_path(@user)
-        
-    #   # if @user.dealership_admin
-    #   #   log_in @user
-    #   #   redirect_to new_dealership_dealer_invitation_path(@user.dealership_id)
-    #   # elsif @user.dealership_id.present?
-    #   #   log_in @user
-    #   #   redirect_to dealership_path(@user.dealership_id)
-      
-    #   else
-    #     @user.send_activation_email
-    #     flash[:info] = "Please check your email to activate your account."
-    #     redirect_to root_url
-    #   end
-      
-    # else
-    #   # if params[:dealership_admin].present?
-    #   #   render 'new_dealer_admin'
-    #   # elsif params[:dealership_id].present?
-    #   #   render 'new_dealer'
-    #   # else
-    #     render 'new'
-    #   # end
   end
   
   def edit
@@ -224,7 +186,6 @@ class UsersController < ApplicationController
         },
         properties: {
           "id":    "shortlist-item-" + vehicle.id.to_s,
-          # "image": vehicle.photos[0].image.url(),
           "title": vehicle.listing_name
         }
       }
@@ -242,7 +203,6 @@ class UsersController < ApplicationController
         },
         properties: {
           "id":    "test-drive-item-" + appointment.id.to_s,
-          # "image": vehicle.photos[0].image.url(),
           "title": appointment.vehicle.listing_name
         }
       }
@@ -259,7 +219,6 @@ class UsersController < ApplicationController
         },
         properties: {
           "id":    "purchase-item-" + purchase.id.to_s,
-          # "image": vehicle.photos[0].image.url(),
           "title": purchase.vehicle.listing_name
         }
       }
@@ -339,9 +298,3 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user?(@user)
     end
 end
-
-# add delete and associated tests
-
-
-# User.create(first_name: 'Matt', last_name: 'Graves', email: 'matt@munroemotors.com', password: '98391004', password_confirmation: '98391004', avatar_url: 'https://randomuser.me/api/portraits/men/31.jpg', dealership_id: 3)
-# User.create(first_name: 'Neal', last_name: 'Reyes', email: 'neal@scuderiawest.com', password: '98391006', password_confirmation: '98391006', avatar_url: 'https://randomuser.me/api/portraits/men/94.jpg', dealership_id: 4)

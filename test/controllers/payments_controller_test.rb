@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class PaymentsControllerTest < ActionController::TestCase
+  
   test "should get new" do
     get :new
     assert_response :success
@@ -10,5 +11,4 @@ class PaymentsControllerTest < ActionController::TestCase
     get :create
     assert_response :success
   end
-
 end

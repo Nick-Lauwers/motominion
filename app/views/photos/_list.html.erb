@@ -13,19 +13,6 @@
                data-rotate="<%= photo.rotation %>" />
         </div>
         
-        <!--<(perc)= link_to rotate_vehicle_photo_path(photo.vehicle_id, photo),-->
-        <!--            method: :put do %>-->
-        <!--  <i class="fa -->
-        <!--            fa-repeat -->
-        <!--            fa-2x -->
-        <!--            rotate-photo-icon" aria-hidden="true"></i>-->
-        <!--<(perc) end %>-->
-        
-        <!--<(perc)= link_to rotate_vehicle_photo_path(photo.vehicle_id, photo),-->
-        <!--            method: :put do %>-->
-        <!--  <i class="fa fa-repeat fa-2x rotate-photo-icon"></i>-->
-        <!--<(perc) end %>-->
-        
         <%= link_to vehicle_photo_path(photo.vehicle_id, photo), 
                     remote: true, 
                     method: :delete, 

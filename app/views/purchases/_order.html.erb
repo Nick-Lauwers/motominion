@@ -2,7 +2,6 @@
     class="col-md-6 order-item">
   <%= link_to order_purchase_path(order) do %>
 
-  <!--<(perc)= link_to purchase do %>-->
     <div class="order-item-content">
       
       <div class="order-item-image", 
@@ -19,19 +18,7 @@
         <span class="order-item-date">
           Order received <%= time_ago_in_words(order.processed_at) %> ago
         </span>
-        
-        <!--<span class="test-drive-item-info">-->
-        <!--  <(perc)= Dealership.find(purchase.seller.dealership_id).name %> · -->
-        <!--  <(perc)= purchase.seller.full_name %>-->
-        <!--</span>-->
       </div>
-      
-      <!--<div class="test-drive-item-status">-->
-      <!--  <span class="test-drive-item-status-content">-->
-      <!--    Not Viewed-->
-      <!--  </span>-->
-      <!--</div>-->
     </div>
-  <!--</button>-->
   <% end %>
 </li>

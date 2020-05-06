@@ -27,24 +27,15 @@
       <i class="fa fa-2x fa-trash wish-list-icon" aria-hidden="true"></i>
     <% end %>
     
-    <!--<(perc) if shortlist_item.vehicle.dealership.present? %>-->
-      <div class="special-offer" 
-           id="search-item-special-offer-<%= shortlist_item.vehicle_id %>">
-        
-        <span class="special-offer-score">
-          <%= shortlist_item.vehicle.listing_score.overall_score %>
-        </span>
-        
-        <span class="special-offer-description">Listing Score</span>
-        <!--<div type="button" -->
-        <!--     class="special-offer-button" -->
-        <!--     data-id="<(perc)= vehicle.id %>"-->
-        <!--     data-toggle="modal" -->
-        <!--     data-target="#modal-special-offer-desktop">-->
-        <!--  Listing Score-->
-        <!--</div>-->
-      </div>
-    <!--<(perc) end %>-->
+    <div class="special-offer" 
+         id="search-item-special-offer-<%= shortlist_item.vehicle_id %>">
+      
+      <span class="special-offer-score">
+        <%= shortlist_item.vehicle.listing_score.overall_score %>
+      </span>
+      
+      <span class="special-offer-description">Listing Score</span>
+    </div>
   </div>
   
   <%= link_to shortlist_item.vehicle, target: "_blank" do %>
@@ -54,23 +45,15 @@
         <div class="search-item-user-content">
           
           <% if shortlist_item.vehicle.user.present? %>
-            <!--<div class="avatar-and-online">-->
             
-              <div class="search-item-avatar avatar-general", 
-                   style="background-image: url(
-                         '<%= shortlist_item.
-                                vehicle.
-                                user.
-                                avatar.
-                                url(:thumb) %>')">
-              </div>
-          
-              <!--<(perc) if shortlist_item.vehicle.user.online? %>-->
-              <!--  <div class="online -->
-              <!--              online-lg-primary -->
-              <!--              hidden-xs"></div>-->
-              <!--<(perc) end %>-->
-            <!--</div>-->
+            <div class="search-item-avatar avatar-general", 
+                 style="background-image: url(
+                       '<%= shortlist_item.
+                              vehicle.
+                              user.
+                              avatar.
+                              url(:thumb) %>')">
+            </div>
           
           <% else %>
             <div class="avatar-verified">

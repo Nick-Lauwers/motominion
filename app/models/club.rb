@@ -19,19 +19,11 @@ class Club < ActiveRecord::Base
   
   # Concatenates address fields
   def address
-    
-    # if apartment.present?
-    #   [street_address, apartment, city, state].compact.join(', ')
-      
-    # else
-      # [street_address, ]
-      [city, state].compact.join(', ')
-    # end
+    [city, state].compact.join(', ')
   end
   
   # Returns true if address has been updated
   def address_changed?
-    # street_address_changed? or apartment_changed? or 
     city_changed? or state_changed?
   end
 end

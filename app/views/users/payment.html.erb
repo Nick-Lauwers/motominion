@@ -23,9 +23,7 @@
       </div>
       
       <div class="col-md-8">
-        
-        <!--<div class="card"></div>-->
-        
+                
         <%= form_tag('/add_card', method: "post", id: "add-card") do %>
           
           <label>
@@ -47,41 +45,6 @@
           <% else %>
             <button type="submit" class="btn btn-primary">Add Card</button>
           <% end %>
-
-          <!--<div class="row">-->
-            
-          <!--  <div class="col-md-8 form-group">-->
-          <!--    <label>Card Number</label>-->
-          <!--    <input type="text" name="number" class="form-control form-control-primary"/>-->
-          <!--  </div>-->
-            
-          <!--  <div class="col-md-4 form-group">-->
-          <!--    <label>Expiration</label>-->
-          <!--    <input type        = "text" -->
-          <!--           placeholder = "MM / YY" -->
-          <!--           name        = "expiry" -->
-          <!--           class       = "form-control form-control-primary"/>-->
-          <!--  </div>-->
-          <!--</div>-->
-          
-          <!--<div class="row">-->
-            
-          <!--  <div class="col-md-8 form-group">-->
-          <!--    <label>Name</label>-->
-          <!--    <input type="text" name="name" class="form-control form-control-primary"/>-->
-          <!--  </div>-->
-            
-          <!--  <div class="col-md-4 form-group">-->
-          <!--    <label>CVV</label>-->
-          <!--    <input type="text" name="cvv" class="form-control form-control-primary"/>-->
-          <!--  </div>-->
-            
-          <!--  <(perc) if current_user.stripe_id.blank? %>-->
-          <!--    <button class="btn btn-primary">Add Card</button>-->
-          <!--  <(perc) else %>-->
-          <!--    <button class="btn btn-primary">Update Card</button>-->
-          <!--  <(perc) end %>-->
-          <!--</div>-->
         <% end %>
       </div>
     </div>
@@ -149,10 +112,5 @@
       
       stripe.createToken(card, extraDetails).then(setOutcome);
     });
-    
-    // var card = new Card({
-    //   form: '#add-card',
-    //   container: '.card'
-    // })
   })
 </script>

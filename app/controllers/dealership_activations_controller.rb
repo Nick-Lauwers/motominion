@@ -6,7 +6,6 @@ class DealershipActivationsController < ApplicationController
     
     if dealership && !dealership.activated? && dealership.authenticated?(:activation, params[:id])
       dealership.activate
-      # log_in user
       flash[:success] = "Account activated!"
       redirect_to basics_dealership_path(dealership)
       

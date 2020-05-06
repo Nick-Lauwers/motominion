@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class AutopartsControllerTest < ActionController::TestCase
+  
   test "should get new" do
     get :new
     assert_response :success
@@ -30,5 +31,4 @@ class AutopartsControllerTest < ActionController::TestCase
     get :show
     assert_response :success
   end
-
 end

@@ -1,5 +1,3 @@
-<!--completed-->
-
 <% other = conversation.sender == 
            current_user ? conversation.recipient : conversation.sender %>
            
@@ -66,10 +64,6 @@
         </td>
         
         <td>
-          <!--<p class="conversation-appointment">-->
-          <!--  <(perc)= pluralize(conversation.appointments.count, "Request") %>-->
-          <!--</p>-->
-          
           <%= link_to archive_conversation_path(conversation), 
                       method: :put do %>
             <span class="conversation-delete-link">
@@ -82,8 +76,3 @@
     </table>
   <% end %>
 </li>
-
-<!--simplify conversation and messages relationship (mailboxer gem)-->
-<!--stay gray after selected-->
-<!--should be logged in IOT delete (check controller)-->
-<!--are these ordered based on most recent?-->

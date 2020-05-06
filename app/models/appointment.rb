@@ -1,5 +1,3 @@
-# complete
-
 class Appointment < ActiveRecord::Base
   
   belongs_to :vehicle
@@ -9,18 +7,6 @@ class Appointment < ActiveRecord::Base
   
   default_scope -> { order(date: :asc) }
   
-  validates :status, :date, :seller_id, :buyer_id, :vehicle_id, 
-            # :conversation_id,
+  validates :status, :date, :seller_id, :buyer_id, :vehicle_id,
             presence: true
-  
-  # validate :date_must_be_in_the_future
-  
-  # # Returns false if an appointment is scheduled for the past
-  # def date_must_be_in_the_future
-  #   if date.present? && date <= Time.now
-  #     errors.add(:date, "must be in the future")
-  #   end
-  # end
 end
-
-# ensure that default scope is correct

@@ -1,7 +1,3 @@
-<!--completed-->
-
-<!--revise title-->
-
 <% provide(:title,       "Community Center") %>
 <% provide(:description, "Connect with motorcycle enthusiasts, ask for advice, and get updates from the Motominion team.") %>
 
@@ -183,14 +179,6 @@
             <ol class="tab-pane-list">
               <%= render @unanswered_discussions %>
             </ol>
-            
-            <!--<= will_paginate @unanswered_posts,-->
-            <!--    previous_label: -->
-            <!--      '<i class="fa fa-arrow-left" aria-hidden="true"></i>', -->
-            <!--    next_label: -->
-            <!--      '<i class="fa fa-arrow-right" aria-hidden="true"></i>',-->
-            <!--    inner_window: 1, -->
-            <!--    outer_window: 0 %>-->
           
           <% else %>
             <p class="empty-list-info">

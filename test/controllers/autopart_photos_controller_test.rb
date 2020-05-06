@@ -5,5 +5,4 @@ class AutopartPhotosControllerTest < ActionController::TestCase
     get :destroy
     assert_response :success
   end
-
 end

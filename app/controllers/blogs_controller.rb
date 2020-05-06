@@ -32,12 +32,6 @@ class BlogsController < ApplicationController
     end
   end
   
-  # def destroy
-  #   @blog.destroy
-  #   flash[:success] = "Blog entry deleted"
-  #   redirect_to root_path
-  # end
-  
   def show
   end
   

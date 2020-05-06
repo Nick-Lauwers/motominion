@@ -38,7 +38,6 @@ class PurchasesController < ApplicationController
       redirect_to details_purchase_path(@purchase)
     
     else
-      # Produce an error on first save, then correct and save again; see what happens
       render 'new'
     end
   end

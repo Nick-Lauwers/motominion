@@ -1,24 +1,10 @@
-# complete
-
 class User < ActiveRecord::Base
   
   belongs_to :dealership
   
-  # Experiment
-  
   has_many :initiated_conversations, class_name: 'Conversation', 
     dependent: :destroy, foreign_key: :sender_id
   accepts_nested_attributes_for :initiated_conversations, allow_destroy: true
-  
-  # has_many :conversations
-  # accepts_nested_attributes_for :conversations, allow_destroy: true
-  
-  # has_many :appointments,      dependent: :destroy
-  # has_many :inquiries,         dependent: :destroy
-  
-  # has_one :profile,            dependent: :destroy
-  
-  # has_many :impressions
   
   has_many :vehicles,            dependent: :destroy
   has_many :autoparts,           dependent: :destroy
@@ -53,7 +39,6 @@ class User < ActiveRecord::Base
     dependent: :destroy, foreign_key: :sender_id
     
   has_many :favorites, through: :favorite_vehicles,  source: :vehicle
-  # has_many :favorites, through: :favorite_autoparts, source: :autopart
   has_many :clubs, through: :memberships
   
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -61,14 +46,8 @@ class User < ActiveRecord::Base
   acts_as_voter
   
   before_save   :downcase_email
-  # before_update :create_activation_digest, if: :create_activation_digest_changed?
-  # before_create :create_activation_digest, unless: :dealership_admin
   
-  # after_create  :create_profile
-  
-  validates :first_name, :last_name,  
-    # presence: true, 
-    length: { maximum: 25 }
+  validates :first_name, :last_name, length: { maximum: 25 }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length:     { maximum: 255 },
@@ -165,8 +144,6 @@ class User < ActiveRecord::Base
       user.first_name    = auth.info.first_name unless user.first_name != nil
       user.last_name     = auth.info.last_name unless user.last_name != nil
       user.email         = auth.info.email unless user.email != nil
-      # user.email         = SecureRandom.hex + '@example.com' unless 
-      #                     user.email != nil
       user.password      = SecureRandom.urlsafe_base64 unless 
                            user.password != nil
       user.activated     = true
@@ -198,13 +175,4 @@ class User < ActiveRecord::Base
     def downcase_email
       self.email = email.downcase
     end
-    
-    # Creates and assigns the activation token and digest.
-    # def create_activation_digest
-    #   self.activation_token   = User.new_token
-    #   self.activation_digest  = User.digest(activation_token)
-    # end
 end
-
-# eliminate / revise omniauth email
-# all has_many's on one line

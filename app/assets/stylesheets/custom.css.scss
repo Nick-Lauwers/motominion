@@ -11759,49 +11759,49 @@ a.remove_fields {
   }
 }
 
-    .action-button {
-      &.active {
-        box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19), 0 12px 15px 0 rgba(0, 0, 0, 0.24);
-      }
-      
-        &.active ~ .actions {
+.action-button {
+  &.active {
+    box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19), 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+  }
+  
+    &.active ~ .actions {
 
-          li {
-                transition: all .3s;
-                transform: scale(1);
+      li {
+            transition: all .3s;
+            transform: scale(1);
 
-                &:nth-child(1) {margin-top: -56px;}
-                &:nth-child(2) {margin-top: -104px;}
-                &:nth-child(3) {margin-top: -152px;}
-                &:nth-child(4) {margin-top: -200px;}
-                &:nth-child(5) {margin-top: -248px;}
-            }
+            &:nth-child(1) {margin-top: -56px;}
+            &:nth-child(2) {margin-top: -104px;}
+            &:nth-child(3) {margin-top: -152px;}
+            &:nth-child(4) {margin-top: -200px;}
+            &:nth-child(5) {margin-top: -248px;}
         }
     }
+}
 
-    .action-button i {
-        transition: all .3s;
-    }
+.action-button i {
+    transition: all .3s;
+}
 
-    .action-button {
-        &.active:not(.no-rotate) i {
-            transform: scale(1) rotate(-45deg);
-        }
+.action-button {
+    &.active:not(.no-rotate) i {
+        transform: scale(1) rotate(-45deg);
     }
-    
-    .experiment-container {
-      background-color: $gray-lightest;
-    }
-    
-    .experiment {
-      max-width: 1008px;
-      padding: 6em 0;
-      margin: 0 auto;
-    }
-    
-    .experiment-content {
-      list-style: none;
-      overflow: auto;
-      padding: 0;
-      margin: 0 -15px;
-    }
+}
+
+.experiment-container {
+  background-color: $gray-lightest;
+}
+
+.experiment {
+  max-width: 1008px;
+  padding: 6em 0;
+  margin: 0 auto;
+}
+
+.experiment-content {
+  list-style: none;
+  overflow: auto;
+  padding: 0;
+  margin: 0 -15px;
+}

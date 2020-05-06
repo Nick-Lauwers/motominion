@@ -1,7 +1,5 @@
 class ClubsController < ApplicationController
   
-  # validate that invited user has not already been invited
-  
   before_action :logged_in_user,     except: [:index, :posts, :discussions, 
                                               :autocomplete]
   before_action :get_club,           only:   [:edit, :update, :posts, 
@@ -34,18 +32,10 @@ class ClubsController < ApplicationController
   def update
     
     if @club.update(club_params)
-      
-      # if params[:images]
-      #   params[:images].each do |image|
-      #     @vehicle.photos.create(image: image)
-      #   end
-      # end
-      
       flash[:success] = "Updates saved."
     
     else
       flash[:danger] = "Update failed."
-      # render 'edit'
     end
     
     redirect_to posts_club_path(@club)
@@ -63,10 +53,6 @@ class ClubsController < ApplicationController
       @clubs = Club.all.paginate(page: params[:page], per_page: 10)
     end
   end
-  
-  # def show
-  #   @discussions = Discussion.where(club_id: @club.id)
-  # end
   
   def posts
   end

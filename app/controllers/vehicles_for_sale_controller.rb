@@ -148,9 +148,6 @@ class VehiclesForSaleController < ApplicationController
                     where(sold_at: nil).
                     includes(:listing_score).
                     order("listing_scores.overall_score DESC").
-                          # ,
-                          # "year DESC",
-                          # "listing_name ASC").
                     paginate(page: params[:page], per_page: 10)
       
       @geojson = Array.new;
@@ -165,7 +162,6 @@ class VehiclesForSaleController < ApplicationController
           },
           properties: {
             "id":    vehicle.id,
-            # "image": vehicle.photos[0].image.url(),
             "title": vehicle.listing_name
           }
         }

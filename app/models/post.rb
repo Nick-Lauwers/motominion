@@ -6,8 +6,6 @@ class Post < ActiveRecord::Base
   
   acts_as_votable
   
-  # default_scope -> { order(created_at: :desc) }
-  
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 500 }
   

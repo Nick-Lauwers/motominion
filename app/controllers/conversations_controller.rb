@@ -346,5 +346,3 @@ class ConversationsController < ApplicationController
                                             :last_name, :email])
     end
 end
-
-# ensure that user is logged in

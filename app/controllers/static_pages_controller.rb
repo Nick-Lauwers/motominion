@@ -1,5 +1,3 @@
-# completed
-
 class StaticPagesController < ApplicationController
   
   def home

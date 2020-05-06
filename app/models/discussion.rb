@@ -1,5 +1,3 @@
-# complete
-
 class Discussion < ActiveRecord::Base
   
   searchkick word_start: [:title]
@@ -14,5 +12,4 @@ class Discussion < ActiveRecord::Base
   
   validates :user_id, :content, presence: true
   validates :title, presence: true
-  # , length: { maximum: 70 }
 end

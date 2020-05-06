@@ -173,21 +173,16 @@
                 </p>
               </div>
             </div>
-            
-            <!--<div class="availabilities">-->
               
-              <!--<span class="availabilities-title">Availabilities</span>-->
+            <%= f.fields_for :availabilities do |availability| %>
+              <%= render 'availability_fields', f: availability %>
+            <% end %>
               
-              <%= f.fields_for :availabilities do |availability| %>
-                <%= render 'availability_fields', f: availability %>
-              <% end %>
-                
-              <div class="links">
-                <%= link_to_add_association "+ Add Availability", 
-                                            f, 
-                                            :availabilities %>
-              </div>
-            <!--</div>-->
+            <div class="links">
+              <%= link_to_add_association "+ Add Availability", 
+                                          f, 
+                                          :availabilities %>
+            </div>
           </div>
     
           <%= f.hidden_field :bumped_at,  value: Time.now %>
